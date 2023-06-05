@@ -1,7 +1,23 @@
 {
-  "name": "vui",
+  "name": "vectara-ui",
   "version": "0.0.0",
-  "private": true,
+  "description": "Vectara's design system, codified as a React component library",
+  "author": "Vectara",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vectara/vectara-ui.git"
+  },
+  "keywords": [
+    "Conversational",
+    "search",
+    "UI"
+  ],
+  "bugs": {
+    "url": "https://github.com/vectara/vectara-ui/issues"
+  },
+  "homepage": "https://github.com/vectara/vectara-ui#readme",
+  "main": "src/ui",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
