@@ -1,0 +1,5 @@
+# Note that we have to prefix paths with **/ because of the way pretty-quick works
+# relative to the root directory. See https://github.com/azz/pretty-quick/issues/95
+
+# Ignore artifacts:
+**/public

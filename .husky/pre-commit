@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Note that we have to define a path like this because of the way pretty-quick works
+# relative to the root directory. See https://github.com/azz/pretty-quick/issues/95
+npx pretty-quick --staged --ignore-path=.prettierignore
