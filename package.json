@@ -1,5 +1,5 @@
 {
-  "name": "vectara-ui",
+  "name": "@vectara/vectara-ui",
   "version": "0.0.0",
   "description": "Vectara's design system, codified as a React component library",
   "author": "Vectara",
