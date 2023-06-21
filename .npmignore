@@ -1,0 +1,14 @@
+.DS_Store
+.husky
+public
+scripts
+src/**/*.ts
+src/**/*.tsx
+.eslintrc.js
+.nvmrc
+.prettierignore
+.prettierrc.json
+package-lock.json
+postcss.config.js
+tsconfig.json
+tsconfig.package.json

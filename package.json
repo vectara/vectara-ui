@@ -28,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "buildPackage": "npx tsc --project tsconfig.package.json",
+    "publishPackage": "npm run buildPackage && npm publish --access public"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
