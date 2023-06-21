@@ -1,0 +1,32 @@
+@use "sass:map";
+
+.vuiButtonTertiary {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Color
+$color: (
+  accent: (
+    "color": $colorAccent
+  ),
+  primary: (
+    "color": $colorPrimary
+  ),
+  danger: (
+    "color": $colorDanger
+  ),
+  warning: (
+    "color": $colorWarning
+  ),
+  normal: (
+    "color": $colorText
+  )
+);
+
+@each $colorName, $colorValue in $color {
+  .vuiButtonTertiary--#{$colorName} {
+    color: #{map.get($colorValue, "color")};
+  }
+}
