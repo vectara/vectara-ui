@@ -19,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/vectara/vectara-ui/issues"
   },
-  "homepage": "https://github.com/vectara/vectara-ui#readme",
   "browser": "dist/index.js",
   "module": "dist/index.js",
   "main": "dist/index.js",
@@ -29,8 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "buildPackage": "npx tsc --project tsconfig.package.json",
-    "publishPackage": "npm run buildPackage && npm publish --access public"
+    "buildLib": "npx tsc --project tsconfig.lib.json",
+    "publishLib": "npm run buildLib && npm publish --access public"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
