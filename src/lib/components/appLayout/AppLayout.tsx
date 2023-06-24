@@ -1,4 +1,3 @@
-import { VuiAppContent } from "../appContent/AppContent";
 import { VuiAppSideNav, Props as VuiAppSideNavProps } from "../appSideNav/AppSideNav";
 
 type Props = {
@@ -13,9 +12,7 @@ export const VuiAppLayout = ({ children, navItems }: Props) => {
         <VuiAppSideNav items={navItems} />
       </div>
 
-      <div className="vuiAppLayout__content">
-        <VuiAppContent>{children}</VuiAppContent>
-      </div>
+      <div>{children}</div>
     </div>
   );
 };

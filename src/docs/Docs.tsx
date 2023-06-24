@@ -1,16 +1,23 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
   VuiButtonIcon,
   VuiFlexContainer,
   VuiFlexItem,
-  // VuiHorizontalRule,
   VuiIcon,
   VuiTitle,
-  VuiAppLayout
+  VuiAppLayout,
+  VuiAppContent
 } from "../lib";
-import { HeaderLogo } from "./HeaderLogo";
+import { HeaderLogo } from "./components/HeaderLogo";
+import { pages, pathToExampleMap } from "./pages";
+
+const Page = () => {
+  const location = useLocation();
+  const example = pathToExampleMap[location.pathname];
+  return <VuiAppContent>{example}</VuiAppContent>;
+};
 
 export const Docs = () => {
   return (
@@ -45,33 +52,8 @@ export const Docs = () => {
         }
       />
 
-      <VuiAppLayout
-        navItems={[
-          {
-            type: "section",
-            title: "Components",
-            items: [
-              {
-                type: "link",
-                title: "Buttons",
-                path: "/buttons"
-              }
-            ]
-          },
-          {
-            type: "section",
-            title: "Utils",
-            items: [
-              {
-                type: "link",
-                title: "Truncate",
-                path: "/truncate"
-              }
-            ]
-          }
-        ]}
-      >
-        Content
+      <VuiAppLayout navItems={pages}>
+        <Page />
       </VuiAppLayout>
     </Router>
   );

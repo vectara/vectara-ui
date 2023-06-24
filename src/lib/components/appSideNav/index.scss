@@ -19,6 +19,7 @@
 .appSideNavLink {
   color: $colorText;
   font-size: $fontSizeS;
+  text-decoration: none;
 
   &:hover {
     color: $colorPrimary;

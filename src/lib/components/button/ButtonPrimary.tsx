@@ -1,14 +1,13 @@
 import { cloneElement, forwardRef } from "react";
 import classNames from "classnames";
 import { BaseButton, Props as BaseButtonProps } from "./BaseButton";
-
-const COLOR = ["accent", "primary", "danger", "warning", "normal"] as const;
+import { ButtonColor } from "./types";
 
 type Props = {
   children?: BaseButtonProps["children"];
   icon?: BaseButtonProps["icon"];
   iconSide?: BaseButtonProps["iconSide"];
-  color: (typeof COLOR)[number];
+  color: ButtonColor;
   size?: BaseButtonProps["size"];
   className?: BaseButtonProps["className"];
   fullWidth?: BaseButtonProps["fullWidth"];
