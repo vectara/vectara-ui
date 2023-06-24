@@ -10,9 +10,10 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["**/*.stories.*"],
+      files: ["src/docs/pages.tsx"],
       rules: {
-        "import/no-anonymous-default-export": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "import/no-webpack-loader-syntax": "off"
       }
     }
   ]

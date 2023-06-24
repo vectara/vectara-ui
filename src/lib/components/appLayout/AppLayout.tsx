@@ -12,7 +12,7 @@ export const VuiAppLayout = ({ children, navItems }: Props) => {
         <VuiAppSideNav items={navItems} />
       </div>
 
-      <div>{children}</div>
+      <div className="vuiAppLayout__content">{children}</div>
     </div>
   );
 };

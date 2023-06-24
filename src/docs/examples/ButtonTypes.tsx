@@ -6,33 +6,40 @@ import {
   VuiFlexContainer,
   VuiFlexItem
 } from "../../lib";
+import { Subsection } from "../components/Subsection";
 
 export const ButtonTypes = () => {
   return (
     <>
-      <VuiFlexContainer>
-        {BUTTON_COLOR.map((color) => (
-          <VuiFlexItem grow={false}>
-            <VuiButtonPrimary color={color}>Color {color}</VuiButtonPrimary>
-          </VuiFlexItem>
-        ))}
-      </VuiFlexContainer>
+      <Subsection title="Primary button">
+        <VuiFlexContainer>
+          {BUTTON_COLOR.map((color) => (
+            <VuiFlexItem grow={false} key={color}>
+              <VuiButtonPrimary color={color}>Color {color}</VuiButtonPrimary>
+            </VuiFlexItem>
+          ))}
+        </VuiFlexContainer>
+      </Subsection>
 
-      <VuiFlexContainer>
-        {BUTTON_COLOR.map((color) => (
-          <VuiFlexItem grow={false}>
-            <VuiButtonSecondary color={color}>Color {color}</VuiButtonSecondary>
-          </VuiFlexItem>
-        ))}
-      </VuiFlexContainer>
+      <Subsection title="Secondary button">
+        <VuiFlexContainer>
+          {BUTTON_COLOR.map((color) => (
+            <VuiFlexItem grow={false} key={color}>
+              <VuiButtonSecondary color={color}>Color {color}</VuiButtonSecondary>
+            </VuiFlexItem>
+          ))}
+        </VuiFlexContainer>
+      </Subsection>
 
-      <VuiFlexContainer>
-        {BUTTON_COLOR.map((color) => (
-          <VuiFlexItem grow={false}>
-            <VuiButtonTertiary color={color}>Color {color}</VuiButtonTertiary>
-          </VuiFlexItem>
-        ))}
-      </VuiFlexContainer>
+      <Subsection title="Tertiary button">
+        <VuiFlexContainer>
+          {BUTTON_COLOR.map((color) => (
+            <VuiFlexItem grow={false} key={color}>
+              <VuiButtonTertiary color={color}>Color {color}</VuiButtonTertiary>
+            </VuiFlexItem>
+          ))}
+        </VuiFlexContainer>
+      </Subsection>
     </>
   );
 };

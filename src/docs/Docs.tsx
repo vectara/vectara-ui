@@ -8,15 +8,30 @@ import {
   VuiIcon,
   VuiTitle,
   VuiAppLayout,
-  VuiAppContent
+  VuiAppContent,
+  VuiSpacer
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
-import { pages, pathToExampleMap } from "./pages";
+import { sections, pathToExampleMap } from "./pages";
+import { Example } from "./components/Example";
 
 const Page = () => {
   const location = useLocation();
-  const example = pathToExampleMap[location.pathname];
-  return <VuiAppContent>{example}</VuiAppContent>;
+  const { name, examples } = pathToExampleMap[location.pathname];
+
+  return (
+    <VuiAppContent>
+      <VuiTitle size="m">
+        <h2>{name}</h2>
+      </VuiTitle>
+
+      <VuiSpacer size="m" />
+
+      {examples.map(({ name: exampleName, component, source }) => (
+        <Example key={name} name={exampleName} component={component} source={source} />
+      ))}
+    </VuiAppContent>
+  );
 };
 
 export const Docs = () => {
@@ -52,25 +67,9 @@ export const Docs = () => {
         }
       />
 
-      <VuiAppLayout navItems={pages}>
+      <VuiAppLayout navItems={sections}>
         <Page />
       </VuiAppLayout>
     </Router>
   );
 };
-
-// // Routes
-// <VuiContent>
-//   <VuiTitle>{/* title */}</VuiTitle>
-//   <VuiSpacer size="m" />
-//   <VuiText>{/* description */}</VuiText>
-
-//   <VuiSpacer size="m" />
-//   <VuiHorizontalRule />
-//   <VuiSpacer size="m" />
-
-//   <VuiTitle size="s">{/* example */}</VuiTitle>
-//   <VuiSpacer size="m" />
-//   <VuiText>{/* example description */}</VuiText>
-
-// </VuiContent>

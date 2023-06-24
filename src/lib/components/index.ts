@@ -33,16 +33,19 @@ import { VuiSpacer } from "./spacer/Spacer";
 import { VuiSpinner } from "./spinner/Spinner";
 import { VuiSummary } from "./summary/Summary";
 import { VuiTab } from "./tabs/Tab";
+import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
 import { VuiTabs } from "./tabs/Tabs";
+import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
-export type { ButtonColor };
+export type { ButtonColor, TabSize };
 
 export {
   BUTTON_COLOR,
+  TAB_SIZE,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,
@@ -79,6 +82,7 @@ export {
   VuiSpinner,
   VuiSummary,
   VuiTab,
+  VuiTabbedRoutes,
   VuiTabs,
   VuiText,
   VuiTextColor,
