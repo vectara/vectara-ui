@@ -1,3 +1,6 @@
+import { VuiAppContent } from "./appContent/AppContent";
+import { VuiAppHeader } from "./appHeader/AppHeader";
+import { VuiAppSideNav } from "./appSideNav/AppSideNav";
 import { VuiBadge } from "./badge/Badge";
 import { VuiButtonPrimary } from "./button/ButtonPrimary";
 import { VuiButtonSecondary } from "./button/ButtonSecondary";
@@ -35,6 +38,9 @@ import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
 export {
+  VuiAppContent,
+  VuiAppHeader,
+  VuiAppSideNav,
   VuiBadge,
   VuiButtonPrimary,
   VuiButtonSecondary,

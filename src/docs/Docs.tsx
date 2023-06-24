@@ -1,15 +1,95 @@
-import { VuiSpacer, VuiTitle } from "../lib";
+import { BrowserRouter as Router } from "react-router-dom";
+import { BiLogoGithub } from "react-icons/bi";
+import {
+  VuiAppHeader,
+  VuiButtonIcon,
+  VuiFlexContainer,
+  VuiFlexItem,
+  // VuiHorizontalRule,
+  VuiIcon,
+  VuiAppSideNav,
+  VuiAppContent,
+  VuiTitle
+} from "../lib";
+import { HeaderLogo } from "./HeaderLogo";
 
 export const Docs = () => {
   return (
-    <div>
-      <VuiTitle size="l">
-        <h1>Vectara-UI docs</h1>
-      </VuiTitle>
-      <VuiSpacer size="m" />
-      <VuiTitle size="s">
-        <h2>Coming soon...</h2>
-      </VuiTitle>
-    </div>
+    <Router>
+      <VuiAppHeader
+        left={
+          <VuiFlexContainer spacing="m" alignItems="center">
+            <VuiFlexItem grow={false}>
+              <HeaderLogo />
+            </VuiFlexItem>
+
+            <VuiFlexItem grow={false}>
+              <VuiTitle size="xs">
+                <h1>
+                  <strong>Vectara UI Library</strong>
+                </h1>
+              </VuiTitle>
+            </VuiFlexItem>
+          </VuiFlexContainer>
+        }
+        right={
+          <VuiButtonIcon
+            href="https://github.com/vectara/vectara-ui"
+            target="_blank"
+            color="normal"
+            icon={
+              <VuiIcon>
+                <BiLogoGithub />
+              </VuiIcon>
+            }
+          />
+        }
+      />
+
+      <VuiAppContent>
+        <VuiAppSideNav
+          items={[
+            {
+              type: "section",
+              title: "Components",
+              items: [
+                {
+                  type: "link",
+                  title: "Buttons",
+                  path: "/buttons"
+                }
+              ]
+            },
+            {
+              type: "section",
+              title: "Utils",
+              items: [
+                {
+                  type: "link",
+                  title: "Truncate",
+                  path: "/truncate"
+                }
+              ]
+            }
+          ]}
+        />
+      </VuiAppContent>
+    </Router>
   );
 };
+
+// // Routes
+// <VuiContent>
+//   <VuiTitle>{/* title */}</VuiTitle>
+//   <VuiSpacer size="m" />
+//   <VuiText>{/* description */}</VuiText>
+
+//   <VuiSpacer size="m" />
+//   <VuiHorizontalRule />
+//   <VuiSpacer size="m" />
+
+//   <VuiTitle size="s">{/* example */}</VuiTitle>
+//   <VuiSpacer size="m" />
+//   <VuiText>{/* example description */}</VuiText>
+
+// </VuiContent>
