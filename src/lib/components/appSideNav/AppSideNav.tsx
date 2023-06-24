@@ -1,11 +1,11 @@
-type TreeItem = {
+export type TreeItem = {
   type: "section" | "link";
   title: string;
   path?: string;
   items?: Array<TreeItem>;
 };
 
-type Props = {
+export type Props = {
   items: Array<TreeItem>;
 };
 
@@ -13,19 +13,15 @@ const buildItems = (items: Array<TreeItem>) => {
   return items.map((item) => {
     if (item.type === "section") {
       return (
-        <div className="section">
-          <div className="sectionTitle">{item.title}</div>
-          {item.items && <div className="sectionItems">{buildItems(item.items)}</div>}
+        <div className="appSideNavSection">
+          <div className="appSideNavSection__title">{item.title}</div>
+          {item.items && <div className="appSideNavSection__items">{buildItems(item.items)}</div>}
         </div>
       );
     }
 
     if (item.type === "link") {
-      return (
-        <div className="link">
-          <div className="linkTitle">{item.title}</div>
-        </div>
-      );
+      return <a className="appSideNavLink">{item.title}</a>;
     }
   });
 };

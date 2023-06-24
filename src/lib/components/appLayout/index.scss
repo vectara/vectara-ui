@@ -1,0 +1,13 @@
+.vuiAppLayout {
+  display: flex;
+  flex-direction: row;
+  padding-top: 60px;
+}
+
+.vuiAppLayout__sideNav {
+  padding: 0 $sizeM $sizeXl;
+  border-right: 1px solid $colorMediumShade;
+}
+
+.vuiAppLayout__content {
+}

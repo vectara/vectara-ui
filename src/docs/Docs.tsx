@@ -7,9 +7,8 @@ import {
   VuiFlexItem,
   // VuiHorizontalRule,
   VuiIcon,
-  VuiAppSideNav,
-  VuiAppContent,
-  VuiTitle
+  VuiTitle,
+  VuiAppLayout
 } from "../lib";
 import { HeaderLogo } from "./HeaderLogo";
 
@@ -46,34 +45,34 @@ export const Docs = () => {
         }
       />
 
-      <VuiAppContent>
-        <VuiAppSideNav
-          items={[
-            {
-              type: "section",
-              title: "Components",
-              items: [
-                {
-                  type: "link",
-                  title: "Buttons",
-                  path: "/buttons"
-                }
-              ]
-            },
-            {
-              type: "section",
-              title: "Utils",
-              items: [
-                {
-                  type: "link",
-                  title: "Truncate",
-                  path: "/truncate"
-                }
-              ]
-            }
-          ]}
-        />
-      </VuiAppContent>
+      <VuiAppLayout
+        navItems={[
+          {
+            type: "section",
+            title: "Components",
+            items: [
+              {
+                type: "link",
+                title: "Buttons",
+                path: "/buttons"
+              }
+            ]
+          },
+          {
+            type: "section",
+            title: "Utils",
+            items: [
+              {
+                type: "link",
+                title: "Truncate",
+                path: "/truncate"
+              }
+            ]
+          }
+        ]}
+      >
+        Content
+      </VuiAppLayout>
     </Router>
   );
 };

@@ -1,4 +1,27 @@
 .appSideNav {
-  border-right: 1px solid $colorMediumShade;
-  width: 120px;
+  padding: 0 $sizeS;
+}
+
+.appSideNavSection + .appSideNavSection {
+  margin-top: $sizeL;
+}
+
+.appSideNavSection__title {
+  color: $colorSubdued;
+  font-weight: $fontWeightBold;
+  font-size: $fontSizeXs;
+}
+
+.appSideNavSection__items {
+  margin-top: $sizeS;
+}
+
+.appSideNavLink {
+  color: $colorText;
+  font-size: $fontSizeS;
+
+  &:hover {
+    color: $colorPrimary;
+    text-decoration: underline;
+  }
 }
