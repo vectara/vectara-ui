@@ -1,25 +1,19 @@
 module.exports = {
-  extends: [
-    "react-app",
-    "react-app/jest",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:storybook/recommended"
-  ],
+  extends: ["react-app", "react-app/jest", "eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
   root: true,
-  ignorePatterns: ["public/",  "build/"],
+  ignorePatterns: ["public/", "build/"],
   rules: {
     "@typescript-eslint/no-unused-vars": "error",
     "react/no-unused-prop-types": 2
   },
   overrides: [
     {
-      files: ["**/*.stories.*"],
+      files: ["src/docs/pages.tsx"],
       rules: {
-        "import/no-anonymous-default-export": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "import/no-webpack-loader-syntax": "off"
       }
     }
   ]

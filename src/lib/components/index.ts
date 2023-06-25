@@ -1,4 +1,9 @@
+import { VuiAppContent } from "./appContent/AppContent";
+import { VuiAppHeader } from "./appHeader/AppHeader";
+import { VuiAppLayout } from "./appLayout/AppLayout";
+import { VuiAppSideNav } from "./appSideNav/AppSideNav";
 import { VuiBadge } from "./badge/Badge";
+import { BUTTON_COLOR, ButtonColor } from "./button/types";
 import { VuiButtonPrimary } from "./button/ButtonPrimary";
 import { VuiButtonSecondary } from "./button/ButtonSecondary";
 import { VuiButtonTertiary } from "./button/ButtonTertiary";
@@ -28,13 +33,23 @@ import { VuiSpacer } from "./spacer/Spacer";
 import { VuiSpinner } from "./spinner/Spinner";
 import { VuiSummary } from "./summary/Summary";
 import { VuiTab } from "./tabs/Tab";
+import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
 import { VuiTabs } from "./tabs/Tabs";
+import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
+export type { ButtonColor, TabSize };
+
 export {
+  BUTTON_COLOR,
+  TAB_SIZE,
+  VuiAppContent,
+  VuiAppHeader,
+  VuiAppLayout,
+  VuiAppSideNav,
   VuiBadge,
   VuiButtonPrimary,
   VuiButtonSecondary,
@@ -67,6 +82,7 @@ export {
   VuiSpinner,
   VuiSummary,
   VuiTab,
+  VuiTabbedRoutes,
   VuiTabs,
   VuiText,
   VuiTextColor,

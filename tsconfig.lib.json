@@ -1,6 +1,6 @@
 {
-  "include": ["src"],
-  "exclude": ["src/setupTests.ts"],
+  "include": ["src/lib"],
+  "exclude": ["src/lib/setupTests.ts"],
   "compilerOptions": {
     "outDir": "dist",
     "target": "es6",
