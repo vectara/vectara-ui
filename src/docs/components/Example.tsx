@@ -27,9 +27,12 @@ export const Example = ({ name, component, source }: Props) => {
         </VuiTab>
       </VuiTabs>
 
-      <VuiSpacer size="s" />
-
-      {tab === "example" && component}
+      {tab === "example" && (
+        <>
+          <VuiSpacer size="m" />
+          {component}
+        </>
+      )}
       {tab === "source" && <VuiCode language="tsx">{source}</VuiCode>}
     </>
   );

@@ -14,20 +14,26 @@ type Props = {
   language?: string;
   onCopy?: () => void;
   children?: string;
+  fullHeight?: boolean;
 };
 
-export const VuiCode = ({ onCopy, language, children = "" }: Props) => {
+export const VuiCode = ({ onCopy, language, fullHeight, children = "" }: Props) => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
-  const classes = classNames({
-    [`language-${language}`]: language
+  const containerClasses = classNames("vuiCodeContainer", {
+    "vuiCodeContainer--fullHeight": fullHeight
+  });
+
+  const classes = classNames("vuiCode", {
+    [`language-${language}`]: language,
+    "vuiCode--fullHeight": fullHeight
   });
 
   return (
-    <div className="vuiCodeContainer">
-      <pre className="vuiCode">
+    <div className={containerClasses}>
+      <pre className="vuiCodePre">
         <code className={classes}>{children}</code>
       </pre>
 
