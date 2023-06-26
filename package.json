@@ -44,6 +44,7 @@
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "postcss": "^8.4.14",
+    "prismjs": "^1.29.0",
     "query-string": "^7.1.1",
     "react-focus-on": "^3.8.1",
     "react-icons": "^4.10.1",
@@ -58,6 +59,7 @@
     "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
+    "@types/prismjs": "^1.26.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
