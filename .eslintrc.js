@@ -10,7 +10,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["src/docs/pages.tsx"],
+      files: ["src/docs/pages/**/index.tsx"],
       rules: {
         "@typescript-eslint/no-var-requires": "off",
         "import/no-webpack-loader-syntax": "off"

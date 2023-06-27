@@ -13,8 +13,8 @@ const COLOR = ["primary", "danger"] as const;
 
 type Props = {
   className?: string;
-  title?: ReactNode;
-  children?: ReactNode;
+  title: ReactNode;
+  children: ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
   color?: (typeof COLOR)[number];

@@ -1,4 +1,4 @@
-import { truncateEnd, truncateStart } from "../../lib";
+import { truncateEnd, truncateStart } from "../../../lib";
 
 export const TruncateString = () => {
   const str = "0123456789";

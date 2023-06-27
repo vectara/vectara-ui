@@ -5,8 +5,8 @@ import {
   VuiButtonTertiary,
   VuiFlexContainer,
   VuiFlexItem
-} from "../../lib";
-import { Subsection } from "../components/Subsection";
+} from "../../../lib";
+import { Subsection } from "../../components/Subsection";
 
 export const ButtonTypes = () => {
   return (

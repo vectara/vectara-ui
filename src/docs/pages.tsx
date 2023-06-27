@@ -1,8 +1,5 @@
-import { ButtonTypes } from "./examples/ButtonTypes";
-import { TruncateString } from "./examples/TruncateString";
-
-const ButtonTypesSource = require("!!raw-loader!./examples/ButtonTypes");
-const TruncateStringSource = require("!!raw-loader!./examples/TruncateString");
+import { buttons } from "./pages/buttons";
+import { truncate } from "./pages/truncate";
 
 type Section = { name: string; pages: Page[] };
 type Page = { name: string; path: string; examples: Example[] };
@@ -11,35 +8,11 @@ type Example = { name: string; component: React.ReactNode; source: string };
 export const sections: Section[] = [
   {
     name: "Components",
-    pages: [
-      {
-        name: "Buttons",
-        path: "/buttons",
-        examples: [
-          {
-            name: "Button types",
-            component: <ButtonTypes />,
-            source: ButtonTypesSource.default.toString()
-          }
-        ]
-      }
-    ]
+    pages: [buttons]
   },
   {
     name: "Utils",
-    pages: [
-      {
-        name: "Truncate string",
-        path: "/truncate",
-        examples: [
-          {
-            name: "Placeholder",
-            component: <TruncateString />,
-            source: TruncateStringSource.default.toString()
-          }
-        ]
-      }
-    ]
+    pages: [truncate]
   }
 ];
 
