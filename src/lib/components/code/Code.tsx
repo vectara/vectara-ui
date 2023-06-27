@@ -11,7 +11,7 @@ import { VuiIcon } from "../icon/Icon";
 import { useEffect } from "react";
 
 type Props = {
-  language?: string;
+  language?: "js" | "ts" | "jsx" | "tsx";
   onCopy?: () => void;
   children?: string;
   fullHeight?: boolean;

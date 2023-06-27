@@ -1,7 +1,7 @@
 export type TreeItem = {
   name: string;
   path?: string;
-  items?: Array<TreeItem>;
+  pages?: Array<TreeItem>;
 };
 
 export type Props = {
@@ -9,12 +9,12 @@ export type Props = {
 };
 
 const buildItems = (items: Array<TreeItem>) => {
-  return items.map(({ name, items, path }) => {
-    if (items) {
+  return items.map(({ name, pages, path }) => {
+    if (pages) {
       return (
         <div className="appSideNavSection" key={name}>
           <div className="appSideNavSection__title">{name}</div>
-          <div className="appSideNavSection__items">{buildItems(items)}</div>
+          <div className="appSideNavSection__items">{buildItems(pages)}</div>
         </div>
       );
     }

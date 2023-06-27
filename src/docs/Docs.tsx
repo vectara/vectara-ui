@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, useLocation, useNavigate } from "react-router-dom";
 import { BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
@@ -12,12 +12,24 @@ import {
   VuiSpacer
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
-import { sections, pathToExampleMap } from "./pages";
+import { sections, pathToPageMap } from "./pages";
 import { Example } from "./components/Example";
+import { useEffect } from "react";
 
 const Page = () => {
   const location = useLocation();
-  const { name, examples } = pathToExampleMap[location.pathname];
+  const navigate = useNavigate();
+  const page = pathToPageMap[location.pathname];
+
+  useEffect(() => {
+    if (!page) {
+      navigate("/buttons");
+    }
+  }, [page]);
+
+  if (!page) return null;
+
+  const { name, examples } = page;
 
   return (
     <VuiAppContent>
