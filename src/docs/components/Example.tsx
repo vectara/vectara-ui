@@ -24,6 +24,7 @@ export const Example = ({ name, component, source }: Props) => {
         <VuiTab isActive={tab === "example"} onClick={() => setTab("example")}>
           Example
         </VuiTab>
+
         <VuiTab isActive={tab === "source"} onClick={() => setTab("source")}>
           Source
         </VuiTab>

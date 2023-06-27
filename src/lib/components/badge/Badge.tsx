@@ -31,7 +31,7 @@ export const VuiBadge = ({ children, className, color, onClick, href, target, tr
 
   if (href) {
     return (
-      <Link className={classes} onClick={onClick} to={href} {...getTrackingProps(track)}>
+      <Link className={classes} onClick={onClick} to={href} target={target} {...getTrackingProps(track)}>
         {children}
       </Link>
     );
