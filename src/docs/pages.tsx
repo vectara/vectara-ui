@@ -1,4 +1,5 @@
 // Components
+import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
@@ -36,7 +37,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [icon]
+    pages: [badge, icon]
   },
   {
     name: "Containers",
