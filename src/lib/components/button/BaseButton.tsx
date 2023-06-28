@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, forwardRef } from "react";
 import classNames from "classnames";
 import { Props as LinkProps } from "../link/Link";
 import { Link } from "react-router-dom";
@@ -8,7 +8,6 @@ const SIZE = ["xs", "s", "m"] as const;
 
 export type Props = {
   children?: ReactNode;
-  ref: React.ForwardedRef<HTMLButtonElement | null>;
   icon?: ReactElement | null;
   iconSide?: "left" | "right";
   className?: string;
@@ -20,49 +19,41 @@ export type Props = {
   track?: LinkProps["track"];
 };
 
-export const BaseButton = ({
-  children,
-  ref,
-  icon,
-  iconSide = "left",
-  className,
-  size,
-  fullWidth,
-  onClick,
-  href,
-  target,
-  track,
-  ...rest
-}: Props) => {
-  const classes = classNames("vuiBaseButton", className, `vuiBaseButton--${size}`, {
-    "vuiBaseButton--fullWidth": fullWidth,
-    [`vuiBaseButton--${iconSide}`]: Boolean(icon)
-  });
+export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
+  (
+    { children, icon, iconSide = "left", className, size, fullWidth, onClick, href, target, track, ...rest }: Props,
+    ref
+  ) => {
+    const classes = classNames("vuiBaseButton", className, `vuiBaseButton--${size}`, {
+      "vuiBaseButton--fullWidth": fullWidth,
+      [`vuiBaseButton--${iconSide}`]: Boolean(icon)
+    });
 
-  const props = {
-    onClick,
-    ...rest
-  };
+    const props = {
+      onClick,
+      ...rest
+    };
 
-  const iconContainer = icon ? <span className="vuiBaseButtonIconContainer">{icon}</span> : null;
+    const iconContainer = icon ? <span className="vuiBaseButtonIconContainer">{icon}</span> : null;
 
-  if (href) {
+    if (href) {
+      return (
+        <Link className="vuiBaseButtonLinkWrapper" to={href} target={target} {...rest} {...getTrackingProps(track)}>
+          {/* Wrap a button otherwise the flex layout breaks */}
+          <button className={classes} tabIndex={-1} ref={ref}>
+            {iconContainer}
+            {children}
+          </button>
+        </Link>
+      );
+    }
+
     return (
-      <Link className="vuiBaseButtonLinkWrapper" to={href} target={target} {...rest} {...getTrackingProps(track)}>
-        {/* Wrap a button otherwise the flex layout breaks */}
-        <button className={classes} tabIndex={-1} ref={ref}>
-          {iconContainer}
-          {children}
-        </button>
-      </Link>
+      // @ts-expect-error HTMLButtonElement conflict with HTMLAnchorElement
+      <button className={classes} {...props} ref={ref}>
+        {iconContainer}
+        {children}
+      </button>
     );
   }
-
-  return (
-    // @ts-expect-error HTMLButtonElement conflict with HTMLAnchorElement
-    <button className={classes} {...props} ref={ref}>
-      {iconContainer}
-      {children}
-    </button>
-  );
-};
+);
