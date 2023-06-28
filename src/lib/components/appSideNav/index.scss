@@ -17,9 +17,11 @@
 }
 
 .appSideNavLink {
+  display: block;
   color: $colorText;
-  font-size: $fontSizeS;
+  font-size: $fontSizeXs;
   text-decoration: none;
+  padding-bottom: $sizeXs;
 
   &:hover {
     color: $colorPrimary;
