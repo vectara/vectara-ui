@@ -16,7 +16,7 @@ export const Example = ({ name, component, source }: Props) => {
         <h3>{name}</h3>
       </VuiTitle>
 
-      <VuiSpacer size="m" />
+      <VuiSpacer size="xs" />
 
       <VuiTabs>
         <VuiTab isActive={tab === "example"} onClick={() => setTab("example")}>
@@ -34,6 +34,8 @@ export const Example = ({ name, component, source }: Props) => {
         </>
       )}
       {tab === "source" && <VuiCode language="tsx">{source}</VuiCode>}
+
+      <VuiSpacer size="l" />
     </>
   );
 };
