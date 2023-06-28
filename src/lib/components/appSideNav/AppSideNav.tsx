@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 export type TreeItem = {
   name: string;
   path?: string;
@@ -20,8 +22,12 @@ const buildItems = (items: Array<TreeItem>) => {
     }
 
     if (path) {
+      const classes = classNames("appSideNavLink", {
+        "appSideNavLink--active": window.location.pathname === path
+      });
+
       return (
-        <a className="appSideNavLink" href={path} key={path}>
+        <a className={classes} href={path} key={path}>
           {name}
         </a>
       );

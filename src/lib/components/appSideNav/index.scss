@@ -21,10 +21,16 @@
   color: $colorText;
   font-size: $fontSizeXs;
   text-decoration: none;
-  padding-bottom: $sizeXs;
+  padding: ($sizeXs * 0.75) $sizeM;
+  margin-left: -$sizeM;
 
   &:hover {
     color: $colorPrimary;
     text-decoration: underline;
   }
+}
+
+.appSideNavLink--active {
+  background-color: transparentize($colorPrimary, 0.9);
+  border-radius: $sizeM;
 }
