@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
@@ -12,39 +12,24 @@ import {
   VuiSpacer
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
-import { sections, pathToPageMap } from "./pages";
+import { sections, Example as ExampleType } from "./pages";
 import { Example } from "./components/Example";
-import { useEffect } from "react";
 
-const Page = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const page = pathToPageMap[location.pathname];
+const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => (
+  <VuiAppContent>
+    <VuiTitle size="m">
+      <h2>{name}</h2>
+    </VuiTitle>
 
-  useEffect(() => {
-    if (!page) {
-      navigate("/button");
-    }
-  }, [page]);
+    <VuiSpacer size="m" />
 
-  if (!page) return null;
-
-  const { name, examples } = page;
-
-  return (
-    <VuiAppContent>
-      <VuiTitle size="m">
-        <h2>{name}</h2>
-      </VuiTitle>
-
-      <VuiSpacer size="m" />
-
+    <>
       {examples.map(({ name: exampleName, component, source }) => (
         <Example key={exampleName} name={exampleName} component={component} source={source} />
       ))}
-    </VuiAppContent>
-  );
-};
+    </>
+  </VuiAppContent>
+);
 
 export const Docs = () => {
   return (
@@ -80,7 +65,18 @@ export const Docs = () => {
       />
 
       <VuiAppLayout navItems={sections}>
-        <Page />
+        <Routes>
+          {sections.map(({ pages }) => {
+            return (
+              <>
+                {pages.map(({ name, path, examples }) => {
+                  return <Route key={name} path={path} element={<Page name={name} examples={examples} />} />;
+                })}
+              </>
+            );
+          })}
+          <Route path="*" element={<Navigate replace to={sections[0].pages[0].path} />} />
+        </Routes>
       </VuiAppLayout>
     </Router>
   );

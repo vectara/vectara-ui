@@ -15,7 +15,7 @@ import { truncate } from "./pages/truncate";
 
 type Section = { name: string; pages: Page[] };
 type Page = { name: string; path: string; examples: Example[] };
-type Example = { name?: string; component: React.ReactNode; source: string };
+export type Example = { name?: string; component: React.ReactNode; source: string };
 
 export const sections: Section[] = [
   {
