@@ -1,6 +1,6 @@
 .vuiText {
   overflow-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 @mixin defineTextStyles($factor) {
