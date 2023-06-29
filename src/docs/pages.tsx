@@ -8,6 +8,7 @@ import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { searchInput } from "./pages/searchInput";
 import { setting } from "./pages/setting";
+import { toggle } from "./pages/toggle";
 
 // Utils
 import { truncate } from "./pages/truncate";
@@ -19,7 +20,7 @@ type Example = { name?: string; component: React.ReactNode; source: string };
 export const sections: Section[] = [
   {
     name: "Components",
-    pages: [button, drawer, icon, menu, modal, optionsList, popover, searchInput, setting]
+    pages: [button, drawer, icon, menu, modal, optionsList, popover, searchInput, setting, toggle]
   },
   {
     name: "Utils",
