@@ -11,17 +11,17 @@ export const optionsList = {
   path: "/options-list",
   examples: [
     {
-      name: "Options List",
+      name: "Basic",
       component: <OptionsList />,
       source: OptionsListSource.default.toString()
     },
     {
-      name: "Selectable options List",
+      name: "Selectable",
       component: <SelectableOptionsList />,
       source: SelectableOptionsListSource.default.toString()
     },
     {
-      name: "Scrollable options List",
+      name: "Scrollable",
       component: <ScrollableOptionsList />,
       source: ScrollableOptionsListSource.default.toString()
     }

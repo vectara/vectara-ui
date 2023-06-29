@@ -2,7 +2,7 @@ import { useState } from "react";
 import { VuiCode, VuiSpacer, VuiTab, VuiTabs, VuiTitle } from "../../lib";
 
 type Props = {
-  name: string;
+  name?: string;
   component: React.ReactNode;
   source: string;
 };
@@ -12,9 +12,11 @@ export const Example = ({ name, component, source }: Props) => {
 
   return (
     <>
-      <VuiTitle size="s">
-        <h3>{name}</h3>
-      </VuiTitle>
+      {name && (
+        <VuiTitle size="s">
+          <h3>{name}</h3>
+        </VuiTitle>
+      )}
 
       <VuiSpacer size="xs" />
 

@@ -9,12 +9,12 @@ export const setting = {
   path: "/setting",
   examples: [
     {
-      name: "Setting",
+      name: "With all props",
       component: <Setting />,
       source: SettingSource.default.toString()
     },
     {
-      name: "Minimal Setting",
+      name: "With only required props",
       component: <MinimalSetting />,
       source: MinimalSettingSource.default.toString()
     }

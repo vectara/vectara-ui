@@ -9,12 +9,12 @@ export const drawer = {
   path: "/drawer",
   examples: [
     {
-      name: "Primary drawer",
+      name: "Primary",
       component: <PrimaryDrawer />,
       source: PrimaryDrawerSource.default.toString()
     },
     {
-      name: "Danger drawer",
+      name: "Danger",
       component: <DangerDrawer />,
       source: DangerDrawerSource.default.toString()
     }

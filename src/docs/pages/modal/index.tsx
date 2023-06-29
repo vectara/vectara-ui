@@ -9,12 +9,12 @@ export const modal = {
   path: "/modal",
   examples: [
     {
-      name: "Primary modal",
+      name: "Primary",
       component: <PrimaryModal />,
       source: PrimaryModalSource.default.toString()
     },
     {
-      name: "Danger modal",
+      name: "Danger",
       component: <DangerModal />,
       source: DangerModalSource.default.toString()
     }
