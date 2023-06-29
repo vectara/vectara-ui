@@ -25,7 +25,6 @@ export const ScrollableOptionsList = () => {
       isScrollable
       onSelectOption={(value) => {
         setSelectedOption(value);
-        alert(`Selected ${value}`);
       }}
       selectedOption={selectedOption}
       options={options}

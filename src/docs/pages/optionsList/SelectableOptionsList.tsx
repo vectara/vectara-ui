@@ -24,7 +24,6 @@ export const SelectableOptionsList = () => {
       isSelectable
       onSelectOption={(value) => {
         setSelectedOption(value);
-        alert(`Selected ${value}`);
       }}
       selectedOption={selectedOption}
       options={options}

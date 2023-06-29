@@ -26,7 +26,7 @@ export const Popover = () => {
             </VuiIcon>
           }
         >
-          Tribe
+          Tribe: {selectedOption}
         </VuiButtonSecondary>
       }
     >
@@ -36,7 +36,6 @@ export const Popover = () => {
         onSelectOption={(value) => {
           setIsOpen(false);
           setSelectedOption(value);
-          alert(`Selected ${value}`);
         }}
         selectedOption={selectedOption}
         options={options}
