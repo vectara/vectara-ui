@@ -3,6 +3,11 @@
   flex-direction: column;
 }
 
+.vuiOptionsList--scrollable {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
 .vuiOptionsListItem {
   padding: $sizeXxs $sizeXs;
   background-color: $colorEmptyShade;
