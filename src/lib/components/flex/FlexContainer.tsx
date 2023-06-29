@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import classNames from "classnames";
+import { FlexSpacing } from "./types";
 
 const alignItemsToClassNameMap = {
   baseline: "vuiFlexContainer--alignItemsBaseline",
@@ -25,7 +26,7 @@ const justifyContentToClassNameMap = {
   spaceEvenly: "vuiFlexContainer--justifyContentSpaceEvenly"
 } as const;
 
-const spacingToClassNameMap = {
+const spacingToClassNameMap: Record<FlexSpacing, string> = {
   none: "vuiFlexContainer--spacingNone",
   xxs: "vuiFlexContainer--spacingXxs",
   xs: "vuiFlexContainer--spacingXs",
@@ -40,7 +41,7 @@ export type Props = {
   alignItems?: keyof typeof alignItemsToClassNameMap;
   direction?: keyof typeof directionToClassNameMap;
   justifyContent?: keyof typeof justifyContentToClassNameMap;
-  spacing?: keyof typeof spacingToClassNameMap;
+  spacing?: FlexSpacing;
   wrap?: boolean;
   className?: string;
 };
