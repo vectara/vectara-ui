@@ -16,6 +16,7 @@ import { VuiFlexItem } from "./flex/FlexItem";
 import { VuiFormGroup } from "./formGroup/FormGroup";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
+import { ICON_COLOR, ICON_SIZE } from "./icon/types";
 import { VuiLabel, VuiSelect } from "./form";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { VuiMenu } from "./menu/Menu";
@@ -46,6 +47,8 @@ export type { ButtonColor, TabSize };
 export {
   BUTTON_COLOR,
   BUTTON_SIZE,
+  ICON_COLOR,
+  ICON_SIZE,
   TAB_SIZE,
   VuiAppContent,
   VuiAppHeader,
