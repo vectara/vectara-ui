@@ -12,7 +12,7 @@ import {
   VuiSpacer
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
-import { sections, Example as ExampleType } from "./pages";
+import { categories, Example as ExampleType } from "./pages";
 import { Example } from "./components/Example";
 
 const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => (
@@ -64,9 +64,9 @@ export const Docs = () => {
         }
       />
 
-      <VuiAppLayout navItems={sections}>
+      <VuiAppLayout navItems={categories}>
         <Routes>
-          {sections.map(({ pages }) => {
+          {categories.map(({ pages }) => {
             return (
               <>
                 {pages.map(({ name, path, examples }) => {
@@ -75,7 +75,7 @@ export const Docs = () => {
               </>
             );
           })}
-          <Route path="*" element={<Navigate replace to={sections[0].pages[0].path} />} />
+          <Route path="*" element={<Navigate replace to={categories[0].pages[0].path} />} />
         </Routes>
       </VuiAppLayout>
     </Router>

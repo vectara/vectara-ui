@@ -14,11 +14,11 @@ import { toggle } from "./pages/toggle";
 // Utils
 import { truncate } from "./pages/truncate";
 
-type Section = { name: string; pages: Page[] };
+type Category = { name: string; pages: Page[] };
 type Page = { name: string; path: string; examples: Example[] };
 export type Example = { name?: string; component: React.ReactNode; source: string };
 
-export const sections: Section[] = [
+export const categories: Category[] = [
   {
     name: "Controls",
     pages: [button, menu, optionsList, setting, toggle]
@@ -41,7 +41,7 @@ export const sections: Section[] = [
   }
 ];
 
-export const pathToPageMap: Record<string, Page> = sections.reduce((acc, curr) => {
+export const pathToPageMap: Record<string, Page> = categories.reduce((acc, curr) => {
   const mappedPaths = curr.pages.reduce(
     (obj, { path, name, examples }) => ({ ...obj, [path]: { name, examples } }),
     {}
