@@ -21,11 +21,15 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const sections: Section[] = [
   {
     name: "Controls",
-    pages: [button, menu, optionsList, searchInput, setting, toggle]
+    pages: [button, menu, optionsList, setting, toggle]
+  },
+  {
+    name: "Search",
+    pages: [searchInput, summary]
   },
   {
     name: "Info",
-    pages: [icon, summary]
+    pages: [icon]
   },
   {
     name: "Containers",
