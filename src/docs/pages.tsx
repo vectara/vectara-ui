@@ -1,6 +1,7 @@
 // Components
 import { button } from "./pages/button";
 import { drawer } from "./pages/drawer";
+import { flex } from "./pages/flex";
 import { icon } from "./pages/icon";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
@@ -22,6 +23,10 @@ export const categories: Category[] = [
   {
     name: "Controls",
     pages: [button, menu, optionsList, setting, toggle]
+  },
+  {
+    name: "Layout",
+    pages: [flex]
   },
   {
     name: "Search",
