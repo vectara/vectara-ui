@@ -3,15 +3,14 @@ import classNames from "classnames";
 import { Props as LinkProps } from "../link/Link";
 import { Link } from "react-router-dom";
 import { getTrackingProps } from "../../utils/getTrackingProps";
-
-const SIZE = ["xs", "s", "m"] as const;
+import { BUTTON_SIZE } from "./types";
 
 export type Props = {
   children?: ReactNode;
   icon?: ReactElement | null;
   iconSide?: "left" | "right";
   className?: string;
-  size?: (typeof SIZE)[number];
+  size?: (typeof BUTTON_SIZE)[number];
   fullWidth?: boolean;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
   href?: LinkProps["href"];
@@ -26,7 +25,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
   ) => {
     const classes = classNames("vuiBaseButton", className, `vuiBaseButton--${size}`, {
       "vuiBaseButton--fullWidth": fullWidth,
-      [`vuiBaseButton--${iconSide}`]: Boolean(icon)
+      [`vuiBaseButton--${iconSide}`]: Boolean(icon) && Boolean(children)
     });
 
     const props = {

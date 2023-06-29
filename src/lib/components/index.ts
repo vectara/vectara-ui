@@ -3,7 +3,7 @@ import { VuiAppHeader } from "./appHeader/AppHeader";
 import { VuiAppLayout } from "./appLayout/AppLayout";
 import { VuiAppSideNav } from "./appSideNav/AppSideNav";
 import { VuiBadge } from "./badge/Badge";
-import { BUTTON_COLOR, ButtonColor } from "./button/types";
+import { BUTTON_COLOR, BUTTON_SIZE, ButtonColor } from "./button/types";
 import { VuiButtonPrimary } from "./button/ButtonPrimary";
 import { VuiButtonSecondary } from "./button/ButtonSecondary";
 import { VuiButtonTertiary } from "./button/ButtonTertiary";
@@ -45,6 +45,7 @@ export type { ButtonColor, TabSize };
 
 export {
   BUTTON_COLOR,
+  BUTTON_SIZE,
   TAB_SIZE,
   VuiAppContent,
   VuiAppHeader,

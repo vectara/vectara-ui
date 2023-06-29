@@ -1,6 +1,6 @@
 import { BiStar } from "react-icons/bi";
 import {
-  BUTTON_COLOR,
+  BUTTON_SIZE,
   VuiButtonPrimary,
   VuiButtonSecondary,
   VuiButtonTertiary,
@@ -10,7 +10,7 @@ import {
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
-export const ButtonTypes = () => {
+export const ButtonSizes = () => {
   const icon = (
     <VuiIcon size="m">
       <BiStar />
@@ -21,10 +21,10 @@ export const ButtonTypes = () => {
     <>
       <Subsection title="Primary button">
         <VuiFlexContainer>
-          {BUTTON_COLOR.map((color) => (
-            <VuiFlexItem grow={false} key={color}>
-              <VuiButtonPrimary icon={icon} color={color}>
-                Color {color}
+          {BUTTON_SIZE.map((size) => (
+            <VuiFlexItem grow={false} key={size}>
+              <VuiButtonPrimary icon={icon} color="primary" size={size}>
+                Size {size}
               </VuiButtonPrimary>
             </VuiFlexItem>
           ))}
@@ -33,10 +33,10 @@ export const ButtonTypes = () => {
 
       <Subsection title="Secondary button">
         <VuiFlexContainer>
-          {BUTTON_COLOR.map((color) => (
-            <VuiFlexItem grow={false} key={color}>
-              <VuiButtonSecondary icon={icon} color={color}>
-                Color {color}
+          {BUTTON_SIZE.map((size) => (
+            <VuiFlexItem grow={false} key={size}>
+              <VuiButtonSecondary icon={icon} color="primary" size={size}>
+                Size {size}
               </VuiButtonSecondary>
             </VuiFlexItem>
           ))}
@@ -45,10 +45,10 @@ export const ButtonTypes = () => {
 
       <Subsection title="Tertiary button">
         <VuiFlexContainer>
-          {BUTTON_COLOR.map((color) => (
-            <VuiFlexItem grow={false} key={color}>
-              <VuiButtonTertiary icon={icon} color={color}>
-                Color {color}
+          {BUTTON_SIZE.map((size) => (
+            <VuiFlexItem grow={false} key={size}>
+              <VuiButtonTertiary icon={icon} color="primary" size={size}>
+                Size {size}
               </VuiButtonTertiary>
             </VuiFlexItem>
           ))}
