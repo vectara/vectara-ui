@@ -32,6 +32,7 @@ export const Popover = () => {
     >
       <VuiOptionsList
         isSelectable
+        isScrollable
         onSelectOption={(value) => {
           setIsOpen(false);
           setSelectedOption(value);
