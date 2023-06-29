@@ -9,6 +9,7 @@
   padding: 0 $sizeM $sizeXl;
   border-right: 1px solid $colorMediumShade;
   margin-bottom: $sizeM;
+  flex-shrink: 0;
 }
 
 .vuiAppLayout__content {
