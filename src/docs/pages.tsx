@@ -8,6 +8,7 @@ import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { searchInput } from "./pages/searchInput";
 import { setting } from "./pages/setting";
+import { summary } from "./pages/summary";
 import { toggle } from "./pages/toggle";
 
 // Utils
@@ -24,7 +25,7 @@ export const sections: Section[] = [
   },
   {
     name: "Info",
-    pages: [icon]
+    pages: [icon, summary]
   },
   {
     name: "Containers",
