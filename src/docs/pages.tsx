@@ -5,6 +5,7 @@ import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
+import { searchInput } from "./pages/searchInput";
 import { setting } from "./pages/setting";
 
 // Utils
@@ -17,7 +18,7 @@ type Example = { name?: string; component: React.ReactNode; source: string };
 export const sections: Section[] = [
   {
     name: "Components",
-    pages: [button, drawer, menu, modal, optionsList, popover, setting]
+    pages: [button, drawer, menu, modal, optionsList, popover, searchInput, setting]
   },
   {
     name: "Utils",
