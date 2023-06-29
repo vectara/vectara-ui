@@ -31,6 +31,7 @@ import { VuiSearchInput } from "./searchInput/SearchInput";
 import { VuiSearchResult } from "./searchResult/SearchResult";
 import { VuiSetting } from "./setting/Setting";
 import { VuiSpacer } from "./spacer/Spacer";
+import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
 import { VuiSummary } from "./summary/Summary";
 import { VuiTab } from "./tabs/Tab";
@@ -49,6 +50,7 @@ export {
   BUTTON_SIZE,
   ICON_COLOR,
   ICON_SIZE,
+  SPACER_SIZE,
   TAB_SIZE,
   VuiAppContent,
   VuiAppHeader,
