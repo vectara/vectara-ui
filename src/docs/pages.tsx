@@ -19,8 +19,16 @@ type Example = { name?: string; component: React.ReactNode; source: string };
 
 export const sections: Section[] = [
   {
-    name: "Components",
-    pages: [button, drawer, icon, menu, modal, optionsList, popover, searchInput, setting, toggle]
+    name: "Controls",
+    pages: [button, menu, optionsList, searchInput, setting, toggle]
+  },
+  {
+    name: "Info",
+    pages: [icon]
+  },
+  {
+    name: "Containers",
+    pages: [drawer, modal, popover]
   },
   {
     name: "Utils",
