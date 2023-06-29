@@ -4,9 +4,9 @@ import { DangerDrawer } from "./DangerDrawer";
 const PrimaryDrawerSource = require("!!raw-loader!./PrimaryDrawer");
 const DangerDrawerSource = require("!!raw-loader!./DangerDrawer");
 
-export const drawers = {
-  name: "Drawers",
-  path: "/drawers",
+export const drawer = {
+  name: "Drawer",
+  path: "/drawer",
   examples: [
     {
       name: "Primary drawer",

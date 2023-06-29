@@ -1,8 +1,8 @@
-import { buttons } from "./pages/buttons";
-import { drawers } from "./pages/drawers";
-import { modals } from "./pages/modals";
+import { button } from "./pages/button";
+import { drawer } from "./pages/drawer";
+import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
-import { popovers } from "./pages/popovers";
+import { popover } from "./pages/popover";
 import { truncate } from "./pages/truncate";
 
 type Section = { name: string; pages: Page[] };
@@ -12,7 +12,7 @@ type Example = { name: string; component: React.ReactNode; source: string };
 export const sections: Section[] = [
   {
     name: "Components",
-    pages: [buttons, drawers, modals, optionsList, popovers]
+    pages: [button, drawer, modal, optionsList, popover]
   },
   {
     name: "Utils",

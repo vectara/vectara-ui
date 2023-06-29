@@ -1,9 +1,9 @@
 import { ButtonTypes } from "./ButtonTypes";
 const ButtonTypesSource = require("!!raw-loader!./ButtonTypes");
 
-export const buttons = {
-  name: "Buttons",
-  path: "/buttons",
+export const button = {
+  name: "Button",
+  path: "/button",
   examples: [
     {
       name: "Button types",

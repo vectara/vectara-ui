@@ -1,9 +1,9 @@
 import { Popover } from "./Popover";
 const PopoverSource = require("!!raw-loader!./Popover");
 
-export const popovers = {
-  name: "Popovers",
-  path: "/popovers",
+export const popover = {
+  name: "Popover",
+  path: "/popover",
   examples: [
     {
       name: "Popover",

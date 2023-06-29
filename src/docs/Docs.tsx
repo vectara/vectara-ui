@@ -23,7 +23,7 @@ const Page = () => {
 
   useEffect(() => {
     if (!page) {
-      navigate("/buttons");
+      navigate("/button");
     }
   }, [page]);
 
