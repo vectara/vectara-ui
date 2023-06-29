@@ -40,7 +40,7 @@ const Page = () => {
       <VuiSpacer size="m" />
 
       {examples.map(({ name: exampleName, component, source }) => (
-        <Example key={name} name={exampleName} component={component} source={source} />
+        <Example key={exampleName} name={exampleName} component={component} source={source} />
       ))}
     </VuiAppContent>
   );
