@@ -7,7 +7,9 @@
 
 // Color
 $color: (
+  accent: $colorAccent,
   primary: $colorPrimary,
+  warning: $colorWarning,
   danger: $colorDanger,
   normal: $colorText
 );

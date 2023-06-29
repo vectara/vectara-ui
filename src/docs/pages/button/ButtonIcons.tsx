@@ -1,6 +1,5 @@
 import { BiStar } from "react-icons/bi";
-import { VuiButtonPrimary, VuiIcon } from "../../../lib";
-import { Subsection } from "../../components/Subsection";
+import { BUTTON_COLOR, VuiButtonIcon, VuiFlexContainer, VuiFlexItem, VuiIcon } from "../../../lib";
 
 export const ButtonIcons = () => {
   const icon = (
@@ -10,16 +9,12 @@ export const ButtonIcons = () => {
   );
 
   return (
-    <>
-      <Subsection title="Icon on right">
-        <VuiButtonPrimary icon={icon} color="primary" size="m" iconSide="right">
-          Icon on right
-        </VuiButtonPrimary>
-      </Subsection>
-
-      <Subsection title="Icon only">
-        <VuiButtonPrimary icon={icon} color="primary" size="m" />
-      </Subsection>
-    </>
+    <VuiFlexContainer>
+      {BUTTON_COLOR.map((color) => (
+        <VuiFlexItem grow={false} key={color}>
+          <VuiButtonIcon icon={icon} color={color} />
+        </VuiFlexItem>
+      ))}
+    </VuiFlexContainer>
   );
 };

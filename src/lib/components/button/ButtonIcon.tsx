@@ -3,13 +3,12 @@ import { ReactNode, forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { getTrackingProps } from "../../utils/getTrackingProps";
 import { Props as LinkProps } from "../link/Link";
-
-const COLOR = ["accent", "primary", "danger", "normal"] as const;
+import { ButtonColor } from "./types";
 
 type Props = {
   className?: string;
   icon: ReactNode;
-  color?: (typeof COLOR)[number];
+  color?: ButtonColor;
   onClick?: () => void;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
