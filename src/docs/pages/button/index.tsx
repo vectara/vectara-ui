@@ -2,12 +2,14 @@ import { ButtonSizes } from "./ButtonSizes";
 import { ButtonTypes } from "./ButtonTypes";
 import { Icons } from "./Icons";
 import { ButtonIcons } from "./ButtonIcons";
+import { Link } from "./Link";
 import { Pressed } from "./Pressed";
 
 const ButtonTypesSource = require("!!raw-loader!./ButtonTypes");
 const ButtonSizesSource = require("!!raw-loader!./ButtonTypes");
 const IconsSource = require("!!raw-loader!./Icons");
 const ButtonIconSource = require("!!raw-loader!./ButtonIcons");
+const LinkSource = require("!!raw-loader!./Link");
 const PressedSource = require("!!raw-loader!./Pressed");
 
 export const button = {
@@ -33,6 +35,11 @@ export const button = {
       name: "ButtonIcon",
       component: <ButtonIcons />,
       source: ButtonIconSource.default.toString()
+    },
+    {
+      name: "Link",
+      component: <Link />,
+      source: LinkSource.default.toString()
     },
     {
       name: "Pressed state",
