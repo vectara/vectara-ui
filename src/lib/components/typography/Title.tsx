@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import { ReactElement, cloneElement } from "react";
+import { TITLE_SIZE } from "./types";
 
-const SIZE = ["xxs", "xs", "s", "m", "l", "xl", "xxl"] as const;
 const TEXT_ALIGN = ["left", "center", "right"] as const;
 
 interface Props {
   children: ReactElement<any>;
   className?: string;
-  size: (typeof SIZE)[number];
+  size: (typeof TITLE_SIZE)[number];
   align?: (typeof TEXT_ALIGN)[number];
 }
 

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { VuiText } from "../typography/Text";
-import { VuiTextColor, TextColor } from "../typography/TextColor";
+import { VuiTextColor } from "../typography/TextColor";
+import { TextColor } from "../typography/types";
 import { VuiOptionsListItem } from "./OptionsListItem";
 
 type Props = {
