@@ -3,6 +3,7 @@ import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
+import { formGroup } from "./pages/formGroup";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
 import { menu } from "./pages/menu";
@@ -29,6 +30,10 @@ export const categories: Category[] = [
   {
     name: "Controls",
     pages: [button, menu, optionsList, setting, toggle]
+  },
+  {
+    name: "Form",
+    pages: [formGroup]
   },
   {
     name: "Layout",
