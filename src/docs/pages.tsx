@@ -6,6 +6,7 @@ import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
+import { label } from "./pages/label";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
@@ -34,7 +35,7 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [formGroup, select]
+    pages: [formGroup, label, select]
   },
   {
     name: "Layout",
