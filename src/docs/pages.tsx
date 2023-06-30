@@ -3,14 +3,17 @@ import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
+import { formGroup } from "./pages/formGroup";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
+import { label } from "./pages/label";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
+import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { summary } from "./pages/summary";
@@ -29,6 +32,10 @@ export const categories: Category[] = [
   {
     name: "Controls",
     pages: [button, menu, optionsList, setting, toggle]
+  },
+  {
+    name: "Form",
+    pages: [formGroup, label, select]
   },
   {
     name: "Layout",
