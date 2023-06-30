@@ -8,6 +8,7 @@ import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { searchInput } from "./pages/searchInput";
+import { searchResult } from "./pages/searchResult";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { summary } from "./pages/summary";
@@ -31,7 +32,7 @@ export const categories: Category[] = [
   },
   {
     name: "Search",
-    pages: [searchInput, summary]
+    pages: [searchInput, searchResult, summary]
   },
   {
     name: "Info",
