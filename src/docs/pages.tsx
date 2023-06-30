@@ -13,6 +13,7 @@ import { searchResult } from "./pages/searchResult";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { summary } from "./pages/summary";
+import { text } from "./pages/text";
 import { toggle } from "./pages/toggle";
 
 // Utils
@@ -37,7 +38,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [badge, icon]
+    pages: [badge, icon, text]
   },
   {
     name: "Containers",

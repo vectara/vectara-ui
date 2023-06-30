@@ -40,6 +40,7 @@ import { VuiTabs } from "./tabs/Tabs";
 import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
+import { TEXT_COLOR } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
@@ -53,6 +54,7 @@ export {
   ICON_SIZE,
   SPACER_SIZE,
   TAB_SIZE,
+  TEXT_COLOR,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,

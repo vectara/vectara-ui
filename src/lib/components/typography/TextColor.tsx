@@ -1,9 +1,6 @@
 import { ReactNode } from "react";
 import classNames from "classnames";
-
-export const COLOR = ["accent", "primary", "success", "warning", "danger", "subdued", "normal"] as const;
-
-export type TextColor = (typeof COLOR)[number];
+import { TextColor } from "./types";
 
 type Props = {
   children?: ReactNode;
