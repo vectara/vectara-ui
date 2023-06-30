@@ -9,10 +9,12 @@ export const searchInput = {
   path: "/searchInput",
   examples: [
     {
+      name: "Medium size",
       component: <SearchInput />,
       source: SearchInputSource.default.toString()
     },
     {
+      name: "Large size",
       component: <Large />,
       source: LargeSource.default.toString()
     }

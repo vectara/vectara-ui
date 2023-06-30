@@ -9,10 +9,12 @@ export const icon = {
   path: "/icon",
   examples: [
     {
+      name: "Sizes",
       component: <Sizes />,
       source: SizesSource.default.toString()
     },
     {
+      name: "Colors",
       component: <Colors />,
       source: ColorsSource.default.toString()
     }

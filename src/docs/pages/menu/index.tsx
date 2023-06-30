@@ -9,10 +9,12 @@ export const menu = {
   path: "/menu",
   examples: [
     {
+      name: "With titles",
       component: <Menu />,
       source: MenuSource.default.toString()
     },
     {
+      name: "Without titles",
       component: <NoTitle />,
       source: NoTitleSource.default.toString()
     }

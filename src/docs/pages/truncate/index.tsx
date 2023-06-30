@@ -6,7 +6,6 @@ export const truncate = {
   path: "/truncate",
   examples: [
     {
-      name: "Placeholder",
       component: <TruncateString />,
       source: TruncateStringSource.default.toString()
     }
