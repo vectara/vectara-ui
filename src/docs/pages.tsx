@@ -12,6 +12,7 @@ import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
+import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { summary } from "./pages/summary";
@@ -33,7 +34,7 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [formGroup]
+    pages: [formGroup, select]
   },
   {
     name: "Layout",
