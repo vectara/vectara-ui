@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { Props as LinkProps } from "../link/Link";
 import { getTrackingProps } from "../../utils/getTrackingProps";
 
-const COLOR = ["accent", "primary", "danger", "success", "normal"] as const;
+export const BADGE_COLOR = ["accent", "primary", "danger", "success", "normal"] as const;
 
 type Props = {
   children: React.ReactNode;
   className?: string;
-  color: (typeof COLOR)[number];
+  color: (typeof BADGE_COLOR)[number];
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
@@ -31,7 +31,7 @@ export const VuiBadge = ({ children, className, color, onClick, href, target, tr
 
   if (href) {
     return (
-      <Link className={classes} onClick={onClick} to={href} {...getTrackingProps(track)}>
+      <Link className={classes} onClick={onClick} to={href} target={target} {...getTrackingProps(track)}>
         {children}
       </Link>
     );
