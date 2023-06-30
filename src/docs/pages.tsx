@@ -3,6 +3,7 @@ import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
+import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
@@ -31,7 +32,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [flex, spacer, tabs]
+    pages: [flex, horizontalRule, spacer, tabs]
   },
   {
     name: "Search",
