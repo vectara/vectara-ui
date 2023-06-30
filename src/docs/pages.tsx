@@ -13,6 +13,7 @@ import { searchResult } from "./pages/searchResult";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { summary } from "./pages/summary";
+import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
 import { toggle } from "./pages/toggle";
 
@@ -30,7 +31,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [flex, spacer]
+    pages: [flex, spacer, tabs]
   },
   {
     name: "Search",
