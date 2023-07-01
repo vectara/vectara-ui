@@ -7,11 +7,11 @@ export const NumberInput = () => {
   return (
     <VuiNumberInput
       id="numberInput"
-      max="1"
-      min="0"
-      step=".001"
+      max={1}
+      min={-10}
+      step={0.001}
       value={value}
-      onChange={(event) => setValue(Number(event.target.value))}
+      onChange={(value) => setValue(value)}
     />
   );
 };
