@@ -11,23 +11,23 @@ import { VuiIcon } from "../icon/Icon";
 import { useEffect } from "react";
 
 type Props = {
-  language?: "js" | "ts" | "jsx" | "tsx";
+  language?: "js" | "ts" | "jsx" | "tsx" | "none";
   onCopy?: () => void;
   children?: string;
   fullHeight?: boolean;
 };
 
-export const VuiCode = ({ onCopy, language, fullHeight, children = "" }: Props) => {
+// PrismJS clears highlighting when language-none is set.
+export const VuiCode = ({ onCopy, language = "none", fullHeight, children = "" }: Props) => {
   useEffect(() => {
     Prism.highlightAll();
-  }, []);
+  }, [language]);
 
   const containerClasses = classNames("vuiCodeContainer", {
     "vuiCodeContainer--fullHeight": fullHeight
   });
 
-  const classes = classNames("vuiCode", {
-    [`language-${language}`]: language,
+  const classes = classNames("vuiCode", `language-${language}`, {
     "vuiCode--fullHeight": fullHeight
   });
 

@@ -1,6 +1,7 @@
 // Components
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
+import { code } from "./pages/code";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
@@ -48,7 +49,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [badge, icon, text]
+    pages: [badge, code, icon, text]
   },
   {
     name: "Containers",
