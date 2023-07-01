@@ -27,8 +27,8 @@ export const VuiNumberInput = ({ className, id, max, min, step, value, size = "m
   };
 
   const onBlur = () => {
-    if (min && value && value < min) onChange(min);
-    if (max && value && value > max) onChange(max);
+    if (min !== undefined && value !== undefined && value < min) onChange(min);
+    if (max !== undefined && value !== undefined && value > max) onChange(max);
   };
 
   return (
