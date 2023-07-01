@@ -6,6 +6,7 @@ import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
+import { input } from "./pages/input";
 import { label } from "./pages/label";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
@@ -31,11 +32,11 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [button, menu, optionsList, setting, toggle]
+    pages: [button, menu, optionsList]
   },
   {
     name: "Form",
-    pages: [formGroup, label, select]
+    pages: [formGroup, input, label, select, setting, toggle]
   },
   {
     name: "Layout",

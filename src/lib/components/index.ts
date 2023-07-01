@@ -13,11 +13,11 @@ import { VuiCode } from "./code/Code";
 import { VuiDrawer } from "./drawer/Drawer";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
+import { VuiNumberInput, VuiTextInput, VuiLabel, VuiSelect } from "./form";
 import { VuiFormGroup } from "./formGroup/FormGroup";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
-import { VuiLabel, VuiSelect } from "./form";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem } from "./menu/MenuItem";
@@ -79,6 +79,7 @@ export {
   VuiMenu,
   VuiMenuItem,
   VuiModal,
+  VuiNumberInput,
   VuiOptionsList,
   VuiPopover,
   VuiPortal,
@@ -96,6 +97,7 @@ export {
   VuiTabs,
   VuiText,
   VuiTextColor,
+  VuiTextInput,
   VuiTitle,
   VuiToggle
 };
