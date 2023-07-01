@@ -32,11 +32,11 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [button, menu, optionsList, setting, toggle]
+    pages: [button, menu, optionsList]
   },
   {
     name: "Form",
-    pages: [formGroup, input, label, select]
+    pages: [formGroup, input, label, select, setting, toggle]
   },
   {
     name: "Layout",
