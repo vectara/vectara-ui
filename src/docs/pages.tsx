@@ -21,6 +21,7 @@ import { searchResult } from "./pages/searchResult";
 import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
+import { spinner } from "./pages/spinner";
 import { summary } from "./pages/summary";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
@@ -52,7 +53,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [badge, callout, code, icon, text]
+    pages: [badge, callout, code, icon, spinner, text]
   },
   {
     name: "Containers",

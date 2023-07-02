@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { SPINNER_SIZE } from "./types";
 
 const sizeToClassNameMap = {
   xs: "vuiSpinner--xs",
@@ -11,7 +12,7 @@ const sizeToClassNameMap = {
 } as const;
 
 type Props = {
-  size?: keyof typeof sizeToClassNameMap;
+  size?: (typeof SPINNER_SIZE)[number];
 };
 
 export const VuiSpinner = ({ size = "m" }: Props) => {
