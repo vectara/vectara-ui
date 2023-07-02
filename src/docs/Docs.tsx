@@ -25,13 +25,21 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
 
     <>
       {examples.map(({ name: exampleName, component, source }) => (
-        <Example key={exampleName} name={exampleName} component={component} source={source} />
+        <Example key={`example-${exampleName}`} name={exampleName} component={component} source={source} />
       ))}
     </>
   </VuiAppContent>
 );
 
 export const Docs = () => {
+  const routes: React.ReactNode[] = [];
+
+  categories.forEach(({ pages }) => {
+    pages.map(({ name, path, examples }) => {
+      routes.push(<Route key={name} path={path} element={<Page name={name} examples={examples} />} />);
+    });
+  });
+
   return (
     <Router>
       <VuiAppHeader
@@ -66,15 +74,7 @@ export const Docs = () => {
 
       <VuiAppLayout navItems={categories}>
         <Routes>
-          {categories.map(({ pages }) => {
-            return (
-              <>
-                {pages.map(({ name, path, examples }) => {
-                  return <Route key={name} path={path} element={<Page name={name} examples={examples} />} />;
-                })}
-              </>
-            );
-          })}
+          {routes}
           <Route path="*" element={<Navigate replace to={categories[0].pages[0].path} />} />
         </Routes>
       </VuiAppLayout>
