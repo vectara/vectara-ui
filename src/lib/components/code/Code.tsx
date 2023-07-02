@@ -6,7 +6,7 @@ import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 import classNames from "classnames";
 import { BiClipboard } from "react-icons/bi";
-import { VuiButtonIcon } from "../button/ButtonIcon";
+import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { useEffect } from "react";
 
@@ -37,7 +37,7 @@ export const VuiCode = ({ onCopy, language = "none", fullHeight, children = "" }
         <code className={classes}>{children}</code>
       </pre>
 
-      <VuiButtonIcon
+      <VuiIconButton
         color="normal"
         icon={
           <VuiIcon>

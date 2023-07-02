@@ -1,4 +1,4 @@
-.vuiButtonIcon {
+.vuiIconButton {
   display: inline-block;
   border-radius: $sizeXxs;
   padding: $sizeXxs;
@@ -16,7 +16,7 @@ $color: (
 );
 
 @each $colorName, $colorValue in $color {
-  .vuiButtonIcon--#{$colorName} {
+  .vuiIconButton--#{$colorName} {
     color: $colorValue;
     background-color: transparentize($color: $colorValue, $amount: 1);
     transition: all 0.2s;

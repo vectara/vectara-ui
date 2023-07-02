@@ -7,7 +7,7 @@ import { BUTTON_COLOR, BUTTON_SIZE, ButtonColor } from "./button/types";
 import { VuiButtonPrimary } from "./button/ButtonPrimary";
 import { VuiButtonSecondary } from "./button/ButtonSecondary";
 import { VuiButtonTertiary } from "./button/ButtonTertiary";
-import { VuiButtonIcon } from "./button/ButtonIcon";
+import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { VuiCode } from "./code/Code";
@@ -69,7 +69,7 @@ export {
   VuiButtonPrimary,
   VuiButtonSecondary,
   VuiButtonTertiary,
-  VuiButtonIcon,
+  VuiIconButton,
   VuiCallout,
   VuiCode,
   VuiDrawer,

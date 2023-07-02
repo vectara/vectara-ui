@@ -15,10 +15,10 @@ type Props = {
   track?: LinkProps["track"];
 };
 
-export const VuiButtonIcon = forwardRef<HTMLButtonElement | null, Props>(
+export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
   ({ className, icon, color = "primary", onClick, href, target, track, ...rest }: Props, ref) => {
     const props = {
-      className: classNames("vuiButtonIcon", className, `vuiButtonIcon--${color}`),
+      className: classNames("vuiIconButton", className, `vuiIconButton--${color}`),
       onClick,
       ...rest
     };

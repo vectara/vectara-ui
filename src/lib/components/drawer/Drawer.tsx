@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { FocusOn } from "react-focus-on";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
-import { VuiButtonIcon } from "../button/ButtonIcon";
+import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { BiX } from "react-icons/bi";
 import { VuiPortal } from "../portal/Portal";
@@ -62,7 +62,7 @@ export const VuiDrawer = ({ className, color = "primary", title, children, isOpe
 
                   {onClose && (
                     <VuiFlexItem>
-                      <VuiButtonIcon
+                      <VuiIconButton
                         onClick={onCloseDelayed}
                         color="normal"
                         icon={

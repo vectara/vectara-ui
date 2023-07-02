@@ -1,14 +1,14 @@
-import { ButtonSizes } from "./ButtonSizes";
-import { ButtonTypes } from "./ButtonTypes";
+import { Sizes } from "./Sizes";
+import { Colors } from "./Colors";
 import { Icons } from "./Icons";
-import { ButtonIcons } from "./ButtonIcons";
+import { IconButton } from "./IconButton";
 import { Link } from "./Link";
 import { Pressed } from "./Pressed";
 
-const ButtonTypesSource = require("!!raw-loader!./ButtonTypes");
-const ButtonSizesSource = require("!!raw-loader!./ButtonTypes");
+const ColorsSource = require("!!raw-loader!./Colors");
+const SizesSource = require("!!raw-loader!./Sizes");
 const IconsSource = require("!!raw-loader!./Icons");
-const ButtonIconSource = require("!!raw-loader!./ButtonIcons");
+const IconButtonSource = require("!!raw-loader!./IconButton");
 const LinkSource = require("!!raw-loader!./Link");
 const PressedSource = require("!!raw-loader!./Pressed");
 
@@ -18,13 +18,13 @@ export const button = {
   examples: [
     {
       name: "Colors",
-      component: <ButtonTypes />,
-      source: ButtonTypesSource.default.toString()
+      component: <Colors />,
+      source: ColorsSource.default.toString()
     },
     {
       name: "Sizes",
-      component: <ButtonSizes />,
-      source: ButtonSizesSource.default.toString()
+      component: <Sizes />,
+      source: SizesSource.default.toString()
     },
     {
       name: "Icons",
@@ -32,9 +32,9 @@ export const button = {
       source: IconsSource.default.toString()
     },
     {
-      name: "ButtonIcon",
-      component: <ButtonIcons />,
-      source: ButtonIconSource.default.toString()
+      name: "IconButton",
+      component: <IconButton />,
+      source: IconButtonSource.default.toString()
     },
     {
       name: "Link",
