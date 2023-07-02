@@ -65,10 +65,26 @@ export const categories: Category[] = [
   }
 ];
 
-export const pathToPageMap: Record<string, Page> = categories.reduce((acc, curr) => {
-  const mappedPaths = curr.pages.reduce(
-    (obj, { path, name, examples }) => ({ ...obj, [path]: { name, examples } }),
-    {}
-  );
-  return { ...acc, ...mappedPaths };
-}, {});
+type Paths = {
+  list: Page[];
+  map: Record<string, Page>;
+};
+
+export const paths: Paths = categories.reduce(
+  (acc, curr) => {
+    const list = acc.list.concat(curr.pages);
+
+    const mappedPaths = curr.pages.reduce(
+      (obj, { path, name, examples }) => ({ ...obj, [path]: { name, examples } }),
+      {}
+    );
+
+    const map = { ...acc.map, ...mappedPaths };
+
+    return { list, map };
+  },
+  {
+    list: [],
+    map: {}
+  } as Paths
+);

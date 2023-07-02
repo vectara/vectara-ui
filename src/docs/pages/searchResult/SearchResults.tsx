@@ -62,6 +62,7 @@ export const SearchResults = () => {
 
       {results.map(({ isSelected, result, subTitle, children }, index) => (
         <VuiSearchResult
+          key={result.title}
           isSelected={isSelectionEnabled && isSelected}
           result={result}
           position={index + 1}

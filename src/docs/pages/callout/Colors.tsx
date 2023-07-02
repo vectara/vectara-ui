@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   BUTTON_COLOR,
   ButtonColor,
@@ -12,7 +13,7 @@ export const Colors = () => {
   return (
     <>
       {CALLOUT_COLOR.map((color) => (
-        <>
+        <Fragment key={color}>
           <VuiCallout key={color} color={color} title={`Color ${color}`} headingElement="h3">
             <VuiText>
               <p>
@@ -37,7 +38,7 @@ export const Colors = () => {
           </VuiCallout>
 
           <VuiSpacer size="l" />
-        </>
+        </Fragment>
       ))}
     </>
   );

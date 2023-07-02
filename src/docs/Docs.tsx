@@ -1,5 +1,5 @@
-import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { BiLogoGithub } from "react-icons/bi";
+import { Navigate, Route, BrowserRouter as Router, Routes, useLocation, useNavigate } from "react-router-dom";
+import { BiRightArrowAlt, BiLeftArrowAlt, BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
   VuiButtonIcon,
@@ -12,24 +12,73 @@ import {
   VuiSpacer
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
-import { categories, Example as ExampleType } from "./pages";
+import { categories, Example as ExampleType, paths } from "./pages";
 import { Example } from "./components/Example";
 
-const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => (
-  <VuiAppContent>
-    <VuiTitle size="m">
-      <h2>{name}</h2>
-    </VuiTitle>
+const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentPageIndex = paths.list.findIndex((page) => page.path === location.pathname);
 
-    <VuiSpacer size="m" />
+  const navigateToPreviousPage = () => {
+    const prevIndex = currentPageIndex === 0 ? paths.list.length - 1 : currentPageIndex - 1;
+    navigate(paths.list[prevIndex].path);
+  };
 
-    <>
-      {examples.map(({ name: exampleName, component, source }) => (
-        <Example key={`example-${exampleName}`} name={exampleName} component={component} source={source} />
-      ))}
-    </>
-  </VuiAppContent>
-);
+  const navigateToNextPage = () => {
+    const nextIndex = currentPageIndex === paths.list.length - 1 ? 0 : currentPageIndex + 1;
+    navigate(paths.list[nextIndex].path);
+  };
+
+  return (
+    <VuiAppContent>
+      <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
+        <VuiFlexItem grow={false}>
+          <VuiTitle size="m">
+            <h2>{name}</h2>
+          </VuiTitle>
+        </VuiFlexItem>
+
+        <VuiFlexItem>
+          <VuiFlexContainer alignItems="center" spacing="xxs">
+            <VuiFlexItem grow={false}>
+              <VuiButtonIcon
+                icon={
+                  <VuiIcon>
+                    <BiLeftArrowAlt />
+                  </VuiIcon>
+                }
+                color="normal"
+                onClick={() => navigateToPreviousPage()}
+              />
+            </VuiFlexItem>
+
+            <VuiFlexItem>
+              {" "}
+              <VuiButtonIcon
+                icon={
+                  <VuiIcon>
+                    <BiRightArrowAlt />
+                  </VuiIcon>
+                }
+                color="normal"
+                onClick={() => navigateToNextPage()}
+              />
+            </VuiFlexItem>
+          </VuiFlexContainer>
+        </VuiFlexItem>
+      </VuiFlexContainer>
+
+      <VuiSpacer size="m" />
+
+      <>
+        {examples.map(({ name: exampleName, component, source }) => (
+          <Example key={`example-${exampleName}`} name={exampleName} component={component} source={source} />
+        ))}
+      </>
+    </VuiAppContent>
+  );
+};
 
 export const Docs = () => {
   const routes: React.ReactNode[] = [];
