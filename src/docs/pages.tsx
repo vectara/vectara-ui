@@ -1,6 +1,7 @@
 // Components
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
+import { callout } from "./pages/callout";
 import { code } from "./pages/code";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
@@ -49,7 +50,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [badge, code, icon, text]
+    pages: [badge, callout, code, icon, text]
   },
   {
     name: "Containers",

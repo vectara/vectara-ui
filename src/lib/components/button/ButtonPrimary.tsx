@@ -22,6 +22,7 @@ type Props = {
 const colorToIconColorMap = {
   accent: "empty",
   primary: "empty",
+  success: "empty",
   danger: "empty",
   warning: "empty",
   normal: "normal"

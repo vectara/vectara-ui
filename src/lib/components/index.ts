@@ -9,6 +9,7 @@ import { VuiButtonSecondary } from "./button/ButtonSecondary";
 import { VuiButtonTertiary } from "./button/ButtonTertiary";
 import { VuiButtonIcon } from "./button/ButtonIcon";
 import { VuiCallout } from "./callout/Callout";
+import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { VuiCode } from "./code/Code";
 import { VuiDrawer } from "./drawer/Drawer";
 import { VuiFlexContainer } from "./flex/FlexContainer";
@@ -44,12 +45,14 @@ import { TEXT_COLOR, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
-export type { ButtonColor, TabSize };
+export type { ButtonColor, CalloutColor, TabSize };
 
 export {
   BADGE_COLOR,
   BUTTON_COLOR,
   BUTTON_SIZE,
+  CALLOUT_COLOR,
+  CALLOUT_SIZE,
   ICON_COLOR,
   ICON_SIZE,
   SPACER_SIZE,

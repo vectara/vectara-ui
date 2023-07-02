@@ -16,6 +16,10 @@ $color: (
     "border-color": transparentize($colorPrimary, 0.6),
     "color": $colorPrimary
   ),
+  success: (
+    "border-color": transparentize($colorSuccess, 0.6),
+    "color": $colorSuccess
+  ),
   danger: (
     "border-color": transparentize($colorDanger, 0.5),
     "color": $colorDanger

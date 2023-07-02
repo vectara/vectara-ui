@@ -24,7 +24,7 @@ export const ButtonTypes = () => {
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
               <VuiButtonPrimary icon={icon} color={color}>
-                Color {color}
+                {color}
               </VuiButtonPrimary>
             </VuiFlexItem>
           ))}
@@ -36,7 +36,7 @@ export const ButtonTypes = () => {
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
               <VuiButtonSecondary icon={icon} color={color}>
-                Color {color}
+                {color}
               </VuiButtonSecondary>
             </VuiFlexItem>
           ))}
@@ -48,7 +48,7 @@ export const ButtonTypes = () => {
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
               <VuiButtonTertiary icon={icon} color={color}>
-                Color {color}
+                {color}
               </VuiButtonTertiary>
             </VuiFlexItem>
           ))}
