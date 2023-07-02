@@ -15,6 +15,7 @@ import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
+import { prompt } from "./pages/prompt";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
 import { select } from "./pages/select";
@@ -47,7 +48,7 @@ export const categories: Category[] = [
   },
   {
     name: "Search",
-    pages: [searchInput, searchResult, summary]
+    pages: [prompt, searchInput, searchResult, summary]
   },
   {
     name: "Info",
