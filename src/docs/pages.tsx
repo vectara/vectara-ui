@@ -10,6 +10,7 @@ import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
 import { input } from "./pages/input";
 import { label } from "./pages/label";
+import { link } from "./pages/link";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { optionsList } from "./pages/optionsList";
@@ -34,7 +35,7 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [button, menu, optionsList]
+    pages: [button, link, menu, optionsList]
   },
   {
     name: "Form",
