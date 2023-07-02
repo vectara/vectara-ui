@@ -1,7 +1,7 @@
 import { BiStar } from "react-icons/bi";
-import { BUTTON_COLOR, VuiButtonIcon, VuiFlexContainer, VuiFlexItem, VuiIcon } from "../../../lib";
+import { BUTTON_COLOR, VuiIconButton, VuiFlexContainer, VuiFlexItem, VuiIcon } from "../../../lib";
 
-export const ButtonIcons = () => {
+export const IconButton = () => {
   const icon = (
     <VuiIcon size="m">
       <BiStar />
@@ -12,7 +12,7 @@ export const ButtonIcons = () => {
     <VuiFlexContainer>
       {BUTTON_COLOR.map((color) => (
         <VuiFlexItem grow={false} key={color}>
-          <VuiButtonIcon icon={icon} color={color} />
+          <VuiIconButton icon={icon} color={color} />
         </VuiFlexItem>
       ))}
     </VuiFlexContainer>

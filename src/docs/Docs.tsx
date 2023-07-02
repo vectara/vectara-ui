@@ -2,7 +2,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes, useLocation, useNavig
 import { BiRightArrowAlt, BiLeftArrowAlt, BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
-  VuiButtonIcon,
+  VuiIconButton,
   VuiFlexContainer,
   VuiFlexItem,
   VuiIcon,
@@ -42,7 +42,7 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
         <VuiFlexItem>
           <VuiFlexContainer alignItems="center" spacing="xxs">
             <VuiFlexItem grow={false}>
-              <VuiButtonIcon
+              <VuiIconButton
                 icon={
                   <VuiIcon>
                     <BiLeftArrowAlt />
@@ -55,7 +55,7 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
 
             <VuiFlexItem>
               {" "}
-              <VuiButtonIcon
+              <VuiIconButton
                 icon={
                   <VuiIcon>
                     <BiRightArrowAlt />
@@ -108,7 +108,7 @@ export const Docs = () => {
           </VuiFlexContainer>
         }
         right={
-          <VuiButtonIcon
+          <VuiIconButton
             href="https://github.com/vectara/vectara-ui"
             target="_blank"
             color="normal"

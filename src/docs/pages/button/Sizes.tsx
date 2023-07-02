@@ -10,7 +10,7 @@ import {
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
-export const ButtonSizes = () => {
+export const Sizes = () => {
   const icon = (
     <VuiIcon size="m">
       <BiStar />
