@@ -34,6 +34,7 @@ import { VuiSetting } from "./setting/Setting";
 import { VuiSpacer } from "./spacer/Spacer";
 import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
+import { SPINNER_SIZE } from "./spinner/types";
 import { VuiSummary } from "./summary/Summary";
 import { VuiTab } from "./tabs/Tab";
 import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
@@ -56,6 +57,7 @@ export {
   ICON_COLOR,
   ICON_SIZE,
   SPACER_SIZE,
+  SPINNER_SIZE,
   TAB_SIZE,
   TEXT_COLOR,
   TITLE_SIZE,
