@@ -24,15 +24,15 @@ You can consume Vectara UI's Sass variables by placing this import in the files 
 
 ## Publishing
 
-Publishing a new version of the package consists of two steps: **versionining** and **publishing to NPM**.
+Publishing a new version of the package consists of two steps: **versioning the package** and **publishing to NPM**.
 
-### Versioning
+### Version the package
 
-1. Run `npm version {number}` to increment package.json and create a tag.
+1. Run `npm version {number}` to update package.json with the new version number and create a tag to track the version.
 2. Run `git push origin --tags` to push the new tag to the repo.
 3. Optional: [Manually create a release in GitHub.](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
 
-### Publishing to NPM
+### Publish to NPM
 
 1. Run `npm run buildPackage` to create the distributable files.
 2. Run `npm login --scope=@vectara --registry="https://registry.npmjs.org/"` to log into the registry and scope.
@@ -44,14 +44,14 @@ Use `npm run start` to run the docs site locally and interact with the code you'
 
 To test the package locally, use [`npm link`](https://docs.npmjs.com/cli/v9/commands/npm-link) to consume the distributable files in a sibling project.
 
-If you get an error regarding an ["invalid hook call"](https://iws.io/2022/invalid-hook-multiple-react-instances), you might need to use `npm link` to temporarily link the consumer's React dependencies to Vectara-UI's React dependencies:
+If you get an error regarding an ["invalid hook call"](https://iws.io/2022/invalid-hook-multiple-react-instances), you might need to use `npm link` to temporarily link the consumer's React dependencies to Vectara-UI's React dependencies. In this example, we're consuming Vectara-UI in [Vectara-Answer](https://github.com/vectara/vectara-answer):
 
 ```bash
-npm link ../{consumer project}/node_modules/react ../{consumer project}/node_modules/react-dom ../{consumer project}/node_modules/react-router-dom
+npm link ../vectara-answer/node_modules/react ../vectara-answer/node_modules/react-dom ../vectara-answer/node_modules/react-router-dom
 ```
 
 When you're done testing out the consumer, you can unlink these dependencies:
 
 ```bash
-npm unlink ../{consumer project}/node_modules/react ../{consumer project}/node_modules/react-dom ../{consumer project}/node_modules/react-router-dom
+npm unlink ../vectara-answer/node_modules/react ../vectara-answer/node_modules/react-dom ../vectara-answer/node_modules/react-router-dom
 ```
