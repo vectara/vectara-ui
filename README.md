@@ -19,7 +19,7 @@ This project assumes you're using Sass. Import the Sass styles from this project
 You can consume Vectara UI's Sass variables by placing this import in the files that use the variables:
 
 ```scss
-@import "~@vectara/vectara-ui/src/styleUtils/index";
+@import "~@vectara/vectara-ui/src/vars";
 ```
 
 ## Publishing
