@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export type TreeItem = {
   name: string;
@@ -28,9 +28,9 @@ const buildItems = (items: Array<TreeItem>, currentPath: string) => {
       });
 
       return (
-        <a className={classes} href={path} key={path}>
+        <Link className={classes} to={path} key={path}>
           {name}
-        </a>
+        </Link>
       );
     }
   });
