@@ -15,6 +15,10 @@ export const Link = () => {
           Link
         </VuiLink>
       </Subsection>
+
+      <Subsection title="With onClick only">
+        <VuiLink onClick={() => alert("Clicked link")}>Link that's really a button</VuiLink>
+      </Subsection>
     </>
   );
 };

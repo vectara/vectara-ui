@@ -5,10 +5,10 @@ import { getTrackingProps } from "../../utils/getTrackingProps";
 
 export type Props = {
   children: ReactNode;
-  href: string;
+  href?: string;
   className?: string;
   target?: "_blank";
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
   track?: boolean;
   // ...rest
   title?: string;
@@ -21,6 +21,14 @@ export const VuiLinkInternal = ({ ...rest }: Props) => {
 };
 
 export const VuiLink = ({ children, href, target, onClick, className, track, ...rest }: Props) => {
+  if (!href) {
+    return (
+      <button className={classNames("vuiLink", "vuiLink--button", className)} onClick={onClick} {...rest}>
+        {children}
+      </button>
+    );
+  }
+
   const props: {
     target?: string;
     rel?: string;
