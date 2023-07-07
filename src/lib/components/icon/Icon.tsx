@@ -6,9 +6,10 @@ import { ICON_COLOR, ICON_SIZE } from "./types";
 const sizeToValueMap = {
   s: "16",
   m: "20",
-  l: "28",
-  xl: "46",
-  xxl: "68"
+  l: "24",
+  xl: "28",
+  xxl: "46",
+  xxxl: "68"
 };
 
 type Props = {

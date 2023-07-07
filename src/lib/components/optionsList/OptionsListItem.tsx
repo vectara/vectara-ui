@@ -8,7 +8,7 @@ type Props = {
   value: string;
   children: React.ReactNode;
   isSelectable?: boolean;
-  isSelected: boolean;
+  isSelected?: boolean;
   onClick: (value: string) => void;
 };
 
@@ -24,7 +24,7 @@ export const VuiOptionsListItem = ({ value, children, isSelectable, isSelected, 
           </VuiFlexItem>
         )}
 
-        <VuiFlexItem grow={false}> {children}</VuiFlexItem>
+        <VuiFlexItem grow={false}>{children}</VuiFlexItem>
       </VuiFlexContainer>
     </button>
   );

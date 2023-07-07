@@ -11,7 +11,7 @@ type Props = {
     color?: TextColor;
   }[];
   onSelectOption: (value: string) => void;
-  selectedOption: string;
+  selectedOption?: string;
   isSelectable?: boolean;
   isScrollable?: boolean;
 };
