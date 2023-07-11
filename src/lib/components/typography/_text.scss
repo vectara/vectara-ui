@@ -3,6 +3,18 @@
   word-break: break-word;
 }
 
+.vuiText--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  & * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 @mixin defineTextStyles($factor) {
   color: $colorText;
   font-size: $fontSize * $factor;

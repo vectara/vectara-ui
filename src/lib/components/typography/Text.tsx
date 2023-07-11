@@ -11,10 +11,20 @@ type Props = {
   children?: ReactNode;
   size?: (typeof SIZE)[number];
   align?: (typeof TEXT_ALIGN)[number];
+  truncate?: boolean;
 };
 
-export const VuiText = ({ children, className, id, size = "s", align = "left" }: Props) => {
-  const classes = classNames("vuiText", `vuiText--${size}`, `vuiText--${align}`, className);
+export const VuiText = ({ children, className, id, truncate, size = "s", align = "left" }: Props) => {
+  const classes = classNames(
+    "vuiText",
+    `vuiText--${size}`,
+    `vuiText--${align}`,
+    {
+      "vuiText--truncate": truncate
+    },
+    className
+  );
+
   return (
     <div className={classes} id={id}>
       {children}
