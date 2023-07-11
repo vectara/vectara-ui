@@ -14,3 +14,7 @@
   flex-basis: auto;
   flex-grow: 0;
 }
+
+.vuiFlexItem--truncate {
+  min-width: 40px;
+}

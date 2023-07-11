@@ -8,6 +8,7 @@ import {
   VuiSpacer,
   VuiText,
   VuiTextColor,
+  VuiTextInput,
   VuiTitle
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
@@ -16,7 +17,7 @@ export const Layouts = () => (
   <>
     <Subsection title={"Header layout"}>
       <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
-        <VuiFlexItem grow={false}>
+        <VuiFlexItem grow={1}>
           <VuiTitle size="m">
             <h4>Identifying info on left</h4>
           </VuiTitle>
@@ -32,6 +33,26 @@ export const Layouts = () => (
               <VuiButtonSecondary color="primary">Primary action</VuiButtonSecondary>
             </VuiFlexItem>
           </VuiFlexContainer>
+        </VuiFlexItem>
+      </VuiFlexContainer>
+    </Subsection>
+
+    <Subsection title={"Searchbar layout"}>
+      <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
+        <VuiFlexItem grow={false} truncate>
+          <VuiText truncate>
+            <VuiTextColor color="subdued">
+              <p>Find stuff in your data</p>
+            </VuiTextColor>
+          </VuiText>
+        </VuiFlexItem>
+
+        <VuiFlexItem grow={1}>
+          <VuiTextInput onChange={() => undefined} />
+        </VuiFlexItem>
+
+        <VuiFlexItem grow={false}>
+          <VuiButtonSecondary color="primary">Search all of your data</VuiButtonSecondary>
         </VuiFlexItem>
       </VuiFlexContainer>
     </Subsection>

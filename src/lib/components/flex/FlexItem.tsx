@@ -7,15 +7,17 @@ type Props = {
   children?: ReactNode;
   grow?: (typeof GROW)[number] | boolean;
   className?: string;
+  truncate?: boolean;
 };
 
-export const VuiFlexItem = ({ children, grow, className, ...rest }: Props) => {
+export const VuiFlexItem = ({ children, grow, className, truncate, ...rest }: Props) => {
   const isGrowNone = grow === false;
   const classes = classNames(
     "vuiFlexItem",
     {
       [`vuiFlexItem--flexGrow${grow}`]: typeof grow === "number",
-      "vuiFlexItem--flexGrowNone": isGrowNone
+      "vuiFlexItem--flexGrowNone": isGrowNone,
+      "vuiFlexItem--truncate": truncate
     },
     className
   );
