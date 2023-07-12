@@ -1,4 +1,5 @@
 import { VuiAppContent } from "./appContent/AppContent";
+import { AppContentPadding } from "./appContent/types";
 import { VuiAppHeader } from "./appHeader/AppHeader";
 import { VuiAppLayout } from "./appLayout/AppLayout";
 import { VuiAppSideNav } from "./appSideNav/AppSideNav";
@@ -47,7 +48,7 @@ import { TEXT_COLOR, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
-export type { ButtonColor, CalloutColor, TabSize };
+export type { AppContentPadding, ButtonColor, CalloutColor, TabSize };
 
 export {
   BADGE_COLOR,

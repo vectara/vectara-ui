@@ -31,7 +31,7 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
   };
 
   return (
-    <VuiAppContent>
+    <VuiAppContent padding="xl">
       <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
         <VuiFlexItem grow={false}>
           <VuiTitle size="m">

@@ -14,7 +14,7 @@
 }
 
 .appSideNavSection__items {
-  margin-top: $sizeXs;
+  margin-top: $sizeS;
 }
 
 .appSideNavLink {
@@ -22,8 +22,16 @@
   color: $colorText;
   font-size: $fontSizeXs;
   text-decoration: none;
-  padding: ($sizeXs * 0.5) $sizeM;
+  padding: 0 $sizeM;
   margin-left: -$sizeM;
+
+  & + & {
+    padding-top: ($sizeXs * 0.5);
+  }
+
+  &:not(:last-child) {
+    padding-bottom: ($sizeXs * 0.5);
+  }
 
   &:hover {
     color: $colorPrimary;
