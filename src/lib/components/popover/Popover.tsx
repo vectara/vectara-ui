@@ -4,7 +4,8 @@ import { FocusOn } from "react-focus-on";
 
 type Props = {
   button: React.ReactElement;
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  header?: React.ReactNode;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 };
@@ -23,7 +24,7 @@ const getPosition = (button: HTMLElement | null): Position | undefined => {
   };
 };
 
-export const VuiPopover = ({ button: originalButton, children, isOpen, setIsOpen, ...rest }: Props) => {
+export const VuiPopover = ({ button: originalButton, children, header, isOpen, setIsOpen, ...rest }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
   const buttonRef = useRef<HTMLElement | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -95,7 +96,8 @@ export const VuiPopover = ({ button: originalButton, children, isOpen, setIsOpen
             preventScrollOnFocus={false}
           >
             <div className="vuiPopover" style={{ top: `${position.top}px`, right: `${position.right}px` }} {...rest}>
-              {children}
+              {header}
+              {children && <div className="vuiPopoverContent">{children}</div>}
             </div>
           </FocusOn>
         )}
