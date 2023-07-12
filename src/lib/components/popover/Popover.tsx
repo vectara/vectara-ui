@@ -1,4 +1,4 @@
-import React, { cloneElement, useCallback, useEffect, useRef, useState } from "react";
+import React, { cloneElement, useEffect, useRef, useState } from "react";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 
@@ -26,7 +26,8 @@ const getPosition = (button: HTMLElement | null): Position | undefined => {
 export const VuiPopover = ({ button: originalButton, children, isOpen, setIsOpen, ...rest }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
   const buttonRef = useRef<HTMLElement | null>(null);
-  const [position, setPosition] = useState<Position | undefined>();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [positionMarker, setPositionMarker] = useState<number>(0);
 
   const button = cloneElement(originalButton, {
     isPressed: isOpen,
@@ -38,18 +39,12 @@ export const VuiPopover = ({ button: originalButton, children, isOpen, setIsOpen
     }
   });
 
-  const onResizeWindow = useCallback(() => {
-    // Keep posiiton as up-to-date as possible. We'd like to do that only
-    // when the popover is visible, but unfortunately we've formed a closure
-    // over a stale and unchanging isOpen value. So for now we're stuck with
-    // inefficiently updating this on every resize, for every popover, regardless
-    // of whether it's visible or not. Eventually perhaps useEffectEvent will
-    // address this once it's GA:
-    // https://react.dev/learn/separating-events-from-effects
-    setPosition(getPosition(buttonRef.current));
-  }, []);
-
   useEffect(() => {
+    const onResizeWindow = () => {
+      // Force a re-render when the window resizes.
+      setPositionMarker(Date.now());
+    };
+
     window.addEventListener("resize", onResizeWindow);
 
     return () => {
@@ -59,9 +54,6 @@ export const VuiPopover = ({ button: originalButton, children, isOpen, setIsOpen
 
   useEffect(() => {
     if (isOpen) {
-      // Keep posiiton as up-to-date as possible, but only when the popover is visible.
-      setPosition(getPosition(buttonRef.current));
-
       returnFocusElRef.current = document.activeElement as HTMLElement;
     } else {
       returnFocusElRef.current?.focus();
@@ -77,6 +69,11 @@ export const VuiPopover = ({ button: originalButton, children, isOpen, setIsOpen
       setIsOpen(false);
     }, 0);
   };
+
+  // Always keep menu position up to date. If we tried to cache this inside
+  // a useEffect based on isOpen then there'd be a flicker if the width
+  // of the button changes.
+  const position = getPosition(buttonRef.current);
 
   return (
     <>
