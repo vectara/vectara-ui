@@ -1,6 +1,5 @@
 .vuiPopover {
   position: absolute;
-  padding: $sizeXxs;
   background-color: $colorEmptyShade;
   border: 1px solid $borderColor;
   z-index: $popoverZIndex;
@@ -9,4 +8,8 @@
 
 .vuiOptionsListItem__selected--unselected {
   visibility: hidden;
+}
+
+.vuiPopoverContent {
+  padding: $sizeXxs;
 }

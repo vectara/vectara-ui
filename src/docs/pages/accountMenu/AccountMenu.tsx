@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { VuiAccountMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList, VuiPopover } from "../../../lib";
+import { VuiAccountMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList } from "../../../lib";
 import { BiSolidUser } from "react-icons/bi";
 
 const options = [
@@ -8,12 +7,8 @@ const options = [
 ];
 
 export const AccountMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <VuiPopover
-      isOpen={isOpen}
-      setIsOpen={() => setIsOpen(!isOpen)}
+    <VuiAccountMenu
       button={
         <VuiButtonSecondary
           color="accent"
@@ -27,20 +22,17 @@ export const AccountMenu = () => {
           email@email.com
         </VuiButtonSecondary>
       }
+      info={[
+        { title: "Email", value: "email@email.com" },
+        { title: "Account number", value: "1234567890" }
+      ]}
     >
-      <VuiAccountMenu
-        info={[
-          { title: "Email", value: "email@email.com" },
-          { title: "Account number", value: "1234567890" }
-        ]}
-      >
-        <VuiOptionsList
-          onSelectOption={(value) => {
-            alert(`Selected ${value}`);
-          }}
-          options={options}
-        />
-      </VuiAccountMenu>
-    </VuiPopover>
+      <VuiOptionsList
+        onSelectOption={(value) => {
+          alert(`Selected ${value}`);
+        }}
+        options={options}
+      />
+    </VuiAccountMenu>
   );
 };
