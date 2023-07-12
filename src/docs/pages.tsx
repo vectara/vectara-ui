@@ -1,4 +1,5 @@
 // Components
+import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
@@ -45,7 +46,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [flex, horizontalRule, spacer, tabs]
+    pages: [app, flex, horizontalRule, spacer, tabs]
   },
   {
     name: "Search",

@@ -9,7 +9,7 @@ type Props = {
 export const VuiAppHeader = ({ left, right }: Props) => {
   return (
     <div className="vuiAppHeader">
-      <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
+      <VuiFlexContainer className="vuiAppHeader__inner" justifyContent="spaceBetween" alignItems="center">
         {Boolean(left) && <VuiFlexItem grow={1}>{left}</VuiFlexItem>}
 
         {Boolean(right) && <VuiFlexItem grow={false}>{right}</VuiFlexItem>}
