@@ -1,8 +1,8 @@
-import { VuiAppContent } from "./appContent/AppContent";
-import { AppContentPadding } from "./appContent/types";
-import { VuiAppHeader } from "./appHeader/AppHeader";
-import { VuiAppLayout } from "./appLayout/AppLayout";
-import { VuiAppSideNav } from "./appSideNav/AppSideNav";
+import { VuiAppContent } from "./app/AppContent";
+import { AppContentPadding } from "./app/types";
+import { VuiAppHeader } from "./app/AppHeader";
+import { VuiAppLayout } from "./app/AppLayout";
+import { VuiAppSideNav } from "./app/AppSideNav";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
 import { BUTTON_COLOR, BUTTON_SIZE, ButtonColor } from "./button/types";
 import { VuiButtonPrimary } from "./button/ButtonPrimary";

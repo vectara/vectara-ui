@@ -1,8 +1,5 @@
-@import "../styleUtils/index.scss";
-@import "appContent/index.scss";
-@import "appHeader/index.scss";
-@import "appLayout/index.scss";
-@import "appSideNav/index.scss";
+@import "../styleUtils/index";
+@import "app/index";
 @import "badge/index";
 @import "button/index";
 @import "callout/index";
