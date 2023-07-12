@@ -1,4 +1,5 @@
 // Components
+import { accountMenu } from "./pages/accountMenu";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
@@ -58,7 +59,7 @@ export const categories: Category[] = [
   },
   {
     name: "Containers",
-    pages: [drawer, modal, popover]
+    pages: [accountMenu, drawer, modal, popover]
   },
   {
     name: "Utils",
@@ -73,6 +74,7 @@ type Paths = {
 
 export const paths: Paths = categories.reduce(
   (acc, curr) => {
+    // Create a list of all pages in order.
     const list = acc.list.concat(curr.pages);
 
     const mappedPaths = curr.pages.reduce(
@@ -80,6 +82,7 @@ export const paths: Paths = categories.reduce(
       {}
     );
 
+    // Create a map of all pages by path.
     const map = { ...acc.map, ...mappedPaths };
 
     return { list, map };

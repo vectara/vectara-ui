@@ -1,8 +1,9 @@
+import { VuiAccountMenu } from "./accountMenu/AccountMenu";
 import { VuiAppContent } from "./app/AppContent";
-import { AppContentPadding } from "./app/types";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
 import { VuiAppSideNav } from "./app/AppSideNav";
+import { AppContentPadding } from "./app/types";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
 import { BUTTON_COLOR, BUTTON_SIZE, ButtonColor } from "./button/types";
 import { VuiButtonPrimary } from "./button/ButtonPrimary";
@@ -63,6 +64,7 @@ export {
   TAB_SIZE,
   TEXT_COLOR,
   TITLE_SIZE,
+  VuiAccountMenu,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,
