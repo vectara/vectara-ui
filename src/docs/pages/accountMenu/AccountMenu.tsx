@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { VuiAccountMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList } from "../../../lib";
 import { BiSolidUser } from "react-icons/bi";
 
@@ -7,8 +8,12 @@ const options = [
 ];
 
 export const AccountMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <VuiAccountMenu
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
       button={
         <VuiButtonSecondary
           color="accent"

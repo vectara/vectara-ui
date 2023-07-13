@@ -1,15 +1,9 @@
 import classNames from "classnames";
-import { VuiText } from "../typography/Text";
-import { VuiTextColor } from "../typography/TextColor";
-import { TextColor } from "../typography/types";
 import { VuiOptionsListItem } from "./OptionsListItem";
+import { OptionListItem } from "./types";
 
 type Props = {
-  options: {
-    value: string;
-    label: string;
-    color?: TextColor;
-  }[];
+  options: OptionListItem[];
   onSelectOption: (value: string) => void;
   selectedOption?: string;
   isSelectable?: boolean;
@@ -30,20 +24,17 @@ export const VuiOptionsList = ({
 
   return (
     <div className={classes} {...rest}>
-      {options.map(({ value, label, color = "normal" }) => (
+      {options.map(({ value, label, href, onClick, color }) => (
         <VuiOptionsListItem
           key={value}
           value={value}
-          onClick={onSelectOption}
+          label={label}
+          color={color}
+          href={href}
+          onClick={onClick ?? onSelectOption}
           isSelectable={isSelectable}
           isSelected={value === selectedOption}
-        >
-          <VuiText>
-            <VuiTextColor color={color}>
-              <p>{label}</p>
-            </VuiTextColor>
-          </VuiText>
-        </VuiOptionsListItem>
+        />
       ))}
     </div>
   );
