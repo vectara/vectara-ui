@@ -27,6 +27,7 @@ import { VuiMenuItem } from "./menu/MenuItem";
 import { VuiModal } from "./modal/Modal";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
+import { OptionListItem } from "./optionsList/types";
 import { VuiPopover } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
 import { VuiPrompt } from "./prompt/Prompt";
@@ -49,7 +50,7 @@ import { TEXT_COLOR, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
-export type { AppContentPadding, ButtonColor, CalloutColor, TabSize };
+export type { AppContentPadding, ButtonColor, CalloutColor, OptionListItem, TabSize };
 
 export {
   BADGE_COLOR,

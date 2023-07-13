@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { VuiPopover } from "../popover/Popover";
 
 type AccountMenuInfo = Array<{
@@ -7,14 +6,14 @@ type AccountMenuInfo = Array<{
 }>;
 
 type Props = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
   button: React.ReactElement;
   info?: AccountMenuInfo;
   children?: React.ReactNode;
 };
 
-export const VuiAccountMenu = ({ button, info, children }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+export const VuiAccountMenu = ({ isOpen, setIsOpen, button, info, children }: Props) => {
   return (
     <VuiPopover
       isOpen={isOpen}

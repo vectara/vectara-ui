@@ -1,6 +1,9 @@
 @use "sass:map";
 
 .vuiButtonTertiary {
+  padding-left: $sizeXs;
+  padding-right: $sizeXs;
+
   &:hover {
     text-decoration: underline;
   }
