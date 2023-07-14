@@ -51,28 +51,30 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
 
   return (
     <div className={classes}>
-      {isCollapsed ? (
-        <VuiIconButton
-          onClick={() => setIsCollapsed(false)}
-          className="appSideNavExpandButton"
-          color="normal"
-          icon={
-            <VuiIcon>
-              <BiChevronRight />
-            </VuiIcon>
-          }
-        />
-      ) : (
-        <>
-          <button className="appSideNavCollapseButton" onClick={() => setIsCollapsed(true)}>
-            Collapse nav
-          </button>
+      <div className="appSideNav__inner">
+        {isCollapsed ? (
+          <VuiIconButton
+            onClick={() => setIsCollapsed(false)}
+            className="appSideNavExpandButton"
+            color="normal"
+            icon={
+              <VuiIcon>
+                <BiChevronRight />
+              </VuiIcon>
+            }
+          />
+        ) : (
+          <>
+            <button className="appSideNavCollapseButton" onClick={() => setIsCollapsed(true)}>
+              Collapse nav
+            </button>
 
-          {buildItems(items, location.pathname)}
+            {buildItems(items, location.pathname)}
 
-          {content}
-        </>
-      )}
+            {content}
+          </>
+        )}
+      </div>
     </div>
   );
 };

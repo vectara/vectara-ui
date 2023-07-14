@@ -1,15 +1,24 @@
+$appSideNavWidth: 200px;
+
 .appSideNav {
+  width: $appSideNavWidth;
+  overflow-x: hidden;
+  transition: all $transitionSpeed;
+}
+
+.appSideNav__inner {
+  width: $appSideNavWidth;
   padding: $sizeL $sizeM * 2 $sizeXl;
   margin-bottom: $sizeXxl * 4;
-  width: 200px;
   transition: all $transitionSpeed;
-  overflow-x: hidden;
 }
 
 .appSideNav-isCollapsed {
-  padding-left: $sizeM;
-  padding-right: 0;
   width: 60px;
+
+  .appSideNav__inner {
+    padding-left: $sizeM;
+  }
 }
 
 .appSideNavCollapseButton {
@@ -20,7 +29,6 @@
   padding: 0 $sizeM;
   margin-left: -$sizeM;
   margin-bottom: $sizeM;
-  white-space: nowrap;
 
   &:hover {
     color: $colorPrimary;
@@ -53,7 +61,6 @@
   text-decoration: none;
   padding: 0 $sizeM;
   margin-left: -$sizeM;
-  white-space: nowrap;
 
   & + & {
     padding-top: ($sizeXs * 0.5);
