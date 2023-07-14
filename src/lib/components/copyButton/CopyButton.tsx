@@ -10,7 +10,15 @@ type Props = {
   size: OptionsButtonProps["size"];
 };
 
-export const VuiCopyButton = ({ value, options, size }: Props) => {
+const sizeToIconSizeMap = {
+  xs: "s",
+  s: "s",
+  m: "m",
+  l: "m",
+  xl: "m"
+} as const;
+
+export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -43,11 +51,11 @@ export const VuiCopyButton = ({ value, options, size }: Props) => {
       options={options}
     >
       {isCopied ? (
-        <VuiIcon size="m" color="success">
+        <VuiIcon size={sizeToIconSizeMap[size]} color="success">
           <BiCheck />
         </VuiIcon>
       ) : (
-        <VuiIcon size="m">
+        <VuiIcon size={sizeToIconSizeMap[size]}>
           <BiClipboard />
         </VuiIcon>
       )}
