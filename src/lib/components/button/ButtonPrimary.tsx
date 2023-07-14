@@ -30,17 +30,11 @@ const colorToIconColorMap = {
 
 export const VuiButtonPrimary = forwardRef<HTMLButtonElement | null, Props>(
   ({ children, icon, color, size = "m", className, fullWidth, isPressed, isSelected, ...rest }: Props, ref) => {
-    const classes = classNames(
-      className,
-      "vuiButtonPrimary",
-      `vuiButtonPrimary--${color}`,
-      `vuiButtonPrimary--${size}`,
-      {
-        "vuiButtonPrimary--fullWidth": fullWidth,
-        "vuiButtonPrimary--isPressed": isPressed, // TODO: Needs styles
-        "vuiButtonPrimary--isSelected": isSelected // TODO: Needs styles
-      }
-    );
+    const classes = classNames(className, "vuiButtonPrimary", `vuiButtonPrimary--${color}`, {
+      "vuiButtonPrimary--fullWidth": fullWidth,
+      "vuiButtonPrimary--isPressed": isPressed, // TODO: Needs styles
+      "vuiButtonPrimary--isSelected": isSelected // TODO: Needs styles
+    });
 
     const styledIcon = icon
       ? cloneElement(icon, {
