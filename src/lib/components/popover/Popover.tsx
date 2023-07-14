@@ -19,7 +19,7 @@ const getPosition = (button: HTMLElement | null): Position | undefined => {
   if (!button) return undefined;
   const { bottom, right } = button.getBoundingClientRect();
   return {
-    top: bottom - 1 + document.documentElement.scrollTop,
+    top: bottom + 2 + document.documentElement.scrollTop,
     right: window.innerWidth - right
   };
 };
