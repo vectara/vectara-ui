@@ -1,5 +1,9 @@
 import classNames from "classnames";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { VuiIconButton } from "../button/IconButton";
+import { VuiIcon } from "../icon/Icon";
+import { BiChevronRight } from "react-icons/bi";
 
 export type TreeItem = {
   name: string;
@@ -37,6 +41,35 @@ const buildItems = (items: Array<TreeItem>, currentPath: string) => {
 };
 
 export const VuiAppSideNav = ({ items }: Props) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
-  return <div className="appSideNav">{buildItems(items, location.pathname)}</div>;
+
+  const classes = classNames("appSideNav", {
+    "appSideNav-isCollapsed": isCollapsed
+  });
+
+  return (
+    <div className={classes}>
+      {isCollapsed ? (
+        <VuiIconButton
+          onClick={() => setIsCollapsed(false)}
+          className="appSideNavExpandButton"
+          color="normal"
+          icon={
+            <VuiIcon>
+              <BiChevronRight />
+            </VuiIcon>
+          }
+        />
+      ) : (
+        <>
+          <button className="appSideNavCollapseButton" onClick={() => setIsCollapsed(true)}>
+            Collapse nav
+          </button>
+
+          {buildItems(items, location.pathname)}
+        </>
+      )}
+    </div>
+  );
 };

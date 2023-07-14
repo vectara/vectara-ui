@@ -1,6 +1,35 @@
 .appSideNav {
-  padding: $sizeXl $sizeM;
+  padding: $sizeL $sizeM * 2 $sizeXl;
   margin-bottom: $sizeXxl * 4;
+  width: 200px;
+  transition: all $transitionSpeed;
+  overflow-x: hidden;
+}
+
+.appSideNav-isCollapsed {
+  padding-left: $sizeM;
+  padding-right: 0;
+  width: 60px;
+}
+
+.appSideNavCollapseButton {
+  display: block;
+  color: $colorSubdued;
+  font-size: $fontSizeXs;
+  text-decoration: none;
+  padding: 0 $sizeM;
+  margin-left: -$sizeM;
+  margin-bottom: $sizeM;
+  white-space: nowrap;
+
+  &:hover {
+    color: $colorPrimary;
+    text-decoration: underline;
+  }
+}
+
+.appSideNavExpandButton {
+  margin-top: -$sizeXxs;
 }
 
 .appSideNavSection + .appSideNavSection {
@@ -24,6 +53,7 @@
   text-decoration: none;
   padding: 0 $sizeM;
   margin-left: -$sizeM;
+  white-space: nowrap;
 
   & + & {
     padding-top: ($sizeXs * 0.5);
