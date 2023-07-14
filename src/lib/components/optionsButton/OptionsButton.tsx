@@ -46,7 +46,7 @@ export const VuiOptionsButton = ({
               size={size}
               className={`vuiOptionsButtonRight vuiOptionsButtonRight--${color}`}
               icon={
-                <VuiIcon size="m">
+                <VuiIcon>
                   <BiCaretDown />
                 </VuiIcon>
               }

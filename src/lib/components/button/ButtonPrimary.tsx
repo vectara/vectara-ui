@@ -1,7 +1,8 @@
-import { cloneElement, forwardRef } from "react";
+import { forwardRef } from "react";
 import classNames from "classnames";
 import { BaseButton, Props as BaseButtonProps } from "./BaseButton";
 import { ButtonColor } from "./types";
+import { createButtonIcon } from "./createButtonIcon";
 
 export type Props = {
   children?: BaseButtonProps["children"];
@@ -36,15 +37,10 @@ export const VuiButtonPrimary = forwardRef<HTMLButtonElement | null, Props>(
       "vuiButtonPrimary--isSelected": isSelected // TODO: Needs styles
     });
 
-    const styledIcon = icon
-      ? cloneElement(icon, {
-          size: 18,
-          color: colorToIconColorMap[color]
-        })
-      : null;
+    const buttonIcon = createButtonIcon(icon, color, colorToIconColorMap);
 
     return (
-      <BaseButton ref={ref} className={classes} icon={styledIcon} size={size} fullWidth={fullWidth} {...rest}>
+      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} fullWidth={fullWidth} {...rest}>
         {children}
       </BaseButton>
     );
