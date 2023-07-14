@@ -13,6 +13,7 @@ import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { VuiCode } from "./code/Code";
+import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDrawer } from "./drawer/Drawer";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
@@ -78,6 +79,7 @@ export {
   VuiIconButton,
   VuiCallout,
   VuiCode,
+  VuiCopyButton,
   VuiDrawer,
   VuiFlexContainer,
   VuiFlexItem,

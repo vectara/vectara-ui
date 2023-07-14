@@ -7,7 +7,7 @@ import { VuiIcon } from "../icon/Icon";
 import { Props as PopoverProps, VuiPopover } from "../popover/Popover";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
-type Props = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
+export type Props = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
   Pick<OptionsListProps, "options" | "onSelectOption"> &
   Pick<ButtonPrimaryProps, "children" | "icon" | "color" | "size" | "className" | "fullWidth" | "onClick"> & {
     type?: "primary" | "secondary";

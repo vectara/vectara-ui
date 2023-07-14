@@ -5,6 +5,7 @@ import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
 import { code } from "./pages/code";
+import { copyButton } from "./pages/copyButton";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
@@ -40,7 +41,7 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [button, link, menu, optionsButton, optionsList]
+    pages: [button, copyButton, link, menu, optionsButton, optionsList]
   },
   {
     name: "Form",

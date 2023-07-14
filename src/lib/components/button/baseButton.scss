@@ -46,14 +46,17 @@
 .vuiBaseButton--xs {
   font-size: $fontSizeXs;
   padding: $sizeXxs $sizeXs;
+  height: 24px;
 }
 
 .vuiBaseButton--s {
   font-size: $fontSizeXs;
   padding: $sizeXs * 0.75 $sizeXs;
+  height: 28px;
 }
 
 .vuiBaseButton--m {
   font-size: $fontSizeS;
   padding: $sizeXs $size;
+  height: 34px;
 }
