@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   width: 100vw;
-  height: 46px;
+  height: $appHeaderHeight;
   background-color: $colorLightShade;
   padding: $sizeXs $sizeM;
   z-index: 10;

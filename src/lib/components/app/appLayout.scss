@@ -1,7 +1,7 @@
 .vuiAppLayout {
   display: flex;
   flex-direction: row;
-  padding-top: 46px;
+  padding-top: $appHeaderHeight;
   height: 100vh;
 }
 
