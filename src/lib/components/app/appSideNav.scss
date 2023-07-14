@@ -1,6 +1,43 @@
+$appSideNavWidth: 200px;
+
 .appSideNav {
-  padding: $sizeXl $sizeM;
+  width: $appSideNavWidth;
+  overflow-x: hidden;
+  transition: all $transitionSpeed;
+}
+
+.appSideNav__inner {
+  width: $appSideNavWidth;
+  padding: $sizeL $sizeM * 2 $sizeXl;
   margin-bottom: $sizeXxl * 4;
+  transition: all $transitionSpeed;
+}
+
+.appSideNav-isCollapsed {
+  width: 60px;
+
+  .appSideNav__inner {
+    padding-left: $sizeM;
+  }
+}
+
+.appSideNavCollapseButton {
+  display: block;
+  color: $colorSubdued;
+  font-size: $fontSizeXs;
+  text-decoration: none;
+  padding: 0 $sizeM;
+  margin-left: -$sizeM;
+  margin-bottom: $sizeM;
+
+  &:hover {
+    color: $colorPrimary;
+    text-decoration: underline;
+  }
+}
+
+.appSideNavExpandButton {
+  margin-top: -$sizeXxs;
 }
 
 .appSideNavSection + .appSideNavSection {

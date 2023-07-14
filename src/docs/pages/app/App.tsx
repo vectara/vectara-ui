@@ -8,8 +8,11 @@ import {
   VuiButtonSecondary,
   VuiFlexContainer,
   VuiFlexItem,
+  VuiHorizontalRule,
   VuiSelect,
   VuiSpacer,
+  VuiText,
+  VuiTextColor,
   VuiTitle
 } from "../../../lib";
 import "./appExample.scss";
@@ -58,6 +61,18 @@ export const App = () => {
               { name: "Page 3", path: "/" },
               { name: "Page 4", path: "/" }
             ]}
+            navContent={
+              <>
+                <VuiSpacer size="l" />
+                <VuiHorizontalRule />
+                <VuiSpacer size="l" />
+                <VuiText>
+                  <p>
+                    <VuiTextColor color="subdued">Made with love on Terra</VuiTextColor>
+                  </p>
+                </VuiText>
+              </>
+            }
           >
             <VuiAppContent className="appExampleContent" fullWidth={isFullWidth} padding={padding}>
               <VuiButtonSecondary color="primary" onClick={() => setIsFullWidth(!isFullWidth)}>
