@@ -9,15 +9,15 @@
 // Color
 $color: (
   accent: (
-    "border-color": transparentize($colorAccent, 0.6),
+    "border-color": transparentize($colorAccent, 0.5),
     "color": $colorAccent
   ),
   primary: (
-    "border-color": transparentize($colorPrimary, 0.6),
+    "border-color": transparentize($colorPrimary, 0.5),
     "color": $colorPrimary
   ),
   success: (
-    "border-color": transparentize($colorSuccess, 0.6),
+    "border-color": transparentize($colorSuccess, 0.5),
     "color": $colorSuccess
   ),
   danger: (

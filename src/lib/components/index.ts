@@ -25,6 +25,7 @@ import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem } from "./menu/MenuItem";
 import { VuiModal } from "./modal/Modal";
+import { VuiOptionsButton } from "./optionsButton/OptionsButton";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
@@ -90,6 +91,7 @@ export {
   VuiMenuItem,
   VuiModal,
   VuiNumberInput,
+  VuiOptionsButton,
   VuiOptionsList,
   VuiOptionsListItem,
   VuiPopover,
