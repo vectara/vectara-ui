@@ -12,7 +12,8 @@ export type TreeItem = {
 };
 
 export type Props = {
-  items: Array<TreeItem>;
+  items?: Array<TreeItem>;
+  content?: React.ReactNode;
 };
 
 const buildItems = (items: Array<TreeItem>, currentPath: string) => {
@@ -40,7 +41,7 @@ const buildItems = (items: Array<TreeItem>, currentPath: string) => {
   });
 };
 
-export const VuiAppSideNav = ({ items }: Props) => {
+export const VuiAppSideNav = ({ items = [], content }: Props) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
 
@@ -68,6 +69,8 @@ export const VuiAppSideNav = ({ items }: Props) => {
           </button>
 
           {buildItems(items, location.pathname)}
+
+          {content}
         </>
       )}
     </div>
