@@ -15,6 +15,7 @@ import { label } from "./pages/label";
 import { link } from "./pages/link";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
+import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { prompt } from "./pages/prompt";
@@ -39,7 +40,7 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [button, link, menu, optionsList]
+    pages: [button, link, menu, optionsButton, optionsList]
   },
   {
     name: "Form",

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { VuiOptionsListItem } from "./OptionsListItem";
 import { OptionListItem } from "./types";
 
-type Props = {
+export type Props = {
   options: OptionListItem[];
   onSelectOption: (value: string) => void;
   selectedOption?: string;

@@ -2,7 +2,7 @@ import React, { cloneElement, useEffect, useRef, useState } from "react";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 
-type Props = {
+export type Props = {
   button: React.ReactElement;
   children?: React.ReactNode;
   header?: React.ReactNode;

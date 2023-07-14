@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { BaseButton, Props as BaseButtonProps } from "./BaseButton";
 import { ButtonColor } from "./types";
 
-type Props = {
+export type Props = {
   children?: BaseButtonProps["children"];
   icon?: BaseButtonProps["icon"];
   iconSide?: BaseButtonProps["iconSide"];
