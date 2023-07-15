@@ -61,13 +61,15 @@ $appSideNavWidth: 200px;
   text-decoration: none;
   padding: 0 $sizeM;
   margin-left: -$sizeM;
+  padding-top: ($sizeXs * 0.5);
+  padding-bottom: ($sizeXs * 0.5);
 
-  & + & {
-    padding-top: ($sizeXs * 0.5);
+  &:first-child {
+    margin-top: -($sizeXs * 0.5);
   }
 
-  &:not(:last-child) {
-    padding-bottom: ($sizeXs * 0.5);
+  &:last-child {
+    margin-bottom: -($sizeXs * 0.5);
   }
 
   &:hover {
