@@ -33,7 +33,7 @@ const buildItems = (items: Array<TreeItem>, currentPath: string) => {
       });
 
       return (
-        <Link className={classes} to={path} key={path}>
+        <Link className={classes} to={path} key={name}>
           {name}
         </Link>
       );
