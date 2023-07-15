@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { VuiIcon } from "../../icon/Icon";
-import { BiChevronDown } from "react-icons/bi";
+import { BiCaretDown } from "react-icons/bi";
 
 const SIZE = ["m", "l"] as const;
 
@@ -40,7 +40,7 @@ export const VuiSelect = ({ className, id, options, value, size = "m", onChange,
       </select>
       <div className="vuiSelect__caret">
         <VuiIcon color="subdued" size={sizeToIconSizeMap[size]}>
-          <BiChevronDown />
+          <BiCaretDown />
         </VuiIcon>
       </div>
     </div>
