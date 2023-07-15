@@ -94,11 +94,11 @@ export const Docs = () => {
       <VuiAppHeader
         left={
           <VuiFlexContainer spacing="m" alignItems="center">
-            <VuiFlexItem grow={false}>
+            <VuiFlexItem grow={false} shrink={false}>
               <HeaderLogo />
             </VuiFlexItem>
 
-            <VuiFlexItem grow={false}>
+            <VuiFlexItem grow={false} shrink={false}>
               <VuiTitle size="xs">
                 <h1>
                   <strong>Vectara UI Library</strong>
