@@ -6,9 +6,9 @@ type Props = {
   right?: React.ReactNode;
 };
 
-export const VuiAppHeader = ({ left, right }: Props) => {
+export const VuiAppHeader = ({ left, right, ...rest }: Props) => {
   return (
-    <div className="vuiAppHeader">
+    <div className="vuiAppHeader" {...rest}>
       <VuiFlexContainer className="vuiAppHeader__inner" justifyContent="spaceBetween" alignItems="center">
         {Boolean(left) && <VuiFlexItem grow={1}>{left}</VuiFlexItem>}
 
