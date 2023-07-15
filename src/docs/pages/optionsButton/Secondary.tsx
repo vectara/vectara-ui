@@ -23,7 +23,7 @@ export const Secondary = () => {
   return (
     <>
       {BUTTON_SIZE.map((size) => (
-        <VuiFlexContainer>
+        <VuiFlexContainer key={size}>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
               <VuiOptionsButton
