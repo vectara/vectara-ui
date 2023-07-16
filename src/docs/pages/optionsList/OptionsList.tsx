@@ -21,7 +21,7 @@ export const OptionsList = () => {
 
   return (
     <VuiOptionsList
-      onSelectOption={(value) => {
+      onSelectOption={(value: string) => {
         setSelectedOption(value);
         alert(`Selected ${value}`);
       }}

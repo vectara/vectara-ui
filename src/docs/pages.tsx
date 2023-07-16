@@ -28,6 +28,7 @@ import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
 import { summary } from "./pages/summary";
+import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
 import { toggle } from "./pages/toggle";
@@ -42,7 +43,7 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [button, copyButton, link, menu, optionsButton, optionsList]
+    pages: [accountMenu, button, copyButton, link, menu, optionsButton, optionsList]
   },
   {
     name: "Form",
@@ -50,7 +51,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [app, flex, horizontalRule, spacer, tabs]
+    pages: [app, flex, horizontalRule, spacer, table, tabs]
   },
   {
     name: "Search",
@@ -62,7 +63,7 @@ export const categories: Category[] = [
   },
   {
     name: "Containers",
-    pages: [accountMenu, drawer, modal, popover]
+    pages: [drawer, modal, popover]
   },
   {
     name: "Utils",

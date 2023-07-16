@@ -4,6 +4,7 @@ import { IconContext } from "react-icons";
 import { ICON_COLOR, ICON_SIZE } from "./types";
 
 const sizeToValueMap = {
+  xs: "14",
   s: "16",
   m: "20",
   l: "24",

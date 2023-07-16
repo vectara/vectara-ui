@@ -23,7 +23,7 @@ export const ScrollableOptionsList = () => {
     <VuiOptionsList
       isSelectable
       isScrollable
-      onSelectOption={(value) => {
+      onSelectOption={(value: string) => {
         setSelectedOption(value);
       }}
       selectedOption={selectedOption}

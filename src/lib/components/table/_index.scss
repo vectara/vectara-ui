@@ -1,0 +1,39 @@
+.vuiTable {
+  width: 100%;
+
+  thead {
+    border-bottom: 1px solid $borderColor;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $borderColorLight;
+
+    &:hover {
+      background-color: $colorLightShade;
+    }
+  }
+
+  th {
+    font-size: $fontSizeXxs;
+    font-weight: $fontWeightBold;
+    padding: $sizeXxs;
+  }
+
+  td {
+    font-size: $fontSizeXs;
+    padding: $sizeXxs;
+    vertical-align: middle;
+  }
+}
+
+.vuiTableCell {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.vuiTableActions {
+  display: flex;
+  justify-content: flex-end;
+}

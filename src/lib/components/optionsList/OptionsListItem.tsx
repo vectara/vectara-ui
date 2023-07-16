@@ -8,12 +8,14 @@ import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { OptionListItem } from "./types";
 
-type Props = OptionListItem & {
+type Props<T> = OptionListItem<T> & {
   isSelectable?: boolean;
   isSelected?: boolean;
 };
 
-export const VuiOptionsListItem = ({
+// https://github.com/typescript-eslint/typescript-eslint/issues/4062
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
+export const VuiOptionsListItem = <T extends unknown = unknown>({
   value,
   label,
   color = "neutral",
@@ -22,7 +24,7 @@ export const VuiOptionsListItem = ({
   isSelectable,
   isSelected,
   ...rest
-}: Props) => {
+}: Props<T>) => {
   const content = (
     <VuiFlexContainer alignItems="center" spacing="xs">
       {isSelectable && (
