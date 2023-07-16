@@ -4,6 +4,7 @@ import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
+import { checkbox } from "./pages/checkbox";
 import { code } from "./pages/code";
 import { copyButton } from "./pages/copyButton";
 import { drawer } from "./pages/drawer";
@@ -45,7 +46,7 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [formGroup, input, label, select, setting, toggle]
+    pages: [checkbox, formGroup, input, label, select, setting, toggle]
   },
   {
     name: "Layout",

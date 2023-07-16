@@ -17,7 +17,7 @@ import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDrawer } from "./drawer/Drawer";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
-import { VuiNumberInput, VuiTextInput, VuiLabel, VuiSelect } from "./form";
+import { VuiCheckbox, VuiLabel, VuiNumberInput, VuiSelect, VuiTextInput } from "./form";
 import { VuiFormGroup } from "./formGroup/FormGroup";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
@@ -78,6 +78,7 @@ export {
   VuiButtonTertiary,
   VuiIconButton,
   VuiCallout,
+  VuiCheckbox,
   VuiCode,
   VuiCopyButton,
   VuiDrawer,
