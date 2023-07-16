@@ -24,7 +24,7 @@ const colorToIconColorMap = {
   success: "success",
   danger: "danger",
   warning: "warning",
-  normal: "normal"
+  neutral: "neutral"
 };
 
 export const VuiButtonTertiary = forwardRef<HTMLButtonElement | null, Props>(

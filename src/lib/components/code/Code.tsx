@@ -38,7 +38,7 @@ export const VuiCode = ({ onCopy, language = "none", fullHeight, children = "" }
       </pre>
 
       <VuiIconButton
-        color="normal"
+        color="neutral"
         icon={
           <VuiIcon>
             <BiClipboard size={20} />

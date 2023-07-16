@@ -6,7 +6,7 @@ export const ICON_COLOR = [
   "warning",
   "danger",
   "subdued",
-  "normal",
+  "neutral",
   "empty"
 ] as const;
 

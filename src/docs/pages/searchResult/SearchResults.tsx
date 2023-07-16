@@ -54,7 +54,7 @@ export const SearchResults = () => {
 
   return (
     <>
-      <VuiButtonSecondary color="normal" onClick={() => setIsSelectionEnabled(!isSelectionEnabled)}>
+      <VuiButtonSecondary color="neutral" onClick={() => setIsSelectionEnabled(!isSelectionEnabled)}>
         Toggle selection
       </VuiButtonSecondary>
 

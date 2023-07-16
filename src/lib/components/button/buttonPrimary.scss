@@ -28,7 +28,7 @@ $color: (
     "color": #ffffff,
     "background-color": $colorWarning
   ),
-  normal: (
+  neutral: (
     "color": $colorText,
     "background-color": transparentize($colorText, 0.9)
   )

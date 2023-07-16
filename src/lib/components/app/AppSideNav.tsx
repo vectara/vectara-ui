@@ -56,7 +56,7 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
           <VuiIconButton
             onClick={() => setIsCollapsed(false)}
             className="appSideNavExpandButton"
-            color="normal"
+            color="neutral"
             icon={
               <VuiIcon>
                 <BiChevronRight />
