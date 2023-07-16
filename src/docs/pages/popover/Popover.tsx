@@ -18,7 +18,7 @@ export const Popover = () => {
       setIsOpen={() => setIsOpen(!isOpen)}
       button={
         <VuiButtonSecondary
-          color="normal"
+          color="neutral"
           size="s"
           icon={
             <VuiIcon size="m">

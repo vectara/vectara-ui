@@ -42,7 +42,7 @@ export const VuiSetting = ({
 
             {badge && (
               <VuiFlexItem grow={false}>
-                <VuiBadge color="normal">{badge}</VuiBadge>
+                <VuiBadge color="neutral">{badge}</VuiBadge>
               </VuiFlexItem>
             )}
           </VuiFlexContainer>

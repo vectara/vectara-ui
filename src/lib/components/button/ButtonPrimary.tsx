@@ -26,7 +26,7 @@ const colorToIconColorMap = {
   success: "empty",
   danger: "empty",
   warning: "empty",
-  normal: "normal"
+  neutral: "neutral"
 };
 
 export const VuiButtonPrimary = forwardRef<HTMLButtonElement | null, Props>(

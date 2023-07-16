@@ -65,9 +65,9 @@ export const VuiModal = ({ className, color = "primary", title, children, isOpen
                       <VuiFlexItem>
                         <VuiIconButton
                           onClick={onCloseDelayed}
-                          color="normal"
+                          color="neutral"
                           icon={
-                            <VuiIcon size="m" color="normal">
+                            <VuiIcon size="m" color="neutral">
                               <BiX />
                             </VuiIcon>
                           }

@@ -48,7 +48,7 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
                     <BiLeftArrowAlt />
                   </VuiIcon>
                 }
-                color="normal"
+                color="neutral"
                 onClick={() => navigateToPreviousPage()}
               />
             </VuiFlexItem>
@@ -61,7 +61,7 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
                     <BiRightArrowAlt />
                   </VuiIcon>
                 }
-                color="normal"
+                color="neutral"
                 onClick={() => navigateToNextPage()}
               />
             </VuiFlexItem>
@@ -111,7 +111,7 @@ export const Docs = () => {
           <VuiIconButton
             href="https://github.com/vectara/vectara-ui"
             target="_blank"
-            color="normal"
+            color="neutral"
             icon={
               <VuiIcon>
                 <BiLogoGithub />

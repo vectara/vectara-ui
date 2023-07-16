@@ -16,7 +16,7 @@ type Props = OptionListItem & {
 export const VuiOptionsListItem = ({
   value,
   label,
-  color = "normal",
+  color = "neutral",
   href,
   onClick,
   isSelectable,

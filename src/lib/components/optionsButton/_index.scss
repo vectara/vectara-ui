@@ -17,7 +17,7 @@ $colorPrimaryButton: (
   success: transparentize($colorEmptyShade, 0.5),
   danger: transparentize($colorEmptyShade, 0.5),
   warning: transparentize($colorEmptyShade, 0.5),
-  normal: transparentize($colorText, 0.8)
+  neutral: transparentize($colorText, 0.8)
 );
 
 @each $colorName, $colorValue in $colorPrimaryButton {
@@ -32,7 +32,7 @@ $coloSecondaryButton: (
   success: transparentize($colorSuccess, 0.7),
   danger: transparentize($colorDanger, 0.7),
   warning: transparentize($colorWarning, 0.7),
-  normal: transparentize($colorText, 0.8)
+  neutral: transparentize($colorText, 0.8)
 );
 
 @each $colorName, $colorValue in $coloSecondaryButton {

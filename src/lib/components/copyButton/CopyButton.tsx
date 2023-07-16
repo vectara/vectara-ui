@@ -37,7 +37,7 @@ export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
       type="secondary"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      color="normal"
+      color="neutral"
       size={size}
       onClick={() => {
         navigator.clipboard.writeText(value);

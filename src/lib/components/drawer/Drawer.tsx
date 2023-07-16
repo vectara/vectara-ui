@@ -64,9 +64,9 @@ export const VuiDrawer = ({ className, color = "primary", title, children, isOpe
                     <VuiFlexItem>
                       <VuiIconButton
                         onClick={onCloseDelayed}
-                        color="normal"
+                        color="neutral"
                         icon={
-                          <VuiIcon size="m" color="normal">
+                          <VuiIcon size="m" color="neutral">
                             <BiX />
                           </VuiIcon>
                         }
