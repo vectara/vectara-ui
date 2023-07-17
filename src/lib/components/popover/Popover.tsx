@@ -31,7 +31,7 @@ export const VuiPopover = ({ button: originalButton, children, header, isOpen, s
   const [positionMarker, setPositionMarker] = useState<number>(0);
 
   const button = cloneElement(originalButton, {
-    isPressed: isOpen,
+    isSelected: isOpen,
     onClick: () => {
       setIsOpen(!isOpen);
     },
