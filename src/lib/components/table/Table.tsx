@@ -175,7 +175,7 @@ export const VuiTable = <T extends Row>({
       </table>
 
       {/* Pagination */}
-      {rowsPerPage && page && numPages && onSelectPage && (
+      {rowsPerPage && page && numPages && onSelectPage && numPages > 1 && (
         <>
           <VuiSpacer size="xs" />
           <VuiTablePagination rowsPerPage={rowsPerPage} page={page} numPages={numPages} onSelectPage={onSelectPage} />
