@@ -42,7 +42,7 @@ export const VuiTable = <T extends Row>({
   columns,
   rows = [],
   actions,
-  page,
+  currentPage,
   numPages,
   onSelectPage,
   selectedRows,
@@ -231,10 +231,10 @@ export const VuiTable = <T extends Row>({
       </table>
 
       {/* Pagination */}
-      {page && numPages && onSelectPage && numPages > 1 && (
+      {currentPage && numPages && onSelectPage && numPages > 1 && (
         <>
           <VuiSpacer size="xs" />
-          <VuiTablePagination page={page} numPages={numPages} onSelectPage={onSelectPage} />
+          <VuiTablePagination currentPage={currentPage} numPages={numPages} onSelectPage={onSelectPage} />
         </>
       )}
     </>

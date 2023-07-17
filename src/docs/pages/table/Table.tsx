@@ -20,14 +20,14 @@ export const Table = () => {
   const [rows, setRows] = useState<Person[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Mock request to fetch the rows.
   useEffect(() => {
     setIsLoading(true);
     setSelectedRows([]);
     const timeout = setTimeout(() => {
-      const startIndex = (page - 1) * ROWS_PER_PAGE;
+      const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
       const endIndex = startIndex + ROWS_PER_PAGE;
       setRows(people.slice(startIndex, Math.min(endIndex, people.length - 1)));
       setIsLoading(false);
@@ -36,7 +36,7 @@ export const Table = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [page]);
+  }, [currentPage]);
 
   const columns = [
     {
@@ -108,9 +108,9 @@ export const Table = () => {
         columns={columns}
         rows={rows}
         actions={actions}
-        page={page}
+        currentPage={currentPage}
         numPages={NUM_PAGES}
-        onSelectPage={(page) => setPage(page)}
+        onSelectPage={(page) => setCurrentPage(page)}
         selectedRows={selectedRows}
         onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
         onSort={(column, direction) => console.log("Sort", column, direction)}

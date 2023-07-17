@@ -6,13 +6,13 @@ import { VuiIcon } from "../icon/Icon";
 import { createPagination } from "./createPagination";
 
 export type Props = {
-  page: number;
+  currentPage: number;
   numPages: number;
   onSelectPage: (page: number) => void;
 };
 
-export const VuiTablePagination = ({ page, numPages, onSelectPage }: Props) => {
-  const { items, activeIndex } = createPagination(page, numPages);
+export const VuiTablePagination = ({ currentPage, numPages, onSelectPage }: Props) => {
+  const { items, activeIndex } = createPagination(currentPage, numPages);
 
   return (
     <VuiFlexContainer justifyContent="center" alignItems="center">
@@ -27,8 +27,8 @@ export const VuiTablePagination = ({ page, numPages, onSelectPage }: Props) => {
               }
               color="neutral"
               size="s"
-              onClick={() => onSelectPage(page - 1)}
-              isDisabled={page === 1}
+              onClick={() => onSelectPage(currentPage - 1)}
+              isDisabled={currentPage === 1}
             >
               Previous
             </VuiButtonTertiary>
@@ -65,8 +65,8 @@ export const VuiTablePagination = ({ page, numPages, onSelectPage }: Props) => {
               iconSide="right"
               color="neutral"
               size="s"
-              onClick={() => onSelectPage(page + 1)}
-              isDisabled={page === numPages}
+              onClick={() => onSelectPage(currentPage + 1)}
+              isDisabled={currentPage === numPages}
             >
               Next
             </VuiButtonTertiary>
