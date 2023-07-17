@@ -12,6 +12,7 @@ export type Props = {
   className?: string;
   size?: (typeof BUTTON_SIZE)[number];
   fullWidth?: boolean;
+  isSelected?: boolean;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
   href?: LinkProps["href"];
   target?: LinkProps["target"];

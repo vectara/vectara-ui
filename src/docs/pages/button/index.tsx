@@ -3,14 +3,14 @@ import { Colors } from "./Colors";
 import { Icons } from "./Icons";
 import { IconButton } from "./IconButton";
 import { Link } from "./Link";
-import { Pressed } from "./Pressed";
+import { Selected } from "./Selected";
 
 const ColorsSource = require("!!raw-loader!./Colors");
 const SizesSource = require("!!raw-loader!./Sizes");
 const IconsSource = require("!!raw-loader!./Icons");
 const IconButtonSource = require("!!raw-loader!./IconButton");
 const LinkSource = require("!!raw-loader!./Link");
-const PressedSource = require("!!raw-loader!./Pressed");
+const SelectedSource = require("!!raw-loader!./Selected");
 
 export const button = {
   name: "Button",
@@ -42,9 +42,9 @@ export const button = {
       source: LinkSource.default.toString()
     },
     {
-      name: "Pressed state",
-      component: <Pressed />,
-      source: PressedSource.default.toString()
+      name: "Selected state",
+      component: <Selected />,
+      source: SelectedSource.default.toString()
     }
   ]
 };

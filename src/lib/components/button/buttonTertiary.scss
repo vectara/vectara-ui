@@ -12,27 +12,37 @@
 // Color
 $color: (
   accent: (
-    "color": $colorAccent
+    "color": $colorAccent,
+    "selected-color": transparentize($colorAccent, 0.9)
   ),
   primary: (
-    "color": $colorPrimary
+    "color": $colorPrimary,
+    "selected-color": transparentize($colorPrimary, 0.9)
   ),
   success: (
-    "color": $colorSuccess
+    "color": $colorSuccess,
+    "selected-color": transparentize($colorSuccess, 0.9)
   ),
   danger: (
-    "color": $colorDanger
+    "color": $colorDanger,
+    "selected-color": transparentize($colorDanger, 0.9)
   ),
   warning: (
-    "color": $colorWarning
+    "color": $colorWarning,
+    "selected-color": transparentize($colorWarning, 0.9)
   ),
   neutral: (
-    "color": $colorText
+    "color": $colorText,
+    "selected-color": transparentize($colorText, 0.9)
   )
 );
 
 @each $colorName, $colorValue in $color {
   .vuiButtonTertiary--#{$colorName} {
     color: #{map.get($colorValue, "color")};
+
+    &.vuiButtonTertiary-isSelected {
+      background-color: #{map.get($colorValue, "selected-color")};
+    }
   }
 }

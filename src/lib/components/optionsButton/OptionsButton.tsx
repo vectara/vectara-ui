@@ -45,6 +45,7 @@ export const VuiOptionsButton = ({
               color={color}
               size={size}
               className={`vuiOptionsButtonRight vuiOptionsButtonRight--${color}`}
+              isSelected={isOpen}
               icon={
                 <VuiIcon>
                   <BiCaretDown />

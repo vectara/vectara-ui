@@ -1,14 +1,21 @@
-import { BUTTON_COLOR, VuiButtonPrimary, VuiButtonSecondary, VuiFlexContainer, VuiFlexItem } from "../../../lib";
+import {
+  BUTTON_COLOR,
+  VuiButtonPrimary,
+  VuiButtonSecondary,
+  VuiButtonTertiary,
+  VuiFlexContainer,
+  VuiFlexItem
+} from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
-export const Pressed = () => {
+export const Selected = () => {
   return (
     <>
       <Subsection title="Primary button">
         <VuiFlexContainer>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
-              <VuiButtonPrimary color={color} isPressed>
+              <VuiButtonPrimary color={color} isSelected>
                 Color {color}
               </VuiButtonPrimary>
             </VuiFlexItem>
@@ -20,9 +27,21 @@ export const Pressed = () => {
         <VuiFlexContainer>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
-              <VuiButtonSecondary color={color} isPressed>
+              <VuiButtonSecondary color={color} isSelected>
                 Color {color}
               </VuiButtonSecondary>
+            </VuiFlexItem>
+          ))}
+        </VuiFlexContainer>
+      </Subsection>
+
+      <Subsection title="Tertiary button">
+        <VuiFlexContainer>
+          {BUTTON_COLOR.map((color) => (
+            <VuiFlexItem grow={false} key={color}>
+              <VuiButtonTertiary color={color} isSelected>
+                Color {color}
+              </VuiButtonTertiary>
             </VuiFlexItem>
           ))}
         </VuiFlexContainer>
