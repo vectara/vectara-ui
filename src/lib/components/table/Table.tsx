@@ -9,6 +9,7 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiTableBulkActions } from "./TableBulkActions";
+import { useState } from "react";
 
 type Row = Record<string, any> & {
   id: string;
@@ -50,6 +51,8 @@ export const VuiTable = <T extends Row>({
   bulkActions,
   ...rest
 }: Props<T>) => {
+  const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
+
   const numRowsVisible = rows.length; // TODO: Calculate this based on pagination if we're on the last page.
   const allRowsSelected = selectedRows?.length === numRowsVisible;
   const selectedIds: Record<string, boolean> =
@@ -146,7 +149,7 @@ export const VuiTable = <T extends Row>({
         <tbody>
           {rows.map((row) => {
             return (
-              <tr key={row.id}>
+              <tr key={row.id} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
                 {/* Checkbox column */}
                 {onSelectRow && (
                   <td>
@@ -181,7 +184,17 @@ export const VuiTable = <T extends Row>({
                 {/* Actions column */}
                 {actions && (
                   <td>
-                    <VuiTableRowActions row={row} actions={actions} />
+                    <VuiTableRowActions
+                      row={row}
+                      actions={actions}
+                      onToggle={(isSelected: boolean) => {
+                        if (isSelected) {
+                          setRowBeingActedUpon(row);
+                        } else {
+                          setRowBeingActedUpon(undefined);
+                        }
+                      }}
+                    />
                   </td>
                 )}
               </tr>

@@ -13,9 +13,10 @@ export type Action = {
 export type Props = {
   row: any;
   actions: Action[];
+  onToggle: (row: any) => void;
 };
 
-export const VuiTableRowActions = ({ row, actions }: Props) => {
+export const VuiTableRowActions = ({ row, actions, onToggle }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   let content;
@@ -30,7 +31,10 @@ export const VuiTableRowActions = ({ row, actions }: Props) => {
     content = (
       <VuiPopover
         isOpen={isOpen}
-        setIsOpen={() => setIsOpen(!isOpen)}
+        setIsOpen={() => {
+          setIsOpen(!isOpen);
+          onToggle(!isOpen);
+        }}
         button={
           <VuiButtonSecondary
             color="neutral"
