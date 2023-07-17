@@ -36,7 +36,9 @@ export const VuiTableBulkActions = ({ selectedRows, actions }: Props) => {
                 <BiCaretDown />
               </VuiIcon>
             }
-          />
+          >
+            Bulk actions
+          </VuiButtonSecondary>
         }
       >
         <VuiOptionsList
