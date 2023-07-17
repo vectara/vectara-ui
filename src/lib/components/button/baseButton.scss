@@ -23,7 +23,8 @@
   line-height: 1;
 }
 
-.vuiBaseButton-isInert {
+.vuiBaseButton-isInert,
+.vuiBaseButton-isDisabled {
   cursor: default;
   pointer-events: none;
 }

@@ -14,6 +14,7 @@ export type Props = {
   fullWidth?: boolean;
   isSelected?: boolean;
   isInert?: boolean;
+  isDisabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
@@ -31,6 +32,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       fullWidth,
       onClick,
       isInert,
+      isDisabled,
       href,
       target,
       track,
@@ -40,6 +42,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
   ) => {
     const classes = classNames("vuiBaseButton", className, `vuiBaseButton--${size}`, {
       "vuiBaseButton-isInert": isInert,
+      "vuiBaseButton-isDisabled": isDisabled,
       "vuiBaseButton--fullWidth": fullWidth,
       [`vuiBaseButton--${iconSide}`]: Boolean(icon) && Boolean(children)
     });
