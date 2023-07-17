@@ -1,0 +1,72 @@
+import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiButtonTertiary } from "../button/ButtonTertiary";
+import { VuiIcon } from "../icon/Icon";
+import { createPagination } from "./createPagination";
+
+export type Props = {
+  rowsPerPage: number;
+  page: number;
+  numPages: number;
+  onSelectPage: (page: number) => void;
+};
+
+export const VuiTablePagination = ({ rowsPerPage, page, numPages, onSelectPage }: Props) => {
+  const { items, activeIndex } = createPagination(page, numPages);
+
+  return (
+    <VuiFlexContainer justifyContent="center" alignItems="center">
+      <VuiFlexItem grow={false} shrink={false}>
+        <VuiFlexContainer spacing="none" alignItems="center">
+          <VuiFlexItem grow={false} shrink={false}>
+            <VuiButtonTertiary
+              icon={
+                <VuiIcon>
+                  <BiLeftArrowAlt />
+                </VuiIcon>
+              }
+              color="neutral"
+              size="s"
+              onClick={() => onSelectPage(page - 1)}
+            >
+              Previous
+            </VuiButtonTertiary>
+          </VuiFlexItem>
+
+          {items.map((item, index) => (
+            <VuiFlexItem grow={false} shrink={false} key={index}>
+              {item === "..." ? (
+                <div className="vuiTableManyPagesToken">{item}</div>
+              ) : (
+                <VuiButtonTertiary
+                  color={index === activeIndex ? "primary" : "neutral"}
+                  size="s"
+                  onClick={() => onSelectPage(item)}
+                >
+                  {item}
+                </VuiButtonTertiary>
+              )}
+            </VuiFlexItem>
+          ))}
+
+          <VuiFlexItem grow={false} shrink={false}>
+            <VuiButtonTertiary
+              icon={
+                <VuiIcon>
+                  <BiRightArrowAlt />
+                </VuiIcon>
+              }
+              iconSide="right"
+              color="neutral"
+              size="s"
+              onClick={() => onSelectPage(page + 1)}
+            >
+              Next
+            </VuiButtonTertiary>
+          </VuiFlexItem>
+        </VuiFlexContainer>
+      </VuiFlexItem>
+    </VuiFlexContainer>
+  );
+};

@@ -1,7 +1,9 @@
 import { VuiCheckbox } from "../form";
+import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
 import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeaderCell";
+import { Props as TablePaginationProps, VuiTablePagination } from "./TablePagination";
 
 type Row = Record<string, any> & {
   id: string;
@@ -13,13 +15,10 @@ type Column<T> = {
   render?: (row: T) => React.ReactNode;
 };
 
-type Props<T> = {
+type Props<T> = Partial<TablePaginationProps> & {
   columns: Column<T>[];
   rows?: T[];
   actions?: TableRowActionsProps["actions"];
-  rowsPerPage: number;
-  page?: number;
-  onSelectPage?: (page: number) => void;
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
   onSort?: TableHeaderCellProps["onSort"];
@@ -33,6 +32,7 @@ export const VuiTable = <T extends Row>({
   actions,
   rowsPerPage,
   page,
+  numPages,
   onSelectPage,
   selectedRows,
   onSelectRow,
@@ -52,6 +52,7 @@ export const VuiTable = <T extends Row>({
       <table className="vuiTable" {...rest}>
         <thead>
           <tr>
+            {/* Checkbox column */}
             {onSelectRow && (
               <th>
                 <VuiTableCell>
@@ -76,6 +77,7 @@ export const VuiTable = <T extends Row>({
               </th>
             )}
 
+            {/* Row info */}
             {columns.map((column) => {
               const { name, header } = column;
 
@@ -86,6 +88,7 @@ export const VuiTable = <T extends Row>({
               );
             })}
 
+            {/* Actions column */}
             {actions && <th />}
           </tr>
         </thead>
@@ -94,6 +97,7 @@ export const VuiTable = <T extends Row>({
           {rows.map((row) => {
             return (
               <tr key={row.id}>
+                {/* Checkbox column */}
                 {onSelectRow && (
                   <td>
                     <VuiTableCell>
@@ -113,6 +117,7 @@ export const VuiTable = <T extends Row>({
                   </td>
                 )}
 
+                {/* Row info */}
                 {columns.map((column) => {
                   const { name, render } = column;
 
@@ -123,6 +128,7 @@ export const VuiTable = <T extends Row>({
                   );
                 })}
 
+                {/* Actions column */}
                 {actions && (
                   <td>
                     <VuiTableRowActions row={row} actions={actions} />
@@ -134,7 +140,13 @@ export const VuiTable = <T extends Row>({
         </tbody>
       </table>
 
-      {/* TODO: Pagination */}
+      {/* Pagination */}
+      {rowsPerPage && page && numPages && onSelectPage && (
+        <>
+          <VuiSpacer size="xs" />
+          <VuiTablePagination rowsPerPage={rowsPerPage} page={page} numPages={numPages} onSelectPage={onSelectPage} />
+        </>
+      )}
     </>
   );
 };

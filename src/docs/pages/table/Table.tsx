@@ -90,6 +90,7 @@ export const Table = () => {
         actions={actions}
         rowsPerPage={10}
         page={page}
+        numPages={4}
         onSelectPage={(page) => setPage(page)}
         selectedRows={selectedRows}
         onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
