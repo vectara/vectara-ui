@@ -29,6 +29,7 @@ export const VuiTablePagination = ({ rowsPerPage, page, numPages, onSelectPage }
               color="neutral"
               size="s"
               onClick={() => onSelectPage(page - 1)}
+              isDisabled={page === 1}
             >
               Previous
             </VuiButtonTertiary>
@@ -66,6 +67,7 @@ export const VuiTablePagination = ({ rowsPerPage, page, numPages, onSelectPage }
               color="neutral"
               size="s"
               onClick={() => onSelectPage(page + 1)}
+              isDisabled={page === numPages}
             >
               Next
             </VuiButtonTertiary>

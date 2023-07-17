@@ -13,7 +13,7 @@ export const createPagination = (page: number, numPages: number) => {
   let activeIndex;
   const items: Array<"..." | number> = [1];
 
-  if (page > TRUNCATION_LIMIT && page < numPages - TRUNCATION_LIMIT) {
+  if (page > TRUNCATION_LIMIT && page <= numPages - TRUNCATION_LIMIT) {
     // 1 ... [15] ... 60
     activeIndex = 2;
     items.push("...");
@@ -27,7 +27,7 @@ export const createPagination = (page: number, numPages: number) => {
     items.push("...");
     items.push(numPages - 2);
     items.push(numPages - 1);
-  } else if (page < numPages - TRUNCATION_LIMIT) {
+  } else if (page <= numPages - TRUNCATION_LIMIT) {
     // 1 [2] 3 ... 6
     // 1 2 [3] ... 6
     activeIndex = page - 1;
