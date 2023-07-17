@@ -4,20 +4,8 @@ import { BaseButton, Props as BaseButtonProps } from "./BaseButton";
 import { ButtonColor } from "./types";
 import { createButtonIcon } from "./createButtonIcon";
 
-type Props = {
-  children?: BaseButtonProps["children"];
-  icon?: BaseButtonProps["icon"];
-  iconSide?: BaseButtonProps["iconSide"];
+export type Props = BaseButtonProps & {
   color: ButtonColor;
-  size?: BaseButtonProps["size"];
-  className?: BaseButtonProps["className"];
-  fullWidth?: BaseButtonProps["fullWidth"];
-  isPressed?: boolean;
-  isSelected?: boolean;
-  onClick?: BaseButtonProps["onClick"];
-  href?: BaseButtonProps["href"];
-  target?: BaseButtonProps["target"];
-  track?: BaseButtonProps["track"];
 };
 
 const colorToIconColorMap = {
@@ -30,16 +18,15 @@ const colorToIconColorMap = {
 };
 
 export const VuiButtonSecondary = forwardRef<HTMLButtonElement | null, Props>(
-  ({ children, icon, color, size = "m", className, fullWidth, isPressed, isSelected, ...rest }: Props, ref) => {
+  ({ children, icon, color, size = "m", className, isSelected, ...rest }: Props, ref) => {
     const classes = classNames(className, "vuiButtonSecondary", `vuiButtonSecondary--${color}`, {
-      "vuiButtonSecondary--isPressed": isPressed,
-      "vuiButtonSecondary--isSelected": isSelected
+      "vuiButtonSecondary-isSelected": isSelected
     });
 
     const buttonIcon = createButtonIcon(icon, color, colorToIconColorMap);
 
     return (
-      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} fullWidth={fullWidth} {...rest}>
+      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} {...rest}>
         {children}
       </BaseButton>
     );

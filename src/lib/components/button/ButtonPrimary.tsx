@@ -4,20 +4,8 @@ import { BaseButton, Props as BaseButtonProps } from "./BaseButton";
 import { ButtonColor } from "./types";
 import { createButtonIcon } from "./createButtonIcon";
 
-export type Props = {
-  children?: BaseButtonProps["children"];
-  icon?: BaseButtonProps["icon"];
-  iconSide?: BaseButtonProps["iconSide"];
+export type Props = BaseButtonProps & {
   color: ButtonColor;
-  size?: BaseButtonProps["size"];
-  className?: BaseButtonProps["className"];
-  fullWidth?: BaseButtonProps["fullWidth"];
-  isPressed?: boolean;
-  isSelected?: boolean;
-  onClick?: BaseButtonProps["onClick"];
-  href?: BaseButtonProps["href"];
-  target?: BaseButtonProps["target"];
-  track?: BaseButtonProps["track"];
 };
 
 const colorToIconColorMap = {
@@ -30,17 +18,15 @@ const colorToIconColorMap = {
 };
 
 export const VuiButtonPrimary = forwardRef<HTMLButtonElement | null, Props>(
-  ({ children, icon, color, size = "m", className, fullWidth, isPressed, isSelected, ...rest }: Props, ref) => {
+  ({ children, icon, color, size = "m", className, isSelected, ...rest }: Props, ref) => {
     const classes = classNames(className, "vuiButtonPrimary", `vuiButtonPrimary--${color}`, {
-      "vuiButtonPrimary--fullWidth": fullWidth,
-      "vuiButtonPrimary--isPressed": isPressed, // TODO: Needs styles
-      "vuiButtonPrimary--isSelected": isSelected // TODO: Needs styles
+      "vuiButtonPrimary-isSelected": isSelected
     });
 
     const buttonIcon = createButtonIcon(icon, color, colorToIconColorMap);
 
     return (
-      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} fullWidth={fullWidth} {...rest}>
+      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} {...rest}>
         {children}
       </BaseButton>
     );

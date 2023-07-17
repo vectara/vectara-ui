@@ -23,6 +23,11 @@
   line-height: 1;
 }
 
+.vuiBaseButton-isInert {
+  cursor: default;
+  pointer-events: none;
+}
+
 .vuiBaseButton--left {
   .vuiBaseButtonIconContainer {
     margin-right: $sizeXs;
