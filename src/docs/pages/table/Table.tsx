@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiBadge, VuiButtonSecondary, VuiLink } from "../../../lib";
+import { VuiBadge, VuiLink } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
 
@@ -84,8 +84,6 @@ export const Table = () => {
       {/* TODO: Async searching */}
       {/* TODO: Async sorting */}
       {/* TODO: Async pagination */}
-      {/* TODO: Show count of selected items */}
-      {/* TODO: Disabled and selected button states for pagination */}
       <VuiTable
         columns={columns}
         rows={rows}
@@ -99,11 +97,20 @@ export const Table = () => {
         onSort={(column, direction) => console.log("Sort", column, direction)}
         searchValue={searchValue}
         onSearchChange={(search) => setSearchValue(search)}
-        bulkActions={
-          <VuiButtonSecondary size="m" color="danger">
-            Delete {selectedRows.length} selected people
-          </VuiButtonSecondary>
-        }
+        bulkActions={[
+          {
+            label: "Edit",
+            onClick: (people: Person[]) => {
+              console.log("Edit", people);
+            }
+          },
+          {
+            label: "Delete",
+            onClick: (people: Person[]) => {
+              console.log("Delete", people);
+            }
+          }
+        ]}
       />
     </>
   );

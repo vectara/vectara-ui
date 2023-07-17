@@ -6,6 +6,9 @@ import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeader
 import { Props as TablePaginationProps, VuiTablePagination } from "./TablePagination";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiText } from "../typography/Text";
+import { VuiTextColor } from "../typography/TextColor";
+import { VuiTableBulkActions } from "./TableBulkActions";
 
 type Row = Record<string, any> & {
   id: string;
@@ -21,12 +24,12 @@ type Props<T> = Partial<TablePaginationProps> & {
   columns: Column<T>[];
   rows?: T[];
   actions?: TableRowActionsProps["actions"];
+  bulkActions?: TableRowActionsProps["actions"];
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
   onSort?: TableHeaderCellProps["onSort"];
   searchValue?: string;
   onSearchChange?: (value: string) => void;
-  bulkActions?: React.ReactNode;
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -62,7 +65,7 @@ export const VuiTable = <T extends Row>({
     <>
       {(hasSearch || hasBulkActions) && (
         <>
-          <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
+          <VuiFlexContainer spacing="xl" justifyContent="spaceBetween" alignItems="center">
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
@@ -70,11 +73,24 @@ export const VuiTable = <T extends Row>({
               </VuiFlexItem>
             )}
 
-            {/* Bulk actions */}
-            {hasBulkActions && (
+            {/* Selection and bulk actions */}
+            {selectedRows && selectedRows.length > 0 && (
               <VuiFlexItem grow={false} shrink={false}>
-                {/* TODO: Pass in an array and place inside a new flex container */}
-                {bulkActions}
+                <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
+                  <VuiFlexItem grow={false} shrink={false}>
+                    <VuiText size="s">
+                      <p>
+                        <VuiTextColor color="subdued">{selectedRows.length} selected</VuiTextColor>
+                      </p>
+                    </VuiText>
+                  </VuiFlexItem>
+
+                  {hasBulkActions && (
+                    <VuiFlexItem grow={false} shrink={false}>
+                      <VuiTableBulkActions selectedRows={selectedRows} actions={bulkActions} />
+                    </VuiFlexItem>
+                  )}
+                </VuiFlexContainer>
               </VuiFlexItem>
             )}
           </VuiFlexContainer>

@@ -4,25 +4,21 @@ import { VuiOptionsList } from "../optionsList/OptionsList";
 import { VuiPopover } from "../popover/Popover";
 import { VuiIcon } from "../icon/Icon";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
-
-export type Action = {
-  label: string;
-  onClick: (row: any) => void;
-};
+import { Action } from "./TableRowActions";
 
 export type Props = {
-  row: any;
+  selectedRows: any;
   actions: Action[];
 };
 
-export const VuiTableRowActions = ({ row, actions }: Props) => {
+export const VuiTableBulkActions = ({ selectedRows, actions }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   let content;
 
   if (actions.length === 1) {
     content = (
-      <VuiButtonSecondary color="neutral" size="xs" onClick={() => actions[0].onClick(row)}>
+      <VuiButtonSecondary color="neutral" size="m" onClick={() => actions[0].onClick(selectedRows)}>
         {actions[0].label}
       </VuiButtonSecondary>
     );
@@ -34,7 +30,7 @@ export const VuiTableRowActions = ({ row, actions }: Props) => {
         button={
           <VuiButtonSecondary
             color="neutral"
-            size="xs"
+            size="m"
             icon={
               <VuiIcon>
                 <BiCaretDown />
@@ -47,11 +43,11 @@ export const VuiTableRowActions = ({ row, actions }: Props) => {
           onSelectOption={() => {
             setIsOpen(false);
           }}
-          options={actions.map((action) => ({ ...action, value: row }))}
+          options={actions.map((action) => ({ ...action, value: selectedRows }))}
         />
       </VuiPopover>
     );
   }
 
-  return <div className="vuiTableActions">{content}</div>;
+  return content;
 };
