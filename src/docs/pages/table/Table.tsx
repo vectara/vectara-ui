@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VuiBadge, VuiLink } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
@@ -10,13 +10,33 @@ type Person = {
   status: string;
 };
 
-const rows: Person[] = createFakePeople(100);
+const TOTAL_ROWS = 152;
+const ROWS_PER_PAGE = 20;
+const NUM_PAGES = Math.ceil(TOTAL_ROWS / ROWS_PER_PAGE);
+const people: Person[] = createFakePeople(TOTAL_ROWS);
 
 export const Table = () => {
-  const [selectedRows, setSelectedRows] = useState<Person[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [rows, setRows] = useState<Person[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [selectedRows, setSelectedRows] = useState<Person[]>([]);
   const [page, setPage] = useState(1);
-  const numPages = 20;
+
+  // Mock request to fetch the rows.
+  useEffect(() => {
+    setIsLoading(true);
+    setSelectedRows([]);
+    const timeout = setTimeout(() => {
+      const startIndex = (page - 1) * ROWS_PER_PAGE;
+      const endIndex = startIndex + ROWS_PER_PAGE;
+      setRows(people.slice(startIndex, Math.min(endIndex, people.length - 1)));
+      setIsLoading(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [page]);
 
   const columns = [
     {
@@ -80,17 +100,16 @@ export const Table = () => {
 
   return (
     <>
-      {/* TODO: Async loading and refresh button */}
+      {/* TODO: Encapsulate all of this state in a table hook */}
       {/* TODO: Async searching */}
       {/* TODO: Async sorting */}
-      {/* TODO: Async pagination */}
       <VuiTable
+        isLoading={isLoading}
         columns={columns}
         rows={rows}
         actions={actions}
-        rowsPerPage={10}
         page={page}
-        numPages={numPages}
+        numPages={NUM_PAGES}
         onSelectPage={(page) => setPage(page)}
         selectedRows={selectedRows}
         onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
@@ -102,6 +121,12 @@ export const Table = () => {
             label: "Edit",
             onClick: (people: Person[]) => {
               console.log("Edit", people);
+            }
+          },
+          {
+            label: "Combine",
+            onClick: (people: Person[]) => {
+              console.log("Combine", people);
             }
           },
           {

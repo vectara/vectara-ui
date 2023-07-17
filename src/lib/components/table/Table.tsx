@@ -10,6 +10,7 @@ import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiTableBulkActions } from "./TableBulkActions";
 import { useState } from "react";
+import { VuiSpinner } from "../spinner/Spinner";
 
 type Row = Record<string, any> & {
   id: string;
@@ -22,6 +23,7 @@ type Column<T> = {
 };
 
 type Props<T> = Partial<TablePaginationProps> & {
+  isLoading?: boolean;
   columns: Column<T>[];
   rows?: T[];
   actions?: TableRowActionsProps["actions"];
@@ -36,10 +38,10 @@ type Props<T> = Partial<TablePaginationProps> & {
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiTable = <T extends Row>({
+  isLoading,
   columns,
   rows = [],
   actions,
-  rowsPerPage,
   page,
   numPages,
   onSelectPage,
@@ -63,6 +65,86 @@ export const VuiTable = <T extends Row>({
 
   const hasSearch = searchValue !== undefined && onSearchChange;
   const hasBulkActions = bulkActions !== undefined;
+
+  let tableContent;
+
+  if (isLoading) {
+    tableContent = (
+      <tr>
+        <td colSpan={columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0)}>
+          <VuiSpacer size="xs" />
+
+          <VuiFlexContainer justifyContent="center" alignItems="center" spacing="xs">
+            <VuiFlexItem grow={false}>
+              <VuiSpinner size="xs" />
+            </VuiFlexItem>
+
+            <VuiFlexItem grow={false}>
+              <VuiText>
+                <p>Loading</p>
+              </VuiText>
+            </VuiFlexItem>
+          </VuiFlexContainer>
+
+          <VuiSpacer size="xs" />
+        </td>
+      </tr>
+    );
+  } else {
+    tableContent = rows.map((row) => {
+      return (
+        <tr key={row.id} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
+          {/* Checkbox column */}
+          {onSelectRow && (
+            <td>
+              <VuiTableCell>
+                <VuiCheckbox
+                  checked={selectedIds[row.id] ?? false}
+                  onChange={() => {
+                    if (selectedIds[row.id]) {
+                      delete selectedIds[row.id];
+                    } else {
+                      selectedIds[row.id] = true;
+                    }
+
+                    onSelectRow(Object.keys(selectedIds).map((id) => rows.find((row) => row.id === id) as T));
+                  }}
+                />
+              </VuiTableCell>
+            </td>
+          )}
+
+          {/* Row info */}
+          {columns.map((column) => {
+            const { name, render } = column;
+
+            return (
+              <td key={name}>
+                <VuiTableCell>{render ? render(row) : row[column.name]}</VuiTableCell>
+              </td>
+            );
+          })}
+
+          {/* Actions column */}
+          {actions && (
+            <td>
+              <VuiTableRowActions
+                row={row}
+                actions={actions}
+                onToggle={(isSelected: boolean) => {
+                  if (isSelected) {
+                    setRowBeingActedUpon(row);
+                  } else {
+                    setRowBeingActedUpon(undefined);
+                  }
+                }}
+              />
+            </td>
+          )}
+        </tr>
+      );
+    });
+  }
 
   return (
     <>
@@ -146,68 +228,14 @@ export const VuiTable = <T extends Row>({
           </tr>
         </thead>
 
-        <tbody>
-          {rows.map((row) => {
-            return (
-              <tr key={row.id} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
-                {/* Checkbox column */}
-                {onSelectRow && (
-                  <td>
-                    <VuiTableCell>
-                      <VuiCheckbox
-                        checked={selectedIds[row.id] ?? false}
-                        onChange={() => {
-                          if (selectedIds[row.id]) {
-                            delete selectedIds[row.id];
-                          } else {
-                            selectedIds[row.id] = true;
-                          }
-
-                          onSelectRow(Object.keys(selectedIds).map((id) => rows.find((row) => row.id === id) as T));
-                        }}
-                      />
-                    </VuiTableCell>
-                  </td>
-                )}
-
-                {/* Row info */}
-                {columns.map((column) => {
-                  const { name, render } = column;
-
-                  return (
-                    <td key={name}>
-                      <VuiTableCell>{render ? render(row) : row[column.name]}</VuiTableCell>
-                    </td>
-                  );
-                })}
-
-                {/* Actions column */}
-                {actions && (
-                  <td>
-                    <VuiTableRowActions
-                      row={row}
-                      actions={actions}
-                      onToggle={(isSelected: boolean) => {
-                        if (isSelected) {
-                          setRowBeingActedUpon(row);
-                        } else {
-                          setRowBeingActedUpon(undefined);
-                        }
-                      }}
-                    />
-                  </td>
-                )}
-              </tr>
-            );
-          })}
-        </tbody>
+        <tbody>{tableContent}</tbody>
       </table>
 
       {/* Pagination */}
-      {rowsPerPage && page && numPages && onSelectPage && numPages > 1 && (
+      {page && numPages && onSelectPage && numPages > 1 && (
         <>
           <VuiSpacer size="xs" />
-          <VuiTablePagination rowsPerPage={rowsPerPage} page={page} numPages={numPages} onSelectPage={onSelectPage} />
+          <VuiTablePagination page={page} numPages={numPages} onSelectPage={onSelectPage} />
         </>
       )}
     </>

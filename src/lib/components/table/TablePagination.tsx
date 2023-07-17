@@ -6,13 +6,12 @@ import { VuiIcon } from "../icon/Icon";
 import { createPagination } from "./createPagination";
 
 export type Props = {
-  rowsPerPage: number;
   page: number;
   numPages: number;
   onSelectPage: (page: number) => void;
 };
 
-export const VuiTablePagination = ({ rowsPerPage, page, numPages, onSelectPage }: Props) => {
+export const VuiTablePagination = ({ page, numPages, onSelectPage }: Props) => {
   const { items, activeIndex } = createPagination(page, numPages);
 
   return (
