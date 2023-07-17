@@ -55,8 +55,7 @@ export const VuiTable = <T extends Row>({
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
 
-  const numRowsVisible = rows.length; // TODO: Calculate this based on pagination if we're on the last page.
-  const allRowsSelected = selectedRows?.length === numRowsVisible;
+  const allRowsSelected = selectedRows?.length === rows.length;
   const selectedIds: Record<string, boolean> =
     selectedRows?.reduce((acc, row) => {
       acc[row.id] = true;
