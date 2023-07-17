@@ -1,6 +1,8 @@
 @use "sass:map";
 
 .vuiButtonSecondary {
+  background-color: $colorEmptyShade;
+
   &:hover {
     box-shadow: $shadowSmallEnd;
   }

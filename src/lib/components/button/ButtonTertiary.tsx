@@ -24,7 +24,7 @@ export const VuiButtonTertiary = forwardRef<HTMLButtonElement | null, Props>(
       "vuiButtonTertiary-isDisabled": isDisabled
     });
 
-    const buttonIcon = createButtonIcon(icon, color, colorToIconColorMap, isDisabled);
+    const buttonIcon = createButtonIcon(icon, size, color, colorToIconColorMap, isDisabled);
 
     return (
       <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} isDisabled={isDisabled} {...rest}>

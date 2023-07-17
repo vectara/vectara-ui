@@ -19,7 +19,7 @@ export const Colors = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   const icon = (
-    <VuiIcon size="m">
+    <VuiIcon>
       <BiStar />
     </VuiIcon>
   );

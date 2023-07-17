@@ -4,7 +4,7 @@ import { Subsection } from "../../components/Subsection";
 
 export const Icons = () => {
   const icon = (
-    <VuiIcon size="m">
+    <VuiIcon>
       <BiStar />
     </VuiIcon>
   );

@@ -3,7 +3,7 @@ import { BUTTON_COLOR, VuiIconButton, VuiFlexContainer, VuiFlexItem, VuiIcon } f
 
 export const IconButton = () => {
   const icon = (
-    <VuiIcon size="m">
+    <VuiIcon>
       <BiStar />
     </VuiIcon>
   );

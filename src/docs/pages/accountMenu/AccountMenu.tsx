@@ -33,7 +33,7 @@ export const AccountMenu = () => {
       ]}
     >
       <VuiOptionsList
-        onSelectOption={(value) => {
+        onSelectOption={(value: string) => {
           alert(`Selected ${value}`);
         }}
         options={options}

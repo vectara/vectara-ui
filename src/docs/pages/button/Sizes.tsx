@@ -12,7 +12,7 @@ import { Subsection } from "../../components/Subsection";
 
 export const Sizes = () => {
   const icon = (
-    <VuiIcon size="m">
+    <VuiIcon>
       <BiStar />
     </VuiIcon>
   );
