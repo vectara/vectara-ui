@@ -44,5 +44,9 @@ $color: (
     &.vuiButtonTertiary-isSelected {
       background-color: #{map.get($colorValue, "selected-color")};
     }
+
+    &.vuiButtonTertiary-isDisabled {
+      color: $colorSubdued;
+    }
   }
 }

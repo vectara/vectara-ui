@@ -6,11 +6,18 @@ import {
   VuiButtonTertiary,
   VuiFlexContainer,
   VuiFlexItem,
-  VuiIcon
+  VuiIcon,
+  VuiSpacer,
+  VuiToggle
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
+import { useState } from "react";
 
 export const Colors = () => {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [isInert, setIsInert] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
   const icon = (
     <VuiIcon size="m">
       <BiStar />
@@ -19,11 +26,34 @@ export const Colors = () => {
 
   return (
     <>
+      <VuiToggle label="Selected" checked={isSelected} onChange={() => setIsSelected(!isSelected)} />
+
+      <VuiSpacer size="m" />
+
+      <VuiToggle label="Inert (not clickable, non-visual)" checked={isInert} onChange={() => setIsInert(!isInert)} />
+
+      <VuiSpacer size="m" />
+
+      <VuiToggle
+        label="Disabled (not clickable, visual)"
+        checked={isDisabled}
+        onChange={() => setIsDisabled(!isDisabled)}
+      />
+
+      <VuiSpacer size="m" />
+
       <Subsection title="Primary button">
         <VuiFlexContainer>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
-              <VuiButtonPrimary icon={icon} color={color}>
+              <VuiButtonPrimary
+                isSelected={isSelected}
+                isDisabled={isDisabled}
+                isInert={isInert}
+                icon={icon}
+                color={color}
+                onClick={() => console.log("clicked")}
+              >
                 {color}
               </VuiButtonPrimary>
             </VuiFlexItem>
@@ -35,7 +65,14 @@ export const Colors = () => {
         <VuiFlexContainer>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
-              <VuiButtonSecondary icon={icon} color={color}>
+              <VuiButtonSecondary
+                isSelected={isSelected}
+                isDisabled={isDisabled}
+                isInert={isInert}
+                icon={icon}
+                color={color}
+                onClick={() => console.log("clicked")}
+              >
                 {color}
               </VuiButtonSecondary>
             </VuiFlexItem>
@@ -47,7 +84,14 @@ export const Colors = () => {
         <VuiFlexContainer>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>
-              <VuiButtonTertiary icon={icon} color={color}>
+              <VuiButtonTertiary
+                isSelected={isSelected}
+                isDisabled={isDisabled}
+                isInert={isInert}
+                icon={icon}
+                color={color}
+                onClick={() => console.log("clicked")}
+              >
                 {color}
               </VuiButtonTertiary>
             </VuiFlexItem>

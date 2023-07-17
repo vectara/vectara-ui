@@ -18,15 +18,16 @@ const colorToIconColorMap = {
 };
 
 export const VuiButtonTertiary = forwardRef<HTMLButtonElement | null, Props>(
-  ({ children, icon, color, size = "m", className, isSelected, ...rest }: Props, ref) => {
+  ({ children, icon, color, size = "m", className, isSelected, isDisabled, ...rest }: Props, ref) => {
     const classes = classNames(className, "vuiButtonTertiary", `vuiButtonTertiary--${color}`, {
-      "vuiButtonTertiary-isSelected": isSelected
+      "vuiButtonTertiary-isSelected": isSelected,
+      "vuiButtonTertiary-isDisabled": isDisabled
     });
 
-    const buttonIcon = createButtonIcon(icon, color, colorToIconColorMap);
+    const buttonIcon = createButtonIcon(icon, color, colorToIconColorMap, isDisabled);
 
     return (
-      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} {...rest}>
+      <BaseButton ref={ref} className={classes} icon={buttonIcon} size={size} isDisabled={isDisabled} {...rest}>
         {children}
       </BaseButton>
     );
