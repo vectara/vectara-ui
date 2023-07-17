@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { VuiBadge, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiLink } from "../../../lib";
+import { VuiBadge, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiLink, VuiText, VuiTextColor } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
 
@@ -47,7 +47,23 @@ export const Table = () => {
           return "Name";
         }
       },
-      render: (person: Person) => <VuiLink onClick={() => console.log("Clicked", person.name)}>{person.name}</VuiLink>
+      render: (person: Person) => (
+        <div>
+          <div>
+            <VuiLink onClick={() => console.log("Clicked", person.name)}>{person.name}</VuiLink>
+          </div>
+
+          <div>
+            <VuiText size="xs">
+              <p>
+                <VuiTextColor color="subdued">
+                  Nickname: {person.name[0]}-{person.name.split(" ")[1].slice(0, 4)}
+                </VuiTextColor>
+              </p>
+            </VuiText>
+          </div>
+        </div>
+      )
     },
     {
       name: "id",
