@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { VuiBadge, VuiLink } from "../../../lib";
+import { VuiBadge, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiLink } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
 
@@ -66,7 +66,23 @@ export const Table = () => {
         }
       },
       render: (person: Person) => {
-        return person.role.join(", ");
+        if (person.role.length > 0) {
+          return (
+            <VuiFlexContainer alignItems="center" spacing="s">
+              <VuiFlexItem grow={false} shrink={false}>
+                {person.role.join(", ")}
+              </VuiFlexItem>
+
+              <VuiFlexItem grow={false} shrink={false}>
+                <VuiCopyButton
+                  size="xs"
+                  value={person.role.join(", ")}
+                  options={[{ value: person.role.length, label: "Copy number of roles" }]}
+                />
+              </VuiFlexItem>
+            </VuiFlexContainer>
+          );
+        }
       }
     },
     {
