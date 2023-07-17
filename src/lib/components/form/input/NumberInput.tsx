@@ -10,11 +10,30 @@ type Props = {
   step?: number;
   value?: number;
   size?: (typeof SIZE)[number];
+  fullWidth?: boolean;
   onChange: (value?: number) => void;
 };
 
-export const VuiNumberInput = ({ className, id, max, min, step, value, size = "m", onChange, ...rest }: Props) => {
-  const classes = classNames("vuiInput", `vuiInput--${size}`, className);
+export const VuiNumberInput = ({
+  className,
+  id,
+  max,
+  min,
+  step,
+  value,
+  size = "m",
+  onChange,
+  fullWidth,
+  ...rest
+}: Props) => {
+  const classes = classNames(
+    "vuiInput",
+    `vuiInput--${size}`,
+    {
+      "vuiInput--fullWidth": fullWidth
+    },
+    className
+  );
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Enable resetting the value to undefined.

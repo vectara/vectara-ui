@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiBadge, VuiButtonSecondary, VuiLink, VuiSpacer } from "../../../lib";
+import { VuiBadge, VuiButtonSecondary, VuiLink } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
 
@@ -14,7 +14,9 @@ const rows: Person[] = createFakePeople(100);
 
 export const Table = () => {
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
   const [page, setPage] = useState(1);
+  const numPages = 20;
 
   const columns = [
     {
@@ -79,22 +81,29 @@ export const Table = () => {
   return (
     <>
       {/* TODO: Async loading and refresh button */}
-      {/* TODO: Searching */}
-      <VuiButtonSecondary color="danger">Delete {selectedRows.length} selected people</VuiButtonSecondary>
-
-      <VuiSpacer size="s" />
-
+      {/* TODO: Async searching */}
+      {/* TODO: Async sorting */}
+      {/* TODO: Async pagination */}
+      {/* TODO: Show count of selected items */}
+      {/* TODO: Disabled and selected button states for pagination */}
       <VuiTable
         columns={columns}
         rows={rows}
         actions={actions}
         rowsPerPage={10}
         page={page}
-        numPages={4}
+        numPages={numPages}
         onSelectPage={(page) => setPage(page)}
         selectedRows={selectedRows}
         onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
         onSort={(column, direction) => console.log("Sort", column, direction)}
+        searchValue={searchValue}
+        onSearchChange={(search) => setSearchValue(search)}
+        bulkActions={
+          <VuiButtonSecondary size="m" color="danger">
+            Delete {selectedRows.length} selected people
+          </VuiButtonSecondary>
+        }
       />
     </>
   );

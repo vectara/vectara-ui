@@ -1,9 +1,11 @@
-import { VuiCheckbox } from "../form";
+import { VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
 import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeaderCell";
 import { Props as TablePaginationProps, VuiTablePagination } from "./TablePagination";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
 
 type Row = Record<string, any> & {
   id: string;
@@ -22,6 +24,9 @@ type Props<T> = Partial<TablePaginationProps> & {
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
   onSort?: TableHeaderCellProps["onSort"];
+  searchValue?: string;
+  onSearchChange?: (value: string) => void;
+  bulkActions?: React.ReactNode;
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -37,6 +42,9 @@ export const VuiTable = <T extends Row>({
   selectedRows,
   onSelectRow,
   onSort,
+  searchValue,
+  onSearchChange,
+  bulkActions,
   ...rest
 }: Props<T>) => {
   const numRowsVisible = rows.length; // TODO: Calculate this based on pagination if we're on the last page.
@@ -47,8 +55,34 @@ export const VuiTable = <T extends Row>({
       return acc;
     }, {} as Record<string, boolean>) || {};
 
+  const hasSearch = searchValue !== undefined && onSearchChange;
+  const hasBulkActions = bulkActions !== undefined;
+
   return (
     <>
+      {(hasSearch || hasBulkActions) && (
+        <>
+          <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
+            {/* Search */}
+            {hasSearch && (
+              <VuiFlexItem grow={1} shrink={false}>
+                <VuiTextInput fullWidth value={searchValue} onChange={(event) => onSearchChange(event.target.value)} />
+              </VuiFlexItem>
+            )}
+
+            {/* Bulk actions */}
+            {hasBulkActions && (
+              <VuiFlexItem grow={false} shrink={false}>
+                {/* TODO: Pass in an array and place inside a new flex container */}
+                {bulkActions}
+              </VuiFlexItem>
+            )}
+          </VuiFlexContainer>
+
+          <VuiSpacer size="s" />
+        </>
+      )}
+
       <table className="vuiTable" {...rest}>
         <thead>
           <tr>
