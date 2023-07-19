@@ -40,18 +40,33 @@ $appSideNavWidth: 200px;
   margin-top: -$sizeXxs;
 }
 
-.appSideNavSection + .appSideNavSection {
-  margin-top: $sizeL;
+.appSideNavSection {
+  @include truncateText;
+
+  & + & {
+    margin-top: $sizeL;
+  }
 }
 
-.appSideNavSection__title {
+.appSideNavSectionTitle {
   color: $colorText;
   font-weight: $fontWeightBold;
   font-size: $fontSizeXs;
 }
 
-.appSideNavSection__items {
+.appSideNavSectionTitle--nested {
+  margin-top: $sizeXxs;
+  font-weight: $fontWeightNormal;
+}
+
+.appSideNavSectionItems {
   margin-top: $sizeS;
+}
+
+.appSideNavSectionItems--nested {
+  margin-top: $sizeXs;
+  margin-bottom: $sizeXxs;
+  margin-left: $sizeM;
 }
 
 .appSideNavLink {

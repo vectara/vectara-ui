@@ -1,12 +1,12 @@
-import classNames from "classnames";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import classNames from "classnames";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { BiChevronRight } from "react-icons/bi";
 
 export type TreeItem = {
-  name: string;
+  name?: string;
   path?: string;
   pages?: Array<TreeItem>;
 };
@@ -16,15 +16,28 @@ export type Props = {
   content?: React.ReactNode;
 };
 
-const buildItems = (items: Array<TreeItem>, currentPath: string) => {
+const buildItems = (items: Array<TreeItem>, currentPath: string, depth = 0) => {
   return items.map(({ name, pages, path }) => {
     if (pages) {
+      const classes = classNames("appSideNavSectionItems", {
+        "appSideNavSectionItems--nested": depth > 0
+      });
+
+      const childPages = <div className={classes}>{buildItems(pages, currentPath, depth + 1)}</div>;
+
+      const titleClasses = classNames("appSideNavSectionTitle", {
+        "appSideNavSectionTitle--nested": depth > 0
+      });
+
       return (
-        <div className="appSideNavSection" key={name}>
-          <div className="appSideNavSection__title">{name}</div>
-          <div className="appSideNavSection__items">{buildItems(pages, currentPath)}</div>
+        <div className="appSideNavSection" key={name ?? path}>
+          {name && <div className={titleClasses}>{name}</div>}
+          {childPages}
         </div>
       );
+      // }
+
+      // return childPages;
     }
 
     if (path) {

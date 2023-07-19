@@ -4,15 +4,7 @@
 }
 
 .vuiText--truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  & * {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  @include truncateText;
 }
 
 @mixin defineTextStyles($factor) {
