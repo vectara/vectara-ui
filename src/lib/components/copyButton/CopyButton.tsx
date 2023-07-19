@@ -3,11 +3,13 @@ import { VuiOptionsButton } from "../optionsButton/OptionsButton";
 import { Props as OptionsButtonProps } from "../optionsButton/OptionsButton";
 import { VuiIcon } from "../icon/Icon";
 import { BiCheck, BiClipboard } from "react-icons/bi";
+import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
 type Props = {
   value: string;
-  options: OptionsButtonProps["options"];
+  options?: OptionsButtonProps["options"];
   size: OptionsButtonProps["size"];
+  label?: string;
 };
 
 const sizeToIconSizeMap = {
@@ -18,7 +20,7 @@ const sizeToIconSizeMap = {
   xl: "m"
 } as const;
 
-export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
+export const VuiCopyButton = ({ value, options, label, size = "s" }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -32,7 +34,29 @@ export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
     }
   }, [isCopied]);
 
-  return (
+  return options === undefined || options.length === 0 ? (
+    <VuiButtonSecondary
+      size={size}
+      icon={
+        isCopied ? (
+          <VuiIcon size={sizeToIconSizeMap[size]} color="success">
+            <BiCheck />
+          </VuiIcon>
+        ) : (
+          <VuiIcon size={sizeToIconSizeMap[size]}>
+            <BiClipboard />
+          </VuiIcon>
+        )
+      }
+      color="neutral"
+      onClick={() => {
+        navigator.clipboard.writeText(value);
+        setIsCopied(true);
+      }}
+    >
+      {label}
+    </VuiButtonSecondary>
+  ) : (
     <VuiOptionsButton
       type="secondary"
       isOpen={isOpen}
@@ -48,7 +72,7 @@ export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
         setIsCopied(true);
         setIsOpen(false);
       }}
-      options={options}
+      options={options || []}
     >
       {isCopied ? (
         <VuiIcon size={sizeToIconSizeMap[size]} color="success">
