@@ -18,7 +18,11 @@ export const createButtonIcon = (
   return icon
     ? cloneElement(icon, {
         size: size ? sizeToIconSizeMap[size] : "s",
-        color: isDisabled ? colorToIconColorMap["neutral"] : colorToIconColorMap[color]
+        color: isDisabled
+          ? colorToIconColorMap["neutral"]
+          : icon.props.color === "inherit"
+          ? colorToIconColorMap[color]
+          : icon.props.color
       })
     : null;
 };
