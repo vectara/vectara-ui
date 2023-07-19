@@ -17,6 +17,10 @@ export const CopyButton = () => {
       <VuiSpacer size="m" />
 
       <VuiCopyButton size="m" value="Primary value to copy" options={options} />
+
+      <VuiSpacer size="m" />
+
+      <VuiCopyButton size="xs" value="Copy without options" label="Copy JSON" />
     </>
   );
 };

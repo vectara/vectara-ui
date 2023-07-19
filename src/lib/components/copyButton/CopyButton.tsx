@@ -3,11 +3,13 @@ import { VuiOptionsButton } from "../optionsButton/OptionsButton";
 import { Props as OptionsButtonProps } from "../optionsButton/OptionsButton";
 import { VuiIcon } from "../icon/Icon";
 import { BiCheck, BiClipboard } from "react-icons/bi";
+import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
 type Props = {
   value: string;
-  options: OptionsButtonProps["options"];
+  options?: OptionsButtonProps["options"];
   size: OptionsButtonProps["size"];
+  label?: string;
 };
 
 const sizeToIconSizeMap = {
@@ -18,7 +20,7 @@ const sizeToIconSizeMap = {
   xl: "m"
 } as const;
 
-export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
+export const VuiCopyButton = ({ value, options, label, size = "s" }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -32,7 +34,22 @@ export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
     }
   }, [isCopied]);
 
-  return (
+  const icon = isCopied ? (
+    <VuiIcon size={sizeToIconSizeMap[size]} color="success">
+      <BiCheck />
+    </VuiIcon>
+  ) : (
+    <VuiIcon size={sizeToIconSizeMap[size]}>
+      <BiClipboard />
+    </VuiIcon>
+  );
+
+  const copy = (copyValue = value) => {
+    navigator.clipboard.writeText(copyValue);
+    setIsCopied(true);
+  };
+
+  return options ? (
     <VuiOptionsButton
       type="secondary"
       isOpen={isOpen}
@@ -40,25 +57,26 @@ export const VuiCopyButton = ({ value, options, size = "s" }: Props) => {
       color="neutral"
       size={size}
       onClick={() => {
-        navigator.clipboard.writeText(value);
-        setIsCopied(true);
+        copy();
       }}
       onSelectOption={(value) => {
-        navigator.clipboard.writeText(value);
-        setIsCopied(true);
+        copy(value);
         setIsOpen(false);
       }}
       options={options}
     >
-      {isCopied ? (
-        <VuiIcon size={sizeToIconSizeMap[size]} color="success">
-          <BiCheck />
-        </VuiIcon>
-      ) : (
-        <VuiIcon size={sizeToIconSizeMap[size]}>
-          <BiClipboard />
-        </VuiIcon>
-      )}
+      {icon}
     </VuiOptionsButton>
+  ) : (
+    <VuiButtonSecondary
+      size={size}
+      icon={icon}
+      color="neutral"
+      onClick={() => {
+        copy(value);
+      }}
+    >
+      {label}
+    </VuiButtonSecondary>
   );
 };
