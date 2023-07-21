@@ -1,0 +1,34 @@
+.appSideNavTree {
+  margin-top: -$sizeXxs;
+}
+
+.appSideNavTreeSection {
+  position: relative;
+}
+
+.appSideNavTreeToggleButton {
+  position: absolute;
+  top: -4px;
+  right: -30px;
+}
+
+.appSideNavTreeToggleButton__icon {
+  position: relative;
+  top: 2px;
+}
+
+.appSideNavTreeChildren {
+  overflow: hidden;
+  max-height: 0;
+  transition: all $transitionSpeed;
+  margin-left: $sizeM;
+}
+
+.appSideNavTreeChildren-isOpen {
+  max-height: 1000px;
+}
+
+.appSideNavTreeSection__info {
+  @include appSideNavItem;
+  color: $colorSubdued;
+}

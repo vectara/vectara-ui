@@ -1,16 +1,30 @@
 $appSideNavWidth: 200px;
+$appSideNavLinkSpacing: $sizeXxs + 1px;
 
 .appSideNav {
   width: $appSideNavWidth;
   overflow-x: hidden;
   transition: all $transitionSpeed;
+  line-height: 1;
 }
 
 .appSideNav__inner {
+  // Prevent content from being squished as nav collapses.
   width: $appSideNavWidth;
-  padding: ($sizeL + $sizeXxs) $sizeM * 2 $sizeXl;
+  padding: 28px 32px 32px 33px;
   margin-bottom: $sizeXxl * 4;
   transition: all $transitionSpeed;
+}
+
+.appSideNavContent {
+  margin-top: $sizeXl;
+  opacity: 1;
+  transition: all $transitionSpeed;
+}
+
+.appSideNavContent-isHidden {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .appSideNav-isCollapsed {
@@ -22,6 +36,7 @@ $appSideNavWidth: 200px;
 }
 
 .appSideNavCollapseButton {
+  position: absolute;
   display: block;
   color: $colorSubdued;
   font-size: $fontSizeXs;
@@ -37,55 +52,14 @@ $appSideNavWidth: 200px;
 }
 
 .appSideNavExpandButton {
+  position: absolute;
   margin-top: -$sizeXxs;
 }
 
-.appSideNavSection {
-  @include truncateText;
-
-  & + & {
-    margin-top: $sizeL;
-  }
-}
-
-.appSideNavSectionTitle {
-  color: $colorText;
-  font-weight: $fontWeightBold;
-  font-size: $fontSizeXs;
-}
-
-.appSideNavSectionTitle--nested {
-  margin-top: $sizeXxs;
-  font-weight: $fontWeightNormal;
-}
-
-.appSideNavSectionItems {
-  margin-top: $sizeS;
-}
-
-.appSideNavSectionItems--nested {
-  margin-top: $sizeXs;
-  margin-bottom: $sizeXxs;
-  margin-left: $sizeM;
-}
-
 .appSideNavLink {
-  display: block;
-  color: $colorText;
-  font-size: $fontSizeXs;
+  @include truncateText;
+  @include appSideNavItem;
   text-decoration: none;
-  padding: 0 $sizeM;
-  margin-left: -$sizeM;
-  padding-top: ($sizeXs * 0.5);
-  padding-bottom: ($sizeXs * 0.5);
-
-  &:first-child {
-    margin-top: -($sizeXs * 0.5);
-  }
-
-  &:last-child {
-    margin-bottom: -($sizeXs * 0.5);
-  }
 
   &:hover {
     color: $colorPrimary;

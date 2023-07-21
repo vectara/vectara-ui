@@ -1,0 +1,23 @@
+.appSideNavSection + .appSideNavSection {
+  margin-top: $sizeL;
+}
+
+.appSideNavSection__title {
+  color: $colorText;
+  font-weight: $fontWeightBold;
+  font-size: $fontSizeXs;
+}
+
+.appSideNavSection__items {
+  margin-top: $sizeS;
+
+  & > .appSideNavLink {
+    &:first-child {
+      margin-top: -$appSideNavLinkSpacing;
+    }
+
+    &:last-child {
+      margin-bottom: -$appSideNavLinkSpacing;
+    }
+  }
+}
