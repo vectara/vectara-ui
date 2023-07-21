@@ -52,6 +52,7 @@ export const VuiCopyButton = ({ value, options, label, size = "s" }: Props) => {
   return options ? (
     <VuiOptionsButton
       type="secondary"
+      icon={icon}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       color="neutral"
@@ -65,7 +66,7 @@ export const VuiCopyButton = ({ value, options, label, size = "s" }: Props) => {
       }}
       options={options}
     >
-      {icon}
+      {label}
     </VuiOptionsButton>
   ) : (
     <VuiButtonSecondary
