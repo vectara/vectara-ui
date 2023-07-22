@@ -2,7 +2,7 @@ import { VuiAccountMenu } from "./accountMenu/AccountMenu";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
-import { VuiAppSideNav } from "./app/AppSideNav";
+import { VuiAppSideNav } from "./app/appSideNav/AppSideNav";
 import { AppContentPadding } from "./app/types";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
 import { BUTTON_COLOR, BUTTON_SIZE, ButtonColor } from "./button/types";

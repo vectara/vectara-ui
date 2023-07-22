@@ -1,4 +1,4 @@
-import { VuiAppSideNav, Props as VuiAppSideNavProps } from "./AppSideNav";
+import { VuiAppSideNav, Props as VuiAppSideNavProps } from "./appSideNav/AppSideNav";
 
 type Props = {
   children: React.ReactNode;

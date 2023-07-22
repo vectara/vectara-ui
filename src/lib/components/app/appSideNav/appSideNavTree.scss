@@ -1,0 +1,29 @@
+.vuiAppSideNavTree {
+  margin-top: -$sizeXxs;
+}
+
+.vuiAppSideNavTreeSection {
+  position: relative;
+}
+
+.vuiAppSideNavTreeToggleButton {
+  position: absolute;
+  top: -2px;
+  right: -30px;
+}
+
+.vuiAppSideNavTreeChildren {
+  overflow: hidden;
+  height: 0;
+  transition: all $transitionSpeed;
+  margin-left: $sizeM;
+}
+
+.vuiAppSideNavTreeChildren-isOpen {
+  height: auto;
+}
+
+.vuiAppSideNavTreeSection__info {
+  @include appSideNavItem;
+  color: $colorSubdued;
+}

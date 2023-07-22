@@ -16,6 +16,7 @@ import {
   VuiTitle
 } from "../../../lib";
 import "./appExample.scss";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 const paddingOptions = [
   { text: "none", value: "none" },
@@ -56,10 +57,24 @@ export const App = () => {
 
           <VuiAppLayout
             navItems={[
-              { name: "Page 1", path: "/" },
-              { name: "Page 2", path: "/" },
-              { name: "Page 3", path: "/" },
-              { name: "Page 4", path: "/" }
+              { name: "Overview", path: "/" },
+              {
+                name: "Corpora",
+                path: "/app",
+                pages: [
+                  { name: "Recent corpora" },
+                  { name: "Corpus 1", path: "/" },
+                  { name: "Corpus 2", path: "/" },
+                  { name: "Corpus 3", path: "/" },
+                  { name: "Corpus 4 with a really long name", path: "/" },
+                  { name: "Corpus 5", path: "/" },
+                  { name: "Corpus 6", path: "/" },
+                  { name: "Corpus 7", path: "/" },
+                  { name: "See all", path: "/", iconAfter: <BiRightArrowAlt /> }
+                ]
+              },
+              { name: "API keys", path: "/" },
+              { name: "Team", path: "/" }
             ]}
             navContent={
               <>

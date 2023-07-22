@@ -1,0 +1,13 @@
+@mixin appSideNavItem {
+  display: block;
+  color: $colorText;
+  font-size: $fontSizeXs;
+  padding: 0 $sizeM;
+  margin-left: -$sizeM;
+  padding-top: $appSideNavLinkSpacing;
+  padding-bottom: $appSideNavLinkSpacing;
+}
+
+@import "./appSideNav";
+@import "./appSideNavSections";
+@import "./appSideNavTree";

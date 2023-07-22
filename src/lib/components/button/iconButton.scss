@@ -19,7 +19,7 @@ $color: (
   .vuiIconButton--#{$colorName} {
     color: $colorValue;
     background-color: transparentize($color: $colorValue, $amount: 1);
-    transition: all 0.2s;
+    transition: all $transitionSpeed;
 
     &:hover {
       background-color: transparentize($color: $colorValue, $amount: 0.9);
