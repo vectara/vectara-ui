@@ -1,12 +1,15 @@
 import classNames from "classnames";
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 import { VuiIcon } from "../../icon/Icon";
+import { SideNavContext } from "./AppSideNav";
 
 type Props = { path: string; name: string; iconAfter?: React.ReactNode };
 
 export const VuiAppSideNavLink = ({ path, name, iconAfter }: Props) => {
+  const { isCollapsed } = useContext(SideNavContext);
   const location = useLocation();
 
   const classes = classNames("vuiAppSideNavLink", {
@@ -28,7 +31,7 @@ export const VuiAppSideNavLink = ({ path, name, iconAfter }: Props) => {
   );
 
   return (
-    <Link className={classes} to={path} key={name}>
+    <Link className={classes} to={path} key={name} tabIndex={isCollapsed ? -1 : undefined}>
       {content}
     </Link>
   );

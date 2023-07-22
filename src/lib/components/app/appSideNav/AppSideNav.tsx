@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../../button/IconButton";
@@ -10,8 +10,20 @@ export type Props = {
   content?: React.ReactNode;
 };
 
+export const SideNavContext = createContext({ isCollapsed: false });
+
 export const VuiAppSideNav = ({ items = [], content }: Props) => {
+  const collapseButtonRef = useRef<HTMLButtonElement>(null);
+  const expandButtonRef = useRef<HTMLButtonElement>(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  useEffect(() => {
+    if (isCollapsed) {
+      expandButtonRef.current?.focus();
+    } else {
+      collapseButtonRef.current?.focus();
+    }
+  }, [isCollapsed]);
 
   const classes = classNames("vuiAppSideNav", {
     "vuiAppSideNav-isCollapsed": isCollapsed
@@ -28,6 +40,8 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
       <div className="vuiAppSideNav__inner">
         {isCollapsed ? (
           <VuiIconButton
+            ref={expandButtonRef}
+            aria-label="Expand nav"
             onClick={() => setIsCollapsed(false)}
             className="vuiAppSideNavExpandButton"
             color="neutral"
@@ -39,16 +53,22 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
           />
         ) : (
           <>
-            <button className="vuiAppSideNavCollapseButton" onClick={() => setIsCollapsed(true)}>
+            <button
+              ref={collapseButtonRef}
+              className="vuiAppSideNavCollapseButton"
+              onClick={() => setIsCollapsed(true)}
+            >
               Collapse nav
             </button>
           </>
         )}
 
-        <div className={contentClasses}>
-          {navItems}
-          {content}
-        </div>
+        <SideNavContext.Provider value={{ isCollapsed }}>
+          <div className={contentClasses}>
+            {navItems}
+            {content}
+          </div>
+        </SideNavContext.Provider>
       </div>
     </div>
   );
