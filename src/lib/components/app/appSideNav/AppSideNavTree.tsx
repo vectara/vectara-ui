@@ -30,7 +30,7 @@ export const buildTree = (items: Tree) => {
       return <VuiAppSideNavLink path={path} name={name} iconAfter={iconAfter} />;
     }
 
-    return <div className="vuiAppSideNavTreeSection__info">{name}</div>;
+    return <div className="vuiAppSideNavTreeSection__subTitle">{name}</div>;
   });
 };
 

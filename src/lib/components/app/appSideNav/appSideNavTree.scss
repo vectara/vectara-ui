@@ -23,7 +23,8 @@
   height: auto;
 }
 
-.vuiAppSideNavTreeSection__info {
+.vuiAppSideNavTreeSection__subTitle {
   @include appSideNavItem;
-  color: $colorSubdued;
+  font-weight: $fontWeightBold;
+  font-size: $fontSizeXxs;
 }
