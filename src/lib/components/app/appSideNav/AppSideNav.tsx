@@ -3,7 +3,17 @@ import classNames from "classnames";
 import { BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../../button/IconButton";
 import { VuiIcon } from "../../icon/Icon";
-import { buildSideNavItems, Sections, Tree } from "./utils";
+import { Sections, buildSections } from "./AppSideNavSections";
+import { Tree, buildTree } from "./AppSideNavTree";
+
+export const buildSideNavItems = (items: Sections | Tree) => {
+  return isTree(items) ? <div className="vuiAppSideNavTree">{buildTree(items)}</div> : buildSections(items);
+};
+
+// Type guard to determine if we have a Tree or Sections.
+const isTree = (items: Tree | Sections): items is Tree => {
+  return (items as Tree).findIndex((item) => item.path) !== -1;
+};
 
 export type Props = {
   items?: Sections | Tree;
