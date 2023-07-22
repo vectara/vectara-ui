@@ -1,17 +1,17 @@
-.appSideNavSection + .appSideNavSection {
+.vuiAppSideNavSection + .vuiAppSideNavSection {
   margin-top: $sizeL;
 }
 
-.appSideNavSection__title {
+.vuiAppSideNavSection__title {
   color: $colorText;
   font-weight: $fontWeightBold;
   font-size: $fontSizeXs;
 }
 
-.appSideNavSection__items {
+.vuiAppSideNavSection__items {
   margin-top: $sizeS;
 
-  & > .appSideNavLink {
+  & > .vuiAppSideNavLink {
     &:first-child {
       margin-top: -$appSideNavLinkSpacing;
     }

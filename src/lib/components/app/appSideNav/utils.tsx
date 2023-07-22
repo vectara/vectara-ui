@@ -21,7 +21,7 @@ export type TreeItem = {
 };
 
 export const buildSideNavItems = (items: Sections | Tree) => {
-  return isTree(items) ? <div className="appSideNavTree">{buildTree(items)}</div> : buildSections(items);
+  return isTree(items) ? <div className="vuiAppSideNavTree">{buildTree(items)}</div> : buildSections(items);
 };
 
 // Type guard to determine if we have a Tree or Sections.
@@ -34,9 +34,9 @@ const buildSections = (sections: Sections) => {
     const renderedPages = pages.map(({ name, path }) => <VuiAppSideNavLink key={name} path={path} name={name} />);
 
     return (
-      <div className="appSideNavSection" key={name}>
-        <div className="appSideNavSection__title">{name}</div>
-        <div className="appSideNavSection__items">{renderedPages}</div>
+      <div className="vuiAppSideNavSection" key={name}>
+        <div className="vuiAppSideNavSection__title">{name}</div>
+        <div className="vuiAppSideNavSection__items">{renderedPages}</div>
       </div>
     );
   });
@@ -58,6 +58,6 @@ const buildTree = (items: Tree) => {
       return <VuiAppSideNavLink path={path} name={name} iconAfter={iconAfter} />;
     }
 
-    return <div className="appSideNavTreeSection__info">{name}</div>;
+    return <div className="vuiAppSideNavTreeSection__info">{name}</div>;
   });
 };

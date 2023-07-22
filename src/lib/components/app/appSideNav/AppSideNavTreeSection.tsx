@@ -14,20 +14,22 @@ type Props = {
 export const AppSideNavTreeSection = ({ name, path, children }: Props) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const classes = classNames("appSideNavTreeChildren", {
-    "appSideNavTreeChildren-isOpen": isOpen
+  const classes = classNames("vuiAppSideNavTreeChildren", {
+    "vuiAppSideNavTreeChildren-isOpen": isOpen
   });
 
   return (
-    <div className="appSideNavTreeSection">
+    <div className="vuiAppSideNavTreeSection">
       <VuiAppSideNavLink path={path} name={name} />
 
       <VuiIconButton
-        className="appSideNavTreeToggleButton"
+        className="vuiAppSideNavTreeToggleButton"
         onClick={() => setIsOpen(!isOpen)}
         color="neutral"
         icon={
-          <VuiIcon className="appSideNavTreeToggleButton__icon">{isOpen ? <BiChevronUp /> : <BiChevronDown />}</VuiIcon>
+          <VuiIcon className="vuiAppSideNavTreeToggleButton__icon">
+            {isOpen ? <BiChevronUp /> : <BiChevronDown />}
+          </VuiIcon>
         }
       />
 

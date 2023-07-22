@@ -1,34 +1,34 @@
-.appSideNavTree {
+.vuiAppSideNavTree {
   margin-top: -$sizeXxs;
 }
 
-.appSideNavTreeSection {
+.vuiAppSideNavTreeSection {
   position: relative;
 }
 
-.appSideNavTreeToggleButton {
+.vuiAppSideNavTreeToggleButton {
   position: absolute;
   top: -4px;
   right: -30px;
 }
 
-.appSideNavTreeToggleButton__icon {
+.vuiAppSideNavTreeToggleButton__icon {
   position: relative;
   top: 2px;
 }
 
-.appSideNavTreeChildren {
+.vuiAppSideNavTreeChildren {
   overflow: hidden;
   max-height: 0;
   transition: all $transitionSpeed;
   margin-left: $sizeM;
 }
 
-.appSideNavTreeChildren-isOpen {
+.vuiAppSideNavTreeChildren-isOpen {
   max-height: 1000px;
 }
 
-.appSideNavTreeSection__info {
+.vuiAppSideNavTreeSection__info {
   @include appSideNavItem;
   color: $colorSubdued;
 }

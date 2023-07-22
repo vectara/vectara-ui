@@ -9,8 +9,8 @@ type Props = { path: string; name: string; iconAfter?: React.ReactNode };
 export const VuiAppSideNavLink = ({ path, name, iconAfter }: Props) => {
   const location = useLocation();
 
-  const classes = classNames("appSideNavLink", {
-    "appSideNavLink--active": path === location.pathname
+  const classes = classNames("vuiAppSideNavLink", {
+    "vuiAppSideNavLink--active": path === location.pathname
   });
 
   const content = iconAfter ? (

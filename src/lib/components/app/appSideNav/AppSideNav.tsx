@@ -13,23 +13,23 @@ export type Props = {
 export const VuiAppSideNav = ({ items = [], content }: Props) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const classes = classNames("appSideNav", {
-    "appSideNav-isCollapsed": isCollapsed
+  const classes = classNames("vuiAppSideNav", {
+    "vuiAppSideNav-isCollapsed": isCollapsed
   });
 
-  const contentClasses = classNames("appSideNavContent", {
-    "appSideNavContent-isHidden": isCollapsed
+  const contentClasses = classNames("vuiAppSideNavContent", {
+    "vuiAppSideNavContent-isHidden": isCollapsed
   });
 
   const navItems = buildSideNavItems(items);
 
   return (
     <div className={classes}>
-      <div className="appSideNav__inner">
+      <div className="vuiAppSideNav__inner">
         {isCollapsed ? (
           <VuiIconButton
             onClick={() => setIsCollapsed(false)}
-            className="appSideNavExpandButton"
+            className="vuiAppSideNavExpandButton"
             color="neutral"
             icon={
               <VuiIcon>
@@ -39,7 +39,7 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
           />
         ) : (
           <>
-            <button className="appSideNavCollapseButton" onClick={() => setIsCollapsed(true)}>
+            <button className="vuiAppSideNavCollapseButton" onClick={() => setIsCollapsed(true)}>
               Collapse nav
             </button>
           </>

@@ -1,14 +1,14 @@
 $appSideNavWidth: 200px;
 $appSideNavLinkSpacing: $sizeXxs + 1px;
 
-.appSideNav {
+.vuiAppSideNav {
   width: $appSideNavWidth;
   overflow-x: hidden;
   transition: all $transitionSpeed;
   line-height: 1;
 }
 
-.appSideNav__inner {
+.vuiAppSideNav__inner {
   // Prevent content from being squished as nav collapses.
   width: $appSideNavWidth;
   padding: 28px 32px 32px 33px;
@@ -16,26 +16,26 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
   transition: all $transitionSpeed;
 }
 
-.appSideNavContent {
+.vuiAppSideNavContent {
   margin-top: $sizeXl;
   opacity: 1;
   transition: all $transitionSpeed;
 }
 
-.appSideNavContent-isHidden {
+.vuiAppSideNavContent-isHidden {
   pointer-events: none;
   opacity: 0;
 }
 
-.appSideNav-isCollapsed {
+.vuiAppSideNav-isCollapsed {
   width: 60px;
 
-  .appSideNav__inner {
+  .vuiAppSideNav__inner {
     padding-left: $sizeM;
   }
 }
 
-.appSideNavCollapseButton {
+.vuiAppSideNavCollapseButton {
   position: absolute;
   display: block;
   color: $colorSubdued;
@@ -51,12 +51,12 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
   }
 }
 
-.appSideNavExpandButton {
+.vuiAppSideNavExpandButton {
   position: absolute;
   margin-top: -$sizeXxs;
 }
 
-.appSideNavLink {
+.vuiAppSideNavLink {
   @include truncateText;
   @include appSideNavItem;
   text-decoration: none;
@@ -67,7 +67,7 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
   }
 }
 
-.appSideNavLink--active {
+.vuiAppSideNavLink--active {
   background-color: transparentize($colorPrimary, 0.9);
   border-radius: $sizeM;
 }
