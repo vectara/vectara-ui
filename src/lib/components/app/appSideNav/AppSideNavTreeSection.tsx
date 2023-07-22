@@ -26,11 +26,7 @@ export const AppSideNavTreeSection = ({ name, path, children }: Props) => {
         className="vuiAppSideNavTreeToggleButton"
         onClick={() => setIsOpen(!isOpen)}
         color="neutral"
-        icon={
-          <VuiIcon className="vuiAppSideNavTreeToggleButton__icon">
-            {isOpen ? <BiChevronUp /> : <BiChevronDown />}
-          </VuiIcon>
-        }
+        icon={<VuiIcon>{isOpen ? <BiChevronUp /> : <BiChevronDown />}</VuiIcon>}
       />
 
       <div className={classes}>{children}</div>

@@ -8,24 +8,19 @@
 
 .vuiAppSideNavTreeToggleButton {
   position: absolute;
-  top: -4px;
+  top: -2px;
   right: -30px;
-}
-
-.vuiAppSideNavTreeToggleButton__icon {
-  position: relative;
-  top: 2px;
 }
 
 .vuiAppSideNavTreeChildren {
   overflow: hidden;
-  max-height: 0;
+  height: 0;
   transition: all $transitionSpeed;
   margin-left: $sizeM;
 }
 
 .vuiAppSideNavTreeChildren-isOpen {
-  max-height: 1000px;
+  height: auto;
 }
 
 .vuiAppSideNavTreeSection__info {
