@@ -17,7 +17,6 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
 }
 
 .vuiAppSideNavContent {
-  margin-top: $sizeXl;
   opacity: 1;
   transition: all $transitionSpeed;
 }
@@ -29,6 +28,9 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
 
 .vuiAppSideNav-isCollapsed {
   width: 60px;
+  // Stop scrolling.
+  height: 100%;
+  overflow-y: hidden;
 
   .vuiAppSideNav__inner {
     padding-left: $sizeM;
@@ -36,7 +38,6 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
 }
 
 .vuiAppSideNavCollapseButton {
-  position: absolute;
   display: block;
   color: $colorSubdued;
   font-size: $fontSizeXs;
@@ -52,8 +53,8 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
 }
 
 .vuiAppSideNavExpandButton {
-  position: absolute;
   margin-top: -$sizeXxs;
+  margin-bottom: $sizeXs;
 }
 
 .vuiAppSideNavLink {
