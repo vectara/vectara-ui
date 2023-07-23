@@ -23,17 +23,21 @@ export type Props = {
 export const SideNavContext = createContext({ isCollapsed: false });
 
 export const VuiAppSideNav = ({ items = [], content }: Props) => {
+  const [isTouched, setIsTouched] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
   const expandButtonRef = useRef<HTMLButtonElement>(null);
-  const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
-    if (isCollapsed) {
-      expandButtonRef.current?.focus();
-    } else {
-      collapseButtonRef.current?.focus();
+    // Prevent the button from being focused when it first renders.
+    if (isTouched) {
+      if (isCollapsed) {
+        expandButtonRef.current?.focus();
+      } else {
+        collapseButtonRef.current?.focus();
+      }
     }
-  }, [isCollapsed]);
+  }, [isTouched, isCollapsed]);
 
   const classes = classNames("vuiAppSideNav", {
     "vuiAppSideNav-isCollapsed": isCollapsed
@@ -66,7 +70,10 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
             <button
               ref={collapseButtonRef}
               className="vuiAppSideNavCollapseButton"
-              onClick={() => setIsCollapsed(true)}
+              onClick={() => {
+                setIsTouched(true);
+                setIsCollapsed(true);
+              }}
             >
               Collapse nav
             </button>
