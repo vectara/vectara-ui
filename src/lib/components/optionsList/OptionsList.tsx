@@ -3,6 +3,7 @@ import { VuiOptionsListItem } from "./OptionsListItem";
 import { OptionListItem } from "./types";
 
 export type Props<T> = {
+  className?: string;
   options: OptionListItem<T>[];
   onSelectOption: (value: T) => void;
   selectedOption?: string;
@@ -13,6 +14,7 @@ export type Props<T> = {
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiOptionsList = <T extends unknown = unknown>({
+  className,
   options,
   onSelectOption,
   selectedOption,
@@ -20,9 +22,13 @@ export const VuiOptionsList = <T extends unknown = unknown>({
   isScrollable = false,
   ...rest
 }: Props<T>) => {
-  const classes = classNames("vuiOptionsList", {
-    "vuiOptionsList--scrollable": isScrollable
-  });
+  const classes = classNames(
+    "vuiOptionsList",
+    {
+      "vuiOptionsList--scrollable": isScrollable
+    },
+    className
+  );
 
   return (
     <div className={classes} {...rest}>
