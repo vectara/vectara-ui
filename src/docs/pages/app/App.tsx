@@ -16,7 +16,7 @@ import {
   VuiTitle
 } from "../../../lib";
 import "./appExample.scss";
-import { BiRightArrowAlt } from "react-icons/bi";
+import { BiCreditCard, BiGroup, BiHome, BiKey, BiLayer, BiRightArrowAlt } from "react-icons/bi";
 
 const paddingOptions = [
   { text: "none", value: "none" },
@@ -57,12 +57,17 @@ export const App = () => {
 
           <VuiAppLayout
             navItems={[
-              { name: "Overview", path: "/" },
               {
+                iconBefore: <BiHome />,
+                name: "Overview",
+                path: "/"
+              },
+              {
+                iconBefore: <BiLayer />,
                 name: "Corpora",
                 path: "/app",
                 pages: [
-                  { name: "Recent corpora" },
+                  { name: "Recently used" },
                   { name: "Corpus 1", path: "/" },
                   { name: "Corpus 2", path: "/" },
                   { name: "Corpus 3", path: "/" },
@@ -70,11 +75,12 @@ export const App = () => {
                   { name: "Corpus 5", path: "/" },
                   { name: "Corpus 6", path: "/" },
                   { name: "Corpus 7", path: "/" },
-                  { name: "See all", path: "/", iconAfter: <BiRightArrowAlt /> }
+                  { name: "View all", path: "/", iconBefore: <BiRightArrowAlt /> }
                 ]
               },
-              { name: "API keys", path: "/" },
-              { name: "Team", path: "/" }
+              { iconBefore: <BiKey />, name: "API keys", path: "/" },
+              { iconBefore: <BiGroup />, name: "Authentication", path: "/" },
+              { iconBefore: <BiCreditCard />, name: "Team", path: "/" }
             ]}
             navContent={
               <>
