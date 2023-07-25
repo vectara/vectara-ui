@@ -1,9 +1,9 @@
-import { useState } from "react";
-import classNames from "classnames";
+import { useContext, useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { VuiIcon } from "../../icon/Icon";
 import { VuiIconButton } from "../../button/IconButton";
 import { VuiAppSideNavLink } from "./AppSideNavLink";
+import { SideNavContext } from "./AppSideNav";
 
 export type Tree = Array<TreeItem>;
 
@@ -21,16 +21,20 @@ export const buildTree = (items: Tree) => {
         const childPages = buildTree(pages);
 
         return (
-          <AppSideNavTreeSection path={path} name={name}>
+          <AppSideNavTreeSection key={name} path={path} name={name}>
             {childPages}
           </AppSideNavTreeSection>
         );
       }
 
-      return <VuiAppSideNavLink path={path} name={name} iconAfter={iconAfter} />;
+      return <VuiAppSideNavLink key={name} path={path} name={name} iconAfter={iconAfter} />;
     }
 
-    return <div className="vuiAppSideNavTreeSection__subTitle">{name}</div>;
+    return (
+      <div key={name} className="vuiAppSideNavTreeSection__subTitle">
+        {name}
+      </div>
+    );
   });
 };
 
@@ -41,11 +45,8 @@ type Props = {
 };
 
 const AppSideNavTreeSection = ({ name, path, children }: Props) => {
+  const { isCollapsed } = useContext(SideNavContext);
   const [isOpen, setIsOpen] = useState(true);
-
-  const classes = classNames("vuiAppSideNavTreeChildren", {
-    "vuiAppSideNavTreeChildren-isOpen": isOpen
-  });
 
   return (
     <div className="vuiAppSideNavTreeSection">
@@ -56,9 +57,10 @@ const AppSideNavTreeSection = ({ name, path, children }: Props) => {
         onClick={() => setIsOpen(!isOpen)}
         color="neutral"
         icon={<VuiIcon>{isOpen ? <BiChevronUp /> : <BiChevronDown />}</VuiIcon>}
+        tabIndex={isCollapsed ? -1 : undefined}
       />
 
-      <div className={classes}>{children}</div>
+      {isOpen && <div className="vuiAppSideNavTreeChildren">{children}</div>}
     </div>
   );
 };
