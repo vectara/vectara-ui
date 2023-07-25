@@ -13,14 +13,7 @@
 }
 
 .vuiAppSideNavTreeChildren {
-  overflow: hidden;
-  height: 0;
-  transition: all $transitionSpeed;
   margin-left: $sizeM;
-}
-
-.vuiAppSideNavTreeChildren-isOpen {
-  height: auto;
 }
 
 .vuiAppSideNavTreeSection__subTitle {
