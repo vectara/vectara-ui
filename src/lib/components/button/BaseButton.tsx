@@ -19,6 +19,7 @@ export type Props = {
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
+  tabIndex?: number;
 };
 
 export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -31,6 +32,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       size,
       fullWidth,
       onClick,
+      tabIndex,
       isInert,
       isDisabled,
       href,
@@ -47,16 +49,18 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       [`vuiBaseButton--${iconSide}`]: Boolean(icon) && Boolean(children)
     });
 
-    const props = {
-      onClick,
-      ...rest
-    };
-
     const iconContainer = icon ? <span className="vuiBaseButtonIconContainer">{icon}</span> : null;
 
     if (href) {
       return (
-        <Link className="vuiBaseButtonLinkWrapper" to={href} target={target} {...rest} {...getTrackingProps(track)}>
+        <Link
+          className="vuiBaseButtonLinkWrapper"
+          to={href}
+          target={target}
+          tabIndex={tabIndex}
+          {...rest}
+          {...getTrackingProps(track)}
+        >
           {/* Wrap a button otherwise the flex layout breaks */}
           <button className={classes} tabIndex={-1} ref={ref}>
             {iconContainer}
@@ -65,6 +69,12 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         </Link>
       );
     }
+
+    const props = {
+      onClick,
+      tabIndex,
+      ...rest
+    };
 
     return (
       // @ts-expect-error HTMLButtonElement conflict with HTMLAnchorElement

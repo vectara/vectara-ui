@@ -1,4 +1,5 @@
 $appSideNavWidth: 200px;
+$appSideNavWidthCollapsed: 60px;
 $appSideNavLinkSpacing: $sizeXxs + 1px;
 
 .vuiAppSideNav {
@@ -27,7 +28,7 @@ $appSideNavLinkSpacing: $sizeXxs + 1px;
 }
 
 .vuiAppSideNav-isCollapsed {
-  width: 60px;
+  width: $appSideNavWidthCollapsed;
   // Stop scrolling.
   height: 100%;
   overflow-y: hidden;

@@ -13,13 +13,15 @@ type Props = {
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
+  tabIndex?: number;
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
-  ({ className, icon, color = "primary", onClick, href, target, track, ...rest }: Props, ref) => {
+  ({ className, icon, color = "primary", onClick, href, target, track, tabIndex, ...rest }: Props, ref) => {
     const props = {
       className: classNames("vuiIconButton", className, `vuiIconButton--${color}`),
       onClick,
+      tabIndex,
       ...rest
     };
 
