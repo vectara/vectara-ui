@@ -3,6 +3,7 @@ import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
 import { VuiAppSideNav } from "./app/appSideNav/AppSideNav";
+import { Sections, SectionItem, Tree, TreeItem } from "./app/types";
 import { AppContentPadding } from "./app/types";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
 import { BUTTON_COLOR, BUTTON_SIZE, ButtonColor } from "./button/types";
@@ -52,7 +53,17 @@ import { TEXT_COLOR, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
-export type { AppContentPadding, ButtonColor, CalloutColor, OptionListItem, TabSize };
+export type {
+  AppContentPadding,
+  ButtonColor,
+  CalloutColor,
+  OptionListItem,
+  TabSize,
+  Sections,
+  SectionItem,
+  Tree,
+  TreeItem
+};
 
 export {
   BADGE_COLOR,

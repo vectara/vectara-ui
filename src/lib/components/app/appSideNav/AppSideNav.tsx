@@ -3,8 +3,9 @@ import classNames from "classnames";
 import { BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../../button/IconButton";
 import { VuiIcon } from "../../icon/Icon";
-import { Sections, buildSections } from "./AppSideNavSections";
-import { Tree, buildTree } from "./AppSideNavTree";
+import { buildSections } from "./AppSideNavSections";
+import { buildTree } from "./AppSideNavTree";
+import { Sections, Tree } from "../types";
 
 export const buildSideNavItems = (items: Sections | Tree) => {
   return isTree(items) ? <div className="vuiAppSideNavTree">{buildTree(items)}</div> : buildSections(items);

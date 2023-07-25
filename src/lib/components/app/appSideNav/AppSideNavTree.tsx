@@ -4,31 +4,39 @@ import { VuiIcon } from "../../icon/Icon";
 import { VuiIconButton } from "../../button/IconButton";
 import { VuiAppSideNavLink } from "./AppSideNavLink";
 import { SideNavContext } from "./AppSideNav";
-
-export type Tree = Array<TreeItem>;
-
-export type TreeItem = {
-  name: string;
-  path?: string;
-  pages?: Tree;
-  iconBefore?: React.ReactNode;
-  iconAfter?: React.ReactNode;
-};
+import { Tree, TreeItem } from "../types";
 
 export const buildTree = (items: Tree) => {
-  return items.map(({ name, pages, path, iconBefore, iconAfter }) => {
+  return items.map(({ name, pages, path, iconBefore, iconAfter, isActive, ...rest }) => {
     if (path) {
       if (pages) {
         const childPages = buildTree(pages);
 
         return (
-          <AppSideNavTreeSection key={name} path={path} name={name} iconBefore={iconBefore} iconAfter={iconAfter}>
+          <AppSideNavTreeSection
+            key={path ?? name}
+            path={path}
+            name={name}
+            iconBefore={iconBefore}
+            iconAfter={iconAfter}
+            isActive={isActive}
+          >
             {childPages}
           </AppSideNavTreeSection>
         );
       }
 
-      return <VuiAppSideNavLink key={name} path={path} name={name} iconBefore={iconBefore} iconAfter={iconAfter} />;
+      return (
+        <VuiAppSideNavLink
+          key={path ?? name}
+          path={path}
+          name={name}
+          iconBefore={iconBefore}
+          iconAfter={iconAfter}
+          isActive={isActive}
+          {...rest}
+        />
+      );
     }
 
     return (
@@ -39,21 +47,24 @@ export const buildTree = (items: Tree) => {
   });
 };
 
-type Props = {
-  name: string;
-  path: string;
+type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isActive"> & {
   children: React.ReactNode;
-  iconBefore?: React.ReactNode;
-  iconAfter?: React.ReactNode;
 };
 
-const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter }: Props) => {
+const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, isActive, ...rest }: Props) => {
   const { isCollapsed } = useContext(SideNavContext);
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className="vuiAppSideNavTreeSection">
-      <VuiAppSideNavLink path={path} name={name} iconBefore={iconBefore} iconAfter={iconAfter} />
+      <VuiAppSideNavLink
+        path={path ?? "/"}
+        name={name}
+        iconBefore={iconBefore}
+        iconAfter={iconAfter}
+        isActive={isActive}
+        {...rest}
+      />
 
       <VuiIconButton
         className="vuiAppSideNavTreeToggleButton"

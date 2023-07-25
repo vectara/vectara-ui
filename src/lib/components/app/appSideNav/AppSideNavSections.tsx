@@ -1,18 +1,11 @@
+import { Sections } from "../types";
 import { VuiAppSideNavLink } from "./AppSideNavLink";
-
-export type Sections = Array<{
-  name: string;
-  pages: Array<SectionItem>;
-}>;
-
-export type SectionItem = {
-  name: string;
-  path: string;
-};
 
 export const buildSections = (sections: Sections) => {
   return sections.map(({ name, pages }) => {
-    const renderedPages = pages.map(({ name, path }) => <VuiAppSideNavLink key={name} path={path} name={name} />);
+    const renderedPages = pages.map(({ name, path }) => (
+      <VuiAppSideNavLink key={path ?? name} path={path} name={name} />
+    ));
 
     return (
       <VuiAppSideNavSection key={name} name={name}>
