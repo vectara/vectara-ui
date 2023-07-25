@@ -13,11 +13,13 @@
 }
 
 .vuiAppSideNavTreeChildren {
-  margin-left: $sizeM;
+  // Sized to match the width of the icons.
+  margin-left: 20px;
 }
 
 .vuiAppSideNavTreeSection__subTitle {
   @include appSideNavItem;
-  font-weight: $fontWeightBold;
   font-size: $fontSizeXxs;
+  font-weight: $fontWeightBold;
+  color: $colorDarkShade;
 }
