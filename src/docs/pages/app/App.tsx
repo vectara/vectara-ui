@@ -60,7 +60,7 @@ export const App = () => {
               { name: "Overview", path: "/" },
               {
                 name: "Corpora",
-                path: "/app",
+                path: "/",
                 pages: [
                   { name: "Recent corpora" },
                   { name: "Corpus 1", path: "/" },

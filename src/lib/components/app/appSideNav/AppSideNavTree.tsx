@@ -21,16 +21,20 @@ export const buildTree = (items: Tree) => {
         const childPages = buildTree(pages);
 
         return (
-          <AppSideNavTreeSection path={path} name={name}>
+          <AppSideNavTreeSection key={name} path={path} name={name}>
             {childPages}
           </AppSideNavTreeSection>
         );
       }
 
-      return <VuiAppSideNavLink path={path} name={name} iconAfter={iconAfter} />;
+      return <VuiAppSideNavLink key={name} path={path} name={name} iconAfter={iconAfter} />;
     }
 
-    return <div className="vuiAppSideNavTreeSection__subTitle">{name}</div>;
+    return (
+      <div key={name} className="vuiAppSideNavTreeSection__subTitle">
+        {name}
+      </div>
+    );
   });
 };
 
