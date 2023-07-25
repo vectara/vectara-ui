@@ -20,7 +20,7 @@ describe("VuiSummary", () => {
             >
               <span />
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 1
               </button>
@@ -34,7 +34,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 2
               </button>
@@ -43,7 +43,7 @@ describe("VuiSummary", () => {
               </span>
               <span />
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 3
               </button>
@@ -57,7 +57,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 4
               </button>
@@ -68,7 +68,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 5
               </button>
@@ -82,7 +82,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 6
               </button>
@@ -114,7 +114,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 1
               </button>
@@ -146,7 +146,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 1
               </button>
@@ -157,7 +157,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 2
               </button>
@@ -171,7 +171,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 1
               </button>
@@ -179,7 +179,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 2
               </button>
@@ -187,7 +187,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 3
               </button>
@@ -195,7 +195,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 4
               </button>
@@ -203,7 +203,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 5
               </button>
@@ -211,7 +211,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 6
               </button>
@@ -219,7 +219,7 @@ describe("VuiSummary", () => {
                  
               </span>
               <button
-                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiButtonSecondary--xs vuiBaseButton--xs"
+                class="vuiBaseButton vuiSummaryCitation vuiButtonSecondary vuiButtonSecondary--primary vuiBaseButton--xs"
               >
                 7
               </button>
