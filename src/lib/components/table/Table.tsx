@@ -4,6 +4,7 @@ import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowAct
 import { VuiTableCell } from "./TableCell";
 import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeaderCell";
 import { Props as TablePaginationProps, VuiTablePagination } from "./TablePagination";
+import { Props as TablePagerProps, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
@@ -22,18 +23,19 @@ type Column<T> = {
   render?: (row: T) => React.ReactNode;
 };
 
-type Props<T> = Partial<TablePaginationProps> & {
-  isLoading?: boolean;
-  columns: Column<T>[];
-  rows?: T[];
-  actions?: TableRowActionsProps["actions"];
-  bulkActions?: TableRowActionsProps["actions"];
-  onSelectRow?: (selectedRows: T[]) => void;
-  selectedRows?: T[];
-  onSort?: TableHeaderCellProps["onSort"];
-  searchValue?: string;
-  onSearchChange?: (value: string) => void;
-};
+type Props<T> = Partial<TablePaginationProps> &
+  Partial<TablePagerProps> & {
+    isLoading?: boolean;
+    columns: Column<T>[];
+    rows?: T[];
+    actions?: TableRowActionsProps["actions"];
+    bulkActions?: TableRowActionsProps["actions"];
+    onSelectRow?: (selectedRows: T[]) => void;
+    selectedRows?: T[];
+    onSort?: TableHeaderCellProps["onSort"];
+    searchValue?: string;
+    onSearchChange?: (value: string) => void;
+  };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
@@ -45,6 +47,8 @@ export const VuiTable = <T extends Row>({
   currentPage,
   numPages,
   onSelectPage,
+  onSelectPreviousPage,
+  onSelectNextPage,
   selectedRows,
   onSelectRow,
   onSort,
@@ -231,10 +235,15 @@ export const VuiTable = <T extends Row>({
       </table>
 
       {/* Pagination */}
-      {currentPage && numPages && onSelectPage && numPages > 1 && (
+      {currentPage && numPages && onSelectPage && numPages > 1 ? (
         <>
           <VuiSpacer size="xs" />
           <VuiTablePagination currentPage={currentPage} numPages={numPages} onSelectPage={onSelectPage} />
+        </>
+      ) : (
+        <>
+          <VuiSpacer size="xs" />
+          <VuiTablePager onSelectPreviousPage={onSelectPreviousPage} onSelectNextPage={onSelectNextPage} />
         </>
       )}
     </>
