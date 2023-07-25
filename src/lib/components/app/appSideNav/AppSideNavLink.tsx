@@ -5,16 +5,21 @@ import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 import { VuiIcon } from "../../icon/Icon";
 import { SideNavContext } from "./AppSideNav";
+import { TreeItem } from "../types";
 
-type Props = { path: string; name: string; iconBefore?: React.ReactNode; iconAfter?: React.ReactNode };
+type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isActive" | "className">;
 
-export const VuiAppSideNavLink = ({ path, name, iconBefore, iconAfter }: Props) => {
+export const VuiAppSideNavLink = ({ path, name, iconBefore, iconAfter, isActive, className, ...rest }: Props) => {
   const { isCollapsed } = useContext(SideNavContext);
   const location = useLocation();
 
-  const classes = classNames("vuiAppSideNavLink", {
-    "vuiAppSideNavLink--active": path === location.pathname
-  });
+  const classes = classNames(
+    "vuiAppSideNavLink",
+    {
+      "vuiAppSideNavLink--active": isActive ?? path === location.pathname
+    },
+    className
+  );
 
   const content =
     iconBefore || iconAfter ? (
@@ -40,7 +45,7 @@ export const VuiAppSideNavLink = ({ path, name, iconBefore, iconAfter }: Props) 
     );
 
   return (
-    <Link className={classes} to={path} key={name} tabIndex={isCollapsed ? -1 : undefined}>
+    <Link className={classes} to={path ?? "/"} tabIndex={isCollapsed ? -1 : undefined} {...rest}>
       {content}
     </Link>
   );
