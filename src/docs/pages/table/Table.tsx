@@ -4,6 +4,7 @@ import {
   VuiCopyButton,
   VuiFlexContainer,
   VuiFlexItem,
+  VuiIcon,
   VuiLink,
   VuiSpacer,
   VuiText,
@@ -12,6 +13,7 @@ import {
 } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
+import { BiError } from "react-icons/bi";
 
 type Person = {
   name: string;
@@ -25,6 +27,7 @@ const people: Person[] = createFakePeople(152);
 
 export const Table = () => {
   // Demo state
+  const [hasError, setHasError] = useState(false);
   const [hasContent, setHasContent] = useState(true);
   const [hasPager, setHasPager] = useState(true);
 
@@ -153,7 +156,25 @@ export const Table = () => {
 
   let content;
 
-  if (!isLoading && !searchValue && !rows.length) {
+  if (hasError) {
+    content = (
+      <>
+        <VuiFlexItem grow={false}>
+          <VuiIcon color="danger">
+            <BiError />
+          </VuiIcon>
+        </VuiFlexItem>
+
+        <VuiFlexItem grow={false}>
+          <VuiText>
+            <p>
+              <VuiTextColor color="danger">Couldn't retrieve data</VuiTextColor>
+            </p>
+          </VuiText>
+        </VuiFlexItem>
+      </>
+    );
+  } else if (!isLoading && !searchValue && !rows.length) {
     content = (
       <VuiText>
         <p>
@@ -174,15 +195,18 @@ export const Table = () => {
         onSelectPage: (page: number) => setCurrentPage(page)
       };
 
+  // TODO: Count of hits (7 of many)
+  // TODO: Placeholder for search
   return (
     <>
+      <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
       <VuiToggle label="Has content" checked={hasContent} onChange={(e) => setHasContent(e.target.checked)} />
       <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
       <VuiSpacer size="m" />
 
-      {/* TODO: Encapsulate all of this state in a table hook */}
-      {/* TODO: Async searching */}
+      {/* TODO: Encapsulate search and sort state in a table hook that can be configured with a fetch callback */}
       {/* TODO: Async sorting */}
+
       <VuiTable
         isLoading={isLoading}
         columns={columns}
