@@ -4,15 +4,23 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiButtonTertiary } from "../button/ButtonTertiary";
 import { VuiIcon } from "../icon/Icon";
 import { createPagination } from "./createPagination";
+import classNames from "classnames";
 
-export type Props = {
+export type Pagination = {
   currentPage: number;
   numPages: number;
   onSelectPage: (page: number) => void;
 };
 
-export const VuiTablePagination = ({ currentPage, numPages, onSelectPage }: Props) => {
+type Props = Pagination & {
+  isDisabled?: boolean;
+};
+
+export const VuiTablePagination = ({ currentPage, numPages, onSelectPage, isDisabled }: Props) => {
   const { items, activeIndex } = createPagination(currentPage, numPages);
+  const manyPagesTokenClasses = classNames("vuiTableManyPagesToken", {
+    "vuiTableManyPagesToken-isDisabled": isDisabled
+  });
 
   return (
     <VuiFlexContainer justifyContent="center" alignItems="center" spacing="none">
@@ -26,7 +34,7 @@ export const VuiTablePagination = ({ currentPage, numPages, onSelectPage }: Prop
           color="neutral"
           size="s"
           onClick={() => onSelectPage(currentPage - 1)}
-          isDisabled={currentPage === 1}
+          isDisabled={isDisabled || currentPage === 1}
         >
           Previous
         </VuiButtonTertiary>
@@ -37,7 +45,7 @@ export const VuiTablePagination = ({ currentPage, numPages, onSelectPage }: Prop
         return (
           <VuiFlexItem grow={false} shrink={false} key={index}>
             {item === "..." ? (
-              <div className="vuiTableManyPagesToken">{item}</div>
+              <div className={manyPagesTokenClasses}>{item}</div>
             ) : (
               <VuiButtonTertiary
                 color={isActive ? "primary" : "neutral"}
@@ -45,6 +53,7 @@ export const VuiTablePagination = ({ currentPage, numPages, onSelectPage }: Prop
                 isSelected={isActive}
                 size="s"
                 onClick={() => onSelectPage(item)}
+                isDisabled={isDisabled}
               >
                 {item}
               </VuiButtonTertiary>
@@ -64,7 +73,7 @@ export const VuiTablePagination = ({ currentPage, numPages, onSelectPage }: Prop
           color="neutral"
           size="s"
           onClick={() => onSelectPage(currentPage + 1)}
-          isDisabled={currentPage === numPages}
+          isDisabled={isDisabled || currentPage === numPages}
         >
           Next
         </VuiButtonTertiary>

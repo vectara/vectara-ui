@@ -3,8 +3,8 @@ import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
 import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeaderCell";
-import { Props as TablePaginationProps, VuiTablePagination } from "./TablePagination";
-import { Props as TablePagerProps, VuiTablePager } from "./TablePager";
+import { Pagination, VuiTablePagination } from "./TablePagination";
+import { Pager, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
@@ -15,10 +15,8 @@ import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
 
 // Type guard to determine type of pagination.
-const isComplexPagination = (
-  pagination: TablePaginationProps | TablePagerProps
-): pagination is TablePaginationProps => {
-  return (pagination as TablePaginationProps).onSelectPage !== undefined;
+const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagination => {
+  return (pagination as Pagination).onSelectPage !== undefined;
 };
 
 type Row = Record<string, any> & {
@@ -44,7 +42,7 @@ type Props<T> = {
   searchValue?: string;
   onSearchChange?: (value: string) => void;
   content?: React.ReactNode;
-  pagination: TablePaginationProps | TablePagerProps;
+  pagination: Pagination | Pager;
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -67,7 +65,7 @@ export const VuiTable = <T extends Row>({
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
 
   const isEmpty = !isLoading && rows.length === 0;
-  const isInteractive = Boolean(!content && (isLoading || isEmpty));
+  const isInteractive = Boolean(!content && !isLoading && !isEmpty);
 
   const allRowsSelected = selectedRows?.length === rows.length;
   const selectedIds: Record<string, boolean> =
@@ -252,19 +250,17 @@ export const VuiTable = <T extends Row>({
       </table>
 
       {/* Pagination */}
-      <div className={isLoading || isEmpty ? "vuiTablePagination-isDisabled" : undefined}>
-        {isComplexPagination(pagination) ? (
-          <>
-            <VuiSpacer size="xs" />
-            <VuiTablePagination {...pagination} />
-          </>
-        ) : (
-          <>
-            <VuiSpacer size="xs" />
-            <VuiTablePager {...pagination} />
-          </>
-        )}
-      </div>
+      {isComplexPagination(pagination) ? (
+        <>
+          <VuiSpacer size="xs" />
+          <VuiTablePagination isDisabled={!isInteractive} {...pagination} />
+        </>
+      ) : (
+        <>
+          <VuiSpacer size="xs" />
+          <VuiTablePager isDisabled={!isInteractive} {...pagination} />
+        </>
+      )}
     </>
   );
 };

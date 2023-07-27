@@ -28,7 +28,7 @@ const people: Person[] = createFakePeople(152);
 export const Table = () => {
   // Demo state
   const [hasError, setHasError] = useState(false);
-  const [hasContent, setHasContent] = useState(true);
+  const [hasData, setHasData] = useState(true);
   const [hasPager, setHasPager] = useState(true);
 
   // Table state
@@ -44,7 +44,7 @@ export const Table = () => {
     setIsLoading(true);
     setSelectedRows([]);
     const timeout = setTimeout(() => {
-      const filteredPeople = hasContent
+      const filteredPeople = hasData
         ? people.filter(({ name }) => {
             return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
           })
@@ -60,7 +60,7 @@ export const Table = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [currentPage, searchValue, hasContent]);
+  }, [currentPage, searchValue, hasData]);
 
   const columns = [
     {
@@ -200,7 +200,7 @@ export const Table = () => {
   return (
     <>
       <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
-      <VuiToggle label="Has content" checked={hasContent} onChange={(e) => setHasContent(e.target.checked)} />
+      <VuiToggle label="Has data" checked={hasData} onChange={(e) => setHasData(e.target.checked)} />
       <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
       <VuiSpacer size="m" />
 

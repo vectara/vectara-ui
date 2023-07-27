@@ -44,10 +44,5 @@ $color: (
     &.vuiButtonSecondary-isSelected {
       box-shadow: inset rgba(0, 0, 0, 0.1) 0px 2px 2px;
     }
-
-    &.vuiButtonSecondary-isDisabled {
-      border: 1px solid $colorMediumShade;
-      color: $colorSubdued;
-    }
   }
 }

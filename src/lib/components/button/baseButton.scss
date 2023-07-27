@@ -29,6 +29,10 @@
   pointer-events: none;
 }
 
+.vuiBaseButton-isDisabled {
+  opacity: 0.5;
+}
+
 .vuiBaseButton--left {
   .vuiBaseButtonIconContainer {
     margin-right: $sizeXs;

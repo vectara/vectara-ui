@@ -4,14 +4,18 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiButtonTertiary } from "../button/ButtonTertiary";
 import { VuiIcon } from "../icon/Icon";
 
-export type Props = {
+export type Pager = {
   onSelectPreviousPage?: () => void;
   onSelectNextPage?: () => void;
 };
 
-export const VuiTablePager = ({ onSelectPreviousPage, onSelectNextPage }: Props) => {
+type Props = Pager & {
+  isDisabled?: boolean;
+};
+
+export const VuiTablePager = ({ onSelectPreviousPage, onSelectNextPage, isDisabled }: Props) => {
   return (
-    <VuiFlexContainer justifyContent="center" alignItems="center">
+    <VuiFlexContainer justifyContent="center" alignItems="center" spacing="none">
       <VuiFlexItem grow={false} shrink={false}>
         <VuiButtonTertiary
           icon={
@@ -22,7 +26,7 @@ export const VuiTablePager = ({ onSelectPreviousPage, onSelectNextPage }: Props)
           color="neutral"
           size="s"
           onClick={() => onSelectPreviousPage?.()}
-          isDisabled={!onSelectPreviousPage}
+          isDisabled={isDisabled || !onSelectPreviousPage}
         >
           Previous
         </VuiButtonTertiary>
@@ -39,7 +43,7 @@ export const VuiTablePager = ({ onSelectPreviousPage, onSelectNextPage }: Props)
           color="neutral"
           size="s"
           onClick={() => onSelectNextPage?.()}
-          isDisabled={!onSelectNextPage}
+          isDisabled={isDisabled || !onSelectNextPage}
         >
           Next
         </VuiButtonTertiary>

@@ -12,17 +12,12 @@ export const createButtonIcon = (
   icon: BaseButtonProps["icon"],
   size: BaseButtonProps["size"],
   color: ButtonColor,
-  colorToIconColorMap: Record<ButtonColor, string>,
-  isDisabled?: boolean
+  colorToIconColorMap: Record<ButtonColor, string>
 ) => {
   return icon
     ? cloneElement(icon, {
         size: size ? sizeToIconSizeMap[size] : "s",
-        color: isDisabled
-          ? colorToIconColorMap["neutral"]
-          : icon.props.color === "inherit"
-          ? colorToIconColorMap[color]
-          : icon.props.color
+        color: icon.props.color === "inherit" ? colorToIconColorMap[color] : icon.props.color
       })
     : null;
 };
