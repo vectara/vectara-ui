@@ -14,6 +14,13 @@ import React, { useState } from "react";
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
 
+// Type guard to determine type of pagination.
+const isComplexPagination = (
+  pagination: TablePaginationProps | TablePagerProps
+): pagination is TablePaginationProps => {
+  return (pagination as TablePaginationProps).onSelectPage !== undefined;
+};
+
 type Row = Record<string, any> & {
   id: string | number;
 };
@@ -25,20 +32,20 @@ type Column<T> = {
   render?: (row: T) => React.ReactNode;
 };
 
-type Props<T> = Partial<TablePaginationProps> &
-  Partial<TablePagerProps> & {
-    isLoading?: boolean;
-    columns: Column<T>[];
-    rows: T[];
-    actions?: TableRowActionsProps["actions"];
-    bulkActions?: TableRowActionsProps["actions"];
-    onSelectRow?: (selectedRows: T[]) => void;
-    selectedRows?: T[];
-    onSort?: TableHeaderCellProps["onSort"];
-    searchValue?: string;
-    onSearchChange?: (value: string) => void;
-    content?: React.ReactNode;
-  };
+type Props<T> = {
+  isLoading?: boolean;
+  columns: Column<T>[];
+  rows: T[];
+  actions?: TableRowActionsProps["actions"];
+  bulkActions?: TableRowActionsProps["actions"];
+  onSelectRow?: (selectedRows: T[]) => void;
+  selectedRows?: T[];
+  onSort?: TableHeaderCellProps["onSort"];
+  searchValue?: string;
+  onSearchChange?: (value: string) => void;
+  content?: React.ReactNode;
+  pagination: TablePaginationProps | TablePagerProps;
+};
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
@@ -47,11 +54,7 @@ export const VuiTable = <T extends Row>({
   columns,
   rows,
   actions,
-  currentPage,
-  numPages,
-  onSelectPage,
-  onSelectPreviousPage,
-  onSelectNextPage,
+  pagination,
   selectedRows,
   onSelectRow,
   onSort,
@@ -249,15 +252,15 @@ export const VuiTable = <T extends Row>({
 
       {/* Pagination */}
       <div className={isLoading || isEmpty ? "vuiTablePagination-isDisabled" : undefined}>
-        {currentPage && numPages && onSelectPage && numPages > 1 ? (
+        {isComplexPagination(pagination) ? (
           <>
             <VuiSpacer size="xs" />
-            <VuiTablePagination currentPage={currentPage} numPages={numPages} onSelectPage={onSelectPage} />
+            <VuiTablePagination {...pagination} />
           </>
         ) : (
           <>
             <VuiSpacer size="xs" />
-            <VuiTablePager onSelectPreviousPage={onSelectPreviousPage} onSelectNextPage={onSelectNextPage} />
+            <VuiTablePager {...pagination} />
           </>
         )}
       </div>

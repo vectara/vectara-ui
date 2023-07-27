@@ -26,6 +26,7 @@ const people: Person[] = createFakePeople(152);
 export const Table = () => {
   // Demo state
   const [hasContent, setHasContent] = useState(true);
+  const [hasPager, setHasPager] = useState(true);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -162,9 +163,21 @@ export const Table = () => {
     );
   }
 
+  const pagination = hasPager
+    ? {
+        onSelectPreviousPage: currentPage > 1 ? () => setCurrentPage(currentPage - 1) : undefined,
+        onSelectNextPage: currentPage < numPages ? () => setCurrentPage(currentPage + 1) : undefined
+      }
+    : {
+        currentPage: currentPage,
+        numPages: numPages,
+        onSelectPage: (page: number) => setCurrentPage(page)
+      };
+
   return (
     <>
       <VuiToggle label="Has content" checked={hasContent} onChange={(e) => setHasContent(e.target.checked)} />
+      <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
       <VuiSpacer size="m" />
 
       {/* TODO: Encapsulate all of this state in a table hook */}
@@ -176,9 +189,7 @@ export const Table = () => {
         rows={rows}
         content={content}
         actions={actions}
-        currentPage={currentPage}
-        numPages={numPages}
-        onSelectPage={(page) => setCurrentPage(page)}
+        pagination={pagination}
         selectedRows={selectedRows}
         onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
         onSort={(column, direction) => console.log("Sort", column, direction)}
