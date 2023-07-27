@@ -67,6 +67,7 @@ export const VuiTable = <T extends Row>({
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
 
   const isEmpty = !isLoading && rows.length === 0;
+  const isInteractive = Boolean(!content && (isLoading || isEmpty));
 
   const allRowsSelected = selectedRows?.length === rows.length;
   const selectedIds: Record<string, boolean> =
@@ -209,8 +210,8 @@ export const VuiTable = <T extends Row>({
               <th className="vuiTableHeaderSelect">
                 <VuiTableCell>
                   <VuiCheckbox
-                    disabled={isLoading || isEmpty}
-                    checked={isLoading || isEmpty ? false : allRowsSelected}
+                    disabled={!isInteractive}
+                    checked={isInteractive ? allRowsSelected : false}
                     onChange={() => {
                       let newSelectedRows: T[];
 
