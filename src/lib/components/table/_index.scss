@@ -1,5 +1,6 @@
 .vuiTable {
   width: 100%;
+  table-layout: fixed;
 
   thead {
     border-bottom: 1px solid $borderColor;
@@ -41,4 +42,17 @@
 
 .vuiTableManyPagesToken {
   padding: 0 $sizeXs;
+}
+
+.vuiTablePagination-isDisabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.vuiTableHeaderSelect {
+  width: 32px;
+}
+
+.vuiTableHeaderActions {
+  width: 42px;
 }

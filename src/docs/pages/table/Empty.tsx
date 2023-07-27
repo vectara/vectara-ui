@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { VuiBadge, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiLink, VuiText, VuiTextColor } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
-import { createFakePeople } from "./createFakePeople";
 
 type Person = {
   name: string;
@@ -10,37 +9,9 @@ type Person = {
   status: string;
 };
 
-const ROWS_PER_PAGE = 20;
-const people: Person[] = createFakePeople(152);
-
-export const Table = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [numPages, setNumPages] = useState(0);
-  const [rows, setRows] = useState<Person[]>([]);
+export const Empty = () => {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedRows, setSelectedRows] = useState<Person[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Mock request to fetch the rows.
-  useEffect(() => {
-    setIsLoading(true);
-    setSelectedRows([]);
-    const timeout = setTimeout(() => {
-      const filteredPeople = people.filter(({ name }) => {
-        return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
-      });
-
-      const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
-      const endIndex = startIndex + ROWS_PER_PAGE;
-      setNumPages(Math.ceil(filteredPeople.length / ROWS_PER_PAGE));
-      setRows(filteredPeople.slice(startIndex, Math.min(endIndex, filteredPeople.length - 1)));
-      setIsLoading(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [currentPage, searchValue]);
 
   const columns = [
     {
@@ -88,7 +59,7 @@ export const Table = () => {
       render: (person: Person) => {
         if (person.role.length > 0) {
           return (
-            <VuiFlexContainer alignItems="center" spacing="xs" wrap>
+            <VuiFlexContainer alignItems="center" spacing="s">
               <VuiFlexItem grow={false} shrink={false}>
                 {person.role.join(", ")}
               </VuiFlexItem>
@@ -140,21 +111,17 @@ export const Table = () => {
       {/* TODO: Async searching */}
       {/* TODO: Async sorting */}
       <VuiTable
-        isLoading={isLoading}
+        isLoading={false}
         columns={columns}
-        rows={rows}
+        rows={[]}
         actions={actions}
-        currentPage={currentPage}
-        numPages={numPages}
-        onSelectPage={(page) => setCurrentPage(page)}
-        selectedRows={selectedRows}
-        onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
+        onSelectPreviousPage={currentPage > 1 ? () => setCurrentPage(currentPage - 1) : undefined}
+        onSelectNextPage={currentPage < 0 ? () => setCurrentPage(currentPage + 1) : undefined}
+        selectedRows={[]}
+        onSelectRow={() => undefined}
         onSort={(column, direction) => console.log("Sort", column, direction)}
         searchValue={searchValue}
-        onSearchChange={(search) => {
-          setCurrentPage(1);
-          setSearchValue(search);
-        }}
+        onSearchChange={(search) => setSearchValue(search)}
         bulkActions={[
           {
             label: "Edit",
@@ -175,6 +142,13 @@ export const Table = () => {
             }
           }
         ]}
+        emptyState={
+          <VuiText>
+            <p>
+              You don't have any people yet. <VuiLink href="/">Create a person.</VuiLink>
+            </p>
+          </VuiText>
+        }
       />
     </>
   );
