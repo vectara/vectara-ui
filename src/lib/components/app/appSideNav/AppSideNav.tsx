@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../../button/IconButton";
@@ -20,8 +20,6 @@ export type Props = {
   items?: Sections | Tree;
   content?: React.ReactNode;
 };
-
-export const SideNavContext = createContext({ isCollapsed: false });
 
 export const VuiAppSideNav = ({ items = [], content }: Props) => {
   const [isTouched, setIsTouched] = useState(false);
@@ -81,12 +79,11 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
           </>
         )}
 
-        <SideNavContext.Provider value={{ isCollapsed }}>
-          <div className={contentClasses}>
-            {navItems}
-            {content}
-          </div>
-        </SideNavContext.Provider>
+        {/* @ts-expect-error React doesn't support inert yet */}
+        <div className={contentClasses} inert={isCollapsed ? "" : null}>
+          {navItems}
+          {content}
+        </div>
       </div>
     </div>
   );
