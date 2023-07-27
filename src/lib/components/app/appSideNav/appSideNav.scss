@@ -66,6 +66,6 @@
 }
 
 .vuiAppSideNavLink--active {
-  background-color: transparentize($colorPrimary, 0.9);
+  background-color: $colorPrimaryLightShade;
   border-radius: $sizeM;
 }
