@@ -8,7 +8,7 @@ type Props = {
 
 export const VuiTableContent = ({ columnCount, children }: Props) => {
   return (
-    <tr>
+    <tr className="vuiTableRow--inert">
       <td className="vuiTableContent" colSpan={columnCount}>
         <VuiSpacer size="m" />
 

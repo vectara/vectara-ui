@@ -10,7 +10,7 @@
     border-bottom: 1px solid $borderColorLight;
 
     &.vuiTableRow-isBeingActedUpon,
-    &:hover {
+    &:not(.vuiTableRow--inert):hover {
       background-color: $colorLightShade;
     }
   }
