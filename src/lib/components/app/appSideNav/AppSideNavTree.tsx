@@ -6,10 +6,14 @@ import { VuiAppSideNavLink } from "./AppSideNavLink";
 import { Tree, TreeItem } from "../types";
 
 export const buildTree = (items: Tree) => {
+  return <div className="vuiAppSideNavTree">{buildTreeItems(items)}</div>;
+};
+
+const buildTreeItems = (items: Tree) => {
   return items.map(({ name, pages, path, iconBefore, iconAfter, isActive, ...rest }) => {
     if (path) {
       if (pages) {
-        const childPages = buildTree(pages);
+        const childPages = buildTreeItems(pages);
 
         return (
           <AppSideNavTreeSection

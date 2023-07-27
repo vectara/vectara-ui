@@ -8,7 +8,7 @@ import { buildTree } from "./AppSideNavTree";
 import { Sections, Tree } from "../types";
 
 export const buildSideNavItems = (items: Sections | Tree) => {
-  return isTree(items) ? <div className="vuiAppSideNavTree">{buildTree(items)}</div> : buildSections(items);
+  return isTree(items) ? buildTree(items) : buildSections(items);
 };
 
 // Type guard to determine if we have a Tree or Sections.

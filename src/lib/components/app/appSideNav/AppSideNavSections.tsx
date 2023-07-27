@@ -2,17 +2,21 @@ import { Sections } from "../types";
 import { VuiAppSideNavLink } from "./AppSideNavLink";
 
 export const buildSections = (sections: Sections) => {
-  return sections.map(({ name, pages }) => {
-    const renderedPages = pages.map(({ name, path }) => (
-      <VuiAppSideNavLink key={path ?? name} path={path} name={name} />
-    ));
+  return (
+    <div className="vuiAppSideNavSections">
+      {sections.map(({ name, pages }) => {
+        const renderedPages = pages.map(({ name, path }) => (
+          <VuiAppSideNavLink key={path ?? name} path={path} name={name} />
+        ));
 
-    return (
-      <VuiAppSideNavSection key={name} name={name}>
-        {renderedPages}
-      </VuiAppSideNavSection>
-    );
-  });
+        return (
+          <VuiAppSideNavSection key={name} name={name}>
+            {renderedPages}
+          </VuiAppSideNavSection>
+        );
+      })}
+    </div>
+  );
 };
 
 type Props = {

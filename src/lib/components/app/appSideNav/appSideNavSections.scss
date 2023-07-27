@@ -1,3 +1,13 @@
+.vuiAppSideNavSections {
+  margin-top: $sizeL;
+}
+
+.vuiAppSideNavContent-isHidden {
+  .vuiAppSideNavSections {
+    margin-top: $sizeXs;
+  }
+}
+
 .vuiAppSideNavSection + .vuiAppSideNavSection {
   margin-top: $sizeL;
 }
