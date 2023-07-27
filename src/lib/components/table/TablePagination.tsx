@@ -23,7 +23,7 @@ export const VuiTablePagination = ({ currentPage, numPages, onSelectPage, isDisa
   });
 
   return (
-    <VuiFlexContainer justifyContent="center" alignItems="center" spacing="none">
+    <VuiFlexContainer justifyContent="start" alignItems="center" spacing="none">
       <VuiFlexItem grow={false} shrink={false}>
         <VuiButtonTertiary
           icon={
