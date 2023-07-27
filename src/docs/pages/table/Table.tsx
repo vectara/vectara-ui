@@ -30,6 +30,8 @@ export const Table = () => {
   const [hasError, setHasError] = useState(false);
   const [hasData, setHasData] = useState(true);
   const [hasPager, setHasPager] = useState(true);
+  const [canSelectRows, setCanSelectRows] = useState(true);
+  const [canSearch, setCanSearch] = useState(true);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -184,45 +186,11 @@ export const Table = () => {
     );
   }
 
-  const pagination = hasPager
+  const selection = canSelectRows
     ? {
-        onSelectPreviousPage: currentPage > 1 ? () => setCurrentPage(currentPage - 1) : undefined,
-        onSelectNextPage: currentPage < numPages ? () => setCurrentPage(currentPage + 1) : undefined
-      }
-    : {
-        currentPage: currentPage,
-        numPages: numPages,
-        onSelectPage: (page: number) => setCurrentPage(page)
-      };
-
-  // TODO: Count of hits (7 of many)
-  // TODO: Placeholder for search
-  return (
-    <>
-      <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
-      <VuiToggle label="Has data" checked={hasData} onChange={(e) => setHasData(e.target.checked)} />
-      <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
-      <VuiSpacer size="m" />
-
-      {/* TODO: Encapsulate search and sort state in a table hook that can be configured with a fetch callback */}
-      {/* TODO: Async sorting */}
-
-      <VuiTable
-        isLoading={isLoading}
-        columns={columns}
-        rows={rows}
-        content={content}
-        actions={actions}
-        pagination={pagination}
-        selectedRows={selectedRows}
-        onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
-        onSort={(column, direction) => console.log("Sort", column, direction)}
-        searchValue={searchValue}
-        onSearchChange={(search) => {
-          setCurrentPage(1);
-          setSearchValue(search);
-        }}
-        bulkActions={[
+        selectedRows,
+        onSelectRow: (selectedRows: Person[]) => setSelectedRows(selectedRows),
+        bulkActions: [
           {
             label: "Edit",
             onClick: (people: Person[]) => {
@@ -241,7 +209,54 @@ export const Table = () => {
               console.log("Delete", people);
             }
           }
-        ]}
+        ]
+      }
+    : undefined;
+
+  const search = canSearch
+    ? {
+        searchValue,
+        searchPlaceholder: "Search people",
+        onSearchChange: (search: string) => {
+          setCurrentPage(1);
+          setSearchValue(search);
+        }
+      }
+    : undefined;
+
+  const pagination = hasPager
+    ? {
+        onSelectPreviousPage: currentPage > 1 ? () => setCurrentPage(currentPage - 1) : undefined,
+        onSelectNextPage: currentPage < numPages ? () => setCurrentPage(currentPage + 1) : undefined
+      }
+    : {
+        currentPage: currentPage,
+        numPages: numPages,
+        onSelectPage: (page: number) => setCurrentPage(page)
+      };
+
+  return (
+    <>
+      <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
+      <VuiToggle label="Has data" checked={hasData} onChange={(e) => setHasData(e.target.checked)} />
+      <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
+      <VuiToggle label="Can select rows" checked={canSelectRows} onChange={(e) => setCanSelectRows(e.target.checked)} />
+      <VuiToggle label="Can search" checked={canSearch} onChange={(e) => setCanSearch(e.target.checked)} />
+      <VuiSpacer size="m" />
+
+      {/* TODO: Encapsulate search and sort state in a table hook that can be configured with a fetch callback */}
+      {/* TODO: Async sorting */}
+
+      <VuiTable
+        isLoading={isLoading}
+        columns={columns}
+        rows={rows}
+        content={content}
+        actions={actions}
+        pagination={pagination}
+        selection={selection}
+        onSort={(column, direction) => console.log("Sort", column, direction)}
+        search={search}
       />
     </>
   );

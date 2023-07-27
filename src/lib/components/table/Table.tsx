@@ -35,14 +35,23 @@ type Props<T> = {
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps["actions"];
+  pagination: Pagination | Pager;
+  selection?: Selection<T>;
+  search?: Search;
+  onSort?: TableHeaderCellProps["onSort"];
+  content?: React.ReactNode;
+};
+
+type Selection<T> = {
   bulkActions?: TableRowActionsProps["actions"];
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
-  onSort?: TableHeaderCellProps["onSort"];
+};
+
+type Search = {
   searchValue?: string;
+  searchPlaceholder?: string;
   onSearchChange?: (value: string) => void;
-  content?: React.ReactNode;
-  pagination: Pagination | Pager;
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -53,16 +62,16 @@ export const VuiTable = <T extends Row>({
   rows,
   actions,
   pagination,
-  selectedRows,
-  onSelectRow,
+  selection,
+  search,
   onSort,
-  searchValue,
-  onSearchChange,
-  bulkActions,
   content,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
+
+  const { bulkActions, onSelectRow, selectedRows } = selection || {};
+  const { searchValue, searchPlaceholder, onSearchChange } = search || {};
 
   const isEmpty = !isLoading && rows.length === 0;
   const isInteractive = Boolean(!content && !isLoading && !isEmpty);
@@ -164,13 +173,18 @@ export const VuiTable = <T extends Row>({
 
   return (
     <>
-      {(hasSearch || hasBulkActions) && (
+      {(hasSearch || (hasBulkActions && selectedRows && selectedRows.length > 0)) && (
         <>
           <VuiFlexContainer spacing="xl" justifyContent="spaceBetween" alignItems="center">
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
-                <VuiTextInput fullWidth value={searchValue} onChange={(event) => onSearchChange(event.target.value)} />
+                <VuiTextInput
+                  placeholder={searchPlaceholder}
+                  fullWidth
+                  value={searchValue}
+                  onChange={(event) => onSearchChange(event.target.value)}
+                />
               </VuiFlexItem>
             )}
 
