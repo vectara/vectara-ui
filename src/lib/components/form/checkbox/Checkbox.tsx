@@ -6,9 +6,10 @@ type Props = {
   onChange: () => void;
   label?: string;
   id?: string;
+  disabled?: boolean;
 };
 
-export const VuiCheckbox = ({ checked, onChange, label, id, ...rest }: Props) => {
+export const VuiCheckbox = ({ checked, onChange, label, id, disabled, ...rest }: Props) => {
   // Enable a lazy developer to just use the label as the ID,
   // though this risks accidental duplication of IDs.
   const idOrLabel = id ?? label;
@@ -20,6 +21,7 @@ export const VuiCheckbox = ({ checked, onChange, label, id, ...rest }: Props) =>
       type="checkbox"
       checked={checked}
       onChange={onChange}
+      disabled={disabled}
       {...rest}
     />
   );

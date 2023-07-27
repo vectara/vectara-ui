@@ -1,7 +1,19 @@
 import { useEffect, useState } from "react";
-import { VuiBadge, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiLink, VuiText, VuiTextColor } from "../../../lib";
+import {
+  VuiBadge,
+  VuiCopyButton,
+  VuiFlexContainer,
+  VuiFlexItem,
+  VuiIcon,
+  VuiLink,
+  VuiSpacer,
+  VuiText,
+  VuiTextColor,
+  VuiToggle
+} from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
+import { BiError } from "react-icons/bi";
 
 type Person = {
   name: string;
@@ -10,13 +22,20 @@ type Person = {
   status: string;
 };
 
-const TOTAL_ROWS = 152;
 const ROWS_PER_PAGE = 20;
-const NUM_PAGES = Math.ceil(TOTAL_ROWS / ROWS_PER_PAGE);
-const people: Person[] = createFakePeople(TOTAL_ROWS);
+const people: Person[] = createFakePeople(152);
 
 export const Table = () => {
+  // Demo state
+  const [hasError, setHasError] = useState(false);
+  const [hasData, setHasData] = useState(true);
+  const [hasPager, setHasPager] = useState(true);
+  const [canSelectRows, setCanSelectRows] = useState(true);
+  const [canSearch, setCanSearch] = useState(true);
+
+  // Table state
   const [isLoading, setIsLoading] = useState(true);
+  const [numPages, setNumPages] = useState(0);
   const [rows, setRows] = useState<Person[]>([]);
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
@@ -27,16 +46,23 @@ export const Table = () => {
     setIsLoading(true);
     setSelectedRows([]);
     const timeout = setTimeout(() => {
+      const filteredPeople = hasData
+        ? people.filter(({ name }) => {
+            return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+          })
+        : [];
+
       const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
       const endIndex = startIndex + ROWS_PER_PAGE;
-      setRows(people.slice(startIndex, Math.min(endIndex, people.length - 1)));
+      setNumPages(Math.ceil(filteredPeople.length / ROWS_PER_PAGE));
+      setRows(filteredPeople.slice(startIndex, Math.min(endIndex, filteredPeople.length - 1)));
       setIsLoading(false);
     }, 2000);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [currentPage]);
+  }, [currentPage, searchValue, hasData]);
 
   const columns = [
     {
@@ -84,7 +110,7 @@ export const Table = () => {
       render: (person: Person) => {
         if (person.role.length > 0) {
           return (
-            <VuiFlexContainer alignItems="center" spacing="s">
+            <VuiFlexContainer alignItems="center" spacing="xs" wrap>
               <VuiFlexItem grow={false} shrink={false}>
                 {person.role.join(", ")}
               </VuiFlexItem>
@@ -130,25 +156,41 @@ export const Table = () => {
     }
   ];
 
-  return (
-    <>
-      {/* TODO: Encapsulate all of this state in a table hook */}
-      {/* TODO: Async searching */}
-      {/* TODO: Async sorting */}
-      <VuiTable
-        isLoading={isLoading}
-        columns={columns}
-        rows={rows}
-        actions={actions}
-        currentPage={currentPage}
-        numPages={NUM_PAGES}
-        onSelectPage={(page) => setCurrentPage(page)}
-        selectedRows={selectedRows}
-        onSelectRow={(selectedRows) => setSelectedRows(selectedRows)}
-        onSort={(column, direction) => console.log("Sort", column, direction)}
-        searchValue={searchValue}
-        onSearchChange={(search) => setSearchValue(search)}
-        bulkActions={[
+  let content;
+
+  if (hasError) {
+    content = (
+      <>
+        <VuiFlexItem grow={false}>
+          <VuiIcon color="danger">
+            <BiError />
+          </VuiIcon>
+        </VuiFlexItem>
+
+        <VuiFlexItem grow={false}>
+          <VuiText>
+            <p>
+              <VuiTextColor color="danger">Couldn't retrieve data</VuiTextColor>
+            </p>
+          </VuiText>
+        </VuiFlexItem>
+      </>
+    );
+  } else if (!isLoading && !searchValue && !rows.length) {
+    content = (
+      <VuiText>
+        <p>
+          You don't have any people yet. <VuiLink href="/">Create a person.</VuiLink>
+        </p>
+      </VuiText>
+    );
+  }
+
+  const selection = canSelectRows
+    ? {
+        selectedRows,
+        onSelectRow: (selectedRows: Person[]) => setSelectedRows(selectedRows),
+        bulkActions: [
           {
             label: "Edit",
             onClick: (people: Person[]) => {
@@ -167,7 +209,54 @@ export const Table = () => {
               console.log("Delete", people);
             }
           }
-        ]}
+        ]
+      }
+    : undefined;
+
+  const search = canSearch
+    ? {
+        searchValue,
+        searchPlaceholder: "Search people",
+        onSearchChange: (search: string) => {
+          setCurrentPage(1);
+          setSearchValue(search);
+        }
+      }
+    : undefined;
+
+  const pagination = hasPager
+    ? {
+        onSelectPreviousPage: currentPage > 1 ? () => setCurrentPage(currentPage - 1) : undefined,
+        onSelectNextPage: currentPage < numPages ? () => setCurrentPage(currentPage + 1) : undefined
+      }
+    : {
+        currentPage: currentPage,
+        numPages: numPages,
+        onSelectPage: (page: number) => setCurrentPage(page)
+      };
+
+  return (
+    <>
+      <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
+      <VuiToggle label="Has data" checked={hasData} onChange={(e) => setHasData(e.target.checked)} />
+      <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
+      <VuiToggle label="Can select rows" checked={canSelectRows} onChange={(e) => setCanSelectRows(e.target.checked)} />
+      <VuiToggle label="Can search" checked={canSearch} onChange={(e) => setCanSearch(e.target.checked)} />
+      <VuiSpacer size="m" />
+
+      {/* TODO: Encapsulate search and sort state in a table hook that can be configured with a fetch callback */}
+      {/* TODO: Async sorting */}
+
+      <VuiTable
+        isLoading={isLoading}
+        columns={columns}
+        rows={rows}
+        content={content}
+        actions={actions}
+        pagination={pagination}
+        selection={selection}
+        onSort={(column, direction) => console.log("Sort", column, direction)}
+        search={search}
       />
     </>
   );

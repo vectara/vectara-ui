@@ -3,61 +3,78 @@ import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
 import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeaderCell";
-import { Props as TablePaginationProps, VuiTablePagination } from "./TablePagination";
-import { Props as TablePagerProps, VuiTablePager } from "./TablePager";
+import { Pagination, VuiTablePagination } from "./TablePagination";
+import { Pager, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiTableBulkActions } from "./TableBulkActions";
-import { useState } from "react";
+import React, { useState } from "react";
 import { VuiSpinner } from "../spinner/Spinner";
+import { VuiTableContent } from "./TableContent";
+
+// Type guard to determine type of pagination.
+const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagination => {
+  return (pagination as Pagination).onSelectPage !== undefined;
+};
 
 type Row = Record<string, any> & {
-  id: string;
+  id: string | number;
 };
 
 type Column<T> = {
   name: string;
+  width?: string;
   header: TableHeaderCellProps["header"];
   render?: (row: T) => React.ReactNode;
 };
 
-type Props<T> = Partial<TablePaginationProps> &
-  Partial<TablePagerProps> & {
-    isLoading?: boolean;
-    columns: Column<T>[];
-    rows?: T[];
-    actions?: TableRowActionsProps["actions"];
-    bulkActions?: TableRowActionsProps["actions"];
-    onSelectRow?: (selectedRows: T[]) => void;
-    selectedRows?: T[];
-    onSort?: TableHeaderCellProps["onSort"];
-    searchValue?: string;
-    onSearchChange?: (value: string) => void;
-  };
+type Props<T> = {
+  isLoading?: boolean;
+  columns: Column<T>[];
+  rows: T[];
+  actions?: TableRowActionsProps["actions"];
+  pagination: Pagination | Pager;
+  selection?: Selection<T>;
+  search?: Search;
+  onSort?: TableHeaderCellProps["onSort"];
+  content?: React.ReactNode;
+};
+
+type Selection<T> = {
+  bulkActions?: TableRowActionsProps["actions"];
+  onSelectRow?: (selectedRows: T[]) => void;
+  selectedRows?: T[];
+};
+
+type Search = {
+  searchValue?: string;
+  searchPlaceholder?: string;
+  onSearchChange?: (value: string) => void;
+};
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiTable = <T extends Row>({
   isLoading,
   columns,
-  rows = [],
+  rows,
   actions,
-  currentPage,
-  numPages,
-  onSelectPage,
-  onSelectPreviousPage,
-  onSelectNextPage,
-  selectedRows,
-  onSelectRow,
+  pagination,
+  selection,
+  search,
   onSort,
-  searchValue,
-  onSearchChange,
-  bulkActions,
+  content,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
+
+  const { bulkActions, onSelectRow, selectedRows } = selection || {};
+  const { searchValue, searchPlaceholder, onSearchChange } = search || {};
+
+  const isEmpty = !isLoading && rows.length === 0;
+  const isInteractive = Boolean(!content && !isLoading && !isEmpty);
 
   const allRowsSelected = selectedRows?.length === rows.length;
   const selectedIds: Record<string, boolean> =
@@ -68,30 +85,35 @@ export const VuiTable = <T extends Row>({
 
   const hasSearch = searchValue !== undefined && onSearchChange;
   const hasBulkActions = bulkActions !== undefined;
+  const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0);
 
   let tableContent;
 
-  if (isLoading) {
+  if (content) {
+    tableContent = <VuiTableContent columnCount={columnCount}>{content}</VuiTableContent>;
+  } else if (isLoading) {
     tableContent = (
-      <tr>
-        <td colSpan={columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0)}>
-          <VuiSpacer size="xs" />
+      <VuiTableContent columnCount={columnCount}>
+        <VuiFlexItem grow={false}>
+          <VuiSpinner size="xs" />
+        </VuiFlexItem>
 
-          <VuiFlexContainer justifyContent="center" alignItems="center" spacing="xs">
-            <VuiFlexItem grow={false}>
-              <VuiSpinner size="xs" />
-            </VuiFlexItem>
-
-            <VuiFlexItem grow={false}>
-              <VuiText>
-                <p>Loading</p>
-              </VuiText>
-            </VuiFlexItem>
-          </VuiFlexContainer>
-
-          <VuiSpacer size="xs" />
-        </td>
-      </tr>
+        <VuiFlexItem grow={false}>
+          <VuiText>
+            <p>Loading</p>
+          </VuiText>
+        </VuiFlexItem>
+      </VuiTableContent>
+    );
+  } else if (searchValue && isEmpty) {
+    tableContent = (
+      <VuiTableContent columnCount={columnCount}>
+        <VuiFlexItem grow={false}>
+          <VuiText>
+            <p>No matches found</p>
+          </VuiText>
+        </VuiFlexItem>
+      </VuiTableContent>
     );
   } else {
     tableContent = rows.map((row) => {
@@ -151,13 +173,18 @@ export const VuiTable = <T extends Row>({
 
   return (
     <>
-      {(hasSearch || hasBulkActions) && (
+      {(hasSearch || (hasBulkActions && selectedRows && selectedRows.length > 0)) && (
         <>
           <VuiFlexContainer spacing="xl" justifyContent="spaceBetween" alignItems="center">
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
-                <VuiTextInput fullWidth value={searchValue} onChange={(event) => onSearchChange(event.target.value)} />
+                <VuiTextInput
+                  placeholder={searchPlaceholder}
+                  fullWidth
+                  value={searchValue}
+                  onChange={(event) => onSearchChange(event.target.value)}
+                />
               </VuiFlexItem>
             )}
 
@@ -192,10 +219,11 @@ export const VuiTable = <T extends Row>({
           <tr>
             {/* Checkbox column */}
             {onSelectRow && (
-              <th>
+              <th className="vuiTableHeaderSelect">
                 <VuiTableCell>
                   <VuiCheckbox
-                    checked={allRowsSelected}
+                    disabled={!isInteractive}
+                    checked={isInteractive ? allRowsSelected : false}
                     onChange={() => {
                       let newSelectedRows: T[];
 
@@ -217,17 +245,18 @@ export const VuiTable = <T extends Row>({
 
             {/* Row info */}
             {columns.map((column) => {
-              const { name, header } = column;
+              const { name, header, width } = column;
+              const styles = width ? { width } : undefined;
 
               return (
-                <th key={name}>
+                <th key={name} style={styles}>
                   <VuiTableHeaderCell name={name} header={header} onSort={onSort} />
                 </th>
               );
             })}
 
             {/* Actions column */}
-            {actions && <th />}
+            {actions && <th className="vuiTableHeaderActions" />}
           </tr>
         </thead>
 
@@ -235,15 +264,15 @@ export const VuiTable = <T extends Row>({
       </table>
 
       {/* Pagination */}
-      {currentPage && numPages && onSelectPage && numPages > 1 ? (
+      {isComplexPagination(pagination) ? (
         <>
           <VuiSpacer size="xs" />
-          <VuiTablePagination currentPage={currentPage} numPages={numPages} onSelectPage={onSelectPage} />
+          <VuiTablePagination isDisabled={!isInteractive} {...pagination} />
         </>
       ) : (
         <>
           <VuiSpacer size="xs" />
-          <VuiTablePager onSelectPreviousPage={onSelectPreviousPage} onSelectNextPage={onSelectNextPage} />
+          <VuiTablePager isDisabled={!isInteractive} {...pagination} />
         </>
       )}
     </>
