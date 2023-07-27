@@ -20,6 +20,7 @@ export const buildTree = (items: Tree) => {
             iconBefore={iconBefore}
             iconAfter={iconAfter}
             isActive={isActive}
+            {...rest}
           >
             {childPages}
           </AppSideNavTreeSection>
@@ -40,14 +41,14 @@ export const buildTree = (items: Tree) => {
     }
 
     return (
-      <div key={name} className="vuiAppSideNavTreeSection__subTitle">
+      <div key={name} className="vuiAppSideNavTreeSection__subTitle" {...rest}>
         {name}
       </div>
     );
   });
 };
 
-type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isActive"> & {
+type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isActive" | "data-testid"> & {
   children: React.ReactNode;
 };
 

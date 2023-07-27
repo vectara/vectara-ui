@@ -11,6 +11,7 @@ export type TreeItem = {
   iconAfter?: React.ReactNode;
   isActive?: boolean;
   className?: string;
+  "data-testid"?: string;
 };
 
 export type Sections = Array<{
