@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { VuiIcon } from "../../icon/Icon";
 import { VuiIconButton } from "../../button/IconButton";
 import { VuiAppSideNavLink } from "./AppSideNavLink";
-import { SideNavContext } from "./AppSideNav";
 import { Tree, TreeItem } from "../types";
 
 export const buildTree = (items: Tree) => {
@@ -53,7 +52,6 @@ type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isAc
 };
 
 const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, isActive, ...rest }: Props) => {
-  const { isCollapsed } = useContext(SideNavContext);
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -72,7 +70,6 @@ const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, is
         onClick={() => setIsOpen(!isOpen)}
         color="neutral"
         icon={<VuiIcon>{isOpen ? <BiChevronUp /> : <BiChevronDown />}</VuiIcon>}
-        tabIndex={isCollapsed ? -1 : undefined}
       />
 
       {isOpen && <div className="vuiAppSideNavTreeChildren">{children}</div>}

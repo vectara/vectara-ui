@@ -9,6 +9,7 @@ import {
   VuiFlexContainer,
   VuiFlexItem,
   VuiHorizontalRule,
+  VuiLink,
   VuiSelect,
   VuiSpacer,
   VuiText,
@@ -89,7 +90,9 @@ export const App = () => {
                 <VuiSpacer size="l" />
                 <VuiText>
                   <p>
-                    <VuiTextColor color="subdued">Made with love on Terra</VuiTextColor>
+                    <VuiTextColor color="subdued">
+                      Made with love on <VuiLink href="/">Terra</VuiLink>
+                    </VuiTextColor>
                   </p>
                 </VuiText>
               </>
