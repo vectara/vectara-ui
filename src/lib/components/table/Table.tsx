@@ -12,6 +12,7 @@ import { VuiTextColor } from "../typography/TextColor";
 import { VuiTableBulkActions } from "./TableBulkActions";
 import React, { useState } from "react";
 import { VuiSpinner } from "../spinner/Spinner";
+import { VuiTableContent } from "./TableContent";
 
 type Row = Record<string, any> & {
   id: string | number;
@@ -36,7 +37,7 @@ type Props<T> = Partial<TablePaginationProps> &
     onSort?: TableHeaderCellProps["onSort"];
     searchValue?: string;
     onSearchChange?: (value: string) => void;
-    emptyState?: React.ReactNode;
+    content?: React.ReactNode;
   };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -57,7 +58,7 @@ export const VuiTable = <T extends Row>({
   searchValue,
   onSearchChange,
   bulkActions,
-  emptyState,
+  content,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
@@ -73,70 +74,35 @@ export const VuiTable = <T extends Row>({
 
   const hasSearch = searchValue !== undefined && onSearchChange;
   const hasBulkActions = bulkActions !== undefined;
+  const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0);
 
   let tableContent;
 
-  if (isLoading) {
+  if (content) {
+    tableContent = <VuiTableContent columnCount={columnCount}>{content}</VuiTableContent>;
+  } else if (isLoading) {
     tableContent = (
-      <tr>
-        <td colSpan={columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0)}>
-          <VuiSpacer size="xs" />
+      <VuiTableContent columnCount={columnCount}>
+        <VuiFlexItem grow={false}>
+          <VuiSpinner size="xs" />
+        </VuiFlexItem>
 
-          <VuiFlexContainer justifyContent="center" alignItems="center" spacing="xs">
-            <VuiFlexItem grow={false}>
-              <VuiSpinner size="xs" />
-            </VuiFlexItem>
-
-            <VuiFlexItem grow={false}>
-              <VuiText>
-                <p>Loading</p>
-              </VuiText>
-            </VuiFlexItem>
-          </VuiFlexContainer>
-
-          <VuiSpacer size="xs" />
-        </td>
-      </tr>
+        <VuiFlexItem grow={false}>
+          <VuiText>
+            <p>Loading</p>
+          </VuiText>
+        </VuiFlexItem>
+      </VuiTableContent>
     );
   } else if (searchValue && isEmpty) {
     tableContent = (
-      <tr>
-        <td colSpan={columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0)}>
-          <VuiSpacer size="xs" />
-
-          <VuiFlexContainer justifyContent="center" alignItems="center" spacing="xs">
-            <VuiFlexItem grow={false}>
-              {emptyState ?? (
-                <VuiText>
-                  <p>No matches found</p>
-                </VuiText>
-              )}
-            </VuiFlexItem>
-          </VuiFlexContainer>
-
-          <VuiSpacer size="xs" />
-        </td>
-      </tr>
-    );
-  } else if (isEmpty) {
-    tableContent = (
-      <tr>
-        <td colSpan={columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0)}>
-          <VuiSpacer size="xs" />
-
-          <VuiFlexContainer justifyContent="center" alignItems="center" spacing="xs">
-            <VuiFlexItem grow={false}>
-              {emptyState ?? (
-                <VuiText>
-                  <p>No data</p>
-                </VuiText>
-              )}
-            </VuiFlexItem>
-          </VuiFlexContainer>
-
-          <VuiSpacer size="xs" />
-        </td>
-      </tr>
+      <VuiTableContent columnCount={columnCount}>
+        <VuiFlexItem grow={false}>
+          <VuiText>
+            <p>No matches found</p>
+          </VuiText>
+        </VuiFlexItem>
+      </VuiTableContent>
     );
   } else {
     tableContent = rows.map((row) => {

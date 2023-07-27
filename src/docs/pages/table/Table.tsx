@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
-import { VuiBadge, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiLink, VuiText, VuiTextColor } from "../../../lib";
+import {
+  VuiBadge,
+  VuiCopyButton,
+  VuiFlexContainer,
+  VuiFlexItem,
+  VuiLink,
+  VuiSpacer,
+  VuiText,
+  VuiTextColor,
+  VuiToggle
+} from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople } from "./createFakePeople";
 
@@ -14,6 +24,10 @@ const ROWS_PER_PAGE = 20;
 const people: Person[] = createFakePeople(152);
 
 export const Table = () => {
+  // Demo state
+  const [hasContent, setHasContent] = useState(true);
+
+  // Table state
   const [isLoading, setIsLoading] = useState(true);
   const [numPages, setNumPages] = useState(0);
   const [rows, setRows] = useState<Person[]>([]);
@@ -26,9 +40,11 @@ export const Table = () => {
     setIsLoading(true);
     setSelectedRows([]);
     const timeout = setTimeout(() => {
-      const filteredPeople = people.filter(({ name }) => {
-        return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
-      });
+      const filteredPeople = hasContent
+        ? people.filter(({ name }) => {
+            return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+          })
+        : [];
 
       const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
       const endIndex = startIndex + ROWS_PER_PAGE;
@@ -40,7 +56,7 @@ export const Table = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [currentPage, searchValue]);
+  }, [currentPage, searchValue, hasContent]);
 
   const columns = [
     {
@@ -134,8 +150,23 @@ export const Table = () => {
     }
   ];
 
+  let content;
+
+  if (!isLoading && !searchValue && !rows.length) {
+    content = (
+      <VuiText>
+        <p>
+          You don't have any people yet. <VuiLink href="/">Create a person.</VuiLink>
+        </p>
+      </VuiText>
+    );
+  }
+
   return (
     <>
+      <VuiToggle label="Has content" checked={hasContent} onChange={(e) => setHasContent(e.target.checked)} />
+      <VuiSpacer size="m" />
+
       {/* TODO: Encapsulate all of this state in a table hook */}
       {/* TODO: Async searching */}
       {/* TODO: Async sorting */}
@@ -143,6 +174,7 @@ export const Table = () => {
         isLoading={isLoading}
         columns={columns}
         rows={rows}
+        content={content}
         actions={actions}
         currentPage={currentPage}
         numPages={numPages}
