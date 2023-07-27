@@ -2,14 +2,14 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiSpacer } from "../spacer/Spacer";
 
 type Props = {
-  columnCount: number;
+  colSpan: number;
   children: React.ReactNode;
 };
 
-export const VuiTableContent = ({ columnCount, children }: Props) => {
+export const VuiTableContent = ({ colSpan, children }: Props) => {
   return (
     <tr className="vuiTableRow--inert">
-      <td className="vuiTableContent" colSpan={columnCount}>
+      <td className="vuiTableContent" colSpan={colSpan}>
         <VuiSpacer size="m" />
 
         <VuiFlexContainer justifyContent="center" alignItems="center" spacing="xs">

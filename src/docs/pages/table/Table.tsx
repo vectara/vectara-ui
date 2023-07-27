@@ -257,6 +257,7 @@ export const Table = () => {
 
       <VuiTable
         isLoading={isLoading}
+        idField="id"
         columns={columns}
         rows={rows}
         content={content}

@@ -19,23 +19,23 @@ const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagi
   return (pagination as Pagination).onSelectPage !== undefined;
 };
 
-type Row = Record<string, any> & {
-  id: string | number;
-};
+type Row = Record<string, any>;
 
 type Column<T> = {
   name: string;
   width?: string;
   header: TableHeaderCellProps["header"];
   render?: (row: T) => React.ReactNode;
+  className?: string;
 };
 
 type Props<T> = {
   isLoading?: boolean;
+  idField: string;
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps["actions"];
-  pagination: Pagination | Pager;
+  pagination?: Pagination | Pager;
   selection?: Selection<T>;
   search?: Search;
   onSort?: TableHeaderCellProps["onSort"];
@@ -58,6 +58,7 @@ type Search = {
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiTable = <T extends Row>({
   isLoading,
+  idField,
   columns,
   rows,
   actions,
@@ -74,12 +75,15 @@ export const VuiTable = <T extends Row>({
   const { searchValue, searchPlaceholder, onSearchChange } = search || {};
 
   const isEmpty = !isLoading && rows.length === 0;
+  // The user interacts with the table rows by selecting them or performing actions on them.
+  // This is only allowed if there is no “content” (which is an error or similar state that
+  // replaces the rows), and if it’s not in a loading state or empty state.
   const isInteractive = Boolean(!content && !isLoading && !isEmpty);
 
   const allRowsSelected = selectedRows?.length === rows.length;
   const selectedIds: Record<string, boolean> =
     selectedRows?.reduce((acc, row) => {
-      acc[row.id] = true;
+      acc[row[idField]] = true;
       return acc;
     }, {} as Record<string, boolean>) || {};
 
@@ -90,10 +94,10 @@ export const VuiTable = <T extends Row>({
   let tableContent;
 
   if (content) {
-    tableContent = <VuiTableContent columnCount={columnCount}>{content}</VuiTableContent>;
+    tableContent = <VuiTableContent colSpan={columnCount}>{content}</VuiTableContent>;
   } else if (isLoading) {
     tableContent = (
-      <VuiTableContent columnCount={columnCount}>
+      <VuiTableContent colSpan={columnCount}>
         <VuiFlexItem grow={false}>
           <VuiSpinner size="xs" />
         </VuiFlexItem>
@@ -107,7 +111,7 @@ export const VuiTable = <T extends Row>({
     );
   } else if (searchValue && isEmpty) {
     tableContent = (
-      <VuiTableContent columnCount={columnCount}>
+      <VuiTableContent colSpan={columnCount}>
         <VuiFlexItem grow={false}>
           <VuiText>
             <p>No matches found</p>
@@ -118,21 +122,21 @@ export const VuiTable = <T extends Row>({
   } else {
     tableContent = rows.map((row) => {
       return (
-        <tr key={row.id} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
+        <tr key={row[idField]} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
           {/* Checkbox column */}
           {onSelectRow && (
             <td>
               <VuiTableCell>
                 <VuiCheckbox
-                  checked={selectedIds[row.id] ?? false}
+                  checked={selectedIds[row[idField]] ?? false}
                   onChange={() => {
-                    if (selectedIds[row.id]) {
-                      delete selectedIds[row.id];
+                    if (selectedIds[row[idField]]) {
+                      delete selectedIds[row[idField]];
                     } else {
-                      selectedIds[row.id] = true;
+                      selectedIds[row[idField]] = true;
                     }
 
-                    onSelectRow(Object.keys(selectedIds).map((id) => rows.find((row) => row.id === id) as T));
+                    onSelectRow(Object.keys(selectedIds).map((id) => rows.find((row) => row[idField] === id) as T));
                   }}
                 />
               </VuiTableCell>
@@ -141,10 +145,10 @@ export const VuiTable = <T extends Row>({
 
           {/* Row info */}
           {columns.map((column) => {
-            const { name, render } = column;
+            const { name, render, className } = column;
 
             return (
-              <td key={name}>
+              <td key={name} className={className}>
                 <VuiTableCell>{render ? render(row) : row[column.name]}</VuiTableCell>
               </td>
             );
@@ -264,7 +268,7 @@ export const VuiTable = <T extends Row>({
       </table>
 
       {/* Pagination */}
-      {isComplexPagination(pagination) ? (
+      {!pagination ? undefined : isComplexPagination(pagination) ? (
         <>
           <VuiSpacer size="xs" />
           <VuiTablePagination isDisabled={!isInteractive} {...pagination} />
