@@ -19,6 +19,7 @@ type Row = Record<string, any> & {
 
 type Column<T> = {
   name: string;
+  width?: string;
   header: TableHeaderCellProps["header"];
   render?: (row: T) => React.ReactNode;
 };
@@ -262,10 +263,11 @@ export const VuiTable = <T extends Row>({
 
             {/* Row info */}
             {columns.map((column) => {
-              const { name, header } = column;
+              const { name, header, width } = column;
+              const styles = width ? { width } : undefined;
 
               return (
-                <th key={name}>
+                <th key={name} style={styles}>
                   <VuiTableHeaderCell name={name} header={header} onSort={onSort} />
                 </th>
               );
