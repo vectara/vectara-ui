@@ -32,6 +32,7 @@ export const Table = () => {
   const [hasPager, setHasPager] = useState(true);
   const [canSelectRows, setCanSelectRows] = useState(true);
   const [canSearch, setCanSearch] = useState(true);
+  const [areNicknamesVisible, setAreNicknamesVisible] = useState(false);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -79,15 +80,17 @@ export const Table = () => {
             <VuiLink onClick={() => console.log("Clicked", person.name)}>{person.name}</VuiLink>
           </div>
 
-          <div>
-            <VuiText size="xs">
-              <p>
-                <VuiTextColor color="subdued">
-                  Nickname: {person.name[0]}-{person.name.split(" ")[1].slice(0, 4)}
-                </VuiTextColor>
-              </p>
-            </VuiText>
-          </div>
+          {areNicknamesVisible && (
+            <div>
+              <VuiText size="xs">
+                <p>
+                  <VuiTextColor color="subdued">
+                    Nickname: {person.name[0]}-{person.name.split(" ")[1].slice(0, 4)}
+                  </VuiTextColor>
+                </p>
+              </VuiText>
+            </div>
+          )}
         </div>
       )
     },
@@ -242,6 +245,11 @@ export const Table = () => {
       <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
       <VuiToggle label="Can select rows" checked={canSelectRows} onChange={(e) => setCanSelectRows(e.target.checked)} />
       <VuiToggle label="Can search" checked={canSearch} onChange={(e) => setCanSearch(e.target.checked)} />
+      <VuiToggle
+        label="Show nicknames"
+        checked={areNicknamesVisible}
+        onChange={(e) => setAreNicknamesVisible(e.target.checked)}
+      />
       <VuiSpacer size="m" />
 
       {/* TODO: Encapsulate search and sort state in a table hook that can be configured with a fetch callback */}
