@@ -8,7 +8,7 @@ type Props = {
 export const Subsection = ({ title, children }: Props) => {
   return (
     <>
-      <VuiTitle size="xxs">
+      <VuiTitle size="xs">
         <h4>{title}</h4>
       </VuiTitle>
 

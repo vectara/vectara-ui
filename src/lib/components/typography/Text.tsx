@@ -1,15 +1,14 @@
-import classNames from "classnames";
-
 import { ReactNode } from "react";
+import classNames from "classnames";
+import { TEXT_SIZE } from "./types";
 
-const SIZE = ["xs", "s", "m", "l"] as const;
 const TEXT_ALIGN = ["left", "center", "right"] as const;
 
 type Props = {
   className?: string;
   id?: string;
   children?: ReactNode;
-  size?: (typeof SIZE)[number];
+  size?: (typeof TEXT_SIZE)[number];
   align?: (typeof TEXT_ALIGN)[number];
   truncate?: boolean;
 };

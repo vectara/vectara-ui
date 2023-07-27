@@ -1,26 +1,19 @@
 @use "sass:map";
 
-$textFactors: (
-  xxs: 0.75,
-  xs: 0.875,
-  s: 1,
-  m: 1.125,
-  l: 1.25,
-  xl: 1.75,
-  xxl: 2.25
-);
-
-$fontSize: 16px;
-$fontSizeXxs: $fontSize * map.get($textFactors, "xxs");
-$fontSizeXs: $fontSize * map.get($textFactors, "xs");
-$fontSizeS: $fontSize * map.get($textFactors, "s");
-$fontSizeM: $fontSize * map.get($textFactors, "m");
-$fontSizeL: $fontSize * map.get($textFactors, "l");
-$fontSizeXl: $fontSize * map.get($textFactors, "xl");
-$fontSizeXxl: $fontSize * map.get($textFactors, "xxl");
+$fontSizeSmall: 12px;
+$fontSizeStandard: 14px;
+$fontSizeMedium: 16px;
+$fontSizeLarge: 18px;
+$fontSizeXLarge: 24px;
+$fontSizeXxLarge: 32px;
+$fontSizeXxxLarge: 40px;
 
 $colorText: $colorDarkerShade;
 $colorSubdued: $colorDarkShade;
 
 $fontWeightNormal: 400;
 $fontWeightBold: 600;
+
+$labelFontSize: $fontSizeStandard;
+$labelFontWeight: $fontWeightBold;
+$labelColor: $colorText;

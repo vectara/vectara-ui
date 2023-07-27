@@ -7,32 +7,32 @@
   @include truncateText;
 }
 
-@mixin defineTextStyles($factor) {
+@mixin defineTextStyles($fontSize) {
   color: $colorText;
-  font-size: $fontSize * $factor;
+  font-size: $fontSize;
   line-height: 1.4;
 
   p {
-    font-size: $fontSize * $factor;
+    font-size: $fontSize;
     line-height: 1.4;
     margin-bottom: 0;
   }
 
   p + p {
-    margin-top: $sizeS * $factor;
+    margin-top: $sizeXs;
   }
 }
 
 $size: (
-  xs: 0.75,
-  s: 0.875,
-  m: 1,
-  l: 1.125
+  xs: $fontSizeSmall,
+  s: $fontSizeStandard,
+  m: $fontSizeMedium,
+  l: $fontSizeLarge
 );
 
-@each $sizeName, $sizeFactor in $size {
+@each $sizeName, $fontSize in $size {
   .vuiText--#{$sizeName} {
-    @include defineTextStyles($sizeFactor);
+    @include defineTextStyles($fontSize);
   }
 }
 

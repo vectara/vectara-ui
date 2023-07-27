@@ -19,7 +19,7 @@
 
 .vuiAppSideNavTreeSection__subTitle {
   @include appSideNavItem;
-  font-size: $fontSizeXxs;
+  font-size: $fontSizeSmall;
   font-weight: $fontWeightBold;
   color: $colorDarkShade;
 }

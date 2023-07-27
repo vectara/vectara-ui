@@ -5,7 +5,7 @@ $appSideNavLinkSpacing: $sizeXxs + 2px;
 @mixin appSideNavItem {
   display: block;
   color: $colorText;
-  font-size: $fontSizeXs;
+  font-size: $fontSizeStandard;
   padding: 0 $sizeM;
   margin-left: -$sizeM;
   padding-top: $appSideNavLinkSpacing;

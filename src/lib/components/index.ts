@@ -49,7 +49,7 @@ import { VuiTabs } from "./tabs/Tabs";
 import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
-import { TEXT_COLOR, TITLE_SIZE } from "./typography/types";
+import { TEXT_COLOR, TEXT_SIZE, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 
@@ -77,6 +77,7 @@ export {
   SPINNER_SIZE,
   TAB_SIZE,
   TEXT_COLOR,
+  TEXT_SIZE,
   TITLE_SIZE,
   VuiAccountMenu,
   VuiAppContent,
