@@ -52,6 +52,7 @@ type Search = {
   searchValue?: string;
   searchPlaceholder?: string;
   onSearchChange?: (value: string) => void;
+  "data-testid"?: string;
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -188,6 +189,7 @@ export const VuiTable = <T extends Row>({
                   fullWidth
                   value={searchValue}
                   onChange={(event) => onSearchChange(event.target.value)}
+                  data-testid={search?.["data-testid"]}
                 />
               </VuiFlexItem>
             )}
