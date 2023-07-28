@@ -13,13 +13,12 @@ import React, { useState } from "react";
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
+import { Row } from "./types";
 
 // Type guard to determine type of pagination.
 const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagination => {
   return (pagination as Pagination).onSelectPage !== undefined;
 };
-
-type Row = Record<string, any>;
 
 type Column<T> = {
   name: string;
@@ -34,7 +33,7 @@ type Props<T> = {
   idField: string;
   columns: Column<T>[];
   rows: T[];
-  actions?: TableRowActionsProps["actions"];
+  actions?: TableRowActionsProps<T>["actions"];
   pagination?: Pagination | Pager;
   selection?: Selection<T>;
   search?: Search;
@@ -44,7 +43,7 @@ type Props<T> = {
 };
 
 type Selection<T> = {
-  bulkActions?: TableRowActionsProps["actions"];
+  bulkActions?: TableRowActionsProps<T>["actions"];
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
 };
