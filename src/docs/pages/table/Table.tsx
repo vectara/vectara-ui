@@ -42,11 +42,10 @@ export const Table = () => {
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Mock request to fetch the rows.
-  useEffect(() => {
+  const fetchPeople = () => {
     setIsLoading(true);
     setSelectedRows([]);
-    const timeout = setTimeout(() => {
+    return setTimeout(() => {
       const filteredPeople = hasData
         ? people.filter(({ name }) => {
             return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
@@ -59,11 +58,19 @@ export const Table = () => {
       setRows(filteredPeople.slice(startIndex, Math.min(endIndex, filteredPeople.length - 1)));
       setIsLoading(false);
     }, 2000);
+  };
 
+  // Mock request to fetch the rows.
+  useEffect(() => {
+    const timeout = fetchPeople();
     return () => {
       clearTimeout(timeout);
     };
   }, [currentPage, searchValue, hasData]);
+
+  const onReload = () => {
+    fetchPeople();
+  };
 
   const columns = [
     {
@@ -240,17 +247,41 @@ export const Table = () => {
 
   return (
     <>
-      <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
-      <VuiToggle label="Has data" checked={hasData} onChange={(e) => setHasData(e.target.checked)} />
-      <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
-      <VuiToggle label="Can select rows" checked={canSelectRows} onChange={(e) => setCanSelectRows(e.target.checked)} />
-      <VuiToggle label="Can search" checked={canSearch} onChange={(e) => setCanSearch(e.target.checked)} />
-      <VuiToggle
-        label="Show nicknames"
-        checked={areNicknamesVisible}
-        onChange={(e) => setAreNicknamesVisible(e.target.checked)}
-      />
-      <VuiSpacer size="m" />
+      <VuiFlexContainer wrap spacing="l">
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Has error" checked={hasError} onChange={(e) => setHasError(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Has data" checked={hasData} onChange={(e) => setHasData(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Has pager" checked={hasPager} onChange={(e) => setHasPager(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Can select rows"
+            checked={canSelectRows}
+            onChange={(e) => setCanSelectRows(e.target.checked)}
+          />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Can search" checked={canSearch} onChange={(e) => setCanSearch(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Show nicknames"
+            checked={areNicknamesVisible}
+            onChange={(e) => setAreNicknamesVisible(e.target.checked)}
+          />
+        </VuiFlexItem>
+      </VuiFlexContainer>
+
+      <VuiSpacer size="xl" />
 
       {/* TODO: Encapsulate search and sort state in a table hook that can be configured with a fetch callback */}
       {/* TODO: Async sorting */}
@@ -265,6 +296,7 @@ export const Table = () => {
         pagination={pagination}
         selection={selection}
         onSort={(column, direction) => console.log("Sort", column, direction)}
+        onReload={onReload}
         search={search}
       />
     </>

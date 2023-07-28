@@ -8,11 +8,11 @@ import { Pager, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
-import { VuiTextColor } from "../typography/TextColor";
 import { VuiTableBulkActions } from "./TableBulkActions";
 import React, { useState } from "react";
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
+import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
 // Type guard to determine type of pagination.
 const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagination => {
@@ -39,6 +39,7 @@ type Props<T> = {
   selection?: Selection<T>;
   search?: Search;
   onSort?: TableHeaderCellProps["onSort"];
+  onReload?: () => void;
   content?: React.ReactNode;
 };
 
@@ -67,6 +68,7 @@ export const VuiTable = <T extends Row>({
   selection,
   search,
   onSort,
+  onReload,
   content,
   ...rest
 }: Props<T>) => {
@@ -180,7 +182,14 @@ export const VuiTable = <T extends Row>({
     <>
       {(hasSearch || (hasBulkActions && selectedRows && selectedRows.length > 0)) && (
         <>
-          <VuiFlexContainer spacing="xl" justifyContent="spaceBetween" alignItems="center">
+          <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
+            {/* Bulk actions */}
+            {selectedRows && selectedRows.length > 0 && hasBulkActions && (
+              <VuiFlexItem grow={false} shrink={false}>
+                <VuiTableBulkActions selectedRows={selectedRows} actions={bulkActions} />
+              </VuiFlexItem>
+            )}
+
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
@@ -194,24 +203,12 @@ export const VuiTable = <T extends Row>({
               </VuiFlexItem>
             )}
 
-            {/* Selection and bulk actions */}
-            {selectedRows && selectedRows.length > 0 && (
+            {/* Reload */}
+            {onReload && (
               <VuiFlexItem grow={false} shrink={false}>
-                <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
-                  <VuiFlexItem grow={false} shrink={false}>
-                    <VuiText size="s">
-                      <p>
-                        <VuiTextColor color="subdued">{selectedRows.length} selected</VuiTextColor>
-                      </p>
-                    </VuiText>
-                  </VuiFlexItem>
-
-                  {hasBulkActions && (
-                    <VuiFlexItem grow={false} shrink={false}>
-                      <VuiTableBulkActions selectedRows={selectedRows} actions={bulkActions} />
-                    </VuiFlexItem>
-                  )}
-                </VuiFlexContainer>
+                <VuiButtonSecondary color="neutral" onClick={() => onReload()}>
+                  Reload
+                </VuiButtonSecondary>
               </VuiFlexItem>
             )}
           </VuiFlexContainer>

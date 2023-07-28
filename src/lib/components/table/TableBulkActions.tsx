@@ -37,7 +37,7 @@ export const VuiTableBulkActions = ({ selectedRows, actions }: Props) => {
               </VuiIcon>
             }
           >
-            Bulk actions
+            {selectedRows.length} selected
           </VuiButtonSecondary>
         }
       >
