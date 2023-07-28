@@ -179,7 +179,7 @@ export const VuiTable = <T extends Row>({
 
   return (
     <>
-      {(hasSearch || (hasBulkActions && selectedRows && selectedRows.length > 0)) && (
+      {(hasSearch || (hasBulkActions && selectedRows && selectedRows.length > 0) || Boolean(onReload)) && (
         <>
           <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
             {/* Bulk actions */}
