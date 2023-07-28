@@ -1,3 +1,4 @@
+import { ForwardedRef, forwardRef } from "react";
 import { VuiAppSideNav, Props as VuiAppSideNavProps } from "./appSideNav/AppSideNav";
 
 type Props = {
@@ -6,14 +7,18 @@ type Props = {
   navContent?: React.ReactNode;
 };
 
-export const VuiAppLayout = ({ children, navItems, navContent }: Props) => {
-  return (
-    <div className="vuiAppLayout">
-      <div className="vuiAppLayout__sideNav">
-        <VuiAppSideNav items={navItems} content={navContent} />
-      </div>
+export const VuiAppLayout = forwardRef(
+  ({ children, navItems, navContent }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+    return (
+      <div className="vuiAppLayout">
+        <div className="vuiAppLayout__sideNav">
+          <VuiAppSideNav items={navItems} content={navContent} />
+        </div>
 
-      <div className="vuiAppLayout__content">{children}</div>
-    </div>
-  );
-};
+        <div className="vuiAppLayout__content" ref={ref}>
+          {children}
+        </div>
+      </div>
+    );
+  }
+);
