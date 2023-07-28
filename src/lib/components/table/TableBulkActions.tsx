@@ -5,13 +5,14 @@ import { VuiPopover } from "../popover/Popover";
 import { VuiIcon } from "../icon/Icon";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
 import { Action } from "./TableRowActions";
+import { Row } from "./types";
 
-export type Props = {
+export type Props<T> = {
   selectedRows: any;
-  actions: Action[];
+  actions: Action<T>[];
 };
 
-export const VuiTableBulkActions = ({ selectedRows, actions }: Props) => {
+export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Props<T>) => {
   const [isOpen, setIsOpen] = useState(false);
 
   let content;
