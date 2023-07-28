@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
@@ -8,8 +9,7 @@ import { Pager, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
-import { VuiTableBulkActions } from "./TableBulkActions";
-import React, { useState } from "react";
+import { Props as TableBulkActionProps, VuiTableBulkActions } from "./TableBulkActions";
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
@@ -43,7 +43,7 @@ type Props<T> = {
 };
 
 type Selection<T> = {
-  bulkActions?: TableRowActionsProps<T>["actions"];
+  bulkActions?: TableBulkActionProps<T[]>["actions"];
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
 };
