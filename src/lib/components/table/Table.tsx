@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { get } from "lodash";
 import { VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
@@ -55,6 +56,10 @@ type Search = {
   "data-testid"?: string;
 };
 
+const extractId = (row: Record<string, any>, idField: string) => {
+  return get(row, idField);
+};
+
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiTable = <T extends Row>({
@@ -85,7 +90,7 @@ export const VuiTable = <T extends Row>({
   const allRowsSelected = selectedRows?.length === rows.length;
   const selectedIds: Record<string, boolean> =
     selectedRows?.reduce((acc, row) => {
-      acc[row[idField]] = true;
+      acc[extractId(row, idField)] = true;
       return acc;
     }, {} as Record<string, boolean>) || {};
 
@@ -123,22 +128,23 @@ export const VuiTable = <T extends Row>({
     );
   } else {
     tableContent = rows.map((row) => {
+      const rowId = extractId(row, idField);
       return (
-        <tr key={row[idField]} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
+        <tr key={rowId} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
           {/* Checkbox column */}
           {onSelectRow && (
             <td>
               <VuiTableCell>
                 <VuiCheckbox
-                  checked={selectedIds[row[idField]] ?? false}
+                  checked={selectedIds[rowId] ?? false}
                   onChange={() => {
-                    if (selectedIds[row[idField]]) {
-                      delete selectedIds[row[idField]];
+                    if (selectedIds[rowId]) {
+                      delete selectedIds[rowId];
                     } else {
-                      selectedIds[row[idField]] = true;
+                      selectedIds[rowId] = true;
                     }
 
-                    onSelectRow(Object.keys(selectedIds).map((id) => rows.find((row) => row[idField] === id) as T));
+                    onSelectRow(Object.keys(selectedIds).map((id) => rows.find((row) => rowId === id) as T));
                   }}
                 />
               </VuiTableCell>

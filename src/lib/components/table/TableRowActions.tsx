@@ -56,6 +56,7 @@ export const VuiTableRowActions = <T extends Row>({ row, actions, onToggle }: Pr
       <VuiOptionsList
         onSelectOption={() => {
           setIsOpen(false);
+          onToggle(false);
         }}
         options={actionOptions}
       />
