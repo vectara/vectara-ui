@@ -5,7 +5,7 @@ import { OptionListItem } from "./types";
 export type Props<T> = {
   className?: string;
   options: OptionListItem<T>[];
-  onSelectOption: (value: T) => void;
+  onSelectOption?: (value: T) => void;
   selectedOption?: string;
   isSelectable?: boolean;
   isScrollable?: boolean;
@@ -39,7 +39,10 @@ export const VuiOptionsList = <T extends unknown = unknown>({
           label={label}
           color={color}
           href={href}
-          onClick={onClick ?? onSelectOption}
+          onClick={() => {
+            onClick?.(value);
+            onSelectOption?.(value);
+          }}
           isSelectable={isSelectable}
           isSelected={value === selectedOption}
         />

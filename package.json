@@ -59,6 +59,7 @@
     "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.196",
     "@types/prismjs": "^1.26.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.33.0",
