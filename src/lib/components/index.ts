@@ -43,6 +43,7 @@ import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
 import { SPINNER_SIZE } from "./spinner/types";
 import { VuiSummary } from "./summary/Summary";
+import { VuiTable } from "./table/Table";
 import { VuiTab } from "./tabs/Tab";
 import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
 import { VuiTabs } from "./tabs/Tabs";
@@ -120,6 +121,7 @@ export {
   VuiSpacer,
   VuiSpinner,
   VuiSummary,
+  VuiTable,
   VuiTab,
   VuiTabbedRoutes,
   VuiTabs,
