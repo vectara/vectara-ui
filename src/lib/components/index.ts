@@ -37,6 +37,7 @@ import { VuiPrompt } from "./prompt/Prompt";
 import { VuiScreenBlock } from "./screenBlock/ScreenBlock";
 import { VuiSearchInput } from "./searchInput/SearchInput";
 import { VuiSearchResult } from "./searchResult/SearchResult";
+import { VuiSearchSelect } from "./searchSelect/SearchSelect";
 import { VuiSetting } from "./setting/Setting";
 import { VuiSpacer } from "./spacer/Spacer";
 import { SPACER_SIZE } from "./spacer/types";
@@ -116,6 +117,7 @@ export {
   VuiScreenBlock,
   VuiSearchInput,
   VuiSearchResult,
+  VuiSearchSelect,
   VuiSelect,
   VuiSetting,
   VuiSpacer,

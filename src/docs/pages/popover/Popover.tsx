@@ -16,6 +16,7 @@ export const Popover = () => {
     <VuiPopover
       isOpen={isOpen}
       setIsOpen={() => setIsOpen(!isOpen)}
+      header="Tribes"
       button={
         <VuiButtonSecondary
           color="neutral"
@@ -37,7 +38,7 @@ export const Popover = () => {
           setIsOpen(false);
           setSelectedOption(value);
         }}
-        selectedOption={selectedOption}
+        selected={selectedOption}
         options={options}
       />
     </VuiPopover>

@@ -23,6 +23,7 @@ import { popover } from "./pages/popover";
 import { prompt } from "./pages/prompt";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
+import { searchSelect } from "./pages/searchSelect";
 import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
@@ -43,7 +44,7 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 export const categories: Category[] = [
   {
     name: "Controls",
-    pages: [accountMenu, button, copyButton, link, menu, optionsButton, optionsList]
+    pages: [accountMenu, button, copyButton, link, menu, optionsButton, optionsList, searchSelect]
   },
   {
     name: "Form",

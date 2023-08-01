@@ -37,6 +37,7 @@ export const AccountMenu = () => {
           alert(`Selected ${value}`);
         }}
         options={options}
+        size="m"
       />
     </VuiAccountMenu>
   );

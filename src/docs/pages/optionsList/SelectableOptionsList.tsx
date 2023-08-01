@@ -17,15 +17,26 @@ const options = [
 ];
 
 export const SelectableOptionsList = () => {
-  const [selectedOption, setSelectedOption] = useState("a");
+  const [selectedOption, setSelectedOption] = useState(["a", "b"]);
 
   return (
     <VuiOptionsList
       isSelectable
       onSelectOption={(value: string) => {
-        setSelectedOption(value);
+        setSelectedOption((prev) => {
+          const updated = prev.concat();
+          const index = prev.findIndex((item) => item === value);
+
+          if (index !== -1) {
+            updated.splice(index, 1);
+            return updated;
+          }
+
+          updated.push(value);
+          return updated;
+        });
       }}
-      selectedOption={selectedOption}
+      selected={selectedOption}
       options={options}
     />
   );

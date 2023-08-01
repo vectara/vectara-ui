@@ -1,6 +1,7 @@
 .vuiOptionsList {
   display: flex;
   flex-direction: column;
+  font-size: $fontSizeStandard;
 }
 
 .vuiOptionsList--scrollable {
@@ -9,11 +10,22 @@
 }
 
 .vuiOptionsListItem {
-  padding: $sizeXxs $sizeXs;
   background-color: $colorEmptyShade;
 
   &:hover {
     background-color: $colorLightShade;
     text-decoration: underline;
+  }
+}
+
+.vuiOptionsList--s {
+  .vuiOptionsListItem {
+    padding: ($sizeXxs + 1px) $sizeXs;
+  }
+}
+
+.vuiOptionsList--m {
+  .vuiOptionsListItem {
+    padding: ($sizeXxs + 1px) $sizeS;
   }
 }

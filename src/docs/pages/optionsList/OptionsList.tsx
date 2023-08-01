@@ -25,7 +25,7 @@ export const OptionsList = () => {
         setSelectedOption(value);
         alert(`Selected ${value}`);
       }}
-      selectedOption={selectedOption}
+      selected={selectedOption}
       options={options}
     />
   );

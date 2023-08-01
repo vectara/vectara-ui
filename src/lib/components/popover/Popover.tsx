@@ -96,7 +96,7 @@ export const VuiPopover = ({ button: originalButton, children, header, isOpen, s
             preventScrollOnFocus={false}
           >
             <div className="vuiPopover" style={{ top: `${position.top}px`, right: `${position.right}px` }} {...rest}>
-              {header}
+              {header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header}
               {children && <div className="vuiPopoverContent">{children}</div>}
             </div>
           </FocusOn>
