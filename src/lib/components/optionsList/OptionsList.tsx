@@ -6,7 +6,7 @@ export type Props<T> = {
   className?: string;
   options: OptionListItem<T>[];
   onSelectOption?: (value: T) => void;
-  selectedOption?: string;
+  selected?: T | T[];
   isSelectable?: boolean;
   isScrollable?: boolean;
 };
@@ -17,7 +17,7 @@ export const VuiOptionsList = <T extends unknown = unknown>({
   className,
   options,
   onSelectOption,
-  selectedOption,
+  selected,
   isSelectable = false,
   isScrollable = false,
   ...rest
@@ -32,21 +32,24 @@ export const VuiOptionsList = <T extends unknown = unknown>({
 
   return (
     <div className={classes} {...rest}>
-      {options.map(({ value, label, href, onClick, color }) => (
-        <VuiOptionsListItem
-          key={label}
-          value={value}
-          label={label}
-          color={color}
-          href={href}
-          onClick={() => {
-            onClick?.(value);
-            onSelectOption?.(value);
-          }}
-          isSelectable={isSelectable}
-          isSelected={value === selectedOption}
-        />
-      ))}
+      {options.map(({ value, label, href, onClick, color }) => {
+        const isSelected = Array.isArray(selected) ? selected.includes(value) : value === selected;
+        return (
+          <VuiOptionsListItem
+            key={label}
+            value={value}
+            label={label}
+            color={color}
+            href={href}
+            onClick={() => {
+              onClick?.(value);
+              onSelectOption?.(value);
+            }}
+            isSelectable={isSelectable}
+            isSelected={isSelected}
+          />
+        );
+      })}
     </div>
   );
 };

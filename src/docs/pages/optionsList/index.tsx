@@ -16,12 +16,12 @@ export const optionsList = {
       source: OptionsListSource.default.toString()
     },
     {
-      name: "Selectable",
+      name: "Multi-select",
       component: <SelectableOptionsList />,
       source: SelectableOptionsListSource.default.toString()
     },
     {
-      name: "Scrollable",
+      name: "Scrollable single-select",
       component: <ScrollableOptionsList />,
       source: ScrollableOptionsListSource.default.toString()
     }

@@ -37,7 +37,7 @@ export const Popover = () => {
           setIsOpen(false);
           setSelectedOption(value);
         }}
-        selectedOption={selectedOption}
+        selected={selectedOption}
         options={options}
       />
     </VuiPopover>

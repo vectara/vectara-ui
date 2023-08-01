@@ -26,7 +26,7 @@ export const ScrollableOptionsList = () => {
       onSelectOption={(value: string) => {
         setSelectedOption(value);
       }}
-      selectedOption={selectedOption}
+      selected={selectedOption}
       options={options}
     />
   );
