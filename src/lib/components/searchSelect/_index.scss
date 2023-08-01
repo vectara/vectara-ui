@@ -6,3 +6,8 @@
   font-size: $fontSizeStandard;
   color: $colorDarkerShade;
 }
+
+.vuiSearchSelect__search {
+  padding: $sizeXxs $sizeXs;
+  border-bottom: 1px solid $borderColor;
+}

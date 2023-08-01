@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Props as OptionsListProps, VuiOptionsList } from "../optionsList/OptionsList";
 import { Props as PopoverProps, VuiPopover } from "../popover/Popover";
 import { OptionListItem } from "../optionsList/types";
+import { VuiTextInput } from "../form";
+import { VuiSpacer } from "../spacer/Spacer";
 
 type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
   Pick<OptionsListProps<T>, "options"> & {
@@ -22,7 +24,7 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
   onSelect,
   selected = []
 }: Props<T>) => {
-  // TODO: Filter
+  const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOptions, setSelectedOptions] = useState<T[]>();
   const [orderedOptions, setOrderedOptions] = useState<OptionListItem<T>[]>([]);
 
@@ -83,14 +85,29 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
     });
   };
 
+  const visibleOptions = orderedOptions.filter((option) => {
+    if (!searchValue.trim()) return true;
+    if (option.label.toLowerCase().includes(searchValue.toLowerCase())) return true;
+    return false;
+  });
+
   return (
     <VuiPopover isOpen={selectedOptions !== undefined} setIsOpen={updateOpen} button={children} header={title}>
+      <div className="vuiSearchSelect__search">
+        <VuiTextInput
+          placeholder="Search"
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
+        />
+        <VuiSpacer size="xxs" />
+      </div>
+
       <VuiOptionsList
         isSelectable
         isScrollable
         onSelectOption={onSelectOption}
         selected={selectedOptions}
-        options={orderedOptions}
+        options={visibleOptions}
       />
     </VuiPopover>
   );
