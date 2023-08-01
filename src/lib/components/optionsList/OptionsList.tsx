@@ -2,6 +2,8 @@ import classNames from "classnames";
 import { VuiOptionsListItem } from "./OptionsListItem";
 import { OptionListItem } from "./types";
 
+const SIZE = ["s", "m"] as const;
+
 export type Props<T> = {
   className?: string;
   options: OptionListItem<T>[];
@@ -9,6 +11,7 @@ export type Props<T> = {
   selected?: T | T[];
   isSelectable?: boolean;
   isScrollable?: boolean;
+  size?: (typeof SIZE)[number];
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -20,10 +23,12 @@ export const VuiOptionsList = <T extends unknown = unknown>({
   selected,
   isSelectable = false,
   isScrollable = false,
+  size = "s",
   ...rest
 }: Props<T>) => {
   const classes = classNames(
     "vuiOptionsList",
+    `vuiOptionsList--${size}`,
     {
       "vuiOptionsList--scrollable": isScrollable
     },

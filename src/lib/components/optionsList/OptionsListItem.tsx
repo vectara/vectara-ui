@@ -1,11 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { BiCheck } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
-import { VuiText } from "../typography/Text";
-import { VuiTextColor } from "../typography/TextColor";
 import { OptionListItem } from "./types";
 
 type Props<T> = OptionListItem<T> & {
@@ -34,13 +31,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
           </VuiIcon>
         </VuiFlexItem>
       )}
-      <VuiFlexItem grow={false}>
-        <VuiText>
-          <VuiTextColor color={color}>
-            <p>{label}</p>
-          </VuiTextColor>
-        </VuiText>
-      </VuiFlexItem>
+      <VuiFlexItem grow={false}>{label}</VuiFlexItem>
     </VuiFlexContainer>
   );
 

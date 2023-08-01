@@ -22,7 +22,7 @@ export const SearchSelect = () => {
 
   return (
     <VuiSearchSelect
-      title="Meal preference"
+      title="Select all that apply"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       onSelect={(value: string[]) => {
@@ -32,7 +32,7 @@ export const SearchSelect = () => {
       options={options}
     >
       <VuiButtonSecondary color="neutral" size="s">
-        Choose labels
+        Meal preference
       </VuiButtonSecondary>
     </VuiSearchSelect>
   );

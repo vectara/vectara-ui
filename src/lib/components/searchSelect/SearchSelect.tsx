@@ -84,8 +84,7 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
   };
 
   return (
-    <VuiPopover isOpen={selectedOptions !== undefined} setIsOpen={updateOpen} button={children}>
-      {title && <div>{title}</div>}
+    <VuiPopover isOpen={selectedOptions !== undefined} setIsOpen={updateOpen} button={children} header={title}>
       <VuiOptionsList
         isSelectable
         isScrollable
