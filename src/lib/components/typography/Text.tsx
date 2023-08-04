@@ -13,11 +13,19 @@ type Props = {
   truncate?: boolean;
 };
 
-export const VuiText = ({ children, className, id, truncate, size = "s", align = "left" }: Props) => {
+const alignToClassMap = {
+  left: "vuiText--left",
+  right: "vuiText--right",
+  center: "vuiText--center"
+} as const;
+
+export const VuiText = ({ children, className, id, truncate, size = "s", align }: Props) => {
   const classes = classNames(
     "vuiText",
     `vuiText--${size}`,
-    `vuiText--${align}`,
+    // Don't default to left alignment, so that the component inherits
+    // whatever has been defined by an ancestor.
+    align && alignToClassMap[align],
     {
       "vuiText--truncate": truncate
     },

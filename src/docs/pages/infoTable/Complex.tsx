@@ -1,4 +1,4 @@
-import { VuiInfoTable, VuiText, InfoTableRowType } from "../../../lib";
+import { VuiInfoTable, VuiText, InfoTableRowType, InfoTableColumnAlign } from "../../../lib";
 
 const renderCell = (value: string, isEmphasized?: boolean) => {
   if (isEmphasized) {
@@ -30,17 +30,20 @@ export const Complex = () => {
     {
       name: "quantity",
       render: "Quantity",
-      width: "80px"
+      width: "80px",
+      align: "right" as InfoTableColumnAlign
     },
     {
       name: "unitPrice",
       render: "Unit price",
-      width: "120px"
+      width: "120px",
+      align: "right" as InfoTableColumnAlign
     },
     {
       name: "cost",
       render: "Cost",
-      width: "120px"
+      width: "120px",
+      align: "right" as InfoTableColumnAlign
     }
   ];
 
@@ -98,6 +101,22 @@ export const Complex = () => {
     {
       values: {
         item: {
+          render: renderCell("DTS")
+        },
+        quantity: {
+          render: renderCell("5")
+        },
+        unitPrice: {
+          render: renderCell("$2.00")
+        },
+        cost: {
+          render: renderCell("$10.00")
+        }
+      }
+    },
+    {
+      values: {
+        item: {
           render: renderCell("One-time fee"),
           colSpan: 3
         },
@@ -114,7 +133,7 @@ export const Complex = () => {
           colSpan: 3
         },
         cost: {
-          render: renderCell("$3.50", true)
+          render: renderCell("$13.50", true)
         }
       }
     }

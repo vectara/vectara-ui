@@ -1,4 +1,5 @@
-import { VuiInfoTable, VuiText, VuiTextColor } from "../../../lib";
+import { useState } from "react";
+import { VuiInfoTable, VuiSpacer, VuiText, VuiTextColor, VuiToggle } from "../../../lib";
 
 const renderItem = ({ title, description }: { title: string; description: string }) => (
   <>
@@ -33,6 +34,8 @@ const renderConsumption = ({ amount, limit, unit }: { amount: number; limit: num
 );
 
 export const Simple = () => {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
   const columns = [
     {
       name: "item",
@@ -93,5 +96,11 @@ export const Simple = () => {
     }
   ];
 
-  return <VuiInfoTable columns={columns} rows={rows} padding="s" isHeaderVisible />;
+  return (
+    <>
+      <VuiToggle label="Has header" checked={isHeaderVisible} onChange={(e) => setIsHeaderVisible(e.target.checked)} />
+      <VuiSpacer size="xl" />
+      <VuiInfoTable columns={columns} rows={rows} padding="s" isHeaderVisible={isHeaderVisible} />
+    </>
+  );
 };
