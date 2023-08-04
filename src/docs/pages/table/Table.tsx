@@ -163,6 +163,10 @@ export const Table = () => {
       onClick: (person: Person) => {
         console.log("Delete", person);
       }
+    },
+    {
+      label: "Search",
+      href: (person: Person) => `https://www.google.com/search?q=${person.name}`
     }
   ];
 

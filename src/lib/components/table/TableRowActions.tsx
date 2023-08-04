@@ -9,7 +9,8 @@ import { Row } from "./types";
 export type Action<T> = {
   label: string;
   isDisabled?: (row: T) => boolean;
-  onClick: (row: T) => void;
+  onClick?: (row: T) => void;
+  href?: (row: T) => string | undefined;
 };
 
 export type Props<T> = {
@@ -23,9 +24,9 @@ export const VuiTableRowActions = <T extends Row>({ row, actions, onToggle }: Pr
 
   // Filter out disabled actions.
   const actionOptions = actions.reduce((acc, action) => {
-    const { label, isDisabled, onClick } = action;
+    const { label, isDisabled, onClick, href } = action;
     if (!isDisabled?.(row)) {
-      acc.push({ label, onClick, value: row });
+      acc.push({ label, onClick, href: href?.(row), value: row });
     }
     return acc;
   }, [] as any);
@@ -59,6 +60,7 @@ export const VuiTableRowActions = <T extends Row>({ row, actions, onToggle }: Pr
           onToggle(false);
         }}
         options={actionOptions}
+        size="m"
       />
     </VuiPopover>
   );

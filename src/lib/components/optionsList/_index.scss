@@ -11,6 +11,8 @@
 
 .vuiOptionsListItem {
   background-color: $colorEmptyShade;
+  color: $colorText;
+  text-decoration: none;
 
   &:hover {
     background-color: $colorLightShade;

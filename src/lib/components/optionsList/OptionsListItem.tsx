@@ -37,7 +37,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
 
   if (href) {
     return (
-      <Link className="vuiOptionsListItem" to={href} onClick={() => onClick?.(value)} {...rest}>
+      <Link className="vuiOptionsListItem" to={href} target="_blank" onClick={() => onClick?.(value)} {...rest}>
         {content}
       </Link>
     );

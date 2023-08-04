@@ -19,7 +19,11 @@ export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Pr
 
   if (actions.length === 1) {
     content = (
-      <VuiButtonSecondary color="neutral" size="m" onClick={() => actions[0].onClick(selectedRows)}>
+      <VuiButtonSecondary
+        color="neutral"
+        size="m"
+        onClick={() => actions[0].onClick && actions[0].onClick(selectedRows)}
+      >
         {actions[0].label}
       </VuiButtonSecondary>
     );
@@ -46,7 +50,12 @@ export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Pr
           onSelectOption={() => {
             setIsOpen(false);
           }}
-          options={actions.map((action) => ({ ...action, value: selectedRows }))}
+          options={actions.map(({ href, ...action }) => ({
+            ...action,
+            href: href?.(selectedRows),
+            value: selectedRows
+          }))}
+          size="m"
         />
       </VuiPopover>
     );
