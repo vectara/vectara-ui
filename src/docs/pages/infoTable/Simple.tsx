@@ -51,7 +51,7 @@ export const Simple = () => {
         item: {
           render: renderItem({
             title: "Data storage",
-            description: "Aggregate size of all corpora after indexing, before any replication factor is applied."
+            description: "Growth plan quota is 50 MiB. Each bundle increases the quota by 5 MiB."
           })
         },
         consumption: { render: renderConsumption({ amount: 0, limit: 50, unit: "MiB" }) }
@@ -61,8 +61,19 @@ export const Simple = () => {
       values: {
         item: {
           render: renderItem({
+            title: "Data ingest",
+            description: "Growth plan quota is 500 MiB. Each bundle increases the quota by 50 MiB."
+          })
+        },
+        consumption: { render: renderConsumption({ amount: 0, limit: 500, unit: "MiB" }) }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: renderItem({
             title: "Queries",
-            description: "Number of queries that can be issued per month for the account."
+            description: "Growth plan quota is 15,000 queries. Each bundle increases the quota by 1,000 queries."
           })
         },
         consumption: { render: renderConsumption({ amount: 0, limit: 15000, unit: "queries" }) }
@@ -74,21 +85,10 @@ export const Simple = () => {
           render: renderItem({
             title: "Generative requests",
             description:
-              "Number of requests for generative responses, like summarizations, that can be issued per month for the account."
+              "Growth plan quota is 15,000 generative requests. Each bundle increases the quota by 1,000 requests."
           })
         },
         consumption: { render: renderConsumption({ amount: 14999, limit: 15000, unit: "requests" }) }
-      }
-    },
-    {
-      values: {
-        item: {
-          render: renderItem({
-            title: "Data ingest",
-            description: "Aggregate amount of ingested data."
-          })
-        },
-        consumption: { render: renderConsumption({ amount: 0, limit: 500, unit: "MiB" }) }
       }
     }
   ];

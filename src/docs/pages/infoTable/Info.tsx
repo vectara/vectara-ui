@@ -51,6 +51,17 @@ export const Info = () => {
       values: {
         item: {
           render: renderItem({
+            title: "500 MiB of data ingest",
+            description: "Aggregate amount of ingested data."
+          })
+        },
+        consumption: { render: renderConsumption() }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: renderItem({
             title: "15,000 queries",
             description: "Number of queries that can be issued per month for the account."
           })
@@ -65,17 +76,6 @@ export const Info = () => {
             title: "15,000 generative requests",
             description:
               "Number of requests for generative responses, like summarizations, that can be issued per month for the account."
-          })
-        },
-        consumption: { render: renderConsumption() }
-      }
-    },
-    {
-      values: {
-        item: {
-          render: renderItem({
-            title: "500 MiB of data ingest",
-            description: "Aggregate amount of ingested data."
           })
         },
         consumption: { render: renderConsumption() }
@@ -102,10 +102,10 @@ export const Info = () => {
           charging it to your account. Each bundle increases the quota of all resources by a fixed amount:
         </p>
         <ul>
+          <li>+5 MiB data storage</li>
+          <li>+50 MiB data ingest</li>
           <li>+1,000 queries</li>
           <li>+1,000 generative requests</li>
-          <li>+5.0 MiB incremental account size</li>
-          <li>+50.0 MiB incremental data ingest capacity</li>
         </ul>
       </VuiText>
     </>
