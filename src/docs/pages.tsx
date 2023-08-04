@@ -12,6 +12,7 @@ import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
+import { infoTable } from "./pages/infoTable";
 import { input } from "./pages/input";
 import { label } from "./pages/label";
 import { link } from "./pages/link";
@@ -52,7 +53,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [app, flex, horizontalRule, spacer, table, tabs]
+    pages: [app, flex, horizontalRule, infoTable, spacer, table, tabs]
   },
   {
     name: "Search",

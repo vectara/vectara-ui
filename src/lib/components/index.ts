@@ -23,6 +23,7 @@ import { VuiFormGroup } from "./formGroup/FormGroup";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
+import { VuiInfoTable, InfoTableRowType } from "./infoTable/InfoTable";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem } from "./menu/MenuItem";
@@ -59,6 +60,7 @@ export type {
   AppContentPadding,
   ButtonColor,
   CalloutColor,
+  InfoTableRowType,
   OptionListItem,
   TabSize,
   Sections,
@@ -101,6 +103,7 @@ export {
   VuiFormGroup,
   VuiHorizontalRule,
   VuiIcon,
+  VuiInfoTable,
   VuiLabel,
   VuiLink,
   VuiLinkInternal,
