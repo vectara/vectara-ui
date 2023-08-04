@@ -90,6 +90,28 @@ export const Simple = () => {
         },
         consumption: { render: renderConsumption({ amount: 14999, limit: 15000, unit: "requests" }) }
       }
+    },
+    {
+      values: {
+        item: {
+          render: renderItem({
+            title: "Corpora",
+            description: "Growth plan quota is 25 corpora. Scale plan offers an increased quota."
+          })
+        },
+        consumption: { render: renderConsumption({ amount: 62, limit: 25, unit: "corpora" }) }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: renderItem({
+            title: "Users",
+            description: "Growth plan quota is 5 users. Scale plan offers an increased quota."
+          })
+        },
+        consumption: { render: renderConsumption({ amount: 22, limit: 5, unit: "users" }) }
+      }
     }
   ];
 
