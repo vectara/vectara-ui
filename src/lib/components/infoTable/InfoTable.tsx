@@ -2,10 +2,13 @@ import classNames from "classnames";
 
 const PADDING = ["xxs", "xs", "s"] as const;
 
+export type InfoTableColumnAlign = "left" | "right";
+
 type Column = {
   name: string;
-  render: React.ReactNode;
+  render?: React.ReactNode;
   width?: string;
+  align?: InfoTableColumnAlign;
 };
 
 export type InfoTableRowType = "sectionHeader" | "footer";
@@ -48,8 +51,8 @@ export const VuiInfoTable = ({ columns, rows, isHeaderVisible, padding = "xs" }:
       {isHeaderVisible && (
         <thead>
           <tr>
-            {columns.map(({ name, render, width }) => (
-              <th key={name} style={{ width }}>
+            {columns.map(({ name, render, width, align }) => (
+              <th key={name} style={{ width, textAlign: align ?? "left" }}>
                 {render}
               </th>
             ))}
@@ -62,11 +65,11 @@ export const VuiInfoTable = ({ columns, rows, isHeaderVisible, padding = "xs" }:
           const rowClasses = type && typeToRowClassMap[type];
           return (
             <tr key={index} className={rowClasses}>
-              {columns.map(({ name, width }) => {
+              {columns.map(({ name, width, align }) => {
                 const value = values[name];
                 if (value !== undefined) {
                   return (
-                    <td key={name} style={{ width }} colSpan={value.colSpan}>
+                    <td key={name} style={{ width, textAlign: align ?? "left" }} colSpan={value.colSpan}>
                       {value.render}
                     </td>
                   );

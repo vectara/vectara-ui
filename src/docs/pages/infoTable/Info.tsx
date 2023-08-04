@@ -1,4 +1,15 @@
-import { VuiBadge, VuiInfoTable, VuiSpacer, VuiText, VuiTextColor, VuiTitle } from "../../../lib";
+import {
+  InfoTableRowType,
+  VuiBadge,
+  VuiFlexContainer,
+  VuiFlexItem,
+  VuiInfoTable,
+  VuiSpacer,
+  VuiText,
+  VuiTextColor,
+  VuiTitle
+} from "../../../lib";
+import { InfoTableColumnAlign } from "../../../lib/components/infoTable/InfoTable";
 
 const renderItem = ({ title, description }: { title: string; description: string }) => (
   <>
@@ -30,8 +41,8 @@ export const Info = () => {
     },
     {
       name: "consumption",
-      render: "Price",
-      width: "100px"
+      width: "100px",
+      align: "right" as InfoTableColumnAlign
     }
   ];
 
@@ -83,6 +94,89 @@ export const Info = () => {
     }
   ];
 
+  const bundleColumns = [
+    {
+      name: "item"
+    }
+  ];
+
+  const bundleRows = [
+    {
+      type: "sectionHeader" as InfoTableRowType,
+      values: {
+        item: {
+          render: (
+            <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
+              <VuiFlexItem shrink={false} grow={false}>
+                <VuiText>
+                  <p>
+                    <strong>Bundle</strong>
+                  </p>
+                </VuiText>
+              </VuiFlexItem>
+
+              <VuiFlexItem shrink={false} grow={false}>
+                <VuiBadge color="primary">$1.25</VuiBadge>
+              </VuiFlexItem>
+            </VuiFlexContainer>
+          )
+        }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: (
+            <VuiText>
+              <p>
+                <strong>+5 MiB</strong> data storage
+              </p>
+            </VuiText>
+          )
+        }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: (
+            <VuiText>
+              <p>
+                <strong>+50 MiB</strong> data ingest
+              </p>
+            </VuiText>
+          )
+        }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: (
+            <VuiText>
+              <p>
+                <strong>+1,000</strong> queries
+              </p>
+            </VuiText>
+          )
+        }
+      }
+    },
+    {
+      values: {
+        item: {
+          render: (
+            <VuiText>
+              <p>
+                <strong>+1,000</strong> generative requests
+              </p>
+            </VuiText>
+          )
+        }
+      }
+    }
+  ];
+
   return (
     <>
       <VuiTitle size="s">
@@ -101,13 +195,9 @@ export const Info = () => {
           When your account’s usage exceeds a monthly resource quota, we increase the quota by adding a bundle and
           charging it to your account. Each bundle increases the quota of all resources by a fixed amount:
         </p>
-        <ul>
-          <li>+5 MiB data storage</li>
-          <li>+50 MiB data ingest</li>
-          <li>+1,000 queries</li>
-          <li>+1,000 generative requests</li>
-        </ul>
       </VuiText>
+      <VuiSpacer size="s" />
+      <VuiInfoTable columns={bundleColumns} rows={bundleRows} padding="xxs" />
     </>
   );
 };
