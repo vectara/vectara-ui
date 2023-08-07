@@ -40,7 +40,7 @@
   font-size: $fontSizeStandard;
   text-decoration: none;
   padding: 0 $sizeM;
-  margin-left: -$sizeM;
+  margin-left: -$sizeXxl;
   margin-bottom: $sizeM;
 
   &:hover {
@@ -51,7 +51,7 @@
 
 .vuiAppSideNavExpandButton {
   margin-top: -$sizeXxs;
-  margin-bottom: $sizeXs;
+  margin-bottom: $sizeS;
 }
 
 .vuiAppSideNavLink {

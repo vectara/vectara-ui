@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { BiChevronRight } from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../../button/IconButton";
 import { VuiIcon } from "../../icon/Icon";
 import { buildSections } from "./AppSideNavSections";
 import { buildTree } from "./AppSideNavTree";
 import { Sections, Tree } from "../types";
+import { VuiFlexContainer } from "../../flex/FlexContainer";
+import { VuiFlexItem } from "../../flex/FlexItem";
 
 export const buildSideNavItems = (items: Sections | Tree) => {
   return isTree(items) ? buildTree(items) : buildSections(items);
@@ -74,7 +76,16 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
                 setIsCollapsed(true);
               }}
             >
-              Collapse nav
+              <VuiFlexContainer alignItems="center" spacing="xxs">
+                <VuiFlexItem shrink={false} grow={false}>
+                  <VuiIcon>
+                    <BiChevronLeft />
+                  </VuiIcon>
+                </VuiFlexItem>
+                <VuiFlexItem shrink={false} grow={false}>
+                  Collapse nav
+                </VuiFlexItem>
+              </VuiFlexContainer>
             </button>
           </>
         )}
