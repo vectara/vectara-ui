@@ -34,8 +34,6 @@ const decorateSummary = (
         const position = parseInt(reference, 10);
         accum.push(
           <VuiSummaryCitation
-            marginBefore={false}
-            marginAfter={false}
             onClick={() => onClickCitation && onClickCitation(position)}
             key={`${text}-${index}-${reference}-${referenceIndex}`}
             isSelected={selectedCitationPosition === position}
