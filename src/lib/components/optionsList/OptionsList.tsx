@@ -37,21 +37,20 @@ export const VuiOptionsList = <T extends unknown = unknown>({
 
   return (
     <div className={classes} {...rest}>
-      {options.map(({ value, label, href, onClick, color }) => {
+      {options.map(({ value, label, onClick, ...rest }) => {
         const isSelected = Array.isArray(selected) ? selected.includes(value) : value === selected;
         return (
           <VuiOptionsListItem
             key={label}
             value={value}
             label={label}
-            color={color}
-            href={href}
             onClick={() => {
               onClick?.(value);
               onSelectOption?.(value);
             }}
             isSelectable={isSelectable}
             isSelected={isSelected}
+            {...rest}
           />
         );
       })}

@@ -13,7 +13,7 @@ type Column = {
 
 export type InfoTableRowType = "sectionHeader" | "footer";
 
-type Row = {
+export type InfoTableRow = {
   type?: InfoTableRowType;
   values: Record<
     string,
@@ -27,7 +27,7 @@ type Row = {
 
 type Props = {
   columns: Column[];
-  rows: Row[];
+  rows: InfoTableRow[];
   isHeaderVisible?: boolean;
   padding?: (typeof PADDING)[number];
 };

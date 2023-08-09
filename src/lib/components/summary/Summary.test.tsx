@@ -16,7 +16,7 @@ describe("VuiSummary", () => {
             class="vuiSummary fs-mask"
           >
             <div
-              class="vuiText vuiText--m vuiText--left"
+              class="vuiText vuiText--m"
             >
               <span />
               <button
@@ -105,7 +105,7 @@ describe("VuiSummary", () => {
             class="vuiSummary fs-mask"
           >
             <div
-              class="vuiText vuiText--m vuiText--left"
+              class="vuiText vuiText--m"
             >
               <span>
                 End of summary.
@@ -137,7 +137,7 @@ describe("VuiSummary", () => {
             class="vuiSummary fs-mask"
           >
             <div
-              class="vuiText vuiText--m vuiText--left"
+              class="vuiText vuiText--m"
             >
               <span>
                 Two citations

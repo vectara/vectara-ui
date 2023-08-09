@@ -20,6 +20,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
   onClick,
   isSelectable,
   isSelected,
+  testId,
   ...rest
 }: Props<T>) => {
   const content = (
@@ -37,14 +38,21 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
 
   if (href) {
     return (
-      <Link className="vuiOptionsListItem" to={href} target="_blank" onClick={() => onClick?.(value)} {...rest}>
+      <Link
+        className="vuiOptionsListItem"
+        to={href}
+        target="_blank"
+        onClick={() => onClick?.(value)}
+        data-testid={testId}
+        {...rest}
+      >
         {content}
       </Link>
     );
   }
 
   return (
-    <button className="vuiOptionsListItem" onClick={() => onClick?.(value)} {...rest}>
+    <button className="vuiOptionsListItem" onClick={() => onClick?.(value)} data-testid={testId} {...rest}>
       {content}
     </button>
   );
