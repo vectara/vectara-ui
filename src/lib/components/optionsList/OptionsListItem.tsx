@@ -17,6 +17,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
   label,
   color = "neutral",
   href,
+  target,
   onClick,
   isSelectable,
   isSelected,
@@ -41,7 +42,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
       <Link
         className="vuiOptionsListItem"
         to={href}
-        target="_blank"
+        target={target}
         onClick={() => onClick?.(value)}
         data-testid={testId}
         {...rest}
