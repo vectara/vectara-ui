@@ -10,4 +10,5 @@ export type OptionListItem<T> = {
   href?: string;
   onClick?: (value: T) => void;
   color?: TextColor;
+  testId?: string;
 };

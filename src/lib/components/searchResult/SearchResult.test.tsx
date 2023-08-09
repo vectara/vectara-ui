@@ -53,7 +53,7 @@ describe("VuiSearchResult", () => {
               subTitle
             </div>
             <div
-              class="vuiText vuiText--s vuiText--left snippetCustomClass"
+              class="vuiText vuiText--s snippetCustomClass"
             >
               <p>
                 <span
@@ -98,7 +98,7 @@ describe("VuiSearchResult", () => {
               1
             </div>
             <div
-              class="vuiText vuiText--s vuiText--left"
+              class="vuiText vuiText--s"
             >
               <p>
                 pre 
@@ -149,7 +149,7 @@ describe("VuiSearchResult", () => {
               title
             </h3>
             <div
-              class="vuiText vuiText--s vuiText--left"
+              class="vuiText vuiText--s"
             >
               <p>
                 pre 
@@ -205,7 +205,7 @@ describe("VuiSearchResult", () => {
               </h3>
             </a>
             <div
-              class="vuiText vuiText--s vuiText--left"
+              class="vuiText vuiText--s"
             >
               <p>
                 pre 
