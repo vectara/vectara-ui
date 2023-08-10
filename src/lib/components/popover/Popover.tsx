@@ -1,4 +1,5 @@
 import React, { cloneElement, useEffect, useRef, useState } from "react";
+import classNames from "classnames";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 
@@ -8,6 +9,7 @@ export type Props = {
   header?: React.ReactNode;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  padding?: boolean;
 };
 
 type Position = {
@@ -24,7 +26,15 @@ const getPosition = (button: HTMLElement | null): Position | undefined => {
   };
 };
 
-export const VuiPopover = ({ button: originalButton, children, header, isOpen, setIsOpen, ...rest }: Props) => {
+export const VuiPopover = ({
+  button: originalButton,
+  children,
+  header,
+  isOpen,
+  setIsOpen,
+  padding,
+  ...rest
+}: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
   const buttonRef = useRef<HTMLElement | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -76,6 +86,10 @@ export const VuiPopover = ({ button: originalButton, children, header, isOpen, s
   // of the button changes.
   const position = getPosition(buttonRef.current);
 
+  const contentClasses = classNames("vuiPopoverContent", {
+    "vuiPopoverContent--padding": padding
+  });
+
   return (
     <>
       {button}
@@ -97,7 +111,7 @@ export const VuiPopover = ({ button: originalButton, children, header, isOpen, s
           >
             <div className="vuiPopover" style={{ top: `${position.top}px`, right: `${position.right}px` }} {...rest}>
               {header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header}
-              {children && <div className="vuiPopoverContent">{children}</div>}
+              {children && <div className={contentClasses}>{children}</div>}
             </div>
           </FocusOn>
         )}
