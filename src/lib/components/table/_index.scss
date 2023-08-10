@@ -13,6 +13,10 @@
     &:not(.vuiTableRow--inert):hover {
       background-color: $colorLightShade;
     }
+
+    &:last-child {
+      border-bottom: 1px solid $borderColor;
+    }
   }
 
   th {
