@@ -19,7 +19,7 @@ const alignToClassMap = {
   center: "vuiText--center"
 } as const;
 
-export const VuiText = ({ children, className, id, truncate, size = "s", align }: Props) => {
+export const VuiText = ({ children, className, id, truncate, size = "s", align, ...rest }: Props) => {
   const classes = classNames(
     "vuiText",
     `vuiText--${size}`,
@@ -33,7 +33,7 @@ export const VuiText = ({ children, className, id, truncate, size = "s", align }
   );
 
   return (
-    <div className={classes} id={id}>
+    <div className={classes} id={id} {...rest}>
       {children}
     </div>
   );
