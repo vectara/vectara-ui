@@ -31,7 +31,7 @@ type Column<T> = {
 
 type Props<T> = {
   isLoading?: boolean;
-  idField: string;
+  idField: string | ((row: T) => string);
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps<T>["actions"];
@@ -56,8 +56,12 @@ type Search = {
   "data-testid"?: string;
 };
 
-const extractId = (row: Record<string, any>, idField: string) => {
-  return get(row, idField);
+const extractId = (row: Record<string, any>, idField: Props<any>["idField"]) => {
+  if (typeof idField === "string") {
+    return get(row, idField);
+  }
+
+  return idField(row);
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
