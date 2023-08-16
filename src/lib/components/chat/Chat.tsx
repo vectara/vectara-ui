@@ -10,6 +10,7 @@ import { ChatTurn } from "./types";
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
+import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
 type Props = {
   openPrompt: string;
@@ -17,10 +18,11 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
   introdution?: string;
   onInput: (input: string) => void;
+  onReset: () => void;
   conversation: ChatTurn[];
 };
 
-export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, conversation }: Props) => {
+export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, onReset, conversation }: Props) => {
   const [input, setInput] = useState("");
   const conversationRef = useRef<HTMLInputElement>(null);
 
@@ -70,6 +72,12 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, c
 
             <VuiFlexItem grow={1}>
               <div className="vuiChatButton__prompt">{openPrompt}</div>
+            </VuiFlexItem>
+
+            <VuiFlexItem>
+              <VuiButtonSecondary color="neutral" size="xs" onClick={onReset}>
+                Start over
+              </VuiButtonSecondary>
             </VuiFlexItem>
 
             <VuiFlexItem shrink={false} grow={false}>

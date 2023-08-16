@@ -31,7 +31,9 @@ export const Chat = () => {
 
     setTimeout(() => {
       setConversation((prev) => {
-        prev[index].isLoading = false;
+        if (prev[index]) {
+          prev[index].isLoading = false;
+        }
         return [...prev];
       });
     }, 2500);
@@ -46,6 +48,7 @@ export const Chat = () => {
         setIsOpen={setIsOpen}
         introdution={introdution}
         onInput={handleUserInput}
+        onReset={() => setConversation([])}
         conversation={conversation}
       />
     </>
