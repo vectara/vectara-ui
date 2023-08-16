@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BiChat, BiPaperPlane, BiX } from "react-icons/bi";
+import { BiChat, BiListUl, BiPaperPlane, BiX } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
@@ -11,6 +11,7 @@ import { VuiSpinner } from "../spinner/Spinner";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
+import { VuiChatInspectionModal } from "./ChatInspectionModal";
 
 type Props = {
   openPrompt: string;
@@ -20,11 +21,22 @@ type Props = {
   onInput: (input: string) => void;
   onReset: () => void;
   conversation: ChatTurn[];
+  isInspectionEnabled?: boolean;
 };
 
-export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, onReset, conversation }: Props) => {
+export const VuiChat = ({
+  openPrompt,
+  isOpen,
+  setIsOpen,
+  introdution,
+  onInput,
+  onReset,
+  conversation,
+  isInspectionEnabled
+}: Props) => {
   const [isTouched, setIsTouched] = useState(false);
   const [input, setInput] = useState("");
+  const [inspectedTurn, setInspectedTurn] = useState<ChatTurn>();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -113,11 +125,13 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
               <div className="vuiChatButton__prompt">{openPrompt}</div>
             </VuiFlexItem>
 
-            <VuiFlexItem>
-              <VuiButtonSecondary color="neutral" size="xs" onClick={onReset}>
-                Start over
-              </VuiButtonSecondary>
-            </VuiFlexItem>
+            {conversation.length > 0 && (
+              <VuiFlexItem shrink={false} grow={false}>
+                <VuiButtonSecondary color="neutral" size="xs" onClick={onReset}>
+                  Start over
+                </VuiButtonSecondary>
+              </VuiFlexItem>
+            )}
 
             <VuiFlexItem shrink={false} grow={false}>
               <VuiIconButton
@@ -138,7 +152,27 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
 
           {conversation.map((turn, index) => (
             <div key={index} className="vuiChat__turn">
-              <div className="vuiChat__question">{turn.question}</div>
+              <VuiFlexContainer alignItems="start" justifyContent="spaceBetween" spacing="xs">
+                <VuiFlexItem grow={1}>
+                  <div className="vuiChat__question">{turn.question}</div>
+                </VuiFlexItem>
+
+                {isInspectionEnabled && (
+                  <VuiFlexItem grow={false} shrink={false}>
+                    <VuiIconButton
+                      className="vuiChat__inspectButton"
+                      color="accent"
+                      icon={
+                        <VuiIcon size="s">
+                          <BiListUl />
+                        </VuiIcon>
+                      }
+                      onClick={() => setInspectedTurn(turn)}
+                    />
+                  </VuiFlexItem>
+                )}
+              </VuiFlexContainer>
+
               <div className="vuiChat__answer">
                 {turn.isLoading ? (
                   <VuiFlexContainer alignItems="center" spacing="xs">
@@ -190,6 +224,12 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
           </VuiFlexContainer>
         </div>
       </div>
+
+      <VuiChatInspectionModal
+        isOpen={Boolean(inspectedTurn)}
+        turn={inspectedTurn}
+        onClose={() => setInspectedTurn(undefined)}
+      />
     </>
   );
 };

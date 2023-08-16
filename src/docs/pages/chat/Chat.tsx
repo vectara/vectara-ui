@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChatTurn, VuiChat } from "../../../lib";
+import { ChatTurn, VuiChat, VuiSpacer, VuiToggle } from "../../../lib";
 
 const introdution =
   "I know everything about lobsters. Their environments, lifecycle, likes, dislikes, hobbies... really, ask me anything about lobsters!";
@@ -13,9 +13,21 @@ const responses = [
   "Guess I got a little overconfident after learning so much about lobsters. I can't answer that, but I can answer a lot of other questions about lobsters. Ask me something else! About lobsters."
 ];
 
+const searchResult = {
+  title: "Placeholder search result",
+  url: "http://vectara.com/",
+  date: "May 27, 2023",
+  snippet: {
+    pre: "When a lobster celebrates its birthday, it will ",
+    text: "wear a hat",
+    post: " and eat a cake."
+  }
+};
+
 export const Chat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [conversation, setConversation] = useState<ChatTurn[]>([]);
+  const [isInspectionEnabled, setIsInspectionEnabled] = useState(true);
 
   const handleUserInput = (input: string) => {
     const turn: ChatTurn = {
@@ -23,7 +35,7 @@ export const Chat = () => {
       isLoading: true,
       answer: responses[Math.floor(Math.random() * responses.length)],
       query: "This is a placeholder query",
-      results: []
+      results: [searchResult, searchResult, searchResult, searchResult, searchResult]
     };
 
     const index = conversation.length;
@@ -41,7 +53,16 @@ export const Chat = () => {
 
   return (
     <>
-      Look at the bottom right corner of the window.
+      <p>Look at the bottom right corner of the window.</p>
+
+      <VuiSpacer size="s" />
+
+      <VuiToggle
+        label="Enable inspection"
+        checked={isInspectionEnabled}
+        onChange={(e) => setIsInspectionEnabled(e.target.checked)}
+      />
+
       <VuiChat
         openPrompt="Discuss lobsters"
         isOpen={isOpen}
@@ -50,6 +71,7 @@ export const Chat = () => {
         onInput={handleUserInput}
         onReset={() => setConversation([])}
         conversation={conversation}
+        isInspectionEnabled={isInspectionEnabled}
       />
     </>
   );

@@ -6,7 +6,7 @@ $minChatWidth: 600px;
   position: fixed;
   right: $sizeL;
   bottom: $sizeM;
-  z-index: 1000;
+  z-index: $chatZIndex;
 }
 
 .vuiChatButton-isHidden,
@@ -111,4 +111,8 @@ $minChatWidth: 600px;
 .vuiChat__input {
   border-top: 1px solid $borderColorLight;
   padding: $sizeXs $sizeS;
+}
+
+.vuiChat__inspectButton {
+  margin-top: -$sizeXxs;
 }
