@@ -20,12 +20,21 @@ export const Chat = () => {
   const handleUserInput = (input: string) => {
     const turn: ChatTurn = {
       question: input,
+      isLoading: true,
       answer: responses[Math.floor(Math.random() * responses.length)],
       query: "This is a placeholder query",
       results: []
     };
 
+    const index = conversation.length;
     setConversation([...conversation, turn]);
+
+    setTimeout(() => {
+      setConversation((prev) => {
+        prev[index].isLoading = false;
+        return [...prev];
+      });
+    }, 2500);
   };
 
   return (

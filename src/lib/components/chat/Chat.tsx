@@ -7,6 +7,9 @@ import { VuiIcon } from "../icon/Icon";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiTextInput } from "../form";
 import { ChatTurn } from "./types";
+import { VuiSpinner } from "../spinner/Spinner";
+import { VuiText } from "../typography/Text";
+import { VuiTextColor } from "../typography/TextColor";
 
 type Props = {
   openPrompt: string;
@@ -89,7 +92,25 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, c
           {conversation.map((turn, index) => (
             <div key={index} className="vuiChat__turn">
               <div className="vuiChat__question">{turn.question}</div>
-              <div className="vuiChat__answer">{turn.answer}</div>
+              <div className="vuiChat__answer">
+                {turn.isLoading ? (
+                  <VuiFlexContainer alignItems="center" spacing="xs">
+                    <VuiFlexItem grow={false}>
+                      <VuiSpinner size="xs" />
+                    </VuiFlexItem>
+
+                    <VuiFlexItem grow={false}>
+                      <VuiText>
+                        <p>
+                          <VuiTextColor color="subdued">Thinking…</VuiTextColor>
+                        </p>
+                      </VuiText>
+                    </VuiFlexItem>
+                  </VuiFlexContainer>
+                ) : (
+                  turn.answer
+                )}
+              </div>
             </div>
           ))}
         </div>
