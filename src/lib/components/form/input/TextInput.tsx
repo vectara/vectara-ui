@@ -10,6 +10,7 @@ type Props = {
   size?: (typeof SIZE)[number];
   fullWidth?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit?: () => void;
 };
 
 export const VuiTextInput = ({
@@ -20,6 +21,7 @@ export const VuiTextInput = ({
   size = "m",
   onChange,
   fullWidth,
+  onSubmit,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -32,6 +34,14 @@ export const VuiTextInput = ({
     className
   );
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      onSubmit?.();
+    }
+  };
+
   return (
     <input
       type="text"
@@ -40,6 +50,7 @@ export const VuiTextInput = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onKeyDown={handleKeyDown}
       {...rest}
     />
   );

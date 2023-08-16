@@ -6,7 +6,7 @@ import { VuiSpacer } from "../spacer/Spacer";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 
-export type SearchResultType = {
+export type SearchResult = {
   title?: string;
   url?: string;
   date?: string;
@@ -18,7 +18,7 @@ export type SearchResultType = {
 };
 
 type Props = {
-  result: SearchResultType;
+  result: SearchResult;
   position: number;
   isSelected?: boolean;
   subTitle?: React.ReactNode;
