@@ -13,6 +13,8 @@ import { VuiButtonTertiary } from "./button/ButtonTertiary";
 import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
+import { ChatTurn } from "./chat/types";
+import { VuiChat } from "./chat/Chat";
 import { VuiCode } from "./code/Code";
 import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDrawer } from "./drawer/Drawer";
@@ -37,7 +39,7 @@ import { VuiPortal } from "./portal/Portal";
 import { VuiPrompt } from "./prompt/Prompt";
 import { VuiScreenBlock } from "./screenBlock/ScreenBlock";
 import { VuiSearchInput } from "./searchInput/SearchInput";
-import { VuiSearchResult } from "./searchResult/SearchResult";
+import { SearchResult, VuiSearchResult } from "./searchResult/SearchResult";
 import { VuiSearchSelect } from "./searchSelect/SearchSelect";
 import { VuiSetting } from "./setting/Setting";
 import { VuiSpacer } from "./spacer/Spacer";
@@ -60,11 +62,13 @@ export type {
   AppContentPadding,
   ButtonColor,
   CalloutColor,
+  ChatTurn,
   InfoTableColumnAlign,
   InfoTableRow,
   InfoTableRowType,
   OptionListItem,
   TabSize,
+  SearchResult,
   Sections,
   SectionItem,
   Tree,
@@ -96,6 +100,7 @@ export {
   VuiButtonTertiary,
   VuiIconButton,
   VuiCallout,
+  VuiChat,
   VuiCheckbox,
   VuiCode,
   VuiCopyButton,

@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { forwardRef } from "react";
 
 const SIZE = ["m", "l"] as const;
 
@@ -10,37 +11,41 @@ type Props = {
   size?: (typeof SIZE)[number];
   fullWidth?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit?: () => void;
 };
 
-export const VuiTextInput = ({
-  className,
-  id,
-  placeholder,
-  value,
-  size = "m",
-  onChange,
-  fullWidth,
-  ...rest
-}: Props) => {
-  const classes = classNames(
-    "vuiInput",
-    "vuiInput--text",
-    `vuiInput--${size}`,
-    {
-      "vuiInput--fullWidth": fullWidth
-    },
-    className
-  );
+export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
+  ({ className, id, placeholder, value, size = "m", onChange, fullWidth, onSubmit, ...rest }: Props, ref) => {
+    const classes = classNames(
+      "vuiInput",
+      "vuiInput--text",
+      `vuiInput--${size}`,
+      {
+        "vuiInput--fullWidth": fullWidth
+      },
+      className
+    );
 
-  return (
-    <input
-      type="text"
-      className={classes}
-      id={id}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      {...rest}
-    />
-  );
-};
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        e.stopPropagation();
+        onSubmit?.();
+      }
+    };
+
+    return (
+      <input
+        ref={ref}
+        type="text"
+        className={classes}
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        onKeyDown={handleKeyDown}
+        {...rest}
+      />
+    );
+  }
+);
