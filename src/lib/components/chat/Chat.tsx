@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { BiChat, BiX } from "react-icons/bi";
+import { BiChat, BiPaperPlane, BiX } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
@@ -36,6 +36,11 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
       });
     }
   }, [conversation]);
+
+  const onSubmit = () => {
+    onInput(input);
+    setInput("");
+  };
 
   const buttonClasses = classNames("vuiChatButton", {
     "vuiChatButton-isHidden": isOpen
@@ -124,17 +129,30 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
         </div>
 
         <div className="vuiChat__input">
-          <VuiTextInput
-            value={input}
-            onChange={(e) => {
-              setInput(e.currentTarget.value);
-            }}
-            onSubmit={() => {
-              onInput(input);
-              setInput("");
-            }}
-            fullWidth
-          />
+          <VuiFlexContainer alignItems="center" spacing="xxs">
+            <VuiFlexItem grow={1}>
+              <VuiTextInput
+                value={input}
+                onChange={(e) => {
+                  setInput(e.currentTarget.value);
+                }}
+                onSubmit={onSubmit}
+                fullWidth
+              />
+            </VuiFlexItem>
+
+            <VuiFlexItem shrink={false} grow={false}>
+              <VuiIconButton
+                icon={
+                  <VuiIcon>
+                    <BiPaperPlane />
+                  </VuiIcon>
+                }
+                color="primary"
+                onClick={onSubmit}
+              />
+            </VuiFlexItem>
+          </VuiFlexContainer>
         </div>
       </div>
     </>

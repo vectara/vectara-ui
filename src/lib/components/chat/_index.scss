@@ -76,6 +76,9 @@ $minChatWidth: 600px;
   font-size: $fontSizeStandard;
   color: $colorText;
   background-color: $colorPrimaryLightShade;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  // Ensure shadow overlaps on top of conversation.
+  z-index: 1;
 }
 
 .vuiChat__conversation {
@@ -104,6 +107,6 @@ $minChatWidth: 600px;
 }
 
 .vuiChat__input {
-  border-top: 1px solid $borderColor;
+  border-top: 1px solid $borderColorLight;
   padding: $sizeXs $sizeS;
 }
