@@ -4,6 +4,7 @@ import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
+import { chat } from "./pages/chat";
 import { checkbox } from "./pages/checkbox";
 import { code } from "./pages/code";
 import { copyButton } from "./pages/copyButton";
@@ -44,28 +45,28 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 
 export const categories: Category[] = [
   {
-    name: "Controls",
-    pages: [accountMenu, button, copyButton, link, menu, optionsButton, optionsList, searchSelect]
+    name: "Conversation",
+    pages: [chat, prompt, searchInput, searchResult, summary]
   },
   {
-    name: "Form",
-    pages: [checkbox, formGroup, input, label, select, setting, toggle]
+    name: "Application",
+    pages: [app, accountMenu]
   },
   {
     name: "Layout",
-    pages: [app, flex, horizontalRule, infoTable, spacer, table, tabs]
-  },
-  {
-    name: "Search",
-    pages: [prompt, searchInput, searchResult, summary]
+    pages: [drawer, modal, popover, flex, spacer, horizontalRule, tabs, infoTable, table]
   },
   {
     name: "Info",
     pages: [badge, callout, code, icon, spinner, text]
   },
   {
-    name: "Containers",
-    pages: [drawer, modal, popover]
+    name: "Form",
+    pages: [checkbox, formGroup, input, label, select, setting, toggle]
+  },
+  {
+    name: "Controls",
+    pages: [button, copyButton, link, menu, optionsButton, optionsList, searchSelect]
   },
   {
     name: "Utils",
