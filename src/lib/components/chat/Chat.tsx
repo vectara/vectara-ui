@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
 import { BiChat, BiPaperPlane, BiX } from "react-icons/bi";
+import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
@@ -23,8 +23,11 @@ type Props = {
 };
 
 export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, onReset, conversation }: Props) => {
+  const [isTouched, setIsTouched] = useState(false);
   const [input, setInput] = useState("");
-  const conversationRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const conversationRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -37,9 +40,32 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
     }
   }, [conversation]);
 
+  useEffect(() => {
+    // Only autofocus if the user has interacted with the component.
+    // This prevents the component stealing focus when it first mounts.
+    if (isTouched) {
+      if (isOpen) {
+        inputRef.current?.focus();
+      } else {
+        buttonRef.current?.focus();
+      }
+    }
+  }, [isOpen]);
+
   const onSubmit = () => {
+    if (!input?.trim()) return;
     onInput(input);
     setInput("");
+  };
+
+  const onOpen = () => {
+    setIsTouched(true);
+    setIsOpen(true);
+  };
+
+  const onClose = () => {
+    setIsTouched(true);
+    setIsOpen(false);
   };
 
   const buttonClasses = classNames("vuiChatButton", {
@@ -52,7 +78,8 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
 
   return (
     <>
-      <button className={buttonClasses} onClick={() => setIsOpen(true)}>
+      {/* @ts-expect-error React doesn't support inert yet */}
+      <button className={buttonClasses} inert={isOpen} onClick={onOpen} ref={buttonRef}>
         <VuiFlexContainer alignItems="center" spacing="s">
           <VuiFlexItem shrink={false} grow={false}>
             <VuiIcon size="s">
@@ -66,7 +93,14 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
         </VuiFlexContainer>
       </button>
 
-      <div className={classes}>
+      <div
+        // @ts-expect-error React doesn't support inert yet
+        inert={!isOpen}
+        className={classes}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") onClose();
+        }}
+      >
         <div className="vuiChat__header">
           <VuiFlexContainer alignItems="center" spacing="s">
             <VuiFlexItem shrink={false} grow={false}>
@@ -93,7 +127,7 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
                   </VuiIcon>
                 }
                 color="neutral"
-                onClick={() => setIsOpen(false)}
+                onClick={onClose}
               />
             </VuiFlexItem>
           </VuiFlexContainer>
@@ -138,6 +172,7 @@ export const VuiChat = ({ openPrompt, isOpen, setIsOpen, introdution, onInput, o
                 }}
                 onSubmit={onSubmit}
                 fullWidth
+                ref={inputRef}
               />
             </VuiFlexItem>
 

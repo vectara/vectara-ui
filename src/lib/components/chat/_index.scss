@@ -14,7 +14,9 @@ $minChatWidth: 600px;
   // If we used display: none, then the button's animation would play every
   // time the button is shown.
   visibility: hidden;
-  pointer-events: none;
+  // For some reason the buttons inside the header are visible for an extra frame
+  // after closing the chat. This fixes that flicker.
+  opacity: 0;
 }
 
 .vuiChatButton {
