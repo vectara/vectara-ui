@@ -4,6 +4,14 @@
 
   ul {
     list-style: disc;
+  }
+
+  ol {
+    list-style: auto;
+  }
+
+  ul,
+  ol {
     margin-left: $sizeM;
   }
 }
