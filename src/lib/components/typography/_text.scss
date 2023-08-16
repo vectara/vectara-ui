@@ -1,6 +1,19 @@
 .vuiText {
   overflow-wrap: break-word;
   word-break: break-word;
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: auto;
+  }
+
+  ul,
+  ol {
+    margin-left: $sizeM;
+  }
 }
 
 .vuiText--truncate {
@@ -15,11 +28,11 @@
   p {
     font-size: $fontSize;
     line-height: 1.4;
-    margin-bottom: 0;
-  }
+    margin-bottom: $sizeXs;
 
-  p + p {
-    margin-top: $sizeXs;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

@@ -21,9 +21,24 @@ export const Text = () => (
               really, really, super-duper, ridiculously long just so we can be sure the text wraps and you can get idea
               of the line-height.
             </p>
+
             <p>
               Here's another paragraph with a <a href="#">link</a> in it.
             </p>
+
+            <ul>
+              <li>One potato</li>
+              <li>Two potato</li>
+              <li>Three potato</li>
+              <li>Four</li>
+            </ul>
+
+            <ol>
+              <li>Five potato</li>
+              <li>Six potato</li>
+              <li>Seven potato</li>
+              <li>More</li>
+            </ol>
           </VuiText>
 
           <VuiSpacer size="m" />
