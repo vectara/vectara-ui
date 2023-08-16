@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BiChat, BiListUl, BiPaperPlane, BiX } from "react-icons/bi";
+import { BiChat, BiExitFullscreen, BiFullscreen, BiListUl, BiPaperPlane, BiX } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
@@ -35,6 +35,7 @@ export const VuiChat = ({
   isInspectionEnabled
 }: Props) => {
   const [isTouched, setIsTouched] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const [input, setInput] = useState("");
   const [inspectedTurn, setInspectedTurn] = useState<ChatTurn>();
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -85,7 +86,8 @@ export const VuiChat = ({
   });
 
   const classes = classNames("vuiChat", {
-    "vuiChat-isHidden": !isOpen
+    "vuiChat-isHidden": !isOpen,
+    "vuiChat-isFullScreen": isFullScreen
   });
 
   return (
@@ -134,15 +136,27 @@ export const VuiChat = ({
             )}
 
             <VuiFlexItem shrink={false} grow={false}>
-              <VuiIconButton
-                icon={
-                  <VuiIcon>
-                    <BiX />
-                  </VuiIcon>
-                }
-                color="neutral"
-                onClick={onClose}
-              />
+              <VuiFlexContainer alignItems="center" spacing="xxs">
+                <VuiFlexItem shrink={false} grow={false}>
+                  <VuiIconButton
+                    icon={<VuiIcon>{isFullScreen ? <BiExitFullscreen /> : <BiFullscreen />}</VuiIcon>}
+                    color="neutral"
+                    onClick={() => setIsFullScreen(!isFullScreen)}
+                  />
+                </VuiFlexItem>
+
+                <VuiFlexItem shrink={false} grow={false}>
+                  <VuiIconButton
+                    icon={
+                      <VuiIcon>
+                        <BiX />
+                      </VuiIcon>
+                    }
+                    color="neutral"
+                    onClick={onClose}
+                  />
+                </VuiFlexItem>
+              </VuiFlexContainer>
             </VuiFlexItem>
           </VuiFlexContainer>
         </div>

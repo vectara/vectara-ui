@@ -57,7 +57,8 @@ $minChatWidth: 600px;
 
   @media screen and (max-height: $minChatHeight) {
     & {
-      height: calc(100vh - 2 * #{$sizeM});
+      bottom: $sizeXxs;
+      height: calc(100vh - 2 * #{$sizeXxs});
     }
 
     .vuiChat__conversation {
@@ -67,9 +68,22 @@ $minChatWidth: 600px;
 
   @media screen and (max-width: $minChatWidth) {
     & {
-      width: calc(100vw - 2 * #{$sizeL});
+      right: $sizeXxs;
+      width: calc(100vw - 2 * #{$sizeXxs});
       max-width: 100% !important;
     }
+  }
+}
+
+.vuiChat-isFullScreen {
+  bottom: $sizeXxs;
+  height: calc(100vh - 2 * #{$sizeXxs});
+  right: $sizeXxs;
+  width: calc(100vw - 2 * #{$sizeXxs});
+  max-width: 100% !important;
+
+  .vuiChat__conversation {
+    max-height: 100%;
   }
 }
 
@@ -92,9 +106,17 @@ $minChatWidth: 600px;
 }
 
 .vuiChat__turn {
+  border-top: 1px solid $colorLightShade;
+  border-right: 1px solid $colorLightShade;
+  border-bottom: 1px solid $colorLightShade;
   background-color: $colorLightShade;
   padding: $sizeM $sizeS $sizeM $sizeL;
   margin-right: $sizeL;
+
+  &:hover {
+    background-color: $colorEmptyShade;
+    border-color: $borderColorLight;
+  }
 }
 
 .vuiChat__turn + .vuiChat__turn {
