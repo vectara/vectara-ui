@@ -1,8 +1,20 @@
+$minChatHeight: 600px;
+$minChatWidth: 600px;
+
 .vuiChatButton,
 .vuiChat {
   position: fixed;
   right: $sizeL;
   bottom: $sizeM;
+  z-index: 1000;
+}
+
+.vuiChatButton-isHidden,
+.vuiChat-isHidden {
+  // If we used display: none, then the button's animation would play every
+  // time the button is shown.
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .vuiChatButton {
@@ -11,44 +23,63 @@
   font-size: $fontSizeStandard;
   color: $colorEmptyShade;
   background-color: $colorDarkerShade;
-  transition: all $transitionSpeed;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-  transform-origin: bottom;
-  animation-name: bounce-7;
-  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+  animation: popUp 0.4s cubic-bezier(0.5, 0, 0.5, 1) 1;
 
   &:hover {
     background-color: $colorAccent;
   }
 }
-@keyframes bounce-7 {
+
+@keyframes popUp {
   0% {
-    transform: translateY(0);
+    transform: translateY(40px);
   }
+
   50% {
-    transform: translateY(-40px);
+    transform: translateY(-10px);
   }
+
   100% {
     transform: translateY(0);
   }
 }
 
 .vuiChat {
+  display: flex;
+  flex-direction: column;
   max-width: 420px;
   border-radius: $sizeXs;
   overflow: hidden;
   border: 1px solid $borderColor;
+  background-color: $colorEmptyShade;
+
+  @media screen and (max-height: $minChatHeight) {
+    & {
+      height: calc(100vh - 2 * #{$sizeM});
+    }
+
+    .vuiChat__conversation {
+      max-height: 100%;
+    }
+  }
+
+  @media screen and (max-width: $minChatWidth) {
+    & {
+      width: calc(100vw - 2 * #{$sizeL});
+      max-width: 100% !important;
+    }
+  }
 }
 
 .vuiChat__header {
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
   color: $colorText;
-  border-bottom: 1px solid $borderColor;
+  background-color: $colorPrimaryLightShade;
 }
 
 .vuiChat__conversation {
+  flex-grow: 1;
   padding: $sizeM 0;
   font-size: $fontSizeStandard;
   max-height: 400px;
@@ -66,9 +97,9 @@
 }
 
 .vuiChat__question {
-  color: $colorText;
+  color: $colorAccent;
   font-weight: $fontWeightBold;
-  font-size: $fontSizeSmall;
+  font-size: $fontSizeStandard;
   margin-bottom: $sizeXs;
 }
 
