@@ -70,7 +70,7 @@ export const Chat = () => {
 
       <VuiToggle
         label="Enable suggestions"
-        checked={isInspectionEnabled}
+        checked={isSuggestionsEnabled}
         onChange={(e) => setIsSuggestionsEnabled(e.target.checked)}
       />
 

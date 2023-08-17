@@ -169,7 +169,7 @@ export const VuiChat = ({
           {(introduction || suggestions) && (
             <div className="vuiChat__introduction">
               {introduction}
-              {introduction && suggestions && <VuiSpacer size="s" />}
+              {introduction && <VuiSpacer size="s" />}
               {suggestions?.map((suggestion) => (
                 <VuiButtonTertiary
                   size="s"
@@ -181,6 +181,7 @@ export const VuiChat = ({
                   {suggestion}
                 </VuiButtonTertiary>
               ))}
+              {suggestions && suggestions.length > 0 && <VuiSpacer size="s" />}
             </div>
           )}
 
