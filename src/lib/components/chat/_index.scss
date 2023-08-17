@@ -112,10 +112,10 @@ $minChatWidth: 600px;
   background-color: $colorLightShade;
   padding: $sizeM $sizeS $sizeM $sizeL;
   margin-right: $sizeL;
+  transition: all $transitionSpeed;
 
   &:hover {
-    background-color: $colorEmptyShade;
-    border-color: $borderColorLight;
+    border-color: $borderColor;
   }
 }
 
