@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChatTurn, VuiChat, VuiSpacer, VuiToggle } from "../../../lib";
 
-const introdution =
+const introduction =
   "I know everything about lobsters. Their environments, lifecycle, likes, dislikes, hobbies... really, ask me anything about lobsters!";
 
 const responses = [
@@ -24,10 +24,13 @@ const searchResult = {
   }
 };
 
+const suggestions = ["What do lobsters eat?", "How long do lobsters live?", "How big do lobsters get?"];
+
 export const Chat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [conversation, setConversation] = useState<ChatTurn[]>([]);
   const [isInspectionEnabled, setIsInspectionEnabled] = useState(true);
+  const [isSuggestionsEnabled, setIsSuggestionsEnabled] = useState(true);
 
   const handleUserInput = (input: string) => {
     const turn: ChatTurn = {
@@ -63,15 +66,24 @@ export const Chat = () => {
         onChange={(e) => setIsInspectionEnabled(e.target.checked)}
       />
 
+      <VuiSpacer size="s" />
+
+      <VuiToggle
+        label="Enable suggestions"
+        checked={isInspectionEnabled}
+        onChange={(e) => setIsSuggestionsEnabled(e.target.checked)}
+      />
+
       <VuiChat
         openPrompt="Discuss lobsters"
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        introdution={introdution}
+        introduction={introduction}
         onInput={handleUserInput}
         onReset={() => setConversation([])}
         conversation={conversation}
         isInspectionEnabled={isInspectionEnabled}
+        suggestions={isSuggestionsEnabled ? suggestions : undefined}
       />
     </>
   );

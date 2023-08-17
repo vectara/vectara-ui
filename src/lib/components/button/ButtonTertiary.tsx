@@ -6,6 +6,7 @@ import { createButtonIcon } from "./createButtonIcon";
 
 export type Props = BaseButtonProps & {
   color: ButtonColor;
+  noPadding?: boolean;
 };
 
 const colorToIconColorMap = {
@@ -18,9 +19,10 @@ const colorToIconColorMap = {
 };
 
 export const VuiButtonTertiary = forwardRef<HTMLButtonElement | null, Props>(
-  ({ children, icon, color, size = "m", className, isSelected, isDisabled, ...rest }: Props, ref) => {
+  ({ children, icon, color, size = "m", className, isSelected, isDisabled, noPadding, ...rest }: Props, ref) => {
     const classes = classNames(className, "vuiButtonTertiary", `vuiButtonTertiary--${color}`, {
-      "vuiButtonTertiary-isSelected": isSelected
+      "vuiButtonTertiary-isSelected": isSelected,
+      "vuiButtonTertiary-noPadding": noPadding
     });
 
     const buttonIcon = createButtonIcon(icon, size, color, colorToIconColorMap);

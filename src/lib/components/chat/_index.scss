@@ -99,10 +99,18 @@ $minChatWidth: 600px;
 
 .vuiChat__conversation {
   flex-grow: 1;
-  padding: $sizeM 0;
-  font-size: $fontSizeStandard;
   max-height: 400px;
   overflow-y: auto;
+}
+
+.vuiChat__introduction {
+  padding: $sizeM $sizeL 0;
+  font-size: $fontSizeStandard;
+}
+
+.vuiChat__turns {
+  padding: $sizeM 0;
+  font-size: $fontSizeStandard;
 }
 
 .vuiChat__turn {
@@ -111,7 +119,7 @@ $minChatWidth: 600px;
   border-bottom: 1px solid $colorLightShade;
   background-color: $colorLightShade;
   padding: $sizeM $sizeS $sizeM $sizeL;
-  margin-right: $sizeL;
+  margin-right: $sizeS;
   transition: all $transitionSpeed;
 
   &:hover {
