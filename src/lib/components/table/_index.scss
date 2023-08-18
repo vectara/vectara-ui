@@ -33,6 +33,10 @@
   }
 }
 
+.vuiTable--fluid {
+  table-layout: auto;
+}
+
 .vuiTableCell {
   height: 100%;
   display: flex;

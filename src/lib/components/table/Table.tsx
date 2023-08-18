@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 import { get } from "lodash";
 import { VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
@@ -41,6 +42,8 @@ type Props<T> = {
   onSort?: TableHeaderCellProps["onSort"];
   onReload?: () => void;
   content?: React.ReactNode;
+  className?: string;
+  fluid?: boolean;
 };
 
 type Selection<T> = {
@@ -78,6 +81,8 @@ export const VuiTable = <T extends Row>({
   onSort,
   onReload,
   content,
+  className,
+  fluid,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
@@ -101,6 +106,14 @@ export const VuiTable = <T extends Row>({
   const hasSearch = searchValue !== undefined && onSearchChange;
   const hasBulkActions = bulkActions !== undefined;
   const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0);
+
+  const classes = classNames(
+    "vuiTable",
+    {
+      "vuiTable--fluid": fluid
+    },
+    className
+  );
 
   let tableContent;
 
@@ -226,7 +239,7 @@ export const VuiTable = <T extends Row>({
         </>
       )}
 
-      <table className="vuiTable" {...rest}>
+      <table className={classes} {...rest}>
         <thead>
           <tr>
             {/* Checkbox column */}
