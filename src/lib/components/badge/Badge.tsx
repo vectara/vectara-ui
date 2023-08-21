@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Props as LinkProps } from "../link/Link";
 import { getTrackingProps } from "../../utils/getTrackingProps";
 
-export const BADGE_COLOR = ["accent", "primary", "danger", "success", "neutral"] as const;
+export const BADGE_COLOR = ["accent", "primary", "danger", "warning", "success", "neutral"] as const;
 
 type Props = {
   children: React.ReactNode;

@@ -32,6 +32,11 @@ $color: (
     "background-color": transparentize($colorSuccess, 0.9),
     "border-color": transparentize($colorSuccess, 0.9)
   ),
+  warning: (
+    "color": $colorWarning,
+    "background-color": transparentize($colorWarning, 0.9),
+    "border-color": transparentize($colorWarning, 0.9)
+  ),
   danger: (
     "color": $colorDanger,
     "background-color": transparentize($colorDanger, 0.9),
