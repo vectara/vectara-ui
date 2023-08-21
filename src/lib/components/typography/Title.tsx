@@ -11,9 +11,17 @@ interface Props {
   align?: (typeof TEXT_ALIGN)[number];
 }
 
-export const VuiTitle = ({ children, className, size, align = "left", ...rest }: Props) => {
+export const VuiTitle = ({ children, className, size, align, ...rest }: Props) => {
   return cloneElement(children, {
-    className: classNames("vuiTitle", `vuiTitle--${size}`, `vuiTitle--${align}`, className, children.props.className),
+    className: classNames(
+      "vuiTitle",
+      `vuiTitle--${size}`,
+      {
+        [`vuiTitle--${align}`]: align
+      },
+      className,
+      children.props.className
+    ),
     ...rest
   });
 };

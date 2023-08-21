@@ -12,6 +12,7 @@ import { VuiButtonSecondary } from "./button/ButtonSecondary";
 import { VuiButtonTertiary } from "./button/ButtonTertiary";
 import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
+import { VuiCard } from "./card/Card";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { ChatTurn } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
@@ -102,6 +103,7 @@ export {
   VuiButtonTertiary,
   VuiIconButton,
   VuiCallout,
+  VuiCard,
   VuiChat,
   VuiCheckbox,
   VuiCode,
