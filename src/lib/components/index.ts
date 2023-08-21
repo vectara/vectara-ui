@@ -36,6 +36,7 @@ import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
 import { VuiPopover } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
+import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
 import { VuiPrompt } from "./prompt/Prompt";
 import { VuiScreenBlock } from "./screenBlock/ScreenBlock";
 import { VuiSearchInput } from "./searchInput/SearchInput";
@@ -83,6 +84,7 @@ export {
   CALLOUT_SIZE,
   ICON_COLOR,
   ICON_SIZE,
+  PROGRESS_BAR_COLOR,
   SPACER_SIZE,
   SPINNER_SIZE,
   TAB_SIZE,
@@ -123,6 +125,7 @@ export {
   VuiOptionsListItem,
   VuiPopover,
   VuiPortal,
+  VuiProgressBar,
   VuiPrompt,
   VuiScreenBlock,
   VuiSearchInput,

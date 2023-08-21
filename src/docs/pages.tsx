@@ -22,6 +22,7 @@ import { modal } from "./pages/modal";
 import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
+import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
@@ -58,7 +59,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [badge, callout, code, icon, spinner, text]
+    pages: [badge, callout, code, icon, progressBar, spinner, text]
   },
   {
     name: "Form",
