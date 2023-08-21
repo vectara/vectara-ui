@@ -1,50 +1,63 @@
 @use "sass:map";
 
 .vuiProgressBar {
+  position: relative;
   border-radius: $sizeXxs;
   height: $sizeS;
+  overflow: hidden;
+}
+
+.vuiProgressBar__empty,
+.vuiProgressBar__bar,
+.vuiProgressBar__outline {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.vuiProgressBar__empty {
+  z-index: 0;
+  background-color: $colorLightShade;
+  box-shadow: inset rgba(0, 0, 0, 0.05) 0px 2px 2px;
 }
 
 .vuiProgressBar__bar {
   transition: all $transitionSpeed;
-  height: 100%;
+  z-index: 1;
+}
+
+.vuiProgressBar__outline {
+  z-index: 2;
+  border-radius: $sizeXxs;
+  box-shadow: inset 0 0 0 1px rgba(#000000, 0.1);
 }
 
 // Color
 $color: (
   accent: (
-    "full-color": transparentize($colorAccent, 0.4),
-    "empty-color": transparentize($colorAccent, 0.8)
+    "background-color": $colorAccent
   ),
   primary: (
-    "full-color": transparentize($colorPrimary, 0.4),
-    "empty-color": transparentize($colorPrimary, 0.8)
+    "background-color": $colorPrimary
   ),
   success: (
-    "full-color": transparentize($colorSuccess, 0.4),
-    "empty-color": transparentize($colorSuccess, 0.8)
+    "background-color": $colorSuccess
   ),
   warning: (
-    "full-color": transparentize($colorWarning, 0.4),
-    "empty-color": transparentize($colorWarning, 0.8)
+    "background-color": $colorWarning
   ),
   danger: (
-    "full-color": transparentize($colorDanger, 0.4),
-    "empty-color": transparentize($colorDanger, 0.8)
+    "background-color": $colorDanger
   ),
   neutral: (
-    "full-color": transparentize($colorDarkShade, 0.4),
-    "empty-color": transparentize($colorDarkShade, 0.8)
+    "background-color": $colorDarkShade
   )
 );
 
 @each $colorName, $colorValue in $color {
   .vuiProgressBar--#{$colorName} {
-    border: 1px solid #{map.get($colorValue, "full-color")};
-    background-color: #{map.get($colorValue, "empty-color")};
-
     .vuiProgressBar__bar {
-      background-color: #{map.get($colorValue, "full-color")};
+      background-color: #{map.get($colorValue, "background-color")};
     }
   }
 }

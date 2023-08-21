@@ -17,7 +17,9 @@ export const VuiProgressBar = ({ color, percentage, className, value, ...rest }:
 
   const bar = (
     <div className={classes} {...rest}>
+      <div className="vuiProgressBar__empty" />
       <div className="vuiProgressBar__bar" style={{ width: `${percentage}%` }} />
+      <div className="vuiProgressBar__outline" />
     </div>
   );
 
