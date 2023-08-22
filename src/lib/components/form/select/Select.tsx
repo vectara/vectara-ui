@@ -8,6 +8,7 @@ const SIZE = ["m", "l"] as const;
 type Props = {
   className?: string;
   id?: string;
+  name?: string;
   options: {
     text: string;
     value: string;
@@ -23,7 +24,7 @@ const sizeToIconSizeMap = {
 } as const;
 
 export const VuiSelect = forwardRef<HTMLSelectElement | null, Props>(
-  ({ className, id, options, value, size = "m", onChange, ...rest }: Props, ref) => {
+  ({ className, id, name, options, value, size = "m", onChange, ...rest }: Props, ref) => {
     const classes = classNames("vuiSelect", `vuiSelect--${size}`, className);
 
     const renderedOptions = options.map((option, index) => {
@@ -37,7 +38,7 @@ export const VuiSelect = forwardRef<HTMLSelectElement | null, Props>(
 
     return (
       <div className={classes}>
-        <select ref={ref} id={id} value={value} onChange={onChange} {...rest}>
+        <select ref={ref} id={id} name={name} value={value} onChange={onChange} {...rest}>
           {renderedOptions}
         </select>
 
