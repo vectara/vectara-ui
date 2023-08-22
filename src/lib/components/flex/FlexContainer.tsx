@@ -44,6 +44,7 @@ export type Props = {
   spacing?: FlexSpacing;
   wrap?: boolean;
   className?: string;
+  fullWidth?: boolean;
 };
 
 export const VuiFlexContainer = ({
@@ -54,6 +55,7 @@ export const VuiFlexContainer = ({
   spacing = "m",
   wrap,
   className,
+  fullWidth,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -64,7 +66,8 @@ export const VuiFlexContainer = ({
     justifyContentToClassNameMap[justifyContent],
     spacingToClassNameMap[spacing],
     {
-      "vuiFlexContainer--wrap": wrap
+      "vuiFlexContainer--wrap": wrap,
+      "vuiFlexContainer--fullWidth": fullWidth
     }
   );
 
