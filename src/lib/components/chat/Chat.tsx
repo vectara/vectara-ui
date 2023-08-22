@@ -25,6 +25,7 @@ type Props = {
   onReset: () => void;
   conversation: ChatTurn[];
   isInspectionEnabled?: boolean;
+  initialIsFullScreen?: boolean;
 };
 
 export const VuiChat = ({
@@ -36,10 +37,11 @@ export const VuiChat = ({
   onInput,
   onReset,
   conversation,
-  isInspectionEnabled
+  isInspectionEnabled,
+  initialIsFullScreen = false
 }: Props) => {
   const [isTouched, setIsTouched] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(initialIsFullScreen);
   const [input, setInput] = useState("");
   const [inspectedTurn, setInspectedTurn] = useState<ChatTurn>();
   const buttonRef = useRef<HTMLButtonElement>(null);
