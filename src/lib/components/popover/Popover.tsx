@@ -51,15 +51,19 @@ export const VuiPopover = ({
   });
 
   useEffect(() => {
-    const onResizeWindow = () => {
+    const updatePosition = () => {
       // Force a re-render when the window resizes.
       setPositionMarker(Date.now());
     };
 
-    window.addEventListener("resize", onResizeWindow);
+    window.removeEventListener("resize", updatePosition);
+    // Mostly defensive to prevent weird bugs where the popover ends
+    // up being rendered partially off-screen.
+    window.removeEventListener("scroll", updatePosition);
 
     return () => {
-      window.removeEventListener("resize", onResizeWindow);
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition);
     };
   }, []);
 
