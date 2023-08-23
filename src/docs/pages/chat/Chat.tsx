@@ -33,13 +33,23 @@ export const Chat = () => {
   const [isSuggestionsEnabled, setIsSuggestionsEnabled] = useState(true);
 
   const handleUserInput = (input: string) => {
-    const turn: ChatTurn = {
-      question: input,
-      isLoading: true,
-      answer: responses[Math.floor(Math.random() * responses.length)],
-      query: "This is a placeholder query",
-      results: [searchResult, searchResult, searchResult, searchResult, searchResult]
-    };
+    const turn: ChatTurn =
+      Math.random() > 0.4
+        ? {
+            question: input,
+            isLoading: true,
+            query: "This is a placeholder query",
+            answer: responses[Math.floor(Math.random() * responses.length)],
+            results: [searchResult, searchResult, searchResult, searchResult, searchResult]
+          }
+        : {
+            question: input,
+            isLoading: true,
+            query: "This is a placeholder query",
+            error: {
+              message: "There was a problem with the server"
+            }
+          };
 
     const index = conversation.length;
     setConversation([...conversation, turn]);
@@ -49,6 +59,31 @@ export const Chat = () => {
         if (prev[index]) {
           prev[index].isLoading = false;
         }
+        return [...prev];
+      });
+    }, 2500);
+  };
+
+  const handleRetry = (turn: ChatTurn) => {
+    setConversation((prev) => {
+      const index = prev.indexOf(turn);
+      prev[index].isLoading = true;
+      return [...prev];
+    });
+
+    setTimeout(() => {
+      setConversation((prev) => {
+        const index = prev.indexOf(turn);
+        if (prev[index]) {
+          prev[index] = {
+            ...prev[index],
+            error: undefined,
+            isLoading: false,
+            answer: responses[Math.floor(Math.random() * responses.length)],
+            results: [searchResult, searchResult, searchResult, searchResult, searchResult]
+          };
+        }
+
         return [...prev];
       });
     }, 2500);
@@ -80,6 +115,7 @@ export const Chat = () => {
         setIsOpen={setIsOpen}
         introduction={introduction}
         onInput={handleUserInput}
+        onRetry={handleRetry}
         onReset={() => setConversation([])}
         conversation={conversation}
         isInspectionEnabled={isInspectionEnabled}

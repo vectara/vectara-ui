@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BiChat, BiExitFullscreen, BiFullscreen, BiListUl, BiPaperPlane, BiX } from "react-icons/bi";
+import { BiChat, BiError, BiExitFullscreen, BiFullscreen, BiListUl, BiPaperPlane, BiX } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
@@ -22,6 +22,7 @@ type Props = {
   introduction?: string;
   suggestions?: string[];
   onInput: (input: string) => void;
+  onRetry: (trun: ChatTurn) => void;
   onReset: () => void;
   conversation: ChatTurn[];
   isInspectionEnabled?: boolean;
@@ -35,6 +36,7 @@ export const VuiChat = ({
   introduction,
   suggestions,
   onInput,
+  onRetry,
   onReset,
   conversation,
   isInspectionEnabled,
@@ -227,6 +229,30 @@ export const VuiChat = ({
                           </VuiText>
                         </VuiFlexItem>
                       </VuiFlexContainer>
+                    ) : turn.error ? (
+                      <>
+                        <VuiFlexContainer alignItems="center" spacing="xs">
+                          <VuiFlexItem grow={false}>
+                            <VuiIcon color="danger">
+                              <BiError />
+                            </VuiIcon>
+                          </VuiFlexItem>
+
+                          <VuiFlexItem grow={false}>
+                            <VuiText>
+                              <p>
+                                <VuiTextColor color="danger">{turn.error?.message}</VuiTextColor>
+                              </p>
+                            </VuiText>
+                          </VuiFlexItem>
+                        </VuiFlexContainer>
+
+                        <VuiSpacer size="s" />
+
+                        <VuiButtonSecondary size="xs" color="neutral" onClick={() => onRetry(turn)}>
+                          Try again
+                        </VuiButtonSecondary>
+                      </>
                     ) : (
                       turn.answer
                     )}
