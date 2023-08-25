@@ -135,14 +135,6 @@ export const VuiChat = ({
               <div className="vuiChatButton__prompt">{openPrompt}</div>
             </VuiFlexItem>
 
-            {conversation.length > 0 && (
-              <VuiFlexItem shrink={false} grow={false}>
-                <VuiButtonSecondary color="neutral" size="xs" onClick={onReset}>
-                  Start over
-                </VuiButtonSecondary>
-              </VuiFlexItem>
-            )}
-
             <VuiFlexItem shrink={false} grow={false}>
               <VuiFlexContainer alignItems="center" spacing="xxs">
                 <VuiFlexItem shrink={false} grow={false}>
@@ -191,74 +183,92 @@ export const VuiChat = ({
 
           {conversation.length > 0 && (
             <div className="vuiChat__turns">
-              {conversation.map((turn, index) => (
-                <div key={index} className="vuiChat__turn">
-                  <VuiFlexContainer alignItems="start" justifyContent="spaceBetween" spacing="xs">
-                    <VuiFlexItem grow={1}>
-                      <div className="vuiChat__question">{turn.question}</div>
-                    </VuiFlexItem>
+              {conversation.map((turn, index) => {
+                const turnClasses = classNames("vuiChatQuestion", {
+                  "vuiChatQuestion--error": turn.error
+                });
 
-                    {isInspectionEnabled && (
-                      <VuiFlexItem grow={false} shrink={false}>
-                        <VuiIconButton
-                          className="vuiChat__inspectButton"
-                          color="accent"
-                          icon={
-                            <VuiIcon size="s">
-                              <BiListUl />
-                            </VuiIcon>
-                          }
-                          onClick={() => setInspectedTurn(turn)}
-                        />
+                return (
+                  <div key={index} className="vuiChat__turn">
+                    <VuiFlexContainer alignItems="start" justifyContent="spaceBetween" spacing="xs">
+                      <VuiFlexItem grow={1}>
+                        <div className={turnClasses}>{turn.question}</div>
                       </VuiFlexItem>
-                    )}
-                  </VuiFlexContainer>
 
-                  <div className="vuiChat__answer">
-                    {turn.isLoading ? (
-                      <VuiFlexContainer alignItems="center" spacing="xs">
-                        <VuiFlexItem grow={false}>
-                          <VuiSpinner size="xs" />
+                      {isInspectionEnabled && (
+                        <VuiFlexItem grow={false} shrink={false}>
+                          <VuiIconButton
+                            className="vuiChat__inspectButton"
+                            color="accent"
+                            icon={
+                              <VuiIcon size="s">
+                                <BiListUl />
+                              </VuiIcon>
+                            }
+                            onClick={() => setInspectedTurn(turn)}
+                          />
                         </VuiFlexItem>
+                      )}
+                    </VuiFlexContainer>
 
-                        <VuiFlexItem grow={false}>
-                          <VuiText>
-                            <p>
-                              <VuiTextColor color="subdued">Thinking…</VuiTextColor>
-                            </p>
-                          </VuiText>
-                        </VuiFlexItem>
-                      </VuiFlexContainer>
-                    ) : turn.error ? (
-                      <>
+                    <div className="vuiChat__answer">
+                      {turn.isLoading ? (
                         <VuiFlexContainer alignItems="center" spacing="xs">
                           <VuiFlexItem grow={false}>
-                            <VuiIcon color="danger">
-                              <BiError />
-                            </VuiIcon>
+                            <VuiSpinner size="xs" />
                           </VuiFlexItem>
 
                           <VuiFlexItem grow={false}>
                             <VuiText>
                               <p>
-                                <VuiTextColor color="danger">{turn.error?.message}</VuiTextColor>
+                                <VuiTextColor color="subdued">Thinking…</VuiTextColor>
                               </p>
                             </VuiText>
                           </VuiFlexItem>
                         </VuiFlexContainer>
+                      ) : turn.error ? (
+                        <>
+                          <VuiFlexContainer alignItems="center" spacing="xs">
+                            <VuiFlexItem grow={false}>
+                              <VuiIcon color="subdued">
+                                <BiError />
+                              </VuiIcon>
+                            </VuiFlexItem>
 
-                        <VuiSpacer size="s" />
+                            <VuiFlexItem grow={false}>
+                              <VuiText>
+                                <p>
+                                  <VuiTextColor color="subdued">{turn.error?.message}</VuiTextColor>
+                                </p>
+                              </VuiText>
+                            </VuiFlexItem>
+                          </VuiFlexContainer>
 
-                        <VuiButtonSecondary size="xs" color="neutral" onClick={() => onRetry(turn)}>
-                          Try again
-                        </VuiButtonSecondary>
-                      </>
-                    ) : (
-                      turn.answer
-                    )}
+                          <VuiSpacer size="s" />
+
+                          <VuiButtonSecondary size="xs" color="neutral" onClick={() => onRetry(turn)}>
+                            Ask again
+                          </VuiButtonSecondary>
+                        </>
+                      ) : (
+                        turn.answer
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
+            </div>
+          )}
+
+          {conversation.length > 0 && (
+            <div className="vuiChat__conversationActions">
+              <VuiFlexContainer alignItems="center" justifyContent="center">
+                <VuiFlexItem>
+                  <VuiButtonSecondary color="neutral" size="xs" onClick={onReset}>
+                    Start over
+                  </VuiButtonSecondary>
+                </VuiFlexItem>
+              </VuiFlexContainer>
             </div>
           )}
         </div>
