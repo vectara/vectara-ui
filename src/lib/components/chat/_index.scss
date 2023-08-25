@@ -4,13 +4,13 @@ $minChatWidth: 600px;
 .vuiChatButton,
 .vuiChat {
   position: fixed;
-  right: $sizeL;
-  bottom: $sizeM;
+  right: $sizeXxs;
+  bottom: $sizeXxs;
   z-index: $chatZIndex;
 }
 
 .vuiChatButton-isHidden,
-.vuiChat-isHidden {
+.vuiChat--closed {
   // If we used display: none, then the button's animation would play every
   // time the button is shown.
   visibility: hidden;
@@ -31,6 +31,7 @@ $minChatWidth: 600px;
 
   &:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    translate: translateY(-20px);
   }
 }
 
@@ -77,10 +78,17 @@ $minChatWidth: 600px;
   }
 }
 
-.vuiChat-isFullScreen {
+.vuiChat--tall {
   bottom: $sizeXxs;
   height: calc(100vh - 2 * #{$sizeXxs});
-  right: $sizeXxs;
+
+  .vuiChat__conversation {
+    max-height: 100%;
+  }
+}
+
+.vuiChat--fullScreen {
+  height: calc(100vh - 2 * #{$sizeXxs});
   width: calc(100vw - 2 * #{$sizeXxs});
   max-width: 100% !important;
 

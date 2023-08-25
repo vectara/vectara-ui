@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { BiChat, BiExitFullscreen, BiFullscreen, BiPaperPlane, BiX } from "react-icons/bi";
+import { BiChat, BiExpand, BiExpandVertical, BiPaperPlane, BiX } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiTextInput } from "../form";
-import { ChatTurn } from "./types";
+import { ChatStyle, ChatTurn, CHAT_STYLE_ORDER } from "./types";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
 import { VuiChatInspectionModal } from "./ChatInspectionModal";
 import { VuiSpacer } from "../spacer/Spacer";
@@ -15,8 +15,8 @@ import { VuiChatTurn } from "./ChatTurn";
 
 type Props = {
   openPrompt: string;
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  chatStyle: ChatStyle;
+  setChatStyle: (chatStyle: ChatStyle) => void;
   introduction?: string;
   suggestions?: string[];
   onInput: (input: string) => void;
@@ -24,29 +24,35 @@ type Props = {
   onReset: () => void;
   conversation: ChatTurn[];
   isInspectionEnabled?: boolean;
-  initialIsFullScreen?: boolean;
 };
+
+const chatStyleToIconMap = {
+  closed: <BiX />,
+  condensed: <BiExpandVertical />,
+  tall: <BiExpand />,
+  fullScreen: <BiX />
+} as const;
 
 export const VuiChat = ({
   openPrompt,
-  isOpen,
-  setIsOpen,
+  chatStyle,
+  setChatStyle,
   introduction,
   suggestions,
   onInput,
   onRetry,
   onReset,
   conversation,
-  isInspectionEnabled,
-  initialIsFullScreen = false
+  isInspectionEnabled
 }: Props) => {
   const [isTouched, setIsTouched] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(initialIsFullScreen);
   const [input, setInput] = useState("");
   const [inspectedTurn, setInspectedTurn] = useState<ChatTurn>();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const isOpen = chatStyle !== "closed";
 
   useEffect(() => {
     if (isOpen) {
@@ -77,29 +83,29 @@ export const VuiChat = ({
     setInput("");
   };
 
-  const onOpen = () => {
+  const cycleChatStyle = () => {
     setIsTouched(true);
-    setIsOpen(true);
-  };
-
-  const onClose = () => {
-    setIsTouched(true);
-    setIsOpen(false);
+    const currentIndex = CHAT_STYLE_ORDER.indexOf(chatStyle);
+    setChatStyle(
+      currentIndex === CHAT_STYLE_ORDER.length - 1 ? CHAT_STYLE_ORDER[0] : CHAT_STYLE_ORDER[currentIndex + 1]
+    );
   };
 
   const buttonClasses = classNames("vuiChatButton", {
     "vuiChatButton-isHidden": isOpen
   });
 
-  const classes = classNames("vuiChat", {
-    "vuiChat-isHidden": !isOpen,
-    "vuiChat-isFullScreen": isFullScreen
-  });
+  const classes = classNames("vuiChat", `vuiChat--${chatStyle}`);
 
   return (
     <>
-      {/* @ts-expect-error React doesn't support inert yet */}
-      <button className={buttonClasses} inert={isOpen ? "" : null} onClick={onOpen} ref={buttonRef}>
+      <button
+        // @ts-expect-error React doesn't support inert yet
+        inert={isOpen ? "" : null}
+        className={buttonClasses}
+        onClick={() => setChatStyle("condensed")}
+        ref={buttonRef}
+      >
         <VuiFlexContainer alignItems="center" spacing="s">
           <VuiFlexItem shrink={false} grow={false}>
             <VuiIcon size="s">
@@ -118,7 +124,7 @@ export const VuiChat = ({
         inert={!isOpen ? "" : null}
         className={classes}
         onKeyDown={(e) => {
-          if (e.key === "Escape") onClose();
+          if (e.key === "Escape") setChatStyle("closed");
         }}
       >
         <div className="vuiChat__header">
@@ -131,30 +137,6 @@ export const VuiChat = ({
 
             <VuiFlexItem grow={1}>
               <div className="vuiChatButton__prompt">{openPrompt}</div>
-            </VuiFlexItem>
-
-            <VuiFlexItem shrink={false} grow={false}>
-              <VuiFlexContainer alignItems="center" spacing="xxs">
-                <VuiFlexItem shrink={false} grow={false}>
-                  <VuiIconButton
-                    icon={<VuiIcon>{isFullScreen ? <BiExitFullscreen /> : <BiFullscreen />}</VuiIcon>}
-                    color="neutral"
-                    onClick={() => setIsFullScreen(!isFullScreen)}
-                  />
-                </VuiFlexItem>
-
-                <VuiFlexItem shrink={false} grow={false}>
-                  <VuiIconButton
-                    icon={
-                      <VuiIcon>
-                        <BiX />
-                      </VuiIcon>
-                    }
-                    color="neutral"
-                    onClick={onClose}
-                  />
-                </VuiFlexItem>
-              </VuiFlexContainer>
             </VuiFlexItem>
           </VuiFlexContainer>
         </div>
@@ -231,6 +213,38 @@ export const VuiChat = ({
                 onClick={onSubmit}
               />
             </VuiFlexItem>
+
+            <VuiFlexItem shrink={false} grow={false}>
+              <VuiIconButton
+                icon={<VuiIcon>{chatStyleToIconMap[chatStyle]}</VuiIcon>}
+                color="neutral"
+                onClick={cycleChatStyle}
+              />
+            </VuiFlexItem>
+            {/* 
+            <VuiFlexItem shrink={false} grow={false}>
+              <VuiFlexContainer alignItems="center" spacing="xxs">
+                <VuiFlexItem shrink={false} grow={false}>
+                  <VuiIconButton
+                    icon={<VuiIcon>{isFullScreen ? <BiExitFullscreen /> : <BiFullscreen />}</VuiIcon>}
+                    color="neutral"
+                    onClick={() => setIsFullScreen(!isFullScreen)}
+                  />
+                </VuiFlexItem>
+              </VuiFlexContainer>
+            </VuiFlexItem> */}
+            {/* 
+            <VuiFlexItem shrink={false} grow={false}>
+              <VuiIconButton
+                icon={
+                  <VuiIcon>
+                    <BiPaperPlane />
+                  </VuiIcon>
+                }
+                color="primary"
+                onClick={onSubmit}
+              />
+            </VuiFlexItem> */}
           </VuiFlexContainer>
         </div>
       </div>

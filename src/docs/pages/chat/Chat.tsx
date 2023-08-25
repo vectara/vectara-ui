@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChatTurn, VuiChat, VuiSpacer, VuiToggle } from "../../../lib";
+import { ChatTurn, ChatStyle, VuiChat, VuiSpacer, VuiToggle } from "../../../lib";
 
 const introduction =
   "I know everything about lobsters. Their environments, lifecycle, likes, dislikes, hobbies... really, ask me anything about lobsters!";
@@ -27,7 +27,7 @@ const searchResult = {
 const suggestions = ["What do lobsters eat?", "How long do lobsters live?", "How big do lobsters get?"];
 
 export const Chat = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [chatStyle, setChatStyle] = useState<ChatStyle>("closed");
   const [conversation, setConversation] = useState<ChatTurn[]>([]);
   const [isInspectionEnabled, setIsInspectionEnabled] = useState(true);
   const [isSuggestionsEnabled, setIsSuggestionsEnabled] = useState(true);
@@ -111,8 +111,8 @@ export const Chat = () => {
 
       <VuiChat
         openPrompt="Discuss lobsters"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        chatStyle={chatStyle}
+        setChatStyle={setChatStyle}
         introduction={introduction}
         onInput={handleUserInput}
         onRetry={handleRetry}

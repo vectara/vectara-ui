@@ -14,7 +14,7 @@ import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
 import { VuiCard } from "./card/Card";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
-import { ChatTurn } from "./chat/types";
+import { ChatTurn, ChatStyle } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
 import { VuiCode } from "./code/Code";
 import { VuiCopyButton } from "./copyButton/CopyButton";
@@ -64,6 +64,7 @@ export type {
   AppContentPadding,
   ButtonColor,
   CalloutColor,
+  ChatStyle,
   ChatTurn,
   InfoTableColumnAlign,
   InfoTableRow,

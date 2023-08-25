@@ -11,3 +11,6 @@ export type ChatTurn = {
   query?: string;
   results?: SearchResult[];
 };
+
+export const CHAT_STYLE_ORDER = ["closed", "condensed", "tall", "fullScreen"] as const;
+export type ChatStyle = (typeof CHAT_STYLE_ORDER)[number];
