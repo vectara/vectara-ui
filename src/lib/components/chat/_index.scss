@@ -20,15 +20,17 @@ $minChatWidth: 600px;
 }
 
 .vuiChatButton {
-  border-radius: $sizeXs;
-  padding: $sizeXs $sizeL;
+  padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
-  color: $colorEmptyShade;
-  background-color: $colorDarkerShade;
+  color: $colorText;
+  background-color: $colorPrimaryLightShade;
+  border: 1px solid $borderColor;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: all $transitionSpeed;
   animation: popUp 0.4s cubic-bezier(0.5, 0, 0.5, 1) 1;
 
   &:hover {
-    background-color: $colorAccent;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   }
 }
 
