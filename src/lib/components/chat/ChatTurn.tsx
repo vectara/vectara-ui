@@ -24,17 +24,19 @@ export const VuiChatTurn = ({ turn, isInspectionEnabled, setInspectedTurn, onRet
   });
 
   return (
-    <div className="vuiChat__turn">
+    <div className="vuiChatTurn">
       <VuiFlexContainer alignItems="start" justifyContent="spaceBetween" spacing="xs">
         <VuiFlexItem grow={1}>
-          <div className={turnClasses}>{turn.question}</div>
+          <div className={turnClasses}>
+            <h3>{turn.question}</h3>
+          </div>
         </VuiFlexItem>
 
         {isInspectionEnabled && (
           <VuiFlexItem grow={false} shrink={false}>
             <VuiIconButton
               className="vuiChat__inspectButton"
-              color="accent"
+              color="neutral"
               icon={
                 <VuiIcon size="s">
                   <BiListUl />

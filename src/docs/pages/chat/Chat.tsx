@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChatTurn, ChatStyle, VuiChat, VuiSpacer, VuiToggle } from "../../../lib";
+import { ChatTurn, ChatStyle, VuiChat, VuiSpacer, VuiToggle, VuiSelect, VuiFormGroup } from "../../../lib";
 
 const introduction =
   "I know everything about lobsters. Their environments, lifecycle, likes, dislikes, hobbies... really, ask me anything about lobsters!";
@@ -26,11 +26,18 @@ const searchResult = {
 
 const suggestions = ["What do lobsters eat?", "How long do lobsters live?", "How big do lobsters get?"];
 
+const languages = [
+  { text: "English", value: "eng" },
+  { text: "French", value: "fra" },
+  { text: "Korean", value: "kor" }
+];
+
 export const Chat = () => {
   const [chatStyle, setChatStyle] = useState<ChatStyle>("closed");
   const [conversation, setConversation] = useState<ChatTurn[]>([]);
   const [isInspectionEnabled, setIsInspectionEnabled] = useState(true);
   const [isSuggestionsEnabled, setIsSuggestionsEnabled] = useState(true);
+  const [language, setLanguage] = useState("kor");
 
   const handleUserInput = (input: string) => {
     const turn: ChatTurn =
@@ -89,6 +96,19 @@ export const Chat = () => {
     }, 2500);
   };
 
+  const settings = (
+    <div>
+      <VuiFormGroup label="Language" labelFor="optionsList1" helpText="Select a language.">
+        <VuiSelect
+          id="optionsList1"
+          options={languages}
+          value={language}
+          onChange={(event) => setLanguage(event.target.value)}
+        />
+      </VuiFormGroup>
+    </div>
+  );
+
   return (
     <>
       <p>Look at the bottom right corner of the window.</p>
@@ -120,6 +140,7 @@ export const Chat = () => {
         conversation={conversation}
         isInspectionEnabled={isInspectionEnabled}
         suggestions={isSuggestionsEnabled ? suggestions : undefined}
+        settings={settings}
       />
     </>
   );

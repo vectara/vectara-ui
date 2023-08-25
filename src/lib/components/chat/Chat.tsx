@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiChat, BiExpand, BiExpandVertical, BiPaperPlane, BiX } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
@@ -12,6 +12,7 @@ import { VuiChatInspectionModal } from "./ChatInspectionModal";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiButtonTertiary } from "../button/ButtonTertiary";
 import { VuiChatTurn } from "./ChatTurn";
+import { VuiTitle } from "../typography/Title";
 
 type Props = {
   openPrompt: string;
@@ -23,6 +24,7 @@ type Props = {
   onRetry: (trun: ChatTurn) => void;
   onReset: () => void;
   conversation: ChatTurn[];
+  settings?: React.ReactNode;
   isInspectionEnabled?: boolean;
 };
 
@@ -43,9 +45,11 @@ export const VuiChat = ({
   onRetry,
   onReset,
   conversation,
+  settings,
   isInspectionEnabled
 }: Props) => {
   const [isTouched, setIsTouched] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [inspectedTurn, setInspectedTurn] = useState<ChatTurn>();
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -128,16 +132,30 @@ export const VuiChat = ({
         }}
       >
         <div className="vuiChat__header">
-          <VuiFlexContainer alignItems="center" spacing="s">
-            <VuiFlexItem shrink={false} grow={false}>
-              <VuiIcon size="s">
-                <BiChat />
-              </VuiIcon>
+          <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
+            <VuiFlexItem grow={1}>
+              <VuiFlexContainer alignItems="center" spacing="s">
+                <VuiFlexItem shrink={false} grow={false}>
+                  <VuiIcon size="s">
+                    <BiChat />
+                  </VuiIcon>
+                </VuiFlexItem>
+
+                <VuiFlexItem grow={1}>
+                  <div className="vuiChatButton__prompt">
+                    <h2>{openPrompt}</h2>
+                  </div>
+                </VuiFlexItem>
+              </VuiFlexContainer>
             </VuiFlexItem>
 
-            <VuiFlexItem grow={1}>
-              <div className="vuiChatButton__prompt">{openPrompt}</div>
-            </VuiFlexItem>
+            {settings && (
+              <VuiFlexItem shrink={false} grow={false}>
+                <VuiButtonSecondary color="neutral" size="xs" onClick={() => setIsSettingsOpen(true)}>
+                  Settings
+                </VuiButtonSecondary>
+              </VuiFlexItem>
+            )}
           </VuiFlexContainer>
         </div>
 
@@ -221,32 +239,36 @@ export const VuiChat = ({
                 onClick={cycleChatStyle}
               />
             </VuiFlexItem>
-            {/* 
-            <VuiFlexItem shrink={false} grow={false}>
-              <VuiFlexContainer alignItems="center" spacing="xxs">
-                <VuiFlexItem shrink={false} grow={false}>
-                  <VuiIconButton
-                    icon={<VuiIcon>{isFullScreen ? <BiExitFullscreen /> : <BiFullscreen />}</VuiIcon>}
-                    color="neutral"
-                    onClick={() => setIsFullScreen(!isFullScreen)}
-                  />
-                </VuiFlexItem>
-              </VuiFlexContainer>
-            </VuiFlexItem> */}
-            {/* 
-            <VuiFlexItem shrink={false} grow={false}>
-              <VuiIconButton
-                icon={
-                  <VuiIcon>
-                    <BiPaperPlane />
-                  </VuiIcon>
-                }
-                color="primary"
-                onClick={onSubmit}
-              />
-            </VuiFlexItem> */}
           </VuiFlexContainer>
         </div>
+
+        {isSettingsOpen && (
+          <div className="vuiChat__settings">
+            <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
+              <VuiFlexItem grow={1}>
+                <VuiTitle size="s">
+                  <h3>Chat settings</h3>
+                </VuiTitle>
+              </VuiFlexItem>
+
+              <VuiFlexItem shrink={false} grow={false}>
+                <VuiIconButton
+                  icon={
+                    <VuiIcon>
+                      <BiX />
+                    </VuiIcon>
+                  }
+                  color="neutral"
+                  onClick={() => setIsSettingsOpen(false)}
+                />
+              </VuiFlexItem>
+            </VuiFlexContainer>
+
+            <VuiSpacer size="s" />
+
+            {settings}
+          </div>
+        )}
       </div>
 
       <VuiChatInspectionModal
