@@ -8,11 +8,11 @@ import { VuiIconButton } from "../button/IconButton";
 import { VuiTextInput } from "../form";
 import { ChatStyle, ChatTurn, CHAT_STYLE_ORDER } from "./types";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
-import { VuiChatInspectionModal } from "./ChatInspectionModal";
+import { VuiChatInspector } from "./ChatInspector";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiButtonTertiary } from "../button/ButtonTertiary";
 import { VuiChatTurn } from "./ChatTurn";
-import { VuiTitle } from "../typography/Title";
+import { VuiChatPanel } from "./ChatPanel";
 
 type Props = {
   openPrompt: string;
@@ -243,39 +243,15 @@ export const VuiChat = ({
         </div>
 
         {isSettingsOpen && (
-          <div className="vuiChat__settings">
-            <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
-              <VuiFlexItem grow={1}>
-                <VuiTitle size="s">
-                  <h3>Chat settings</h3>
-                </VuiTitle>
-              </VuiFlexItem>
-
-              <VuiFlexItem shrink={false} grow={false}>
-                <VuiIconButton
-                  icon={
-                    <VuiIcon>
-                      <BiX />
-                    </VuiIcon>
-                  }
-                  color="neutral"
-                  onClick={() => setIsSettingsOpen(false)}
-                />
-              </VuiFlexItem>
-            </VuiFlexContainer>
-
-            <VuiSpacer size="s" />
-
+          <VuiChatPanel title="Chat settings" onClose={() => setIsSettingsOpen(false)}>
             {settings}
-          </div>
+          </VuiChatPanel>
+        )}
+
+        {Boolean(inspectedTurn) && (
+          <VuiChatInspector turn={inspectedTurn} onClose={() => setInspectedTurn(undefined)} />
         )}
       </div>
-
-      <VuiChatInspectionModal
-        isOpen={Boolean(inspectedTurn)}
-        turn={inspectedTurn}
-        onClose={() => setInspectedTurn(undefined)}
-      />
     </>
   );
 };

@@ -133,7 +133,7 @@ $minChatWidth: 600px;
   padding: $sizeXs $sizeS;
 }
 
-.vuiChat__settings {
+.vuiChatPanel {
   position: absolute;
   z-index: 5;
   top: $sizeXxs;
@@ -141,6 +141,7 @@ $minChatWidth: 600px;
   right: $sizeXxs;
   bottom: $sizeXxs;
   padding: $sizeXxs $sizeS;
+  overflow-y: auto;
   background-color: $colorEmptyShade;
   border: 1px solid $borderColor;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
