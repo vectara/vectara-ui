@@ -35,6 +35,7 @@ export const VuiChatTurn = ({ turn, isInspectionEnabled, setInspectedTurn, onRet
         {isInspectionEnabled && (
           <VuiFlexItem grow={false} shrink={false}>
             <VuiIconButton
+              size="xs"
               className="vuiChat__inspectButton"
               color="neutral"
               icon={
