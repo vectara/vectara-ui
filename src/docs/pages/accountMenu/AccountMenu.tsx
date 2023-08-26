@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiAccountMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList } from "../../../lib";
+import { VuiAccountMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList, VuiSpacer, VuiText } from "../../../lib";
 import { BiSolidUser } from "react-icons/bi";
 
 const options = [
@@ -29,7 +29,23 @@ export const AccountMenu = () => {
       }
       info={[
         { title: "Email", value: "email@email.com" },
-        { title: "Account number", value: "1234567890" }
+        { title: "Account number", value: "1234567890" },
+        {
+          title: "Account size",
+          value: (
+            <>
+              <VuiText>
+                <p>22 MB</p>
+              </VuiText>
+
+              <VuiSpacer size="xs" />
+
+              <VuiButtonSecondary size="xs" color="neutral">
+                Refresh
+              </VuiButtonSecondary>
+            </>
+          )
+        }
       ]}
     >
       <VuiOptionsList
@@ -37,7 +53,7 @@ export const AccountMenu = () => {
           alert(`Selected ${value}`);
         }}
         options={options}
-        size="m"
+        size="l"
       />
     </VuiAccountMenu>
   );

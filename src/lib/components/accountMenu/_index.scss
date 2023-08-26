@@ -1,7 +1,10 @@
+.vuiAccountMenu {
+  min-width: 200px;
+}
+
 .vuiAccounrMenuHeader {
-  background-color: $colorLightShade;
   padding: $sizeS;
-  border-bottom: 1px solid $borderColor;
+  border-bottom: 1px solid $borderColorLight;
 }
 
 .vuiAccountMenuHeaderItem + .vuiAccountMenuHeaderItem {

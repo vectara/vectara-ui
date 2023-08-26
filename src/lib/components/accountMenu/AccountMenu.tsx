@@ -2,7 +2,7 @@ import { VuiPopover } from "../popover/Popover";
 
 type AccountMenuInfo = Array<{
   title: string;
-  value: string;
+  value: React.ReactNode;
 }>;
 
 type Props = {
@@ -16,6 +16,7 @@ type Props = {
 export const VuiAccountMenu = ({ isOpen, setIsOpen, button, info, children }: Props) => {
   return (
     <VuiPopover
+      className="vuiAccountMenu"
       isOpen={isOpen}
       setIsOpen={() => setIsOpen(!isOpen)}
       button={button}
