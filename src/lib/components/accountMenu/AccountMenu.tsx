@@ -1,4 +1,6 @@
+import { VuiHorizontalRule } from "../horizontalRule/HorizontalRule";
 import { VuiPopover } from "../popover/Popover";
+import { VuiSpacer } from "../spacer/Spacer";
 
 type AccountMenuInfo = Array<{
   title: string;
@@ -28,6 +30,13 @@ export const VuiAccountMenu = ({ isOpen, setIsOpen, button, info, children }: Pr
               <div key={index} className="vuiAccountMenuHeaderItem">
                 <div className="vuiAccountMenuHeaderItem__title">{item.title}</div>
                 <div className="vuiAccountMenuHeaderItem__value">{item.value}</div>
+                {index < info.length - 1 && (
+                  <>
+                    <VuiSpacer size="xs" />
+                    <VuiHorizontalRule />
+                    <VuiSpacer size="xs" />
+                  </>
+                )}
               </div>
             ))}
           </div>
