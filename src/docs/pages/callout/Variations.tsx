@@ -55,7 +55,13 @@ export const Variations = () => {
       </Subsection>
 
       <Subsection title="Small size, title only">
-        <VuiCallout color="primary" size="s" title="Carbon fiber" headingElement="h3" />
+        <VuiCallout
+          color="primary"
+          size="s"
+          title="Carbon fiber"
+          headingElement="h3"
+          onDismiss={() => console.log("Dismiss")}
+        />
       </Subsection>
     </>
   );

@@ -14,7 +14,13 @@ export const Colors = () => {
     <>
       {CALLOUT_COLOR.map((color) => (
         <Fragment key={color}>
-          <VuiCallout key={color} color={color} title={`Color ${color}`} headingElement="h3">
+          <VuiCallout
+            key={color}
+            color={color}
+            title={`Color ${color}`}
+            headingElement="h3"
+            onDismiss={() => console.log("Dmissmis")}
+          >
             <VuiText>
               <p>
                 Carbon fibers or carbon fibres (alternatively CF, graphite fiber or graphite fibre) are fibers about 5
