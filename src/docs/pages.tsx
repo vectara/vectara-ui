@@ -5,7 +5,7 @@ import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
 import { card } from "./pages/card";
-import { chat } from "./pages/chat";
+import { chat } from "./pages/card/chat";
 import { checkbox } from "./pages/checkbox";
 import { code } from "./pages/code";
 import { copyButton } from "./pages/copyButton";
@@ -37,6 +37,7 @@ import { summary } from "./pages/summary";
 import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
+import { textArea } from "./pages/textArea";
 import { toggle } from "./pages/toggle";
 import { validation } from "./pages/validation";
 
@@ -66,7 +67,7 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [validation, formGroup, setting, input, label, select, toggle, checkbox]
+    pages: [validation, formGroup, setting, input, label, select, toggle, textArea, checkbox]
   },
   {
     name: "Controls",
