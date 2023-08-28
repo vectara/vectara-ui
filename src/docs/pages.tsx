@@ -20,6 +20,7 @@ import { label } from "./pages/label";
 import { link } from "./pages/link";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
+import { notifications } from "./pages/notifications";
 import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
@@ -52,11 +53,11 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, accountMenu]
+    pages: [app, accountMenu, drawer, modal, notifications]
   },
   {
     name: "Layout",
-    pages: [drawer, modal, popover, flex, spacer, card, horizontalRule, tabs, infoTable, table]
+    pages: [popover, flex, spacer, card, horizontalRule, tabs, infoTable, table]
   },
   {
     name: "Info",

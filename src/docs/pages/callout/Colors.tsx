@@ -19,7 +19,7 @@ export const Colors = () => {
             color={color}
             title={`Color ${color}`}
             headingElement="h3"
-            onDismiss={() => console.log("Dmissmis")}
+            onDismiss={() => console.log("Dismiss")}
           >
             <VuiText>
               <p>
