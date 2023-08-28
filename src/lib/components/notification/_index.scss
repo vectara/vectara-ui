@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 1000;
+  z-index: $notificationsZIndex;
   animation: popLeft 0.4s cubic-bezier(0.5, 0, 0.5, 1) 1;
 }
 
