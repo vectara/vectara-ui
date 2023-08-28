@@ -31,6 +31,8 @@ import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem } from "./menu/MenuItem";
 import { VuiModal } from "./modal/Modal";
+import { VuiNotifications } from "./notification/Notifications";
+import { Notification } from "./notification/Notification";
 import { VuiOptionsButton } from "./optionsButton/OptionsButton";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
@@ -69,6 +71,7 @@ export type {
   InfoTableColumnAlign,
   InfoTableRow,
   InfoTableRowType,
+  Notification,
   OptionListItem,
   TabSize,
   SearchResult,
@@ -122,6 +125,7 @@ export {
   VuiMenu,
   VuiMenuItem,
   VuiModal,
+  VuiNotifications,
   VuiNumberInput,
   VuiOptionsButton,
   VuiOptionsList,
