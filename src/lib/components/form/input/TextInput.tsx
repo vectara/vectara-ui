@@ -6,21 +6,26 @@ const SIZE = ["m", "l"] as const;
 type Props = {
   className?: string;
   id?: string;
-  placeholder?: string;
+  isInvalid?: boolean;
   value?: string;
   size?: (typeof SIZE)[number];
   fullWidth?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
   onSubmit?: () => void;
 };
 
 export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
-  ({ className, id, placeholder, value, size = "m", onChange, fullWidth, onSubmit, ...rest }: Props, ref) => {
+  (
+    { className, id, placeholder, value, size = "m", onChange, fullWidth, onSubmit, isInvalid, ...rest }: Props,
+    ref
+  ) => {
     const classes = classNames(
       "vuiInput",
       "vuiInput--text",
       `vuiInput--${size}`,
       {
+        "vuiInput-isInvalid": isInvalid,
         "vuiInput--fullWidth": fullWidth
       },
       className

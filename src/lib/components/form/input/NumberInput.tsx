@@ -6,21 +6,23 @@ const SIZE = ["m", "l"] as const;
 type Props = {
   className?: string;
   id?: string;
-  max?: number;
-  min?: number;
-  step?: number;
+  isInvalid?: boolean;
   value?: number;
   size?: (typeof SIZE)[number];
   fullWidth?: boolean;
   onChange: (value?: number) => void;
+  max?: number;
+  min?: number;
+  step?: number;
 };
 
 export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
-  ({ className, id, max, min, step, value, size = "m", onChange, fullWidth, ...rest }: Props, ref) => {
+  ({ className, id, max, min, step, value, size = "m", onChange, fullWidth, isInvalid, ...rest }: Props, ref) => {
     const classes = classNames(
       "vuiInput",
       `vuiInput--${size}`,
       {
+        "vuiInput-isInvalid": isInvalid,
         "vuiInput--fullWidth": fullWidth
       },
       className

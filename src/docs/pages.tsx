@@ -38,6 +38,7 @@ import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
 import { toggle } from "./pages/toggle";
+import { validation } from "./pages/validation";
 
 // Utils
 import { truncate } from "./pages/truncate";
@@ -65,7 +66,7 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [checkbox, formGroup, input, label, select, setting, toggle]
+    pages: [validation, formGroup, setting, input, label, select, toggle, checkbox]
   },
   {
     name: "Controls",

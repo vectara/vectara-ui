@@ -18,3 +18,7 @@
 .vuiInput--fullWidth {
   width: 100%;
 }
+
+.vuiInput-isInvalid {
+  border-color: $colorDanger;
+}
