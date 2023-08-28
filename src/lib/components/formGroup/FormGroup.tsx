@@ -11,12 +11,15 @@ type Props = {
   children: React.ReactElement;
   helpText?: React.ReactNode;
   errors?: string[];
+  isRequired?: boolean;
 };
 
-export const VuiFormGroup = ({ children, labelFor, helpText, label, errors }: Props) => {
-  const ariaProps: Record<string, string> = {};
+export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRequired }: Props) => {
+  const ariaProps: Record<string, string> = {
+    "aria-describedby": ""
+  };
 
-  const ariaDescribedByLabel = label.replace(/\s/g, "");
+  const ariaDescribedByLabel = `help-${createId()}`;
 
   const errorMessageIds: string[] = [];
 
@@ -34,17 +37,26 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors }: Pr
   });
 
   if (helpText) {
-    ariaProps["aria-describedby"] = `${ariaDescribedByLabel}-help ${errorMessageIds.join(" ")}`;
+    ariaProps["aria-describedby"] += ariaDescribedByLabel;
+  }
+
+  if (errorMessages?.length) {
+    ariaProps["aria-describedby"] += " " + errorMessageIds.join(" ");
   }
 
   const content = cloneElement(children, {
     ...ariaProps,
-    isInvalid: errors && errors.length > 0
+    isInvalid: errors && errors.length > 0,
+    id: labelFor,
+    required: isRequired
   });
 
   return (
     <>
-      <VuiLabel labelFor={labelFor}>{label}</VuiLabel>
+      <VuiLabel labelFor={labelFor}>
+        {label}
+        {isRequired && " (required)"}
+      </VuiLabel>
 
       <VuiSpacer size="xs" />
 
@@ -54,7 +66,7 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors }: Pr
         <>
           <VuiSpacer size="xs" />
 
-          <VuiText size="xs" id={`${label}-help`}>
+          <VuiText size="xs" id={ariaDescribedByLabel}>
             <p>
               <VuiTextColor color="subdued">{helpText}</VuiTextColor>
             </p>

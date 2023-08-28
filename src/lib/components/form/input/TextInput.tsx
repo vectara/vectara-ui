@@ -6,6 +6,7 @@ const SIZE = ["m", "l"] as const;
 type Props = {
   className?: string;
   id?: string;
+  name?: string;
   isInvalid?: boolean;
   value?: string;
   size?: (typeof SIZE)[number];
@@ -13,11 +14,26 @@ type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   onSubmit?: () => void;
+  maxLength?: number;
+  autoComplete?: boolean;
 };
 
 export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
   (
-    { className, id, placeholder, value, size = "m", onChange, fullWidth, onSubmit, isInvalid, ...rest }: Props,
+    {
+      className,
+      id,
+      placeholder,
+      value,
+      size = "m",
+      onChange,
+      fullWidth,
+      onSubmit,
+      isInvalid,
+      name,
+      autoComplete,
+      ...rest
+    }: Props,
     ref
   ) => {
     const classes = classNames(
@@ -41,10 +57,12 @@ export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
 
     return (
       <input
+        autoComplete={autoComplete ? "on" : "off"}
         ref={ref}
         type="text"
         className={classes}
         id={id}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
