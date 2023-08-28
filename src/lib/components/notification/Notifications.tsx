@@ -5,7 +5,7 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Notification, VuiNotification } from "./Notification";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
   notifications: Notification[];
@@ -16,13 +16,30 @@ type Props = {
 };
 
 export const VuiNotifications = ({ notifications, onShowAll, onDismiss, onDismissAll, onClose }: Props) => {
-  useEffect(() => {
-    const timeout = setTimeout(() => {
+  const timeoutRef = useRef<any>();
+
+  const startTimeout = () => {
+    clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
       onClose();
     }, 8000);
 
-    return () => clearTimeout(timeout);
+    return timeoutRef.current;
+  };
+
+  useEffect(() => {
+    startTimeout();
+    return () => clearTimeout(timeoutRef.current);
   }, [notifications]);
+
+  const onMouseEnter = () => {
+    clearTimeout(timeoutRef.current);
+  };
+
+  const onMouseLeave = () => {
+    startTimeout();
+  };
 
   if (!notifications.length) return null;
 
@@ -31,7 +48,7 @@ export const VuiNotifications = ({ notifications, onShowAll, onDismiss, onDismis
   });
 
   return (
-    <div className={classes}>
+    <div className={classes} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <div className="vuiNotificationList__notifications">
         <VuiNotification
           notification={notifications[notifications.length - 1]}
