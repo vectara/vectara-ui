@@ -8,7 +8,7 @@ type Props = {
 export const Subsection = ({ title, children }: Props) => {
   return (
     <>
-      <VuiTitle size="xs">
+      <VuiTitle size="s">
         <h4>{title}</h4>
       </VuiTitle>
 
@@ -16,7 +16,7 @@ export const Subsection = ({ title, children }: Props) => {
 
       {children}
 
-      <VuiSpacer size="m" />
+      <VuiSpacer size="l" />
     </>
   );
 };
