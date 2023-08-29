@@ -7,5 +7,5 @@ export const createId = () => {
     id++;
   }
 
-  return id;
+  return id.toString();
 };

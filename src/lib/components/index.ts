@@ -1,3 +1,4 @@
+import { VuiAccordion } from "./accordion/Accordion";
 import { VuiAccountMenu } from "./accountMenu/AccountMenu";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
@@ -97,6 +98,7 @@ export {
   TEXT_COLOR,
   TEXT_SIZE,
   TITLE_SIZE,
+  VuiAccordion,
   VuiAccountMenu,
   VuiAppContent,
   VuiAppHeader,
