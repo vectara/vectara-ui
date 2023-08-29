@@ -14,10 +14,14 @@ type Props = {
   max?: number;
   min?: number;
   step?: number;
+  autoFocus?: boolean;
 };
 
 export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
-  ({ className, id, max, min, step, value, size = "m", onChange, fullWidth, isInvalid, ...rest }: Props, ref) => {
+  (
+    { className, id, max, min, step, value, size = "m", onChange, fullWidth, isInvalid, autoFocus, ...rest }: Props,
+    ref
+  ) => {
     const classes = classNames(
       "vuiInput",
       `vuiInput--${size}`,
@@ -45,6 +49,7 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
 
     return (
       <input
+        autoFocus={autoFocus}
         ref={ref}
         type="number"
         className={classes}

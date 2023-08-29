@@ -23,16 +23,20 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
 
   const errorMessageIds: string[] = [];
 
-  const errorMessages = errors?.map((error) => {
+  const errorMessages = errors?.map((error, index) => {
     const id = `error-${createId()}`;
     errorMessageIds.push(id);
 
     return (
-      <VuiText size="xs" key={error} id={id}>
-        <p>
-          <VuiTextColor color="danger">{error}</VuiTextColor>
-        </p>
-      </VuiText>
+      <>
+        {index > 0 && <VuiSpacer size="xs" />}
+
+        <VuiText size="xs" key={error} id={id}>
+          <p>
+            <VuiTextColor color="danger">{error}</VuiTextColor>
+          </p>
+        </VuiText>
+      </>
     );
   });
 
@@ -62,16 +66,14 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
 
       {content}
 
-      {helpText && (
-        <>
-          <VuiSpacer size="xs" />
+      {(helpText || errorMessages) && <VuiSpacer size="xs" />}
 
-          <VuiText size="xs" id={ariaDescribedByLabel}>
-            <p>
-              <VuiTextColor color="subdued">{helpText}</VuiTextColor>
-            </p>
-          </VuiText>
-        </>
+      {helpText && (
+        <VuiText size="xs" id={ariaDescribedByLabel}>
+          <p>
+            <VuiTextColor color="subdued">{helpText}</VuiTextColor>
+          </p>
+        </VuiText>
       )}
 
       {errorMessages}

@@ -16,6 +16,7 @@ type Props = {
   onSubmit?: () => void;
   maxLength?: number;
   autoComplete?: boolean;
+  autoFocus?: boolean;
 };
 
 export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
@@ -32,6 +33,7 @@ export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
       isInvalid,
       name,
       autoComplete,
+      autoFocus,
       ...rest
     }: Props,
     ref
@@ -58,6 +60,7 @@ export const VuiTextInput = forwardRef<HTMLInputElement | null, Props>(
     return (
       <input
         autoComplete={autoComplete ? "on" : "off"}
+        autoFocus={autoFocus}
         ref={ref}
         type="text"
         className={classes}
