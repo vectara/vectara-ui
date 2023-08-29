@@ -1,6 +1,14 @@
 import { useState } from "react";
-import { ChatTurn, ChatStyle, VuiChat, VuiSpacer, VuiToggle, VuiSelect, VuiFormGroup } from "../../../lib";
-import { ChatLanguage } from "../../../lib/components/chat/types";
+import {
+  ChatLanguage,
+  ChatTurn,
+  ChatStyle,
+  VuiChat,
+  VuiSpacer,
+  VuiToggle,
+  VuiSelect,
+  VuiFormGroup
+} from "../../../lib";
 
 const introduction =
   "I know everything about lobsters. Their environments, lifecycle, likes, dislikes, hobbies... really, ask me anything about lobsters!";
