@@ -1,4 +1,5 @@
 // Components
+import { accordion } from "./pages/accordion";
 import { accountMenu } from "./pages/accountMenu";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
@@ -58,8 +59,12 @@ export const categories: Category[] = [
     pages: [app, accountMenu, drawer, modal, notifications]
   },
   {
+    name: "Tables",
+    pages: [table, infoTable]
+  },
+  {
     name: "Layout",
-    pages: [popover, flex, spacer, card, horizontalRule, tabs, infoTable, table]
+    pages: [tabs, accordion, popover, flex, spacer, card, horizontalRule]
   },
   {
     name: "Info",
