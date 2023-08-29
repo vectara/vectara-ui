@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChatTurn, ChatStyle, VuiChat, VuiSpacer, VuiToggle, VuiSelect, VuiFormGroup } from "../../../../lib";
+import { ChatLanguage } from "../../../../lib/components/chat/types";
 
 const introduction =
   "I know everything about lobsters. Their environments, lifecycle, likes, dislikes, hobbies... really, ask me anything about lobsters!";
@@ -37,7 +38,7 @@ export const Chat = () => {
   const [conversation, setConversation] = useState<ChatTurn[]>([]);
   const [isInspectionEnabled, setIsInspectionEnabled] = useState(true);
   const [isSuggestionsEnabled, setIsSuggestionsEnabled] = useState(true);
-  const [language, setLanguage] = useState("kor");
+  const [language, setLanguage] = useState<ChatLanguage>("kor");
 
   const handleUserInput = (input: string) => {
     const turn: ChatTurn =
@@ -47,6 +48,7 @@ export const Chat = () => {
             isLoading: true,
             query: "This is a placeholder query",
             answer: responses[Math.floor(Math.random() * responses.length)],
+            language: language,
             results: [searchResult, searchResult, searchResult, searchResult, searchResult]
           }
         : {
@@ -87,6 +89,7 @@ export const Chat = () => {
             error: undefined,
             isLoading: false,
             answer: responses[Math.floor(Math.random() * responses.length)],
+            language: language,
             results: [searchResult, searchResult, searchResult, searchResult, searchResult]
           };
         }
@@ -103,7 +106,7 @@ export const Chat = () => {
           id="optionsList1"
           options={languages}
           value={language}
-          onChange={(event) => setLanguage(event.target.value)}
+          onChange={(event) => setLanguage(event.target.value as ChatLanguage)}
         />
       </VuiFormGroup>
     </div>
