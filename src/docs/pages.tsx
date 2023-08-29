@@ -5,7 +5,7 @@ import { badge } from "./pages/badge";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
 import { card } from "./pages/card";
-import { chat } from "./pages/card/chat";
+import { chat } from "./pages/chat";
 import { checkbox } from "./pages/checkbox";
 import { code } from "./pages/code";
 import { copyButton } from "./pages/copyButton";
