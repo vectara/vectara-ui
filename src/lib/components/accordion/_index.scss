@@ -2,11 +2,11 @@
   font-size: $fontSizeStandard;
   border-bottom: 1px solid $borderColor;
   width: 100%;
-  padding: $sizeXxs 0;
+  padding: $sizeXs 0;
 
   &:hover {
-    border-bottom-color: $colorPrimary;
-    background-color: $colorPrimaryLightShade;
+    text-decoration: underline;
+    background-color: $colorLightShade;
   }
 }
 
