@@ -11,7 +11,7 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
 };
 
-export const VuiAccordion = ({ header, children, isOpen, setIsOpen }: Props) => {
+export const VuiAccordion = ({ header, children, isOpen, setIsOpen, ...rest }: Props) => {
   const buttonId = createId();
   const contentId = createId();
 
@@ -23,6 +23,7 @@ export const VuiAccordion = ({ header, children, isOpen, setIsOpen }: Props) => 
         id={buttonId}
         aria-controls={contentId}
         aria-expanded={isOpen}
+        {...rest}
       >
         <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xxs">
           <VuiFlexItem grow={false} shrink={false}>
