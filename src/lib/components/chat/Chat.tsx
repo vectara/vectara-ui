@@ -55,11 +55,59 @@ export const VuiChat = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isScrolledToBottomRef = useRef(true);
+  const isBottomQuestionLoadingRef = useRef(true);
 
   const isOpen = chatStyle !== "closed";
 
   useEffect(() => {
-    if (isOpen) {
+    const onScrollChat = (e: Event) => {
+      isScrolledToBottomRef.current = conversationRef.current
+        ? Math.abs(
+            conversationRef.current.scrollHeight -
+              conversationRef.current.clientHeight -
+              conversationRef.current.scrollTop
+          ) < 1
+        : true;
+    };
+
+    // We're going to track the scroll position, which will determine
+    // or not the user is at the bottom of the chat.
+    conversationRef.current?.addEventListener("scroll", onScrollChat);
+
+    return () => {
+      conversationRef.current?.removeEventListener("scroll", onScrollChat);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Scrolling UX rules:
+    // * Scroll down if the last recorded scroll position was already
+    //   at the bottom of the list and if the last question has resolved
+    //   to an answer.
+    // * If the user has scrolled to another position, then don’t
+    //   auto-scroll.
+    // * If the question that has resolved is not the last question,
+    //   don’t auto-scroll.
+    //
+    // This way if the user takes control of the scroll position, they
+    // remain in control. If the user hasn’t taken control of the scroll
+    // position, then the scroll feels stable (by staying at the
+    // bottom) as opposed to scrolling unpredictably through the list
+    // as questions resolve.
+
+    const hasBottomQuestionJustLoaded =
+      conversation.length > 0
+        ? isBottomQuestionLoadingRef.current && Boolean(conversation[conversation.length - 1].isLoading)
+        : false;
+
+    // If the intro is really long, the chat can be in a state where
+    // the user is at the top of the chat and their first question is
+    // off-screen. In this case, we want to scroll to the bottom.
+    const shouldStickToBottom =
+      conversation.length === 1 ? true : isScrolledToBottomRef.current && hasBottomQuestionJustLoaded;
+
+    if (isOpen && shouldStickToBottom) {
       // Scroll to the bottom of the chat to keep the latest turn in view.
       conversationRef.current?.scrollTo({
         left: 0,
@@ -67,6 +115,11 @@ export const VuiChat = ({
         behavior: "smooth"
       });
     }
+
+    // Cache the loading state of the bottom question, so we can
+    // compare against it next time to see if it has just loaded.
+    isBottomQuestionLoadingRef.current =
+      conversation.length > 0 ? Boolean(conversation[conversation.length - 1].isLoading) : false;
   }, [conversation]);
 
   useEffect(() => {
