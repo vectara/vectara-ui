@@ -2,6 +2,7 @@ import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-bash";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 import classNames from "classnames";
@@ -11,7 +12,7 @@ import { VuiIcon } from "../icon/Icon";
 import { useEffect } from "react";
 
 type Props = {
-  language?: "js" | "ts" | "jsx" | "tsx" | "none";
+  language?: "js" | "ts" | "jsx" | "tsx" | "bash" | "none";
   onCopy?: () => void;
   children?: string;
   fullHeight?: boolean;
