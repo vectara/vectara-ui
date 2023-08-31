@@ -56,7 +56,10 @@ export const VuiChat = ({
   const conversationRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isScrolledToBottomRef = useRef(true);
-  const isBottomQuestionLoadingRef = useRef(true);
+  const prevConversationRef = useRef({
+    isBottomQuestionLoading: true,
+    length: 0
+  });
 
   const isOpen = chatStyle !== "closed";
 
@@ -96,16 +99,17 @@ export const VuiChat = ({
     // bottom) as opposed to scrolling unpredictably through the list
     // as questions resolve.
 
-    const hasBottomQuestionJustLoaded =
-      conversation.length > 0
-        ? isBottomQuestionLoadingRef.current && Boolean(conversation[conversation.length - 1].isLoading)
-        : false;
+    const hasBottomQuestionJustChanged =
+      // A new question has been added to the bottom of the list.
+      prevConversationRef.current.length !== conversation.length ||
+      // The last question has just resolved to an answer.
+      prevConversationRef.current.isBottomQuestionLoading !== Boolean(conversation[conversation.length - 1]?.isLoading);
 
     // If the intro is really long, the chat can be in a state where
     // the user is at the top of the chat and their first question is
     // off-screen. In this case, we want to scroll to the bottom.
     const shouldStickToBottom =
-      conversation.length === 1 ? true : isScrolledToBottomRef.current && hasBottomQuestionJustLoaded;
+      conversation.length === 1 || (isScrolledToBottomRef.current && hasBottomQuestionJustChanged);
 
     if (isOpen && shouldStickToBottom) {
       // Scroll to the bottom of the chat to keep the latest turn in view.
@@ -116,10 +120,11 @@ export const VuiChat = ({
       });
     }
 
-    // Cache the loading state of the bottom question, so we can
-    // compare against it next time to see if it has just loaded.
-    isBottomQuestionLoadingRef.current =
-      conversation.length > 0 ? Boolean(conversation[conversation.length - 1].isLoading) : false;
+    prevConversationRef.current = {
+      length: conversation.length,
+      isBottomQuestionLoading:
+        conversation.length > 0 ? Boolean(conversation[conversation.length - 1].isLoading) : false
+    };
   }, [conversation]);
 
   useEffect(() => {
