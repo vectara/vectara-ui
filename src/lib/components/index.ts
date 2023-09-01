@@ -18,6 +18,7 @@ import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
 import { VuiCode } from "./code/Code";
+import { CodeLanguage } from "./code/types";
 import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDrawer } from "./drawer/Drawer";
 import { VuiFlexContainer } from "./flex/FlexContainer";
@@ -70,6 +71,7 @@ export type {
   ChatLanguage,
   ChatStyle,
   ChatTurn,
+  CodeLanguage,
   InfoTableColumnAlign,
   InfoTableRow,
   InfoTableRowType,
