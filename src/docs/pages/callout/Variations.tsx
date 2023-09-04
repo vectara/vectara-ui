@@ -27,7 +27,14 @@ export const Variations = () => {
       </Subsection>
 
       <Subsection title="Default size, title only">
-        <VuiCallout color="primary" size="m" title="Carbon fiber" headingElement="h3" />
+        <VuiCallout
+          color="primary"
+          size="m"
+          title="Carbon fibers are relatively expensive compared to similar fibers, such as
+          glass fiber, basalt fibers, or plastic fibers"
+          headingElement="h3"
+          onDismiss={() => console.log("Dismiss")}
+        />
       </Subsection>
 
       <Subsection title="Small size">
@@ -58,7 +65,8 @@ export const Variations = () => {
         <VuiCallout
           color="primary"
           size="s"
-          title="Carbon fiber"
+          title="Carbon fibers are relatively expensive compared to similar fibers, such as
+          glass fiber, basalt fibers, or plastic fibers"
           headingElement="h3"
           onDismiss={() => console.log("Dismiss")}
         />

@@ -42,7 +42,7 @@ export const VuiCallout = ({ children, title, headingElement, color, size = "m",
 
   return (
     <div className={classes}>
-      <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
+      <VuiFlexContainer alignItems="start" justifyContent="spaceBetween">
         <VuiFlexItem grow={1}>
           <VuiTitle size={sizeToTitleSizeMap[size]}>
             <HeadingElement>
@@ -53,7 +53,13 @@ export const VuiCallout = ({ children, title, headingElement, color, size = "m",
 
         {onDismiss && (
           <VuiFlexItem shrink={false} grow={false}>
-            <VuiIconButton color={color} onClick={onDismiss} icon={<BiX />} size={size} />
+            <VuiIconButton
+              className="vuiCallout__closeButton"
+              color={color}
+              onClick={onDismiss}
+              icon={<BiX />}
+              size="s"
+            />
           </VuiFlexItem>
         )}
       </VuiFlexContainer>

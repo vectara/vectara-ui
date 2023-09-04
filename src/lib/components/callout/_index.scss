@@ -6,10 +6,18 @@
 
 .vuiCallout--m {
   padding: $sizeM;
+
+  .vuiCallout__closeButton {
+    margin: -$sizeM * 0.5;
+  }
 }
 
 .vuiCallout--s {
   padding: $sizeS;
+
+  .vuiCallout__closeButton {
+    margin: -$sizeS * 0.5;
+  }
 }
 
 // Color
