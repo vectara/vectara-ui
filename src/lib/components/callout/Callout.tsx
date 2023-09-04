@@ -36,12 +36,12 @@ const sizeToContentSizeMap = {
   m: "s"
 } as const;
 
-export const VuiCallout = ({ children, title, headingElement, color, size = "m", onDismiss }: Props) => {
+export const VuiCallout = ({ children, title, headingElement, color, size = "m", onDismiss, ...rest }: Props) => {
   const classes = classNames("vuiCallout", `vuiCallout--${color}`, `vuiCallout--${size}`);
   const HeadingElement = headingElement as keyof JSX.IntrinsicElements;
 
   return (
-    <div className={classes}>
+    <div className={classes} {...rest}>
       <VuiFlexContainer alignItems="start" justifyContent="spaceBetween">
         <VuiFlexItem grow={1}>
           <VuiTitle size={sizeToTitleSizeMap[size]}>
@@ -55,6 +55,7 @@ export const VuiCallout = ({ children, title, headingElement, color, size = "m",
           <VuiFlexItem shrink={false} grow={false}>
             <VuiIconButton
               className="vuiCallout__closeButton"
+              data-testid="calloutCloseButton"
               color={color}
               onClick={onDismiss}
               icon={<BiX />}
