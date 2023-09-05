@@ -30,6 +30,7 @@ import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
+import { VuiList } from "./list/List";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem } from "./menu/MenuItem";
 import { VuiModal } from "./modal/Modal";
@@ -127,6 +128,7 @@ export {
   VuiLabel,
   VuiLink,
   VuiLinkInternal,
+  VuiList,
   VuiMenu,
   VuiMenuItem,
   VuiModal,

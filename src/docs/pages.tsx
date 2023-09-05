@@ -19,6 +19,7 @@ import { infoTable } from "./pages/infoTable";
 import { input } from "./pages/input";
 import { label } from "./pages/label";
 import { link } from "./pages/link";
+import { list } from "./pages/list";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { notifications } from "./pages/notifications";
@@ -59,15 +60,15 @@ export const categories: Category[] = [
     pages: [app, accountMenu, drawer, modal, notifications]
   },
   {
-    name: "Tables",
-    pages: [table, infoTable]
+    name: "Info",
+    pages: [table, infoTable, list]
   },
   {
     name: "Layout",
     pages: [tabs, accordion, popover, flex, spacer, card, horizontalRule]
   },
   {
-    name: "Info",
+    name: "Content",
     pages: [badge, callout, code, icon, progressBar, spinner, text]
   },
   {
