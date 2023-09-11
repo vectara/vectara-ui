@@ -4,11 +4,11 @@
   width: 100%;
 
   select {
-    background-color: rgb(255, 255, 255);
+    background-color: $colorEmptyShade;
     appearance: none;
     border-radius: $sizeXxs;
     border: 1px solid $colorMediumShade;
-    color: black;
+    color: $colorFullShade;
     width: 100%;
   }
 }
