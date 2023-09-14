@@ -2,8 +2,10 @@ import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiSpacer } from "../spacer/Spacer";
+import { Fragment } from "react";
 
 type ListItem = {
+  key: string;
   isComplete: boolean;
   render: () => React.ReactNode;
 };
@@ -22,7 +24,7 @@ export const VuiList = ({ items }: Props) => {
         });
 
         return (
-          <>
+          <Fragment key={item.key}>
             <VuiFlexContainer alignItems="center">
               <VuiFlexItem grow={false} shrink={false}>
                 <div className={numberClasses} aria-label={`Step ${humanizedStep}`}>
@@ -34,7 +36,7 @@ export const VuiList = ({ items }: Props) => {
             </VuiFlexContainer>
 
             {index < items.length - 1 && <VuiSpacer size="s" />}
-          </>
+          </Fragment>
         );
       })}
     </>

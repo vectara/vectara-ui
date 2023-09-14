@@ -4,6 +4,7 @@ import { VuiFlexContainer, VuiList, VuiFlexItem, VuiSpinner, VuiIcon, VuiText, V
 export const List = () => {
   const items = [
     {
+      key: "selectStrategy",
       isComplete: true,
       render: () => (
         <VuiFlexContainer alignItems="center" spacing="s">
@@ -22,6 +23,7 @@ export const List = () => {
       )
     },
     {
+      key: "retrieveInfo",
       isComplete: true,
       render: () => (
         <VuiFlexContainer alignItems="center" spacing="m">
@@ -38,6 +40,7 @@ export const List = () => {
       )
     },
     {
+      key: "generateSummary",
       isComplete: false,
       render: () => (
         <VuiText>
