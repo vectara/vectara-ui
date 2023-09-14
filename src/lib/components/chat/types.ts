@@ -30,18 +30,6 @@ export const CHAT_LANGUAGES = [
   "jpn",
   "pol",
   "tur",
-  "heb",
-  "vie",
-  "ind",
-  "ces",
-  "ukr",
-  "ell",
-  "fas",
-  "hin",
-  "urd",
-  "swe",
-  "ben",
-  "msa"
 ] as const;
 
 export type ChatLanguage = (typeof CHAT_LANGUAGES)[number];
