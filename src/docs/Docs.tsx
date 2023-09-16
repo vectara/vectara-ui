@@ -9,11 +9,14 @@ import {
   VuiTitle,
   VuiAppLayout,
   VuiAppContent,
-  VuiSpacer
+  VuiSpacer,
+  VuiButtonSecondary
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
 import { categories, Example as ExampleType, paths } from "./pages";
 import { Example } from "./components/Example";
+import { Home } from "./Home";
+import "./index.scss";
 
 const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => {
   const location = useLocation();
@@ -105,6 +108,12 @@ export const Docs = () => {
                 </h1>
               </VuiTitle>
             </VuiFlexItem>
+
+            <VuiFlexItem grow={false} shrink={false}>
+              <VuiButtonSecondary size="s" color="neutral" href="/">
+                Home
+              </VuiButtonSecondary>
+            </VuiFlexItem>
           </VuiFlexContainer>
         }
         right={
@@ -112,6 +121,7 @@ export const Docs = () => {
             href="https://github.com/vectara/vectara-ui"
             target="_blank"
             color="neutral"
+            size="m"
             icon={
               <VuiIcon>
                 <BiLogoGithub />
@@ -123,8 +133,9 @@ export const Docs = () => {
 
       <VuiAppLayout navItems={categories}>
         <Routes>
+          <Route path="/" element={<Home />} />
           {routes}
-          <Route path="*" element={<Navigate replace to={categories[0].pages[0].path} />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </VuiAppLayout>
     </Router>
