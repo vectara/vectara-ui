@@ -28,6 +28,7 @@ import { optionsList } from "./pages/optionsList";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
+import { radioButton } from "./pages/radioButton";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
 import { searchSelect } from "./pages/searchSelect";
@@ -73,7 +74,7 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [validation, formGroup, setting, input, label, select, toggle, textArea, checkbox]
+    pages: [validation, formGroup, setting, input, label, select, toggle, textArea, checkbox, radioButton]
   },
   {
     name: "Controls",
