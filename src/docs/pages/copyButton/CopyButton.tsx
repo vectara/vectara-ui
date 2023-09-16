@@ -8,15 +8,15 @@ const options = [
 export const CopyButton = () => {
   return (
     <>
-      <VuiCopyButton size="xs" value="Primary value to copy" options={options} />
+      <VuiCopyButton title="Copy value" size="xs" value="Primary value to copy" options={options} />
 
       <VuiSpacer size="m" />
 
-      <VuiCopyButton size="s" value="Primary value to copy" options={options} />
+      <VuiCopyButton title="Copy value" size="s" value="Primary value to copy" options={options} />
 
       <VuiSpacer size="m" />
 
-      <VuiCopyButton size="m" value="Primary value to copy" options={options} />
+      <VuiCopyButton title="Copy value" size="m" value="Primary value to copy" options={options} />
 
       <VuiSpacer size="m" />
 
