@@ -13,9 +13,10 @@ type ListItem = {
 type Props = {
   items: ListItem[];
   size?: "s" | "m";
+  alignItems?: "start" | "center" | "end";
 };
 
-export const VuiList = ({ items, size = "m" }: Props) => {
+export const VuiList = ({ items, size = "m", alignItems = "center" }: Props) => {
   return (
     <>
       {items.map((item, index) => {
@@ -26,7 +27,7 @@ export const VuiList = ({ items, size = "m" }: Props) => {
 
         return (
           <Fragment key={item.key}>
-            <VuiFlexContainer alignItems="center" spacing={size}>
+            <VuiFlexContainer alignItems={alignItems} spacing={size}>
               <VuiFlexItem grow={false} shrink={false}>
                 <div className={numberClasses} aria-label={`Step ${humanizedStep}`}>
                   {humanizedStep}
