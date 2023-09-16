@@ -87,7 +87,7 @@ export const Docs = () => {
   const routes: React.ReactNode[] = [];
 
   categories.forEach(({ pages }) => {
-    pages.map(({ name, path, examples }) => {
+    pages.forEach(({ name, path, examples }) => {
       routes.push(<Route key={name} path={path} element={<Page name={name} examples={examples} />} />);
     });
   });

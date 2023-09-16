@@ -8,7 +8,8 @@ import {
   VuiFlexItem,
   VuiText,
   VuiLink,
-  VuiIcon
+  VuiIcon,
+  VuiHorizontalRule
 } from "../lib";
 
 export const Home = () => {
@@ -76,6 +77,34 @@ export const Home = () => {
                     </VuiText>
                   </VuiFlexItem>
                 </VuiFlexContainer>
+
+                <VuiSpacer size="m" />
+                <VuiHorizontalRule />
+                <VuiSpacer size="m" />
+
+                <VuiTitle size="s">
+                  <h3>Dependencies</h3>
+                </VuiTitle>
+
+                <VuiSpacer size="s" />
+
+                <VuiText>
+                  <ul>
+                    <li>
+                      <strong>
+                        <VuiLink href="https://react-icons.github.io/react-icons/icons?name=bi">BoxIcons</VuiLink>
+                      </strong>{" "}
+                      for icons
+                    </li>
+
+                    <li>
+                      <strong>
+                        <VuiLink href="https://prismjs.com/">PrismJS</VuiLink>
+                      </strong>{" "}
+                      for syntax highlighting
+                    </li>
+                  </ul>
+                </VuiText>
               </>
             }
           >
