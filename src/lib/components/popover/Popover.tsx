@@ -43,6 +43,9 @@ export const VuiPopover = ({
   const [positionMarker, setPositionMarker] = useState<number>(0);
 
   const button = cloneElement(originalButton, {
+    'role': 'button',
+    'aria-haspopup': 'menu',
+    'aria-expanded': isOpen,
     isSelected: isOpen,
     onClick: () => {
       setIsOpen(!isOpen);
