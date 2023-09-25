@@ -2,7 +2,7 @@ import { WithLabel } from "./WithLabel";
 const WithLabelSource = require("!!raw-loader!./WithLabel");
 
 export const radioButton = {
-  name: "Radio button",
+  name: "Radio Button",
   path: "/radioButton",
   examples: [
     {

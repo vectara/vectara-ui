@@ -5,7 +5,7 @@ const LabelOnlySource = require("!!raw-loader!./LabelOnly");
 const WithDescriptionSource = require("!!raw-loader!./WithDescription");
 
 export const superRadioGroup = {
-  name: "Super radio group",
+  name: "Super Radio Group",
   path: "/superRadioGroup",
   examples: [
     {
