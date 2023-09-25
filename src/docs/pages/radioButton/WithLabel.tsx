@@ -7,6 +7,7 @@ export const WithLabel = () => {
   return (
     <>
       <VuiRadioButton
+        groupName="radioButtonWithLabel"
         label="Pepperoni"
         onChange={() => setPizzaToppings("pepperoni")}
         checked={pizzaToppings === "pepperoni"}
@@ -15,6 +16,7 @@ export const WithLabel = () => {
       <VuiSpacer size="s" />
 
       <VuiRadioButton
+        groupName="radioButtonWithLabel"
         label="Mushrooms"
         onChange={() => setPizzaToppings("mushrooms")}
         checked={pizzaToppings === "mushrooms"}
@@ -23,6 +25,7 @@ export const WithLabel = () => {
       <VuiSpacer size="s" />
 
       <VuiRadioButton
+        groupName="radioButtonWithLabel"
         label="Jalapeños"
         onChange={() => setPizzaToppings("jalapenos")}
         checked={pizzaToppings === "jalapenos"}

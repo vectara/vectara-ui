@@ -37,6 +37,7 @@ import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
 import { summary } from "./pages/summary";
+import { superRadioGroup } from "./pages/superRadioGroup";
 import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
@@ -74,7 +75,19 @@ export const categories: Category[] = [
   },
   {
     name: "Form",
-    pages: [validation, formGroup, setting, input, label, select, toggle, textArea, checkbox, radioButton]
+    pages: [
+      validation,
+      formGroup,
+      setting,
+      input,
+      label,
+      select,
+      toggle,
+      textArea,
+      checkbox,
+      radioButton,
+      superRadioGroup
+    ]
   },
   {
     name: "Controls",
