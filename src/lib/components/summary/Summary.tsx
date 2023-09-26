@@ -37,6 +37,7 @@ const decorateSummary = (
             onClick={() => onClickCitation && onClickCitation(position)}
             key={`${text}-${index}-${reference}-${referenceIndex}`}
             isSelected={selectedCitationPosition === position}
+            data-testid={`summaryCitation`}
           >
             {reference}
           </VuiSummaryCitation>

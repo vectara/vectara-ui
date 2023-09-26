@@ -7,13 +7,20 @@ type Props = {
   onClick?: () => void;
 };
 
-export const VuiSummaryCitation = ({ children, isSelected, onClick }: Props) => {
+export const VuiSummaryCitation = ({ children, isSelected, onClick, ...rest }: Props) => {
   const classes = classNames("vuiSummaryCitation", {
     "vuiSummaryCitation-isSelected": isSelected
   });
 
   return (
-    <VuiButtonSecondary color="primary" size="xs" className={classes} onClick={onClick} isSelected={isSelected}>
+    <VuiButtonSecondary
+      color="primary"
+      size="xs"
+      className={classes}
+      onClick={onClick}
+      isSelected={isSelected}
+      {...rest}
+    >
       {children}
     </VuiButtonSecondary>
   );
