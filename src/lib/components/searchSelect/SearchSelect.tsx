@@ -11,6 +11,7 @@ type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
     title?: string;
     selected: T[];
     onSelect: (selected: T[]) => void;
+    isMultiSelect?: boolean;
   };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -22,6 +23,7 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
   setIsOpen,
   options,
   onSelect,
+  isMultiSelect = true,
   selected = []
 }: Props<T>) => {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -69,20 +71,34 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
   };
 
   const onSelectOption = (value: T) => {
-    setSelectedOptions((prev) => {
-      if (!prev) return [];
+    if (isMultiSelect) {
+      setSelectedOptions((prev) => {
+        if (!prev) return [];
 
-      const updated = prev.concat();
-      const index = prev.findIndex((item) => item === value);
+        const updated = prev.concat();
+        const index = prev.findIndex((item) => item === value);
 
-      if (index !== -1) {
-        updated.splice(index, 1);
+        if (index !== -1) {
+          updated.splice(index, 1);
+          return updated;
+        }
+
+        updated.push(value);
         return updated;
-      }
+      });
 
-      updated.push(value);
-      return updated;
-    });
+      return;
+    }
+
+    // If the user can only select one option at a time,
+    // close the search select as soon as they make a choice.
+    onSelect([value]);
+
+    // Signal the popover to be closed. We don't depend on the
+    // original isOpen because it will cause a flicker when the
+    // options are sorted.
+    setSelectedOptions(undefined);
+    setIsOpen(false);
   };
 
   const visibleOptions = orderedOptions.filter((option) => {
