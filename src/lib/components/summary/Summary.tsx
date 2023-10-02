@@ -69,7 +69,8 @@ export const VuiSummary = ({ summary, selectedCitationPosition, onClickCitation,
   const classes = classNames("vuiSummary", "fs-mask", className);
 
   return (
-    <div className={classes}>
+    // Support RTL languages.
+    <div className={classes} dir="auto">
       <VuiText size="m">{content}</VuiText>
     </div>
   );
