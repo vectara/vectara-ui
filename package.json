@@ -25,7 +25,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "PORT=2000 react-scripts start",
-    "build": "react-scripts build",
+    "buildDocs": "BUILD_PATH='./docs' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "buildLib": "npx tsc --project tsconfig.lib.json",
