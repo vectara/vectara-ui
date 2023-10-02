@@ -1,6 +1,6 @@
 # Vectara UI
 
-This is Vectara's design system, codified as a React component library.
+This is Vectara's design system, codified as a React component library. It's intended solely for consumption by Vectara and currently it isn't available for public use under any license. For more information see [NO_LICENSE](./NO_LICENSE).
 
 ## Usage
 
@@ -24,7 +24,15 @@ You can consume Vectara UI's Sass variables by placing this import in the files 
 
 ## Publishing
 
-Publishing a new version of the package consists of two steps: **versioning the package** and **publishing to NPM**.
+Publishing a new version of the package consists of three steps:
+
+1. Maintaining the CHANGELOG.
+2. Versioning the package.
+3. Publishing to NPM.
+
+### Maintain the CHANGELOG
+
+As you introduce changes, record them in the CHANGELOG beneath the `main` section. Before you create a new version, submit a PR that updates the `package.json` version and moves the `main` content into a new section for the new version. We follow semver, so breaking changes should result in a major version bump.
 
 ### Version the package
 
@@ -55,3 +63,9 @@ When you're done testing out the consumer, you can unlink these dependencies:
 ```bash
 npm unlink ../vectara-answer/node_modules/react ../vectara-answer/node_modules/react-dom ../vectara-answer/node_modules/react-router-dom
 ```
+
+## Licensing and public use
+
+Though the GitHub terms of service grants anybody the right to fork and look through this repository, we haven't yet licensed this code for use by anybody. This means Vectara reserves all rights to the contents of this repository. You can't reproduce, distribute, or create derivative works from it. For more information on reserved copyright of GitHub repos, see https://choosealicense.com/no-permission/.
+
+For more information on our lack of licensing, see [NO_LICENSE](./NO_LICENSE).
