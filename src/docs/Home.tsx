@@ -48,8 +48,9 @@ export const Home = () => {
                       <p>
                         We solely intend this library for internal use by{" "}
                         <VuiLink href="http://vectara.com/">Vectara</VuiLink>. Vectara, Inc. reserves all rights. For
-                        more information, see the [README](https://github.com/vectara/vectara-ui/blob/main/README.md)
-                        and [NO_LICENSE](https://github.com/vectara/vectara-ui/blob/main/NO_LICENSE).
+                        more information, see the{" "}
+                        <VuiLink href="https://github.com/vectara/vectara-ui/blob/main/README.md">README</VuiLink> and{" "}
+                        <VuiLink href="https://github.com/vectara/vectara-ui/blob/main/NO_LICENSE">NO_LICENSE</VuiLink>.
                       </p>
                     </VuiText>
                   </VuiFlexItem>

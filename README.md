@@ -24,7 +24,15 @@ You can consume Vectara UI's Sass variables by placing this import in the files 
 
 ## Publishing
 
-Publishing a new version of the package consists of two steps: **versioning the package** and **publishing to NPM**.
+Publishing a new version of the package consists of three steps:
+
+1. Maintaining the CHANGELOG.
+2. Versioning the package.
+3. Publishing to NPM.
+
+### Maintain the CHANGELOG
+
+As you introduce changes, record them in the CHANGELOG beneath the `main` section. Before you create a new version, submit a PR that updates the `package.json` version and moves the `main` content into a new section for the new version. We follow semver, so breaking changes should result in a major version bump.
 
 ### Version the package
 
