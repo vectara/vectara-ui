@@ -93,7 +93,8 @@ export const Docs = () => {
   });
 
   return (
-    <Router>
+    // Fix routing when deployed to GitHub pages.
+    <Router basename={process.env.NODE_ENV === "production" ? "/vectara-ui/" : undefined}>
       <VuiAppHeader
         left={
           <VuiFlexContainer spacing="m" alignItems="center">
