@@ -46,8 +46,10 @@ export const Home = () => {
                   <VuiFlexItem grow={1}>
                     <VuiText size="m">
                       <p>
-                        We solely intend it for internal use by <VuiLink href="http://vectara.com/">Vectara</VuiLink>,
-                        so use at your own risk!
+                        We solely intend this library for internal use by{" "}
+                        <VuiLink href="http://vectara.com/">Vectara</VuiLink>. Vectara, Inc. reserves all rights. For
+                        more information, see the [README](https://github.com/vectara/vectara-ui/blob/main/README.md)
+                        and [NO_LICENSE](https://github.com/vectara/vectara-ui/blob/main/NO_LICENSE).
                       </p>
                     </VuiText>
                   </VuiFlexItem>
