@@ -1,6 +1,6 @@
 # Vectara UI
 
-This is Vectara's design system, codified as a React component library. It's intended solely for consumption by Vectara and currently it isn't available for public use under any license. For more information see [NO_LICENSE](./NO_LICENSE).
+This is Vectara's design system, codified as a React component library. It's intended solely for consumption by Vectara and currently it isn't available for use by anybody else. For more information see [NO_LICENSE](./NO_LICENSE).
 
 ## Usage
 
@@ -66,6 +66,6 @@ npm unlink ../vectara-answer/node_modules/react ../vectara-answer/node_modules/r
 
 ## Licensing and public use
 
-Though the GitHub terms of service grants anybody the right to fork and look through this repository, we haven't yet licensed this code for use by anybody. This means Vectara reserves all rights to the contents of this repository. You can't reproduce, distribute, or create derivative works from it. For more information on reserved copyright of GitHub repos, see https://choosealicense.com/no-permission/.
+Though the GitHub terms of service grants anybody the right to fork and look through this repository, we haven't yet licensed this code for use by anybody else. This means Vectara reserves all rights to the contents of this repository. You can't reproduce, distribute, or create derivative works from it. For more information on reserved copyright of GitHub repos, see https://choosealicense.com/no-permission/.
 
 For more information on our lack of licensing, see [NO_LICENSE](./NO_LICENSE).
