@@ -11,9 +11,11 @@ export const VuiAppLayout = forwardRef(
   ({ children, navItems, navContent }: Props, ref: ForwardedRef<HTMLDivElement>) => {
     return (
       <div className="vuiAppLayout">
-        <div className="vuiAppLayout__sideNav">
-          <VuiAppSideNav items={navItems} content={navContent} />
-        </div>
+        {(navItems || navContent) && (
+          <div className="vuiAppLayout__sideNav">
+            <VuiAppSideNav items={navItems} content={navContent} />
+          </div>
+        )}
 
         <div className="vuiAppLayout__content" ref={ref}>
           {children}
