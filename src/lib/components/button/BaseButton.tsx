@@ -57,6 +57,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         <Link
           className="vuiBaseButtonLinkWrapper"
           to={href}
+          onClick={onClick}
           target={target}
           tabIndex={tabIndex}
           {...rest}
