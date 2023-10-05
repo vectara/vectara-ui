@@ -19,6 +19,10 @@
       margin-bottom: 0;
     }
   }
+
+  a {
+    color: $colorPrimary;
+  }
 }
 
 .vuiText--truncate {
