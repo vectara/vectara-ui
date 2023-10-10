@@ -32,7 +32,7 @@ $drawerWidth: 500px;
 }
 
 .vuiDrawerContent {
-  overflow-y: scroll;
+  overflow-y: auto;
   overscroll-behavior: contain;
 }
 
