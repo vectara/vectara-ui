@@ -23,31 +23,33 @@ export const Secondary = () => {
   return (
     <>
       {BUTTON_SIZE.map((size) => (
-        <VuiFlexContainer key={size}>
-          {BUTTON_COLOR.map((color) => (
-            <VuiFlexItem grow={false} key={color}>
-              <VuiOptionsButton
-                size={size}
-                type="secondary"
-                isOpen={isOpen[`${size}-${color}`]}
-                setIsOpen={(isButtonOpen) =>
-                  setIsOpen({
-                    ...isOpen,
-                    [`${size}-${color}`]: isButtonOpen
-                  })
-                }
-                color={color}
-                onSelectOption={(value) => {
-                  alert(`Selected ${value}`);
-                }}
-                options={options}
-              >
-                Perform action
-              </VuiOptionsButton>
-              <VuiSpacer size="m" />
-            </VuiFlexItem>
-          ))}
-        </VuiFlexContainer>
+        <>
+          <VuiFlexContainer key={size} wrap spacing="xs">
+            {BUTTON_COLOR.map((color) => (
+              <VuiFlexItem grow={false} key={color}>
+                <VuiOptionsButton
+                  size={size}
+                  type="secondary"
+                  isOpen={isOpen[`${size}-${color}`]}
+                  setIsOpen={(isButtonOpen) =>
+                    setIsOpen({
+                      ...isOpen,
+                      [`${size}-${color}`]: isButtonOpen
+                    })
+                  }
+                  color={color}
+                  onSelectOption={(value) => {
+                    alert(`Selected ${value}`);
+                  }}
+                  options={options}
+                >
+                  Perform action
+                </VuiOptionsButton>
+              </VuiFlexItem>
+            ))}
+          </VuiFlexContainer>
+          <VuiSpacer size="m" />
+        </>
       ))}
     </>
   );

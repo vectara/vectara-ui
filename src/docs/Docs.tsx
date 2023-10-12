@@ -32,7 +32,6 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
     const nextIndex = currentPageIndex === paths.list.length - 1 ? 0 : currentPageIndex + 1;
     navigate(paths.list[nextIndex].path);
   };
-
   return (
     <VuiAppContent padding="l">
       <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
@@ -76,7 +75,7 @@ const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => 
 
       <>
         {examples.map(({ name: exampleName, component, source }) => (
-          <Example key={`example-${exampleName}`} name={exampleName} component={component} source={source} />
+          <Example key={`example-${name}-${exampleName}`} name={exampleName} component={component} source={source} />
         ))}
       </>
     </VuiAppContent>

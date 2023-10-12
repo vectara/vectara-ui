@@ -9,10 +9,12 @@ export const superRadioGroup = {
   path: "/superRadioGroup",
   examples: [
     {
+      name: "Label only",
       component: <LabelOnly />,
       source: LabelOnlySource.default.toString()
     },
     {
+      name: "With description",
       component: <WithDescription />,
       source: WithDescriptionSource.default.toString()
     }
