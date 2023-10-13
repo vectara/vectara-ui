@@ -6,12 +6,22 @@ type Props = {
   align?: "center" | "left" | "right";
   className?: string;
   interactive?: boolean;
+  padding?: "s" | "m" | "l";
 };
 
-export const VuiCard = ({ children, footer, align = "left", interactive, className, ...rest }: Props) => {
+export const VuiCard = ({
+  children,
+  footer,
+  align = "left",
+  interactive,
+  className,
+  padding = "s",
+  ...rest
+}: Props) => {
   const classes = classNames(
     "vuiCard",
     `vuiCard--${align}`,
+    `vuiCard--${padding}`,
     {
       "vuiCard--interactive": interactive
     },

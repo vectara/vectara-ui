@@ -52,3 +52,24 @@
   border-top: 1px solid $borderColorLight;
   padding: $sizeM $sizeL;
 }
+
+.vuiCard--s {
+  .vuiCard__content,
+  .vuiCard__footer {
+    padding: $sizeM $sizeL;
+  }
+}
+
+.vuiCard--m {
+  .vuiCard__content,
+  .vuiCard__footer {
+    padding: $sizeL $sizeXl;
+  }
+}
+
+.vuiCard--l {
+  .vuiCard__content,
+  .vuiCard__footer {
+    padding: $sizeXl $sizeXxl;
+  }
+}
