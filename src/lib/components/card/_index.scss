@@ -7,6 +7,7 @@
   width: 100%;
   height: 100%;
   transition: all $transitionSpeed;
+  overflow: hidden;
 }
 
 .vuiCard--interactive {
@@ -71,5 +72,17 @@
   .vuiCard__content,
   .vuiCard__footer {
     padding: $sizeXl $sizeXxl;
+  }
+}
+
+.vuiCard--highlight {
+  border: 2px solid $colorAccent;
+
+  .vuiCard__content {
+    background-color: $colorAccentLightShade;
+  }
+
+  .vuiCard__footer {
+    border-top: $colorAccentLightShade;
   }
 }

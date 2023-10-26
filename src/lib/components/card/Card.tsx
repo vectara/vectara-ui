@@ -7,6 +7,7 @@ type Props = {
   className?: string;
   interactive?: boolean;
   padding?: "s" | "m" | "l";
+  highlight?: boolean;
 };
 
 export const VuiCard = ({
@@ -16,6 +17,7 @@ export const VuiCard = ({
   interactive,
   className,
   padding = "s",
+  highlight,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -23,7 +25,8 @@ export const VuiCard = ({
     `vuiCard--${align}`,
     `vuiCard--${padding}`,
     {
-      "vuiCard--interactive": interactive
+      "vuiCard--interactive": interactive,
+      "vuiCard--highlight": highlight
     },
     className
   );
