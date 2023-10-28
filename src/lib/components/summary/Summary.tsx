@@ -50,7 +50,7 @@ export const VuiSummary = ({ summary, className, SummaryCitation }: Props) => {
   // https://help.fullstory.com/hc/en-us/articles/360020623574-How-do-I-protect-my-users-privacy-in-FullStory-#01F5DPW1AJHZHR8TBM9YQEDRMH
   const classes = classNames("vuiSummary", "fs-mask", className);
   const markdown = markDownCitations(summary);
-  console.log(markdown);
+
   return (
     <div className={classes} dir="auto">
       <VuiText size="m">
