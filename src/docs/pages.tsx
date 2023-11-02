@@ -13,6 +13,7 @@ import { copyButton } from "./pages/copyButton";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
+import { grid } from "./pages/grid";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
 import { infoTable } from "./pages/infoTable";
@@ -68,7 +69,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [tabs, accordion, popover, flex, spacer, card, horizontalRule]
+    pages: [tabs, accordion, popover, flex, grid, spacer, card, horizontalRule]
   },
   {
     name: "Content",
