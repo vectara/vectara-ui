@@ -1,14 +1,8 @@
-import { VuiSpacer, VuiText, VuiTitle, VuiTopicButton } from "../../../lib";
+import { VuiText, VuiTopicButton } from "../../../lib";
 
 export const Link = () => {
   return (
-    <VuiTopicButton href="https://docs.vectara.com">
-      <VuiTitle size="s">
-        <h4>Read the docs</h4>
-      </VuiTitle>
-
-      <VuiSpacer size="xxs" />
-
+    <VuiTopicButton href="https://docs.vectara.com" title="Read the docs">
       <VuiText>
         <p>They're full of delicious knowledge!</p>
       </VuiText>
