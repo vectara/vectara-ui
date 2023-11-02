@@ -43,6 +43,7 @@ import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
 import { textArea } from "./pages/textArea";
 import { toggle } from "./pages/toggle";
+import { topicButton } from "./pages/topicButton";
 import { validation } from "./pages/validation";
 
 // Utils
@@ -91,7 +92,7 @@ export const categories: Category[] = [
   },
   {
     name: "Controls",
-    pages: [button, copyButton, link, menu, optionsButton, optionsList, searchSelect]
+    pages: [button, copyButton, link, topicButton, menu, optionsButton, optionsList, searchSelect]
   },
   {
     name: "Utils",

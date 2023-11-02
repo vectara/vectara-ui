@@ -75,6 +75,7 @@ import { VuiTextColor } from "./typography/TextColor";
 import { TEXT_COLOR, TEXT_SIZE, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
+import { VuiTopicButton } from "./topicButton/TopicButton";
 
 export type {
   AppContentPadding,
@@ -174,5 +175,6 @@ export {
   VuiTextColor,
   VuiTextInput,
   VuiTitle,
-  VuiToggle
+  VuiToggle,
+  VuiTopicButton
 };

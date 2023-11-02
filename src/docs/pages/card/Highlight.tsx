@@ -9,6 +9,7 @@ export const Highlight = () => {
         </VuiText>
       }
       highlight
+      ungrouped
     >
       <VuiTitle size="m">
         <h4>Replicant</h4>

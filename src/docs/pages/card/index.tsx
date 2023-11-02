@@ -9,12 +9,12 @@ export const card = {
   path: "/card",
   examples: [
     {
-      title: "Cards",
+      name: "Groups",
       component: <Card />,
       source: CardSource.default.toString()
     },
     {
-      title: "Highlight",
+      name: "Highlight",
       component: <Highlight />,
       source: HighlightSource.default.toString()
     }
