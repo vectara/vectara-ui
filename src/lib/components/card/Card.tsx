@@ -1,8 +1,8 @@
 import classNames from "classnames";
 
 type Props = {
-  children?: React.ReactNode;
-  footer?: React.ReactNode;
+  header?: React.ReactNode;
+  body?: React.ReactNode;
   align?: "center" | "left" | "right";
   className?: string;
   interactive?: boolean;
@@ -13,8 +13,8 @@ type Props = {
 };
 
 export const VuiCard = ({
-  children,
-  footer,
+  header,
+  body,
   align = "left",
   interactive,
   href,
@@ -37,19 +37,22 @@ export const VuiCard = ({
     className
   );
 
+  const headerContent = header && <div className="vuiCard__content">{header}</div>;
+  const bodyContent = body && <div className="vuiCard__footer">{body}</div>;
+
   if (href) {
     return (
       <a className={classes} href={href} {...rest}>
-        {children && <div className="vuiCard__content">{children}</div>}
-        {footer && <div className="vuiCard__footer">{footer}</div>}
+        {headerContent}
+        {bodyContent}
       </a>
     );
   }
 
   return (
     <div className={classes} {...rest}>
-      {children && <div className="vuiCard__content">{children}</div>}
-      {footer && <div className="vuiCard__footer">{footer}</div>}
+      {headerContent}
+      {bodyContent}
     </div>
   );
 };
