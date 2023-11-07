@@ -18,7 +18,12 @@ export const Home = () => {
       <VuiFlexContainer alignItems="center" justifyContent="center">
         <VuiFlexItem className="homeCard">
           <VuiCard
-            footer={
+            header={
+              <VuiTitle size="m">
+                <h2>Vectara UI Library</h2>
+              </VuiTitle>
+            }
+            body={
               <>
                 <VuiFlexContainer alignItems="start" justifyContent="center">
                   <VuiFlexItem shrink={false} grow={false}>
@@ -110,11 +115,7 @@ export const Home = () => {
                 </VuiText>
               </>
             }
-          >
-            <VuiTitle size="m">
-              <h2>Vectara UI Library</h2>
-            </VuiTitle>
-          </VuiCard>
+          />
         </VuiFlexItem>
       </VuiFlexContainer>
     </VuiAppContent>
