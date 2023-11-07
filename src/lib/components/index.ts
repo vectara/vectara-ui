@@ -35,6 +35,7 @@ import {
   VuiTextArea
 } from "./form";
 import { VuiFormGroup } from "./formGroup/FormGroup";
+import { VuiGrid } from "./grid/Grid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
@@ -135,6 +136,7 @@ export {
   VuiFlexContainer,
   VuiFlexItem,
   VuiFormGroup,
+  VuiGrid,
   VuiHorizontalRule,
   VuiIcon,
   VuiInfoTable,
