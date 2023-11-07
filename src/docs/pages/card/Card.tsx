@@ -66,7 +66,7 @@ export const Card = () => {
 
       <VuiFlexItem grow={1}>
         <VuiCard
-          body={
+          header={
             <>
               <VuiTitle size="s">
                 <h4>Cards in cards</h4>
@@ -79,7 +79,7 @@ export const Card = () => {
                   <VuiFlexItem grow={false} key={index}>
                     <VuiCard
                       interactive
-                      body={
+                      header={
                         <VuiIcon color="neutral" size="xl">
                           <BiPlanet />
                         </VuiIcon>
