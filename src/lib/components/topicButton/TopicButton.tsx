@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiTitle } from "../typography/Title";
@@ -5,13 +6,15 @@ import { VuiTitle } from "../typography/Title";
 type Props = {
   children?: React.ReactNode;
   className?: string;
-  href: string;
+  href?: string;
+  onClick: () => void;
   title?: string;
 };
 
-export const VuiTopicButton = ({ children, className, href, title, ...rest }: Props) => {
-  return (
-    <a className="vuiTopicButton" href={href} {...rest}>
+export const VuiTopicButton = ({ children, className, href, onClick, title, ...rest }: Props) => {
+  const classes = classNames("vuiTopicButton", className);
+  const content = (
+    <>
       {title && (
         <>
           <VuiTitle size="s">
@@ -25,6 +28,20 @@ export const VuiTopicButton = ({ children, className, href, title, ...rest }: Pr
       )}
 
       {children}
-    </a>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a className={classes} href={href} onClick={onClick} {...rest}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button className={classes} onClick={onClick} {...rest}>
+      {content}
+    </button>
   );
 };
