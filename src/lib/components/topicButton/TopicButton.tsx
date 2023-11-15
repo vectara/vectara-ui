@@ -7,7 +7,7 @@ type Props = {
   children?: React.ReactNode;
   className?: string;
   href?: string;
-  onClick: () => void;
+  onClick?: () => void;
   title?: string;
 };
 
