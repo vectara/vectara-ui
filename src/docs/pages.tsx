@@ -56,7 +56,7 @@ export type Example = { name?: string; component: React.ReactNode; source: strin
 
 export const categories: Category[] = [
   {
-    name: "Conversation",
+    name: "Query",
     pages: [chat, prompt, searchInput, searchResult, summary]
   },
   {
