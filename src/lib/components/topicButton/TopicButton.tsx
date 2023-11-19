@@ -9,10 +9,13 @@ type Props = {
   href?: string;
   onClick?: () => void;
   title?: string;
+  fullWidth?: boolean;
 };
 
-export const VuiTopicButton = ({ children, className, href, onClick, title, ...rest }: Props) => {
-  const classes = classNames("vuiTopicButton", className);
+export const VuiTopicButton = ({ children, className, href, onClick, title, fullWidth, ...rest }: Props) => {
+  const classes = classNames("vuiTopicButton", className, {
+    "vuiTopicButton--fullWidth": fullWidth
+  });
   const content = (
     <>
       {title && (
