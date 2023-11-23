@@ -11,6 +11,10 @@
   }
 }
 
+.vuiBaseButtonLinkWrapper--fullWidth {
+  width: 100%;
+}
+
 .vuiBaseButton {
   white-space: nowrap;
   border-radius: $sizeXxs;

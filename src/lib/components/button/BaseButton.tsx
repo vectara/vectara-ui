@@ -74,9 +74,13 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
     }
 
     if (href) {
+      const wrapperClasses = classNames("vuiBaseButtonLinkWrapper", {
+        "vuiBaseButtonLinkWrapper--fullWidth": fullWidth
+      });
+
       return (
         <Link
-          className="vuiBaseButtonLinkWrapper"
+          className={wrapperClasses}
           to={href}
           onClick={onClick}
           target={target}
