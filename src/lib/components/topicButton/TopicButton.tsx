@@ -26,7 +26,7 @@ export const VuiTopicButton = ({ children, className, href, onClick, title, full
             </p>
           </VuiTitle>
 
-          <VuiSpacer size="xxs" />
+          {children && <VuiSpacer size="xxs" />}
         </>
       )}
 
