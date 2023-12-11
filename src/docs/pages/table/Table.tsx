@@ -156,17 +156,20 @@ export const Table = () => {
       label: "Edit",
       onClick: (person: Person) => {
         console.log("Edit", person);
-      }
+      },
+      testId: "editAction"
     },
     {
       label: "Delete",
       onClick: (person: Person) => {
         console.log("Delete", person);
-      }
+      },
+      testId: "deleteAction"
     },
     {
       label: "Search",
-      href: (person: Person) => `https://www.google.com/search?q=${person.name}`
+      href: (person: Person) => `https://www.google.com/search?q=${person.name}`,
+      testId: "searchAction"
     }
   ];
 
@@ -297,6 +300,7 @@ export const Table = () => {
         rows={rows}
         content={content}
         actions={actions}
+        actionsTestIdProvider={(person: Person) => `actions-${person.id}`}
         pagination={pagination}
         selection={selection}
         onSort={(column, direction) => console.log("Sort", column, direction)}
