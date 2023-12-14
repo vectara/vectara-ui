@@ -100,7 +100,7 @@ export const Home = () => {
                   <ul>
                     <li>
                       <strong>
-                        <VuiLink href="https://react-icons.github.io/react-icons/icons?name=bi">BoxIcons</VuiLink>
+                        <VuiLink href="https://react-icons.github.io/react-icons/icons/bi/">BoxIcons</VuiLink>
                       </strong>{" "}
                       for icons
                     </li>
