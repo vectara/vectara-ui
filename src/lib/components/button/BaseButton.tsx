@@ -102,7 +102,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
     const props = {
       onClick,
       tabIndex,
-      ["type"]: isSubmit ? "submit" : undefined,
+      ["type"]: isSubmit ? "submit" : "button",
       ...rest
     };
 
