@@ -29,6 +29,7 @@ export type Props = {
   htmlFor?: string;
   tabIndex?: number;
   title?: string;
+  isSubmit?: boolean;
 };
 
 export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -49,6 +50,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       target,
       track,
       htmlFor,
+      isSubmit,
       ...rest
     }: Props,
     ref
@@ -100,6 +102,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
     const props = {
       onClick,
       tabIndex,
+      ["type"]: isSubmit ? "submit" : "button",
       ...rest
     };
 
