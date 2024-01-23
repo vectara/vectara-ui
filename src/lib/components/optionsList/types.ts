@@ -14,4 +14,5 @@ export type OptionListItem<T> = {
   onClick?: (value: T) => void;
   color?: TextColor;
   testId?: string;
+  isAnchor?: boolean;
 };

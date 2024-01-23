@@ -14,9 +14,10 @@ type Props = {
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
+  isAnchor?: LinkProps["isAnchor"];
 };
 
-export const VuiBadge = ({ children, className, color, onClick, href, target, track, ...rest }: Props) => {
+export const VuiBadge = ({ children, className, color, onClick, href, target, track, isAnchor, ...rest }: Props) => {
   const classes = classNames(className, "vuiBadge", `vuiBadge--${color}`, {
     "vuiBadge--clickable": onClick ?? href
   });
@@ -30,6 +31,16 @@ export const VuiBadge = ({ children, className, color, onClick, href, target, tr
   }
 
   if (href) {
+    // Uncouple from react-router.
+    if (isAnchor) {
+      return (
+        // @ts-expect-error Type 'string' is not assignable to type 'HTMLAttributeReferrerPolicy | undefined'.
+        <a className={classes} onClick={onClick} href={href} target={target} {...getTrackingProps(track)}>
+          {children}
+        </a>
+      );
+    }
+
     return (
       // @ts-expect-error Type 'string' is not assignable to type 'HTMLAttributeReferrerPolicy | undefined'.
       <Link className={classes} onClick={onClick} to={href} target={target} {...getTrackingProps(track)}>

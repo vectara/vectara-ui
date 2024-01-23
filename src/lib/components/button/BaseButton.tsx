@@ -30,6 +30,7 @@ export type Props = {
   tabIndex?: number;
   title?: string;
   isSubmit?: boolean;
+  isAnchor?: boolean;
 };
 
 export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -51,6 +52,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       track,
       htmlFor,
       isSubmit,
+      isAnchor,
       ...rest
     }: Props,
     ref
@@ -80,23 +82,32 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         "vuiBaseButtonLinkWrapper--fullWidth": fullWidth
       });
 
+      // Uncouple from react-router.
+      const LinkEl = isAnchor ? "a" : Link;
+
+      const linkProps: any = {
+        className: wrapperClasses,
+        onClick,
+        target,
+        tabIndex,
+        ...rest,
+        ...getTrackingProps(track)
+      };
+
+      if (isAnchor) {
+        linkProps.href = href;
+      } else {
+        linkProps.to = href;
+      }
+
       return (
-        // @ts-expect-error Type 'string' is not assignable to type 'HTMLAttributeReferrerPolicy | undefined'.
-        <Link
-          className={wrapperClasses}
-          to={href}
-          onClick={onClick}
-          target={target}
-          tabIndex={tabIndex}
-          {...rest}
-          {...getTrackingProps(track)}
-        >
+        <LinkEl {...linkProps}>
           {/* Wrap a button otherwise the flex layout breaks */}
           <button className={classes} tabIndex={-1} ref={ref}>
             {iconContainer}
             {children}
           </button>
-        </Link>
+        </LinkEl>
       );
     }
 

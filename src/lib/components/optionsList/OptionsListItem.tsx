@@ -1,11 +1,11 @@
 import { cloneElement } from "react";
 import { Link } from "react-router-dom";
 import { BiCheck } from "react-icons/bi";
+import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
 import { OptionListItem } from "./types";
-import classNames from "classnames";
 
 export const colorIcon = (icon: OptionListItem<string>["icon"], color: OptionListItem<string>["color"]) => {
   return icon
@@ -34,6 +34,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
   isSelectable,
   isSelected,
   testId,
+  isAnchor,
   ...rest
 }: Props<T>) => {
   const labelContent = icon ? (
@@ -63,18 +64,24 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
   const classes = classNames("vuiOptionsListItem", `vuiOptionsListItem--${color}`);
 
   if (href) {
-    return (
-      <Link
-        className={classes}
-        to={href}
-        target={target}
-        onClick={() => onClick?.(value)}
-        data-testid={testId}
-        {...rest}
-      >
-        {content}
-      </Link>
-    );
+    // Uncouple from react-router.
+    const LinkEl = isAnchor ? "a" : Link;
+
+    const linkProps: any = {
+      className: classes,
+      target,
+      onClick: () => onClick?.(value),
+      "data-testid": testId,
+      ...rest
+    };
+
+    if (isAnchor) {
+      linkProps.href = href;
+    } else {
+      linkProps.to = href;
+    }
+
+    return <LinkEl {...linkProps}>{content}</LinkEl>;
   }
 
   return (

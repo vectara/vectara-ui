@@ -11,9 +11,10 @@ type Props = {
   text?: string;
   onClick?: () => void;
   href?: LinkProps["href"];
+  isAnchor?: boolean;
 };
 
-export const VuiMenuItem = ({ className, title, text, href, onClick, ...rest }: Props) => {
+export const VuiMenuItem = ({ className, title, text, href, onClick, isAnchor, ...rest }: Props) => {
   const classes = classNames(className, "vuiMenuItem");
 
   const props = {
@@ -38,12 +39,22 @@ export const VuiMenuItem = ({ className, title, text, href, onClick, ...rest }: 
     </>
   );
 
-  if (href)
+  if (href) {
+    // Uncouple from react-router.
+    if (isAnchor) {
+      return (
+        <a href={href} {...props}>
+          {content}
+        </a>
+      );
+    }
+
     return (
       <Link to={href} {...props}>
         {content}
       </Link>
     );
+  }
 
   return <button {...props}>{content}</button>;
 };

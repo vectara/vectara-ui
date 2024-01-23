@@ -19,6 +19,12 @@ export const Link = () => {
       <Subsection title="With onClick only">
         <VuiLink onClick={() => alert("Clicked link")}>Link that's really a button</VuiLink>
       </Subsection>
+
+      <Subsection title="With href and isAnchor">
+        <VuiLink isAnchor href="https://vectara.com" target="_blank">
+          Link uncoupled from react-router
+        </VuiLink>
+      </Subsection>
     </>
   );
 };

@@ -10,6 +10,12 @@ export const ClickableBadges = () => {
       </VuiFlexItem>
 
       <VuiFlexItem grow={false}>
+        <VuiBadge isAnchor color="primary" href="https://docs.vectara.com/" target="_blank">
+          Docs (isAnchor)
+        </VuiBadge>
+      </VuiFlexItem>
+
+      <VuiFlexItem grow={false}>
         <VuiBadge color="primary" onClick={() => alert("Hello, world")}>
           Hello, world
         </VuiBadge>
