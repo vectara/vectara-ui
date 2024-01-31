@@ -40,9 +40,9 @@ const items: MenuItem[] = [
   }
 ];
 
-export const Menu = () => {
+export const NoBorder = () => {
   return (
-    <VuiMenu>
+    <VuiMenu noBorder>
       {items.map(({ title, text, onClick, href, color }) => (
         <VuiMenuItem key={title as string} title={title} text={text} onClick={onClick} href={href} color={color} />
       ))}
