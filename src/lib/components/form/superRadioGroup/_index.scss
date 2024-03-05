@@ -13,11 +13,19 @@
   transition: all $transitionSpeed;
   text-decoration-color: $colorText;
   text-align: left;
-  background-color: $colorLightShade;
+  border: 1px solid $colorPrimaryLightShade;
 
   &:hover {
     text-decoration: underline;
-    text-decoration-color: $colorText;
-    background-color: $colorPrimaryLightShade;
+    text-decoration-color: $colorPrimary;
+    background-color: $colorPrimaryLighterShade;
+
+    .vuiSuperRadioButton__text {
+      color: $colorPrimary !important;
+    }
   }
+}
+
+.vuiSuperRadioButton__description {
+  color: $colorSubdued;
 }

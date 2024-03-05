@@ -20,6 +20,6 @@ $colors: (
 
 @each $colorName, $colorValue in $colors {
   .vuiIcon--#{$colorName} {
-    color: $colorValue !important;
+    color: $colorValue;
   }
 }

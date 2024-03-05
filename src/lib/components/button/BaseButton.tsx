@@ -1,9 +1,11 @@
 import { ReactElement, ReactNode, forwardRef } from "react";
 import classNames from "classnames";
-import { Props as LinkProps } from "../link/Link";
-import { Link } from "react-router-dom";
 import { getTrackingProps } from "../../utils/getTrackingProps";
 import { BUTTON_SIZE } from "./types";
+import { LinkProps } from "../link/types";
+import { useVuiContext } from "../context/Context";
+import { VuiSpinner } from "../spinner/Spinner";
+import { SPINNER_COLOR } from "../spinner/types";
 
 const alignToClassMap = {
   left: "vuiBaseButton--alignLeft",
@@ -11,7 +13,14 @@ const alignToClassMap = {
   right: "vuiBaseButton--alignRight"
 };
 
-export type Props = {
+const sizeToSpinnerSizeMap = {
+  xs: "xs",
+  s: "xs",
+  m: "s",
+  l: "m"
+} as const;
+
+export type BaseButtonProps = {
   children?: ReactNode;
   icon?: ReactElement | null;
   iconSide?: "left" | "right";
@@ -30,6 +39,11 @@ export type Props = {
   tabIndex?: number;
   title?: string;
   isSubmit?: boolean;
+  isLoading?: boolean;
+};
+
+type Props = BaseButtonProps & {
+  spinnerColor: (typeof SPINNER_COLOR)[number];
 };
 
 export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -40,7 +54,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       iconSide = "left",
       align = "center",
       className,
-      size,
+      size = "m",
       fullWidth,
       onClick,
       tabIndex,
@@ -51,18 +65,32 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       track,
       htmlFor,
       isSubmit,
+      isLoading,
+      spinnerColor,
       ...rest
     }: Props,
     ref
   ) => {
+    const { createLink } = useVuiContext();
+
     const classes = classNames("vuiBaseButton", className, `vuiBaseButton--${size}`, alignToClassMap[align], {
       "vuiBaseButton-isInert": isInert,
       "vuiBaseButton-isDisabled": isDisabled,
       "vuiBaseButton--fullWidth": fullWidth,
-      [`vuiBaseButton--${iconSide}`]: Boolean(icon) && Boolean(children)
+      [`vuiBaseButton--${isLoading ? "left" : iconSide}`]: (Boolean(icon) || isLoading) && Boolean(children)
     });
 
-    const iconContainer = icon ? <span className="vuiBaseButtonIconContainer">{icon}</span> : null;
+    let iconContainer;
+
+    if (isLoading) {
+      iconContainer = (
+        <span className="vuiBaseButtonIconContainer">
+          <VuiSpinner color={spinnerColor} size={sizeToSpinnerSizeMap[size]} />
+        </span>
+      );
+    } else if (icon) {
+      iconContainer = <span className="vuiBaseButtonIconContainer">{icon}</span>;
+    }
 
     // This is useful for controlling other elements, e.g. creating an <input type="file" />
     // for uploading files and adding a button to trigger it.
@@ -80,30 +108,29 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         "vuiBaseButtonLinkWrapper--fullWidth": fullWidth
       });
 
-      return (
-        // @ts-expect-error Type 'string' is not assignable to type 'HTMLAttributeReferrerPolicy | undefined'.
-        <Link
-          className={wrapperClasses}
-          to={href}
-          onClick={onClick}
-          target={target}
-          tabIndex={tabIndex}
-          {...rest}
-          {...getTrackingProps(track)}
-        >
-          {/* Wrap a button otherwise the flex layout breaks */}
+      return createLink({
+        className: wrapperClasses,
+        href,
+        onClick,
+        children: (
+          //* Wrap a button otherwise the flex layout breaks */}
           <button className={classes} tabIndex={-1} ref={ref}>
             {iconContainer}
             {children}
           </button>
-        </Link>
-      );
+        ),
+        target,
+        tabIndex,
+        ...rest,
+        ...getTrackingProps(track)
+      });
     }
 
     const props = {
       onClick,
       tabIndex,
       ["type"]: isSubmit ? "submit" : "button",
+      disabled: isDisabled,
       ...rest
     };
 

@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .vuiText {
   overflow-wrap: break-word;
   word-break: break-word;
@@ -62,15 +64,18 @@
   @include truncateText;
 }
 
-@mixin defineTextStyles($fontSize) {
+@mixin defineTextStyles($fontSize, $fontWeight) {
   color: $colorText;
   font-size: $fontSize;
   line-height: 1.4;
 
-  p {
+  p,
+  ul,
+  ol {
     font-size: $fontSize;
     line-height: 1.4;
     margin-bottom: $sizeXs;
+    font-weight: $fontWeight;
 
     &:last-child {
       margin-bottom: 0;
@@ -107,15 +112,27 @@
 }
 
 $size: (
-  xs: $fontSizeSmall,
-  s: $fontSizeStandard,
-  m: $fontSizeMedium,
-  l: $fontSizeLarge
+  xs: (
+    size: $fontSizeSmall,
+    weight: $fontWeightStrong
+  ),
+  s: (
+    size: $fontSizeStandard,
+    weight: $fontWeightNormal
+  ),
+  m: (
+    size: $fontSizeMedium,
+    weight: $fontWeightNormal
+  ),
+  l: (
+    size: $fontSizeLarge,
+    weight: $fontWeightNormal
+  )
 );
 
-@each $sizeName, $fontSize in $size {
+@each $sizeName, $sizeValue in $size {
   .vuiText--#{$sizeName} {
-    @include defineTextStyles($fontSize);
+    @include defineTextStyles(map.get($sizeValue, "size"), map.get($sizeValue, "weight"));
   }
 }
 

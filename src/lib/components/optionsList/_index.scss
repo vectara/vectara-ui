@@ -42,27 +42,33 @@
 $color: (
   accent: (
     "color": $colorAccent,
+    "hover-color": $colorAccent,
     "selected-color": $colorAccentLightShade
   ),
   primary: (
     "color": $colorPrimary,
-    "selected-color": $colorPrimaryLightShade
+    "hover-color": $colorPrimary,
+    "selected-color": $colorPrimaryLighterShade
   ),
   success: (
     "color": $colorSuccess,
+    "hover-color": $colorSuccess,
     "selected-color": $colorSuccessLightShade
   ),
   danger: (
     "color": $colorDanger,
+    "hover-color": $colorDanger,
     "selected-color": $colorDangerLightShade
   ),
   warning: (
     "color": $colorWarning,
+    "hover-color": $colorWarning,
     "selected-color": $colorWarningLightShade
   ),
   neutral: (
     "color": $colorText,
-    "selected-color": $colorLightShade
+    "hover-color": $colorPrimary,
+    "selected-color": $colorPrimaryLighterShade
   )
 );
 
@@ -71,7 +77,7 @@ $color: (
     color: #{map.get($colorValue, "color")};
 
     &:hover {
-      color: #{map.get($colorValue, "color")};
+      color: #{map.get($colorValue, "hover-color")};
       background-color: #{map.get($colorValue, "selected-color")};
     }
   }

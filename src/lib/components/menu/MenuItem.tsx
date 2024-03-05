@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { VuiSpacer } from "../spacer/Spacer";
-import { Props as LinkProps } from "../link/Link";
-import { Link } from "react-router-dom";
+import { LinkProps } from "../link/types";
+import { useVuiContext } from "../context/Context";
 
 export type MenuItem = {
   className?: string;
@@ -13,6 +13,7 @@ export type MenuItem = {
 };
 
 export const VuiMenuItem = ({ className, title, text, onClick, href, color = "neutral", ...rest }: MenuItem) => {
+  const { createLink } = useVuiContext();
   const classes = classNames(className, "vuiMenuItem", `vuiMenuItem--${color}`);
 
   const props = {
@@ -29,12 +30,13 @@ export const VuiMenuItem = ({ className, title, text, onClick, href, color = "ne
     </>
   );
 
-  if (href)
-    return (
-      <Link to={href} {...props}>
-        {content}
-      </Link>
-    );
+  if (href) {
+    return createLink({
+      href,
+      ...props,
+      children: content
+    });
+  }
 
   return <button {...props}>{content}</button>;
 };

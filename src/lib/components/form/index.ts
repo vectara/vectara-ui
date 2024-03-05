@@ -6,5 +6,6 @@ export { VuiSelect } from "./select/Select";
 export { VuiSuperRadioGroup } from "./superRadioGroup/SuperRadioGroup";
 export { VuiTextInput } from "./input/TextInput";
 export { VuiTextArea } from "./textArea/TextArea";
+export { VuiPasswordInput } from "./input/PasswordInput";
 
 export type { RadioButtonConfig } from "./superRadioGroup/types";

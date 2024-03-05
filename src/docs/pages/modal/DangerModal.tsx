@@ -1,15 +1,5 @@
 import { useState } from "react";
-import {
-  VuiButtonPrimary,
-  VuiButtonSecondary,
-  VuiFlexContainer,
-  VuiFlexItem,
-  VuiIcon,
-  VuiModal,
-  VuiSpacer,
-  VuiText,
-  VuiTitle
-} from "../../../lib";
+import { VuiButtonPrimary, VuiButtonSecondary, VuiModal, VuiSpacer, VuiText } from "../../../lib";
 import { BiError } from "react-icons/bi";
 
 export const DangerModal = () => {
@@ -21,26 +11,7 @@ export const DangerModal = () => {
         Open danger modal
       </VuiButtonPrimary>
 
-      <VuiModal
-        color="danger"
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title={
-          <VuiFlexContainer justifyContent="spaceBetween" alignItems="center" spacing="xs">
-            <VuiFlexItem>
-              <VuiIcon size="m">
-                <BiError />
-              </VuiIcon>
-            </VuiFlexItem>
-
-            <VuiFlexItem grow={false}>
-              <VuiTitle size="s">
-                <h2>Error</h2>
-              </VuiTitle>
-            </VuiFlexItem>
-          </VuiFlexContainer>
-        }
-      >
+      <VuiModal color="danger" isOpen={isOpen} onClose={() => setIsOpen(false)} icon={<BiError />} title="Error">
         <VuiText>
           <p>
             There was an error. In all likelihood you can try showing this error to a colleague, at which point it will

@@ -30,7 +30,7 @@
   font-size: $fontSizeStandard;
   color: $colorText;
   width: 420px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 0 0 0, rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: $shadowLargeStart;
   background-color: $colorEmptyShade;
 }
 

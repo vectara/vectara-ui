@@ -1,8 +1,8 @@
 import { MouseEvent } from "react";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
-import { Props as LinkProps } from "../link/Link";
 import { getTrackingProps } from "../../utils/getTrackingProps";
+import { useVuiContext } from "../context/Context";
+import { LinkProps } from "../link/types";
 
 export const BADGE_COLOR = ["accent", "primary", "danger", "warning", "success", "neutral"] as const;
 
@@ -17,6 +17,8 @@ type Props = {
 };
 
 export const VuiBadge = ({ children, className, color, onClick, href, target, track, ...rest }: Props) => {
+  const { createLink } = useVuiContext();
+
   const classes = classNames(className, "vuiBadge", `vuiBadge--${color}`, {
     "vuiBadge--clickable": onClick ?? href
   });
@@ -30,12 +32,14 @@ export const VuiBadge = ({ children, className, color, onClick, href, target, tr
   }
 
   if (href) {
-    return (
-      // @ts-expect-error Type 'string' is not assignable to type 'HTMLAttributeReferrerPolicy | undefined'.
-      <Link className={classes} onClick={onClick} to={href} target={target} {...getTrackingProps(track)}>
-        {children}
-      </Link>
-    );
+    return createLink({
+      className: classes,
+      href,
+      onClick,
+      children,
+      target,
+      ...getTrackingProps(track)
+    });
   }
 
   return (

@@ -1,26 +1,29 @@
 import { ReactNode, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { FocusOn } from "react-focus-on";
+import { BiX } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
-import { BiX } from "react-icons/bi";
 import { VuiPortal } from "../portal/Portal";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
+import { useVuiContext } from "../context/Context";
 
 const COLOR = ["primary", "danger"] as const;
 
 type Props = {
   className?: string;
   title: ReactNode;
+  icon?: ReactNode;
   children: ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
   color?: (typeof COLOR)[number];
 };
 
-export const VuiModal = ({ className, color = "primary", title, children, isOpen, onClose, ...rest }: Props) => {
+export const VuiModal = ({ className, color = "primary", title, icon, children, isOpen, onClose, ...rest }: Props) => {
+  const { DrawerTitle } = useVuiContext();
   const returnFocusElRef = useRef<HTMLElement | null>(null);
 
   // Return focus on unmount.
@@ -59,7 +62,21 @@ export const VuiModal = ({ className, color = "primary", title, children, isOpen
               <div className={classes} {...rest}>
                 <div className="vuiModalHeader">
                   <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
-                    <VuiFlexItem grow={false}>{title}</VuiFlexItem>
+                    <VuiFlexItem grow={false}>
+                      <VuiFlexContainer alignItems="center" spacing="xs">
+                        {icon && (
+                          <VuiFlexItem grow={false} shrink={false}>
+                            <VuiIcon size="l">{icon}</VuiIcon>
+                          </VuiFlexItem>
+                        )}
+
+                        <VuiFlexItem grow={false}>
+                          <div className="vuiModalHeader__title">
+                            <DrawerTitle>{title}</DrawerTitle>
+                          </div>
+                        </VuiFlexItem>
+                      </VuiFlexContainer>
+                    </VuiFlexItem>
 
                     {onClose && (
                       <VuiFlexItem>

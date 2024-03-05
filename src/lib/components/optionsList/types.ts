@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { TextColor } from "../typography/types";
+import { LinkProps } from "../link/types";
 
 // Value could be undefined, but the consumer is the one
 // providing them. We use a generic type to enable
@@ -10,7 +11,7 @@ export type OptionListItem<T> = {
   label: string;
   icon?: ReactElement | null;
   href?: string;
-  target?: string;
+  target?: LinkProps["target"];
   onClick?: (value: T) => void;
   color?: TextColor;
   testId?: string;

@@ -1,11 +1,12 @@
 import { cloneElement } from "react";
-import { Link } from "react-router-dom";
 import { BiCheck } from "react-icons/bi";
+import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
 import { OptionListItem } from "./types";
-import classNames from "classnames";
+import { useVuiContext } from "../context/Context";
+import { LinkProps } from "../link/types";
 
 export const colorIcon = (icon: OptionListItem<string>["icon"], color: OptionListItem<string>["color"]) => {
   return icon
@@ -19,6 +20,7 @@ export const colorIcon = (icon: OptionListItem<string>["icon"], color: OptionLis
 type Props<T> = OptionListItem<T> & {
   isSelectable?: boolean;
   isSelected?: boolean;
+  target?: LinkProps["target"];
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -36,6 +38,8 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
   testId,
   ...rest
 }: Props<T>) => {
+  const { createLink } = useVuiContext();
+
   const labelContent = icon ? (
     <VuiFlexContainer alignItems="center" spacing="xs">
       <VuiFlexItem grow={false} shrink={false}>
@@ -63,18 +67,15 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
   const classes = classNames("vuiOptionsListItem", `vuiOptionsListItem--${color}`);
 
   if (href) {
-    return (
-      <Link
-        className={classes}
-        to={href}
-        target={target}
-        onClick={() => onClick?.(value)}
-        data-testid={testId}
-        {...rest}
-      >
-        {content}
-      </Link>
-    );
+    return createLink({
+      className: classes,
+      href,
+      target,
+      onClick: () => onClick?.(value),
+      "data-testid": testId,
+      children: content,
+      ...rest
+    });
   }
 
   return (

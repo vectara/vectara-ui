@@ -28,7 +28,7 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
     errorMessageIds.push(id);
 
     return (
-      <>
+      <div>
         {index > 0 && <VuiSpacer size="xs" />}
 
         <VuiText size="xs" key={error} id={id}>
@@ -36,7 +36,7 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
             <VuiTextColor color="danger">{error}</VuiTextColor>
           </p>
         </VuiText>
-      </>
+      </div>
     );
   });
 
@@ -56,7 +56,7 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
   });
 
   return (
-    <>
+    <div>
       <VuiLabel labelFor={labelFor}>
         {label}
         {isRequired && " (required)"}
@@ -64,19 +64,26 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
 
       <VuiSpacer size="xs" />
 
-      {content}
-
-      {(helpText || errorMessages) && <VuiSpacer size="xs" />}
-
       {helpText && (
-        <VuiText size="xs" id={ariaDescribedByLabel}>
-          <p>
-            <VuiTextColor color="subdued">{helpText}</VuiTextColor>
-          </p>
-        </VuiText>
+        <>
+          <VuiText size="xs" id={ariaDescribedByLabel}>
+            <p>
+              <VuiTextColor color="subdued">{helpText}</VuiTextColor>
+            </p>
+          </VuiText>
+
+          <VuiSpacer size="xs" />
+        </>
       )}
 
-      {errorMessages}
-    </>
+      {errorMessages && (
+        <>
+          {errorMessages}
+          <VuiSpacer size="xs" />
+        </>
+      )}
+
+      {content}
+    </div>
   );
 };

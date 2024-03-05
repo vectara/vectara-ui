@@ -1,5 +1,5 @@
-import { Navigate, Route, BrowserRouter as Router, Routes, useLocation, useNavigate } from "react-router-dom";
-import { BiRightArrowAlt, BiLeftArrowAlt, BiLogoGithub } from "react-icons/bi";
+import { Link, Navigate, Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+import { BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
   VuiIconButton,
@@ -8,81 +8,28 @@ import {
   VuiIcon,
   VuiTitle,
   VuiAppLayout,
-  VuiAppContent,
-  VuiSpacer,
-  VuiButtonSecondary
+  VuiButtonSecondary,
+  VuiContextProvider,
+  LinkProps
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
-import { categories, Example as ExampleType, paths } from "./pages";
-import { Example } from "./components/Example";
+import { categories } from "./pages";
 import { Home } from "./Home";
+import { Page } from "./Page";
 import "./index.scss";
 
-const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const currentPageIndex = paths.list.findIndex((page) => page.path === location.pathname);
-
-  const navigateToPreviousPage = () => {
-    const prevIndex = currentPageIndex === 0 ? paths.list.length - 1 : currentPageIndex - 1;
-    navigate(paths.list[prevIndex].path);
-  };
-
-  const navigateToNextPage = () => {
-    const nextIndex = currentPageIndex === paths.list.length - 1 ? 0 : currentPageIndex + 1;
-    navigate(paths.list[nextIndex].path);
-  };
+export const Docs = () => {
   return (
-    <VuiAppContent padding="l">
-      <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
-        <VuiFlexItem grow={false}>
-          <VuiTitle size="m">
-            <h2>{name}</h2>
-          </VuiTitle>
-        </VuiFlexItem>
-
-        <VuiFlexItem>
-          <VuiFlexContainer alignItems="center" spacing="xxs">
-            <VuiFlexItem grow={false}>
-              <VuiIconButton
-                icon={
-                  <VuiIcon>
-                    <BiLeftArrowAlt />
-                  </VuiIcon>
-                }
-                color="neutral"
-                onClick={() => navigateToPreviousPage()}
-              />
-            </VuiFlexItem>
-
-            <VuiFlexItem>
-              {" "}
-              <VuiIconButton
-                icon={
-                  <VuiIcon>
-                    <BiRightArrowAlt />
-                  </VuiIcon>
-                }
-                color="neutral"
-                onClick={() => navigateToNextPage()}
-              />
-            </VuiFlexItem>
-          </VuiFlexContainer>
-        </VuiFlexItem>
-      </VuiFlexContainer>
-
-      <VuiSpacer size="m" />
-
-      <>
-        {examples.map(({ name: exampleName, component, source }) => (
-          <Example key={`example-${name}-${exampleName}`} name={exampleName} component={component} source={source} />
-        ))}
-      </>
-    </VuiAppContent>
+    // Fix routing when deployed to GitHub pages (https://vectara.github.io/vectara-ui/).
+    <Router basename={process.env.NODE_ENV === "production" ? "/vectara-ui/" : undefined}>
+      <DocsContent />
+    </Router>
   );
 };
 
-export const Docs = () => {
+const DocsContent = () => {
+  const location = useLocation();
+
   const routes: React.ReactNode[] = [];
 
   categories.forEach(({ pages }) => {
@@ -91,9 +38,22 @@ export const Docs = () => {
     });
   });
 
+  const linkProvider = (linkConfig: LinkProps) => {
+    const { className, href, onClick, children, ...rest } = linkConfig;
+
+    return (
+      <Link className={className} to={href ?? ""} onClick={onClick} {...rest}>
+        {children}
+      </Link>
+    );
+  };
+
+  const pathProvider = () => {
+    return location.pathname;
+  };
+
   return (
-    // Fix routing when deployed to GitHub pages (https://vectara.github.io/vectara-ui/).
-    <Router basename={process.env.NODE_ENV === "production" ? "/vectara-ui/" : undefined}>
+    <VuiContextProvider linkProvider={linkProvider} pathProvider={pathProvider}>
       <VuiAppHeader
         left={
           <VuiFlexContainer spacing="m" alignItems="center">
@@ -138,6 +98,6 @@ export const Docs = () => {
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </VuiAppLayout>
-    </Router>
+    </VuiContextProvider>
   );
 };

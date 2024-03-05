@@ -1,5 +1,5 @@
 import { cloneElement } from "react";
-import { Props as BaseButtonProps } from "./BaseButton";
+import { BaseButtonProps } from "./BaseButton";
 import { ButtonColor } from "./types";
 
 const sizeToIconSizeMap = {

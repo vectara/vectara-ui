@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BiStar } from "react-icons/bi";
 import {
   BUTTON_SIZE,
@@ -6,11 +7,15 @@ import {
   VuiButtonTertiary,
   VuiFlexContainer,
   VuiFlexItem,
-  VuiIcon
+  VuiIcon,
+  VuiSpacer,
+  VuiToggle
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
 export const Sizes = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const icon = (
     <VuiIcon>
       <BiStar />
@@ -19,11 +24,15 @@ export const Sizes = () => {
 
   return (
     <>
+      <VuiToggle label="Loading" checked={isLoading} onChange={() => setIsLoading(!isLoading)} />
+
+      <VuiSpacer size="m" />
+
       <Subsection title="Primary button">
         <VuiFlexContainer>
           {BUTTON_SIZE.map((size) => (
             <VuiFlexItem grow={false} key={size}>
-              <VuiButtonPrimary icon={icon} color="primary" size={size}>
+              <VuiButtonPrimary icon={icon} color="primary" size={size} isLoading={isLoading}>
                 Size {size}
               </VuiButtonPrimary>
             </VuiFlexItem>
@@ -35,7 +44,7 @@ export const Sizes = () => {
         <VuiFlexContainer>
           {BUTTON_SIZE.map((size) => (
             <VuiFlexItem grow={false} key={size}>
-              <VuiButtonSecondary icon={icon} color="primary" size={size}>
+              <VuiButtonSecondary icon={icon} color="primary" size={size} isLoading={isLoading}>
                 Size {size}
               </VuiButtonSecondary>
             </VuiFlexItem>
@@ -47,7 +56,7 @@ export const Sizes = () => {
         <VuiFlexContainer>
           {BUTTON_SIZE.map((size) => (
             <VuiFlexItem grow={false} key={size}>
-              <VuiButtonTertiary icon={icon} color="primary" size={size}>
+              <VuiButtonTertiary icon={icon} color="primary" size={size} isLoading={isLoading}>
                 Size {size}
               </VuiButtonTertiary>
             </VuiFlexItem>

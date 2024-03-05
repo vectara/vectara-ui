@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
@@ -14,11 +15,14 @@ type Props = {
 export const VuiAccordion = ({ header, children, isOpen, setIsOpen, ...rest }: Props) => {
   const buttonId = createId();
   const contentId = createId();
+  const classes = classNames("vuiAccordionHeader", {
+    "vuiAccordionHeader--isOpen": isOpen
+  });
 
   return (
     <>
       <button
-        className="vuiAccordionHeader"
+        className={classes}
         onClick={() => setIsOpen(!isOpen)}
         id={buttonId}
         aria-controls={contentId}

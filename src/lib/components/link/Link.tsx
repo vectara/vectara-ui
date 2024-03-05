@@ -1,27 +1,15 @@
 import classNames from "classnames";
-import { ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { getTrackingProps } from "../../utils/getTrackingProps";
+import { useVuiContext } from "../context/Context";
+import { LinkProps } from "./types";
 
-export type Props = {
-  children: ReactNode;
-  href?: string;
-  className?: string;
-  target?: "_blank";
-  onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
-  track?: boolean;
-  // ...rest
-  title?: string;
-  id?: string;
-  role?: string;
-  isAnchor?: boolean;
-};
-
-export const VuiLinkInternal = ({ ...rest }: Props) => {
+export const VuiLinkInternal = ({ ...rest }: LinkProps) => {
   return <VuiLink {...rest} track />;
 };
 
-export const VuiLink = ({ children, href, target, onClick, className, track, isAnchor, ...rest }: Props) => {
+export const VuiLink = ({ children, href, target, onClick, className, track, isAnchor, ...rest }: LinkProps) => {
+  const { createLink } = useVuiContext();
+
   if (!href) {
     return (
       <button className={classNames("vuiLink", "vuiLink--button", className)} onClick={onClick} {...rest}>
@@ -31,7 +19,7 @@ export const VuiLink = ({ children, href, target, onClick, className, track, isA
   }
 
   const props: {
-    target?: string;
+    target?: LinkProps["target"];
     rel?: string;
     referrerpolicy?: string;
     title?: string;
@@ -43,7 +31,6 @@ export const VuiLink = ({ children, href, target, onClick, className, track, isA
     props.target = target;
   }
 
-  // Uncouple from react-router.
   if (isAnchor) {
     return (
       <a className={classNames("vuiLink", className)} href={href} onClick={onClick} {...props}>
@@ -52,9 +39,11 @@ export const VuiLink = ({ children, href, target, onClick, className, track, isA
     );
   }
 
-  return (
-    <Link className={classNames("vuiLink", className)} to={href} onClick={onClick} {...props}>
-      {children}
-    </Link>
-  );
+  return createLink({
+    className: classNames("vuiLink", className),
+    href,
+    onClick,
+    children,
+    ...props
+  });
 };

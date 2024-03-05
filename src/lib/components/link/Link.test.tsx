@@ -2,15 +2,20 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { VuiLink } from "./Link";
+import { VuiContextProvider } from "../context/Context";
+import { LinkProps } from "./types";
+import { renderWithContext } from "../context/Context.test.util";
+
 describe("VuiLink", () => {
   describe("track", () => {
     it("allows referrer information when true", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiLink href="https://www.vectara.com" track>
           Link
         </VuiLink>,
         { wrapper: MemoryRouter }
       );
+
       expect(asFragment()).toMatchInlineSnapshot(`
         <DocumentFragment>
           <a
@@ -24,8 +29,12 @@ describe("VuiLink", () => {
         </DocumentFragment>
       `);
     });
+
     it("disallows referrer information when false (default)", () => {
-      const { asFragment } = render(<VuiLink href="https://www.vectara.com">Link</VuiLink>, { wrapper: MemoryRouter });
+      const { asFragment } = renderWithContext(<VuiLink href="https://www.vectara.com">Link</VuiLink>, {
+        wrapper: MemoryRouter
+      });
+
       expect(asFragment()).toMatchInlineSnapshot(`
         <DocumentFragment>
           <a

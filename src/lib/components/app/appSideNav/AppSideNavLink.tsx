@@ -1,19 +1,19 @@
 import classNames from "classnames";
-import { Link, useLocation } from "react-router-dom";
 import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 import { VuiIcon } from "../../icon/Icon";
 import { TreeItem } from "../types";
+import { useVuiContext } from "../../context/Context";
 
 type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isActive" | "className">;
 
 export const VuiAppSideNavLink = ({ path, name, iconBefore, iconAfter, isActive, className, ...rest }: Props) => {
-  const location = useLocation();
+  const { createLink, getPath } = useVuiContext();
 
   const classes = classNames(
     "vuiAppSideNavLink",
     {
-      "vuiAppSideNavLink--active": isActive ?? path === location.pathname
+      "vuiAppSideNavLink--active": isActive ?? path === getPath()
     },
     className
   );
@@ -41,9 +41,10 @@ export const VuiAppSideNavLink = ({ path, name, iconBefore, iconAfter, isActive,
       name
     );
 
-  return (
-    <Link className={classes} to={path ?? "/"} {...rest}>
-      {content}
-    </Link>
-  );
+  return createLink({
+    className: classes,
+    children: content,
+    href: path ?? "/",
+    ...rest
+  });
 };

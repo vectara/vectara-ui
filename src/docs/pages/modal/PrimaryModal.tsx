@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  VuiButtonPrimary,
-  VuiButtonSecondary,
-  VuiModal,
-  VuiSearchSelect,
-  VuiSpacer,
-  VuiText,
-  VuiTitle
-} from "../../../lib";
+import { VuiButtonPrimary, VuiButtonSecondary, VuiModal, VuiSearchSelect, VuiSpacer, VuiText } from "../../../lib";
 
 const options = [
   { value: "a", label: "Caffeine-free" },
@@ -34,16 +26,7 @@ export const PrimaryModal = () => {
         Open primary modal
       </VuiButtonPrimary>
 
-      <VuiModal
-        color="primary"
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title={
-          <VuiTitle size="s">
-            <h2>FYI</h2>
-          </VuiTitle>
-        }
-      >
+      <VuiModal color="primary" isOpen={isOpen} onClose={() => setIsOpen(false)} title="FYI">
         <VuiText>
           <p>I just thought you should know that your modal is showing.</p>
         </VuiText>

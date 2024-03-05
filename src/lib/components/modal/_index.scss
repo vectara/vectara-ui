@@ -43,6 +43,13 @@ $modalWidth: 500px;
   padding: $sizeM;
 }
 
+.vuiModalHeader__title {
+  font-size: $fontSizeXLarge;
+  font-weight: $fontWeightBold;
+  line-height: 1.2;
+  color: $colorText;
+}
+
 .vuiModalContent {
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -68,7 +75,11 @@ $color: (
   .vuiModal--#{$colorName} {
     .vuiModalHeader {
       background-color: #{map.get($colorValue, "background-color")};
-      color: #{map.get($colorValue, "color")};
+
+      .vuiModalHeader__title,
+      .vuiIcon {
+        color: #{map.get($colorValue, "color")};
+      }
     }
   }
 }

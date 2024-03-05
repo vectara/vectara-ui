@@ -19,6 +19,7 @@ import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
 import { VuiCode } from "./code/Code";
 import { CodeLanguage } from "./code/types";
+import { VuiContextProvider } from "./context/Context";
 import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDrawer } from "./drawer/Drawer";
 import { VuiFlexContainer } from "./flex/FlexContainer";
@@ -32,7 +33,8 @@ import {
   VuiSelect,
   VuiSuperRadioGroup,
   VuiTextInput,
-  VuiTextArea
+  VuiTextArea,
+  VuiPasswordInput
 } from "./form";
 import { VuiFormGroup } from "./formGroup/FormGroup";
 import { VuiGrid } from "./grid/Grid";
@@ -41,6 +43,7 @@ import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
+import { LinkProps } from "./link/types";
 import { VuiList } from "./list/List";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem, MenuItem } from "./menu/MenuItem";
@@ -63,7 +66,9 @@ import { VuiSetting } from "./setting/Setting";
 import { VuiSpacer } from "./spacer/Spacer";
 import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
-import { SPINNER_SIZE } from "./spinner/types";
+import { SPINNER_COLOR, SPINNER_SIZE } from "./spinner/types";
+import { VuiStatList } from "./statList/StatList";
+import { VuiStatus } from "./status/Status";
 import { VuiSummary } from "./summary/Summary";
 import { VuiSummaryCitation } from "./summary/SummaryCitation";
 import { VuiTable } from "./table/Table";
@@ -89,6 +94,7 @@ export type {
   InfoTableColumnAlign,
   InfoTableRow,
   InfoTableRowType,
+  LinkProps,
   MenuItem,
   Notification,
   OptionListItem,
@@ -111,6 +117,7 @@ export {
   ICON_SIZE,
   PROGRESS_BAR_COLOR,
   SPACER_SIZE,
+  SPINNER_COLOR,
   SPINNER_SIZE,
   TAB_SIZE,
   TEXT_COLOR,
@@ -132,6 +139,7 @@ export {
   VuiChat,
   VuiCheckbox,
   VuiCode,
+  VuiContextProvider,
   VuiCopyButton,
   VuiDrawer,
   VuiFlexContainer,
@@ -153,6 +161,7 @@ export {
   VuiOptionsButton,
   VuiOptionsList,
   VuiOptionsListItem,
+  VuiPasswordInput,
   VuiPopover,
   VuiPortal,
   VuiProgressBar,
@@ -166,6 +175,8 @@ export {
   VuiSetting,
   VuiSpacer,
   VuiSpinner,
+  VuiStatList,
+  VuiStatus,
   VuiSummary,
   VuiSummaryCitation,
   VuiSuperRadioGroup,

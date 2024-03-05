@@ -26,14 +26,14 @@ export const Validation = () => {
 
         <VuiFormGroup
           label="Enter input"
-          labelFor="optionsList1"
+          labelFor="input1"
           helpText="Some helpful information about this input."
           errors={[
             "This is an error message.",
             "Here's a second validation error that you must address before submitting this form."
           ]}
         >
-          <VuiTextInput value="Invalid text input" onChange={(event) => console.log(event.target.value)} />
+          <VuiTextInput id="input1" value="Invalid text input" onChange={(event) => console.log(event.target.value)} />
         </VuiFormGroup>
       </Subsection>
 

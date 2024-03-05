@@ -17,6 +17,7 @@ type Props = {
   value: string;
   size?: (typeof SIZE)[number];
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  fullWidth?: boolean;
 };
 
 const sizeToIconSizeMap = {
@@ -25,12 +26,13 @@ const sizeToIconSizeMap = {
 } as const;
 
 export const VuiSelect = forwardRef<HTMLSelectElement | null, Props>(
-  ({ className, id, name, options, value, size = "m", onChange, isInvalid, ...rest }: Props, ref) => {
+  ({ className, id, name, options, value, size = "m", onChange, isInvalid, fullWidth, ...rest }: Props, ref) => {
     const classes = classNames(
       "vuiSelect",
       `vuiSelect--${size}`,
       {
-        "vuiSelect-isInvalid": isInvalid
+        "vuiSelect-isInvalid": isInvalid,
+        "vuiSelect--fullWidth": fullWidth
       },
       className
     );

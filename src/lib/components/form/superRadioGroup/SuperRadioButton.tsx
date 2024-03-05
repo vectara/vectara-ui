@@ -3,7 +3,6 @@ import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 import { VuiSpacer } from "../../spacer/Spacer";
 import { VuiText } from "../../typography/Text";
-import { VuiTextColor } from "../../typography/TextColor";
 import { RadioButtonConfig } from "./types";
 
 type Props = RadioButtonConfig & {
@@ -17,13 +16,13 @@ export const VuiSuperRadioButton = ({ label, description, value, checked, onChan
   return (
     <label className="vuiSuperRadioButton" htmlFor={id}>
       <VuiFlexContainer spacing="l" alignItems="center">
-        <VuiFlexItem grow={false} shrink={false}>
+        <VuiFlexItem grow={false} shrink={1}>
           <input id={id} name={groupName} type="radio" checked={checked} onChange={() => onChange(value)} {...rest} />
         </VuiFlexItem>
 
-        <VuiFlexItem grow={false} shrink={false}>
+        <VuiFlexItem grow={false} shrink={1}>
           <VuiText>
-            <p>{label}</p>
+            <p className="vuiSuperRadioButton__text">{label}</p>
           </VuiText>
 
           {description && (
@@ -31,9 +30,7 @@ export const VuiSuperRadioButton = ({ label, description, value, checked, onChan
               <VuiSpacer size="xxs" />
 
               <VuiText size="xs">
-                <VuiTextColor color="subdued">
-                  <p>{description}</p>
-                </VuiTextColor>
+                <p className="vuiSuperRadioButton__text vuiSuperRadioButton__description">{description}</p>
               </VuiText>
             </>
           )}

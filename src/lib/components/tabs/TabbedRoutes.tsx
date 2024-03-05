@@ -1,12 +1,12 @@
-import { useLocation } from "react-router-dom";
 import { TabSize } from "./types";
 import { VuiTabs } from "./Tabs";
 import { VuiTab } from "./Tab";
 import { VuiSpacer } from "../spacer/Spacer";
+import { useVuiContext } from "../context/Context";
 
 type Props = {
   tabs: Array<{
-    to: string;
+    href: string;
     title: string;
     render?: (tabLink: React.ReactNode) => React.ReactNode;
     component: React.ReactNode;
@@ -18,14 +18,15 @@ type Props = {
 };
 
 export const VuiTabbedRoutes = ({ tabs, size, sideContent, children }: Props) => {
-  const location = useLocation();
+  const { getPath } = useVuiContext();
 
   return (
     <>
       <VuiTabs append={sideContent} size={size}>
-        {tabs.map(({ to, title, render, testId }, index) => {
+        {tabs.map(({ href, title, render, testId }, index) => {
+          const isActive = getPath().includes(href);
           const tabLink = (
-            <VuiTab key={index} to={to} isActive={location.pathname.includes(to)} data-testid={testId}>
+            <VuiTab key={index} href={href} isActive={isActive} data-testid={testId}>
               {title}
             </VuiTab>
           );

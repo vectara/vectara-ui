@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiTitle } from "../typography/Title";
+import { useVuiContext } from "../context/Context";
 
 type Props = {
   children?: React.ReactNode;
@@ -13,9 +14,12 @@ type Props = {
 };
 
 export const VuiTopicButton = ({ children, className, href, onClick, title, fullWidth, ...rest }: Props) => {
+  const { createLink } = useVuiContext();
+
   const classes = classNames("vuiTopicButton", className, {
     "vuiTopicButton--fullWidth": fullWidth
   });
+
   const content = (
     <>
       {title && (
@@ -35,11 +39,13 @@ export const VuiTopicButton = ({ children, className, href, onClick, title, full
   );
 
   if (href) {
-    return (
-      <a className={classes} href={href} onClick={onClick} {...rest}>
-        {content}
-      </a>
-    );
+    return createLink({
+      className: classes,
+      href,
+      onClick,
+      children: content,
+      ...rest
+    });
   }
 
   return (

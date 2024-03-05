@@ -2,11 +2,12 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { VuiSearchResult } from "./SearchResult";
+import { renderWithContext } from "../context/Context.test.util";
 
 describe("VuiSearchResult", () => {
   describe("renders", () => {
     test("all props", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiSearchResult
           result={{
             title: "title",
@@ -81,7 +82,7 @@ describe("VuiSearchResult", () => {
     });
 
     test("missing optional props", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiSearchResult result={{ snippet: { pre: "pre", text: "text", post: "" } }} position={1}>
           <div>children</div>
         </VuiSearchResult>,
@@ -122,7 +123,7 @@ describe("VuiSearchResult", () => {
     });
 
     test("has title but missing url", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiSearchResult
           result={{
             title: "title",
@@ -174,7 +175,7 @@ describe("VuiSearchResult", () => {
     });
 
     test("missing title but has url", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiSearchResult
           result={{
             url: "url",
@@ -231,7 +232,7 @@ describe("VuiSearchResult", () => {
     });
 
     test("has empty title but has url", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiSearchResult
           result={{
             title: "  ",
@@ -289,7 +290,7 @@ describe("VuiSearchResult", () => {
     });
 
     test("has empty title and empty url", () => {
-      const { asFragment } = render(
+      const { asFragment } = renderWithContext(
         <VuiSearchResult
           result={{
             title: "  ",

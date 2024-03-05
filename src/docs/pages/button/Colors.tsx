@@ -14,6 +14,7 @@ import { Subsection } from "../../components/Subsection";
 import { useState } from "react";
 
 export const Colors = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [isInert, setIsInert] = useState<boolean>(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
@@ -26,6 +27,10 @@ export const Colors = () => {
 
   return (
     <>
+      <VuiToggle label="Loading" checked={isLoading} onChange={() => setIsLoading(!isLoading)} />
+
+      <VuiSpacer size="m" />
+
       <VuiToggle label="Selected" checked={isSelected} onChange={() => setIsSelected(!isSelected)} />
 
       <VuiSpacer size="m" />
@@ -53,6 +58,7 @@ export const Colors = () => {
                 icon={icon}
                 color={color}
                 onClick={() => console.log("clicked")}
+                isLoading={isLoading}
               >
                 {color}
               </VuiButtonPrimary>
@@ -72,6 +78,7 @@ export const Colors = () => {
                 icon={icon}
                 color={color}
                 onClick={() => console.log("clicked")}
+                isLoading={isLoading}
               >
                 {color}
               </VuiButtonSecondary>
@@ -91,6 +98,7 @@ export const Colors = () => {
                 icon={icon}
                 color={color}
                 onClick={() => console.log("clicked")}
+                isLoading={isLoading}
               >
                 {color}
               </VuiButtonTertiary>

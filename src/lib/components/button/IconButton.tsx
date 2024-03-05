@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { ReactElement, forwardRef } from "react";
-import { Link } from "react-router-dom";
 import { getTrackingProps } from "../../utils/getTrackingProps";
-import { Props as LinkProps } from "../link/Link";
 import { ButtonColor, BUTTON_SIZE } from "./types";
 import { createButtonIcon } from "./createButtonIcon";
+import { LinkProps } from "../link/types";
+import { useVuiContext } from "../context/Context";
 
 type Props = {
   className?: string;
@@ -20,6 +20,8 @@ type Props = {
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
   ({ className, icon, color = "primary", size = "m", onClick, href, target, track, tabIndex, ...rest }: Props, ref) => {
+    const { createLink } = useVuiContext();
+
     const props = {
       className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`),
       onClick,
@@ -30,12 +32,13 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
     const buttonIcon = createButtonIcon(icon, size, color);
 
     if (href) {
-      return (
-        // @ts-expect-error Type 'string' is not assignable to type 'HTMLAttributeReferrerPolicy | undefined'.
-        <Link to={href} target={target} {...props} {...getTrackingProps(track)}>
-          <button ref={ref}>{buttonIcon}</button>
-        </Link>
-      );
+      return createLink({
+        href,
+        target,
+        ...props,
+        ...getTrackingProps(track),
+        children: <button ref={ref}>{buttonIcon}</button>
+      });
     }
 
     return (

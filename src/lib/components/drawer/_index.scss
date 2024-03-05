@@ -31,6 +31,13 @@ $drawerWidth: 680px;
   padding: $sizeL $sizeL;
 }
 
+.vuiDrawerHeader__title {
+  font-size: $fontSizeXLarge;
+  font-weight: $fontWeightBold;
+  line-height: 1.2;
+  color: $colorText;
+}
+
 .vuiDrawerContent {
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -56,7 +63,11 @@ $color: (
   .vuiDrawer--#{$colorName} {
     .vuiDrawerHeader {
       background-color: #{map.get($colorValue, "background-color")};
-      color: #{map.get($colorValue, "color")};
+
+      .vuiDrawerHeader__title,
+      .vuiIcon {
+        color: #{map.get($colorValue, "color")};
+      }
     }
   }
 }

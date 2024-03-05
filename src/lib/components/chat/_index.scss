@@ -32,7 +32,7 @@ $minChatWidth: 600px;
   animation: popUp 0.4s cubic-bezier(0.5, 0, 0.5, 1) 1;
 
   &:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: $shadowLargeEnd;
     translate: translateY(-20px);
   }
 }

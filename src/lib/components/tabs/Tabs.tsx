@@ -6,10 +6,13 @@ type Props = {
   append?: React.ReactNode;
   className?: string;
   size?: TabSize;
+  fullWidth?: boolean;
 };
 
-export const VuiTabs = ({ children, className, append, size = "s" }: Props) => {
-  const classes = classNames(className, "vuiTabs", `vuiTabs--${size}`);
+export const VuiTabs = ({ children, className, append, size = "s", fullWidth }: Props) => {
+  const classes = classNames(className, "vuiTabs", `vuiTabs--${size}`, {
+    "vuiTabs--fullWidth": fullWidth
+  });
   return (
     <div className={classes}>
       <div className="vuiTabs__tabs">{children}</div>

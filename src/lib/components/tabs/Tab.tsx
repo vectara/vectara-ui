@@ -1,30 +1,36 @@
 import classNames from "classnames";
-import { Link, To } from "react-router-dom";
+import { useVuiContext } from "../context/Context";
 
 type Props = {
   children: React.ReactNode;
   className?: string;
-  to?: To;
+  href?: string;
   onClick?: () => void;
   isActive?: boolean;
 };
 
-export const VuiTab = ({ children, className, to, onClick, isActive = false, ...rest }: Props) => {
+export const VuiTab = ({ children, className, href, onClick, isActive = false, ...rest }: Props) => {
+  const { createLink } = useVuiContext();
+
   const classes = classNames(className, "vuiTab", {
     "vuiTab-isActive": isActive
   });
 
-  if (to) {
-    return (
-      <Link className={classes} to={to} onClick={onClick} {...rest}>
-        {children}
-      </Link>
-    );
+  const content = <div className="vuiTab__inner">{children}</div>;
+
+  if (href) {
+    return createLink({
+      className: classes,
+      href,
+      onClick,
+      children: content,
+      ...rest
+    });
   }
 
   return (
     <button className={classes} onClick={onClick} {...rest}>
-      {children}
+      {content}
     </button>
   );
 };

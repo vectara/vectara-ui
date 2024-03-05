@@ -37,6 +37,8 @@ import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
+import { status } from "./pages/status";
+import { statList } from "./pages/statList";
 import { summary } from "./pages/summary";
 import { superRadioGroup } from "./pages/superRadioGroup";
 import { table } from "./pages/table";
@@ -65,7 +67,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [table, infoTable, list]
+    pages: [table, infoTable, statList, list]
   },
   {
     name: "Layout",
@@ -73,7 +75,7 @@ export const categories: Category[] = [
   },
   {
     name: "Content",
-    pages: [badge, callout, code, icon, progressBar, spinner, text]
+    pages: [badge, status, callout, code, icon, progressBar, spinner, text]
   },
   {
     name: "Form",

@@ -1,13 +1,21 @@
 .vuiAccordionHeader {
   font-size: $fontSizeStandard;
-  border-bottom: 1px solid $borderColor;
+  border-bottom: 1px solid $borderColorLight;
   width: 100%;
   padding: $sizeXs 0;
+  color: $colorSubdued;
 
   &:hover {
+    color: $colorPrimary;
+    background-color: $colorPrimaryLighterShade;
     text-decoration: underline;
-    background-color: $colorLightShade;
   }
+}
+
+.vuiAccordionHeader--isOpen {
+  color: $colorText;
+  border-bottom-color: $borderColor;
+  font-weight: $fontWeightBold;
 }
 
 .vuiAccordionHeader__title {

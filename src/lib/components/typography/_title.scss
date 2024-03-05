@@ -9,7 +9,7 @@ $size: (
   xxs: (
     size: $fontSizeSmall,
     line-height: 1.4,
-    weight: $fontWeightNormal,
+    weight: $fontWeightStrong,
     color: $colorText
   ),
   xs: (
@@ -53,7 +53,7 @@ $size: (
 @each $sizeName, $sizeValue in $size {
   .vuiTitle--#{$sizeName} {
     font-size: #{map.get($sizeValue, "size")};
-    line-height: #{map.get($sizeValue, "size")};
+    line-height: #{map.get($sizeValue, "line-height")};
     font-weight: #{map.get($sizeValue, "weight")};
     color: #{map.get($sizeValue, "color")};
   }

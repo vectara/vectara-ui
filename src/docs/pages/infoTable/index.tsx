@@ -5,7 +5,7 @@ const SimpleSource = require("!!raw-loader!./Simple");
 const ComplexSource = require("!!raw-loader!./Complex");
 
 export const infoTable = {
-  name: "Info table",
+  name: "Info Table",
   path: "/infoTable",
   examples: [
     {

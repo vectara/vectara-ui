@@ -1,27 +1,16 @@
-import classNames from "classnames";
 import { forwardRef, useEffect, useState } from "react";
+import { BasicInputProps, VuiBasicInput } from "./BasicInput";
 
-const SIZE = ["m", "l"] as const;
-
-type Props = {
-  className?: string;
-  id?: string;
-  isInvalid?: boolean;
+type Props = BasicInputProps & {
   value?: number;
-  size?: (typeof SIZE)[number];
-  fullWidth?: boolean;
   onChange: (value?: number) => void;
   max?: number;
   min?: number;
   step?: number;
-  autoFocus?: boolean;
 };
 
 export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
-  (
-    { className, id, max, min, step, value, size = "m", onChange, fullWidth, isInvalid, autoFocus, ...rest }: Props,
-    ref
-  ) => {
+  ({ value, onChange, max, min, step, ...rest }: Props, ref) => {
     const [localValue, setLocalValue] = useState<number | undefined>(value);
 
     // This is a hacky solution to the number input misbehaving on Firefox.
@@ -49,16 +38,6 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
       onChange(localValue ?? 0);
     }, [localValue]);
 
-    const classes = classNames(
-      "vuiInput",
-      `vuiInput--${size}`,
-      {
-        "vuiInput-isInvalid": isInvalid,
-        "vuiInput--fullWidth": fullWidth
-      },
-      className
-    );
-
     const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
       // Enable resetting the value to undefined.
       if (e.target.value === "") return setLocalValue(undefined);
@@ -74,21 +53,17 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
       if (max !== undefined && value !== undefined && value > max) onChange(max);
     };
 
-    return (
-      <input
-        autoFocus={autoFocus}
-        ref={ref}
-        type="number"
-        className={classes}
-        id={id}
-        max={max}
-        min={min}
-        step={step}
-        value={localValue ?? ""}
-        onChange={onChangeValue}
-        onBlur={onBlur}
-        {...rest}
-      />
-    );
+    const props = {
+      type: "number",
+      value: localValue ?? "",
+      onChange: onChangeValue,
+      onBlur,
+      max,
+      min,
+      step,
+      ...rest
+    };
+
+    return <VuiBasicInput {...props} />;
   }
 );
