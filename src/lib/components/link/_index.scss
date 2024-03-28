@@ -4,6 +4,11 @@
 
   &:hover {
     text-decoration: underline;
+
+    // This is needed when wrapping an element that has display: inline-flex.
+    & * {
+      text-decoration: underline;
+    }
   }
 }
 

@@ -31,6 +31,11 @@
     }
   }
 
+  code {
+    border: 1px solid $borderColorLight;
+    padding: $sizeXxxs $sizeXs;
+  }
+
   table {
     width: 100%;
     table-layout: fixed;

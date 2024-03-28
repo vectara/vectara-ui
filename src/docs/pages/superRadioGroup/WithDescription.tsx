@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { VuiSuperRadioGroup, RadioButtonConfig } from "../../../lib";
 
+type Pizza = "pepperoni" | "mushrooms" | "jalapenos";
+
 export const WithDescription = () => {
-  const [group, setGroup] = useState<RadioButtonConfig[]>([
+  const [group, setGroup] = useState<RadioButtonConfig<Pizza>[]>([
     {
       label: "Pepperoni",
       description: "The best pizza topping",

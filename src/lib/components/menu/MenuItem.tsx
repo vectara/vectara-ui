@@ -14,7 +14,9 @@ export type MenuItem = {
 
 export const VuiMenuItem = ({ className, title, text, onClick, href, color = "neutral", ...rest }: MenuItem) => {
   const { createLink } = useVuiContext();
-  const classes = classNames(className, "vuiMenuItem", `vuiMenuItem--${color}`);
+  const classes = classNames(className, "vuiMenuItem", `vuiMenuItem--${color}`, {
+    "vuiMenuItem--clickable": onClick || href
+  });
 
   const props = {
     className: classes,
@@ -38,5 +40,9 @@ export const VuiMenuItem = ({ className, title, text, onClick, href, color = "ne
     });
   }
 
-  return <button {...props}>{content}</button>;
+  if (onClick) {
+    return <button {...props}>{content}</button>;
+  }
+
+  return <div {...props}>{content}</div>;
 };

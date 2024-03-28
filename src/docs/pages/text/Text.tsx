@@ -39,6 +39,10 @@ export const Text = () => (
               <li>Seven potato</li>
               <li>More</li>
             </ol>
+
+            <p>
+              <code>doc.title='Vectara'</code>
+            </p>
           </VuiText>
 
           <VuiSpacer size="m" />
