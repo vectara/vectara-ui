@@ -13,6 +13,6 @@ const linkProvider = (linkConfig: LinkProps) => {
   );
 };
 
-export const renderWithContext = (children: React.ReactNode, ...rest: any) => {
+export const renderWithContext = (children: React.ReactNode, ...rest: any): ReturnType<typeof render> => {
   return render(<VuiContextProvider linkProvider={linkProvider}>{children}</VuiContextProvider>, ...rest);
 };

@@ -4,9 +4,10 @@ import { VuiFlexItem } from "../flex/FlexItem";
 type Props = {
   left?: React.ReactNode;
   right?: React.ReactNode;
+  growRight?: boolean;
 };
 
-export const VuiAppHeader = ({ left, right, ...rest }: Props) => {
+export const VuiAppHeader = ({ left, right, growRight, ...rest }: Props) => {
   return (
     <div className="vuiAppHeader" {...rest}>
       <VuiFlexContainer className="vuiAppHeader__inner" justifyContent="spaceBetween" alignItems="center">
@@ -17,7 +18,7 @@ export const VuiAppHeader = ({ left, right, ...rest }: Props) => {
         )}
 
         {Boolean(right) && (
-          <VuiFlexItem grow={false} shrink={false}>
+          <VuiFlexItem grow={growRight ? 1 : false} shrink={false}>
             {right}
           </VuiFlexItem>
         )}

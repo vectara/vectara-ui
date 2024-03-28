@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .vuiMenu {
   border: 1px solid $borderColor;
   border-radius: $sizeXs;
@@ -8,7 +10,6 @@
   display: block;
   width: 100%;
   padding: $sizeS $sizeL;
-  cursor: pointer;
   text-decoration: none;
   text-align: left;
 }
@@ -22,47 +23,42 @@
   }
 }
 
-.vuiMenuItem--neutral {
-  .vuiMenuItem__title {
-    color: $colorText;
-  }
-
-  &:hover {
-    background-color: $colorPrimaryLighterShade;
-
-    .vuiMenuItem__title,
-    .vuiMenuItem__text {
-      color: $colorPrimary;
-    }
-  }
+.vuiMenuItem--clickable {
+  cursor: pointer;
 }
 
-.vuiMenuItem--primary {
-  .vuiMenuItem__title {
-    color: $colorPrimary;
-  }
+// Color
+$color: (
+  neutral: (
+    "color": $colorText,
+    "background-color": $colorPrimaryLighterShade,
+    "hover-color": $colorPrimary
+  ),
+  primary: (
+    "color": $colorPrimary,
+    "background-color": $colorPrimaryLighterShade,
+    "hover-color": $colorPrimary
+  ),
+  danger: (
+    "color": $colorDanger,
+    "background-color": $colorDangerLighterShade,
+    "hover-color": $colorDanger
+  )
+);
 
-  &:hover {
-    background-color: $colorPrimaryLighterShade;
+@each $colorName, $colorValue in $color {
+  .vuiMenuItem--#{$colorName} {
+    color: #{map.get($colorValue, "color")};
 
-    .vuiMenuItem__title,
-    .vuiMenuItem__text {
-      color: $colorPrimary;
-    }
-  }
-}
+    &.vuiMenuItem--clickable {
+      &:hover {
+        background-color: #{map.get($colorValue, "background-color")};
 
-.vuiMenuItem--danger {
-  .vuiMenuItem__title {
-    color: $colorDanger;
-  }
-
-  &:hover {
-    background-color: $colorDangerLighterShade;
-
-    .vuiMenuItem__title,
-    .vuiMenuItem__text {
-      color: $colorDanger;
+        .vuiMenuItem__title,
+        .vuiMenuItem__text {
+          color: #{map.get($colorValue, "hover-color")};
+        }
+      }
     }
   }
 }

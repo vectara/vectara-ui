@@ -1,7 +1,7 @@
-export type RadioButtonConfig = {
+export type RadioButtonConfig<T> = {
   label: React.ReactNode;
   description?: React.ReactNode;
-  value: string;
+  value: T;
   checked: boolean;
   disabled?: boolean;
   "data-testid"?: string;

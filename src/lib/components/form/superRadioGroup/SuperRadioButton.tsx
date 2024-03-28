@@ -5,12 +5,20 @@ import { VuiSpacer } from "../../spacer/Spacer";
 import { VuiText } from "../../typography/Text";
 import { RadioButtonConfig } from "./types";
 
-type Props = RadioButtonConfig & {
+type Props<T> = RadioButtonConfig<T> & {
   groupName: string;
   onChange: (value: string) => void;
 };
 
-export const VuiSuperRadioButton = ({ label, description, value, checked, onChange, groupName, ...rest }: Props) => {
+export const VuiSuperRadioButton = <T extends string>({
+  label,
+  description,
+  value,
+  checked,
+  onChange,
+  groupName,
+  ...rest
+}: Props<T>) => {
   const id = createId();
 
   return (
