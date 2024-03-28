@@ -1,6 +1,5 @@
 export const extractCitations = (summary: string) => {
   // Match citations.
-  // const regex = /\[(\d+)\]/g;
   const regex = /\[(\d+(,*\s*\d*)*)\]/g;
 
   const citations: Array<{ text: string; references?: string[] }> = [];

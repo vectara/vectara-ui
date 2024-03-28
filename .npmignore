@@ -2,8 +2,8 @@
 .husky
 public
 scripts
-src/**/*.ts
-src/**/*.tsx
+src/
+docs/
 .eslintrc.js
 .nvmrc
 .prettierignore
@@ -11,4 +11,5 @@ src/**/*.tsx
 package-lock.json
 postcss.config.js
 tsconfig.json
+tsconfig.lib.json
 tsconfig.package.json

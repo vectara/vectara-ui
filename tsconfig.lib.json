@@ -1,8 +1,8 @@
 {
   "include": ["src/lib"],
-  "exclude": ["src/lib/setupTests.ts"],
+  "exclude": ["src/lib/setupTests.ts", "src/lib/components/context/Context.test.util.tsx"],
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "lib",
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

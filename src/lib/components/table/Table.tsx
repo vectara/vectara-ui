@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { get } from "lodash";
 import { VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
@@ -32,7 +31,7 @@ type Column<T> = {
 
 type Props<T> = {
   isLoading?: boolean;
-  idField: string | ((row: T) => string);
+  idField: keyof T | ((row: T) => string);
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps<T>["actions"];
@@ -40,6 +39,7 @@ type Props<T> = {
   pagination?: Pagination | Pager;
   selection?: Selection<T>;
   search?: Search;
+  customControls?: React.ReactNode;
   onSort?: TableHeaderCellProps["onSort"];
   onReload?: () => void;
   content?: React.ReactNode;
@@ -60,12 +60,8 @@ type Search = {
   "data-testid"?: string;
 };
 
-const extractId = (row: Record<string, any>, idField: Props<any>["idField"]) => {
-  if (typeof idField === "string") {
-    return get(row, idField);
-  }
-
-  return idField(row);
+const extractId = <T extends Row>(row: T, idField: Props<T>["idField"]) => {
+  return typeof idField === "function" ? idField(row) : row[idField];
 };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
@@ -80,6 +76,7 @@ export const VuiTable = <T extends Row>({
   pagination,
   selection,
   search,
+  customControls,
   onSort,
   onReload,
   content,
@@ -208,7 +205,10 @@ export const VuiTable = <T extends Row>({
 
   return (
     <>
-      {(hasSearch || (hasBulkActions && selectedRows && selectedRows.length > 0) || Boolean(onReload)) && (
+      {(hasSearch ||
+        customControls ||
+        (hasBulkActions && selectedRows && selectedRows.length > 0) ||
+        Boolean(onReload)) && (
         <>
           <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
             {/* Bulk actions */}
@@ -228,6 +228,13 @@ export const VuiTable = <T extends Row>({
                   onChange={(event) => onSearchChange(event.target.value)}
                   data-testid={search?.["data-testid"]}
                 />
+              </VuiFlexItem>
+            )}
+
+            {/* Custom controls */}
+            {customControls && (
+              <VuiFlexItem grow={false} shrink={false}>
+                {customControls}
               </VuiFlexItem>
             )}
 

@@ -2,8 +2,10 @@ import { useState } from "react";
 import { RadioButtonConfig, VuiFormGroup, VuiSelect, VuiSpacer, VuiSuperRadioGroup, VuiTextInput } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
+type Pizza = "pepperoni" | "mushrooms" | "jalapenos";
+
 export const FormGroup = () => {
-  const [group, setGroup] = useState<RadioButtonConfig[]>([
+  const [group, setGroup] = useState<RadioButtonConfig<Pizza>[]>([
     {
       label: "Pepperoni",
       value: "pepperoni",

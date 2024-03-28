@@ -46,6 +46,7 @@ export type Props = {
   wrap?: boolean;
   className?: string;
   fullWidth?: boolean;
+  inline?: boolean;
 };
 
 export const VuiFlexContainer = ({
@@ -57,6 +58,7 @@ export const VuiFlexContainer = ({
   wrap,
   className,
   fullWidth,
+  inline,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -68,7 +70,8 @@ export const VuiFlexContainer = ({
     spacingToClassNameMap[spacing],
     {
       "vuiFlexContainer--wrap": wrap,
-      "vuiFlexContainer--fullWidth": fullWidth
+      "vuiFlexContainer--fullWidth": fullWidth,
+      "vuiFlexContainer--inline": inline
     }
   );
 

@@ -19,22 +19,25 @@
   "bugs": {
     "url": "https://github.com/vectara/vectara-ui/issues"
   },
-  "browser": "dist/index.js",
-  "module": "dist/index.js",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "browser": "lib/index.js",
+  "module": "lib/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "start": "PORT=2000 react-scripts start",
     "buildDocs": "BUILD_PATH='./docs' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "buildLib": "npx tsc --project tsconfig.lib.json",
+    "buildLib": "npx tsc --project tsconfig.lib.json && npm run copyStyleUtils && npm run copyComponentStyles && npm run compileCss",
+    "compileCss": "sass --no-source-map src/lib/styles/styles.scss lib/styles/index.css",
+    "copyStyleUtils": "copyfiles -u 2 src/lib/sassUtils/* lib",
+    "copyComponentStyles": "copyfiles -u 2 src/lib/components/index.scss lib && copyfiles -u 2 src/lib/components/**/*.scss lib && copyfiles -u 2 src/lib/components/**/**/*.scss lib",
     "publishLib": "npm run buildLib && npm publish --access public"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^12.1.5",
     "@types/jest": "^27.5.2",
     "@types/mdx": "^2.0.3",
     "@types/node": "^16.18.34",
@@ -42,6 +45,7 @@
     "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.7",
     "classnames": "^2.3.2",
+    "copyfiles": "^2.4.1",
     "lodash": "^4.17.21",
     "markdown-to-jsx": "^7.3.2",
     "postcss": "^8.4.14",
@@ -53,8 +57,8 @@
     "web-vitals": "^2.1.4"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": ">= 17.0.2",
+    "react-dom": ">= 17.0.2",
     "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
@@ -69,6 +73,9 @@
     "pretty-quick": "^3.1.3",
     "prop-types": "^15.8.1",
     "raw-loader": "^4.0.2",
+    "react": ">= 17.0.2",
+    "react-dom": ">= 17.0.2",
+    "react-router-dom": "^6.8.2",
     "sass": "^1.58.0",
     "webpack": "^5.85.0"
   },
