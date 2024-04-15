@@ -1,0 +1,103 @@
+.vuiTabs {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $borderColorLight;
+  justify-content: space-between;
+  column-gap: $sizeXxs;
+}
+
+.vuiTabs--fullWidth {
+  .vuiTabs__tabs {
+    flex-grow: 1;
+  }
+
+  .vuiTab {
+    display: flex;
+    flex: 1 1 0;
+    justify-content: stretch;
+
+    .vuiTab__inner {
+      display: flex;
+      flex: 1 1 0;
+      justify-content: center;
+    }
+  }
+}
+
+.vuiTab__inner {
+  border-radius: $sizeXxs;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vuiTabs--s {
+  .vuiTab {
+    .vuiTab__inner {
+      padding: $sizeXs $sizeS;
+      font-size: $fontSizeStandard;
+    }
+  }
+}
+
+.vuiTabs--m {
+  .vuiTab {
+    .vuiTab__inner {
+      padding: $sizeXs $sizeS;
+      font-size: $fontSizeMedium;
+    }
+  }
+}
+
+.vuiTabs__tabs {
+  display: flex;
+  align-items: center;
+}
+
+.vuiTabs__appendedContent {
+  flex-basis: auto;
+  flex-grow: 0;
+}
+
+.vuiTab {
+  padding: $sizeXxs;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 0;
+  flex-shrink: 0;
+  color: $colorSubdued;
+  text-decoration: none;
+  box-shadow: transparent 0px 1px 0px, transparent 0px -1px 0px inset;
+  cursor: pointer;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  &:hover {
+    .vuiTab__inner {
+      color: $colorPrimary;
+      background-color: $colorPrimaryLighterShade;
+      text-decoration: underline;
+
+      .vuiIcon__inner {
+        color: $colorPrimary !important;
+      }
+    }
+  }
+
+  &.vuiTab-isActive {
+    pointer-events: none;
+    color: $colorFullShade;
+    box-shadow: $borderColor 0px 1px 0px;
+
+    .vuiTab__inner {
+      background-color: $colorMediumLightShade;
+    }
+  }
+}

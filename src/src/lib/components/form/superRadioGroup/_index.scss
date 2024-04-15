@@ -1,0 +1,31 @@
+.vuiSuperRadioGroup {
+  display: grid;
+  gap: $sizeXs;
+}
+
+.vuiSuperRadioButton {
+  display: block;
+  width: 100%;
+  border-radius: $sizeXs;
+  padding: $sizeS $sizeL;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all $transitionSpeed;
+  text-decoration-color: $colorText;
+  text-align: left;
+  border: 1px solid $colorPrimaryLightShade;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: $colorPrimary;
+    background-color: $colorPrimaryLighterShade;
+
+    .vuiSuperRadioButton__text {
+      color: $colorPrimary !important;
+    }
+  }
+}
+
+.vuiSuperRadioButton__description {
+  color: $colorSubdued;
+}

@@ -1,0 +1,75 @@
+@use "sass:map";
+
+.vuiMenu {
+  border: 1px solid $borderColor;
+  border-radius: $sizeXs;
+  overflow: hidden;
+}
+
+.vuiMenuItem {
+  display: block;
+  width: 100%;
+  padding: $sizeS $sizeL;
+  text-decoration: none;
+  text-align: left;
+}
+
+.vuiMenu--noBorder {
+  border: none;
+  border-radius: 0;
+
+  .vuiMenuItem {
+    padding: $sizeS $sizeM;
+  }
+}
+
+.vuiMenuItem--clickable {
+  cursor: pointer;
+}
+
+// Color
+$color: (
+  neutral: (
+    "color": $colorText,
+    "background-color": $colorPrimaryLighterShade,
+    "hover-color": $colorPrimary
+  ),
+  primary: (
+    "color": $colorPrimary,
+    "background-color": $colorPrimaryLighterShade,
+    "hover-color": $colorPrimary
+  ),
+  danger: (
+    "color": $colorDanger,
+    "background-color": $colorDangerLighterShade,
+    "hover-color": $colorDanger
+  )
+);
+
+@each $colorName, $colorValue in $color {
+  .vuiMenuItem--#{$colorName} {
+    color: #{map.get($colorValue, "color")};
+
+    &.vuiMenuItem--clickable {
+      &:hover {
+        background-color: #{map.get($colorValue, "background-color")};
+
+        .vuiMenuItem__title,
+        .vuiMenuItem__text {
+          color: #{map.get($colorValue, "hover-color")};
+        }
+      }
+    }
+  }
+}
+
+.vuiMenuItem__title {
+  font-size: $fontSizeMedium;
+  line-height: 1.4;
+}
+
+.vuiMenuItem__text {
+  color: $colorSubdued;
+  font-size: $fontSizeSmall;
+  line-height: 1.4;
+}
