@@ -2,13 +2,13 @@ import { createId } from "../../../utils/createId";
 import { VuiSuperRadioButton } from "./SuperRadioButton";
 import { RadioButtonConfig } from "./types";
 
-type Props = {
+type Props<T> = {
   groupName?: string;
-  group: RadioButtonConfig[];
+  group: RadioButtonConfig<T>[];
   onChange: (value: string) => void;
 };
 
-export const VuiSuperRadioGroup = ({ groupName = createId(), group, onChange }: Props) => {
+export const VuiSuperRadioGroup = <T extends string>({ groupName = createId(), group, onChange }: Props<T>) => {
   return (
     <div className="vuiSuperRadioGroup">
       {group.map((item) => (
