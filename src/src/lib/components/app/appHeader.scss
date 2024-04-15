@@ -1,0 +1,15 @@
+.vuiAppHeader {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: $appHeaderHeight;
+  background-color: $colorEmptyShade;
+  padding: $sizeXs $sizeM;
+  z-index: $appHeaderZIndex;
+  border-bottom: 1px solid $borderColor;
+}
+
+.vuiAppHeader__inner {
+  flex-grow: 1;
+}

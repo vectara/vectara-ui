@@ -1,0 +1,38 @@
+.vuiChatTurn {
+  position: relative;
+  left: 0;
+  box-shadow: $shadowLargeStart;
+  background-color: $colorEmptyShade;
+  padding: $sizeL $sizeS $sizeL $sizeL;
+  margin-right: $sizeXxs;
+  transition: all $transitionSpeed;
+
+  &:hover {
+    box-shadow: $shadowLargeEnd;
+    z-index: 1;
+    left: $sizeXxs;
+  }
+}
+
+.vuiChatTurn + .vuiChatTurn {
+  margin-top: 1px;
+}
+
+.vuiChatQuestion {
+  color: $colorAccent;
+  font-weight: $fontWeightBold;
+  font-size: $fontSizeStandard;
+  margin-bottom: $sizeXs;
+}
+
+.vuiChatQuestion--error {
+  color: $colorDanger;
+}
+
+.vuiChat__inspectButton {
+  margin-top: -$sizeXxs;
+}
+
+.vuiChatAnswer {
+  color: $colorFullShade;
+}
