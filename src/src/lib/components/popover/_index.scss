@@ -1,0 +1,29 @@
+.vuiPopover {
+  position: absolute;
+  background-color: $colorEmptyShade;
+  border: 1px solid $borderColor;
+  z-index: $popoverZIndex;
+  box-shadow: $shadowLargeEnd;
+  border-radius: $sizeXxs;
+  overflow: hidden;
+}
+
+.vuiOptionsListItem__selected--unselected {
+  visibility: hidden;
+}
+
+.vuiPopoverTitle {
+  padding: $sizeXs $sizeS;
+  border-bottom: 1px solid $borderColor;
+  font-weight: $fontWeightBold;
+  font-size: $fontSizeStandard;
+  color: $colorDarkerShade;
+}
+
+.vuiPopoverContent {
+  padding: $sizeXxs 0;
+}
+
+.vuiPopoverContent--padding {
+  padding: $sizeS;
+}
