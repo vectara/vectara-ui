@@ -1,7 +1,7 @@
 {
   "name": "@vectara/vectara-ui",
   "version": "0.0.2",
-  "homepage": "./",
+  "homepage": "https://vectara.github.io/vectara-ui/",
   "description": "Vectara's design system, codified as a React and Sass component library",
   "author": "Vectara",
   "repository": {
@@ -25,7 +25,7 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "start": "PORT=2000 react-scripts start",
-    "buildDocs": "BUILD_PATH='./docs' react-scripts build",
+    "buildDocs": "BUILD_PATH='./docs/public' PUBLIC_URL='.' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "buildLib": "npx tsc --project tsconfig.lib.json && npm run copyStyleUtils && npm run copyComponentStyles && npm run compileCss",
