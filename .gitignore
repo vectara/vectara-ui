@@ -3,6 +3,7 @@
 
 # build files
 /docs/static
+/docs/public/static
 
 # dependencies
 /node_modules
