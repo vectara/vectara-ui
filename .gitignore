@@ -1,6 +1,9 @@
 # Deliberately commit dist folder so we can directly consume the repo as a dependency.
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# build files
+/docs/static
+
 # dependencies
 /node_modules
 /.pnp
