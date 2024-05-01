@@ -1,4 +1,4 @@
-import { Link, Navigate, Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, Route, HashRouter as Router, Routes, useLocation } from "react-router-dom";
 import { BiLogoGithub } from "react-icons/bi";
 import {
   VuiAppHeader,
@@ -20,8 +20,7 @@ import "./index.scss";
 
 export const Docs = () => {
   return (
-    // Fix routing when deployed to GitHub pages (https://vectara.github.io/vectara-ui/).
-    <Router basename={process.env.NODE_ENV === "production" ? "/vectara-ui/" : undefined}>
+    <Router>
       <DocsContent />
     </Router>
   );
