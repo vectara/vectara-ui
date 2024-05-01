@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: npm i && npm run buildDocs && npm run start &
+      - run: npm i && npm run buildDocs
         env:
           CI: false
         if: github.event.action != 'closed'
