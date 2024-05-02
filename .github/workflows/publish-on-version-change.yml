@@ -1,0 +1,49 @@
+name: publish-on-version-change
+on:
+  push:
+    branches:
+      - chore/auto_publish # Change this to your default branch
+jobs:
+  check-version-change:
+    name: check-version-change
+    runs-on: ubuntu-latest
+    outputs:
+      did-version-change: ${{ steps.check.outputs.changed }}
+      new-version: ${{ steps.check.outputs.version }}
+      type: ${{ steps.check.outputs.type }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Determine if version has changed
+      - name: Check version changes
+        uses: EndBug/version-check@v2
+        id: check
+
+  publish-to-npm:
+    name: publish-to-npm
+    runs-on: ubuntu-latest
+    needs: [check-version-change]
+    if: needs.check-version-change.outputs.did-version-change == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Draft a release if version name changed
+      - name: Draft release
+        run: 'gh release create v${{ needs.check-version-change.outputs.new-version }} -d --title "Release ${{ needs.check-version-change.outputs.new-version }}" --generate-notes'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js for NPM
+        uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build lib
+        run: "npm i && npm run buildLib"
+
+      - name: Publish package to NPM
+        run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
