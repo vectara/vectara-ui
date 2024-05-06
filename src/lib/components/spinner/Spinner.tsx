@@ -19,7 +19,7 @@ type Props = {
 export const VuiSpinner = ({ color = "accent", size = "m" }: Props) => {
   const classes = classNames("vuiSpinner", sizeToClassNameMap[size], `vuiSpinner--${color}`);
   return (
-    <div className={classes}>
+    <span className={classes}>
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50">
         <path
           fill="#000"
@@ -36,6 +36,6 @@ export const VuiSpinner = ({ color = "accent", size = "m" }: Props) => {
           />
         </path>
       </svg>
-    </div>
+    </span>
   );
 };
