@@ -22,7 +22,7 @@ export const VuiToggle = ({ id, checked, onChange, label, ...rest }: Props) => {
   return (
     <VuiFlexContainer alignItems="center" spacing="s">
       <VuiFlexItem grow={false}>
-        <label className="vuiToggle">
+        <label className="vuiToggle" {...rest}>
           <input
             className="vuiToggle__input"
             type="checkbox"
@@ -30,7 +30,6 @@ export const VuiToggle = ({ id, checked, onChange, label, ...rest }: Props) => {
             onChange={onChange}
             id={id}
             {...inputProps}
-            {...rest}
           />
           <span className="vuiToggle__button" />
         </label>
