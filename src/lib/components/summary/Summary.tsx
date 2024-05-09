@@ -32,32 +32,42 @@ const markDownCitations = (summary: string) => {
 };
 
 type Props = {
-  summary: string;
+  summary?: string;
   className?: string;
   SummaryCitation: React.ComponentType<any>;
+  statusIndicator?: React.ReactNode;
 };
 
-export const VuiSummary = ({ summary, className, SummaryCitation }: Props) => {
+export const VuiSummary = ({ summary, className, SummaryCitation, statusIndicator }: Props) => {
   // Protect users' privacy in FullStory.
   // https://help.fullstory.com/hc/en-us/articles/360020623574-How-do-I-protect-my-users-privacy-in-FullStory-#01F5DPW1AJHZHR8TBM9YQEDRMH
   const classes = classNames("vuiSummary", "fs-mask", className);
-  const markdown = markDownCitations(summary);
+
+  const parsedSummary = summary && (
+    <Markdown
+      children={markDownCitations(summary)}
+      options={{
+        overrides: {
+          SummaryCitation: {
+            component: SummaryCitation
+          }
+        }
+      }}
+    />
+  );
 
   return (
     <div className={classes} dir="auto">
-      <VuiText size="m">
-        <Markdown
-          children={markdown}
-          options={{
-            forceBlock: true,
-            overrides: {
-              SummaryCitation: {
-                component: SummaryCitation
-              }
-            }
-          }}
-        />
-      </VuiText>
+      {summary ? (
+        <VuiText size="m">
+          <p>
+            {parsedSummary}
+            {statusIndicator}
+          </p>
+        </VuiText>
+      ) : (
+        statusIndicator
+      )}
     </div>
   );
 };

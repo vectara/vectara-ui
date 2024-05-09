@@ -45,6 +45,7 @@ type Props<T> = {
   content?: React.ReactNode;
   className?: string;
   fluid?: boolean;
+  isDisabled?: boolean;
 };
 
 type Selection<T> = {
@@ -82,6 +83,7 @@ export const VuiTable = <T extends Row>({
   content,
   className,
   fluid,
+  isDisabled = false,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
@@ -204,13 +206,15 @@ export const VuiTable = <T extends Row>({
   }
 
   return (
-    <>
+    // @ts-expect-error React doesn't support inert yet
+    <div className="vuiTableWrapper" inert={isDisabled ? "" : null}>
+      {isDisabled && <div className="vuiTableBlock" />}
       {(hasSearch ||
         customControls ||
         (hasBulkActions && selectedRows && selectedRows.length > 0) ||
         Boolean(onReload)) && (
         <>
-          <VuiFlexContainer spacing="s" justifyContent="spaceBetween" alignItems="center">
+          <VuiFlexContainer spacing="s" alignItems="center">
             {/* Bulk actions */}
             {selectedRows && selectedRows.length > 0 && hasBulkActions && (
               <VuiFlexItem grow={false} shrink={false}>
@@ -240,10 +244,12 @@ export const VuiTable = <T extends Row>({
 
             {/* Reload */}
             {onReload && (
-              <VuiFlexItem grow={false} shrink={false}>
-                <VuiButtonSecondary color="neutral" onClick={() => onReload()}>
-                  Reload
-                </VuiButtonSecondary>
+              <VuiFlexItem grow={1} shrink={false}>
+                <VuiFlexContainer justifyContent="end">
+                  <VuiButtonSecondary color="neutral" onClick={() => onReload()}>
+                    Reload
+                  </VuiButtonSecondary>
+                </VuiFlexContainer>
               </VuiFlexItem>
             )}
           </VuiFlexContainer>
@@ -313,6 +319,6 @@ export const VuiTable = <T extends Row>({
           <VuiTablePager isDisabled={!isInteractive} {...pagination} />
         </>
       )}
-    </>
+    </div>
   );
 };
