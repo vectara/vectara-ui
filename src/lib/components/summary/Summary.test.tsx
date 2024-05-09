@@ -42,6 +42,7 @@ With some **bold** and _emphasized_ test. Here is a [link](https://www.vectara.c
             <div
               class="vuiText vuiText--m"
             >
+              <p />
               <div>
                 <h1
                   id="heres-a-heading-1"
@@ -135,6 +136,7 @@ With some **bold** and _emphasized_ test. Here is a [link](https://www.vectara.c
                   </tbody>
                 </table>
               </div>
+              <p />
             </div>
           </div>
         </DocumentFragment>
@@ -178,6 +180,7 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
             <div
               class="vuiText vuiText--m"
             >
+              <p />
               <div>
                 <h1
                   id="summarycitation-reference1--heres-a-heading-1"
@@ -391,6 +394,7 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
                   </tbody>
                 </table>
               </div>
+              <p />
             </div>
           </div>
         </DocumentFragment>
@@ -414,44 +418,45 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
             <div
               class="vuiText vuiText--m"
             >
-              <div>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  1
-                </button>
-                 Beginning of summary. 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  2
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  3
-                </button>
-                 Multiple at beginning of sentence, and before comma 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  4
-                </button>
-                , single at middle 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  5
-                </button>
-                 of sentence. At end of sentence 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  6
-                </button>
-                .
-
-              </div>
+              <p>
+                <span>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    1
+                  </button>
+                   Beginning of summary. 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    2
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    3
+                  </button>
+                   Multiple at beginning of sentence, and before comma 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    4
+                  </button>
+                  , single at middle 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    5
+                  </button>
+                   of sentence. At end of sentence 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    6
+                  </button>
+                  .
+                </span>
+              </p>
             </div>
           </div>
         </DocumentFragment>
@@ -472,12 +477,14 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
               class="vuiText vuiText--m"
             >
               <p>
-                End of summary. 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  1
-                </button>
+                <span>
+                  End of summary. 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    1
+                  </button>
+                </span>
               </p>
             </div>
           </div>
@@ -499,54 +506,56 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
               class="vuiText vuiText--m"
             >
               <p>
-                Two citations 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  1
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  2
-                </button>
-                 and seven citations 
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  1
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  2
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  3
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  4
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  5
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  6
-                </button>
-                <button
-                  class="vuiSummaryCitation"
-                >
-                  7
-                </button>
-                .
+                <span>
+                  Two citations 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    1
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    2
+                  </button>
+                   and seven citations 
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    1
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    2
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    3
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    4
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    5
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    6
+                  </button>
+                  <button
+                    class="vuiSummaryCitation"
+                  >
+                    7
+                  </button>
+                  .
+                </span>
               </p>
             </div>
           </div>
