@@ -30,6 +30,7 @@ export const Table = () => {
   const [hasError, setHasError] = useState(false);
   const [hasData, setHasData] = useState(true);
   const [hasPager, setHasPager] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [canSelectRows, setCanSelectRows] = useState(true);
   const [canSearch, setCanSearch] = useState(true);
   const [areNicknamesVisible, setAreNicknamesVisible] = useState(false);
@@ -268,6 +269,10 @@ export const Table = () => {
         </VuiFlexItem>
 
         <VuiFlexItem shrink={false}>
+          <VuiToggle label="Is disabled" checked={isDisabled} onChange={(e) => setIsDisabled(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
           <VuiToggle
             label="Can select rows"
             checked={canSelectRows}
@@ -306,6 +311,7 @@ export const Table = () => {
         onSort={(column, direction) => console.log("Sort", column, direction)}
         onReload={onReload}
         search={search}
+        isDisabled={isDisabled}
       />
     </>
   );
