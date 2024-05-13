@@ -18,6 +18,8 @@ jobs:
       # Determine if version has changed
       - name: Check version changes
         uses: EndBug/version-check@v2
+        with:
+          diff-search: true
         id: check
 
   publish-to-npm:
