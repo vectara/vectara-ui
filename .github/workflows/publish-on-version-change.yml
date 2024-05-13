@@ -2,7 +2,7 @@ name: publish-on-version-change
 on:
   push:
     branches:
-      - chore/auto_publish # Change this to your default branch
+      - main
 jobs:
   check-version-change:
     name: check-version-change
