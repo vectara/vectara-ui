@@ -19,6 +19,7 @@ const options = [
 export const PrimaryModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   return (
     <>
@@ -37,8 +38,10 @@ export const PrimaryModal = () => {
           title="Select all that apply"
           isOpen={isPopoverOpen}
           setIsOpen={setIsPopoverOpen}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
           onSelect={() => undefined}
-          selected={[]}
+          selectedOptions={[]}
           options={options}
         >
           <VuiButtonSecondary color="neutral" size="s">
