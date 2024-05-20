@@ -18,6 +18,7 @@ const options = [
 
 export const SearchSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOptions, setSelectedOptions] = useState(["a", "b"]);
 
   return (
@@ -25,10 +26,12 @@ export const SearchSelect = () => {
       title="Select all that apply"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
       onSelect={(value: string[]) => {
         setSelectedOptions(value);
       }}
-      selected={selectedOptions}
+      selectedOptions={selectedOptions}
       options={options}
     >
       <VuiButtonSecondary color="neutral" size="s">

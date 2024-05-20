@@ -55,7 +55,7 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
     <VuiFlexContainer alignItems="center" spacing="xs">
       {isSelectable && (
         <VuiFlexItem grow={false}>
-          <VuiIcon className={isSelected ? "" : "vuiOptionsListItem__selected--unselected"} color="accent" size="s">
+          <VuiIcon className={isSelected ? "" : "vuiOptionsListItem__selected--unselected"} color="subdued" size="s">
             <BiCheck />
           </VuiIcon>
         </VuiFlexItem>

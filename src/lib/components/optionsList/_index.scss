@@ -79,6 +79,10 @@ $color: (
     &:hover {
       color: #{map.get($colorValue, "hover-color")};
       background-color: #{map.get($colorValue, "selected-color")};
+
+      .vuiIcon__inner {
+        color: #{map.get($colorValue, "hover-color")};
+      }
     }
   }
 }
