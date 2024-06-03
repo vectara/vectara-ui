@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 
+export type AnchorSide = "left" | "right";
+
 export type Props = {
   button: React.ReactElement;
   children?: React.ReactNode;
@@ -11,20 +13,28 @@ export type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   padding?: boolean;
+  anchorSide?: AnchorSide;
 };
 
 type Position = {
-  top: number;
-  right: number;
+  top: string;
+  left?: string;
+  right?: string;
 };
 
-const getPosition = (button: HTMLElement | null): Position | undefined => {
+const calculatePopoverPosition = (button: HTMLElement | null, anchorSide: AnchorSide): Position | undefined => {
   if (!button) return undefined;
-  const { bottom, right } = button.getBoundingClientRect();
-  return {
-    top: bottom + 2 + document.documentElement.scrollTop,
-    right: window.innerWidth - right
-  };
+
+  const buttonRect = button.getBoundingClientRect();
+  const top = buttonRect.bottom + 2 + document.documentElement.scrollTop;
+  const left = buttonRect.left;
+
+  if (anchorSide === "left") {
+    return { top: `${top}px`, left: `${left}px` };
+  }
+
+  const right = window.innerWidth - buttonRect.right;
+  return { top: `${top}px`, right: `${right}px` };
 };
 
 export const VuiPopover = ({
@@ -35,6 +45,7 @@ export const VuiPopover = ({
   isOpen,
   setIsOpen,
   padding,
+  anchorSide = "right",
   ...rest
 }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
@@ -90,7 +101,7 @@ export const VuiPopover = ({
   // Always keep menu position up to date. If we tried to cache this inside
   // a useEffect based on isOpen then there'd be a flicker if the width
   // of the button changes.
-  const position = getPosition(buttonRef.current);
+  const position = calculatePopoverPosition(buttonRef.current, anchorSide);
 
   const classes = classNames("vuiPopover", className);
 
@@ -117,7 +128,7 @@ export const VuiPopover = ({
             // Enable scrolling of the page.
             preventScrollOnFocus={false}
           >
-            <div className={classes} style={{ top: `${position.top}px`, right: `${position.right}px` }} {...rest}>
+            <div className={classes} style={position} {...rest}>
               {header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header}
               {children && <div className={contentClasses}>{children}</div>}
             </div>
