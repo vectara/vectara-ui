@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "prismjs/components/prism-json";
@@ -8,24 +8,36 @@ import "prismjs/components/prism-bash";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 import classNames from "classnames";
-import { BiClipboard } from "react-icons/bi";
+import { BiClipboard, BiFullscreen, BiX } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { CodeLanguage } from "./types";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { FocusOn } from "react-focus-on";
 
 type Props = {
   language?: CodeLanguage;
   onCopy?: () => void;
+  isFullscreenEnabled?: boolean;
   children?: string;
   fullHeight?: boolean;
   "data-testid"?: string;
 };
 
 // PrismJS clears highlighting when language-none is set.
-export const VuiCode = ({ onCopy, language = "none", fullHeight, children = "", ...rest }: Props) => {
+export const VuiCode = ({
+  onCopy,
+  isFullscreenEnabled = true,
+  language = "none",
+  fullHeight,
+  children = "",
+  ...rest
+}: Props) => {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
   useEffect(() => {
     Prism.highlightAll();
-  }, [children, language]);
+  }, [children, language, isFullscreen]);
 
   const containerClasses = classNames("vuiCodeContainer", {
     "vuiCodeContainer--fullHeight": fullHeight
@@ -37,32 +49,82 @@ export const VuiCode = ({ onCopy, language = "none", fullHeight, children = "", 
 
   const testId = rest["data-testid"];
 
-  return (
-    <div className={containerClasses} {...rest}>
-      <pre className="vuiCodePre">
-        <code className={classes}>{children}</code>
-      </pre>
+  const actions = (
+    <VuiFlexContainer className="vuiCodeActions" spacing="xxs">
+      {isFullscreenEnabled && (
+        <VuiIconButton
+          color="neutral"
+          size="xs"
+          icon={
+            <VuiIcon>
+              <BiFullscreen />
+            </VuiIcon>
+          }
+          aria-label="Full screen"
+          onClick={() => {
+            setIsFullscreen(!isFullscreen);
+          }}
+        />
+      )}
 
       <VuiIconButton
         color="neutral"
+        size="xs"
         icon={
           <VuiIcon>
-            <BiClipboard size={20} />
+            <BiClipboard />
           </VuiIcon>
         }
         aria-label="Copy to clipboard"
-        className="vuiCodeCopyButton"
         onClick={() => {
           navigator.clipboard.writeText(children);
           if (onCopy) onCopy();
         }}
       />
+    </VuiFlexContainer>
+  );
+
+  const code = (
+    <pre className="vuiCodePre">
+      <code className={classes}>{children}</code>
+    </pre>
+  );
+
+  return (
+    <div className={containerClasses} {...rest}>
+      {code}
+
+      {actions}
 
       {/* Expose this for tests to assert against. */}
       {testId && (
         <div data-testid={`${testId}-hidden`} hidden>
           {children}
         </div>
+      )}
+
+      {isFullscreen && (
+        <FocusOn
+          onEscapeKey={() => {
+            setIsFullscreen(false);
+          }}
+        >
+          <div className="vuiCodeFullscreen">
+            <VuiIconButton
+              className="vuiCodeFullscreen__closeButton"
+              color="neutral"
+              size="m"
+              icon={
+                <VuiIcon>
+                  <BiX />
+                </VuiIcon>
+              }
+              aria-label="Exit fullscreen code"
+              onClick={() => setIsFullscreen(false)}
+            />
+            {code}
+          </div>
+        </FocusOn>
       )}
     </div>
   );
