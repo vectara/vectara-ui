@@ -32,7 +32,15 @@ export const Sizes = () => {
         <VuiFlexContainer>
           {BUTTON_SIZE.map((size) => (
             <VuiFlexItem grow={false} key={size}>
-              <VuiButtonPrimary icon={icon} color="primary" size={size} isLoading={isLoading}>
+              <VuiButtonPrimary
+                icon={icon}
+                color="primary"
+                size={size}
+                isLoading={isLoading}
+                onClick={() => console.log("click")}
+                onMouseOver={() => console.log("mouse over")}
+                onMouseOut={() => console.log("mouse out")}
+              >
                 Size {size}
               </VuiButtonPrimary>
             </VuiFlexItem>

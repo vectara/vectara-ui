@@ -40,6 +40,7 @@ export const VuiNotification = ({ notification, onDismiss, notificationsCount, c
         <VuiFlexContainer alignItems="start" spacing="s">
           <VuiFlexItem grow={false}>
             <VuiIconButton
+              aria-label="Hide notification"
               size="xs"
               color="neutral"
               icon={

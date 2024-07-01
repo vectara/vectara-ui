@@ -54,6 +54,7 @@ export const VuiCallout = ({ children, title, headingElement, color, size = "m",
         {onDismiss && (
           <VuiFlexItem shrink={false} grow={false}>
             <VuiIconButton
+              aria-label="Hide information"
               className="vuiCallout__closeButton"
               data-testid="calloutCloseButton"
               color={color}
