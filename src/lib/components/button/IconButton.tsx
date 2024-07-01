@@ -9,9 +9,12 @@ import { useVuiContext } from "../context/Context";
 type Props = {
   className?: string;
   icon: ReactElement;
+  "aria-label": string;
   color?: ButtonColor;
   size?: (typeof BUTTON_SIZE)[number];
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
+  onMouseOver?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
+  onMouseOut?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
@@ -19,12 +22,30 @@ type Props = {
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
-  ({ className, icon, color = "primary", size = "m", onClick, href, target, track, tabIndex, ...rest }: Props, ref) => {
+  (
+    {
+      className,
+      icon,
+      color = "primary",
+      size = "m",
+      onClick,
+      onMouseOver,
+      onMouseOut,
+      href,
+      target,
+      track,
+      tabIndex,
+      ...rest
+    }: Props,
+    ref
+  ) => {
     const { createLink } = useVuiContext();
 
     const props = {
       className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`),
       onClick,
+      onMouseOver,
+      onMouseOut,
       tabIndex,
       ...rest
     };
@@ -42,6 +63,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
     }
 
     return (
+      // @ts-expect-error HTMLButtonElement conflict with HTMLAnchorElement
       <button {...props} ref={ref}>
         {buttonIcon}
       </button>
