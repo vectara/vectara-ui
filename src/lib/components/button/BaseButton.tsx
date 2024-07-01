@@ -32,6 +32,8 @@ export type BaseButtonProps = {
   isInert?: boolean;
   isDisabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
+  onMouseOver?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
+  onMouseOut?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
@@ -57,6 +59,8 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       size = "m",
       fullWidth,
       onClick,
+      onMouseOver,
+      onMouseOut,
       tabIndex,
       isInert,
       isDisabled,
@@ -112,6 +116,8 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         className: wrapperClasses,
         href,
         onClick,
+        onMouseOver,
+        onMouseOut,
         children: (
           //* Wrap a button otherwise the flex layout breaks */}
           <button className={classes} tabIndex={-1} ref={ref}>
@@ -128,6 +134,8 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
 
     const props = {
       onClick,
+      onMouseOver,
+      onMouseOut,
       tabIndex,
       ["type"]: isSubmit ? "submit" : "button",
       disabled: isDisabled,

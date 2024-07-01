@@ -6,6 +6,8 @@ export type LinkProps = {
   className?: string;
   target?: "_blank";
   onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseOver?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseOut?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
   track?: boolean;
   // ...rest
   title?: string;
