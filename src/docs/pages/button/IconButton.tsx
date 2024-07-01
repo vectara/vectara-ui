@@ -21,7 +21,7 @@ export const IconButton = () => {
       <VuiFlexContainer>
         {BUTTON_COLOR.map((color) => (
           <VuiFlexItem grow={false} key={color}>
-            <VuiIconButton icon={icon} color={color} />
+            <VuiIconButton aria-label="Example button" icon={icon} color={color} />
           </VuiFlexItem>
         ))}
       </VuiFlexContainer>
@@ -31,7 +31,7 @@ export const IconButton = () => {
       <VuiFlexContainer>
         {BUTTON_SIZE.map((size) => (
           <VuiFlexItem grow={false} key={size}>
-            <VuiIconButton icon={icon} color="primary" size={size} />
+            <VuiIconButton aria-label="Example button" icon={icon} color="primary" size={size} />
           </VuiFlexItem>
         ))}
       </VuiFlexContainer>

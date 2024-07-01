@@ -56,7 +56,7 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
         {isCollapsed ? (
           <VuiIconButton
             ref={expandButtonRef}
-            aria-label="Expand nav"
+            aria-label="Show nav"
             onClick={() => setIsCollapsed(false)}
             className="vuiAppSideNavExpandButton"
             color="neutral"

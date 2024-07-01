@@ -70,6 +70,7 @@ const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, is
       />
 
       <VuiIconButton
+        aria-label={isOpen ? "Hide section" : "Show section"}
         size="s"
         className="vuiAppSideNavTreeToggleButton"
         onClick={() => setIsOpen(!isOpen)}

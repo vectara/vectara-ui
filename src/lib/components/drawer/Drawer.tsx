@@ -80,6 +80,7 @@ export const VuiDrawer = ({ className, color = "primary", title, icon, children,
                   {onClose && (
                     <VuiFlexItem>
                       <VuiIconButton
+                        aria-label="Close drawer"
                         data-testid="drawerCloseButton"
                         onClick={onCloseDelayed}
                         color="neutral"

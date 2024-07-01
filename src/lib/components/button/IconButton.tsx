@@ -9,6 +9,7 @@ import { useVuiContext } from "../context/Context";
 type Props = {
   className?: string;
   icon: ReactElement;
+  "aria-label": string;
   color?: ButtonColor;
   size?: (typeof BUTTON_SIZE)[number];
   onClick?: () => void;

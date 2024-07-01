@@ -24,6 +24,7 @@ export const VuiChatPanel = ({ title, onClose, children }: Props) => {
 
         <VuiFlexItem shrink={false} grow={false}>
           <VuiIconButton
+            aria-label="Hide chat"
             icon={
               <VuiIcon>
                 <BiX />
