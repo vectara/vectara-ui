@@ -28,11 +28,12 @@ $drawerWidth: 680px;
 }
 
 .vuiDrawerHeader {
-  padding: $sizeL $sizeL;
+  padding: $sizeS $sizeL;
+  background-color: $colorLightShade;
 }
 
 .vuiDrawerHeader__title {
-  font-size: $fontSizeXLarge;
+  font-size: $fontSizeMedium;
   font-weight: $fontWeightBold;
   line-height: 1.2;
   color: $colorText;
@@ -50,11 +51,9 @@ $drawerWidth: 680px;
 // Color
 $color: (
   primary: (
-    "background-color": $colorPrimaryLightShade,
-    "color": $colorText
+    "color": $colorPrimary
   ),
   danger: (
-    "background-color": $colorDangerLightShade,
     "color": $colorDanger
   )
 );
@@ -62,9 +61,6 @@ $color: (
 @each $colorName, $colorValue in $color {
   .vuiDrawer--#{$colorName} {
     .vuiDrawerHeader {
-      background-color: #{map.get($colorValue, "background-color")};
-
-      .vuiDrawerHeader__title,
       .vuiIcon {
         color: #{map.get($colorValue, "color")};
       }

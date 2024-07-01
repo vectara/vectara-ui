@@ -40,11 +40,12 @@ $modalWidth: 500px;
 }
 
 .vuiModalHeader {
-  padding: $sizeM;
+  padding: $sizeS $sizeM;
+  background-color: $colorLightShade;
 }
 
 .vuiModalHeader__title {
-  font-size: $fontSizeXLarge;
+  font-size: $fontSizeMedium;
   font-weight: $fontWeightBold;
   line-height: 1.2;
   color: $colorText;
@@ -62,11 +63,9 @@ $modalWidth: 500px;
 // Color
 $color: (
   primary: (
-    "background-color": $colorPrimaryLightShade,
-    "color": $colorText
+    "color": $colorPrimary
   ),
   danger: (
-    "background-color": $colorDangerLightShade,
     "color": $colorDanger
   )
 );
@@ -74,9 +73,6 @@ $color: (
 @each $colorName, $colorValue in $color {
   .vuiModal--#{$colorName} {
     .vuiModalHeader {
-      background-color: #{map.get($colorValue, "background-color")};
-
-      .vuiModalHeader__title,
       .vuiIcon {
         color: #{map.get($colorValue, "color")};
       }

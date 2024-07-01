@@ -1,6 +1,6 @@
 // Components
 import { accordion } from "./pages/accordion";
-import { accountMenu } from "./pages/accountMenu";
+import { infoMenu } from "./pages/infoMenu";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
@@ -63,7 +63,7 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, accountMenu, drawer, modal, notifications]
+    pages: [app, drawer, modal, notifications]
   },
   {
     name: "Info",
@@ -71,7 +71,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [tabs, accordion, popover, flex, grid, spacer, card, horizontalRule]
+    pages: [tabs, accordion, popover, infoMenu, flex, grid, spacer, card, horizontalRule]
   },
   {
     name: "Content",
