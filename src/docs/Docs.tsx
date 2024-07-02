@@ -81,6 +81,7 @@ const DocsContent = () => {
             target="_blank"
             color="neutral"
             size="m"
+            aria-label="Vectara UI GitHub repository"
             icon={
               <VuiIcon>
                 <BiLogoGithub />

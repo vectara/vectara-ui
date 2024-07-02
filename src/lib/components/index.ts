@@ -1,5 +1,4 @@
 import { VuiAccordion } from "./accordion/Accordion";
-import { VuiAccountMenu } from "./accountMenu/AccountMenu";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
@@ -41,6 +40,8 @@ import { VuiGrid } from "./grid/Grid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
+import { InfoListType, VuiInfoList } from "./infoList/InfoList";
+import { VuiInfoMenu } from "./infoMenu/InfoMenu";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { LinkProps } from "./link/types";
@@ -54,7 +55,7 @@ import { VuiOptionsButton } from "./optionsButton/OptionsButton";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
-import { VuiPopover } from "./popover/Popover";
+import { VuiPopover, AnchorSide } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
 import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
 import { VuiPrompt } from "./prompt/Prompt";
@@ -84,6 +85,7 @@ import { VuiToggle } from "./toggle/Toggle";
 import { VuiTopicButton } from "./topicButton/TopicButton";
 
 export type {
+  AnchorSide,
   AppContentPadding,
   ButtonColor,
   CalloutColor,
@@ -91,6 +93,7 @@ export type {
   ChatStyle,
   ChatTurn,
   CodeLanguage,
+  InfoListType,
   InfoTableColumnAlign,
   InfoTableRow,
   InfoTableRowType,
@@ -124,7 +127,6 @@ export {
   TEXT_SIZE,
   TITLE_SIZE,
   VuiAccordion,
-  VuiAccountMenu,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,
@@ -148,6 +150,8 @@ export {
   VuiGrid,
   VuiHorizontalRule,
   VuiIcon,
+  VuiInfoList,
+  VuiInfoMenu,
   VuiInfoTable,
   VuiLabel,
   VuiLink,

@@ -9,9 +9,13 @@ import { useVuiContext } from "../context/Context";
 type Props = {
   className?: string;
   icon: ReactElement;
+  "aria-label": string;
   color?: ButtonColor;
   size?: (typeof BUTTON_SIZE)[number];
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseOver?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseOut?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseMove?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
@@ -19,12 +23,32 @@ type Props = {
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
-  ({ className, icon, color = "primary", size = "m", onClick, href, target, track, tabIndex, ...rest }: Props, ref) => {
+  (
+    {
+      className,
+      icon,
+      color = "primary",
+      size = "m",
+      onClick,
+      onMouseOver,
+      onMouseOut,
+      onMouseMove,
+      href,
+      target,
+      track,
+      tabIndex,
+      ...rest
+    }: Props,
+    ref
+  ) => {
     const { createLink } = useVuiContext();
 
     const props = {
       className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`),
       onClick,
+      onMouseOver,
+      onMouseOut,
+      onMouseMove,
       tabIndex,
       ...rest
     };
