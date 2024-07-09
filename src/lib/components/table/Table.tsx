@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { VuiCheckbox, VuiTextInput } from "../form";
+import { TextInputProps, VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
@@ -54,12 +54,7 @@ type Selection<T> = {
   selectedRows?: T[];
 };
 
-type Search = {
-  searchValue?: string;
-  searchPlaceholder?: string;
-  onSearchChange?: (value: string) => void;
-  "data-testid"?: string;
-};
+type Search = TextInputProps;
 
 const extractId = <T extends Row>(row: T, idField: Props<T>["idField"]) => {
   return typeof idField === "function" ? idField(row) : row[idField];
@@ -89,7 +84,7 @@ export const VuiTable = <T extends Row>({
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
 
   const { bulkActions, onSelectRow, selectedRows } = selection || {};
-  const { searchValue, searchPlaceholder, onSearchChange } = search || {};
+  const { value: searchValue } = search || {};
 
   const isEmpty = !isLoading && rows.length === 0;
   // The user interacts with the table rows by selecting them or performing actions on them.
@@ -104,7 +99,7 @@ export const VuiTable = <T extends Row>({
       return acc;
     }, {} as Record<string, boolean>) || {};
 
-  const hasSearch = searchValue !== undefined && onSearchChange;
+  const hasSearch = search !== undefined;
   const hasBulkActions = bulkActions !== undefined;
   const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0);
 
@@ -225,13 +220,7 @@ export const VuiTable = <T extends Row>({
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
-                <VuiTextInput
-                  placeholder={searchPlaceholder}
-                  fullWidth
-                  value={searchValue}
-                  onChange={(event) => onSearchChange(event.target.value)}
-                  data-testid={search?.["data-testid"]}
-                />
+                <VuiTextInput fullWidth {...search} />
               </VuiFlexItem>
             )}
 

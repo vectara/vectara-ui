@@ -233,11 +233,11 @@ export const Table = () => {
 
   const search = canSearch
     ? {
-        searchValue,
-        searchPlaceholder: "Search people",
-        onSearchChange: (search: string) => {
+        value: searchValue,
+        placeholder: "Search people",
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           setCurrentPage(1);
-          setSearchValue(search);
+          setSearchValue(e.target.value);
         }
       }
     : undefined;
