@@ -8,9 +8,9 @@
   max-height: 100%;
 }
 
-.vuiCodeCopyButton {
+.vuiCodeActions {
   position: absolute;
-  right: $sizeXxs;
+  right: $sizeS;
   top: $sizeXxs;
 }
 
@@ -27,7 +27,26 @@
   background-color: $colorLightShade;
   color: $colorText;
   font-family: "Roboto Mono", monospace;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  // Ensure PrismJS components wrap their lines.
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
   font-size: $fontSizeSmall !important;
+}
+
+.vuiCodeFullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $fullscreenZIndex;
+  // PrismJS theme color.
+  background-color: #f5f2f0;
+  overflow: auto;
+}
+
+.vuiCodeFullscreen__closeButton {
+  position: absolute;
+  right: $sizeS;
+  top: $sizeXxs;
 }

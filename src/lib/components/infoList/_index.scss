@@ -1,0 +1,17 @@
+.vuiInfoListItem {
+  & + & {
+    margin-top: $sizeM;
+  }
+}
+
+.vuiInfoListItem__title {
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightBold;
+  color: $colorDarkerShade;
+}
+
+.vuiInfoListItem__value {
+  font-size: $fontSizeStandard;
+  color: $colorDarkerShade;
+  margin-top: $sizeXxs;
+}
