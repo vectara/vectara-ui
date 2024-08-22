@@ -11,5 +11,5 @@ const SummaryCitation = ({ reference }: { reference: string }) => (
 );
 
 export const Summary = () => {
-  return <VuiSummary summary={summary} SummaryCitation={SummaryCitation} />;
+  return <VuiSummary summary={summary} SummaryCitation={SummaryCitation} data-testid="summary" />;
 };

@@ -1,6 +1,6 @@
 {
   "name": "@vectara/vectara-ui",
-  "version": "1.0.1",
+  "version": "3.1.0",
   "homepage": "https://vectara.github.io/vectara-ui/",
   "description": "Vectara's design system, codified as a React and Sass component library",
   "author": "Vectara",
@@ -28,11 +28,11 @@
     "buildDocs": "BUILD_PATH='./docs/public' PUBLIC_URL='.' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "buildLib": "npx tsc --project tsconfig.lib.json && npm run copyStyleUtils && npm run copyComponentStyles && npm run compileCss",
+    "build": "npx tsc --project tsconfig.lib.json && npm run copyStyleUtils && npm run copyComponentStyles && npm run compileCss",
     "compileCss": "sass --no-source-map src/lib/styles/styles.scss lib/styles/index.css",
     "copyStyleUtils": "copyfiles -u 2 src/lib/sassUtils/* lib",
     "copyComponentStyles": "copyfiles -u 2 src/lib/components/index.scss lib && copyfiles -u 2 src/lib/components/**/*.scss lib && copyfiles -u 2 src/lib/components/**/**/*.scss lib",
-    "publishLib": "npm run buildLib && npm publish --access public"
+    "publish": "npm run build && npm publish --access public"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

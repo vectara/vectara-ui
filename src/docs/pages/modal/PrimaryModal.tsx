@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { VuiButtonPrimary, VuiButtonSecondary, VuiModal, VuiSearchSelect, VuiSpacer, VuiText } from "../../../lib";
+import { BiInfoCircle } from "react-icons/bi";
 
 const options = [
   { value: "a", label: "Caffeine-free" },
@@ -27,7 +28,7 @@ export const PrimaryModal = () => {
         Open primary modal
       </VuiButtonPrimary>
 
-      <VuiModal color="primary" isOpen={isOpen} onClose={() => setIsOpen(false)} title="FYI">
+      <VuiModal color="primary" isOpen={isOpen} onClose={() => setIsOpen(false)} icon={<BiInfoCircle />} title="FYI">
         <VuiText>
           <p>I just thought you should know that your modal is showing.</p>
         </VuiText>
