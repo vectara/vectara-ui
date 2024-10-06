@@ -38,7 +38,7 @@ type Props = {
   statusIndicator?: React.ReactNode;
 };
 
-export const VuiSummary = ({ summary, className, SummaryCitation, statusIndicator }: Props) => {
+export const VuiSummary = ({ summary, className, SummaryCitation, statusIndicator, ...rest }: Props) => {
   // Protect users' privacy in FullStory.
   // https://help.fullstory.com/hc/en-us/articles/360020623574-How-do-I-protect-my-users-privacy-in-FullStory-#01F5DPW1AJHZHR8TBM9YQEDRMH
   const classes = classNames("vuiSummary", "fs-mask", className);
@@ -57,7 +57,7 @@ export const VuiSummary = ({ summary, className, SummaryCitation, statusIndicato
   );
 
   return (
-    <div className={classes} dir="auto">
+    <div className={classes} dir="auto" {...rest}>
       {summary ? (
         <VuiText size="m">
           <p>
