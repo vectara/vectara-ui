@@ -47,6 +47,24 @@
   }
 }
 
+.vuiTable--verticalAlignTop {
+  tbody td {
+    vertical-align: top;
+  }
+}
+
+.vuiTable--verticalAlignMiddle {
+  tbody td {
+    vertical-align: middle;
+  }
+}
+
+.vuiTable--verticalAlignBottom {
+  tbody td {
+    vertical-align: bottom;
+  }
+}
+
 .vuiTable--fluid {
   table-layout: auto;
 }
