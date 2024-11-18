@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { forwardRef } from "react";
 import { BasicInputProps, VuiBasicInput } from "./BasicInput";
 
-type Props = BasicInputProps & {
+export type Props = BasicInputProps & {
   value?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: number;

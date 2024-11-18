@@ -1,6 +1,5 @@
 // Components
 import { accordion } from "./pages/accordion";
-import { accountMenu } from "./pages/accountMenu";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
@@ -16,6 +15,8 @@ import { formGroup } from "./pages/formGroup";
 import { grid } from "./pages/grid";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
+import { infoList } from "./pages/infoList";
+import { infoMenu } from "./pages/infoMenu";
 import { infoTable } from "./pages/infoTable";
 import { input } from "./pages/input";
 import { label } from "./pages/label";
@@ -45,6 +46,7 @@ import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
 import { textArea } from "./pages/textArea";
+import { timeline } from "./pages/timeline";
 import { toggle } from "./pages/toggle";
 import { topicButton } from "./pages/topicButton";
 import { validation } from "./pages/validation";
@@ -63,19 +65,19 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, accountMenu, drawer, modal, notifications]
+    pages: [app, drawer, modal, notifications]
   },
   {
     name: "Info",
-    pages: [table, infoTable, statList, list]
+    pages: [table, infoTable, infoList, statList, list]
   },
   {
     name: "Layout",
-    pages: [tabs, accordion, popover, flex, grid, spacer, card, horizontalRule]
+    pages: [tabs, accordion, popover, infoMenu, flex, grid, spacer, card, horizontalRule]
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, icon, progressBar, spinner, text]
+    pages: [badge, status, callout, timeline, code, icon, progressBar, spinner, text]
   },
   {
     name: "Form",

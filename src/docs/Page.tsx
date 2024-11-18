@@ -31,6 +31,7 @@ export const Page = ({ name, examples }: { name: string; examples: ExampleType[]
           <VuiFlexContainer alignItems="center" spacing="xxs">
             <VuiFlexItem grow={false}>
               <VuiIconButton
+                aria-label="Go to previous example"
                 icon={
                   <VuiIcon>
                     <BiLeftArrowAlt />
@@ -42,8 +43,8 @@ export const Page = ({ name, examples }: { name: string; examples: ExampleType[]
             </VuiFlexItem>
 
             <VuiFlexItem>
-              {" "}
               <VuiIconButton
+                aria-label="Go to next example"
                 icon={
                   <VuiIcon>
                     <BiRightArrowAlt />

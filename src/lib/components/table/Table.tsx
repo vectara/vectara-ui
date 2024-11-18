@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { VuiCheckbox, VuiTextInput } from "../form";
+import { TextInputProps, VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
@@ -16,6 +16,12 @@ import { VuiTableContent } from "./TableContent";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
 import { Row } from "./types";
 
+const verticalAlignToClass = {
+  top: "vuiTable--verticalAlignTop",
+  middle: "vuiTable--verticalAlignMiddle",
+  bottom: "vuiTable--verticalAlignBottom"
+} as const;
+
 // Type guard to determine type of pagination.
 const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagination => {
   return (pagination as Pagination).onSelectPage !== undefined;
@@ -25,13 +31,14 @@ type Column<T> = {
   name: string;
   width?: string;
   header: TableHeaderCellProps["header"];
-  render?: (row: T) => React.ReactNode;
+  render?: (row: T, rowIndex: number) => React.ReactNode;
   className?: string;
 };
 
 type Props<T> = {
   isLoading?: boolean;
   idField: keyof T | ((row: T) => string);
+  rowDecorator?: (row: T) => Record<string, string>;
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps<T>["actions"];
@@ -46,6 +53,11 @@ type Props<T> = {
   className?: string;
   fluid?: boolean;
   isDisabled?: boolean;
+  bodyStyle?: BodyStyle;
+};
+
+type BodyStyle = {
+  verticalAlign?: "top" | "middle" | "bottom";
 };
 
 type Selection<T> = {
@@ -54,12 +66,7 @@ type Selection<T> = {
   selectedRows?: T[];
 };
 
-type Search = {
-  searchValue?: string;
-  searchPlaceholder?: string;
-  onSearchChange?: (value: string) => void;
-  "data-testid"?: string;
-};
+type Search = TextInputProps;
 
 const extractId = <T extends Row>(row: T, idField: Props<T>["idField"]) => {
   return typeof idField === "function" ? idField(row) : row[idField];
@@ -70,6 +77,7 @@ const extractId = <T extends Row>(row: T, idField: Props<T>["idField"]) => {
 export const VuiTable = <T extends Row>({
   isLoading,
   idField,
+  rowDecorator,
   columns,
   rows,
   actions,
@@ -84,12 +92,13 @@ export const VuiTable = <T extends Row>({
   className,
   fluid,
   isDisabled = false,
+  bodyStyle,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
 
   const { bulkActions, onSelectRow, selectedRows } = selection || {};
-  const { searchValue, searchPlaceholder, onSearchChange } = search || {};
+  const { value: searchValue } = search || {};
 
   const isEmpty = !isLoading && rows.length === 0;
   // The user interacts with the table rows by selecting them or performing actions on them.
@@ -104,12 +113,13 @@ export const VuiTable = <T extends Row>({
       return acc;
     }, {} as Record<string, boolean>) || {};
 
-  const hasSearch = searchValue !== undefined && onSearchChange;
+  const hasSearch = search !== undefined;
   const hasBulkActions = bulkActions !== undefined;
   const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0);
 
   const classes = classNames(
     "vuiTable",
+    bodyStyle?.verticalAlign && verticalAlignToClass[bodyStyle.verticalAlign],
     {
       "vuiTable--fluid": fluid
     },
@@ -145,10 +155,16 @@ export const VuiTable = <T extends Row>({
       </VuiTableContent>
     );
   } else {
-    tableContent = rows.map((row) => {
+    tableContent = rows.map((row, rowIndex) => {
       const rowId = extractId(row, idField);
+      const rowAttributes = rowDecorator?.(row) ?? {};
+      const { className: rowClassNameAttribute, ...restRowAttributes } = rowAttributes;
+      const rowClassName = classNames(rowClassNameAttribute, {
+        "vuiTableRow-isBeingActedUpon": rowBeingActedUpon === row
+      });
+
       return (
-        <tr key={rowId} className={rowBeingActedUpon === row ? "vuiTableRow-isBeingActedUpon" : undefined}>
+        <tr key={rowId} className={rowClassName} {...restRowAttributes}>
           {/* Checkbox column */}
           {onSelectRow && (
             <td>
@@ -178,7 +194,7 @@ export const VuiTable = <T extends Row>({
 
             return (
               <td key={name} className={className}>
-                <VuiTableCell>{render ? render(row) : row[column.name]}</VuiTableCell>
+                <VuiTableCell>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
               </td>
             );
           })}
@@ -225,13 +241,7 @@ export const VuiTable = <T extends Row>({
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
-                <VuiTextInput
-                  placeholder={searchPlaceholder}
-                  fullWidth
-                  value={searchValue}
-                  onChange={(event) => onSearchChange(event.target.value)}
-                  data-testid={search?.["data-testid"]}
-                />
+                <VuiTextInput fullWidth {...search} />
               </VuiFlexItem>
             )}
 

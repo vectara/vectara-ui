@@ -1,0 +1,26 @@
+$iconWidth: 36px;
+
+.vuiTimelineContainer {
+  margin-left: $iconWidth;
+  border-left: 1px solid transparent;
+  padding-bottom: $sizeM;
+}
+
+.vuiTimelineContainer--bordered {
+  border-left: 2px solid $borderColorLight;
+}
+
+.vuiTimelineItem {
+  margin-left: -$iconWidth * 0.5;
+}
+
+.vuiTimelineItem__icon {
+  border-radius: 100%;
+  padding: $sizeXs;
+  background-color: $colorEmptyShade;
+}
+
+.vuiTimelineItem__content {
+  padding: $sizeXxs $sizeM $sizeS;
+  width: 100%;
+}

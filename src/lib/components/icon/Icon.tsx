@@ -36,9 +36,9 @@ export const VuiIcon = ({ children, size = "m", color = "inherit", className, in
 
   return (
     <IconContext.Provider value={{ className: innerClasses }}>
-      <div className={classes} {...rest}>
+      <span className={classes} {...rest}>
         {icon}
-      </div>
+      </span>
     </IconContext.Provider>
   );
 };
