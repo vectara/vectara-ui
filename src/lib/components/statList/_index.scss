@@ -1,3 +1,13 @@
 .vuiStatName {
   width: 120px;
 }
+
+.vuiStatList--size-s,
+.vuiStatList--size-s p {
+  font-size: $fontSizeStandard !important;
+}
+
+.vuiStatList--size-xs,
+.vuiStatList--size-xs p {
+  font-size: $fontSizeSmall !important;
+}

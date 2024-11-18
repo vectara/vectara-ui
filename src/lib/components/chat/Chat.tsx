@@ -35,6 +35,13 @@ const chatStyleToIconMap = {
   fullScreen: <BiX />
 } as const;
 
+const chatStyleToAriaLabelMap = {
+  closed: "Show chat",
+  condensed: "Expand height of chat",
+  tall: "Full-screen chat",
+  fullScreen: "Hide chat"
+} as const;
+
 export const VuiChat = ({
   openPrompt,
   chatStyle,
@@ -285,6 +292,7 @@ export const VuiChat = ({
 
             <VuiFlexItem shrink={false} grow={false}>
               <VuiIconButton
+                aria-label="Send message"
                 icon={
                   <VuiIcon>
                     <BiPaperPlane />
@@ -297,6 +305,7 @@ export const VuiChat = ({
 
             <VuiFlexItem shrink={false} grow={false}>
               <VuiIconButton
+                aria-label={chatStyleToAriaLabelMap[chatStyle]}
                 icon={<VuiIcon>{chatStyleToIconMap[chatStyle]}</VuiIcon>}
                 color="neutral"
                 onClick={cycleChatStyle}

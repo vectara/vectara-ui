@@ -1,8 +1,9 @@
+import { Fragment } from "react";
+import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiLink } from "../link/Link";
 import { VuiSpacer } from "../spacer/Spacer";
-import { VuiText } from "../typography/Text";
 
 type Stat = { name: string; value: React.ReactNode };
 
@@ -11,18 +12,10 @@ const VuiStat = ({ name, value }: Stat) => {
     <>
       <VuiFlexContainer alignItems="start" spacing="m">
         <VuiFlexItem grow={false} shrink={false} className="vuiStatName">
-          <VuiText>
-            <p>
-              <strong>{name}</strong>
-            </p>
-          </VuiText>
+          <strong>{name}</strong>
         </VuiFlexItem>
 
-        <VuiFlexItem grow={false}>
-          <VuiText>
-            <p>{value}</p>
-          </VuiText>
-        </VuiFlexItem>
+        <VuiFlexItem grow={false}>{value}</VuiFlexItem>
       </VuiFlexContainer>
     </>
   );
@@ -30,11 +23,15 @@ const VuiStat = ({ name, value }: Stat) => {
 
 type Props = {
   stats: Stat[];
+  size?: "xs" | "s";
+  className?: string;
 };
 
-export const VuiStatList = ({ stats }: Props) => {
+export const VuiStatList = ({ stats, size = "s", className, ...rest }: Props) => {
+  const classes = classNames(`vuiStatList--size-${size}`, className);
+
   return (
-    <>
+    <div className={classes} {...rest}>
       {stats.map(({ name, value }, index) => {
         const renderedValue =
           name === "url" || (typeof value === "string" && value.indexOf("http") === 0) ? (
@@ -45,12 +42,12 @@ export const VuiStatList = ({ stats }: Props) => {
             value
           );
         return (
-          <>
+          <Fragment key={name}>
             <VuiStat name={name} value={renderedValue} key={`${name}:${value}`} />
-            {index < stats.length - 1 && <VuiSpacer size="s" />}
-          </>
+            {index < stats.length - 1 && <VuiSpacer size={size === "s" ? "s" : "xxs"} />}
+          </Fragment>
         );
       })}
-    </>
+    </div>
   );
 };

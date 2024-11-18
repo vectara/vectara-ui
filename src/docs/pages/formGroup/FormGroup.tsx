@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { RadioButtonConfig, VuiFormGroup, VuiSelect, VuiSpacer, VuiSuperRadioGroup, VuiTextInput } from "../../../lib";
+import {
+  RadioButtonConfig,
+  VuiFormGroup,
+  VuiSelect,
+  VuiSpacer,
+  VuiSuperRadioGroup,
+  VuiTextArea,
+  VuiTextInput
+} from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
 type Pizza = "pepperoni" | "mushrooms" | "jalapenos";
@@ -59,8 +67,14 @@ export const FormGroup = () => {
 
         <VuiSpacer size="m" />
 
-        <VuiFormGroup label="Select option" labelFor="superRadioGroup">
+        <VuiFormGroup label="Select option" labelFor="superRadioGroup" helpText="Choose wisely.">
           <VuiSuperRadioGroup groupName="superRadioGroup" group={group} onChange={onChange} />
+        </VuiFormGroup>
+
+        <VuiSpacer size="m" />
+
+        <VuiFormGroup label="Enter text" labelFor="textArea" helpText="Enter some text here.">
+          <VuiTextArea id="textArea" value="Text area" onChange={() => undefined} />
         </VuiFormGroup>
       </Subsection>
 
