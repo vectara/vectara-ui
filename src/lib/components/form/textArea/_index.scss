@@ -9,6 +9,10 @@
   padding: $sizeS;
 }
 
+.vuiTextArea-isInvalid {
+  border-color: $colorDanger;
+}
+
 .vuiTextArea--fullWidth {
   width: 100%;
 }

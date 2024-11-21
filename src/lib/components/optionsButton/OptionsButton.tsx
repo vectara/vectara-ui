@@ -9,7 +9,10 @@ import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
 export type Props = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
   Pick<OptionsListProps<any>, "options" | "onSelectOption"> &
-  Pick<ButtonPrimaryProps, "children" | "icon" | "color" | "size" | "className" | "fullWidth" | "onClick"> & {
+  Pick<
+    ButtonPrimaryProps,
+    "children" | "icon" | "color" | "size" | "className" | "fullWidth" | "onClick" | "href" | "track"
+  > & {
     type?: "primary" | "secondary";
   };
 

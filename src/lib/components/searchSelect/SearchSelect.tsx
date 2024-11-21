@@ -16,7 +16,6 @@ type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
       isSearching?: boolean;
       onSearchChange?: (searchValue: string) => void;
       onLazyLoad: () => void;
-      // cache: OptionListItem<T>[];
     };
     selectedOptions: T[];
     onSelect: (selected: T[]) => void;
@@ -84,15 +83,15 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
       }
 
       onSelect(updatedSelectedOptions);
-      return;
+    } else {
+      if (selectedOptions[0] === value) {
+        // If the user clicks on the selected option, deselect it.
+        onSelect([]);
+        return;
+      }
+
+      onSelect([value]);
     }
-
-    // If the user can only select one option at a time,
-    // close the search select as soon as they make a choice.
-    onSelect([value]);
-
-    // Signal the popover to be closed.
-    setIsOpen(false);
   };
 
   // If onSearchChange is provided, we don't filter the options here because

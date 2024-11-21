@@ -10,13 +10,15 @@ type Props = {
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
   maxLength?: number;
+  isInvalid?: boolean;
 };
 
 export const VuiTextArea = forwardRef<HTMLTextAreaElement | null, Props>(
-  ({ className, id, placeholder, value, onChange, fullWidth, name, ...rest }: Props, ref) => {
+  ({ className, id, placeholder, value, onChange, fullWidth, name, isInvalid, ...rest }: Props, ref) => {
     const classes = classNames(
       "vuiTextArea",
       {
+        "vuiTextArea-isInvalid": isInvalid,
         "vuiTextArea--fullWidth": fullWidth
       },
       className
