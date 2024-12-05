@@ -22,6 +22,7 @@ export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Pr
       <VuiButtonSecondary
         color="neutral"
         size="m"
+        data-testid={actions[0].testId}
         onClick={() => actions[0].onClick && actions[0].onClick(selectedRows)}
       >
         {actions[0].label}

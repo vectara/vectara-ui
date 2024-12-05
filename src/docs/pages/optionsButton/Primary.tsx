@@ -28,6 +28,8 @@ export const Primary = () => {
             {BUTTON_COLOR.map((color) => (
               <VuiFlexItem grow={false} key={color}>
                 <VuiOptionsButton
+                  onClick={() => alert("Button clicked")}
+                  href="https://www.vectara.com"
                   size={size}
                   isOpen={isOpen[`${size}-${color}`]}
                   setIsOpen={(isButtonOpen) =>

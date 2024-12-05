@@ -4,6 +4,12 @@ import { VuiSpacer } from "../spacer/Spacer";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { createId } from "../../utils/createId";
+import { VuiTextInput } from "../form/input/TextInput";
+import { VuiNumberInput } from "../form/input/NumberInput";
+import { VuiTextArea } from "../form/textArea/TextArea";
+import { VuiSelect } from "../form/select/Select";
+
+const VALIDATION_ALLOWLIST = [VuiTextInput, VuiNumberInput, VuiTextArea, VuiSelect] as const;
 
 type Props = {
   labelFor: string;
@@ -48,12 +54,23 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
     ariaProps["aria-describedby"] += " " + errorMessageIds.join(" ");
   }
 
-  const content = cloneElement(children, {
+  const cloneProps: {
+    id: string;
+    required: boolean | undefined;
+    isInvalid?: boolean;
+  } = {
     ...ariaProps,
-    isInvalid: errors && errors.length > 0,
     id: labelFor,
     required: isRequired
-  });
+  };
+
+  const canValidateChild = VALIDATION_ALLOWLIST.includes(children.type as any);
+
+  if (canValidateChild) {
+    cloneProps.isInvalid = errors && errors.length > 0;
+  }
+
+  const content = cloneElement(children, cloneProps);
 
   return (
     <div>

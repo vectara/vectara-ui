@@ -34,6 +34,7 @@ export const Table = () => {
   const [canSelectRows, setCanSelectRows] = useState(true);
   const [canSearch, setCanSearch] = useState(true);
   const [areNicknamesVisible, setAreNicknamesVisible] = useState(false);
+  const [isAlignTop, setIsAlignTop] = useState(false);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -74,6 +75,15 @@ export const Table = () => {
   };
 
   const columns = [
+    {
+      name: "#",
+      header: {
+        render: () => {
+          return "#";
+        }
+      },
+      render: (person: Person, rowIndex: number) => rowIndex + 1
+    },
     {
       name: "name",
       header: {
@@ -233,11 +243,11 @@ export const Table = () => {
 
   const search = canSearch
     ? {
-        searchValue,
-        searchPlaceholder: "Search people",
-        onSearchChange: (search: string) => {
+        value: searchValue,
+        placeholder: "Search people",
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
           setCurrentPage(1);
-          setSearchValue(search);
+          setSearchValue(e.target.value);
         }
       }
     : undefined;
@@ -291,6 +301,10 @@ export const Table = () => {
             onChange={(e) => setAreNicknamesVisible(e.target.checked)}
           />
         </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Align top" checked={isAlignTop} onChange={(e) => setIsAlignTop(e.target.checked)} />
+        </VuiFlexItem>
       </VuiFlexContainer>
 
       <VuiSpacer size="xl" />
@@ -301,6 +315,7 @@ export const Table = () => {
       <VuiTable
         isLoading={isLoading}
         idField="id"
+        rowDecorator={(person: Person) => ({ className: "testRowClass", "data-testid": person.name })}
         columns={columns}
         rows={rows}
         content={content}
@@ -312,6 +327,9 @@ export const Table = () => {
         onReload={onReload}
         search={search}
         isDisabled={isDisabled}
+        bodyStyle={{
+          verticalAlign: isAlignTop ? "top" : undefined
+        }}
       />
     </>
   );
