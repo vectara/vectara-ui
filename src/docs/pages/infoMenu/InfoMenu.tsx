@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiAccountMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList, VuiSpacer, VuiText } from "../../../lib";
+import { VuiInfoMenu, VuiButtonSecondary, VuiIcon, VuiOptionsList, VuiSpacer, VuiText } from "../../../lib";
 import { BiSolidUser } from "react-icons/bi";
 
 const options = [
@@ -7,11 +7,13 @@ const options = [
   { value: "signOut", label: "Sign out" }
 ];
 
-export const AccountMenu = () => {
+export const InfoMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <VuiAccountMenu
+    <VuiInfoMenu
+      data-testid="infoMenu"
+      anchorSide="left"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       button={
@@ -55,6 +57,6 @@ export const AccountMenu = () => {
         options={options}
         size="l"
       />
-    </VuiAccountMenu>
+    </VuiInfoMenu>
   );
 };

@@ -8,4 +8,5 @@ export { VuiTextInput } from "./input/TextInput";
 export { VuiTextArea } from "./textArea/TextArea";
 export { VuiPasswordInput } from "./input/PasswordInput";
 
+export type { Props as TextInputProps } from "./input/TextInput";
 export type { RadioButtonConfig } from "./superRadioGroup/types";
