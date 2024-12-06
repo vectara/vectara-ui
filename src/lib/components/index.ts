@@ -54,7 +54,7 @@ import { VuiOptionsButton } from "./optionsButton/OptionsButton";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
-import { VuiPopover } from "./popover/Popover";
+import { VuiPopover, AnchorSide } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
 import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
 import { VuiPrompt } from "./prompt/Prompt";
@@ -84,6 +84,7 @@ import { VuiToggle } from "./toggle/Toggle";
 import { VuiTopicButton } from "./topicButton/TopicButton";
 
 export type {
+  AnchorSide,
   AppContentPadding,
   ButtonColor,
   CalloutColor,
