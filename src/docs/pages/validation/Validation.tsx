@@ -1,4 +1,4 @@
-import { VuiFormGroup, VuiNumberInput, VuiSelect, VuiSpacer, VuiTextInput } from "../../../lib";
+import { VuiFormGroup, VuiNumberInput, VuiSelect, VuiSpacer, VuiTextArea, VuiTextInput } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
 export const Validation = () => {
@@ -34,6 +34,20 @@ export const Validation = () => {
           ]}
         >
           <VuiTextInput id="input1" value="Invalid text input" onChange={(event) => console.log(event.target.value)} />
+        </VuiFormGroup>
+
+        <VuiSpacer size="m" />
+
+        <VuiFormGroup
+          label="Enter text"
+          labelFor="textArea"
+          helpText="Enter some text here."
+          errors={[
+            "This is an error message.",
+            "Here's a second validation error that you must address before submitting this form."
+          ]}
+        >
+          <VuiTextArea id="textArea" value="Text area" onChange={() => undefined} />
         </VuiFormGroup>
       </Subsection>
 

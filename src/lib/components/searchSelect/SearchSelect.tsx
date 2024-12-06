@@ -16,7 +16,6 @@ type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
       isSearching?: boolean;
       onSearchChange?: (searchValue: string) => void;
       onLazyLoad: () => void;
-      // cache: OptionListItem<T>[];
     };
     selectedOptions: T[];
     onSelect: (selected: T[]) => void;

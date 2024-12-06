@@ -31,7 +31,10 @@ export type BaseButtonProps = {
   isSelected?: boolean;
   isInert?: boolean;
   isDisabled?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLAnchorElement, MouseEvent>) => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseOver?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseOut?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  onMouseMove?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
@@ -57,6 +60,9 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       size = "m",
       fullWidth,
       onClick,
+      onMouseOver,
+      onMouseOut,
+      onMouseMove,
       tabIndex,
       isInert,
       isDisabled,
@@ -112,6 +118,9 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         className: wrapperClasses,
         href,
         onClick,
+        onMouseOver,
+        onMouseOut,
+        onMouseMove,
         children: (
           //* Wrap a button otherwise the flex layout breaks */}
           <button className={classes} tabIndex={-1} ref={ref}>
@@ -128,14 +137,16 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
 
     const props = {
       onClick,
+      onMouseOver,
+      onMouseOut,
+      onMouseMove,
       tabIndex,
       ["type"]: isSubmit ? "submit" : "button",
       disabled: isDisabled,
       ...rest
-    };
+    } as const;
 
     return (
-      // @ts-expect-error HTMLButtonElement conflict with HTMLAnchorElement
       <button className={classes} {...props} ref={ref}>
         {iconContainer}
         {children}

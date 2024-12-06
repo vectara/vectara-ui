@@ -1,5 +1,4 @@
 import { VuiAccordion } from "./accordion/Accordion";
-import { VuiAccountMenu } from "./accountMenu/AccountMenu";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
@@ -41,6 +40,8 @@ import { VuiGrid } from "./grid/Grid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE } from "./icon/types";
+import { InfoListType, VuiInfoList } from "./infoList/InfoList";
+import { VuiInfoMenu } from "./infoMenu/InfoMenu";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { LinkProps } from "./link/types";
@@ -78,6 +79,7 @@ import { VuiTabs } from "./tabs/Tabs";
 import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
+import { VuiTimeline, VuiTimelineItem } from "./timeline";
 import { TEXT_COLOR, TEXT_SIZE, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
@@ -92,6 +94,7 @@ export type {
   ChatStyle,
   ChatTurn,
   CodeLanguage,
+  InfoListType,
   InfoTableColumnAlign,
   InfoTableRow,
   InfoTableRowType,
@@ -125,7 +128,6 @@ export {
   TEXT_SIZE,
   TITLE_SIZE,
   VuiAccordion,
-  VuiAccountMenu,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,
@@ -149,6 +151,8 @@ export {
   VuiGrid,
   VuiHorizontalRule,
   VuiIcon,
+  VuiInfoList,
+  VuiInfoMenu,
   VuiInfoTable,
   VuiLabel,
   VuiLink,
@@ -189,6 +193,8 @@ export {
   VuiTextArea,
   VuiTextColor,
   VuiTextInput,
+  VuiTimeline,
+  VuiTimelineItem,
   VuiTitle,
   VuiToggle,
   VuiTopicButton
