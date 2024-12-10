@@ -73,11 +73,11 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [tabs, accordion, popover, infoMenu, flex, grid, spacer, card, horizontalRule]
+    pages: [tabs, timeline, accordion, popover, infoMenu, flex, grid, spacer, card, horizontalRule]
   },
   {
     name: "Content",
-    pages: [badge, status, callout, timeline, code, icon, progressBar, spinner, text]
+    pages: [badge, status, callout, code, icon, progressBar, spinner, text]
   },
   {
     name: "Form",

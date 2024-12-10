@@ -2,12 +2,12 @@ import { VuiSpacer, VuiStatList, VuiStatus } from "../../../lib";
 
 const stats = [
   {
-    name: "Name",
+    name: "Name of interstellar vessel",
     value: "Nostromo"
   },
   {
-    name: "Location",
-    value: "Deep space"
+    name: "location_which_is_a_long_string_and_should_wrap",
+    value: "drifting_around_somewhere_in_extremely_deep_space"
   },
   {
     name: "Status",
