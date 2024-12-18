@@ -92,6 +92,7 @@ export const Table = () => {
           return "Name";
         }
       },
+      testId: "nameColumn",
       render: (person: Person) => (
         <div>
           <div>

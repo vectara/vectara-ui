@@ -33,6 +33,7 @@ type Column<T> = {
   header: TableHeaderCellProps["header"];
   render?: (row: T, rowIndex: number) => React.ReactNode;
   className?: string;
+  testId?: string;
 };
 
 type Props<T> = {
@@ -190,10 +191,10 @@ export const VuiTable = <T extends Row>({
 
           {/* Row info */}
           {columns.map((column) => {
-            const { name, render, className } = column;
+            const { name, render, className, testId } = column;
 
             return (
-              <td key={name} className={className}>
+              <td key={name} className={className} data-testid={testId}>
                 <VuiTableCell>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
               </td>
             );
