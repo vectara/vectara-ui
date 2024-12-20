@@ -43,7 +43,7 @@ $color: (
   accent: (
     "color": $colorAccent,
     "hover-color": $colorAccent,
-    "selected-color": $colorAccentLightShade
+    "selected-color": $colorAccentLighterShade
   ),
   primary: (
     "color": $colorPrimary,
@@ -53,17 +53,17 @@ $color: (
   success: (
     "color": $colorSuccess,
     "hover-color": $colorSuccess,
-    "selected-color": $colorSuccessLightShade
+    "selected-color": $colorSuccessLighterShade
   ),
   danger: (
     "color": $colorDanger,
     "hover-color": $colorDanger,
-    "selected-color": $colorDangerLightShade
+    "selected-color": $colorDangerLighterShade
   ),
   warning: (
     "color": $colorWarning,
     "hover-color": $colorWarning,
-    "selected-color": $colorWarningLightShade
+    "selected-color": $colorWarningLighterShade
   ),
   neutral: (
     "color": $colorText,

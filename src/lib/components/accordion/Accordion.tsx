@@ -43,7 +43,7 @@ export const VuiAccordion = ({ header, children, isOpen, setIsOpen, ...rest }: P
       </button>
 
       {isOpen && (
-        <div id={contentId} aria-labelledby={buttonId}>
+        <div className="vuiAccordionBody" id={contentId} aria-labelledby={buttonId}>
           {children}
         </div>
       )}

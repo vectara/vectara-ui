@@ -1,23 +1,35 @@
 .vuiAccordionHeader {
-  font-size: $fontSizeStandard;
-  border-bottom: 1px solid $borderColorLight;
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightBold;
+  padding: $sizeXs $sizeS;
+  background-color: $colorLightShade;
+  border: 1px solid $borderColorLight;
   width: 100%;
-  padding: $sizeXs 0;
-  color: $colorSubdued;
+  border-radius: $sizeXxs;
 
   &:hover {
     color: $colorPrimary;
     background-color: $colorPrimaryLighterShade;
+    border-color: transparentize($colorPrimary, 0.5);
     text-decoration: underline;
   }
 }
 
 .vuiAccordionHeader--isOpen {
   color: $colorText;
-  border-bottom-color: $borderColor;
   font-weight: $fontWeightBold;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .vuiAccordionHeader__title {
   text-align: left;
+}
+
+.vuiAccordionBody {
+  border: 1px solid $borderColorLight;
+  border-top: none;
+  padding: $sizeM $sizeL;
+  border-bottom-right-radius: $sizeXxs;
+  border-bottom-left-radius: $sizeXxs;
 }

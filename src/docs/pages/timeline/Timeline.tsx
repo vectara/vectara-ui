@@ -116,7 +116,6 @@ export const Timeline = () => {
         <VuiSpacer size="s" />
 
         <VuiAccordion header="Instructions" isOpen={isOpen} setIsOpen={setIsOpen}>
-          <VuiSpacer size="s" />
           <VuiText>
             <ol>
               <li>Secure mutagens</li>

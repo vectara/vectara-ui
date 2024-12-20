@@ -54,7 +54,6 @@ $modalWidth: 500px;
 
 .vuiModalHeader {
   padding: $sizeS $sizeM;
-  background-color: $colorLightShade;
 }
 
 .vuiModalHeader__title {
@@ -70,7 +69,7 @@ $modalWidth: 500px;
 }
 
 .vuiModalContent__inner {
-  padding: $sizeL $sizeM $sizeXxl;
+  padding: $sizeS $sizeM $sizeXxl;
 }
 
 // Color

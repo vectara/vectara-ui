@@ -1,6 +1,5 @@
 .vuiSuperRadioGroup {
   display: grid;
-  gap: $sizeXs;
 }
 
 .vuiSuperRadioButton {
@@ -13,7 +12,6 @@
   transition: all $transitionSpeed;
   text-decoration-color: $colorText;
   text-align: left;
-  border: 1px solid $colorPrimaryLightShade;
 
   &:hover {
     text-decoration: underline;

@@ -29,7 +29,6 @@ $drawerWidth: 680px;
 
 .vuiDrawerHeader {
   padding: $sizeS $sizeL;
-  background-color: $colorLightShade;
 }
 
 .vuiDrawerHeader__title {
@@ -45,7 +44,7 @@ $drawerWidth: 680px;
 }
 
 .vuiDrawerContent__inner {
-  padding: $sizeL $sizeL;
+  padding: $sizeS $sizeL $sizeL;
 }
 
 // Color

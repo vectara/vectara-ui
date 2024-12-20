@@ -6,6 +6,16 @@
   box-shadow: $shadowLargeEnd;
   border-radius: $sizeXxs;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(-$sizeXs);
+  transition: opacity $transitionSpeed, transform $transitionSpeed;
+  visibility: hidden;
+}
+
+.vuiPopover-isLoaded {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .vuiOptionsListItem__selected--unselected {
