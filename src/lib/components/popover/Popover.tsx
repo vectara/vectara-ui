@@ -55,6 +55,9 @@ export const VuiPopover = ({
   const [showTransition, setShowTransition] = useState(false);
 
   const button = cloneElement(originalButton, {
+    role: "button",
+    "aria-haspopup": "menu",
+    "aria-expanded": isOpen,
     isSelected: isOpen,
     onClick: () => {
       setIsOpen(!isOpen);
