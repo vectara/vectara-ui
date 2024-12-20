@@ -39,7 +39,7 @@ $color: (
     "background-color": $colorWarningLighterShade
   ),
   danger: (
-    "border-color": transparentize($colorDanger, 0.5),
+    "border-color": $colorDangerLightShade,
     "background-color": $colorDangerLighterShade
   ),
   neutral: (

@@ -1,6 +1,6 @@
 // Semantic colors
 $colorAccent: #5f30c3 !default;
-$colorAccentLightShade: transparentize($colorAccent, 0.5);
+$colorAccentLightShade: transparentize($colorAccent, 0.5) !default;
 $colorAccentLighterShade: #eee7ff !default;
 
 $colorPrimary: #045dda !default;
@@ -12,12 +12,15 @@ $colorSuccessLightShade: transparentize($colorSuccess, 0.5) !default;
 $colorSuccessLighterShade: #e2f2e0 !default;
 
 $colorWarning: #a86f1b !default;
-$colorWarningLightShade: transparentize($colorWarning, 0.5);
+$colorWarningLightShade: transparentize($colorWarning, 0.5) !default;
 $colorWarningLighterShade: #ffeed4 !default;
 
 $colorDanger: #d22d2d !default;
-$colorDangerLightShade: transparentize($colorDanger, 0.5);
+$colorDangerLightShade: transparentize($colorDanger, 0.5) !default;
 $colorDangerLighterShade: #fff1f1 !default;
+
+// Special colors
+$colorPrimaryHighlight: #d9e2ff !default;
 
 // Neutral colors
 $colorEmptyShade: #ffffff !default;
