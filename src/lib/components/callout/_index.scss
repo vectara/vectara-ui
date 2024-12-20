@@ -23,27 +23,35 @@
 // Color
 $color: (
   accent: (
-    "background-color": transparentize($colorAccent, 0.9)
+    "border-color": $colorAccentLightShade,
+    "background-color": $colorAccentLighterShade
   ),
   primary: (
-    "background-color": $colorPrimaryLightShade
+    "border-color": $colorPrimaryLightShade,
+    "background-color": $colorPrimaryLighterShade
   ),
   success: (
-    "background-color": transparentize($colorSuccess, 0.9)
+    "border-color": $colorSuccessLightShade,
+    "background-color": $colorSuccessLighterShade
   ),
   warning: (
-    "background-color": transparentize($colorWarning, 0.9)
+    "border-color": $colorWarningLightShade,
+    "background-color": $colorWarningLighterShade
   ),
   danger: (
-    "background-color": $colorDangerLightShade
+    "border-color": transparentize($colorDanger, 0.5),
+    "background-color": $colorDangerLighterShade
   ),
   neutral: (
+    "border-color": $colorMediumShade,
     "background-color": $colorLightShade
   )
 );
 
 @each $colorName, $colorValue in $color {
   .vuiCallout--#{$colorName} {
+    border-radius: $sizeXxs;
+    border: 1px solid #{map.get($colorValue, "border-color")};
     background-color: #{map.get($colorValue, "background-color")};
   }
 }

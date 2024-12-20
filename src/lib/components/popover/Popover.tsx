@@ -52,6 +52,7 @@ export const VuiPopover = ({
   const buttonRef = useRef<HTMLElement | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [positionMarker, setPositionMarker] = useState<number>(0);
+  const [showTransition, setShowTransition] = useState(false);
 
   const button = cloneElement(originalButton, {
     isSelected: isOpen,
@@ -83,6 +84,9 @@ export const VuiPopover = ({
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
+      requestAnimationFrame(() => {
+        setShowTransition(true);
+      });
     } else {
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
@@ -95,6 +99,7 @@ export const VuiPopover = ({
   const onCloseDelayed = () => {
     window.setTimeout(() => {
       setIsOpen(false);
+      setShowTransition(false);
     }, 0);
   };
 
@@ -103,7 +108,9 @@ export const VuiPopover = ({
   // of the button changes.
   const position = calculatePopoverPosition(buttonRef.current, anchorSide);
 
-  const classes = classNames("vuiPopover", className);
+  const classes = classNames("vuiPopover", className, {
+    "vuiPopover-isLoaded": showTransition
+  });
 
   const contentClasses = classNames("vuiPopoverContent", {
     "vuiPopoverContent--padding": padding
