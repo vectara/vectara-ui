@@ -25,7 +25,9 @@
 
     &.vuiTableRow-isBeingActedUpon,
     &:not(.vuiTableRow--inert):hover {
-      background-color: $colorLightShade;
+      background-color: transparentize($colorLightShade, 0.75);
+      box-shadow: $shadowSmallEnd;
+      border-bottom-color: transparent;
     }
 
     &:last-child {
