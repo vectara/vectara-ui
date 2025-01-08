@@ -109,7 +109,9 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       );
     }
 
-    if (href) {
+    // Anchor tags can't be disabled, so we'll just render a button instead
+    // if isDisabled is true.
+    if (href && !isDisabled) {
       const wrapperClasses = classNames("vuiBaseButtonLinkWrapper", {
         "vuiBaseButtonLinkWrapper--fullWidth": fullWidth
       });
