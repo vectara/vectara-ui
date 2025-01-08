@@ -33,7 +33,7 @@ type Column<T> = {
   header: TableHeaderCellProps["header"];
   render?: (row: T, rowIndex: number) => React.ReactNode;
   className?: string;
-  testId?: string;
+  testId?: string | ((row: T) => string);
 };
 
 type Props<T> = {
@@ -44,6 +44,7 @@ type Props<T> = {
   rows: T[];
   actions?: TableRowActionsProps<T>["actions"];
   actionsTestIdProvider?: (row: T) => string;
+  reloadTestId?: string;
   pagination?: Pagination | Pager;
   selection?: Selection<T>;
   search?: Search;
@@ -83,6 +84,7 @@ export const VuiTable = <T extends Row>({
   rows,
   actions,
   actionsTestIdProvider,
+  reloadTestId,
   pagination,
   selection,
   search,
@@ -194,7 +196,7 @@ export const VuiTable = <T extends Row>({
             const { name, render, className, testId } = column;
 
             return (
-              <td key={name} className={className} data-testid={testId}>
+              <td key={name} className={className} data-testid={typeof testId === "function" ? testId(row) : testId}>
                 <VuiTableCell>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
               </td>
             );
@@ -257,7 +259,7 @@ export const VuiTable = <T extends Row>({
             {onReload && (
               <VuiFlexItem grow={1} shrink={false}>
                 <VuiFlexContainer justifyContent="end">
-                  <VuiButtonSecondary color="neutral" onClick={() => onReload()}>
+                  <VuiButtonSecondary color="neutral" onClick={() => onReload()} data-testid={reloadTestId}>
                     Reload
                   </VuiButtonSecondary>
                 </VuiFlexContainer>
