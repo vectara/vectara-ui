@@ -92,7 +92,7 @@ export const Table = () => {
           return "Name";
         }
       },
-      testId: "nameColumn",
+      testId: (person: Person) => `nameColumn-${person.id}`,
       render: (person: Person) => (
         <div>
           <div>
@@ -322,6 +322,7 @@ export const Table = () => {
         content={content}
         actions={actions}
         actionsTestIdProvider={(person: Person) => `actions-${person.id}`}
+        reloadTestId="reloadButton"
         pagination={pagination}
         selection={selection}
         onSort={(column, direction) => console.log("Sort", column, direction)}
