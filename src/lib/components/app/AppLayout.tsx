@@ -7,16 +7,17 @@ type Props = {
   navItems?: VuiAppSideNavProps["items"];
   navContent?: React.ReactNode;
   full?: boolean;
+  className?: string;
 };
 
 export const VuiAppLayout = forwardRef(
-  ({ children, navItems, navContent, full }: Props, ref: ForwardedRef<HTMLDivElement>) => {
-    const classes = classNames("vuiAppLayout", {
+  ({ children, navItems, navContent, full, className, ...rest }: Props, ref: ForwardedRef<HTMLDivElement>) => {
+    const classes = classNames("vuiAppLayout", className, {
       "vuiAppLayout--full": full
     });
 
     return (
-      <div className={classes}>
+      <div className={classes} {...rest}>
         {(navItems || navContent) && (
           <div className="vuiAppLayout__sideNav">
             <VuiAppSideNav items={navItems} content={navContent} />
