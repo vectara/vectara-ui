@@ -26,6 +26,7 @@ export const VuiAppContent = ({ children, className, fullWidth, padding = "none"
     },
     className
   );
+
   return (
     <div className={classes} {...rest}>
       {children}
