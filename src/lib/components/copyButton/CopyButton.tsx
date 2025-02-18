@@ -45,9 +45,13 @@ export const VuiCopyButton = ({ value, options, label, size = "s", ...rest }: Pr
     </VuiIcon>
   );
 
-  const copy = (copyValue = value) => {
-    navigator.clipboard.writeText(copyValue);
-    setIsCopied(true);
+  const copy = async (copyValue = value) => {
+    try {
+      await navigator.clipboard?.writeText?.(copyValue);
+      setIsCopied(true);
+    } catch (error) {
+      console.error("Failed to copy to clipboard with error:\n", error, `Tried to copy: ${copyValue}\n`);
+    }
   };
 
   return options ? (
