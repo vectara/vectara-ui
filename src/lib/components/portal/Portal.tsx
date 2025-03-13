@@ -6,17 +6,18 @@ type Props = {
 };
 
 export const VuiPortal = ({ children }: Props) => {
-  const portalRef = useRef<HTMLDivElement | null>(null);
+  // Initialize ref synchronously during the first render, ensuring portalRef.current
+  // is immediately available for createPortal.
+  const portalRef = useRef<HTMLDivElement>(document.createElement("div"));
 
   useEffect(() => {
-    portalRef.current = document.createElement("div");
     document.body.appendChild(portalRef.current);
 
     return () => {
-      portalRef.current?.parentNode?.removeChild(portalRef.current);
+      portalRef.current.parentNode?.removeChild(portalRef.current);
     };
   }, []);
 
-  if (!portalRef.current) return null;
+  console.log("Debug: Render portal");
   return createPortal(children, portalRef.current);
 };

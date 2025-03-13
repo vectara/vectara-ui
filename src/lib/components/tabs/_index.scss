@@ -1,7 +1,8 @@
+@import "./open";
+@import "./enclosed";
+
 .vuiTabs {
-  display: flex;
   align-items: center;
-  border-bottom: 1px solid $borderColorLight;
   justify-content: space-between;
   column-gap: $sizeXxs;
 }
@@ -34,7 +35,6 @@
 .vuiTabs--s {
   .vuiTab {
     .vuiTab__inner {
-      padding: $sizeXs $sizeS;
       font-size: $fontSizeStandard;
     }
   }
@@ -43,7 +43,6 @@
 .vuiTabs--m {
   .vuiTab {
     .vuiTab__inner {
-      padding: $sizeXs $sizeS;
       font-size: $fontSizeMedium;
     }
   }
@@ -61,14 +60,12 @@
 
 .vuiTab {
   padding: $sizeXxs;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-grow: 0;
   flex-shrink: 0;
   color: $colorSubdued;
   text-decoration: none;
-  box-shadow: transparent 0px 1px 0px, transparent 0px -1px 0px inset;
   cursor: pointer;
 
   &:first-child {
@@ -79,25 +76,8 @@
     padding-right: 0;
   }
 
-  &:hover {
-    .vuiTab__inner {
-      color: $colorPrimary;
-      background-color: $colorPrimaryLighterShade;
-      text-decoration: underline;
-
-      .vuiIcon__inner {
-        color: $colorPrimary !important;
-      }
-    }
-  }
-
   &.vuiTab-isActive {
     pointer-events: none;
     color: $colorFullShade;
-    box-shadow: $borderColor 0px 1px 0px;
-
-    .vuiTab__inner {
-      background-color: $colorLightShade;
-    }
   }
 }
