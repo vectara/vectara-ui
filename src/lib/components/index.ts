@@ -1,8 +1,10 @@
 import { VuiAccordion } from "./accordion/Accordion";
+import { VuiAccountButton } from "./accountButton/AccountButton";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
 import { VuiAppSideNav } from "./app/appSideNav/AppSideNav";
+import { VuiAppSideNavLink } from "./app/appSideNav/AppSideNavLink";
 import { Sections, SectionItem, Tree, TreeItem } from "./app/types";
 import { AppContentPadding } from "./app/types";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
@@ -128,10 +130,12 @@ export {
   TEXT_SIZE,
   TITLE_SIZE,
   VuiAccordion,
+  VuiAccountButton,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,
   VuiAppSideNav,
+  VuiAppSideNavLink,
   VuiBadge,
   VuiButtonPrimary,
   VuiButtonSecondary,

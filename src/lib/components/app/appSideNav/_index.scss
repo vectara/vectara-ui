@@ -1,8 +1,8 @@
-$appSideNavWidth: 240px;
+$appSideNavWidth: 200px;
 $appSideNavWidthCollapsed: 60px;
 $appSideNavLinkSpacing: $sizeXxs + 2px;
 
-@mixin appSideNavItem {
+@mixin appSideNavItem--m {
   display: block;
   color: $colorText;
   font-size: $fontSizeStandard;
@@ -10,6 +10,15 @@ $appSideNavLinkSpacing: $sizeXxs + 2px;
   margin-left: -$sizeM;
   padding-top: $appSideNavLinkSpacing;
   padding-bottom: $appSideNavLinkSpacing;
+}
+
+@mixin appSideNavItem--l {
+  display: block;
+  color: $colorText;
+  font-size: $fontSizeMedium;
+  padding: 0 $sizeM;
+  padding-top: $appSideNavLinkSpacing + 2px;
+  padding-bottom: $appSideNavLinkSpacing + 2px;
 }
 
 @import "./appSideNav";
