@@ -1,3 +1,6 @@
+@import "../../../lib/sassUtils/index";
+@import "../../../lib/components/app/index";
+
 .appExample {
   position: absolute;
   z-index: 100;
@@ -8,6 +11,39 @@
   background-color: white;
 }
 
+.appExampleNav {
+  padding: 0;
+  position: fixed;
+  top: 0 !important;
+  bottom: 0;
+  left: 0;
+  width: $appSideNavWidth;
+  padding-top: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-right: 1px solid $borderColorLight;
+}
+
+.appExampleNav__bottom {
+  max-width: 100%;
+  padding: $sizeS;
+}
+
+.appExampleLayout {
+  padding-left: $appSideNavWidth;
+  height: 100vh;
+  padding-top: 46px;
+  flex-direction: column;
+  display: flex;
+}
+
 .appExampleContent {
   border: 1px dotted rgb(129, 62, 206);
+}
+
+.vuiPopover {
+  // Temporary hack to ensure the popover is above the app example.
+  z-index: 200;
 }
