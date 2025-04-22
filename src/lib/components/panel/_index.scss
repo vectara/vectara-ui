@@ -1,0 +1,52 @@
+.vuiPanel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: $sizeXs;
+  padding: $sizeL;
+  display: flex;
+  flex-direction: column;
+  gap: $sizeM;
+  overflow: hidden;
+}
+
+.vuiPanel--align-top {
+  justify-content: flex-start;
+}
+
+.vuiPanel--align-bottom {
+  justify-content: flex-end;
+}
+
+.vuiPanel--default {
+  background-color: $colorLightShade;
+}
+
+.vuiPanel--transparent {
+  background-color: transparent;
+}
+
+.vuiPanelIcon {
+  margin-bottom: $sizeS;
+}
+
+.vuiPanelActions {
+  margin-top: $sizeS;
+}
+
+.vuiPanelBackground {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.vuiBackgroundScale--height {
+  width: auto;
+  height: 100%;
+}
+
+.vuiBackgroundScale--width {
+  width: 100%;
+  height: auto;
+}

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 
-export type AnchorSide = "left" | "right";
+export type AnchorSide = "left" | "right" | "rightUp";
 
 export type Props = {
   button: React.ReactElement;
@@ -17,7 +17,8 @@ export type Props = {
 };
 
 type Position = {
-  top: string;
+  top?: string;
+  bottom?: string;
   left?: string;
   right?: string;
 };
@@ -25,16 +26,25 @@ type Position = {
 const calculatePopoverPosition = (button: HTMLElement | null, anchorSide: AnchorSide): Position | undefined => {
   if (!button) return undefined;
 
-  const buttonRect = button.getBoundingClientRect();
-  const top = buttonRect.bottom + 2 + document.documentElement.scrollTop;
-  const left = buttonRect.left;
+  const { left, right, width, height, top, bottom } = button.getBoundingClientRect();
 
-  if (anchorSide === "left") {
-    return { top: `${top}px`, left: `${left}px` };
+  if (anchorSide === "rightUp") {
+    // Anchor popover to the right side of the button, extending upwards.
+    const adjustedTop = top + height + document.documentElement.scrollTop;
+    // TODO: Hardcoded offset is intended for use with VuiAppSideNav. Extract this into a configurable prop.
+    const adjustedLeft = left + width + 26;
+    return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
   }
 
-  const right = window.innerWidth - buttonRect.right;
-  return { top: `${top}px`, right: `${right}px` };
+  const adjustedTop = bottom + 2 + document.documentElement.scrollTop;
+
+  if (anchorSide === "left") {
+    return { top: `${adjustedTop}px`, left: `${left}px` };
+  }
+
+  // Position against the right side of the element.
+  const adjustedRight = document.documentElement.clientWidth - right;
+  return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
 };
 
 export const VuiPopover = ({
@@ -70,10 +80,10 @@ export const VuiPopover = ({
       setPositionMarker(Date.now());
     };
 
-    window.removeEventListener("resize", updatePosition);
+    window.addEventListener("resize", updatePosition);
     // Mostly defensive to prevent weird bugs where the popover ends
     // up being rendered partially off-screen.
-    window.removeEventListener("scroll", updatePosition);
+    window.addEventListener("scroll", updatePosition);
 
     return () => {
       window.removeEventListener("resize", updatePosition);
@@ -109,7 +119,8 @@ export const VuiPopover = ({
   const position = calculatePopoverPosition(buttonRef.current, anchorSide);
 
   const classes = classNames("vuiPopover", className, {
-    "vuiPopover-isLoaded": showTransition
+    "vuiPopover-isLoaded": showTransition,
+    "vuiPopover--rightUp": anchorSide === "rightUp"
   });
 
   const contentClasses = classNames("vuiPopoverContent", {

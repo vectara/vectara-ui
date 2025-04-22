@@ -1,0 +1,44 @@
+.vuiTabs--open {
+  display: flex;
+  border-bottom: 1px solid $borderColorLight;
+
+  &.vuiTabs--s {
+    .vuiTab {
+      .vuiTab__inner {
+        padding: $sizeXs $sizeM;
+      }
+    }
+  }
+
+  &.vuiTabs--m {
+    .vuiTab {
+      .vuiTab__inner {
+        padding: $sizeXs $sizeM;
+      }
+    }
+  }
+
+  .vuiTab {
+    overflow: hidden;
+    box-shadow: transparent 0px 1px 0px, transparent 0px -1px 0px inset;
+
+    &:hover {
+      .vuiTab__inner {
+        color: $colorPrimary;
+        background-color: $colorPrimaryLighterShade;
+
+        .vuiIcon__inner {
+          color: $colorPrimary !important;
+        }
+      }
+    }
+
+    &.vuiTab-isActive {
+      box-shadow: $borderColor 0px 1px 0px;
+
+      .vuiTab__inner {
+        background-color: $colorLightShade;
+      }
+    }
+  }
+}
