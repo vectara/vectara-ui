@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { FocusOn } from "react-focus-on";
+import { BiClipboard, BiFullscreen, BiX } from "react-icons/bi";
+import classNames from "classnames";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "prismjs/components/prism-json";
@@ -7,14 +10,12 @@ import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
-import classNames from "classnames";
-import { BiClipboard, BiFullscreen, BiX } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { CodeLanguage } from "./types";
 import { VuiFlexContainer } from "../flex/FlexContainer";
-import { FocusOn } from "react-focus-on";
 import { VuiPortal } from "../portal/Portal";
+import { copyToClipboard } from "../../utils/copyToClipboard";
 
 type Props = {
   language?: CodeLanguage;
@@ -77,8 +78,8 @@ export const VuiCode = ({
           </VuiIcon>
         }
         aria-label="Copy to clipboard"
-        onClick={() => {
-          navigator.clipboard.writeText(children);
+        onClick={async () => {
+          await copyToClipboard(children);
           if (onCopy) onCopy();
         }}
       />

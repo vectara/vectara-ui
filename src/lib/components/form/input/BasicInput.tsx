@@ -3,16 +3,13 @@ import { forwardRef } from "react";
 
 const SIZE = ["m", "l"] as const;
 
-export type BasicInputProps = {
-  className?: string;
-  id?: string;
-  name?: string;
-  placeholder?: string;
+export type BasicInputProps = Omit<
+  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "size" | "autoComplete" | "ref"
+> & {
   isInvalid?: boolean;
   size?: (typeof SIZE)[number];
   fullWidth?: boolean;
-  onSubmit?: () => void;
-  autoFocus?: boolean;
   autoComplete?: boolean | string;
 };
 
@@ -43,11 +40,11 @@ export const VuiBasicInput = forwardRef<HTMLInputElement | null, BasicInputProps
       className
     );
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         e.preventDefault();
         e.stopPropagation();
-        onSubmit?.();
+        onSubmit?.(e);
       }
     };
 

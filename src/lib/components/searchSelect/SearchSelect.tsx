@@ -6,7 +6,7 @@ import { VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { sortSelectedOptions } from "./sortSelectedOptions";
 
-type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
+type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen" | "anchorSide"> &
   Pick<OptionsListProps<T>, "options"> & {
     children: PopoverProps["button"];
     title?: string;
@@ -25,11 +25,12 @@ type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiSearchSelect = <T extends unknown = unknown>({
-  children,
-  title,
   isOpen,
   setIsOpen,
+  anchorSide,
   options,
+  children,
+  title,
   searchValue,
   setSearchValue,
   asyncSearch,
@@ -113,6 +114,7 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
       }}
       button={children}
       header={title}
+      anchorSide={anchorSide}
     >
       <div className="vuiSearchSelect__search">
         <VuiTextInput
