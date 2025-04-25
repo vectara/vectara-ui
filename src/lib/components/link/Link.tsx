@@ -7,7 +7,7 @@ export const VuiLinkInternal = ({ ...rest }: LinkProps) => {
   return <VuiLink {...rest} track />;
 };
 
-export const VuiLink = ({ children, href, target, onClick, className, track, isAnchor, ...rest }: LinkProps) => {
+export const VuiLink = ({ children, href, target, onClick, className, track, isAnchor, ref, ...rest }: LinkProps) => {
   const { createLink } = useVuiContext();
 
   if (!href) {
@@ -33,13 +33,14 @@ export const VuiLink = ({ children, href, target, onClick, className, track, isA
 
   if (isAnchor) {
     return (
-      <a className={classNames("vuiLink", className)} href={href} onClick={onClick} {...props}>
+      <a className={classNames("vuiLink", className)} href={href} onClick={onClick} ref={ref} {...props}>
         {children}
       </a>
     );
   }
 
   return createLink({
+    ref,
     className: classNames("vuiLink", className),
     href,
     onClick,
