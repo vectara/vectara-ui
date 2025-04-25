@@ -9,7 +9,7 @@ export type TreeItem = {
   pages?: Tree;
   iconBefore?: React.ReactNode;
   iconAfter?: React.ReactNode;
-  isActive?: boolean;
+  isSelected?: boolean;
   className?: string;
   "data-testid"?: string;
 };
