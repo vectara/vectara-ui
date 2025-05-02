@@ -1,6 +1,6 @@
 {
   "name": "@vectara/vectara-ui",
-  "version": "3.11.0",
+  "version": "4.6.0",
   "homepage": "https://vectara.github.io/vectara-ui/",
   "description": "Vectara's design system, codified as a React and Sass component library",
   "author": "Vectara",
@@ -45,6 +45,7 @@
     "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.7",
     "classnames": "^2.3.2",
+    "copy-to-clipboard": "^3.3.3",
     "copyfiles": "^2.4.1",
     "lodash": "^4.17.21",
     "markdown-to-jsx": "^7.3.2",

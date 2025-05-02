@@ -34,6 +34,7 @@ export const SingleSelect = () => {
       selectedOptions={selectedOptions}
       options={options}
       isMultiSelect={false}
+      anchorSide="left"
     >
       <VuiButtonSecondary color="neutral" size="s">
         Meal preference
