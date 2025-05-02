@@ -1,5 +1,6 @@
 // Components
 import { accordion } from "./pages/accordion";
+import { accountButton } from "./pages/accountButton";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
@@ -27,6 +28,7 @@ import { modal } from "./pages/modal";
 import { notifications } from "./pages/notifications";
 import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
+import { panel } from "./pages/panel";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
@@ -65,7 +67,7 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, drawer, modal, notifications]
+    pages: [app, drawer, modal, notifications, accountButton]
   },
   {
     name: "Info",
@@ -73,7 +75,7 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [tabs, timeline, accordion, popover, infoMenu, flex, grid, spacer, card, horizontalRule]
+    pages: [tabs, timeline, accordion, popover, infoMenu, flex, grid, spacer, card, panel, horizontalRule]
   },
   {
     name: "Content",
