@@ -19,15 +19,24 @@ type Props = {
   className?: string;
   size?: (typeof ICON_SIZE)[number];
   inline?: boolean;
+  isEnclosed?: boolean;
 };
 
-export const VuiIcon = ({ children, size = "m", color = "inherit", className, inline, ...rest }: Props) => {
-  const innerClasses = classNames(className, "vuiIcon__inner", {
-    [`vuiIcon--${color}`]: color
-  });
+export const VuiIcon = ({
+  children,
+  size = "m",
+  color = "inherit",
+  className,
+  inline,
+  isEnclosed = false,
+  ...rest
+}: Props) => {
+  const innerClasses = classNames(className, "vuiIcon__inner", `vuiIcon--${isEnclosed ? "empty" : color}`);
 
   const classes = classNames("vuiIcon", {
-    "vuiIcon--inline": inline
+    "vuiIcon--inline": inline,
+    "vuiIcon--enclosed": isEnclosed,
+    [`vuiIcon--enclosed-${color}`]: isEnclosed
   });
 
   const icon = cloneElement(children as React.ReactElement, {

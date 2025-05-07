@@ -24,6 +24,10 @@ $color: (
     &:hover {
       background-color: transparentize($color: $colorValue, $amount: 0.9);
     }
+
+    &-isSelected {
+      background-color: transparentize($color: $colorValue, $amount: 0.9);
+    }
   }
 }
 
