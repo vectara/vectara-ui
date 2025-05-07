@@ -23,7 +23,7 @@ export const VuiContextProvider = ({ children, linkProvider, pathProvider, drawe
   const createLink = (linkConfig: LinkProps) => {
     if (linkProvider) return linkProvider(linkConfig);
 
-    const { className, href, onClick, children, ...rest } = linkConfig;
+    const { className, href, onClick, children, ref, ...rest } = linkConfig;
 
     return (
       <a className={className} href={href} onClick={onClick} {...rest}>
