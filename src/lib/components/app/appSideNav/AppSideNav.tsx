@@ -10,6 +10,7 @@ import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 
 export const buildSideNavItems = (items: Sections | Tree) => {
+  if (items.length === 0) return null;
   return isTree(items) ? buildTree(items) : buildSections(items);
 };
 
@@ -19,11 +20,13 @@ const isTree = (items: Tree | Sections): items is Tree => {
 };
 
 export type Props = {
+  size?: "m" | "l";
+  canCollapseSelf?: boolean;
   items?: Sections | Tree;
   content?: React.ReactNode;
 };
 
-export const VuiAppSideNav = ({ items = [], content }: Props) => {
+export const VuiAppSideNav = ({ size = "m", items = [], content, canCollapseSelf = true }: Props) => {
   const [isTouched, setIsTouched] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const collapseButtonRef = useRef<HTMLButtonElement>(null);
@@ -40,7 +43,7 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
     }
   }, [isTouched, isCollapsed]);
 
-  const classes = classNames("vuiAppSideNav", {
+  const classes = classNames("vuiAppSideNav", `vuiAppSideNav--${size}`, {
     "vuiAppSideNav-isCollapsed": isCollapsed
   });
 
@@ -53,43 +56,44 @@ export const VuiAppSideNav = ({ items = [], content }: Props) => {
   return (
     <div className={classes}>
       <div className="vuiAppSideNav__inner">
-        {isCollapsed ? (
-          <VuiIconButton
-            ref={expandButtonRef}
-            aria-label="Show nav"
-            onClick={() => setIsCollapsed(false)}
-            className="vuiAppSideNavExpandButton"
-            color="neutral"
-            icon={
-              <VuiIcon>
-                <BiChevronRight />
-              </VuiIcon>
-            }
-          />
-        ) : (
-          <>
-            <button
-              ref={collapseButtonRef}
-              className="vuiAppSideNavCollapseButton"
-              onClick={() => {
-                setIsTouched(true);
-                setIsCollapsed(true);
-              }}
-            >
-              <VuiFlexContainer alignItems="center" spacing="xxs">
-                <VuiFlexItem shrink={false} grow={false}>
-                  <VuiIcon>
-                    <BiChevronLeft />
-                  </VuiIcon>
-                </VuiFlexItem>
+        {canCollapseSelf &&
+          (isCollapsed ? (
+            <VuiIconButton
+              ref={expandButtonRef}
+              aria-label="Show nav"
+              onClick={() => setIsCollapsed(false)}
+              className="vuiAppSideNavExpandButton"
+              color="neutral"
+              icon={
+                <VuiIcon>
+                  <BiChevronRight />
+                </VuiIcon>
+              }
+            />
+          ) : (
+            <>
+              <button
+                ref={collapseButtonRef}
+                className="vuiAppSideNavCollapseButton"
+                onClick={() => {
+                  setIsTouched(true);
+                  setIsCollapsed(true);
+                }}
+              >
+                <VuiFlexContainer alignItems="center" spacing="xxs">
+                  <VuiFlexItem shrink={false} grow={false}>
+                    <VuiIcon>
+                      <BiChevronLeft />
+                    </VuiIcon>
+                  </VuiFlexItem>
 
-                <VuiFlexItem shrink={false} grow={false}>
-                  Collapse nav
-                </VuiFlexItem>
-              </VuiFlexContainer>
-            </button>
-          </>
-        )}
+                  <VuiFlexItem shrink={false} grow={false}>
+                    Collapse nav
+                  </VuiFlexItem>
+                </VuiFlexContainer>
+              </button>
+            </>
+          ))}
 
         {/* @ts-expect-error React doesn't support inert yet */}
         <div className={contentClasses} inert={isCollapsed ? "" : null}>

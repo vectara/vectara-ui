@@ -8,7 +8,10 @@ const options = [
 export const CopyButton = () => {
   return (
     <>
-      <VuiCopyButton title="Copy value" size="xs" value="Primary value to copy" options={options} />
+      {/* Expect to see this callback never called because CopyButton will swallow the click. */}
+      <div onClick={() => console.log("clicked")}>
+        <VuiCopyButton title="Copy value" size="xs" value="Primary value to copy" options={options} />
+      </div>
 
       <VuiSpacer size="m" />
 
