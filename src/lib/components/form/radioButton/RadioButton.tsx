@@ -2,20 +2,15 @@ import { createId } from "../../../utils/createId";
 import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 
-type Props = {
-  checked: boolean;
-  onChange: () => void;
-  groupName: string;
+type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   label?: string;
-  disabled?: boolean;
+  groupName: string;
 };
 
-export const VuiRadioButton = ({ checked, onChange, label, groupName, disabled, ...rest }: Props) => {
+export const VuiRadioButton = ({ checked, onChange, label, disabled, ...rest }: Props) => {
   const id = createId();
 
-  const radioButton = (
-    <input id={id} type="radio" checked={checked} onChange={onChange} disabled={disabled} {...rest} />
-  );
+  const radioButton = <input id={id} type="radio" {...rest} />;
 
   if (!label) {
     return radioButton;

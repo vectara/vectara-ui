@@ -20,6 +20,7 @@ type Props = {
   target?: LinkProps["target"];
   track?: LinkProps["track"];
   tabIndex?: number;
+  isSelected?: boolean;
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -37,6 +38,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       target,
       track,
       tabIndex,
+      isSelected = false,
       ...rest
     }: Props,
     ref
@@ -44,7 +46,9 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
     const { createLink } = useVuiContext();
 
     const props = {
-      className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`),
+      className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`, {
+        [`vuiIconButton--${color}-isSelected`]: isSelected
+      }),
       onClick,
       onMouseOver,
       onMouseOut,
