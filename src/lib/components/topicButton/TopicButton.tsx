@@ -3,17 +3,31 @@ import { VuiSpacer } from "../spacer/Spacer";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiTitle } from "../typography/Title";
 import { useVuiContext } from "../context/Context";
+import { LinkProps } from "../link/types";
+import { getTrackingProps } from "../../utils/getTrackingProps";
 
 type Props = {
   children?: React.ReactNode;
   className?: string;
-  href?: string;
+  href?: LinkProps["href"];
+  target?: LinkProps["target"];
+  track?: LinkProps["track"];
   onClick?: () => void;
   title?: string;
   fullWidth?: boolean;
 };
 
-export const VuiTopicButton = ({ children, className, href, onClick, title, fullWidth, ...rest }: Props) => {
+export const VuiTopicButton = ({
+  children,
+  className,
+  href,
+  onClick,
+  title,
+  fullWidth,
+  target,
+  track,
+  ...rest
+}: Props) => {
   const { createLink } = useVuiContext();
 
   const classes = classNames("vuiTopicButton", className, {
@@ -44,7 +58,9 @@ export const VuiTopicButton = ({ children, className, href, onClick, title, full
       href,
       onClick,
       children: content,
-      ...rest
+      target,
+      ...rest,
+      ...getTrackingProps(track)
     });
   }
 
