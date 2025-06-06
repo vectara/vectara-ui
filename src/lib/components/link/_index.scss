@@ -13,5 +13,7 @@
 }
 
 .vuiLink--button {
+  // This prevents link buttons from having centered text.
+  text-align: inherit;
   display: inline;
 }

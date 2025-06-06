@@ -4,6 +4,12 @@
   line-height: 0;
 }
 
+.vuiIcon--enclosed {
+  border-radius: 100%;
+  padding: $sizeS;
+  color: #ffffff;
+}
+
 .vuiIcon--inline {
   display: inline-block;
 }
@@ -22,5 +28,9 @@ $colors: (
 @each $colorName, $colorValue in $colors {
   .vuiIcon--#{$colorName} {
     color: $colorValue;
+  }
+
+  .vuiIcon--enclosed-#{$colorName} {
+    background-color: $colorValue;
   }
 }

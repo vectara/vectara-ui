@@ -1,4 +1,4 @@
-import { Link } from "../topicButton/Link";
+import { Link } from "./Link";
 
 const LinkSource = require("!!raw-loader!./Link");
 
