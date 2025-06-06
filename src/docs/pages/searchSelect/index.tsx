@@ -1,10 +1,12 @@
 import { SearchSelect } from "./SearchSelect";
 import { Async } from "./Async";
 import { SingleSelect } from "./SingleSelect";
+import { FormGroup } from "./FormGroup";
 
 const SearchSelectSource = require("!!raw-loader!./SearchSelect");
 const AsyncSource = require("!!raw-loader!./Async");
 const SingleSelectSource = require("!!raw-loader!./SingleSelect");
+const FormGroupSource = require("!!raw-loader!./FormGroup");
 
 export const searchSelect = {
   name: "Search Select",
@@ -24,6 +26,11 @@ export const searchSelect = {
       name: "Single selection",
       component: <SingleSelect />,
       source: SingleSelectSource.default.toString()
+    },
+    {
+      name: "Form group",
+      component: <FormGroup />,
+      source: FormGroupSource.default.toString()
     }
   ]
 };

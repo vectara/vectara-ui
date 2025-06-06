@@ -2,7 +2,7 @@
   display: inline-block;
   border-radius: $sizeXxs;
   padding: $sizeXxs;
-  line-height: 1;
+  line-height: 0; // Ensure icon sits in the center.
 }
 
 // Color
@@ -22,6 +22,10 @@ $color: (
     background-color: transparentize($color: $colorValue, $amount: 1);
 
     &:hover {
+      background-color: transparentize($color: $colorValue, $amount: 0.9);
+    }
+
+    &-isSelected {
       background-color: transparentize($color: $colorValue, $amount: 0.9);
     }
   }

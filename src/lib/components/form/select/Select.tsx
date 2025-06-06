@@ -5,18 +5,13 @@ import { forwardRef } from "react";
 
 const SIZE = ["m", "l"] as const;
 
-type Props = {
-  className?: string;
-  id?: string;
-  name?: string;
+type Props = Omit<React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>, "size"> & {
   isInvalid?: boolean;
   options: {
     text: string;
     value: string;
   }[];
-  value: string;
   size?: (typeof SIZE)[number];
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   fullWidth?: boolean;
 };
 

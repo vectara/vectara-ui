@@ -1,8 +1,10 @@
 import { VuiAccordion } from "./accordion/Accordion";
+import { VuiAccountButton } from "./accountButton/AccountButton";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
 import { VuiAppSideNav } from "./app/appSideNav/AppSideNav";
+import { VuiAppSideNavLink } from "./app/appSideNav/AppSideNavLink";
 import { Sections, SectionItem, Tree, TreeItem } from "./app/types";
 import { AppContentPadding } from "./app/types";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
@@ -55,6 +57,7 @@ import { VuiOptionsButton } from "./optionsButton/OptionsButton";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
+import { VuiPanel } from "./panel/Panel";
 import { VuiPopover, AnchorSide } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
 import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
@@ -83,7 +86,9 @@ import { VuiTimeline, VuiTimelineItem } from "./timeline";
 import { TEXT_COLOR, TEXT_SIZE, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
+import { VuiTooltip } from "./tooltip/Tooltip";
 import { VuiTopicButton } from "./topicButton/TopicButton";
+import { copyToClipboard } from "../utils/copyToClipboard";
 
 export type {
   AnchorSide,
@@ -127,11 +132,14 @@ export {
   TEXT_COLOR,
   TEXT_SIZE,
   TITLE_SIZE,
+  copyToClipboard,
   VuiAccordion,
+  VuiAccountButton,
   VuiAppContent,
   VuiAppHeader,
   VuiAppLayout,
   VuiAppSideNav,
+  VuiAppSideNavLink,
   VuiBadge,
   VuiButtonPrimary,
   VuiButtonSecondary,
@@ -166,6 +174,7 @@ export {
   VuiOptionsButton,
   VuiOptionsList,
   VuiOptionsListItem,
+  VuiPanel,
   VuiPasswordInput,
   VuiPopover,
   VuiPortal,
@@ -197,5 +206,6 @@ export {
   VuiTimelineItem,
   VuiTitle,
   VuiToggle,
+  VuiTooltip,
   VuiTopicButton
 };
