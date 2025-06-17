@@ -9,6 +9,7 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIconButton } from "../button/IconButton";
 import { BiX } from "react-icons/bi";
+import { VuiIcon } from "../icon/Icon";
 
 const HEADING_ELEMENT = ["h1", "h2", "h3", "h4", "h5", "h6", "p"] as const;
 
@@ -59,7 +60,11 @@ export const VuiCallout = ({ children, title, headingElement, color, size = "m",
               data-testid="calloutCloseButton"
               color={color}
               onClick={onDismiss}
-              icon={<BiX />}
+              icon={
+                <VuiIcon>
+                  <BiX />
+                </VuiIcon>
+              }
               size="s"
             />
           </VuiFlexItem>
