@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
+import { BiX } from "react-icons/bi";
 import { Props as OptionsListProps, VuiOptionsList } from "../optionsList/OptionsList";
 import { Props as PopoverProps, VuiPopover } from "../popover/Popover";
 import { OptionListItem } from "../optionsList/types";
 import { VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
+import { VuiIconButton } from "../button/IconButton";
+import { VuiIcon } from "../icon/Icon";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
 import { sortSelectedOptions } from "./sortSelectedOptions";
+import classNames from "classnames";
 
-type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
+type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen" | "anchorSide"> &
   Pick<OptionsListProps<T>, "options"> & {
     children: PopoverProps["button"];
     title?: string;
@@ -20,27 +26,36 @@ type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
     selectedOptions: T[];
     onSelect: (selected: T[]) => void;
     isMultiSelect?: boolean;
+    renderItem?: (option: T) => React.ReactNode;
+    onClearAll?: () => void;
+    selectedBadgesContainerClassName?: string;
   };
 
 // https://github.com/typescript-eslint/typescript-eslint/issues/4062
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VuiSearchSelect = <T extends unknown = unknown>({
-  children,
-  title,
   isOpen,
   setIsOpen,
+  anchorSide,
   options,
+  children,
+  title,
   searchValue,
   setSearchValue,
   asyncSearch,
   selectedOptions,
   onSelect,
-  isMultiSelect = true
+  isMultiSelect = true,
+  renderItem,
+  onClearAll,
+  selectedBadgesContainerClassName
 }: Props<T>) => {
   const [orderedOptions, setOrderedOptions] = useState<OptionListItem<T>[]>([]);
 
   // Async-only. Cache all options in case they get selected.
   const [optionsCache, setOptionsCache] = useState<Record<string, OptionListItem<T>>>({});
+
+  const badgesContainerClassName = classNames("vuiSearchSelect__selectedItems", selectedBadgesContainerClassName);
 
   const addOptionsToCache = (optionsToAdd: Array<OptionListItem<T>>) => {
     setOptionsCache((prev) => {
@@ -104,6 +119,18 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
         return false;
       });
 
+  // Update popover position when selected options change (height might change)
+  useEffect(() => {
+    if (isOpen) {
+      // Small delay to ensure DOM has updated before recalculating position
+      const timer = setTimeout(() => {
+        // Trigger a window resize event to force popover position recalculation
+        window.dispatchEvent(new Event("resize"));
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedOptions, isOpen]);
+
   return (
     <VuiPopover
       isOpen={isOpen}
@@ -111,11 +138,49 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
         setIsOpen(isOpen);
         if (!isOpen) setSearchValue("");
       }}
-      button={children}
+      button={
+        renderItem && selectedOptions.length > 0 ? (
+          <div className={badgesContainerClassName} tabIndex={0}>
+            <VuiFlexContainer className="vuiTextArea" justifyContent="spaceBetween" spacing="xxs">
+              <VuiFlexItem grow={1}>
+                <VuiFlexContainer alignItems="center" spacing="xxs" wrap>
+                  {selectedOptions.map((option, ix) => (
+                    <VuiFlexItem key={ix}>{renderItem(option)}</VuiFlexItem>
+                  ))}
+                </VuiFlexContainer>
+              </VuiFlexItem>
+
+              {onClearAll && selectedOptions.length > 0 && (
+                <VuiFlexItem>
+                  <VuiIconButton
+                    aria-label="Remove all"
+                    size="xs"
+                    color="neutral"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onClearAll?.();
+                      setIsOpen(false);
+                    }}
+                    icon={
+                      <VuiIcon size="s">
+                        <BiX />
+                      </VuiIcon>
+                    }
+                  />
+                </VuiFlexItem>
+              )}
+            </VuiFlexContainer>
+          </div>
+        ) : (
+          children
+        )
+      }
       header={title}
+      anchorSide={anchorSide}
     >
       <div className="vuiSearchSelect__search">
         <VuiTextInput
+          fullWidth
           placeholder="Search"
           value={searchValue}
           onChange={(event) => {

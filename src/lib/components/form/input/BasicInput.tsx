@@ -3,17 +3,15 @@ import { forwardRef } from "react";
 
 const SIZE = ["m", "l"] as const;
 
-export type BasicInputProps = {
-  className?: string;
-  id?: string;
-  name?: string;
-  placeholder?: string;
+export type BasicInputProps = Omit<
+  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "size" | "autoComplete" | "ref"
+> & {
   isInvalid?: boolean;
   size?: (typeof SIZE)[number];
   fullWidth?: boolean;
-  onSubmit?: () => void;
-  autoFocus?: boolean;
   autoComplete?: boolean | string;
+  isSelected?: boolean;
 };
 
 export const VuiBasicInput = forwardRef<HTMLInputElement | null, BasicInputProps>(
@@ -29,6 +27,7 @@ export const VuiBasicInput = forwardRef<HTMLInputElement | null, BasicInputProps
       isInvalid,
       autoFocus,
       autoComplete,
+      isSelected,
       ...rest
     }: BasicInputProps,
     ref
@@ -37,17 +36,18 @@ export const VuiBasicInput = forwardRef<HTMLInputElement | null, BasicInputProps
       "vuiInput",
       `vuiInput--${size}`,
       {
+        "vuiInput-isSelected": isSelected,
         "vuiInput-isInvalid": isInvalid,
         "vuiInput--fullWidth": fullWidth
       },
       className
     );
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         e.preventDefault();
         e.stopPropagation();
-        onSubmit?.();
+        onSubmit?.(e);
       }
     };
 
