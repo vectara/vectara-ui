@@ -1,0 +1,8 @@
+.vuiTooltip {
+  background-color: $colorDarkerShade !important;
+  z-index: $tooltipZIndex !important;
+}
+
+.vuiTooltipTarget {
+  display: inline-block;
+}
