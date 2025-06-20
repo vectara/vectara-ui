@@ -2,22 +2,18 @@ import { BiChevronDown } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
+import { Column, OnSort, Row } from "./types";
 
-export type Props = {
-  name: string;
-  header: {
-    isSortable?: boolean;
-    render?: () => React.ReactNode;
-  };
-  onSort?: (column: string, direction: "asc" | "desc") => void;
+export type Props<T> = {
+  column: Column<T>;
+  onSort?: OnSort;
 };
 
-export const VuiTableHeaderCell = ({ name, header, onSort }: Props) => {
+export const VuiTableHeaderCell = <T extends Row>({ column, onSort }: Props<T>) => {
+  const { name, header } = column;
   return (
     <VuiFlexContainer spacing="xxs" alignItems="center" justifyContent="start">
-      <VuiFlexItem grow={false} shrink={false}>
-        {header.render ? header.render() : name}
-      </VuiFlexItem>
+      <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
 
       {onSort && header.isSortable && (
         <VuiFlexItem grow={false} shrink={false}>

@@ -1,0 +1,80 @@
+@import "../../sassUtils/index.scss";
+
+.vuiDatePicker {
+  .react-datepicker {
+    border: none;
+  }
+
+  .react-datepicker__header {
+    border-bottom: 1px solid $borderColorLight;
+    background-color: $colorEmptyShade;
+    padding: $sizeXs 0;
+  }
+
+  .react-datepicker__navigation-icon::before {
+    border-color: $colorMediumShade;
+  }
+
+  .react-datepicker__navigation:hover *::before {
+    border-color: $colorPrimary;
+  }
+
+  .react-datepicker__current-month {
+    color: $colorText;
+  }
+
+  .react-datepicker__month-container {
+    border-bottom: 1px solid $borderColorLight;
+  }
+
+  .react-datepicker__month {
+    margin: $sizeXxs;
+  }
+
+  .react-datepicker__day-name {
+    color: $colorSubdued;
+  }
+
+  .react-datepicker__day {
+    color: $colorText;
+    margin: 1px;
+    border: 1px solid $colorEmptyShade;
+    width: $sizeXl;
+    line-height: $sizeXl;
+
+    &:not([aria-disabled="true"]):hover {
+      border-radius: $sizeXxs;
+      background-color: $colorLightShade;
+    }
+  }
+
+  .react-datepicker__day--selected {
+    background-color: $colorPrimary;
+    color: $colorEmptyShade;
+    border-radius: $sizeXxs;
+    pointer-events: none;
+  }
+
+  .react-datepicker__day--keyboard-selected {
+    background-color: $colorEmptyShade;
+    border: 1px solid $borderColor;
+  }
+
+  .react-datepicker__today-button {
+    width: min-content;
+    border-top: 0;
+    padding: $sizeXs $sizeS;
+    background-color: transparent;
+    text-align: left;
+
+    &:hover {
+      color: $colorPrimary;
+    }
+  }
+}
+
+.vuiDatePicker--inline {
+  .react-datepicker {
+    border: 1px solid $borderColor;
+  }
+}

@@ -7,7 +7,7 @@ import { VuiIcon } from "../icon/Icon";
 import { Props as PopoverProps, VuiPopover } from "../popover/Popover";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
 
-export type Props = Pick<PopoverProps, "isOpen" | "setIsOpen"> &
+export type Props = Pick<PopoverProps, "isOpen" | "setIsOpen" | "onClickButton"> &
   Pick<OptionsListProps<any>, "options" | "onSelectOption"> &
   Pick<
     ButtonPrimaryProps,
@@ -20,6 +20,7 @@ export const VuiOptionsButton = ({
   type = "primary",
   isOpen,
   setIsOpen,
+  onClickButton,
   children,
   icon,
   color,
@@ -44,6 +45,7 @@ export const VuiOptionsButton = ({
         <VuiPopover
           isOpen={isOpen}
           setIsOpen={() => setIsOpen(!isOpen)}
+          onClickButton={onClickButton}
           button={
             <Button
               color={color}

@@ -12,6 +12,10 @@
   visibility: hidden;
 }
 
+.vuiPopover--rightUp {
+  transform: translateY(-100%) !important;
+}
+
 .vuiPopover-isLoaded {
   visibility: visible;
   opacity: 1;

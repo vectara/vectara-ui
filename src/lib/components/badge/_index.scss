@@ -15,6 +15,11 @@
   cursor: pointer;
 }
 
+.vuiBadge__closeButton {
+  padding: 0px !important;
+  height: min-content !important;
+}
+
 // Color
 $color: (
   accent: (

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { BiCheck, BiClipboard } from "react-icons/bi";
 import { VuiOptionsButton } from "../optionsButton/OptionsButton";
 import { Props as OptionsButtonProps } from "../optionsButton/OptionsButton";
 import { VuiIcon } from "../icon/Icon";
-import { BiCheck, BiClipboard } from "react-icons/bi";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
+import { copyToClipboard } from "../../utils/copyToClipboard";
 
 type Props = {
   value: string;
@@ -46,12 +47,8 @@ export const VuiCopyButton = ({ value, options, label, size = "s", ...rest }: Pr
   );
 
   const copy = async (copyValue = value) => {
-    try {
-      await navigator.clipboard?.writeText?.(copyValue);
-      setIsCopied(true);
-    } catch (error) {
-      console.error("Failed to copy to clipboard with error:\n", error, `Tried to copy: ${copyValue}\n`);
-    }
+    await copyToClipboard(copyValue);
+    setIsCopied(true);
   };
 
   return options ? (
@@ -62,7 +59,17 @@ export const VuiCopyButton = ({ value, options, label, size = "s", ...rest }: Pr
       setIsOpen={setIsOpen}
       color="neutral"
       size={size}
-      onClick={() => {
+      onClickButton={(e) => {
+        // Enable placing this button inside other buttons without triggering
+        // the click event of the parent button.
+        e.preventDefault();
+        e.stopPropagation();
+      }}
+      onClick={(e) => {
+        // Enable placing this button inside other buttons without triggering
+        // the click event of the parent button.
+        e.preventDefault();
+        e.stopPropagation();
         copy();
       }}
       onSelectOption={(value) => {
@@ -79,7 +86,11 @@ export const VuiCopyButton = ({ value, options, label, size = "s", ...rest }: Pr
       size={size}
       icon={icon}
       color="neutral"
-      onClick={() => {
+      onClick={(e) => {
+        // Enable placing this button inside other buttons without triggering
+        // the click event of the parent button.
+        e.preventDefault();
+        e.stopPropagation();
         copy(value);
       }}
       {...rest}
