@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { FlexSpacing } from "../flex/types";
 
-export const COLUMNS = [1, 2, 3] as const;
+export const COLUMNS = [1, 2, 3, 4] as const;
 export type Columns = (typeof COLUMNS)[number];
 
 type Props = {

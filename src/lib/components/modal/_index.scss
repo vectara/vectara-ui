@@ -4,12 +4,12 @@ $modalWidth: 500px;
 
 @keyframes modalIn {
   0% {
-    transform: translateX(40px);
+    transform: translateY(12px);
     opacity: 0;
   }
 
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -34,9 +34,10 @@ $modalWidth: 500px;
   max-width: $modalWidth;
   max-height: calc(100vh - $sizeXl);
   background-color: $colorEmptyShade;
-  border: 1px solid $borderColor;
+  border-radius: $sizeXxs;
   z-index: $modalZIndex;
   pointer-events: all;
+  box-shadow: rgba(57, 57, 75, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
   @media screen and (max-width: 1000px) {
     & {
