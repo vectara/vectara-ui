@@ -47,3 +47,17 @@
     font-size: $fontSizeLarge;
   }
 }
+
+.vuiSearchInput__clearButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 0 $sizeXs $sizeXs 0;
+  color: $colorDarkShade;
+  transition: all $transitionSpeed;
+
+  &:hover {
+    color: $colorAccent;
+  }
+}

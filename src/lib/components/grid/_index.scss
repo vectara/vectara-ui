@@ -37,15 +37,33 @@ $spacing: (
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.vuiGrid--columns4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 @container (width < 800px) {
   .vuiGrid--columns3 {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .vuiGrid--columns4 {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 @container (width < 500px) {
   .vuiGrid--columns2,
   .vuiGrid--columns3 {
+    grid-template-columns: 1fr;
+  }
+
+  .vuiGrid--columns4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@container (width < 350px) {
+  .vuiGrid--columns4 {
     grid-template-columns: 1fr;
   }
 }
