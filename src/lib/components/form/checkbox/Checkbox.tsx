@@ -2,11 +2,8 @@ import { createId } from "../../../utils/createId";
 import { VuiFlexContainer } from "../../flex/FlexContainer";
 import { VuiFlexItem } from "../../flex/FlexItem";
 
-type Props = {
-  checked: boolean;
-  onChange: () => void;
+type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   label?: string;
-  disabled?: boolean;
 };
 
 export const VuiCheckbox = ({ checked, onChange, label, disabled, ...rest }: Props) => {

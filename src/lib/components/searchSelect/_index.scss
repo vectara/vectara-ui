@@ -11,3 +11,13 @@
   padding: $sizeXxs $sizeXs;
   border-bottom: 1px solid $borderColor;
 }
+
+.vuiSearchSelect__selectedItems {
+  display: inline-block;
+  cursor: text;
+
+  & > .vuiTextArea {
+    min-height: 0px;
+    padding: $sizeXxs $sizeXs;
+  }
+}
