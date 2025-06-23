@@ -1,4 +1,6 @@
 .vuiTableWrapper {
+  container-type: inline-size;
+  width: 100%;
   position: relative;
 }
 
@@ -33,6 +35,21 @@
     &:last-child {
       border-bottom: 1px solid $borderColor;
     }
+
+    .vuiTableCell__label {
+      display: none;
+      max-inline-size: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .vuiTableCell {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
   }
 
   th {
@@ -46,6 +63,76 @@
     padding: $sizeXxs;
     vertical-align: middle;
     word-break: break-word;
+  }
+}
+
+.vuiTableCell__label {
+  font-size: $fontSizeSmall;
+  font-weight: $labelFontWeight;
+  color: $labelColor;
+}
+
+@container (width < 800px) {
+  .vuiTable {
+    thead {
+      display: none;
+    }
+
+    .vuiTableRow--isSelectable {
+      padding-left: $sizeXxl;
+    }
+
+    .vuiTableRow--hasActions {
+      padding-right: $sizeXxl;
+    }
+
+    tbody tr {
+      position: relative;
+      column-gap: $sizeM;
+      row-gap: $sizeM;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: $sizeM;
+      padding-bottom: $sizeM;
+      border: none;
+      border-radius: $sizeXs;
+      box-shadow: $shadowLargeStart;
+      margin-bottom: $sizeS;
+
+      td {
+        padding: 0;
+      }
+
+      .vuiTableCellWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: $sizeXxs;
+      }
+
+      .vuiTableCell__label {
+        display: block;
+      }
+
+      .vuiTableRowSelect {
+        position: absolute;
+        top: $sizeM;
+        left: $sizeXs;
+      }
+
+      .vuiTableRowActions {
+        position: absolute;
+        top: $sizeXs * 1.25;
+        right: $sizeXs;
+      }
+    }
+  }
+}
+
+@container (width < 500px) {
+  .vuiTable {
+    tbody tr {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
@@ -71,13 +158,6 @@
   table-layout: auto;
 }
 
-.vuiTableCell {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 .vuiTableActions {
   display: flex;
   justify-content: flex-end;
@@ -101,4 +181,23 @@
 
 .vuiTableContent {
   height: 80px;
+}
+
+.vuiTableStickyHeader {
+  position: sticky;
+  top: 0;
+  background-color: $colorEmptyShade;
+  padding: $sizeS $sizeS;
+  margin: 0 -$sizeS; // Preserve same table position as when sticky header is not used
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -$sizeS;
+    left: 0;
+    width: 100%;
+    height: $sizeS;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
 }

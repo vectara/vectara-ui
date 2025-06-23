@@ -35,6 +35,7 @@ export const Table = () => {
   const [canSearch, setCanSearch] = useState(true);
   const [areNicknamesVisible, setAreNicknamesVisible] = useState(false);
   const [isAlignTop, setIsAlignTop] = useState(false);
+  const [isHeaderSticky, setIsHeaderSticky] = useState(false);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -306,6 +307,14 @@ export const Table = () => {
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Align top" checked={isAlignTop} onChange={(e) => setIsAlignTop(e.target.checked)} />
         </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Is header sticky"
+            checked={isHeaderSticky}
+            onChange={(e) => setIsHeaderSticky(e.target.checked)}
+          />
+        </VuiFlexItem>
       </VuiFlexContainer>
 
       <VuiSpacer size="xl" />
@@ -332,6 +341,7 @@ export const Table = () => {
         bodyStyle={{
           verticalAlign: isAlignTop ? "top" : undefined
         }}
+        isHeaderSticky={isHeaderSticky}
       />
     </>
   );
