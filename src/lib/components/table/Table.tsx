@@ -4,7 +4,7 @@ import { TextInputProps, VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
-import { Props as TableHeaderCellProps, VuiTableHeaderCell } from "./TableHeaderCell";
+import { VuiTableHeaderCell } from "./TableHeaderCell";
 import { Pagination, VuiTablePagination } from "./TablePagination";
 import { Pager, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
@@ -14,7 +14,7 @@ import { Props as TableBulkActionProps, VuiTableBulkActions } from "./TableBulkA
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
-import { Row } from "./types";
+import { Column, OnSort, Row } from "./types";
 
 const verticalAlignToClass = {
   top: "vuiTable--verticalAlignTop",
@@ -25,15 +25,6 @@ const verticalAlignToClass = {
 // Type guard to determine type of pagination.
 const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagination => {
   return (pagination as Pagination).onSelectPage !== undefined;
-};
-
-type Column<T> = {
-  name: string;
-  width?: string;
-  header: TableHeaderCellProps["header"];
-  render?: (row: T, rowIndex: number) => React.ReactNode;
-  className?: string;
-  testId?: string | ((row: T) => string);
 };
 
 type Props<T> = {
@@ -49,13 +40,14 @@ type Props<T> = {
   selection?: Selection<T>;
   search?: Search;
   customControls?: React.ReactNode;
-  onSort?: TableHeaderCellProps["onSort"];
+  onSort?: OnSort;
   onReload?: () => void;
   content?: React.ReactNode;
   className?: string;
   fluid?: boolean;
   isDisabled?: boolean;
   bodyStyle?: BodyStyle;
+  isHeaderSticky?: boolean;
 };
 
 type BodyStyle = {
@@ -96,6 +88,7 @@ export const VuiTable = <T extends Row>({
   fluid,
   isDisabled = false,
   bodyStyle,
+  isHeaderSticky,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
@@ -124,7 +117,9 @@ export const VuiTable = <T extends Row>({
     "vuiTable",
     bodyStyle?.verticalAlign && verticalAlignToClass[bodyStyle.verticalAlign],
     {
-      "vuiTable--fluid": fluid
+      "vuiTable--fluid": fluid,
+      "vuiTable--notSelectable": !selection,
+      "vuiTable--noActions": !actions
     },
     className
   );
@@ -163,14 +158,16 @@ export const VuiTable = <T extends Row>({
       const rowAttributes = rowDecorator?.(row) ?? {};
       const { className: rowClassNameAttribute, ...restRowAttributes } = rowAttributes;
       const rowClassName = classNames(rowClassNameAttribute, {
-        "vuiTableRow-isBeingActedUpon": rowBeingActedUpon === row
+        "vuiTableRow-isBeingActedUpon": rowBeingActedUpon === row,
+        "vuiTableRow--hasActions": Boolean(actions),
+        "vuiTableRow--isSelectable": Boolean(onSelectRow)
       });
 
       return (
         <tr key={rowId} className={rowClassName} {...restRowAttributes}>
           {/* Checkbox column */}
           {onSelectRow && (
-            <td>
+            <td className="vuiTableRowSelect">
               <VuiTableCell>
                 <VuiCheckbox
                   checked={selectedIds[rowId] ?? false}
@@ -197,14 +194,14 @@ export const VuiTable = <T extends Row>({
 
             return (
               <td key={name} className={className} data-testid={typeof testId === "function" ? testId(row) : testId}>
-                <VuiTableCell>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
+                <VuiTableCell column={column}>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
               </td>
             );
           })}
 
           {/* Actions column */}
           {actions && (
-            <td>
+            <td className="vuiTableRowActions">
               <VuiTableRowActions
                 row={row}
                 actions={actions}
@@ -233,28 +230,29 @@ export const VuiTable = <T extends Row>({
         (hasBulkActions && selectedRows && selectedRows.length > 0) ||
         Boolean(onReload)) && (
         <>
-          <VuiFlexContainer spacing="s" alignItems="center">
+          <VuiFlexContainer
+            spacing="s"
+            alignItems="center"
+            className={isHeaderSticky ? "vuiTableStickyHeader" : undefined}
+          >
             {/* Bulk actions */}
             {selectedRows && selectedRows.length > 0 && hasBulkActions && (
               <VuiFlexItem grow={false} shrink={false}>
                 <VuiTableBulkActions selectedRows={selectedRows} actions={bulkActions} />
               </VuiFlexItem>
             )}
-
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
                 <VuiTextInput fullWidth {...search} />
               </VuiFlexItem>
             )}
-
             {/* Custom controls */}
             {customControls && (
               <VuiFlexItem grow={false} shrink={false}>
                 {customControls}
               </VuiFlexItem>
             )}
-
             {/* Reload */}
             {onReload && (
               <VuiFlexItem grow={1} shrink={false}>
@@ -302,12 +300,12 @@ export const VuiTable = <T extends Row>({
 
             {/* Row info */}
             {columns.map((column) => {
-              const { name, header, width } = column;
+              const { name, width } = column;
               const styles = width ? { width } : undefined;
 
               return (
                 <th key={name} style={styles}>
-                  <VuiTableHeaderCell name={name} header={header} onSort={onSort} />
+                  <VuiTableHeaderCell column={column} onSort={onSort} />
                 </th>
               );
             })}

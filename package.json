@@ -1,6 +1,6 @@
 {
   "name": "@vectara/vectara-ui",
-  "version": "3.11.0",
+  "version": "6.0.2",
   "homepage": "https://vectara.github.io/vectara-ui/",
   "description": "Vectara's design system, codified as a React and Sass component library",
   "author": "Vectara",
@@ -45,21 +45,27 @@
     "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.7",
     "classnames": "^2.3.2",
+    "copy-to-clipboard": "^3.3.3",
     "copyfiles": "^2.4.1",
     "lodash": "^4.17.21",
     "markdown-to-jsx": "^7.3.2",
     "postcss": "^8.4.14",
     "prismjs": "^1.29.0",
     "query-string": "^7.1.1",
+    "react-datepicker": "^8.4.0",
     "react-focus-on": "^3.8.1",
     "react-icons": "^4.10.1",
     "react-scripts": "^5.0.1",
+    "react-tooltip": "^5.28.1",
     "web-vitals": "^2.1.4"
   },
   "peerDependencies": {
     "react": ">= 17.0.2",
     "react-dom": ">= 17.0.2",
     "react-router-dom": "^6.8.2"
+  },
+  "overrides": {
+    "@floating-ui/react": "0.24.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.196",
