@@ -36,6 +36,10 @@
   &:hover {
     text-decoration: underline;
   }
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 // Color
@@ -76,6 +80,7 @@ $color: (
   .vuiOptionsListItem--#{$colorName} {
     color: #{map.get($colorValue, "color")};
 
+    &:focus-visible,
     &:hover {
       color: #{map.get($colorValue, "hover-color")};
       background-color: #{map.get($colorValue, "selected-color")};

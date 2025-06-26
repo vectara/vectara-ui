@@ -89,29 +89,29 @@
 
   h1 {
     font-size: $fontSize * 2;
-    line-height: 1.4;
-    font-weight: $fontWeightBold;
+    line-height: 1.1;
+    font-weight: $fontWeightStrong;
     margin-bottom: $sizeXs;
   }
 
   h2 {
     font-size: $fontSize * 1.5;
-    line-height: 1.4;
+    line-height: 1.2;
+    font-weight: $fontWeightNormal;
     margin-bottom: $sizeXs;
   }
 
   h3 {
     font-size: $fontSize * 1.25;
-    line-height: 1.4;
-    font-weight: $fontWeightBold;
+    line-height: 1.3;
+    font-weight: $fontWeightNormal;
     margin-bottom: $sizeXs;
-    color: $colorSubdued;
   }
 
   h4 {
     font-size: $fontSize;
     line-height: 1.4;
-    font-weight: $fontWeightBold;
+    font-weight: $labelFontWeight;
     margin-bottom: $sizeXs;
   }
 }
