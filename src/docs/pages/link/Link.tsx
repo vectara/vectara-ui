@@ -17,7 +17,11 @@ export const Link = () => {
       </Subsection>
 
       <Subsection title="With onClick only">
-        <VuiLink onClick={() => alert("Clicked link")}>Link that's really a button</VuiLink>
+        <div style={{ maxWidth: "220px" }}>
+          <VuiLink onClick={() => alert("Clicked link")}>
+            Link that's really a button and has long text that will wrap the artifically narrow container
+          </VuiLink>{" "}
+        </div>
       </Subsection>
     </>
   );
