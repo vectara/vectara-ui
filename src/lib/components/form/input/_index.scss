@@ -19,6 +19,11 @@
   width: 100%;
 }
 
+.vuiInput-isSelected {
+  // Deliberate no-op. An input might be selected if it's provided as the
+  // trigger element to a Popover, but selected states don't apply to inputs.
+}
+
 .vuiInput-isInvalid {
   border-color: $colorDanger;
 }
