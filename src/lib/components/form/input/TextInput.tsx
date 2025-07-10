@@ -4,7 +4,7 @@ import { BasicInputProps, VuiBasicInput } from "./BasicInput";
 
 export type Props = BasicInputProps & {
   value?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: number;
 };
 
