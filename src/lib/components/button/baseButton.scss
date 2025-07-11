@@ -4,6 +4,8 @@
 }
 
 .vuiBaseButtonLinkWrapper {
+  // Ensure containing element is the same size as the child.
+  display: inline-block;
   text-decoration: none;
 
   &:hover {

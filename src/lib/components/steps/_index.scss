@@ -1,0 +1,210 @@
+@import "../../sassUtils/index";
+
+// Step size variables
+$stepSizeXs: 14px;
+$stepSizeS: 28px;
+$stepSizeM: 36px;
+
+.vuiSteps {
+  width: 100%;
+  position: relative;
+  padding: 0 16px;
+
+  --step-size: #{$stepSizeS};
+
+  &--xs {
+    --step-size: #{$stepSizeXs};
+  }
+
+  &--s {
+    --step-size: #{$stepSizeS};
+  }
+
+  &--m {
+    --step-size: #{$stepSizeM};
+  }
+}
+
+.vuiSteps__container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.vuiSteps__stepContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+
+  &:not(.vuiSteps__stepContainer--last) {
+    margin-right: 16px;
+  }
+}
+
+.vuiSteps__connector {
+  position: absolute;
+  height: 2px;
+  background-color: $colorMediumShade;
+  z-index: 1;
+  transform: translateY(-1px);
+
+  top: calc(8px + calc(var(--step-size) / 2));
+  left: calc(50% + 16px + calc(var(--step-size) / 2));
+  width: calc(100% - 16px - var(--step-size));
+
+  &--complete {
+    background-color: $colorSuccess;
+  }
+}
+
+.vuiSteps__circleWrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin-bottom: $sizeXs;
+}
+
+.vuiSteps__contentWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.vuiStep {
+  background: none;
+  border: none;
+  cursor: default;
+  padding: $sizeXs;
+  border-radius: $sizeXxs;
+  transition: all 0.2s ease;
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  .vuiSpinner {
+    width: var(--step-size);
+    height: var(--step-size);
+  }
+}
+
+.vuiStep__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: $fontWeightBold;
+  font-size: $fontSizeSmall;
+  transition: all 0.2s ease;
+  position: relative;
+  color: $colorEmptyShade;
+
+  width: var(--step-size);
+  height: var(--step-size);
+
+  &--xs {
+    .vuiIcon {
+      width: calc(var(--step-size) * 0.85);
+      height: calc(var(--step-size) * 0.85);
+
+      svg {
+        width: calc(var(--step-size) * 0.85);
+        height: calc(var(--step-size) * 0.85);
+      }
+    }
+  }
+
+  &--complete {
+    background-color: $colorSuccess;
+  }
+
+  &--current {
+    background-color: $colorPrimary;
+    width: calc(var(--step-size) - 4px);
+    height: calc(var(--step-size) - 4px);
+    box-shadow: 0 0 0 4px transparentize($colorPrimary, 0.85);
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  &--incomplete {
+    background-color: $colorEmptyShade;
+    border: 2px solid $colorMediumShade;
+    color: $colorDarkShade;
+  }
+
+  &--warning {
+    background-color: $colorWarning;
+  }
+
+  &--danger {
+    background-color: $colorDanger;
+  }
+
+  &--disabled {
+    background-color: $colorLightShade;
+    color: $colorMediumShade;
+  }
+
+  &--clickable {
+    cursor: pointer;
+  }
+}
+
+.vuiStep__numberText {
+  line-height: 1;
+}
+
+.vuiStep__title {
+  text-align: center;
+  width: 100%;
+  padding: 0 $sizeXs;
+}
+
+.vuiStep__titleText {
+  font-weight: $fontWeightStrong;
+  line-height: 1.3;
+
+  .vuiStep__title--complete & {
+    color: $colorSuccess;
+  }
+
+  .vuiStep__title--current & {
+    color: $colorPrimary;
+  }
+
+  .vuiStep__title--incomplete & {
+    color: $colorDarkShade;
+  }
+
+  .vuiStep__title--warning & {
+    color: $colorWarning;
+  }
+
+  .vuiStep__title--danger & {
+    color: $colorDanger;
+  }
+
+  .vuiStep__title--loading & {
+    color: $colorAccent;
+  }
+
+  .vuiStep__title--disabled & {
+    color: $colorMediumShade;
+  }
+}
+
+.vuiStep__content {
+  margin-top: $sizeXxs;
+  font-size: $fontSizeSmall;
+  color: $colorDarkShade;
+  text-align: center;
+
+  .vuiStep--disabled & {
+    color: $colorMediumShade;
+  }
+}

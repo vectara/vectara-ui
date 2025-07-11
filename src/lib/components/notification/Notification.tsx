@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { BiX } from "react-icons/bi";
+import { toast as sonnerToast } from "sonner";
+import { BiCheck, BiError, BiInfoCircle, BiSolidHand, BiX } from "react-icons/bi";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
 import { VuiFlexContainer } from "../flex/FlexContainer";
@@ -7,79 +8,103 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { VuiSpacer } from "../spacer/Spacer";
-import { VuiHorizontalRule } from "../horizontalRule/HorizontalRule";
 
-export type Notification = {
-  color: "primary" | "success" | "warning" | "danger";
-  message: string;
+export const addNotification = (props: Omit<Props, "onDismiss">) => {
+  return sonnerToast.custom(
+    (id) => (
+      <VuiNotification
+        onDismiss={() => {
+          sonnerToast.dismiss(id);
+        }}
+        {...props}
+      />
+    ),
+    { duration: 10000 }
+  );
 };
 
 type Props = {
-  notification: Notification;
-  onDismiss: (notification: Notification) => void;
-  notificationsCount: number;
+  color: "primary" | "success" | "warning" | "danger";
+  message: string;
+  onDismiss: () => void;
   children?: React.ReactNode;
 };
 
-export const VuiNotification = ({ notification, onDismiss, notificationsCount, children }: Props) => {
-  const { color, message } = notification;
+export const VuiNotification = ({ color, message, onDismiss, children }: Props) => {
   const classes = classNames("vuiNotification", `vuiNotification--${color}`);
-  const hasManyNotifications = notificationsCount > 1;
 
-  const placeholder1Classes = classNames("vuiNotification", "vuiNotificationPlaceholder", {
-    "vuiNotificationPlaceholder1-isVisible": notificationsCount > 1
-  });
+  let icon;
 
-  const placeholder2Classes = classNames("vuiNotification", "vuiNotificationPlaceholder", {
-    "vuiNotificationPlaceholder2-isVisible": notificationsCount > 2
-  });
+  switch (color) {
+    case "primary":
+      icon = (
+        <VuiIcon color="primary">
+          <BiInfoCircle />
+        </VuiIcon>
+      );
+      break;
+    case "success":
+      icon = (
+        <VuiIcon color="success">
+          <BiCheck />
+        </VuiIcon>
+      );
+      break;
+    case "warning":
+      icon = (
+        <VuiIcon color="warning">
+          <BiError />
+        </VuiIcon>
+      );
+      break;
+    case "danger":
+      icon = (
+        <VuiIcon color="danger">
+          <BiSolidHand />
+        </VuiIcon>
+      );
+      break;
+    default:
+      icon = null;
+  }
 
   return (
-    <div className="vuiNotificationContainer">
-      <div className={classes}>
-        <VuiFlexContainer alignItems="start" spacing="s">
-          <VuiFlexItem grow={false}>
-            <VuiIconButton
-              aria-label="Hide notification"
-              size="xs"
-              color="neutral"
-              icon={
-                <VuiIcon>
-                  <BiX />
-                </VuiIcon>
-              }
-              onClick={() => onDismiss(notification)}
-            />
-          </VuiFlexItem>
+    <div className={classes} data-testid={`notification-${color}`}>
+      <VuiFlexContainer alignItems="start" spacing="s">
+        <VuiFlexItem grow={1}>
+          <VuiFlexContainer alignItems="start" spacing="xs">
+            {icon}
 
-          <VuiFlexItem grow={1}>
-            <VuiText>
-              <VuiTextColor color={color}>{message}</VuiTextColor>
-            </VuiText>
+            <div>
+              <VuiText>
+                <VuiTextColor color={color}>{message}</VuiTextColor>
+              </VuiText>
 
-            {hasManyNotifications && (
-              <>
-                <VuiSpacer size="xxs" />
-                <VuiText size="xs">
-                  <VuiTextColor color="subdued">+{notificationsCount - 1} more</VuiTextColor>
-                </VuiText>
-              </>
-            )}
-          </VuiFlexItem>
-        </VuiFlexContainer>
+              {children && (
+                <>
+                  <VuiSpacer size="s" />
+                  {children}
+                </>
+              )}
+            </div>
+          </VuiFlexContainer>
+        </VuiFlexItem>
 
-        {children && (
-          <>
-            <VuiSpacer size="s" />
-            <VuiHorizontalRule />
-            <VuiSpacer size="xxs" />
-            {children}
-          </>
-        )}
-      </div>
-
-      <div className={placeholder2Classes} />
-      <div className={placeholder1Classes} />
+        <VuiFlexItem grow={false}>
+          <VuiIconButton
+            aria-label="Dismiss message"
+            size="xs"
+            color="neutral"
+            icon={
+              <VuiIcon>
+                <BiX />
+              </VuiIcon>
+            }
+            onClick={() => onDismiss()}
+            data-testid={`dismissNotificationButton-${color}`}
+          />
+        </VuiFlexItem>
+      </VuiFlexContainer>
     </div>
   );
 };

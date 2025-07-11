@@ -5,6 +5,7 @@ import { ButtonColor, BUTTON_SIZE } from "./types";
 import { createButtonIcon } from "./createButtonIcon";
 import { LinkProps } from "../link/types";
 import { useVuiContext } from "../context/Context";
+import { VuiTooltip } from "../tooltip/Tooltip";
 
 type Props = {
   className?: string;
@@ -20,6 +21,7 @@ type Props = {
   target?: LinkProps["target"];
   track?: LinkProps["track"];
   tabIndex?: number;
+  isSelected?: boolean;
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -37,6 +39,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       target,
       track,
       tabIndex,
+      isSelected = false,
       ...rest
     }: Props,
     ref
@@ -44,7 +47,9 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
     const { createLink } = useVuiContext();
 
     const props = {
-      className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`),
+      className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`, {
+        [`vuiIconButton--${color}-isSelected`]: isSelected
+      }),
       onClick,
       onMouseOver,
       onMouseOut,
@@ -55,20 +60,24 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
 
     const buttonIcon = createButtonIcon(icon, size, color);
 
+    let iconButton;
+
     if (href) {
-      return createLink({
+      iconButton = createLink({
         href,
         target,
         ...props,
         ...getTrackingProps(track),
         children: <button ref={ref}>{buttonIcon}</button>
       });
+    } else {
+      iconButton = (
+        <button {...props} ref={ref}>
+          {buttonIcon}
+        </button>
+      );
     }
 
-    return (
-      <button {...props} ref={ref}>
-        {buttonIcon}
-      </button>
-    );
+    return <VuiTooltip tip={rest["aria-label"]}>{iconButton}</VuiTooltip>;
   }
 );
