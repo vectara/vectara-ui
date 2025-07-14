@@ -1,0 +1,19 @@
+import { useState } from "react";
+import { VuiDatePicker } from "../../../lib";
+
+export const DatePicker = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [date, setDate] = useState<Date | undefined>(new Date());
+
+  return (
+    <VuiDatePicker
+      header="Pick a date, any date"
+      date={date}
+      onChange={(date) => setDate(date)}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      anchorSide="left"
+      canClear
+    />
+  );
+};

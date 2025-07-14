@@ -20,9 +20,20 @@ type Props = {
   isOpen?: boolean;
   onClose?: () => void;
   color?: (typeof COLOR)[number];
+  key?: string;
 };
 
-export const VuiModal = ({ className, color = "primary", title, icon, children, isOpen, onClose, ...rest }: Props) => {
+export const VuiModal = ({
+  className,
+  color = "primary",
+  title,
+  icon,
+  children,
+  isOpen,
+  onClose,
+  key,
+  ...rest
+}: Props) => {
   const { DrawerTitle } = useVuiContext();
   const returnFocusElRef = useRef<HTMLElement | null>(null);
 
@@ -48,7 +59,7 @@ export const VuiModal = ({ className, color = "primary", title, icon, children, 
   return (
     <VuiPortal>
       {isOpen && (
-        <VuiScreenBlock>
+        <VuiScreenBlock key={key}>
           <FocusOn
             onEscapeKey={onCloseDelayed}
             onClickOutside={onCloseDelayed}

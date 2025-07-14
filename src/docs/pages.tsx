@@ -1,5 +1,6 @@
 // Components
 import { accordion } from "./pages/accordion";
+import { accountButton } from "./pages/accountButton";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
 import { button } from "./pages/button";
@@ -9,6 +10,7 @@ import { chat } from "./pages/chat";
 import { checkbox } from "./pages/checkbox";
 import { code } from "./pages/code";
 import { copyButton } from "./pages/copyButton";
+import { datePicker } from "./pages/datePicker";
 import { drawer } from "./pages/drawer";
 import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
@@ -19,6 +21,7 @@ import { infoList } from "./pages/infoList";
 import { infoMenu } from "./pages/infoMenu";
 import { infoTable } from "./pages/infoTable";
 import { input } from "./pages/input";
+import { itemsInput } from "./pages/itemsInput";
 import { label } from "./pages/label";
 import { link } from "./pages/link";
 import { list } from "./pages/list";
@@ -27,6 +30,7 @@ import { modal } from "./pages/modal";
 import { notifications } from "./pages/notifications";
 import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
+import { panel } from "./pages/panel";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
@@ -40,6 +44,7 @@ import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
 import { status } from "./pages/status";
 import { statList } from "./pages/statList";
+import { steps } from "./pages/steps";
 import { summary } from "./pages/summary";
 import { superRadioGroup } from "./pages/superRadioGroup";
 import { table } from "./pages/table";
@@ -48,6 +53,7 @@ import { text } from "./pages/text";
 import { textArea } from "./pages/textArea";
 import { timeline } from "./pages/timeline";
 import { toggle } from "./pages/toggle";
+import { tooltip } from "./pages/tooltip";
 import { topicButton } from "./pages/topicButton";
 import { validation } from "./pages/validation";
 
@@ -65,7 +71,7 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, drawer, modal, notifications]
+    pages: [app, drawer, modal, notifications, accountButton]
   },
   {
     name: "Info",
@@ -73,11 +79,11 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [tabs, timeline, accordion, popover, infoMenu, flex, grid, spacer, card, horizontalRule]
+    pages: [tabs, timeline, accordion, steps, popover, infoMenu, flex, grid, spacer, card, panel, horizontalRule]
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, icon, progressBar, spinner, text]
+    pages: [badge, status, callout, code, icon, progressBar, spinner, text, tooltip]
   },
   {
     name: "Form",
@@ -86,13 +92,15 @@ export const categories: Category[] = [
       formGroup,
       setting,
       input,
+      datePicker,
       label,
       select,
       toggle,
       textArea,
       checkbox,
       radioButton,
-      superRadioGroup
+      superRadioGroup,
+      itemsInput
     ]
   },
   {

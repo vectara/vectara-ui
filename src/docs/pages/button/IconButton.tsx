@@ -8,6 +8,7 @@ import {
   BUTTON_SIZE,
   VuiSpacer
 } from "../../../lib";
+import { Subsection } from "../../components/Subsection";
 
 export const IconButton = () => {
   const icon = (
@@ -42,6 +43,26 @@ export const IconButton = () => {
           </VuiFlexItem>
         ))}
       </VuiFlexContainer>
+
+      <VuiSpacer size="s" />
+
+      <Subsection title="With selected state">
+        <VuiFlexContainer>
+          {BUTTON_COLOR.map((color) => (
+            <VuiFlexItem grow={false} key={color}>
+              <VuiIconButton
+                isSelected
+                aria-label="Button with selected state"
+                icon={icon}
+                color={color}
+                onClick={() => console.log("click")}
+                onMouseOver={() => console.log("mouse over")}
+                onMouseOut={() => console.log("mouse out")}
+              />
+            </VuiFlexItem>
+          ))}
+        </VuiFlexContainer>
+      </Subsection>
     </>
   );
 };
