@@ -3,6 +3,7 @@ import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
 import { VuiIconButton, VuiFlexContainer, VuiFlexItem, VuiIcon, VuiTitle, VuiAppContent, VuiSpacer } from "../lib";
 import { Example as ExampleType, paths } from "./pages";
 import { Example } from "./components/Example";
+import React from "react";
 
 export const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => {
   const location = useLocation();
@@ -62,10 +63,10 @@ export const Page = ({ name, examples }: { name: string; examples: ExampleType[]
 
       <>
         {examples.map(({ name: exampleName, component, source }) => (
-          <>
-            <Example key={`example-${name}-${exampleName}`} name={exampleName} component={component} source={source} />
+          <React.Fragment key={`example-${name}-${exampleName}`}>
+            <Example name={exampleName} component={component} source={source} />
             <VuiSpacer size="l" />
-          </>
+          </React.Fragment>
         ))}
       </>
     </VuiAppContent>

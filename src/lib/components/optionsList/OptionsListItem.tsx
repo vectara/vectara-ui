@@ -74,12 +74,13 @@ export const VuiOptionsListItem = <T extends unknown = unknown>({
       onClick: () => onClick?.(value),
       "data-testid": testId,
       children: content,
+      role: "menuitem",
       ...rest
     });
   }
 
   return (
-    <button className={classes} onClick={() => onClick?.(value)} data-testid={testId} {...rest}>
+    <button className={classes} onClick={() => onClick?.(value)} data-testid={testId} {...rest} role="menuitem">
       {content}
     </button>
   );

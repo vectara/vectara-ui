@@ -1,0 +1,48 @@
+.vuiAccountButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sizeM;
+  border-radius: $sizeXs;
+  border: 1px solid transparent;
+  padding: $sizeXs $sizeM;
+  width: 100%;
+  max-width: 280px;
+
+  &:hover,
+  &.vuiAccountButton-isActive {
+    border-color: $colorMediumShade;
+  }
+}
+
+.vuiAccountButton__primaryLabel,
+.vuiAccountButton__secondaryLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vuiAccountButton__primaryLabel {
+  font-size: $fontSizeStandard;
+  color: $colorFullShade;
+  font-weight: $fontWeightBold;
+}
+
+.vuiAccountButton__secondaryLabel {
+  margin-top: $sizeXxs;
+  font-size: $fontSizeSmall;
+  color: $colorDarkShade;
+}
+
+.vuiAccountButton__labels {
+  text-align: left;
+  flex-shrink: 1;
+  min-width: 0; /* Important for text truncation in flex containers */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vuiAccountButton__icon {
+  flex-shrink: 0;
+}

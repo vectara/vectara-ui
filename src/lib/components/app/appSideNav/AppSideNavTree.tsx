@@ -10,7 +10,7 @@ export const buildTree = (items: Tree) => {
 };
 
 const buildTreeItems = (items: Tree) => {
-  return items.map(({ name, pages, path, iconBefore, iconAfter, isActive, ...rest }) => {
+  return items.map(({ name, pages, path, iconBefore, iconAfter, isSelected, ...rest }) => {
     if (path) {
       if (pages) {
         const childPages = buildTreeItems(pages);
@@ -22,7 +22,7 @@ const buildTreeItems = (items: Tree) => {
             name={name}
             iconBefore={iconBefore}
             iconAfter={iconAfter}
-            isActive={isActive}
+            isSelected={isSelected}
             {...rest}
           >
             {childPages}
@@ -37,7 +37,7 @@ const buildTreeItems = (items: Tree) => {
           name={name}
           iconBefore={iconBefore}
           iconAfter={iconAfter}
-          isActive={isActive}
+          isSelected={isSelected}
           {...rest}
         />
       );
@@ -51,11 +51,11 @@ const buildTreeItems = (items: Tree) => {
   });
 };
 
-type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isActive" | "data-testid"> & {
+type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isSelected" | "data-testid"> & {
   children: React.ReactNode;
 };
 
-const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, isActive, ...rest }: Props) => {
+const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, isSelected, ...rest }: Props) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -65,7 +65,7 @@ const AppSideNavTreeSection = ({ name, path, children, iconBefore, iconAfter, is
         name={name}
         iconBefore={iconBefore}
         iconAfter={iconAfter}
-        isActive={isActive}
+        isSelected={isSelected}
         {...rest}
       />
 

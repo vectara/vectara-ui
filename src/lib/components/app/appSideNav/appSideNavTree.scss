@@ -18,8 +18,20 @@
 }
 
 .vuiAppSideNavTreeSection__subTitle {
-  @include appSideNavItem;
-  font-size: $fontSizeSmall;
   font-weight: $fontWeightBold;
   color: $colorDarkShade;
+}
+
+.vuiAppSideNav--m {
+  .vuiAppSideNavTreeSection__subTitle {
+    @include appSideNavItem--m;
+    font-size: $fontSizeSmall;
+  }
+}
+
+.vuiAppSideNav--l {
+  .vuiAppSideNavTreeSection__subTitle {
+    @include appSideNavItem--l;
+    font-size: $fontSizeStandard;
+  }
 }

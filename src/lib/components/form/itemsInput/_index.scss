@@ -1,0 +1,14 @@
+.vuiItemsInput {
+  display: inline-block;
+  cursor: text;
+
+  &:focus-visible {
+    outline: $colorPrimary auto $sizeXxxs;
+    outline-offset: $sizeXxxs;
+    -moz-outline-radius: $sizeXxs;
+  }
+}
+
+.vuiItemsInput--fullWidth {
+  width: 100%;
+}
