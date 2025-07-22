@@ -32,9 +32,12 @@ export const Table = () => {
   const [hasPager, setHasPager] = useState(true);
   const [isDisabled, setIsDisabled] = useState(false);
   const [canSelectRows, setCanSelectRows] = useState(true);
+  const [hasActions, setHasActions] = useState(true);
   const [canSearch, setCanSearch] = useState(true);
   const [areNicknamesVisible, setAreNicknamesVisible] = useState(false);
   const [isAlignTop, setIsAlignTop] = useState(false);
+  const [isHeaderSticky, setIsHeaderSticky] = useState(false);
+  const [isResponsive, setIsResponsive] = useState(true);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -292,6 +295,10 @@ export const Table = () => {
         </VuiFlexItem>
 
         <VuiFlexItem shrink={false}>
+          <VuiToggle label="Has actions" checked={hasActions} onChange={(e) => setHasActions(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
           <VuiToggle label="Can search" checked={canSearch} onChange={(e) => setCanSearch(e.target.checked)} />
         </VuiFlexItem>
 
@@ -305,6 +312,18 @@ export const Table = () => {
 
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Align top" checked={isAlignTop} onChange={(e) => setIsAlignTop(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Is header sticky"
+            checked={isHeaderSticky}
+            onChange={(e) => setIsHeaderSticky(e.target.checked)}
+          />
+        </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Is responsive" checked={isResponsive} onChange={(e) => setIsResponsive(e.target.checked)} />
         </VuiFlexItem>
       </VuiFlexContainer>
 
@@ -320,7 +339,7 @@ export const Table = () => {
         columns={columns}
         rows={rows}
         content={content}
-        actions={actions}
+        actions={hasActions ? actions : undefined}
         actionsTestIdProvider={(person: Person) => `actions-${person.id}`}
         reloadTestId="reloadButton"
         pagination={pagination}
@@ -332,6 +351,8 @@ export const Table = () => {
         bodyStyle={{
           verticalAlign: isAlignTop ? "top" : undefined
         }}
+        isHeaderSticky={isHeaderSticky}
+        isResponsive={isResponsive}
       />
     </>
   );

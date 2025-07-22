@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { VuiButtonSecondary, VuiNotifications, Notification } from "../../../lib";
+import { addNotification, VuiButtonPrimary, VuiButtonSecondary, VuiNotifications } from "../../../lib";
 
 const getNotification = () => {
   const NOTIFICATIONS = [
@@ -17,7 +16,9 @@ const getNotification = () => {
     },
     {
       color: "danger",
-      message: "Not good. Very bad. Potentially catastrophic. You should probably do something about this."
+      message: "Not good. Very bad. Potentially catastrophic. You should probably do something about this.",
+      hasCopyButton: true,
+      children: <VuiButtonPrimary color="danger">Vent atmosphere</VuiButtonPrimary>
     }
   ] as const;
 
@@ -25,37 +26,18 @@ const getNotification = () => {
 };
 
 export const Notifications = () => {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-
-  const dismissNotifications = () => {
-    setNotifications([]);
-  };
-
-  const addNotification = (notification: Notification) => {
-    setNotifications((prev) => [...prev, notification]);
-  };
-
-  const removeNotification = (notification: Notification) => {
-    setNotifications((prev) => {
-      const index = prev.findIndex((n) => n === notification);
-      if (index === -1) return prev;
-      return [...prev.slice(0, index), ...prev.slice(index + 1)];
-    });
-  };
-
   return (
     <>
-      <VuiButtonSecondary color="primary" onClick={() => addNotification(getNotification())}>
+      <VuiButtonSecondary
+        color="primary"
+        onClick={() => {
+          addNotification(getNotification());
+        }}
+      >
         Add notification
       </VuiButtonSecondary>
 
-      <VuiNotifications
-        notifications={notifications}
-        onShowAll={() => console.log("Show all")}
-        onDismiss={(notification) => removeNotification(notification)}
-        onDismissAll={() => dismissNotifications()}
-        onClose={() => dismissNotifications()}
-      />
+      <VuiNotifications />
     </>
   );
 };

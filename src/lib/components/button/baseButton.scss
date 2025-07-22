@@ -4,6 +4,8 @@
 }
 
 .vuiBaseButtonLinkWrapper {
+  // Ensure containing element is the same size as the child.
+  display: inline-block;
   text-decoration: none;
 
   &:hover {
@@ -70,7 +72,7 @@
 
 // Size
 .vuiBaseButton--xs {
-  font-size: $fontSizeStandard;
+  font-size: $fontSizeSmall;
   padding: $sizeXxs $sizeXs;
   height: 24px;
 }
@@ -82,7 +84,7 @@
 }
 
 .vuiBaseButton--m {
-  font-size: $fontSizeMedium;
+  font-size: $fontSizeStandard;
   padding: $sizeXs $sizeM;
   height: 34px;
 }
