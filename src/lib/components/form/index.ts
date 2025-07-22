@@ -1,4 +1,5 @@
 export { VuiCheckbox } from "./checkbox/Checkbox";
+export { VuiItemsInput } from "./itemsInput/ItemsInput";
 export { VuiLabel } from "./label/Label";
 export { VuiNumberInput } from "./input/NumberInput";
 export { VuiRadioButton } from "./radioButton/RadioButton";
