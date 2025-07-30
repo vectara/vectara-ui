@@ -1,11 +1,13 @@
+$fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  "Droid Sans", "Helvetica Neue", sans-serif;
+
 body {
   font-size: 14px;
 }
 
 body,
 textarea {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: $fontFamily;
 }
 
 // Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126). */
@@ -144,6 +146,8 @@ button {
   color: inherit;
   border-radius: 0;
   font-size: inherit;
+  font-family: inherit;
+  line-height: 1.15;
 }
 
 input {

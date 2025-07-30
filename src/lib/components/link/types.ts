@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ForwardedRef, ReactNode } from "react";
 
 export type LinkProps = {
   children: ReactNode;
@@ -17,4 +17,5 @@ export type LinkProps = {
   isAnchor?: boolean;
   tabIndex?: number;
   "data-testid"?: string;
+  ref?: ForwardedRef<HTMLAnchorElement | null>;
 };
