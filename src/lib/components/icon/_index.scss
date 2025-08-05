@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .vuiIcon {
   display: inline-block;
   // Remove extra space at bottom of icon.
@@ -7,6 +9,49 @@
 .vuiIcon--inline {
   display: inline-block;
 }
+
+$color: (
+  accent: (
+    "icon": $colorAccent,
+    "fill": $colorAccent,
+    "token": $colorAccentLighterShade
+  ),
+  primary: (
+    "icon": $colorPrimary,
+    "fill": $colorPrimary,
+    "token": $colorPrimaryLighterShade
+  ),
+  success: (
+    "icon": $colorSuccess,
+    "fill": $colorSuccess,
+    "token": $colorSuccessLighterShade
+  ),
+  warning: (
+    "icon": $colorWarning,
+    "fill": $colorWarning,
+    "token": $colorWarningLighterShade
+  ),
+  danger: (
+    "icon": $colorDanger,
+    "fill": $colorDanger,
+    "token": $colorDangerLighterShade
+  ),
+  subdued: (
+    "icon": $colorSubdued,
+    "fill": $colorSubdued,
+    "token": $colorLightShade
+  ),
+  neutral: (
+    "icon": $colorText,
+    "fill": $colorText,
+    "token": $colorLightShade
+  ),
+  empty: (
+    "icon": $colorEmptyShade,
+    "fill": $colorFullShade,
+    "token": $colorDarkerShade
+  )
+);
 
 $colors: (
   accent: $colorAccent,
@@ -19,8 +64,53 @@ $colors: (
   empty: #ffffff
 );
 
-@each $colorName, $colorValue in $colors {
-  .vuiIcon--#{$colorName} {
-    color: $colorValue;
+$tokenColors: (
+  accent: $colorAccentLighterShade,
+  primary: $colorPrimaryLighterShade,
+  success: $colorSuccessLighterShade,
+  warning: $colorWarningLighterShade,
+  danger: $colorDangerLighterShade,
+  subdued: $colorMediumShade,
+  neutral: $colorDarkShade,
+  empty: #ffffff
+);
+
+.vuiIcon--default {
+  @each $colorName, $colorValue in $color {
+    &.vuiIcon--#{$colorName} {
+      .vuiIcon__inner {
+        color: #{map.get($colorValue, "icon")};
+      }
+    }
+  }
+}
+
+.vuiIcon--enclosed {
+  border-radius: 100%;
+  padding: $sizeS;
+
+  @each $colorName, $colorValue in $color {
+    &.vuiIcon--#{$colorName} {
+      background-color: #{map.get($colorValue, "fill")};
+
+      .vuiIcon__inner {
+        color: $colorEmptyShade;
+      }
+    }
+  }
+}
+
+.vuiIcon--token {
+  border-radius: 100%;
+  padding: $sizeXxxs;
+
+  @each $colorName, $colorValue in $color {
+    &.vuiIcon--#{$colorName} {
+      background-color: #{map.get($colorValue, "token")};
+
+      .vuiIcon__inner {
+        color: #{map.get($colorValue, "icon")};
+      }
+    }
   }
 }

@@ -12,6 +12,14 @@
   visibility: hidden;
 }
 
+.vuiPopover--allowOverflow {
+  overflow: visible;
+}
+
+.vuiPopover--rightUp {
+  transform: translateY(-100%) !important;
+}
+
 .vuiPopover-isLoaded {
   visibility: visible;
   opacity: 1;

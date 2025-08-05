@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { ReactNode, cloneElement } from "react";
 import { IconContext } from "react-icons";
-import { ICON_COLOR, ICON_SIZE } from "./types";
+import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./types";
 
 const sizeToValueMap = {
   xs: "14",
@@ -19,14 +19,22 @@ type Props = {
   className?: string;
   size?: (typeof ICON_SIZE)[number];
   inline?: boolean;
+  type?: (typeof ICON_TYPE)[number];
+  isEnclosed?: boolean;
 };
 
-export const VuiIcon = ({ children, size = "m", color = "inherit", className, inline, ...rest }: Props) => {
-  const innerClasses = classNames(className, "vuiIcon__inner", {
-    [`vuiIcon--${color}`]: color
-  });
+export const VuiIcon = ({
+  children,
+  size = "m",
+  color = "inherit",
+  className,
+  inline,
+  type = "default",
+  ...rest
+}: Props) => {
+  const innerClasses = classNames(className, "vuiIcon__inner");
 
-  const classes = classNames("vuiIcon", {
+  const classes = classNames("vuiIcon", `vuiIcon--${type}`, `vuiIcon--${color}`, {
     "vuiIcon--inline": inline
   });
 
