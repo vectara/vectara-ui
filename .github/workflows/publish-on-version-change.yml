@@ -43,7 +43,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Build lib
-        run: "npm i && npm run buildLib"
+        run: "npm i && npm run build"
 
       - name: Publish package to NPM
         run: npm publish --access=public
