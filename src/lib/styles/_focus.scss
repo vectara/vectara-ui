@@ -1,0 +1,9 @@
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: $colorPrimary auto $sizeXxxs;
+  outline-offset: $sizeXxxs;
+  -moz-outline-radius: $sizeXxs;
+}

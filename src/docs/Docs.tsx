@@ -62,9 +62,7 @@ const DocsContent = () => {
 
             <VuiFlexItem grow={false} shrink={false}>
               <VuiTitle size="xs">
-                <h1>
-                  <strong>Vectara UI Library</strong>
-                </h1>
+                <h1>Vectara UI Library</h1>
               </VuiTitle>
             </VuiFlexItem>
 
