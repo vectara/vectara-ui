@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useState } from "react";
 import { BasicInputProps, VuiBasicInput } from "./BasicInput";
 
-type Props = BasicInputProps & {
+type Props = Omit<BasicInputProps, "onChange"> & {
   value?: number;
   onChange: (value?: number) => void;
   max?: number;
@@ -64,6 +64,6 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
       ...rest
     };
 
-    return <VuiBasicInput {...props} />;
+    return <VuiBasicInput {...props} ref={ref} />;
   }
 );

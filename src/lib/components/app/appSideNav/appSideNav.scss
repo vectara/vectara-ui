@@ -8,7 +8,6 @@
 .vuiAppSideNav__inner {
   // Prevent content from being squished as nav collapses.
   width: $appSideNavWidth;
-  padding: 28px 32px 32px 33px;
   margin-bottom: $sizeXxl * 4;
   transition: all $transitionSpeed;
 }
@@ -58,18 +57,39 @@
 
 .vuiAppSideNavLink {
   @include truncateText;
-  @include appSideNavItem;
   text-decoration: none;
+  border-radius: $sizeXxs;
+  line-height: 1.1;
+  border-top: 1px solid $colorEmptyShade;
+  border-bottom: 1px solid $colorEmptyShade;
 
   &:hover {
-    background-color: $colorPrimaryLighterShade;
-    border-radius: $sizeM;
+    background-color: $colorLightShade;
     color: $colorPrimary;
     text-decoration: underline;
   }
 }
 
 .vuiAppSideNavLink--active {
-  font-weight: $fontWeightBold;
-  text-decoration: underline;
+  background-color: $colorLightShade;
+}
+
+.vuiAppSideNav--m {
+  .vuiAppSideNav__inner {
+    padding: 28px 32px 32px 33px;
+  }
+
+  .vuiAppSideNavLink {
+    @include appSideNavItem--m;
+  }
+}
+
+.vuiAppSideNav--l {
+  .vuiAppSideNav__inner {
+    padding: 20px 12px 32px;
+  }
+
+  .vuiAppSideNavLink {
+    @include appSideNavItem--l;
+  }
 }

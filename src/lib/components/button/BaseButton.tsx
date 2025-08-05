@@ -46,7 +46,7 @@ export type BaseButtonProps = {
 };
 
 type Props = BaseButtonProps & {
-  spinnerColor: (typeof SPINNER_COLOR)[number];
+  spinnerColor?: (typeof SPINNER_COLOR)[number];
 };
 
 export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
