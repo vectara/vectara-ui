@@ -12,6 +12,7 @@ import { code } from "./pages/code";
 import { copyButton } from "./pages/copyButton";
 import { datePicker } from "./pages/datePicker";
 import { drawer } from "./pages/drawer";
+import { errorBoundary } from "./pages/errorBoundary";
 import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
 import { grid } from "./pages/grid";
@@ -109,7 +110,7 @@ export const categories: Category[] = [
   },
   {
     name: "Utils",
-    pages: [truncate]
+    pages: [errorBoundary, truncate]
   }
 ];
 
