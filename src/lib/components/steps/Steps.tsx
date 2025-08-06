@@ -10,8 +10,8 @@ export type { VuiStepProps, StepSize, StepStatus };
 
 const statusToColor: Record<StepStatus, (typeof ICON_COLOR)[number]> = {
   complete: "success",
-  current: "neutral",
-  incomplete: "neutral",
+  current: "primary",
+  incomplete: "subdued",
   disabled: "neutral",
   warning: "warning",
   danger: "danger",
@@ -30,6 +30,8 @@ export const VuiSteps = ({ steps, className, size = "s", ...rest }: Props) => {
   });
 
   const totalSteps = steps.length;
+
+  const currentStepIndex = steps.findIndex((step) => step.status === "current");
 
   return (
     <div className={classes} {...rest}>
@@ -57,7 +59,7 @@ export const VuiSteps = ({ steps, className, size = "s", ...rest }: Props) => {
               {!isLastStep && (
                 <div
                   className={classNames("vuiSteps__connector", {
-                    "vuiSteps__connector--complete": step.status === "complete"
+                    "vuiSteps__connector--complete": index < currentStepIndex
                   })}
                 />
               )}
@@ -72,7 +74,7 @@ export const VuiSteps = ({ steps, className, size = "s", ...rest }: Props) => {
                       <VuiSpinner />
                     </div>
                   ) : icon ? (
-                    <VuiIcon color={statusToColor[step.status ?? "complete"]} size={size === "xs" ? undefined : size}>
+                    <VuiIcon color={statusToColor[step.status ?? "incomplete"]} size={size === "xs" ? undefined : size}>
                       {icon}
                     </VuiIcon>
                   ) : size === "xs" ? null : (
