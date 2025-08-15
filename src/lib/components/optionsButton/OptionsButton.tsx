@@ -14,6 +14,7 @@ export type Props = Pick<PopoverProps, "isOpen" | "setIsOpen" | "onClickButton">
     "children" | "icon" | "color" | "size" | "className" | "fullWidth" | "onClick" | "href" | "track"
   > & {
     type?: "primary" | "secondary";
+    "data-testid"?: string;
   };
 
 export const VuiOptionsButton = ({
@@ -29,6 +30,7 @@ export const VuiOptionsButton = ({
   fullWidth,
   onSelectOption,
   options,
+  "data-testid": testId,
   ...rest
 }: Props) => {
   const Button = type === "primary" ? VuiButtonPrimary : VuiButtonSecondary;
@@ -36,7 +38,15 @@ export const VuiOptionsButton = ({
   return (
     <VuiFlexContainer spacing="none" alignItems="center" className={className}>
       <VuiFlexItem grow={false}>
-        <Button icon={icon} color={color} size={size} className="vuiOptionsButtonLeft" fullWidth={fullWidth} {...rest}>
+        <Button
+          icon={icon}
+          color={color}
+          size={size}
+          className="vuiOptionsButtonLeft"
+          fullWidth={fullWidth}
+          data-testid={testId}
+          {...rest}
+        >
           {children}
         </Button>
       </VuiFlexItem>
@@ -51,6 +61,7 @@ export const VuiOptionsButton = ({
               color={color}
               size={size}
               className={`vuiOptionsButtonRight vuiOptionsButtonRight--${color}`}
+              data-testid={`${testId}-options`}
               isSelected={isOpen}
               icon={
                 <VuiIcon>
