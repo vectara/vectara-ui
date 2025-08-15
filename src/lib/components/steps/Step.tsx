@@ -101,6 +101,7 @@ export const VuiStep = ({
         type="button"
         aria-current={status === "current" ? "step" : undefined}
         data-testid={dataTestId}
+        data-status={status}
       >
         {stepContent}
       </button>

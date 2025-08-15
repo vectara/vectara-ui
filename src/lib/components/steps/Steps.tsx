@@ -22,9 +22,10 @@ type Props = {
   steps: VuiStepProps[];
   className?: string;
   size?: StepSize;
+  "data-testid"?: string;
 };
 
-export const VuiSteps = ({ steps, className, size = "s", ...rest }: Props) => {
+export const VuiSteps = ({ steps, className, size = "s", "data-testid": dataTestId, ...rest }: Props) => {
   const classes = classNames("vuiSteps", className, {
     [`vuiSteps--${size}`]: size
   });
@@ -34,7 +35,7 @@ export const VuiSteps = ({ steps, className, size = "s", ...rest }: Props) => {
   const currentStepIndex = steps.findIndex((step) => step.status === "current");
 
   return (
-    <div className={classes} {...rest}>
+    <div className={classes} data-testid={dataTestId} {...rest}>
       <div className="vuiSteps__container">
         {steps.map((step, index) => {
           const isFirstStep = index === 0;
@@ -68,6 +69,7 @@ export const VuiSteps = ({ steps, className, size = "s", ...rest }: Props) => {
                 title={step.title}
                 status={step.status}
                 onClick={step.onClick}
+                data-testid={`${dataTestId}-step-${index}`}
                 stepNode={
                   step.status === "loading" ? (
                     <div>
