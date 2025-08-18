@@ -30,6 +30,8 @@
   font-family: "Roboto Mono", monospace;
   // Ensure PrismJS components wrap their lines.
   word-wrap: break-word !important;
+  // Ensure PrismJS components wrap their lines instead of making the container super-wide.
+  word-break: break-word !important;
   white-space: pre-wrap !important;
   font-size: $fontSizeSmall !important;
   color: $colorDarkShade !important;
