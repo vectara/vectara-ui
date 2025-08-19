@@ -3,7 +3,22 @@ $iconWidth: 36px;
 .vuiTimelineContainer {
   margin-left: $iconWidth;
   border-left: 1px solid transparent;
+}
+
+.vuiTimelineContainer--spacing-none {
+  padding-bottom: 0;
+}
+
+.vuiTimelineContainer--spacing-s {
+  padding-bottom: $sizeS;
+}
+
+.vuiTimelineContainer--spacing-m {
   padding-bottom: $sizeM;
+}
+
+.vuiTimelineContainer--spacing-l {
+  padding-bottom: $sizeL;
 }
 
 .vuiTimelineContainer--bordered {
