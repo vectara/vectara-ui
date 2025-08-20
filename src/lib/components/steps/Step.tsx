@@ -109,7 +109,11 @@ export const VuiStep = ({
   }
 
   return (
-    <div className={stepContainerClasses} aria-current={status === "current" ? "step" : undefined}>
+    <div
+      className={stepContainerClasses}
+      aria-current={status === "current" ? "step" : undefined}
+      data-testid={dataTestId}
+    >
       {stepContent}
     </div>
   );

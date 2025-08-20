@@ -69,7 +69,7 @@ export const VuiSteps = ({ steps, className, size = "s", "data-testid": dataTest
                 title={step.title}
                 status={step.status}
                 onClick={step.onClick}
-                data-testid={`${dataTestId}-step-${index}`}
+                data-testid={step["data-testid"] ?? `${dataTestId}-step-${index}`}
                 stepNode={
                   step.status === "loading" ? (
                     <div>

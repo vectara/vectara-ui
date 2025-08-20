@@ -4,7 +4,8 @@ export const BasicSteps = () => {
   const basicSteps: VuiStepProps[] = [
     {
       title: "Completed step",
-      status: "complete"
+      status: "complete",
+      "data-testid": "customDataTestId"
     },
     {
       title: "Selected step",
@@ -20,5 +21,5 @@ export const BasicSteps = () => {
     }
   ];
 
-  return <VuiSteps steps={basicSteps} />;
+  return <VuiSteps steps={basicSteps} data-testid="steps" />;
 };
