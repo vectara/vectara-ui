@@ -75,7 +75,7 @@ import { VuiSpacer } from "./spacer/Spacer";
 import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
 import { SPINNER_COLOR, SPINNER_SIZE } from "./spinner/types";
-import { VuiStatList } from "./statList/StatList";
+import { Stat, VuiStatList } from "./statList/StatList";
 import { VuiStatus } from "./status/Status";
 import { VuiSteps, StepStatus, StepSize, VuiStepProps } from "./steps/Steps";
 import { VuiSummary } from "./summary/Summary";
@@ -115,6 +115,7 @@ export type {
   SearchResult,
   Sections,
   SectionItem,
+  Stat,
   StepStatus,
   StepSize,
   TabSize,

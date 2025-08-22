@@ -5,7 +5,11 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiLink } from "../link/Link";
 import { VuiSpacer } from "../spacer/Spacer";
 
-type Stat = { name: string; value: React.ReactNode; align?: "start" | "center" | "end" | "baseline" | "stretch" };
+export type Stat = {
+  name: string;
+  value: React.ReactNode;
+  align?: "start" | "center" | "end" | "baseline" | "stretch";
+};
 
 const VuiStat = ({ name, value, align }: Stat) => {
   return (
