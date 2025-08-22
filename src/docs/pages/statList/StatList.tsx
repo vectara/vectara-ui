@@ -11,6 +11,7 @@ const stats = [
   },
   {
     name: "Status",
+    align: "center" as const,
     value: <VuiStatus status="error" label="Infested" />
   }
 ];
