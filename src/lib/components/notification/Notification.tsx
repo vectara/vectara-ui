@@ -9,6 +9,8 @@ import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiCopyButton } from "../copyButton/CopyButton";
+import { VuiCode } from "../code/Code";
+import { CodeLanguage } from "../code/types";
 
 export const addNotification = (props: Omit<Props, "onDismiss">) => {
   return sonnerToast.custom(
@@ -30,9 +32,13 @@ type Props = {
   onDismiss: () => void;
   children?: React.ReactNode;
   hasCopyButton?: boolean;
+  code?: {
+    content: string;
+    language?: CodeLanguage;
+  };
 };
 
-export const VuiNotification = ({ color, message, onDismiss, children, hasCopyButton }: Props) => {
+export const VuiNotification = ({ color, message, onDismiss, children, hasCopyButton, code }: Props) => {
   const classes = classNames("vuiNotification", `vuiNotification--${color}`);
 
   let icon;
@@ -86,7 +92,14 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
                 <VuiTextColor color={color}>{message}</VuiTextColor>
               </VuiText>
 
-              {hasCopyButton && (
+              {code && (
+                <>
+                  <VuiSpacer size="s" />
+                  <VuiCode language={code.language}>{code.content}</VuiCode>
+                </>
+              )}
+
+              {hasCopyButton && !code && (
                 <>
                   <VuiSpacer size="s" />
                   <VuiCopyButton value={message} size="s" label="Copy" />

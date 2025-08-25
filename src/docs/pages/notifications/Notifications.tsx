@@ -19,6 +19,17 @@ const getNotification = () => {
       message: "Not good. Very bad. Potentially catastrophic. You should probably do something about this.",
       hasCopyButton: true,
       children: <VuiButtonPrimary color="danger">Vent atmosphere</VuiButtonPrimary>
+    },
+    {
+      color: "danger",
+      message: "API request failed with error:",
+      code: {
+        content: `fetch('/api/data')
+  .then(response => response.json())
+  .catch(error => console.error(error))`,
+        language: "js"
+      },
+      hasCopyButton: true
     }
   ] as const;
 
