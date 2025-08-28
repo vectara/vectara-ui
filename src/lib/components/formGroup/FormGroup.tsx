@@ -34,7 +34,7 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
     errorMessageIds.push(id);
 
     return (
-      <div>
+      <div key={error}>
         {index > 0 && <VuiSpacer size="xs" />}
 
         <VuiText size="xs" key={error} id={id}>
