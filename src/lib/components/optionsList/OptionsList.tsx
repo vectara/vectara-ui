@@ -7,6 +7,7 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiText } from "../typography/Text";
 import { VuiSpacer } from "../spacer/Spacer";
+import { VuiTextColor } from "../typography/TextColor";
 
 const SIZE = ["s", "m", "l"] as const;
 
@@ -94,7 +95,7 @@ export const VuiOptionsList = <T extends unknown = unknown>({
         );
       })}
       {isLoading && (
-        <>
+        <div>
           <VuiSpacer size="xxs" />
           <VuiFlexContainer alignItems="center" justifyContent="center" spacing="xs">
             <VuiFlexItem grow={false}>
@@ -103,11 +104,14 @@ export const VuiOptionsList = <T extends unknown = unknown>({
 
             <VuiFlexItem grow={false}>
               <VuiText>
-                <p>Loading options…</p>
+                <p>
+                  <VuiTextColor color="subdued">Loading options…</VuiTextColor>
+                </p>
               </VuiText>
             </VuiFlexItem>
           </VuiFlexContainer>
-        </>
+          <VuiSpacer size="xxs" />
+        </div>
       )}
     </div>
   );

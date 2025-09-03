@@ -5,6 +5,8 @@ import { OptionListItem } from "../optionsList/types";
 import { VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { sortSelectedOptions } from "./sortSelectedOptions";
+import { VuiText } from "../typography/Text";
+import { VuiTextColor } from "../typography/TextColor";
 
 type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen" | "anchorSide"> &
   Pick<OptionsListProps<T>, "options"> & {
@@ -145,15 +147,29 @@ export const VuiSearchSelect = <T extends unknown = unknown>({
         <VuiSpacer size="xxs" />
       </div>
 
-      <VuiOptionsList
-        isSelectable
-        isScrollable
-        onScrollToBottom={asyncSearch?.onLazyLoad}
-        onSelectOption={onSelectOption}
-        selected={selectedOptions}
-        options={visibleOptions}
-        isLoading={asyncSearch?.isSearching}
-      />
+      {visibleOptions.length > 0 || asyncSearch?.isSearching ? (
+        <VuiOptionsList
+          isSelectable
+          isScrollable
+          onScrollToBottom={asyncSearch?.onLazyLoad}
+          onSelectOption={onSelectOption}
+          selected={selectedOptions}
+          options={visibleOptions}
+          isLoading={asyncSearch?.isSearching}
+        />
+      ) : searchValue.trim().length > 0 ? (
+        <VuiText className="vuiSearchSelect__emptyMessage" align="center">
+          <p>
+            <VuiTextColor color="subdued">No results found</VuiTextColor>
+          </p>
+        </VuiText>
+      ) : (
+        <VuiText className="vuiSearchSelect__emptyMessage" align="center">
+          <p>
+            <VuiTextColor color="subdued">No options available</VuiTextColor>
+          </p>
+        </VuiText>
+      )}
     </VuiPopover>
   );
 };
