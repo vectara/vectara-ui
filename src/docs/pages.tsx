@@ -21,6 +21,7 @@ import { icon } from "./pages/icon";
 import { infoList } from "./pages/infoList";
 import { infoMenu } from "./pages/infoMenu";
 import { infoTable } from "./pages/infoTable";
+import { inProgress } from "./pages/inProgress";
 import { input } from "./pages/input";
 import { itemsInput } from "./pages/itemsInput";
 import { label } from "./pages/label";
@@ -84,7 +85,7 @@ export const categories: Category[] = [
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, icon, progressBar, spinner, text, tooltip]
+    pages: [badge, status, callout, code, icon, inProgress, spinner, progressBar, text, tooltip]
   },
   {
     name: "Form",

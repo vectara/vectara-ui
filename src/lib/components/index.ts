@@ -49,6 +49,7 @@ import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
 import { InfoListType, VuiInfoList } from "./infoList/InfoList";
 import { VuiInfoMenu } from "./infoMenu/InfoMenu";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
+import { VuiInProgress } from "./inProgress/InProgress";
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { LinkProps } from "./link/types";
 import { VuiList } from "./list/List";
@@ -175,6 +176,7 @@ export {
   VuiInfoList,
   VuiInfoMenu,
   VuiInfoTable,
+  VuiInProgress,
   VuiItemsInput,
   VuiLabel,
   VuiLink,
