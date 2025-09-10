@@ -17,19 +17,36 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiPortal } from "../portal/Portal";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 
-type Props = {
+type BaseProps = {
   language?: CodeLanguage;
-  onCopy?: () => void;
   isFullscreenEnabled?: boolean;
   children?: string;
   fullHeight?: boolean;
   "data-testid"?: string;
 };
 
+type PropsWithCopyDefault = BaseProps & {
+  isCopyEnabled?: undefined;
+  onCopy?: () => void;
+};
+
+type PropsWithCopy = BaseProps & {
+  isCopyEnabled: true;
+  onCopy: () => void;
+};
+
+type PropsWithoutCopy = BaseProps & {
+  isCopyEnabled: false;
+  onCopy?: never;
+};
+
+type Props = PropsWithCopyDefault | PropsWithCopy | PropsWithoutCopy;
+
 // PrismJS clears highlighting when language-none is set.
 export const VuiCode = ({
   onCopy,
   isFullscreenEnabled = true,
+  isCopyEnabled = true,
   language = "none",
   fullHeight,
   children = "",
@@ -51,7 +68,7 @@ export const VuiCode = ({
 
   const testId = rest["data-testid"];
 
-  const actions = (
+  const actions = (isFullscreenEnabled || isCopyEnabled) && (
     <VuiFlexContainer className="vuiCodeActions" spacing="xxs">
       {isFullscreenEnabled && (
         <VuiIconButton
@@ -69,20 +86,22 @@ export const VuiCode = ({
         />
       )}
 
-      <VuiIconButton
-        color="neutral"
-        size="xs"
-        icon={
-          <VuiIcon>
-            <BiClipboard />
-          </VuiIcon>
-        }
-        aria-label="Copy to clipboard"
-        onClick={async () => {
-          await copyToClipboard(children);
-          if (onCopy) onCopy();
-        }}
-      />
+      {isCopyEnabled && (
+        <VuiIconButton
+          color="neutral"
+          size="xs"
+          icon={
+            <VuiIcon>
+              <BiClipboard />
+            </VuiIcon>
+          }
+          aria-label="Copy to clipboard"
+          onClick={async () => {
+            await copyToClipboard(children);
+            if (onCopy) onCopy();
+          }}
+        />
+      )}
     </VuiFlexContainer>
   );
 
