@@ -47,11 +47,13 @@ $textRhythm: $sizeM;
   }
 
   pre:has(> code) {
+    padding: $sizeXs $sizeS !important;
     margin-bottom: $textRhythm;
+    border-radius: $sizeXs;
   }
 
-  pre:only-child,
-  code:only-child {
+  p > pre:only-child,
+  p > code:only-child {
     display: block;
     padding: $sizeXs $sizeS;
     border: none;

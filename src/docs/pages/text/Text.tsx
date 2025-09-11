@@ -78,19 +78,27 @@ export const Text = () => (
               </thead>
               <tbody>
                 <tr>
-                  <td> 1 </td>
+                  <td>
+                    <code>1</code>
+                  </td>
                   <td> A gull of memory crosses low, backlit and slow. </td>
                 </tr>
                 <tr>
-                  <td> 2 </td>
+                  <td>
+                    <code>2</code>
+                  </td>
                   <td> Quiet interest gathers on a breath I did not spend. </td>
                 </tr>
                 <tr>
-                  <td> 3 </td>
+                  <td>
+                    <code>3</code>
+                  </td>
                   <td> Moon counts the hours like coins within a tray. </td>
                 </tr>
                 <tr>
-                  <td> 4 </td>
+                  <td>
+                    <code>4</code>
+                  </td>
                   <td> I sign in trembling script: return by day. </td>
                 </tr>
               </tbody>
