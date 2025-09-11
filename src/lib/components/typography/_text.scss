@@ -108,6 +108,10 @@ $textRhythm: $sizeM;
   sup {
     vertical-align: super;
   }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .vuiText--truncate {
