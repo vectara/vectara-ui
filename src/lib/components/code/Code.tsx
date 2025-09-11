@@ -17,30 +17,15 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiPortal } from "../portal/Portal";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 
-type BaseProps = {
+type Props = {
   language?: CodeLanguage;
   isFullscreenEnabled?: boolean;
+  isCopyEnabled?: boolean;
   children?: string;
   fullHeight?: boolean;
+  onCopy?: () => void;
   "data-testid"?: string;
 };
-
-type PropsWithCopyDefault = BaseProps & {
-  isCopyEnabled?: undefined;
-  onCopy?: () => void;
-};
-
-type PropsWithCopy = BaseProps & {
-  isCopyEnabled: true;
-  onCopy: () => void;
-};
-
-type PropsWithoutCopy = BaseProps & {
-  isCopyEnabled: false;
-  onCopy?: never;
-};
-
-type Props = PropsWithCopyDefault | PropsWithCopy | PropsWithoutCopy;
 
 // PrismJS clears highlighting when language-none is set.
 export const VuiCode = ({
