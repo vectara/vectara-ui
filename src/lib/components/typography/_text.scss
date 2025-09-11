@@ -132,6 +132,11 @@ $textRhythm: $sizeM;
     margin-bottom: $textRhythm;
   }
 
+  code,
+  pre {
+    font-size: $fontSize * 0.75;
+  }
+
   h1 {
     font-size: $fontSize * 2;
     line-height: 1.1;
