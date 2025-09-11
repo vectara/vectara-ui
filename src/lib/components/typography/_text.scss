@@ -40,16 +40,23 @@ $textRhythm: $sizeM;
   }
 
   pre:not(:has(> code)),
-  pre:not(:only-child),
   code {
     background-color: $colorLightShade;
     padding: $sizeXxxs $sizeXxs;
   }
 
   pre:has(> code) {
-    padding: $sizeXs $sizeS !important;
+    display: block;
+    background-color: $colorLightShade;
+    padding: $sizeXs $sizeS;
     margin-bottom: $textRhythm;
     border-radius: $sizeXs;
+  }
+
+  pre > code {
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
   }
 
   p > pre:only-child,
