@@ -117,18 +117,37 @@ export const VuiCode = ({
             }}
           >
             <div className="vuiCodeFullscreen">
-              <VuiIconButton
-                className="vuiCodeFullscreen__closeButton"
-                color="neutral"
-                size="m"
-                icon={
-                  <VuiIcon>
-                    <BiX />
-                  </VuiIcon>
-                }
-                aria-label="Exit fullscreen code"
-                onClick={() => setIsFullscreen(false)}
-              />
+              <VuiFlexContainer className="vuiCodeFullscreen__actions" spacing="xxs">
+                {isCopyEnabled && (
+                  <VuiIconButton
+                    color="neutral"
+                    size="m"
+                    icon={
+                      <VuiIcon>
+                        <BiClipboard />
+                      </VuiIcon>
+                    }
+                    aria-label="Copy to clipboard"
+                    onClick={async () => {
+                      await copyToClipboard(children);
+                      if (onCopy) onCopy();
+                    }}
+                  />
+                )}
+                <VuiIconButton
+                  className="vuiCodeFullscreen__closeButton"
+                  color="neutral"
+                  size="m"
+                  icon={
+                    <VuiIcon>
+                      <BiX />
+                    </VuiIcon>
+                  }
+                  aria-label="Exit fullscreen code"
+                  onClick={() => setIsFullscreen(false)}
+                />
+              </VuiFlexContainer>
+
               {code}
             </div>
           </FocusOn>
