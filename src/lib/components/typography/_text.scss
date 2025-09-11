@@ -1,5 +1,7 @@
 @use "sass:map";
 
+$textRhythm: $sizeM;
+
 .vuiText {
   overflow-wrap: break-word;
   word-break: break-word;
@@ -24,22 +26,47 @@
   ul,
   ol {
     margin-left: $sizeM;
-    margin-bottom: $sizeXs;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: $textRhythm;
   }
 
+  hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid;
+    width: 100%;
+    border-bottom-color: $borderColor;
+    margin-bottom: $textRhythm;
+  }
+
+  pre,
   code {
     border: 1px solid $borderColorLight;
     padding: $sizeXxxs $sizeXs;
+  }
+
+  pre:only-child,
+  code:only-child {
+    padding: $sizeXs $sizeS;
+    border: none;
+    border-radius: $sizeXs;
+    overflow: auto;
+    background-color: $colorLightShade;
+    margin-bottom: $textRhythm;
+  }
+
+  blockquote {
+    border-left: 4px solid $colorLightShade;
+    padding-left: $sizeM;
+    color: $colorDarkerShade;
+    margin-bottom: $textRhythm;
   }
 
   table {
     width: 100%;
     table-layout: fixed;
     border: 1px solid $borderColorLight;
+    margin-bottom: $textRhythm;
 
     thead {
       background-color: $colorLightShade;
@@ -63,6 +90,10 @@
       padding: $sizeS $sizeS;
     }
   }
+
+  sup {
+    vertical-align: super;
+  }
 }
 
 .vuiText--truncate {
@@ -79,40 +110,50 @@
   ol {
     font-size: $fontSize;
     line-height: 1.4;
-    margin-bottom: $sizeXs;
     font-weight: $fontWeight;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: $textRhythm;
   }
 
   h1 {
     font-size: $fontSize * 2;
     line-height: 1.1;
     font-weight: $fontWeightStrong;
-    margin-bottom: $sizeXs;
+    margin-bottom: $textRhythm;
   }
 
   h2 {
     font-size: $fontSize * 1.5;
     line-height: 1.2;
     font-weight: $fontWeightNormal;
-    margin-bottom: $sizeXs;
+    margin-bottom: $textRhythm;
   }
 
   h3 {
     font-size: $fontSize * 1.25;
     line-height: 1.3;
     font-weight: $fontWeightNormal;
-    margin-bottom: $sizeXs;
+    margin-bottom: $textRhythm;
   }
 
   h4 {
     font-size: $fontSize;
     line-height: 1.4;
     font-weight: $labelFontWeight;
-    margin-bottom: $sizeXs;
+    margin-bottom: $textRhythm;
+  }
+
+  h5 {
+    font-size: $fontSize * 0.85;
+    line-height: 1.4;
+    font-weight: $labelFontWeight;
+    margin-bottom: $textRhythm;
+  }
+
+  h6 {
+    font-size: $fontSize * 0.75;
+    line-height: 1.4;
+    font-weight: $labelFontWeight;
+    margin-bottom: $textRhythm;
   }
 }
 
