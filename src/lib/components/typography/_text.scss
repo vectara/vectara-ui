@@ -39,20 +39,25 @@ $textRhythm: $sizeM;
     margin-bottom: $textRhythm;
   }
 
-  pre,
+  pre:not(:has(> code)),
+  pre:not(:only-child),
   code {
-    border: 1px solid $borderColorLight;
-    padding: $sizeXxxs $sizeXs;
+    background-color: $colorLightShade;
+    padding: $sizeXxxs $sizeXxs;
+  }
+
+  pre:has(> code) {
+    margin-bottom: $textRhythm;
   }
 
   pre:only-child,
   code:only-child {
+    display: block;
     padding: $sizeXs $sizeS;
     border: none;
     border-radius: $sizeXs;
     overflow: auto;
     background-color: $colorLightShade;
-    margin-bottom: $textRhythm;
   }
 
   blockquote {

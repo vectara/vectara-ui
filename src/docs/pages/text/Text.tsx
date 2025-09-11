@@ -58,6 +58,17 @@ export const Text = () => (
               <pre>(pre) doc.title='Vectara'</pre>
             </p>
 
+            <pre>
+              <code>
+                {`# Markdown's Grace
+
+*Italic* and **bold**,  
+\`Code\` unfolds,  
+> Quotes that sing,  
+> In Markdown's ring.`}
+              </code>
+            </pre>
+
             <table>
               <thead>
                 <tr>
