@@ -19,10 +19,11 @@ import { copyToClipboard } from "../../utils/copyToClipboard";
 
 type Props = {
   language?: CodeLanguage;
-  onCopy?: () => void;
   isFullscreenEnabled?: boolean;
+  isCopyEnabled?: boolean;
   children?: string;
   fullHeight?: boolean;
+  onCopy?: () => void;
   "data-testid"?: string;
 };
 
@@ -30,6 +31,7 @@ type Props = {
 export const VuiCode = ({
   onCopy,
   isFullscreenEnabled = true,
+  isCopyEnabled = true,
   language = "none",
   fullHeight,
   children = "",
@@ -51,7 +53,7 @@ export const VuiCode = ({
 
   const testId = rest["data-testid"];
 
-  const actions = (
+  const actions = (isFullscreenEnabled || isCopyEnabled) && (
     <VuiFlexContainer className="vuiCodeActions" spacing="xxs">
       {isFullscreenEnabled && (
         <VuiIconButton
@@ -69,20 +71,22 @@ export const VuiCode = ({
         />
       )}
 
-      <VuiIconButton
-        color="neutral"
-        size="xs"
-        icon={
-          <VuiIcon>
-            <BiClipboard />
-          </VuiIcon>
-        }
-        aria-label="Copy to clipboard"
-        onClick={async () => {
-          await copyToClipboard(children);
-          if (onCopy) onCopy();
-        }}
-      />
+      {isCopyEnabled && (
+        <VuiIconButton
+          color="neutral"
+          size="xs"
+          icon={
+            <VuiIcon>
+              <BiClipboard />
+            </VuiIcon>
+          }
+          aria-label="Copy to clipboard"
+          onClick={async () => {
+            await copyToClipboard(children);
+            if (onCopy) onCopy();
+          }}
+        />
+      )}
     </VuiFlexContainer>
   );
 
@@ -113,18 +117,37 @@ export const VuiCode = ({
             }}
           >
             <div className="vuiCodeFullscreen">
-              <VuiIconButton
-                className="vuiCodeFullscreen__closeButton"
-                color="neutral"
-                size="m"
-                icon={
-                  <VuiIcon>
-                    <BiX />
-                  </VuiIcon>
-                }
-                aria-label="Exit fullscreen code"
-                onClick={() => setIsFullscreen(false)}
-              />
+              <VuiFlexContainer className="vuiCodeFullscreen__actions" spacing="xxs">
+                {isCopyEnabled && (
+                  <VuiIconButton
+                    color="neutral"
+                    size="m"
+                    icon={
+                      <VuiIcon>
+                        <BiClipboard />
+                      </VuiIcon>
+                    }
+                    aria-label="Copy to clipboard"
+                    onClick={async () => {
+                      await copyToClipboard(children);
+                      if (onCopy) onCopy();
+                    }}
+                  />
+                )}
+                <VuiIconButton
+                  className="vuiCodeFullscreen__closeButton"
+                  color="neutral"
+                  size="m"
+                  icon={
+                    <VuiIcon>
+                      <BiX />
+                    </VuiIcon>
+                  }
+                  aria-label="Exit fullscreen code"
+                  onClick={() => setIsFullscreen(false)}
+                />
+              </VuiFlexContainer>
+
               {code}
             </div>
           </FocusOn>
