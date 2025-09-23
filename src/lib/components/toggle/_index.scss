@@ -1,7 +1,8 @@
 $toggleWidth: $sizeL * 1.5;
 $toggleHeight: $sizeM * 1.25;
 $buttonOffset: 2px;
-$buttonSize: $toggleHeight - ($buttonOffset * 2);
+$buttonHeight: $toggleHeight - ($buttonOffset * 2);
+$buttonWidth: $toggleWidth * 0.75 - ($buttonOffset * 2);
 
 .vuiToggle {
   position: relative;
@@ -25,7 +26,7 @@ $buttonSize: $toggleHeight - ($buttonOffset * 2);
   }
 
   &:checked + .vuiToggle__button:before {
-    transform: translateX($toggleWidth - $buttonSize - ($buttonOffset * 2));
+    transform: translateX($toggleWidth - $buttonWidth - ($buttonOffset * 2));
   }
 }
 
@@ -38,18 +39,18 @@ $buttonSize: $toggleHeight - ($buttonOffset * 2);
   bottom: 0;
   background-color: $colorMediumShade;
   transition: $transitionSpeed;
-  border-radius: $buttonSize;
+  border-radius: $buttonHeight;
   box-shadow: inset rgba(0, 0, 0, 0.1) 0px 2px 2px;
 
   &:before {
     position: absolute;
     content: "";
-    height: $buttonSize;
-    width: $buttonSize;
+    height: $buttonHeight;
+    width: $buttonWidth;
     left: $buttonOffset;
     bottom: $buttonOffset;
     background-color: $colorEmptyShade;
     transition: $transitionSpeed;
-    border-radius: 50%;
+    border-radius: $buttonHeight;
   }
 }
