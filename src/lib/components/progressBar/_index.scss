@@ -2,7 +2,7 @@
 
 .vuiProgressBar {
   position: relative;
-  border-radius: $sizeXxs;
+  border-radius: $sizeS;
   height: $sizeS;
   overflow: hidden;
 }
@@ -35,29 +35,29 @@
 // Color
 $color: (
   accent: (
-    "background-color": $colorAccent
+    "background-color": linear-gradient(to top, $colorAccent, $colorAccentLightShade)
   ),
   primary: (
-    "background-color": $colorPrimary
+    "background-color": linear-gradient(to top, $colorPrimary, $colorPrimaryLightShade)
   ),
   success: (
-    "background-color": $colorSuccess
+    "background-color": linear-gradient(to top, $colorSuccess, $colorSuccessLightShade)
   ),
   warning: (
-    "background-color": $colorWarning
+    "background-color": linear-gradient(to top, $colorWarning, $colorWarningLightShade)
   ),
   danger: (
-    "background-color": $colorDanger
+    "background-color": linear-gradient(to top, $colorDanger, $colorDangerLightShade)
   ),
   neutral: (
-    "background-color": $colorDarkShade
+    "background-color": linear-gradient(to top, $colorDarkShade, $colorMediumShade)
   )
 );
 
 @each $colorName, $colorValue in $color {
   .vuiProgressBar--#{$colorName} {
     .vuiProgressBar__bar {
-      background-color: #{map.get($colorValue, "background-color")};
+      background-image: #{map.get($colorValue, "background-color")};
     }
   }
 }
