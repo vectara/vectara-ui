@@ -35,6 +35,7 @@ export const Card = () => {
           }
           body={<VuiButtonPrimary color="success">Buy ticket</VuiButtonPrimary>}
           interactive
+          fullHeight
         />
       </VuiFlexItem>
 
@@ -61,6 +62,7 @@ export const Card = () => {
           }
           body={<VuiButtonPrimary color="success">Buy ticket</VuiButtonPrimary>}
           interactive
+          fullHeight
         />
       </VuiFlexItem>
 
@@ -90,6 +92,7 @@ export const Card = () => {
               </VuiFlexContainer>
             </>
           }
+          fullHeight
         />
       </VuiFlexItem>
     </VuiFlexContainer>

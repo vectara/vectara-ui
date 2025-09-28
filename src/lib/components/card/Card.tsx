@@ -11,6 +11,7 @@ type Props = {
   padding?: "s" | "m" | "l";
   highlight?: boolean;
   ungrouped?: boolean;
+  fullHeight?: boolean;
 };
 
 export const VuiCard = ({
@@ -24,6 +25,7 @@ export const VuiCard = ({
   padding = "s",
   highlight,
   ungrouped,
+  fullHeight,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -34,7 +36,8 @@ export const VuiCard = ({
       "vuiCard--interactive": interactive && !href,
       "vuiCard--link": href,
       "vuiCard--highlight": highlight,
-      "vuiCard--ungrouped": ungrouped
+      "vuiCard--ungrouped": ungrouped,
+      "vuiCard--fullHeight": fullHeight
     },
     className
   );

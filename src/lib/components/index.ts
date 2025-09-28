@@ -62,6 +62,7 @@ import { VuiOptionsButton } from "./optionsButton/OptionsButton";
 import { VuiOptionsList } from "./optionsList/OptionsList";
 import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
+import { VuiPagination, Pagination } from "./pagination/Pagination";
 import { VuiPanel } from "./panel/Panel";
 import { VuiPopover, AnchorSide } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
@@ -112,6 +113,7 @@ export type {
   LinkProps,
   MenuItem,
   OptionListItem,
+  Pagination,
   RadioButtonConfig,
   SearchResult,
   Sections,
@@ -190,6 +192,7 @@ export {
   VuiOptionsButton,
   VuiOptionsList,
   VuiOptionsListItem,
+  VuiPagination,
   VuiPanel,
   VuiPasswordInput,
   VuiPopover,

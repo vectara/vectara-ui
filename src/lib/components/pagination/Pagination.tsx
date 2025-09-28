@@ -3,7 +3,7 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiButtonTertiary } from "../button/ButtonTertiary";
 import { VuiIcon } from "../icon/Icon";
-import { createPagination } from "./createPagination";
+import { createPagination } from "../table/createPagination";
 import classNames from "classnames";
 
 export type Pagination = {
@@ -16,10 +16,10 @@ type Props = Pagination & {
   isDisabled?: boolean;
 };
 
-export const VuiTablePagination = ({ currentPage, numPages, onSelectPage, isDisabled }: Props) => {
+export const VuiPagination = ({ currentPage, numPages, onSelectPage, isDisabled }: Props) => {
   const { items, activeIndex } = createPagination(currentPage, numPages);
-  const manyPagesTokenClasses = classNames("vuiTableManyPagesToken", {
-    "vuiTableManyPagesToken-isDisabled": isDisabled
+  const manyPagesTokenClasses = classNames("vuiPaginationManyPagesToken", {
+    "vuiPaginationManyPagesToken-isDisabled": isDisabled
   });
 
   return (

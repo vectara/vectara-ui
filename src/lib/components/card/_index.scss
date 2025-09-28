@@ -5,9 +5,12 @@
   border-radius: $sizeXs;
   box-shadow: $shadowLargeStart;
   width: 100%;
-  height: 100%;
   transition: box-shadow $transitionSpeed;
   overflow: hidden;
+}
+
+.vuiCard--fullHeight {
+  height: 100%;
 }
 
 .vuiCard--interactive {
@@ -102,13 +105,13 @@
 }
 
 .vuiCard--highlight {
-  border: 2px solid $colorAccent;
+  border: 2px solid $colorPrimary;
 
   .vuiCard__header {
-    background-color: $colorAccentLighterShade;
+    background-color: $colorPrimaryLighterShade;
   }
 
   .vuiCard__body {
-    border-top: $colorAccentLighterShade;
+    border-top: $colorPrimaryLighterShade;
   }
 }
