@@ -5,7 +5,7 @@ import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
 import { VuiTableCell } from "./TableCell";
 import { VuiTableHeaderCell } from "./TableHeaderCell";
-import { Pagination, VuiTablePagination } from "./TablePagination";
+import { Pagination, VuiPagination } from "../pagination/Pagination";
 import { Pager, VuiTablePager } from "./TablePager";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
@@ -325,7 +325,7 @@ export const VuiTable = <T extends Row>({
       {!pagination ? undefined : isComplexPagination(pagination) ? (
         <>
           <VuiSpacer size="xs" />
-          <VuiTablePagination isDisabled={!isInteractive} {...pagination} />
+          <VuiPagination isDisabled={!isInteractive} {...pagination} />
         </>
       ) : (
         <>

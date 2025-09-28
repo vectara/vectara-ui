@@ -32,6 +32,7 @@ import { modal } from "./pages/modal";
 import { notifications } from "./pages/notifications";
 import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
+import { pagination } from "./pages/pagination";
 import { panel } from "./pages/panel";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
@@ -77,7 +78,7 @@ export const categories: Category[] = [
   },
   {
     name: "Info",
-    pages: [table, infoTable, infoList, statList, list]
+    pages: [table, infoTable, infoList, statList, list, pagination]
   },
   {
     name: "Layout",
