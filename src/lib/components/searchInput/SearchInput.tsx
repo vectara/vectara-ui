@@ -1,11 +1,12 @@
 import { ChangeEventHandler, FormEventHandler, useRef, useState, KeyboardEvent, useEffect, useMemo } from "react";
 import classNames from "classnames";
 import { VuiIconButton } from "../button/IconButton";
-import { BiX } from "react-icons/bi";
+import { BiSearch, BiX } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
 import { VuiSearchInputSuggestions } from "./SearchInputSuggestions";
 import { SearchSuggestion } from "./types";
 import { createId } from "../../utils/createId";
+import { VuiSpinner } from "../spinner/Spinner";
 
 const SIZE = ["m", "l"] as const;
 
@@ -18,6 +19,7 @@ type Props = {
   autoFocus?: boolean;
   onSubmit?: FormEventHandler;
   suggestions?: SearchSuggestion[];
+  isLoading?: boolean;
 };
 
 type ClearableProps =
@@ -41,6 +43,7 @@ export const VuiSearchInput = ({
   isClearable,
   onClear,
   suggestions,
+  isLoading,
   ...rest
 }: Props & ClearableProps) => {
   const classes = classNames("vuiSearchInput", `vuiSearchInput--${size}`, className);
@@ -186,6 +189,16 @@ export const VuiSearchInput = ({
           aria-controls={hasSuggestions ? controlsId : undefined}
           {...rest}
         />
+
+        <div className="vuiSearchInput__icon">
+          {isLoading ? (
+            <VuiSpinner size={size === "m" ? "s" : "m"} />
+          ) : (
+            <VuiIcon color="subdued" size={size === "m" ? "s" : "m"}>
+              <BiSearch />
+            </VuiIcon>
+          )}
+        </div>
 
         {isClearable && value && (
           <VuiIconButton

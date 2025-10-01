@@ -2,16 +2,21 @@ import { useEffect, useState } from "react";
 import { SearchSuggestion, VuiButtonPrimary, VuiFlexContainer, VuiFlexItem, VuiSearchInput } from "../../../lib";
 
 export const Suggestions = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
 
   useEffect(() => {
     if (!searchValue) {
       setSuggestions([]);
+      setIsLoading(false);
       return;
     }
 
+    setIsLoading(true);
+
     const timeout = setTimeout(() => {
+      setIsLoading(false);
       setSuggestions([
         { label: "Glorp", href: "https://www.vectara.com" },
         { label: "Gronkus", href: "https://www.vectara.com" },
@@ -40,6 +45,7 @@ export const Suggestions = () => {
     <VuiFlexContainer alignItems="center">
       <VuiFlexItem grow={1}>
         <VuiSearchInput
+          isLoading={isLoading}
           isClearable
           autoFocus
           placeholder="Ask a question"
