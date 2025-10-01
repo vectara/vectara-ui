@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.vuiSearchInput__icon {
+  position: absolute;
+  left: $sizeM;
+  pointer-events: none;
+}
+
 .vuiSearchInput__input {
   flex-grow: 1;
   background-color: $colorEmptyShade;
@@ -40,15 +46,23 @@
 }
 
 .vuiSearchInput--m {
+  .vuiSearchInput__icon {
+    top: $sizeXs + 1px;
+  }
+
   .vuiSearchInput__input {
-    padding: $sizeXs $sizeM;
+    padding: $sizeXs $sizeM $sizeXs $sizeXl + $sizeXs;
     font-size: $fontSizeStandard;
   }
 }
 
 .vuiSearchInput--l {
+  .vuiSearchInput__icon {
+    top: $sizeS + 1px;
+  }
+
   .vuiSearchInput__input {
-    padding: $sizeS $sizeM;
+    padding: $sizeS $sizeM $sizeS $sizeXl + $sizeS;
     font-size: $fontSizeLarge;
   }
 }
