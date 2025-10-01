@@ -13,23 +13,23 @@ export const Suggestions = () => {
 
     const timeout = setTimeout(() => {
       setSuggestions([
-        { label: "Glorp", href: "https://www.vectara..com" },
-        { label: "Gronkus", href: "https://www.vectara..com" },
-        { label: "Glargulon", href: "https://www.vectara..com" },
-        { label: "Glarb", href: "https://www.vectara..com" },
-        { label: "Gloopty", href: "https://www.vectara..com" },
-        { label: "Glarp", href: "https://www.vectara..com" },
-        { label: "Gronk", href: "https://www.vectara..com" },
-        { label: "Glurble", href: "https://www.vectara..com" },
-        { label: "Glarf", href: "https://www.vectara..com" },
-        { label: "Gloop", href: "https://www.vectara..com" },
-        { label: "Glip", href: "https://www.vectara..com" },
-        { label: "Glarb", href: "https://www.vectara..com" },
-        { label: "Gronk", href: "https://www.vectara..com" },
-        { label: "Glurble", href: "https://www.vectara..com" },
-        { label: "Glarf", href: "https://www.vectara..com" },
-        { label: "Gloop", href: "https://www.vectara..com" },
-        { label: "Glip", href: "https://www.vectara..com" }
+        { label: "Glorp", href: "https://www.vectara.com" },
+        { label: "Gronkus", href: "https://www.vectara.com" },
+        { label: "Glargulon", href: "https://www.vectara.com" },
+        { label: "Glarb", href: "https://www.vectara.com" },
+        { label: "Gloopty", href: "https://www.vectara.com" },
+        { label: "Glarp", href: "https://www.vectara.com" },
+        { label: "Gronk", href: "https://www.vectara.com" },
+        { label: "Glurble", href: "https://www.vectara.com" },
+        { label: "Glarf", href: "https://www.vectara.com" },
+        { label: "Gloop", href: "https://www.vectara.com" },
+        { label: "Glip", href: "https://www.vectara.com" },
+        { label: "Glarb", href: "https://www.vectara.com" },
+        { label: "Gronk", href: "https://www.vectara.com" },
+        { label: "Glurble", href: "https://www.vectara.com" },
+        { label: "Glarf", href: "https://www.vectara.com" },
+        { label: "Gloop", href: "https://www.vectara.com" },
+        { label: "Glip", href: "https://www.vectara.com" }
       ]);
     }, 2000);
 
