@@ -16,7 +16,7 @@ type Props = {
   size?: (typeof SPINNER_SIZE)[number];
 };
 
-export const VuiSpinner = ({ color = "accent", size = "m" }: Props) => {
+export const VuiSpinner = ({ color = "subdued", size = "m" }: Props) => {
   const classes = classNames("vuiSpinner", sizeToClassNameMap[size], `vuiSpinner--${color}`);
   return (
     <span className={classes}>
