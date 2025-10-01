@@ -171,7 +171,13 @@ export const VuiSearchInput = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <div ref={containerRef} className={classes}>
+      <div
+        ref={containerRef}
+        className={classes}
+        aria-live="polite"
+        aria-atomic="true"
+        aria-busy={isLoading ? "true" : "false"}
+      >
         <input
           ref={inputRef}
           className={inputClasses}
