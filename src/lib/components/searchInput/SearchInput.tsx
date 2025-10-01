@@ -51,8 +51,10 @@ export const VuiSearchInput = ({
   const suppressNextFocus = useRef(false);
 
   useEffect(() => {
-    const handleClickOutside = () => {
-      setAreSuggestionsVisible(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setAreSuggestionsVisible(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
