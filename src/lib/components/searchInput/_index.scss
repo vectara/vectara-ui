@@ -61,3 +61,52 @@
     color: $colorAccent;
   }
 }
+
+.vuiSearchInputSuggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  // If this is at the bottom of the page we need to add some space
+  // at the bottom so the user can see the menu completely.
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: $sizeXl;
+    pointer-events: none;
+  }
+}
+
+.vuiSearchInputSuggestions__suggestionsList {
+  background-color: $colorEmptyShade;
+  border: 1px solid $colorMediumShade;
+  border-top: none;
+  border-radius: 0 0 $sizeM $sizeM;
+  box-shadow: $shadowLargeEnd;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.vuiSearchInputSuggestions__suggestion {
+  display: block;
+  background-color: $colorEmptyShade;
+  text-decoration: none;
+  padding: ($sizeXxs + 1px) $sizeS;
+  font-size: $fontSizeStandard;
+  color: $colorText;
+
+  &:focus-visible,
+  &:hover {
+    text-decoration: underline;
+    color: $colorPrimary;
+    background-color: $colorPrimaryLighterShade;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
