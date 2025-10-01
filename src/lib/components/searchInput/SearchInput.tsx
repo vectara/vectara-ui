@@ -48,6 +48,7 @@ export const VuiSearchInput = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [areSuggestionsVisible, setAreSuggestionsVisible] = useState(true);
   const suggestionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const suppressNextFocus = useRef(false);
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -62,6 +63,12 @@ export const VuiSearchInput = ({
   }, []);
 
   const handleInputFocus = () => {
+    // Don't show suggestions if focus was triggered by Escape key
+    if (suppressNextFocus.current) {
+      suppressNextFocus.current = false;
+      return;
+    }
+
     // Show suggestions when input receives focus (if suggestions exist).
     if (suggestions && suggestions.length > 0) {
       setAreSuggestionsVisible(true);
@@ -87,6 +94,7 @@ export const VuiSearchInput = ({
       case "Escape": {
         e.preventDefault();
         setAreSuggestionsVisible(false);
+        suppressNextFocus.current = true;
         inputRef.current?.focus();
         break;
       }
@@ -128,6 +136,7 @@ export const VuiSearchInput = ({
       case "Escape": {
         e.preventDefault();
         setAreSuggestionsVisible(false);
+        suppressNextFocus.current = true;
         inputRef.current?.focus();
         break;
       }
