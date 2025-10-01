@@ -10,22 +10,26 @@ type Props = {
 
 export const VuiSearchInputSuggestions = ({ id, suggestions, onSuggestionKeyDown, suggestionRefs }: Props) => {
   return (
-    <div id={id} className="vuiSearchInputSuggestions" role="listbox">
-      <div className="vuiSearchInputSuggestions__suggestionsList">
-        {suggestions.map((suggestion, index) => (
-          <a
-            href={suggestion.href}
-            key={index}
-            className="vuiSearchInputSuggestions__suggestion"
-            ref={(el) => (suggestionRefs.current[index] = el)}
-            onKeyDown={(e) => onSuggestionKeyDown(e, index)}
-            role="option"
-            aria-selected="false"
-          >
-            {suggestion.label}
-          </a>
-        ))}
+    <div className="vuiSearchInputSuggestionsContainer">
+      <div className="vuiSearchInputSuggestions">
+        <div id={id} className="vuiSearchInputSuggestions__suggestionsList" role="listbox">
+          {suggestions.map((suggestion, index) => (
+            <a
+              href={suggestion.href}
+              key={index}
+              className="vuiSearchInputSuggestions__suggestion"
+              ref={(el) => (suggestionRefs.current[index] = el)}
+              onKeyDown={(e) => onSuggestionKeyDown(e, index)}
+              role="option"
+              aria-selected="false"
+            >
+              {suggestion.label}
+            </a>
+          ))}
+        </div>
       </div>
+
+      <div className="vuiSearchInputSuggestions__bottomSpacer" />
     </div>
   );
 };

@@ -162,13 +162,16 @@ export const VuiSearchInput = ({
 
   const hasSuggestions = suggestions && suggestions.length > 0 && areSuggestionsVisible;
   const controlsId = useMemo(() => `searchSuggestions-${createId()}`, []);
+  const inputClasses = classNames("vuiSearchInput__input", {
+    "vuiSearchInput__input--hasSuggestions": hasSuggestions
+  });
 
   return (
     <form onSubmit={onSubmit}>
       <div ref={containerRef} className={classes}>
         <input
           ref={inputRef}
-          className="vuiSearchInput__input"
+          className={inputClasses}
           type="text"
           autoComplete="off"
           autoCapitalize="off"

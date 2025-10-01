@@ -22,6 +22,11 @@
   }
 }
 
+.vuiSearchInput__input--hasSuggestions {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .vuiSearchInput__submitButton {
   position: absolute;
   right: $sizeS;
@@ -61,32 +66,30 @@
     color: $colorAccent;
   }
 }
-
-.vuiSearchInputSuggestions {
+.vuiSearchInputSuggestionsContainer {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   z-index: 1;
-
-  // If this is at the bottom of the page we need to add some space
-  // at the bottom so the user can see the menu completely.
-  &:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: $sizeXl;
-    pointer-events: none;
-  }
+  display: flex;
+  flex-direction: column;
 }
 
-.vuiSearchInputSuggestions__suggestionsList {
+.vuiSearchInputSuggestions {
+  // position: absolute;
+  // top: 100%;
+  // left: 0;
+  // right: 0;
+  overflow: hidden;
   background-color: $colorEmptyShade;
   border: 1px solid $colorMediumShade;
   border-top: none;
-  border-radius: 0 0 $sizeM $sizeM;
+  border-radius: 0 0 $sizeXs $sizeXs;
   box-shadow: $shadowLargeEnd;
+}
+
+.vuiSearchInputSuggestions__suggestionsList {
   max-height: 220px;
   overflow-y: auto;
 }
@@ -109,4 +112,11 @@
   &:focus-visible {
     outline: none;
   }
+}
+
+// If at the bottom of the window, add some space
+// so the user can comfortably see the complete suggestion list.
+.vuiSearchInputSuggestions__bottomSpacer {
+  height: $sizeXl;
+  pointer-events: none;
 }
