@@ -61,3 +61,20 @@
     color: $colorAccent;
   }
 }
+
+.vuiSearchInputSuggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: $colorEmptyShade;
+  border: 1px solid $colorMediumShade;
+  border-top: none;
+  border-radius: 0 0 $sizeXs $sizeXs;
+  box-shadow: $shadowSmallStart;
+  z-index: 1;
+}
+
+.vuiSearchInputSuggestions__suggestion {
+  display: block;
+}

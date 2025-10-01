@@ -70,6 +70,7 @@ import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
 import { VuiPrompt } from "./prompt/Prompt";
 import { VuiScreenBlock } from "./screenBlock/ScreenBlock";
 import { VuiSearchInput } from "./searchInput/SearchInput";
+import { SearchSuggestion } from "./searchInput/types";
 import { SearchResult, VuiSearchResult } from "./searchResult/SearchResult";
 import { VuiSearchSelect } from "./searchSelect/SearchSelect";
 import { VuiSetting } from "./setting/Setting";
@@ -116,6 +117,7 @@ export type {
   Pagination,
   RadioButtonConfig,
   SearchResult,
+  SearchSuggestion,
   Sections,
   SectionItem,
   Stat,
