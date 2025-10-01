@@ -20,7 +20,16 @@ export const Suggestions = () => {
         { label: "Gloopty", href: "https://www.vectara..com" },
         { label: "Glarp", href: "https://www.vectara..com" },
         { label: "Gronk", href: "https://www.vectara..com" },
-        { label: "Glurble", href: "https://www.vectara..com" }
+        { label: "Glurble", href: "https://www.vectara..com" },
+        { label: "Glarf", href: "https://www.vectara..com" },
+        { label: "Gloop", href: "https://www.vectara..com" },
+        { label: "Glip", href: "https://www.vectara..com" },
+        { label: "Glarb", href: "https://www.vectara..com" },
+        { label: "Gronk", href: "https://www.vectara..com" },
+        { label: "Glurble", href: "https://www.vectara..com" },
+        { label: "Glarf", href: "https://www.vectara..com" },
+        { label: "Gloop", href: "https://www.vectara..com" },
+        { label: "Glip", href: "https://www.vectara..com" }
       ]);
     }, 2000);
 
