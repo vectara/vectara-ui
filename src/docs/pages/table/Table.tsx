@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   VuiBadge,
   VuiCopyButton,
@@ -46,21 +46,13 @@ export const Table = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   const fetchPeople = () => {
     setIsLoading(true);
     setSelectedRows([]);
     return setTimeout(() => {
-      const filteredPeople = hasData
-        ? people.filter(({ name }) => {
-            return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
-          })
-        : [];
-
-      const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
-      const endIndex = startIndex + ROWS_PER_PAGE;
-      setNumPages(Math.ceil(filteredPeople.length / ROWS_PER_PAGE));
-      setRows(filteredPeople.slice(startIndex, Math.min(endIndex, filteredPeople.length - 1)));
       setIsLoading(false);
     }, 2000);
   };
@@ -76,6 +68,56 @@ export const Table = () => {
   const onReload = () => {
     fetchPeople();
   };
+
+  const handleSort = (column: string, direction: "asc" | "desc") => {
+    setSortColumn(column);
+    setSortDirection(direction);
+    setCurrentPage(1);
+  };
+
+  // Process data: filter, sort, and paginate
+  const sortedAndFilteredPeople = useMemo(() => {
+    const filteredPeople = hasData
+      ? people.filter(({ name }) => {
+          return name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+        })
+      : [];
+
+    // Apply sorting
+    const sortedPeople = sortColumn
+      ? [...filteredPeople].sort((a, b) => {
+          const aValue = a[sortColumn as keyof Person];
+          const bValue = b[sortColumn as keyof Person];
+          
+          // Handle arrays (like roles)
+          if (Array.isArray(aValue) && Array.isArray(bValue)) {
+            const aStr = aValue.join(", ");
+            const bStr = bValue.join(", ");
+            return sortDirection === "asc" 
+              ? aStr.localeCompare(bStr) 
+              : bStr.localeCompare(aStr);
+          }
+          
+          // Handle strings
+          const aStr = String(aValue);
+          const bStr = String(bValue);
+          return sortDirection === "asc" 
+            ? aStr.localeCompare(bStr) 
+            : bStr.localeCompare(aStr);
+        })
+      : filteredPeople;
+
+    return sortedPeople;
+  }, [hasData, searchValue, sortColumn, sortDirection]);
+
+  // Update rows and pagination when data changes
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
+    const endIndex = startIndex + ROWS_PER_PAGE;
+    const totalPages = Math.ceil(sortedAndFilteredPeople.length / ROWS_PER_PAGE);
+    setNumPages(totalPages);
+    setRows(sortedAndFilteredPeople.slice(startIndex, Math.min(endIndex, sortedAndFilteredPeople.length)));
+  }, [sortedAndFilteredPeople, currentPage]);
 
   const columns = [
     {
@@ -344,7 +386,7 @@ export const Table = () => {
         reloadTestId="reloadButton"
         pagination={pagination}
         selection={selection}
-        onSort={(column, direction) => console.log("Sort", column, direction)}
+        onSort={handleSort}
         onReload={onReload}
         search={search}
         isDisabled={isDisabled}

@@ -211,3 +211,11 @@
     pointer-events: none;
   }
 }
+
+.vuiTableHeaderCell__icon {
+  transition: 150ms ease-out;
+}
+
+.vuiTableHeaderCell__icon--desc {
+  transform: rotate(180deg);
+}
