@@ -1,15 +1,15 @@
-import { VuiSuspense } from "../../../lib";
+import { VuiSkeleton } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
 export const Basic = () => {
   return (
     <>
       <Subsection title="Basic usage">
-        <VuiSuspense />
+        <VuiSkeleton />
       </Subsection>
 
       <Subsection title="Inactive (no animation)">
-        <VuiSuspense active={false} />
+        <VuiSkeleton active={false} />
       </Subsection>
     </>
   );

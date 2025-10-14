@@ -8,9 +8,9 @@ const ColorsSource = require("!!raw-loader!./Colors");
 const RowsSource = require("!!raw-loader!./Rows");
 const CardContentSource = require("!!raw-loader!./CardContent");
 
-export const suspense = {
-  name: "Suspense",
-  path: "/suspense",
+export const skeleton = {
+  name: "Skeleton",
+  path: "/skeleton",
   examples: [
     {
       name: "Basic",

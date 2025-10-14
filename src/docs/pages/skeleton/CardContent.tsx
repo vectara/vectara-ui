@@ -1,4 +1,4 @@
-import { VuiCard, VuiSuspense } from "../../../lib";
+import { VuiCard, VuiSkeleton } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
 export const CardContent = () => {
@@ -7,7 +7,7 @@ export const CardContent = () => {
       <Subsection title="Card content">
         <div style={{ maxWidth: "400px", maxHeight: "300px" }}>
 
-        <VuiCard header={<VuiSuspense rows={0.5} />} body={<VuiSuspense rows={3} />} />
+        <VuiCard header={<VuiSkeleton rows={0.5} />} body={<VuiSkeleton rows={3} />} />
         </div>
       </Subsection>
 

@@ -1,18 +1,18 @@
 import classNames from "classnames";
 
-export const SUSPENSE_COLOR = ["accent", "primary", "danger", "warning", "success", "neutral", "subdued"] as const;
+export const SKELETON_COLOR = ["accent", "primary", "danger", "warning", "success", "neutral", "subdued"] as const;
 
 type Props = {
   rows?: number;
-  color?: (typeof SUSPENSE_COLOR)[number];
+  color?: (typeof SKELETON_COLOR)[number];
   active?: boolean;
   height?: string | number;
   className?: string;
 };
 
-export const VuiSuspense = ({ rows = 2.75, color = "subdued", active = true, height = "1rem", className }: Props) => {
-  const classes = classNames(className, "vuiSuspense__row", `vuiSuspense--${color}`, {
-    "vuiSuspense--active": active
+export const VuiSkeleton = ({ rows = 2.75, color = "subdued", active = true, height = "1rem", className }: Props) => {
+  const classes = classNames(className, "vuiSkeleton__row", `vuiSkeleton--${color}`, {
+    "vuiSkeleton--active": active
   });
 
   const fullRows = Math.floor(rows);
