@@ -81,6 +81,7 @@ import { SPINNER_COLOR, SPINNER_SIZE } from "./spinner/types";
 import { Stat, VuiStatList } from "./statList/StatList";
 import { VuiStatus } from "./status/Status";
 import { VuiSteps, StepStatus, StepSize, VuiStepProps } from "./steps/Steps";
+import { SUSPENSE_COLOR, VuiSuspense } from "./suspense/Suspense";
 import { VuiSummary } from "./summary/Summary";
 import { VuiSummaryCitation } from "./summary/SummaryCitation";
 import { VuiTable } from "./table/Table";
@@ -141,6 +142,7 @@ export {
   PROGRESS_BAR_COLOR,
   SPACER_SIZE,
   SPINNER_COLOR,
+  SUSPENSE_COLOR,
   SPINNER_SIZE,
   TAB_SIZE,
   TEXT_COLOR,
@@ -214,6 +216,7 @@ export {
   VuiStatus,
   VuiSteps,
   VuiSummary,
+  VuiSuspense,
   VuiSummaryCitation,
   VuiSuperRadioGroup,
   VuiTable,
