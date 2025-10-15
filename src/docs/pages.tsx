@@ -49,6 +49,7 @@ import { status } from "./pages/status";
 import { statList } from "./pages/statList";
 import { steps } from "./pages/steps";
 import { summary } from "./pages/summary";
+import { skeleton } from "./pages/skeleton";
 import { superRadioGroup } from "./pages/superRadioGroup";
 import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
@@ -86,7 +87,7 @@ export const categories: Category[] = [
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, icon, inProgress, spinner, progressBar, text, tooltip]
+    pages: [badge, status, callout, code, icon, inProgress, spinner, skeleton, progressBar, text, tooltip]
   },
   {
     name: "Form",
