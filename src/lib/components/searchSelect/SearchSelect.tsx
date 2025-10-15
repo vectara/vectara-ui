@@ -17,7 +17,7 @@ type Props<T> = Pick<PopoverProps, "isOpen" | "setIsOpen" | "anchorSide"> &
     asyncSearch?: {
       isSearching?: boolean;
       onSearchChange?: (searchValue: string) => void;
-      onLazyLoad: () => void;
+      onLazyLoad?: () => void;
     };
     selectedOptions: T[];
     onSelect: (selected: T[]) => void;
