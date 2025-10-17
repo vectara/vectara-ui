@@ -46,6 +46,8 @@ import { VuiGrid } from "./grid/Grid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
+import { VuiImagePreview } from "./image/ImagePreview";
+import { ImageSize, CaptionPosition, DescriptionPosition } from "./image/ImagePreview";
 import { InfoListType, VuiInfoList } from "./infoList/InfoList";
 import { VuiInfoMenu } from "./infoMenu/InfoMenu";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
@@ -104,10 +106,13 @@ export type {
   AppContentPadding,
   ButtonColor,
   CalloutColor,
+  CaptionPosition,
   ChatLanguage,
   ChatStyle,
   ChatTurn,
   CodeLanguage,
+  DescriptionPosition,
+  ImageSize,
   InfoListType,
   InfoTableColumnAlign,
   InfoTableRow,
@@ -179,6 +184,7 @@ export {
   VuiGrid,
   VuiHorizontalRule,
   VuiIcon,
+  VuiImagePreview,
   VuiInfoList,
   VuiInfoMenu,
   VuiInfoTable,
