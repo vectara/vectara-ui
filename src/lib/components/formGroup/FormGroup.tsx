@@ -14,13 +14,14 @@ const VALIDATION_ALLOWLIST = [VuiTextInput, VuiNumberInput, VuiTextArea, VuiSele
 type Props = {
   labelFor: string;
   label: string;
+  labelSize?: "s" | "xs";
   children: React.ReactElement;
   helpText?: React.ReactNode;
   errors?: string[];
   isRequired?: boolean;
 };
 
-export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRequired }: Props) => {
+export const VuiFormGroup = ({ children, labelFor, helpText, label, labelSize = "s", errors, isRequired }: Props) => {
   const ariaProps: Record<string, string> = {
     "aria-describedby": ""
   };
@@ -74,12 +75,12 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, errors, isRe
 
   return (
     <div>
-      <VuiLabel labelFor={labelFor}>
+      <VuiLabel labelFor={labelFor} size={labelSize}>
         {label}
         {isRequired && " (required)"}
       </VuiLabel>
 
-      <VuiSpacer size="xs" />
+      <VuiSpacer size={labelSize === "s" ? "xs" : "xxs"} />
 
       {helpText && (
         <>
