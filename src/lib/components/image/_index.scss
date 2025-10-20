@@ -144,33 +144,12 @@
 
 // Image Preview Modal
 .vuiImagePreview {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: $screenBlockZIndex;
-
-  &__screenBlock {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $colorFullShade;
-    opacity: 1;
-  }
-
   &__container {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     z-index: $modalZIndex;
     pointer-events: none;
   }
@@ -181,18 +160,6 @@
     right: $sizeM;
     pointer-events: all;
     z-index: 1;
-
-    .vuiIconButton {
-      background-color: rgba(255, 255, 255, 0.1);
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-    }
-
-    .vuiIcon {
-      color: $colorEmptyShade !important;
-    }
   }
 
   &__imageContainer {
@@ -209,8 +176,8 @@
   }
 
   &__image {
-    max-width: calc(100vw - #{$sizeXxl * 2});
-    max-height: calc(100vh - #{$sizeXxl * 2});
+    max-width: calc(100vw - #{$sizeXl * 2});
+    max-height: calc(100vh - #{$sizeXl * 2});
     width: auto;
     height: auto;
     object-fit: contain;
@@ -237,21 +204,5 @@
     border-radius: $sizeXs;
     padding: $sizeS $sizeM;
     pointer-events: all;
-
-    .vuiIconButton {
-      background-color: transparent;
-
-      &:hover:not(:disabled) {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
-      &:disabled {
-        opacity: 0.4;
-      }
-    }
-
-    .vuiIcon {
-      color: $colorEmptyShade !important;
-    }
   }
 }
