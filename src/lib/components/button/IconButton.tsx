@@ -50,7 +50,8 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
 
     const props = {
       className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`, {
-        [`vuiIconButton--${color}-isSelected`]: isSelected
+        [`vuiIconButton--${color}-isSelected`]: isSelected,
+        [`vuiIconButton--${color}-isDisabled`]: isDisabled
       }),
       onClick,
       onMouseOver,
