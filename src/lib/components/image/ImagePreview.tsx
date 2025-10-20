@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { FocusOn } from "react-focus-on";
-import { BiX, BiRotateLeft, BiRotateRight, BiZoomIn, BiZoomOut, BiRefresh } from "react-icons/bi";
+import { BiX, BiRotateLeft, BiRotateRight, BiZoomIn, BiZoomOut, BiRefresh, BiCommentDetail } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiText } from "../typography/Text";
+import { VuiTextColor } from "../typography/TextColor";
+import { VuiButtonPrimary } from "../button/ButtonPrimary";
+import { VuiSpacer } from "../spacer/Spacer";
 
 type Props = {
   src: string;
@@ -15,6 +19,9 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
+  title?: string;
+  description?: string;
+  caption?: string;
   controls?: {
     allowRotation?: boolean;
     allowZoom?: boolean;
@@ -23,16 +30,29 @@ type Props = {
   };
 };
 
-export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls }: Props) => {
+export const VuiImagePreview = ({
+  src,
+  alt,
+  isOpen,
+  onClose,
+  className,
+  title,
+  description,
+  caption,
+  controls
+}: Props) => {
   const { allowRotation = true, allowZoom = true, allowReset = true, allowDrag = true } = controls || {};
   const [rotation, setRotation] = useState(0);
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [isInfoOverlayOpen, setIsInfoOverlayOpen] = useState(false);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const returnFocusElRef = useRef<HTMLElement | null>(null);
 
-  const showToolbar = allowRotation || allowZoom || allowReset;
+  const showInfoButton = !!(title || description);
+  const showToolbar = allowRotation || allowZoom || allowReset || showInfoButton;
 
   const MIN_SCALE = 0.5;
   const MAX_SCALE = 3;
@@ -47,6 +67,8 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls
       setRotation(0);
       setScale(1);
       setPosition({ x: 0, y: 0 });
+      setIsInfoOverlayOpen(false);
+      setIsDescriptionExpanded(false);
     } else {
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
@@ -80,6 +102,11 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls
     setRotation(0);
     setScale(1);
     setPosition({ x: 0, y: 0 });
+  };
+
+  const handleToggleInfo = () => {
+    if (isInfoOverlayOpen && isDescriptionExpanded) setIsDescriptionExpanded(false);
+    setIsInfoOverlayOpen((prev) => !prev);
   };
 
   const isResetDisabled = () => {
@@ -171,9 +198,50 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls
                   />
                 </div>
 
+                {isInfoOverlayOpen && showInfoButton && (
+                  <div className="vuiImagePreview__infoOverlay">
+                    {title && (
+                      <VuiText>
+                        <VuiTextColor color="empty">
+                          <h3>{title}</h3>
+                        </VuiTextColor>
+                      </VuiText>
+                    )}
+                    {description && (
+                      <>
+                        <VuiText
+                          className={!isDescriptionExpanded ? "vuiImagePreview__infoDescriptionText--collapsed" : ""}
+                        >
+                          <VuiTextColor color="empty">{description}</VuiTextColor>
+                        </VuiText>
+                        <VuiSpacer size="s" />
+                        {description.length > 150 && (
+                          <VuiButtonPrimary color="primary" onClick={() => setIsDescriptionExpanded((prev) => !prev)}>
+                            {isDescriptionExpanded ? "Show less" : "Show more"}
+                          </VuiButtonPrimary>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
+
                 {showToolbar && (
                   <div className="vuiImagePreview__toolbar">
                     <VuiFlexContainer spacing="s" alignItems="center" justifyContent="center">
+                      {showInfoButton && (
+                        <VuiFlexItem grow={false}>
+                          <VuiIconButton
+                            aria-label={isInfoOverlayOpen ? "Hide info" : "Show info"}
+                            onClick={handleToggleInfo}
+                            color="neutral"
+                            icon={
+                              <VuiIcon size="m" color="empty">
+                                <BiCommentDetail />
+                              </VuiIcon>
+                            }
+                          />
+                        </VuiFlexItem>
+                      )}
                       {allowRotation && (
                         <>
                           <VuiFlexItem grow={false}>
@@ -248,6 +316,14 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls
                         </VuiFlexItem>
                       )}
                     </VuiFlexContainer>
+                  </div>
+                )}
+
+                {caption && (
+                  <div className="vuiImagePreview__caption">
+                    <VuiText size="xs">
+                      <VuiTextColor color="empty">{caption}</VuiTextColor>
+                    </VuiText>
                   </div>
                 )}
               </div>

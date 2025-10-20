@@ -23,6 +23,9 @@ type Props = {
   isLoading?: boolean;
   allowPreview?: boolean;
   errorMessage?: string;
+  previewTitle?: string;
+  previewDescription?: string;
+  previewCaption?: string;
   controls?: {
     allowRotation?: boolean;
     allowZoom?: boolean;
@@ -68,6 +71,9 @@ export const VuiImage = ({
   isLoading = false,
   allowPreview = false,
   errorMessage,
+  previewTitle,
+  previewDescription,
+  previewCaption,
   controls
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -154,6 +160,9 @@ export const VuiImage = ({
           alt={alt}
           isOpen={isPreviewOpen}
           onClose={() => setIsPreviewOpen(false)}
+          title={previewTitle}
+          description={previewDescription}
+          caption={previewCaption}
           controls={controls}
         />
       )}

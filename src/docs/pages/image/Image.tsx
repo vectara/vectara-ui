@@ -26,7 +26,7 @@ export const Image = () => {
   const [allowZoom, setAllowZoom] = useState(true);
   const [allowReset, setAllowReset] = useState(true);
   const [allowDrag, setAllowDrag] = useState(true);
-
+  const [showPreviewInfo, setShowPreviewInfo] = useState(false);
   const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/4000";
   const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
 
@@ -79,6 +79,13 @@ export const Image = () => {
             </VuiFlexItem>
             <VuiFlexItem shrink={false}>
               <VuiToggle label="Allow drag" checked={allowDrag} onChange={(e) => setAllowDrag(e.target.checked)} />
+            </VuiFlexItem>
+            <VuiFlexItem shrink={false}>
+              <VuiToggle
+                label="Show preview info"
+                checked={showPreviewInfo}
+                onChange={(e) => setShowPreviewInfo(e.target.checked)}
+              />
             </VuiFlexItem>
           </VuiFlexContainer>
 
@@ -163,6 +170,13 @@ export const Image = () => {
         isLoading={isLoading}
         allowPreview={showPreview}
         errorMessage={showError ? "Failed to load image" : undefined}
+        previewTitle={showPreviewInfo ? "Mountain Landscape" : undefined}
+        previewDescription={
+          showPreviewInfo
+            ? "This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains."
+            : undefined
+        }
+        previewCaption={showPreviewInfo ? "Photo by John Doe • 2024" : undefined}
         controls={{ allowDrag, allowReset, allowZoom, allowRotation }}
       />
 
@@ -233,6 +247,85 @@ export const Image = () => {
         <div style={{ width: `${customSize}px` }}>
           <VuiImage src={sampleImageUrl} size="full" alt="Sample landscape image" />
         </div>
+      </Subsection>
+
+      <VuiSpacer size="xl" />
+      <Subsection title="Preview with Title, Description, and Caption">
+        <VuiText>
+          <p>
+            Click on the images below to open the preview modal with title, description, and caption. The info button
+            will appear in the toolbar when title or description is provided.
+          </p>
+        </VuiText>
+        <VuiSpacer size="m" />
+
+        <VuiFlexContainer spacing="l" wrap>
+          <VuiFlexItem>
+            <VuiText>
+              <p>
+                <strong>With all info:</strong>
+              </p>
+            </VuiText>
+            <VuiSpacer size="xs" />
+            <VuiImage
+              src={sampleImageUrl}
+              alt="Mountain landscape"
+              size="m"
+              allowPreview
+              previewTitle="Mountain Landscape"
+              previewDescription="This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains. This stunning photograph captures the majestic beauty of a mountain range at sunset. The golden hour light creates a warm glow across the peaks, while the valley below is shrouded in soft shadows. This image was taken during a hiking expedition in the Rocky Mountains."
+              previewCaption="Photo by John Doe • 2024"
+            />
+          </VuiFlexItem>
+
+          <VuiFlexItem>
+            <VuiText>
+              <p>
+                <strong>Title only:</strong>
+              </p>
+            </VuiText>
+            <VuiSpacer size="xs" />
+            <VuiImage
+              src={sampleImageUrl}
+              alt="Mountain landscape"
+              size="m"
+              allowPreview
+              previewTitle="Mountain Landscape"
+            />
+          </VuiFlexItem>
+
+          <VuiFlexItem>
+            <VuiText>
+              <p>
+                <strong>Description only:</strong>
+              </p>
+            </VuiText>
+            <VuiSpacer size="xs" />
+            <VuiImage
+              src={sampleImageUrl}
+              alt="Mountain landscape"
+              size="m"
+              allowPreview
+              previewDescription="A beautiful mountain landscape captured at sunset."
+            />
+          </VuiFlexItem>
+
+          <VuiFlexItem>
+            <VuiText>
+              <p>
+                <strong>Caption only:</strong>
+              </p>
+            </VuiText>
+            <VuiSpacer size="xs" />
+            <VuiImage
+              src={sampleImageUrl}
+              alt="Mountain landscape"
+              size="m"
+              allowPreview
+              previewCaption="Photo by John Doe • 2024"
+            />
+          </VuiFlexItem>
+        </VuiFlexContainer>
       </Subsection>
     </>
   );
