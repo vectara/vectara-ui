@@ -20,6 +20,7 @@ export const ImagePreview = () => {
   const [customSize, setCustomSize] = useState(250);
   const [size, setSize] = useState<ImageSize>("m");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   const sampleImageUrl = "https://picsum.photos/seed/picsum/2000/2000";
   const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
@@ -37,6 +38,9 @@ export const ImagePreview = () => {
         </VuiFlexItem>
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show loading" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
+        </VuiFlexItem>
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Show preview" checked={showPreview} onChange={(e) => setShowPreview(e.target.checked)} />
         </VuiFlexItem>
       </VuiFlexContainer>
 
@@ -117,6 +121,7 @@ export const ImagePreview = () => {
         captionPosition={captionPosition}
         size={size}
         isLoading={isLoading}
+        allowPreview={showPreview}
       />
 
       <VuiSpacer size="xl" />

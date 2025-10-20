@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { BiShow } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
@@ -15,6 +16,7 @@ type Props = {
   size?: ImageSize;
   className?: string;
   isLoading?: boolean;
+  allowPreview?: boolean;
 };
 
 const sizeMap = {
@@ -44,7 +46,8 @@ export const VuiImagePreview = ({
   captionPosition = "bottom",
   size = "m",
   className,
-  isLoading = false
+  isLoading = false,
+  allowPreview = false
 }: Props) => {
   const classes = classNames("vuiImagePreview", `vuiImagePreview--${size}`, className);
 
@@ -52,6 +55,8 @@ export const VuiImagePreview = ({
   const getFlexDirectionWithCaption =
     captionPosition === "top" || captionPosition === "bottom" ? getFlexDirection(captionPosition) : undefined;
   const skeletonRows = size === "xs" || size === "s" ? 2.5 : size === "m" || size === "l" ? 3.25 : 4.25;
+  const previewTextSize = size === "xs" ? "xs" : size === "s" ? "s" : size === "m" || size === "l" ? "m" : "l";
+  const previewIconSize = size === "xs" || size === "s" ? 16 : size === "m" || size === "l" ? 24 : 32;
 
   if (isLoading) {
     return (
@@ -67,6 +72,14 @@ export const VuiImagePreview = ({
       <div className={classes}>
         <div className="vuiImagePreview__imageWrapper">
           <img src={src} alt={alt} className="vuiImagePreview__image" />
+          {allowPreview && (
+            <div className="vuiImagePreview__previewOverlay">
+              <BiShow size={previewIconSize} />
+              <VuiText size={previewTextSize}>
+                <p>Preview</p>
+              </VuiText>
+            </div>
+          )}
           <VuiText size={captionSize} className="vuiImagePreview__captionOverlay">
             {caption}
           </VuiText>
@@ -79,7 +92,17 @@ export const VuiImagePreview = ({
   return (
     <VuiFlexContainer direction={getFlexDirectionWithCaption} className={classes}>
       <VuiFlexItem grow={false}>
-        <img src={src} alt={alt} className="vuiImagePreview__image" />
+        <div className="vuiImagePreview__imageWrapper">
+          <img src={src} alt={alt} className="vuiImagePreview__image" />
+          {allowPreview && (
+            <div className="vuiImagePreview__previewOverlay">
+              <BiShow size={previewIconSize} />
+              <VuiText size={previewTextSize}>
+                <p>Preview</p>
+              </VuiText>
+            </div>
+          )}
+        </div>
       </VuiFlexItem>
       {caption && (
         <VuiFlexItem grow={false}>
