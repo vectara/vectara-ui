@@ -121,7 +121,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                   onClick={onCloseDelayed}
                   color="neutral"
                   icon={
-                    <VuiIcon size="l" color="neutral">
+                    <VuiIcon size="l" color="empty">
                       <BiX />
                     </VuiIcon>
                   }
@@ -154,7 +154,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                       onClick={handleRotateLeft}
                       color="neutral"
                       icon={
-                        <VuiIcon size="m" color="neutral">
+                        <VuiIcon size="m" color="empty">
                           <BiRotateLeft />
                         </VuiIcon>
                       }
@@ -166,7 +166,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                       onClick={handleRotateRight}
                       color="neutral"
                       icon={
-                        <VuiIcon size="m" color="neutral">
+                        <VuiIcon size="m" color="empty">
                           <BiRotateRight />
                         </VuiIcon>
                       }
@@ -179,7 +179,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                       color="neutral"
                       isDisabled={scale <= MIN_SCALE}
                       icon={
-                        <VuiIcon size="m" color="neutral">
+                        <VuiIcon size="m" color="empty">
                           <BiZoomOut />
                         </VuiIcon>
                       }
@@ -192,7 +192,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                       color="neutral"
                       isDisabled={scale >= MAX_SCALE}
                       icon={
-                        <VuiIcon size="m" color="neutral">
+                        <VuiIcon size="m" color="empty">
                           <BiZoomIn />
                         </VuiIcon>
                       }
@@ -205,7 +205,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                       color="neutral"
                       isDisabled={rotation === 0 && scale === 1 && position.x === 0 && position.y === 0}
                       icon={
-                        <VuiIcon size="m" color="neutral">
+                        <VuiIcon size="m" color="empty">
                           <BiRefresh />
                         </VuiIcon>
                       }
