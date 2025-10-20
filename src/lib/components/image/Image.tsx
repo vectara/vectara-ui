@@ -89,14 +89,14 @@ export const VuiImage = ({
           </VuiIcon>
           {size !== "xs" && (
             <VuiText size={captionSize}>
-              <VuiTextColor color="danger">{error}</VuiTextColor>
+              <VuiTextColor color="danger">{errorMessage}</VuiTextColor>
             </VuiText>
           )}
         </VuiFlexContainer>
       </div>
     );
 
-    return size === "xs" ? <VuiTooltip tip={error}>{renderError}</VuiTooltip> : renderError;
+    return size === "xs" ? <VuiTooltip tip={errorMessage}>{renderError}</VuiTooltip> : renderError;
   }
 
   return (
