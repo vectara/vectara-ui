@@ -1,2 +1,2 @@
-export { VuiImagePreview } from "./ImagePreview";
-export type { ImageSize, CaptionPosition } from "./ImagePreview";
+export { VuiImage } from "./Image";
+export type { ImageSize, CaptionPosition } from "./Image";

@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   VuiFlexContainer,
   VuiFlexItem,
-  VuiImagePreview,
+  VuiImage,
   VuiSpacer,
   VuiText,
   VuiTitle,
@@ -12,7 +12,7 @@ import {
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
-export const ImagePreview = () => {
+export const Image = () => {
   // State for controls
   const [showCaption, setShowCaption] = useState(true);
   const [captionPosition, setCaptionPosition] = useState<CaptionPosition>("bottom");
@@ -114,7 +114,7 @@ export const ImagePreview = () => {
       </VuiTitle>
       <VuiSpacer size="m" />
 
-      <VuiImagePreview
+      <VuiImage
         src={sampleImageUrl}
         alt="Sample landscape image"
         caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
@@ -159,13 +159,7 @@ export const ImagePreview = () => {
 
         {/* @ts-expect-error using subset of justifyContent options */}
         <VuiFlexContainer justifyContent={flexPosition}>
-          <VuiImagePreview
-            src={sampleImageUrl}
-            alt="Sample landscape image"
-            caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
-            captionPosition={captionPosition}
-            size={size}
-          />
+          <VuiImage src={sampleImageUrl} alt="Sample landscape image" />
         </VuiFlexContainer>
       </Subsection>
 
@@ -195,7 +189,7 @@ export const ImagePreview = () => {
         <VuiSpacer size="m" />
 
         <div style={{ width: `${customSize}px` }}>
-          <VuiImagePreview
+          <VuiImage
             src={sampleImageUrl}
             size="full"
             alt="Sample landscape image"

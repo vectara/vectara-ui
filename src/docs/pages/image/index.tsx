@@ -1,15 +1,15 @@
-import { ImagePreview } from "./ImagePreview";
+import { Image } from "./Image";
 
-const ImagePreviewSource = require("!!raw-loader!./ImagePreview");
+const ImageSource = require("!!raw-loader!./Image");
 
 export const image = {
   name: "Image",
   path: "/image",
   examples: [
     {
-      name: "Image Preview",
-      component: <ImagePreview />,
-      source: ImagePreviewSource.default.toString()
+      name: "Image",
+      component: <Image />,
+      source: ImageSource.default.toString()
     }
   ]
 };

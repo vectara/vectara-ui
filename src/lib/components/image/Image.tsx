@@ -39,7 +39,7 @@ const getFlexDirection = (position: keyof typeof directionMap) => {
   return directionMap[position];
 };
 
-export const VuiImagePreview = ({
+export const VuiImage = ({
   src,
   alt,
   caption,
@@ -49,7 +49,7 @@ export const VuiImagePreview = ({
   isLoading = false,
   allowPreview = false
 }: Props) => {
-  const classes = classNames("vuiImagePreview", `vuiImagePreview--${size}`, className);
+  const classes = classNames("vuiImage", `vuiImage--${size}`, className);
 
   const captionSize = size === "xs" || size === "s" ? "xs" : size === "m" || size === "l" ? "m" : "l";
   const getFlexDirectionWithCaption =
@@ -70,17 +70,17 @@ export const VuiImagePreview = ({
   if (captionPosition === "overlay") {
     return (
       <div className={classes}>
-        <div className="vuiImagePreview__imageWrapper">
-          <img src={src} alt={alt} className="vuiImagePreview__image" />
+        <div className="vuiImage__imageWrapper">
+          <img src={src} alt={alt} className="vuiImage__image" />
           {allowPreview && (
-            <div className="vuiImagePreview__previewOverlay">
+            <div className="vuiImage__previewOverlay">
               <BiShow size={previewIconSize} />
               <VuiText size={previewTextSize}>
                 <p>Preview</p>
               </VuiText>
             </div>
           )}
-          <VuiText size={captionSize} className="vuiImagePreview__captionOverlay">
+          <VuiText size={captionSize} className="vuiImage__captionOverlay">
             {caption}
           </VuiText>
         </div>
@@ -92,10 +92,10 @@ export const VuiImagePreview = ({
   return (
     <VuiFlexContainer direction={getFlexDirectionWithCaption} className={classes}>
       <VuiFlexItem grow={false}>
-        <div className="vuiImagePreview__imageWrapper">
-          <img src={src} alt={alt} className="vuiImagePreview__image" />
+        <div className="vuiImage__imageWrapper">
+          <img src={src} alt={alt} className="vuiImage__image" />
           {allowPreview && (
-            <div className="vuiImagePreview__previewOverlay">
+            <div className="vuiImage__previewOverlay">
               <BiShow size={previewIconSize} />
               <VuiText size={previewTextSize}>
                 <p>Preview</p>
