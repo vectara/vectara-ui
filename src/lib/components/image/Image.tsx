@@ -42,14 +42,21 @@ const sizeMap = {
 
 const directionMap = {
   top: "columnReverse",
-  bottom: "column",
-  left: "rowReverse",
-  right: "row"
+  bottom: "column"
 } as const;
 
 const getFlexDirection = (position: keyof typeof directionMap) => {
   return directionMap[position];
 };
+
+const sizeConfig = {
+  xs: { captionSize: "xs", skeletonRows: 2.5, previewTextSize: "xs", previewIconSize: 16 },
+  s: { captionSize: "xs", skeletonRows: 2.5, previewTextSize: "s", previewIconSize: 16 },
+  m: { captionSize: "m", skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
+  l: { captionSize: "m", skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
+  xl: { captionSize: "l", skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 },
+  full: { captionSize: "l", skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 }
+} as const;
 
 export const VuiImage = ({
   src,
@@ -66,12 +73,9 @@ export const VuiImage = ({
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
 
-  const captionSize = size === "xs" || size === "s" ? "xs" : size === "m" || size === "l" ? "m" : "l";
+  const { captionSize, skeletonRows, previewTextSize, previewIconSize } = sizeConfig[size];
   const getFlexDirectionWithCaption =
     captionPosition === "top" || captionPosition === "bottom" ? getFlexDirection(captionPosition) : undefined;
-  const skeletonRows = size === "xs" || size === "s" ? 2.5 : size === "m" || size === "l" ? 3.25 : 4.25;
-  const previewTextSize = size === "xs" ? "xs" : size === "s" ? "s" : size === "m" || size === "l" ? "m" : "l";
-  const previewIconSize = size === "xs" || size === "s" ? 16 : size === "m" || size === "l" ? 24 : 32;
 
   const handlePreviewClick = () => {
     if (allowPreview) {
@@ -106,21 +110,23 @@ export const VuiImage = ({
     return size === "xs" ? <VuiTooltip tip={errorMessage}>{renderError}</VuiTooltip> : renderError;
   }
 
+  const previewOverlay = allowPreview ? (
+    <div className="vuiImage__previewOverlay" onClick={handlePreviewClick} role="button">
+      <BiShow size={previewIconSize} />
+      <VuiText size={previewTextSize}>
+        <p>Preview</p>
+      </VuiText>
+    </div>
+  ) : null;
+
   return (
     <>
       {captionPosition === "overlay" && caption ? (
-        // Caption poistion: overlay
+        // Caption position: overlay
         <div className={classes}>
           <div className="vuiImage__imageWrapper">
             <img src={src} alt={alt} className="vuiImage__image" />
-            {allowPreview && (
-              <div className="vuiImage__previewOverlay" onClick={handlePreviewClick}>
-                <BiShow size={previewIconSize} />
-                <VuiText size={previewTextSize}>
-                  <p>Preview</p>
-                </VuiText>
-              </div>
-            )}
+            {previewOverlay}
             <VuiText size={captionSize} className="vuiImage__captionOverlay">
               {caption}
             </VuiText>
@@ -132,14 +138,7 @@ export const VuiImage = ({
           <VuiFlexItem grow={false}>
             <div className="vuiImage__imageWrapper">
               <img src={src} alt={alt} className="vuiImage__image" />
-              {allowPreview && (
-                <div className="vuiImage__previewOverlay" onClick={handlePreviewClick}>
-                  <BiShow size={previewIconSize} />
-                  <VuiText size={previewTextSize}>
-                    <p>Preview</p>
-                  </VuiText>
-                </div>
-              )}
+              {previewOverlay}
             </div>
           </VuiFlexItem>
           {caption && (
@@ -155,7 +154,7 @@ export const VuiImage = ({
           alt={alt}
           isOpen={isPreviewOpen}
           onClose={() => setIsPreviewOpen(false)}
-          controls={{...controls}}
+          controls={controls}
         />
       )}
     </>

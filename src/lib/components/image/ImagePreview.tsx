@@ -82,6 +82,13 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls
     setPosition({ x: 0, y: 0 });
   };
 
+  const isResetDisabled = () => {
+    const isRotationReset = allowRotation ? rotation === 0 : true;
+    const isScaleReset = allowZoom ? scale === 1 : true;
+    const isPositionReset = allowDrag ? position.x === 0 && position.y === 0 : true;
+    return isRotationReset && isScaleReset && isPositionReset;
+  };
+
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!allowDrag) return;
     e.preventDefault();
@@ -231,11 +238,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls
                             aria-label="Reset"
                             onClick={handleReset}
                             color="neutral"
-                            isDisabled={
-                              (allowRotation ? rotation === 0 : true) &&
-                              (allowZoom ? scale === 1 : true) &&
-                              (allowDrag ? position.x === 0 && position.y === 0 : true)
-                            }
+                            isDisabled={isResetDisabled()}
                             icon={
                               <VuiIcon size="m" color="empty">
                                 <BiRefresh />
