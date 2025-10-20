@@ -8,25 +8,23 @@ import {
   VuiTitle,
   VuiToggle,
   CaptionPosition,
-  DescriptionPosition,
   ImageSize
 } from "../../../lib";
+import { Subsection } from "../../components/Subsection";
 
 export const ImagePreview = () => {
   // State for controls
   const [showCaption, setShowCaption] = useState(true);
-  const [showDescription, setShowDescription] = useState(false);
   const [captionPosition, setCaptionPosition] = useState<CaptionPosition>("bottom");
-  const [descriptionPosition, setDescriptionPosition] = useState<DescriptionPosition>("right");
+  const [flexPosition, setFlexPosition] = useState("start");
+  const [customSize, setCustomSize] = useState(50);
   const [size, setSize] = useState<ImageSize>("m");
-  const [isLoading, setIsLoading] = useState(false);
 
-  // Sample image URL - using a placeholder service
-  const sampleImageUrl = "https://picsum.photos/seed/vectara/800/600";
+  const sampleImageUrl = "https://picsum.photos/seed/picsum/2000/2000";
+  const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
 
   return (
     <>
-      {/* Controls */}
       <VuiTitle size="s">
         <h3>Controls</h3>
       </VuiTitle>
@@ -35,18 +33,6 @@ export const ImagePreview = () => {
       <VuiFlexContainer wrap spacing="l">
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show caption" checked={showCaption} onChange={(e) => setShowCaption(e.target.checked)} />
-        </VuiFlexItem>
-
-        <VuiFlexItem shrink={false}>
-          <VuiToggle
-            label="Show description"
-            checked={showDescription}
-            onChange={(e) => setShowDescription(e.target.checked)}
-          />
-        </VuiFlexItem>
-
-        <VuiFlexItem shrink={false}>
-          <VuiToggle label="Is loading" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
         </VuiFlexItem>
       </VuiFlexContainer>
 
@@ -62,7 +48,7 @@ export const ImagePreview = () => {
         </VuiFlexItem>
         <VuiFlexItem shrink={false}>
           <VuiFlexContainer spacing="s">
-            {(["top", "bottom", "left", "right", "overlay"] as CaptionPosition[]).map((pos) => (
+            {(["top", "bottom", "overlay"] as CaptionPosition[]).map((pos) => (
               <VuiFlexItem key={pos} shrink={false}>
                 <label style={{ cursor: "pointer" }}>
                   <input
@@ -87,44 +73,13 @@ export const ImagePreview = () => {
         <VuiFlexItem shrink={false}>
           <VuiText>
             <p>
-              <strong>Description position:</strong>
-            </p>
-          </VuiText>
-        </VuiFlexItem>
-        <VuiFlexItem shrink={false}>
-          <VuiFlexContainer spacing="s">
-            {(["top", "bottom", "left", "right"] as DescriptionPosition[]).map((pos) => (
-              <VuiFlexItem key={pos} shrink={false}>
-                <label style={{ cursor: "pointer" }}>
-                  <input
-                    type="radio"
-                    name="descriptionPosition"
-                    value={pos}
-                    checked={descriptionPosition === pos}
-                    onChange={(e) => setDescriptionPosition(e.target.value as DescriptionPosition)}
-                    style={{ marginRight: "4px" }}
-                  />
-                  {pos}
-                </label>
-              </VuiFlexItem>
-            ))}
-          </VuiFlexContainer>
-        </VuiFlexItem>
-      </VuiFlexContainer>
-
-      <VuiSpacer size="m" />
-
-      <VuiFlexContainer wrap spacing="l" alignItems="center">
-        <VuiFlexItem shrink={false}>
-          <VuiText>
-            <p>
               <strong>Size:</strong>
             </p>
           </VuiText>
         </VuiFlexItem>
         <VuiFlexItem shrink={false}>
           <VuiFlexContainer spacing="s">
-            {(["xs", "s", "m", "l"] as ImageSize[]).map((sizeOption) => (
+            {(["xs", "s", "m", "l", "xl", "full"] as ImageSize[]).map((sizeOption) => (
               <VuiFlexItem key={sizeOption} shrink={false}>
                 <label style={{ cursor: "pointer" }}>
                   <input
@@ -156,18 +111,89 @@ export const ImagePreview = () => {
         alt="Sample landscape image"
         caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
         captionPosition={captionPosition}
-        description={
-          showDescription
-            ? "This is a sample description that provides more context about the image. It can be positioned in different locations relative to the image using the description position control."
-            : undefined
-        }
-        descriptionPosition={descriptionPosition}
         size={size}
-        isLoading={isLoading}
-        onClick={() => console.log("Image clicked")}
       />
 
       <VuiSpacer size="xl" />
+
+      <Subsection title="Positioning Image">
+        <VuiFlexContainer wrap spacing="l" alignItems="center">
+          <VuiFlexItem shrink={false}>
+            <VuiText>
+              <p>
+                <strong>position:</strong>
+              </p>
+            </VuiText>
+          </VuiFlexItem>
+          <VuiFlexItem shrink={false}>
+            <VuiFlexContainer spacing="s">
+              {["start", "center", "end"].map((pos) => (
+                <VuiFlexItem key={pos} shrink={false}>
+                  <label style={{ cursor: "pointer" }}>
+                    <input
+                      type="radio"
+                      name="flexPosition"
+                      value={pos}
+                      checked={flexPosition === pos}
+                      onChange={(e) => setFlexPosition(e.target.value)}
+                      style={{ marginRight: "4px" }}
+                    />
+                    {pos}
+                  </label>
+                </VuiFlexItem>
+              ))}
+            </VuiFlexContainer>
+          </VuiFlexItem>
+        </VuiFlexContainer>
+        <VuiSpacer size="m" />
+
+        {/* @ts-expect-error using subset of justifyContent options */}
+        <VuiFlexContainer justifyContent={flexPosition}>
+          <VuiImagePreview
+            src={sampleImageUrl}
+            alt="Sample landscape image"
+            caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
+            captionPosition={captionPosition}
+            size={size}
+          />
+        </VuiFlexContainer>
+      </Subsection>
+
+      <VuiSpacer size="xl" />
+      <Subsection title="Custom size">
+        <VuiFlexContainer wrap spacing="l" alignItems="center">
+          <VuiFlexItem shrink={false}>
+            <VuiText>
+              <p>
+                <strong>Custom size ({`${customSize}px`}):</strong>
+              </p>
+            </VuiText>
+          </VuiFlexItem>
+          <VuiFlexItem shrink={false}>
+            <input
+              style={{ width: "100px" }}
+              type="range"
+              name="custom_size"
+              min={50}
+              max={800}
+              step={50}
+              value={customSize}
+              onChange={(e) => debouncedSetCustomSize(Number(e.target.value))}
+            />
+          </VuiFlexItem>
+        </VuiFlexContainer>
+        <VuiSpacer size="m" />
+
+        <div style={{ width: `${customSize}px` }}>
+          <VuiImagePreview
+            src={sampleImageUrl}
+            size="full"
+            alt="Sample landscape image"
+            caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
+            captionPosition={captionPosition}
+          />
+        </div>
+      </Subsection>
     </>
   );
 };

@@ -1,1 +1,106 @@
-@import "imagePreview";
+.vuiImagePreview {
+
+  &__imageWrapper {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
+
+  &__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: opacity $transitionSpeed;
+
+    &--loaded {
+      opacity: 1;
+    }
+
+    &--clickable {
+      cursor: pointer;
+    }
+  }
+
+  &__captionOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $sizeM $sizeM;
+    background: rgba(0, 0, 0, 0.7);
+    color: $colorEmptyShade !important;
+  }
+
+  // Size variants
+  &--xs {
+    .vuiImagePreview__image {
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    .vuiImagePreview__imageWrapper {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  &--s {
+    .vuiImagePreview__image {
+      max-width: 200px;
+      max-height: 200px;
+    }
+
+    .vuiImagePreview__imageWrapper {
+      max-width: 200px;
+      max-height: 200px;
+    }
+  }
+
+  &--m {
+    .vuiImagePreview__image {
+      max-width: 400px;
+      max-height: 400px;
+    }
+
+    .vuiImagePreview__imageWrapper {
+      max-width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  &--l {
+    .vuiImagePreview__image {
+      max-width: 600px;
+      max-height: 600px;
+    }
+
+    .vuiImagePreview__imageWrapper {
+      max-width: 600px;
+      max-height: 600px;
+    }
+  }
+
+  &--xl {
+    .vuiImagePreview__image {
+      max-width: 800px;
+      max-height: 800px;
+    }
+
+    .vuiImagePreview__imageWrapper {
+      max-width: 800px;
+      max-height: 800px;
+    }
+  }
+
+  &--full {
+    .vuiImagePreview__image {
+      width: 100%;
+      height: auto;
+    }
+
+    .vuiImagePreview__imageWrapper {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
