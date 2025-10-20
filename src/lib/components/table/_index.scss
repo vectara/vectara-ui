@@ -212,6 +212,16 @@
   }
 }
 
+.vuiTableHeaderCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vuiTableHeaderCell__label {
+  margin-right: 4px;
+}
+
 .vuiTableHeaderCell__icon {
   transition: 150ms ease-out;
 }
