@@ -101,7 +101,7 @@ export const VuiImage = ({
 
   return (
     <>
-      {captionPosition === "overlay" ? (
+      {captionPosition === "overlay" && caption ? (
         // Caption poistion: overlay
         <div className={classes}>
           <div className="vuiImage__imageWrapper">
