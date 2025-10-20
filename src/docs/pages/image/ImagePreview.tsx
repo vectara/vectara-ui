@@ -17,7 +17,7 @@ export const ImagePreview = () => {
   const [showCaption, setShowCaption] = useState(true);
   const [captionPosition, setCaptionPosition] = useState<CaptionPosition>("bottom");
   const [flexPosition, setFlexPosition] = useState("start");
-  const [customSize, setCustomSize] = useState(50);
+  const [customSize, setCustomSize] = useState(250);
   const [size, setSize] = useState<ImageSize>("m");
   const [isLoading, setIsLoading] = useState(false);
 

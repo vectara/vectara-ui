@@ -61,27 +61,30 @@ export const VuiImagePreview = ({
     );
   }
 
-  return (
-    <VuiFlexContainer direction={getFlexDirectionWithCaption} className={classes}>
-      {captionPosition === "overlay" ? (
+  // Caption position: overlay
+  if (captionPosition === "overlay") {
+    return (
+      <div className={classes}>
         <div className="vuiImagePreview__imageWrapper">
           <img src={src} alt={alt} className="vuiImagePreview__image" />
-
           <VuiText size={captionSize} className="vuiImagePreview__captionOverlay">
             {caption}
           </VuiText>
         </div>
-      ) : (
-        <>
-          <VuiFlexItem grow={false}>
-            <img src={src} alt={alt} className="vuiImagePreview__image" />
-          </VuiFlexItem>
-          {caption && (
-            <VuiFlexItem grow={false}>
-              <VuiText size={captionSize}>{caption}</VuiText>
-            </VuiFlexItem>
-          )}
-        </>
+      </div>
+    );
+  }
+
+  // Caption positions: top, bottom
+  return (
+    <VuiFlexContainer direction={getFlexDirectionWithCaption} className={classes}>
+      <VuiFlexItem grow={false}>
+        <img src={src} alt={alt} className="vuiImagePreview__image" />
+      </VuiFlexItem>
+      {caption && (
+        <VuiFlexItem grow={false}>
+          <VuiText size={captionSize}>{caption}</VuiText>
+        </VuiFlexItem>
       )}
     </VuiFlexContainer>
   );
