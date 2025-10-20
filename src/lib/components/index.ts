@@ -47,6 +47,7 @@ import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
 import { VuiImage } from "./image/Image";
+import { VuiImagePreview } from "./image/ImagePreview";
 import { ImageSize, CaptionPosition } from "./image/Image";
 import { InfoListType, VuiInfoList } from "./infoList/InfoList";
 import { VuiInfoMenu } from "./infoMenu/InfoMenu";
@@ -184,6 +185,7 @@ export {
   VuiHorizontalRule,
   VuiIcon,
   VuiImage,
+  VuiImagePreview,
   VuiInfoList,
   VuiInfoMenu,
   VuiInfoTable,
