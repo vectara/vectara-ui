@@ -22,6 +22,10 @@ export const Image = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [allowRotation, setAllowRotation] = useState(true);
+  const [allowZoom, setAllowZoom] = useState(true);
+  const [allowReset, setAllowReset] = useState(true);
+  const [allowDrag, setAllowDrag] = useState(true);
 
   const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/4000";
   const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
@@ -49,6 +53,38 @@ export const Image = () => {
       </VuiFlexContainer>
 
       <VuiSpacer size="m" />
+
+      {showPreview && (
+        <>
+          <VuiText>
+            <p>
+              <strong>Preview controls:</strong>
+            </p>
+          </VuiText>
+          <VuiSpacer size="xs" />
+
+          <VuiFlexContainer wrap spacing="l">
+            <VuiFlexItem shrink={false}>
+              <VuiToggle
+                label="Allow rotation"
+                checked={allowRotation}
+                onChange={(e) => setAllowRotation(e.target.checked)}
+              />
+            </VuiFlexItem>
+            <VuiFlexItem shrink={false}>
+              <VuiToggle label="Allow zoom" checked={allowZoom} onChange={(e) => setAllowZoom(e.target.checked)} />
+            </VuiFlexItem>
+            <VuiFlexItem shrink={false}>
+              <VuiToggle label="Allow reset" checked={allowReset} onChange={(e) => setAllowReset(e.target.checked)} />
+            </VuiFlexItem>
+            <VuiFlexItem shrink={false}>
+              <VuiToggle label="Allow drag" checked={allowDrag} onChange={(e) => setAllowDrag(e.target.checked)} />
+            </VuiFlexItem>
+          </VuiFlexContainer>
+
+          <VuiSpacer size="m" />
+        </>
+      )}
 
       <VuiFlexContainer wrap spacing="l" alignItems="center">
         <VuiFlexItem shrink={false}>
@@ -127,6 +163,7 @@ export const Image = () => {
         isLoading={isLoading}
         allowPreview={showPreview}
         errorMessage={showError ? "Failed to load image" : undefined}
+        controls={{ allowDrag, allowReset, allowZoom, allowRotation }}
       />
 
       <VuiSpacer size="xl" />
@@ -164,7 +201,7 @@ export const Image = () => {
 
         {/* @ts-expect-error using subset of justifyContent options */}
         <VuiFlexContainer justifyContent={flexPosition}>
-          <VuiImage src={sampleImageUrl} alt="Sample landscape image" />
+          <VuiImage src={sampleImageUrl} alt="Sample landscape image" allowPreview />
         </VuiFlexContainer>
       </Subsection>
 
@@ -194,13 +231,7 @@ export const Image = () => {
         <VuiSpacer size="m" />
 
         <div style={{ width: `${customSize}px` }}>
-          <VuiImage
-            src={sampleImageUrl}
-            size="full"
-            alt="Sample landscape image"
-            caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
-            captionPosition={captionPosition}
-          />
+          <VuiImage src={sampleImageUrl} size="full" alt="Sample landscape image" />
         </div>
       </Subsection>
     </>

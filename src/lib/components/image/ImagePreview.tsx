@@ -14,15 +14,24 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
+  controls?: {
+    allowRotation?: boolean;
+    allowZoom?: boolean;
+    allowReset?: boolean;
+    allowDrag?: boolean;
+  };
 };
 
-export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props) => {
+export const VuiImagePreview = ({ src, alt, isOpen, onClose, className, controls }: Props) => {
+  const { allowRotation = true, allowZoom = true, allowReset = true, allowDrag = true } = controls || {};
   const [rotation, setRotation] = useState(0);
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const returnFocusElRef = useRef<HTMLElement | null>(null);
+
+  const showToolbar = allowRotation || allowZoom || allowReset;
 
   const MIN_SCALE = 0.5;
   const MAX_SCALE = 3;
@@ -73,6 +82,7 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (!allowDrag) return;
     e.preventDefault();
     setIsDragging(true);
     setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
@@ -105,12 +115,12 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
     }
   }, [isDragging]);
 
-  const classes = classNames("vuiImagePreview", className);
+  const containerClasses = classNames("vuiImagePreview", className);
 
   return (
     <VuiPortal>
       {isOpen && (
-        <div className={classes}>
+        <div className={containerClasses}>
           <div className="vuiImagePreview__screenBlock" />
           <FocusOn onEscapeKey={onCloseDelayed} onClickOutside={onCloseDelayed} returnFocus={false} autoFocus={isOpen}>
             <div className="vuiImagePreview__container">
@@ -139,80 +149,96 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                   onMouseDown={handleMouseDown}
                   style={{
                     transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg) scale(${scale})`,
-                    cursor: isDragging ? "grabbing" : "grab"
+                    cursor: allowDrag ? (isDragging ? "grabbing" : "grab") : "default"
                   }}
                   draggable={false}
                 />
               </div>
 
               {/* Toolbar */}
-              <div className="vuiImagePreview__toolbar">
-                <VuiFlexContainer spacing="s" alignItems="center" justifyContent="center">
-                  <VuiFlexItem grow={false}>
-                    <VuiIconButton
-                      aria-label="Rotate left"
-                      onClick={handleRotateLeft}
-                      color="neutral"
-                      icon={
-                        <VuiIcon size="m" color="empty">
-                          <BiRotateLeft />
-                        </VuiIcon>
-                      }
-                    />
-                  </VuiFlexItem>
-                  <VuiFlexItem grow={false}>
-                    <VuiIconButton
-                      aria-label="Rotate right"
-                      onClick={handleRotateRight}
-                      color="neutral"
-                      icon={
-                        <VuiIcon size="m" color="empty">
-                          <BiRotateRight />
-                        </VuiIcon>
-                      }
-                    />
-                  </VuiFlexItem>
-                  <VuiFlexItem grow={false}>
-                    <VuiIconButton
-                      aria-label="Zoom out"
-                      onClick={handleZoomOut}
-                      color="neutral"
-                      isDisabled={scale <= MIN_SCALE}
-                      icon={
-                        <VuiIcon size="m" color="empty">
-                          <BiZoomOut />
-                        </VuiIcon>
-                      }
-                    />
-                  </VuiFlexItem>
-                  <VuiFlexItem grow={false}>
-                    <VuiIconButton
-                      aria-label="Zoom in"
-                      onClick={handleZoomIn}
-                      color="neutral"
-                      isDisabled={scale >= MAX_SCALE}
-                      icon={
-                        <VuiIcon size="m" color="empty">
-                          <BiZoomIn />
-                        </VuiIcon>
-                      }
-                    />
-                  </VuiFlexItem>
-                  <VuiFlexItem grow={false}>
-                    <VuiIconButton
-                      aria-label="Reset"
-                      onClick={handleReset}
-                      color="neutral"
-                      isDisabled={rotation === 0 && scale === 1 && position.x === 0 && position.y === 0}
-                      icon={
-                        <VuiIcon size="m" color="empty">
-                          <BiRefresh />
-                        </VuiIcon>
-                      }
-                    />
-                  </VuiFlexItem>
-                </VuiFlexContainer>
-              </div>
+              {showToolbar && (
+                <div className="vuiImagePreview__toolbar">
+                  <VuiFlexContainer spacing="s" alignItems="center" justifyContent="center">
+                    {allowRotation && (
+                      <>
+                        <VuiFlexItem grow={false}>
+                          <VuiIconButton
+                            aria-label="Rotate left"
+                            onClick={handleRotateLeft}
+                            color="neutral"
+                            icon={
+                              <VuiIcon size="m" color="empty">
+                                <BiRotateLeft />
+                              </VuiIcon>
+                            }
+                          />
+                        </VuiFlexItem>
+                        <VuiFlexItem grow={false}>
+                          <VuiIconButton
+                            aria-label="Rotate right"
+                            onClick={handleRotateRight}
+                            color="neutral"
+                            icon={
+                              <VuiIcon size="m" color="empty">
+                                <BiRotateRight />
+                              </VuiIcon>
+                            }
+                          />
+                        </VuiFlexItem>
+                      </>
+                    )}
+                    {allowZoom && (
+                      <>
+                        <VuiFlexItem grow={false}>
+                          <VuiIconButton
+                            aria-label="Zoom out"
+                            onClick={handleZoomOut}
+                            color="neutral"
+                            isDisabled={scale <= MIN_SCALE}
+                            icon={
+                              <VuiIcon size="m" color="empty">
+                                <BiZoomOut />
+                              </VuiIcon>
+                            }
+                          />
+                        </VuiFlexItem>
+                        <VuiFlexItem grow={false}>
+                          <VuiIconButton
+                            aria-label="Zoom in"
+                            onClick={handleZoomIn}
+                            color="neutral"
+                            isDisabled={scale >= MAX_SCALE}
+                            icon={
+                              <VuiIcon size="m" color="empty">
+                                <BiZoomIn />
+                              </VuiIcon>
+                            }
+                          />
+                        </VuiFlexItem>
+                      </>
+                    )}
+                    {allowReset && (
+                      <VuiFlexItem grow={false}>
+                        <VuiIconButton
+                          aria-label="Reset"
+                          onClick={handleReset}
+                          color="neutral"
+                          isDisabled={
+                            (allowRotation ? rotation === 0 : true) &&
+                            (allowZoom ? scale === 1 : true) &&
+                            (allowDrag ? position.x === 0 && position.y === 0 : true)
+                          }
+                          icon={
+                            <VuiIcon size="m" color="empty">
+                              <BiRefresh />
+                            </VuiIcon>
+                          }
+                        />
+                      </VuiFlexItem>
+                    )}
+                  </VuiFlexContainer>
+                </div>
+              )}
             </div>
           </FocusOn>
         </div>

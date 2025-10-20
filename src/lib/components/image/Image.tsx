@@ -23,6 +23,12 @@ type Props = {
   isLoading?: boolean;
   allowPreview?: boolean;
   errorMessage?: string;
+  controls?: {
+    allowRotation?: boolean;
+    allowZoom?: boolean;
+    allowReset?: boolean;
+    allowDrag?: boolean;
+  };
 };
 
 const sizeMap = {
@@ -54,7 +60,8 @@ export const VuiImage = ({
   className,
   isLoading = false,
   allowPreview = false,
-  errorMessage
+  errorMessage,
+  controls
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
@@ -143,7 +150,13 @@ export const VuiImage = ({
         </VuiFlexContainer>
       )}
       {allowPreview && (
-        <VuiImagePreview src={src} alt={alt} isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} />
+        <VuiImagePreview
+          src={src}
+          alt={alt}
+          isOpen={isPreviewOpen}
+          onClose={() => setIsPreviewOpen(false)}
+          controls={{...controls}}
+        />
       )}
     </>
   );
