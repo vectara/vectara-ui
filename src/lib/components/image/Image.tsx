@@ -1,11 +1,14 @@
 import { useState } from "react";
 import classNames from "classnames";
-import { BiShow } from "react-icons/bi";
+import { BiShow, BiError } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
 import { VuiSkeleton } from "../skeleton/Skeleton";
 import { VuiImagePreview } from "./ImagePreview";
+import { VuiTooltip } from "../tooltip/Tooltip";
+import { VuiIcon } from "../icon/Icon";
+import { VuiTextColor } from "../typography/TextColor";
 
 export type ImageSize = "xs" | "s" | "m" | "l" | "xl" | "full";
 export type CaptionPosition = "top" | "bottom" | "overlay";
@@ -19,6 +22,7 @@ type Props = {
   className?: string;
   isLoading?: boolean;
   allowPreview?: boolean;
+  errorMessage?: string;
 };
 
 const sizeMap = {
@@ -49,7 +53,8 @@ export const VuiImage = ({
   size = "m",
   className,
   isLoading = false,
-  allowPreview = false
+  allowPreview = false,
+  errorMessage
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
@@ -75,6 +80,24 @@ export const VuiImage = ({
     );
   }
 
+  if (errorMessage) {
+    const renderError = (
+      <div style={{ width: size === "full" ? sizeMap[size] : `${sizeMap[size]}px` }}>
+        <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" className="vuiImage__error">
+          <VuiIcon color="danger">
+            <BiError size={previewIconSize} />
+          </VuiIcon>
+          {size !== "xs" && (
+            <VuiText size={captionSize}>
+              <VuiTextColor color="danger">{error}</VuiTextColor>
+            </VuiText>
+          )}
+        </VuiFlexContainer>
+      </div>
+    );
+
+    return size === "xs" ? <VuiTooltip tip={error}>{renderError}</VuiTooltip> : renderError;
+  }
 
   return (
     <>
