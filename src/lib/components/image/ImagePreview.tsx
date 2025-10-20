@@ -47,11 +47,11 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
   };
 
   const handleRotateLeft = () => {
-    setRotation((prev) => (prev - ROTATION_STEP + 360) % 360);
+    setRotation((prev) => prev - ROTATION_STEP);
   };
 
   const handleRotateRight = () => {
-    setRotation((prev) => (prev + ROTATION_STEP) % 360);
+    setRotation((prev) => prev + ROTATION_STEP);
   };
 
   const handleZoomIn = () => {
