@@ -22,7 +22,7 @@ export const Image = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
 
-  const sampleImageUrl = "https://picsum.photos/seed/picsum/2000/2000";
+  const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/4000";
   const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
 
   return (

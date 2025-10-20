@@ -209,6 +209,16 @@
     object-fit: contain;
     transition: transform 0.3s ease;
     user-select: none;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &--dragging {
+      transition: none;
+      cursor: grabbing;
+    }
   }
 
   &__toolbar {
