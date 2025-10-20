@@ -19,6 +19,7 @@ export const ImagePreview = () => {
   const [flexPosition, setFlexPosition] = useState("start");
   const [customSize, setCustomSize] = useState(50);
   const [size, setSize] = useState<ImageSize>("m");
+  const [isLoading, setIsLoading] = useState(false);
 
   const sampleImageUrl = "https://picsum.photos/seed/picsum/2000/2000";
   const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
@@ -33,6 +34,9 @@ export const ImagePreview = () => {
       <VuiFlexContainer wrap spacing="l">
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show caption" checked={showCaption} onChange={(e) => setShowCaption(e.target.checked)} />
+        </VuiFlexItem>
+        <VuiFlexItem shrink={false}>
+          <VuiToggle label="Show loading" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
         </VuiFlexItem>
       </VuiFlexContainer>
 
@@ -112,6 +116,7 @@ export const ImagePreview = () => {
         caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
         captionPosition={captionPosition}
         size={size}
+        isLoading={isLoading}
       />
 
       <VuiSpacer size="xl" />
