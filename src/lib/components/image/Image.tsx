@@ -1,14 +1,11 @@
 import { useState } from "react";
 import classNames from "classnames";
-import { BiShow, BiError } from "react-icons/bi";
+import { BiShow } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
 import { VuiSkeleton } from "../skeleton/Skeleton";
 import { VuiImagePreview } from "./ImagePreview";
-import { VuiTooltip } from "../tooltip/Tooltip";
-import { VuiIcon } from "../icon/Icon";
-import { VuiTextColor } from "../typography/TextColor";
 
 export type ImageSize = "xs" | "s" | "m" | "l" | "xl" | "full";
 
@@ -20,7 +17,6 @@ type Props = {
   className?: string;
   isLoading?: boolean;
   allowPreview?: boolean;
-  errorMessage?: string;
   previewTitle?: string;
   previewDescription?: string;
   previewCaption?: string;
@@ -58,7 +54,6 @@ export const VuiImage = ({
   className,
   isLoading = false,
   allowPreview = false,
-  errorMessage,
   previewTitle,
   previewDescription,
   previewCaption,
@@ -81,25 +76,6 @@ export const VuiImage = ({
         <VuiSkeleton rows={skeletonRows} />
       </div>
     );
-  }
-
-  if (errorMessage) {
-    const renderError = (
-      <div style={{ width: size === "full" ? sizeMap[size] : `${sizeMap[size]}px` }}>
-        <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" className="vuiImage__error">
-          <VuiIcon color="danger">
-            <BiError size={previewIconSize} />
-          </VuiIcon>
-          {size !== "xs" && (
-            <VuiText size="s">
-              <VuiTextColor color="danger">{errorMessage}</VuiTextColor>
-            </VuiText>
-          )}
-        </VuiFlexContainer>
-      </div>
-    );
-
-    return size === "xs" ? <VuiTooltip tip={errorMessage}>{renderError}</VuiTooltip> : renderError;
   }
 
   const previewOverlay = allowPreview ? (

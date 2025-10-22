@@ -19,7 +19,6 @@ export const Image = () => {
   const [size, setSize] = useState<ImageSize>("m");
   const [isLoading, setIsLoading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
-  const [showError, setShowError] = useState(false);
   const [allowRotation, setAllowRotation] = useState(true);
   const [allowZoom, setAllowZoom] = useState(true);
   const [allowReset, setAllowReset] = useState(true);
@@ -41,9 +40,6 @@ export const Image = () => {
         </VuiFlexItem>
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show loading" checked={isLoading} onChange={(e) => setIsLoading(e.target.checked)} />
-        </VuiFlexItem>
-        <VuiFlexItem shrink={false}>
-          <VuiToggle label="Show error" checked={showError} onChange={(e) => setShowError(e.target.checked)} />
         </VuiFlexItem>
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show preview" checked={showPreview} onChange={(e) => setShowPreview(e.target.checked)} />
@@ -135,7 +131,6 @@ export const Image = () => {
         size={size}
         isLoading={isLoading}
         allowPreview={showPreview}
-        errorMessage={showError ? "Failed to load image" : undefined}
         previewTitle={showPreviewInfo ? "Mountain Landscape" : undefined}
         previewDescription={
           showPreviewInfo

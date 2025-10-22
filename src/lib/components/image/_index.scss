@@ -61,13 +61,6 @@
     opacity: 1;
   }
 
-  &__error {
-    background-color: rgba($colorDanger, 0.05);
-    border: 1px solid rgba($colorDanger, 0.2);
-    border-radius: $sizeXxs;
-    min-height: 150px;
-  }
-
   // Size variants
   &--xs {
     .vuiImage__image {
