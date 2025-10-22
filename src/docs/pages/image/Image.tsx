@@ -5,7 +5,9 @@ export const Image = () => {
   // State for controls
   const [showCaption, setShowCaption] = useState(true);
   const [showPreview, setShowPreview] = useState(true);
-  const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/4000";
+  const [isLoading, setIsLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/3500";
 
   return (
     <>
@@ -20,6 +22,26 @@ export const Image = () => {
         </VuiFlexItem>
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show preview" checked={showPreview} onChange={(e) => setShowPreview(e.target.checked)} />
+        </VuiFlexItem>
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Loading state"
+            checked={isLoading}
+            onChange={(e) => {
+              setIsLoading(e.target.checked);
+              if (e.target.checked) setShowError(false);
+            }}
+          />
+        </VuiFlexItem>
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Error state"
+            checked={showError}
+            onChange={(e) => {
+              setShowError(e.target.checked);
+              if (e.target.checked) setIsLoading(false);
+            }}
+          />
         </VuiFlexItem>
       </VuiFlexContainer>
 
@@ -37,6 +59,8 @@ export const Image = () => {
           alt="Sample landscape image"
           caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
           allowPreview={showPreview}
+          isLoading={isLoading}
+          errorMessage={showError ? "Failed to load image. Please try again." : undefined}
         />
       </div>
     </>

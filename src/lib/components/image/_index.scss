@@ -15,6 +15,24 @@
   }
 }
 
+.vuiImage__placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $colorLightShade;
+  border-radius: $sizeXxs;
+
+  &--error {
+    background-color: $colorDangerLighterShade;
+
+    p {
+      color: $colorDanger;
+    }
+  }
+}
+
 .vuiImagePreview__container {
   position: fixed;
   top: 0;

@@ -4,16 +4,28 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
 import { VuiImagePreview } from "./ImagePreview";
+import { VuiIcon } from "../icon/Icon";
+import { BiImage, BiError } from "react-icons/bi";
 
 type Props = {
   src: string;
   alt?: string;
   caption?: string;
   className?: string;
+  isLoading?: boolean;
+  errorMessage?: string;
   allowPreview?: boolean; // allows image to be opened in a modal
 };
 
-export const VuiImage = ({ src, alt, caption, className, allowPreview = true }: Props) => {
+export const VuiImage = ({
+  src,
+  alt,
+  caption,
+  className,
+  isLoading = false,
+  allowPreview = true,
+  errorMessage
+}: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const handlePreviewClick = () => {
@@ -25,6 +37,35 @@ export const VuiImage = ({ src, alt, caption, className, allowPreview = true }: 
   const imageClasses = classNames("vuiImage__image", className, {
     "vuiImage__image--clickable": allowPreview
   });
+
+  if (isLoading) {
+    return (
+      <div className="vuiImage__placeholder">
+        <VuiIcon size="xxxl" color="subdued">
+          <BiImage />
+        </VuiIcon>
+      </div>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <div className={"vuiImage__placeholder vuiImage__placeholder--error"}>
+        <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" spacing="s">
+          <VuiFlexItem grow={false}>
+            <VuiIcon size="m" color="danger">
+              <BiError />
+            </VuiIcon>
+          </VuiFlexItem>
+          <VuiFlexItem grow={false}>
+            <VuiText size="s" align="center">
+              <p>{errorMessage}</p>
+            </VuiText>
+          </VuiFlexItem>
+        </VuiFlexContainer>
+      </div>
+    );
+  }
 
   return (
     <>
