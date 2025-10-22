@@ -15,7 +15,7 @@ type Props = {
   size?: ImageSize;
   className?: string;
   isLoading?: boolean;
-  allowPreview?: boolean;
+  allowPreview?: boolean; // allows image to be opened in a modal
   previewTitle?: string;
   previewDescription?: string;
   previewCaption?: string;
