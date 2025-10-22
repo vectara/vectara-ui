@@ -11,13 +11,11 @@ import { VuiIcon } from "../icon/Icon";
 import { VuiTextColor } from "../typography/TextColor";
 
 export type ImageSize = "xs" | "s" | "m" | "l" | "xl" | "full";
-export type CaptionPosition = "top" | "bottom" | "overlay";
 
 type Props = {
   src: string;
   alt?: string;
   caption?: string;
-  captionPosition?: CaptionPosition;
   size?: ImageSize;
   className?: string;
   isLoading?: boolean;
@@ -43,29 +41,19 @@ const sizeMap = {
   full: "100%"
 } as const;
 
-const directionMap = {
-  top: "columnReverse",
-  bottom: "column"
-} as const;
-
-const getFlexDirection = (position: keyof typeof directionMap) => {
-  return directionMap[position];
-};
-
 const sizeConfig = {
-  xs: { captionSize: "xs", skeletonRows: 2.5, previewTextSize: "xs", previewIconSize: 16 },
-  s: { captionSize: "xs", skeletonRows: 2.5, previewTextSize: "s", previewIconSize: 16 },
-  m: { captionSize: "m", skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
-  l: { captionSize: "m", skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
-  xl: { captionSize: "l", skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 },
-  full: { captionSize: "l", skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 }
+  xs: { skeletonRows: 2.5, previewTextSize: "xs", previewIconSize: 16 },
+  s: { skeletonRows: 2.5, previewTextSize: "s", previewIconSize: 16 },
+  m: { skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
+  l: { skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
+  xl: { skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 },
+  full: { skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 }
 } as const;
 
 export const VuiImage = ({
   src,
   alt,
   caption,
-  captionPosition = "bottom",
   size = "m",
   className,
   isLoading = false,
@@ -79,9 +67,7 @@ export const VuiImage = ({
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
 
-  const { captionSize, skeletonRows, previewTextSize, previewIconSize } = sizeConfig[size];
-  const getFlexDirectionWithCaption =
-    captionPosition === "top" || captionPosition === "bottom" ? getFlexDirection(captionPosition) : undefined;
+  const { skeletonRows, previewTextSize, previewIconSize } = sizeConfig[size];
 
   const handlePreviewClick = () => {
     if (allowPreview) {
@@ -105,7 +91,7 @@ export const VuiImage = ({
             <BiError size={previewIconSize} />
           </VuiIcon>
           {size !== "xs" && (
-            <VuiText size={captionSize}>
+            <VuiText size="s">
               <VuiTextColor color="danger">{errorMessage}</VuiTextColor>
             </VuiText>
           )}
@@ -127,33 +113,19 @@ export const VuiImage = ({
 
   return (
     <>
-      {captionPosition === "overlay" && caption ? (
-        // Caption position: overlay
-        <div className={classes}>
+      <VuiFlexContainer direction="column" className={classes} spacing="s">
+        <VuiFlexItem grow={false}>
           <div className="vuiImage__imageWrapper">
             <img src={src} alt={alt} className="vuiImage__image" />
             {previewOverlay}
-            <VuiText size={captionSize} className="vuiImage__captionOverlay">
-              {caption}
-            </VuiText>
           </div>
-        </div>
-      ) : (
-        // Caption position: top | bottom
-        <VuiFlexContainer direction={getFlexDirectionWithCaption} className={classes}>
+        </VuiFlexItem>
+        {caption && (
           <VuiFlexItem grow={false}>
-            <div className="vuiImage__imageWrapper">
-              <img src={src} alt={alt} className="vuiImage__image" />
-              {previewOverlay}
-            </div>
+            <VuiText size="s">{caption}</VuiText>
           </VuiFlexItem>
-          {caption && (
-            <VuiFlexItem grow={false}>
-              <VuiText size={captionSize}>{caption}</VuiText>
-            </VuiFlexItem>
-          )}
-        </VuiFlexContainer>
-      )}
+        )}
+      </VuiFlexContainer>
       {allowPreview && (
         <VuiImagePreview
           src={src}

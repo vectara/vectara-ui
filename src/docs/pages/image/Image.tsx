@@ -7,7 +7,6 @@ import {
   VuiText,
   VuiTitle,
   VuiToggle,
-  CaptionPosition,
   ImageSize
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
@@ -15,7 +14,6 @@ import { Subsection } from "../../components/Subsection";
 export const Image = () => {
   // State for controls
   const [showCaption, setShowCaption] = useState(true);
-  const [captionPosition, setCaptionPosition] = useState<CaptionPosition>("bottom");
   const [flexPosition, setFlexPosition] = useState("start");
   const [customSize, setCustomSize] = useState(250);
   const [size, setSize] = useState<ImageSize>("m");
@@ -97,37 +95,6 @@ export const Image = () => {
         <VuiFlexItem shrink={false}>
           <VuiText>
             <p>
-              <strong>Caption position:</strong>
-            </p>
-          </VuiText>
-        </VuiFlexItem>
-        <VuiFlexItem shrink={false}>
-          <VuiFlexContainer spacing="s">
-            {(["top", "bottom", "overlay"] as CaptionPosition[]).map((pos) => (
-              <VuiFlexItem key={pos} shrink={false}>
-                <label style={{ cursor: "pointer" }}>
-                  <input
-                    type="radio"
-                    name="captionPosition"
-                    value={pos}
-                    checked={captionPosition === pos}
-                    onChange={(e) => setCaptionPosition(e.target.value as CaptionPosition)}
-                    style={{ marginRight: "4px" }}
-                  />
-                  {pos}
-                </label>
-              </VuiFlexItem>
-            ))}
-          </VuiFlexContainer>
-        </VuiFlexItem>
-      </VuiFlexContainer>
-
-      <VuiSpacer size="m" />
-
-      <VuiFlexContainer wrap spacing="l" alignItems="center">
-        <VuiFlexItem shrink={false}>
-          <VuiText>
-            <p>
               <strong>Size:</strong>
             </p>
           </VuiText>
@@ -165,7 +132,6 @@ export const Image = () => {
         src={sampleImageUrl}
         alt="Sample landscape image"
         caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
-        captionPosition={captionPosition}
         size={size}
         isLoading={isLoading}
         allowPreview={showPreview}
