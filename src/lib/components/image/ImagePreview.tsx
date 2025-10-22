@@ -29,10 +29,8 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
   }, [isOpen]);
 
   // Allow contents to respond to blur events before unmounting
-  const onCloseDelayed = () => {
-    window.setTimeout(() => {
-      onClose?.();
-    }, 0);
+  const handleOnClose = () => {
+    onClose?.();
   };
 
   const baseClasses = classNames("vuiImagePreview", className);
@@ -41,13 +39,13 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
     <VuiPortal>
       {isOpen && (
         <div className={baseClasses}>
-          <FocusOn onEscapeKey={onCloseDelayed} onClickOutside={onCloseDelayed} returnFocus={false} autoFocus={isOpen}>
-            <VuiScreenBlock onClick={onCloseDelayed}>
+          <FocusOn onEscapeKey={handleOnClose} returnFocus={false} autoFocus={isOpen}>
+            <VuiScreenBlock onClick={handleOnClose}>
               <div className="vuiImagePreview__container">
                 <div className="vuiImagePreview__closeButton">
                   <VuiIconButton
                     aria-label="Close preview"
-                    onClick={onCloseDelayed}
+                    onClick={handleOnClose}
                     color="neutral"
                     icon={
                       <VuiIcon size="l" color="empty">

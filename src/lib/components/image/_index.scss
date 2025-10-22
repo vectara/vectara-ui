@@ -132,7 +132,6 @@
     align-items: center;
     justify-content: center;
     overflow: visible;
-    pointer-events: all;
   }
 
   &__image {
@@ -142,5 +141,6 @@
     height: auto;
     object-fit: contain;
     user-select: none;
+    pointer-events: all;
   }
 }
