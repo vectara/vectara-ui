@@ -31,6 +31,12 @@ $color: (
   }
 }
 
+.vuiIconButton-isDisabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 // Size
 .vuiIconButton--xs {
   padding: $sizeXxs;

@@ -22,6 +22,7 @@ type Props = {
   track?: LinkProps["track"];
   tabIndex?: number;
   isSelected?: boolean;
+  isDisabled?: boolean;
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -40,6 +41,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       track,
       tabIndex,
       isSelected = false,
+      isDisabled = false,
       ...rest
     }: Props,
     ref
@@ -48,13 +50,15 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
 
     const props = {
       className: classNames("vuiIconButton", className, `vuiIconButton--${color}`, `vuiIconButton--${size}`, {
-        [`vuiIconButton--${color}-isSelected`]: isSelected
+        [`vuiIconButton--${color}-isSelected`]: isSelected,
+        "vuiIconButton-isDisabled": isDisabled
       }),
       onClick,
       onMouseOver,
       onMouseOut,
       onMouseMove,
       tabIndex,
+      disabled: isDisabled,
       ...rest
     };
 
@@ -62,7 +66,9 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
 
     let iconButton;
 
-    if (href) {
+    // Anchor tags can't be disabled, so we'll just render a button instead
+    // if isDisabled is true.
+    if (href && !isDisabled) {
       iconButton = createLink({
         href,
         target,
