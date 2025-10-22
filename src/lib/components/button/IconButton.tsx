@@ -22,7 +22,6 @@ type Props = {
   track?: LinkProps["track"];
   tabIndex?: number;
   isSelected?: boolean;
-  isDisabled?: boolean;
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -41,7 +40,6 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       track,
       tabIndex,
       isSelected = false,
-      isDisabled = false,
       ...rest
     }: Props,
     ref
@@ -70,15 +68,11 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
         target,
         ...props,
         ...getTrackingProps(track),
-        children: (
-          <button ref={ref} disabled={isDisabled}>
-            {buttonIcon}
-          </button>
-        )
+        children: <button ref={ref}>{buttonIcon}</button>
       });
     } else {
       iconButton = (
-        <button disabled={isDisabled} {...props} ref={ref}>
+        <button {...props} ref={ref}>
           {buttonIcon}
         </button>
       );
