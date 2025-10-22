@@ -143,38 +143,16 @@
     width: auto;
     height: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
     user-select: none;
-    cursor: grab;
-
-    &:active {
-      cursor: grabbing;
-    }
-
-    &--dragging {
-      transition: none;
-      cursor: grabbing;
-    }
-  }
-
-  &__toolbar {
-    position: absolute;
-    bottom: $sizeXl;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: $sizeXs;
-    padding: $sizeS $sizeM;
-    pointer-events: all;
   }
 
   &__infoOverlay {
     position: absolute;
-    bottom: calc($sizeXl + 64px); // Position above toolbar
+    bottom: $sizeXl;
     left: 50%;
     transform: translateX(-50%);
     max-width: calc(100vw - #{$sizeXl * 2});
-    max-height: calc(100vh - #{$sizeXl * 2} - 64px);
+    max-height: calc(100vh - #{$sizeXl * 2});
     overflow-y: auto;
     width: 600px;
     background-color: rgba(0, 0, 0, 0.85);

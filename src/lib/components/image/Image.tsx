@@ -19,12 +19,6 @@ type Props = {
   previewTitle?: string;
   previewDescription?: string;
   previewCaption?: string;
-  controls?: {
-    allowRotation?: boolean;
-    allowZoom?: boolean;
-    allowReset?: boolean;
-    allowDrag?: boolean;
-  };
 };
 
 const sizeMap = {
@@ -55,8 +49,7 @@ export const VuiImage = ({
   allowPreview = false,
   previewTitle,
   previewDescription,
-  previewCaption,
-  controls
+  previewCaption
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
@@ -104,7 +97,6 @@ export const VuiImage = ({
           title={previewTitle}
           description={previewDescription}
           caption={previewCaption}
-          controls={controls}
         />
       )}
     </>

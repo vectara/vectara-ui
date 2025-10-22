@@ -19,10 +19,6 @@ export const Image = () => {
   const [size, setSize] = useState<ImageSize>("m");
   const [isLoading, setIsLoading] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
-  const [allowRotation, setAllowRotation] = useState(true);
-  const [allowZoom, setAllowZoom] = useState(true);
-  const [allowReset, setAllowReset] = useState(true);
-  const [allowDrag, setAllowDrag] = useState(true);
   const [showPreviewInfo, setShowPreviewInfo] = useState(false);
   const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/4000";
   const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
@@ -52,28 +48,12 @@ export const Image = () => {
         <>
           <VuiText>
             <p>
-              <strong>Preview controls:</strong>
+              <strong>Preview info:</strong>
             </p>
           </VuiText>
           <VuiSpacer size="xs" />
 
           <VuiFlexContainer wrap spacing="l">
-            <VuiFlexItem shrink={false}>
-              <VuiToggle
-                label="Allow rotation"
-                checked={allowRotation}
-                onChange={(e) => setAllowRotation(e.target.checked)}
-              />
-            </VuiFlexItem>
-            <VuiFlexItem shrink={false}>
-              <VuiToggle label="Allow zoom" checked={allowZoom} onChange={(e) => setAllowZoom(e.target.checked)} />
-            </VuiFlexItem>
-            <VuiFlexItem shrink={false}>
-              <VuiToggle label="Allow reset" checked={allowReset} onChange={(e) => setAllowReset(e.target.checked)} />
-            </VuiFlexItem>
-            <VuiFlexItem shrink={false}>
-              <VuiToggle label="Allow drag" checked={allowDrag} onChange={(e) => setAllowDrag(e.target.checked)} />
-            </VuiFlexItem>
             <VuiFlexItem shrink={false}>
               <VuiToggle
                 label="Show preview info"
@@ -138,7 +118,6 @@ export const Image = () => {
             : undefined
         }
         previewCaption={showPreviewInfo ? "Photo by John Doe • 2024" : undefined}
-        controls={{ allowDrag, allowReset, allowZoom, allowRotation }}
       />
 
       <VuiSpacer size="xl" />
