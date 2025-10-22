@@ -28,7 +28,7 @@ export const VuiImage = ({ src, alt, caption, className, allowPreview = true }: 
 
   return (
     <>
-      <VuiFlexContainer direction="column" className="vuiImage" spacing="s">
+      <VuiFlexContainer direction="column" spacing="s">
         <figure>
           <VuiFlexItem grow={false}>
             <div className="vuiImage__imageWrapper">

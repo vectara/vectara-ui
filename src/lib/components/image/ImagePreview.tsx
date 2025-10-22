@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import classNames from "classnames";
 import { FocusOn } from "react-focus-on";
 import { BiX } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
@@ -33,12 +32,10 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
     onClose?.();
   };
 
-  const baseClasses = classNames("vuiImagePreview", className);
-
   return (
     <VuiPortal>
       {isOpen && (
-        <div className={baseClasses}>
+        <div className={className}>
           <FocusOn onEscapeKey={handleOnClose} returnFocus={false} autoFocus={isOpen}>
             <VuiScreenBlock onClick={handleOnClose}>
               <div className="vuiImagePreview__container">

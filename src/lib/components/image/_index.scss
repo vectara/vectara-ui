@@ -1,59 +1,55 @@
-.vuiImage {
-  &__imageWrapper {
-    position: relative;
-    display: inline-block;
-    line-height: 0;
-    width: 100%;
-  }
+.vuiImage__imageWrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  width: 100%;
+}
 
-  &__image {
-    display: block;
-    width: 100%;
-    height: auto;
+.vuiImage__image {
+  display: block;
+  width: 100%;
+  height: auto;
 
-    &--clickable {
-      cursor: pointer;
-    }
+  &--clickable {
+    cursor: pointer;
   }
 }
 
-.vuiImagePreview {
-  &__container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-  }
+.vuiImagePreview__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
 
-  &__closeButton {
-    position: absolute;
-    top: $sizeM;
-    right: $sizeM;
-    pointer-events: all;
-    z-index: 1;
-  }
+.vuiImagePreview__closeButton {
+  position: absolute;
+  top: $sizeM;
+  right: $sizeM;
+  pointer-events: all;
+  z-index: 1;
+}
 
-  &__imageContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-  }
+.vuiImagePreview__imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
 
-  &__image {
-    max-width: calc(100vw - #{$sizeXl * 2});
-    max-height: calc(100vh - #{$sizeXl * 2});
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    user-select: none;
-    pointer-events: all;
-  }
+.vuiImagePreview__image {
+  max-width: calc(100vw - #{$sizeXl * 2});
+  max-height: calc(100vh - #{$sizeXl * 2});
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: all;
 }
