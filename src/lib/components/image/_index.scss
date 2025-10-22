@@ -30,37 +30,6 @@
     color: $colorEmptyShade !important;
   }
 
-  &__previewOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $sizeS;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    color: $colorEmptyShade;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity $transitionSpeed;
-
-    svg {
-      color: $colorEmptyShade;
-    }
-
-    p {
-      color: $colorEmptyShade;
-    }
-  }
-
-  &__imageWrapper:hover &__previewOverlay {
-    opacity: 1;
-  }
-
   // Size variants
   &--xs {
     .vuiImage__image {

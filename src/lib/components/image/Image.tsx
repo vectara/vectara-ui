@@ -1,6 +1,5 @@
 import { useState } from "react";
 import classNames from "classnames";
-import { BiShow } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
@@ -38,12 +37,12 @@ const sizeMap = {
 } as const;
 
 const sizeConfig = {
-  xs: { skeletonRows: 2.5, previewTextSize: "xs", previewIconSize: 16 },
-  s: { skeletonRows: 2.5, previewTextSize: "s", previewIconSize: 16 },
-  m: { skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
-  l: { skeletonRows: 3.25, previewTextSize: "m", previewIconSize: 24 },
-  xl: { skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 },
-  full: { skeletonRows: 4.25, previewTextSize: "l", previewIconSize: 32 }
+  xs: { skeletonRows: 2.5 },
+  s: { skeletonRows: 2.5 },
+  m: { skeletonRows: 3.25 },
+  l: { skeletonRows: 3.25 },
+  xl: { skeletonRows: 4.25 },
+  full: { skeletonRows: 4.25 }
 } as const;
 
 export const VuiImage = ({
@@ -62,7 +61,7 @@ export const VuiImage = ({
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
 
-  const { skeletonRows, previewTextSize, previewIconSize } = sizeConfig[size];
+  const { skeletonRows } = sizeConfig[size];
 
   const handlePreviewClick = () => {
     if (allowPreview) {
@@ -78,22 +77,16 @@ export const VuiImage = ({
     );
   }
 
-  const previewOverlay = allowPreview ? (
-    <div className="vuiImage__previewOverlay" onClick={handlePreviewClick} role="button">
-      <BiShow size={previewIconSize} />
-      <VuiText size={previewTextSize}>
-        <p>Preview</p>
-      </VuiText>
-    </div>
-  ) : null;
+  const imageClasses = classNames("vuiImage__image", {
+    "vuiImage__image--clickable": allowPreview
+  });
 
   return (
     <>
       <VuiFlexContainer direction="column" className={classes} spacing="s">
         <VuiFlexItem grow={false}>
           <div className="vuiImage__imageWrapper">
-            <img src={src} alt={alt} className="vuiImage__image" />
-            {previewOverlay}
+            <img src={src} alt={alt} className={imageClasses} onClick={handlePreviewClick} />
           </div>
         </VuiFlexItem>
         {caption && (
