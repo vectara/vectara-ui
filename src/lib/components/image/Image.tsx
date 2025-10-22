@@ -71,16 +71,20 @@ export const VuiImage = ({
   return (
     <>
       <VuiFlexContainer direction="column" className={classes} spacing="s">
-        <VuiFlexItem grow={false}>
-          <div className="vuiImage__imageWrapper">
-            <img src={src} alt={alt} className={imageClasses} onClick={handlePreviewClick} />
-          </div>
-        </VuiFlexItem>
-        {caption && (
+        <figure>
           <VuiFlexItem grow={false}>
-            <VuiText size="s">{caption}</VuiText>
+            <div className="vuiImage__imageWrapper">
+              <img src={src} alt={alt} className={imageClasses} onClick={handlePreviewClick} />
+            </div>
           </VuiFlexItem>
-        )}
+          {caption && (
+            <VuiFlexItem grow={false}>
+              <VuiText size="s">
+                <figcaption>{caption}</figcaption>
+              </VuiText>
+            </VuiFlexItem>
+          )}
+        </figure>
       </VuiFlexContainer>
       {allowPreview && (
         <VuiImagePreview src={src} alt={alt} isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} />
