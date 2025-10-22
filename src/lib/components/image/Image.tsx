@@ -16,9 +16,6 @@ type Props = {
   className?: string;
   isLoading?: boolean;
   allowPreview?: boolean; // allows image to be opened in a modal
-  previewTitle?: string;
-  previewDescription?: string;
-  previewCaption?: string;
 };
 
 const sizeMap = {
@@ -46,10 +43,7 @@ export const VuiImage = ({
   size = "m",
   className,
   isLoading = false,
-  allowPreview = false,
-  previewTitle,
-  previewDescription,
-  previewCaption
+  allowPreview = false
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);
@@ -89,15 +83,7 @@ export const VuiImage = ({
         )}
       </VuiFlexContainer>
       {allowPreview && (
-        <VuiImagePreview
-          src={src}
-          alt={alt}
-          isOpen={isPreviewOpen}
-          onClose={() => setIsPreviewOpen(false)}
-          title={previewTitle}
-          description={previewDescription}
-          caption={previewCaption}
-        />
+        <VuiImagePreview src={src} alt={alt} isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} />
       )}
     </>
   );
