@@ -3,103 +3,16 @@
     position: relative;
     display: inline-block;
     line-height: 0;
+    width: 100%;
   }
 
   &__image {
     display: block;
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    transition: opacity $transitionSpeed;
-
-    &--loaded {
-      opacity: 1;
-    }
 
     &--clickable {
       cursor: pointer;
-    }
-  }
-
-  &__captionOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: $sizeM $sizeM;
-    background: rgba(0, 0, 0, 0.7);
-    color: $colorEmptyShade !important;
-  }
-
-  // Size variants
-  &--xs {
-    .vuiImage__image {
-      max-width: 100px;
-      max-height: 100px;
-    }
-
-    .vuiImage__imageWrapper {
-      max-width: 100px;
-      max-height: 100px;
-    }
-  }
-
-  &--s {
-    .vuiImage__image {
-      max-width: 200px;
-      max-height: 200px;
-    }
-
-    .vuiImage__imageWrapper {
-      max-width: 200px;
-      max-height: 200px;
-    }
-  }
-
-  &--m {
-    .vuiImage__image {
-      max-width: 400px;
-      max-height: 400px;
-    }
-
-    .vuiImage__imageWrapper {
-      max-width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  &--l {
-    .vuiImage__image {
-      max-width: 600px;
-      max-height: 600px;
-    }
-
-    .vuiImage__imageWrapper {
-      max-width: 600px;
-      max-height: 600px;
-    }
-  }
-
-  &--xl {
-    .vuiImage__image {
-      max-width: 800px;
-      max-height: 800px;
-    }
-
-    .vuiImage__imageWrapper {
-      max-width: 800px;
-      max-height: 800px;
-    }
-  }
-
-  &--full {
-    .vuiImage__image {
-      width: 100%;
-      height: auto;
-    }
-
-    .vuiImage__imageWrapper {
-      width: 100%;
-      height: auto;
     }
   }
 }
