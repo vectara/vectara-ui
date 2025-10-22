@@ -43,7 +43,7 @@ export const VuiImage = ({
   size = "m",
   className,
   isLoading = false,
-  allowPreview = false
+  allowPreview = true
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const classes = classNames("vuiImage", `vuiImage--${size}`, className);

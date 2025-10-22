@@ -9,18 +9,14 @@ import {
   VuiToggle,
   ImageSize
 } from "../../../lib";
-import { Subsection } from "../../components/Subsection";
 
 export const Image = () => {
   // State for controls
   const [showCaption, setShowCaption] = useState(true);
-  const [flexPosition, setFlexPosition] = useState("start");
-  const [customSize, setCustomSize] = useState(250);
   const [size, setSize] = useState<ImageSize>("m");
   const [isLoading, setIsLoading] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
   const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/4000";
-  const debouncedSetCustomSize = (value: number) => setTimeout(() => setCustomSize(value), 300);
 
   return (
     <>
@@ -88,76 +84,6 @@ export const Image = () => {
         isLoading={isLoading}
         allowPreview={showPreview}
       />
-
-      <VuiSpacer size="xl" />
-
-      <Subsection title="Positioning Image">
-        <VuiFlexContainer wrap spacing="l" alignItems="center">
-          <VuiFlexItem shrink={false}>
-            <VuiText>
-              <p>
-                <strong>position:</strong>
-              </p>
-            </VuiText>
-          </VuiFlexItem>
-          <VuiFlexItem shrink={false}>
-            <VuiFlexContainer spacing="s">
-              {["start", "center", "end"].map((pos) => (
-                <VuiFlexItem key={pos} shrink={false}>
-                  <label style={{ cursor: "pointer" }}>
-                    <input
-                      type="radio"
-                      name="flexPosition"
-                      value={pos}
-                      checked={flexPosition === pos}
-                      onChange={(e) => setFlexPosition(e.target.value)}
-                      style={{ marginRight: "4px" }}
-                    />
-                    {pos}
-                  </label>
-                </VuiFlexItem>
-              ))}
-            </VuiFlexContainer>
-          </VuiFlexItem>
-        </VuiFlexContainer>
-        <VuiSpacer size="m" />
-
-        {/* @ts-expect-error using subset of justifyContent options */}
-        <VuiFlexContainer justifyContent={flexPosition}>
-          <VuiImage src={sampleImageUrl} alt="Sample landscape image" allowPreview />
-        </VuiFlexContainer>
-      </Subsection>
-
-      <VuiSpacer size="xl" />
-      <Subsection title="Custom size">
-        <VuiFlexContainer wrap spacing="l" alignItems="center">
-          <VuiFlexItem shrink={false}>
-            <VuiText>
-              <p>
-                <strong>Custom size ({`${customSize}px`}):</strong>
-              </p>
-            </VuiText>
-          </VuiFlexItem>
-          <VuiFlexItem shrink={false}>
-            <input
-              style={{ width: "100px" }}
-              type="range"
-              name="custom_size"
-              min={50}
-              max={800}
-              step={50}
-              value={customSize}
-              onChange={(e) => debouncedSetCustomSize(Number(e.target.value))}
-            />
-          </VuiFlexItem>
-        </VuiFlexContainer>
-        <VuiSpacer size="m" />
-
-        <div style={{ width: `${customSize}px` }}>
-          <VuiImage src={sampleImageUrl} size="full" alt="Sample landscape image" />
-        </div>
-      </Subsection>
-
     </>
   );
 };

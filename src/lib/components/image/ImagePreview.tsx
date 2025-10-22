@@ -40,14 +40,9 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
   return (
     <VuiPortal>
       {isOpen && (
-        <VuiScreenBlock onClick={onCloseDelayed}>
-          <div className={baseClasses}>
-            <FocusOn
-              onEscapeKey={onCloseDelayed}
-              onClickOutside={onCloseDelayed}
-              returnFocus={false}
-              autoFocus={isOpen}
-            >
+        <div className={baseClasses}>
+          <FocusOn onEscapeKey={onCloseDelayed} onClickOutside={onCloseDelayed} returnFocus={false} autoFocus={isOpen}>
+            <VuiScreenBlock onClick={onCloseDelayed}>
               <div className="vuiImagePreview__container">
                 <div className="vuiImagePreview__closeButton">
                   <VuiIconButton
@@ -66,9 +61,9 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                   <img src={src} alt={alt} className="vuiImagePreview__image" draggable={false} />
                 </div>
               </div>
-            </FocusOn>
-          </div>
-        </VuiScreenBlock>
+            </VuiScreenBlock>
+          </FocusOn>
+        </div>
       )}
     </VuiPortal>
   );

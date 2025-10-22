@@ -104,7 +104,6 @@
   }
 }
 
-// Image Preview Modal
 .vuiImagePreview {
   &__container {
     position: fixed;
@@ -112,7 +111,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: $modalZIndex;
     pointer-events: none;
   }
 
