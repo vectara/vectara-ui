@@ -13,7 +13,7 @@ type Props = {
   caption?: string;
   className?: string;
   isLoading?: boolean;
-  errorMessage?: string;
+  isFailure?: boolean;
   allowPreview?: boolean; // allows image to be opened in a modal
 };
 
@@ -24,7 +24,7 @@ export const VuiImage = ({
   className,
   isLoading = false,
   allowPreview = true,
-  errorMessage
+  isFailure = false,
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
@@ -50,18 +50,20 @@ export const VuiImage = ({
     );
   }
 
-  if (errorMessage) {
+  if (isFailure) {
     return (
       <div className={"vuiImage__placeholder vuiImage__placeholder--error"}>
         <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" spacing="s">
           <VuiFlexItem grow={false}>
-            <VuiIcon size="m" color="danger">
-              <BiError />
-            </VuiIcon>
+            <div className="vuiImage__iconWrapper">
+              <VuiIcon size="m" color="danger">
+                <BiError />
+              </VuiIcon>
+            </div>
           </VuiFlexItem>
           <VuiFlexItem grow={false}>
             <VuiText size="s" align="center">
-              <p>{errorMessage}</p>
+              <p>Missing image</p>
             </VuiText>
           </VuiFlexItem>
         </VuiFlexContainer>

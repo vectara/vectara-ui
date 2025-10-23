@@ -60,7 +60,7 @@ export const Image = () => {
           caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
           allowPreview={showPreview}
           isLoading={isLoading}
-          errorMessage={showError ? "Failed to load image. Please try again." : undefined}
+          isFailure={showError}
         />
       </div>
     </>
