@@ -46,6 +46,8 @@ import { VuiGrid } from "./grid/Grid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
+import { VuiImage } from "./image/Image";
+import { VuiImagePreview } from "./image/ImagePreview";
 import { InfoListType, VuiInfoList } from "./infoList/InfoList";
 import { VuiInfoMenu } from "./infoMenu/InfoMenu";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
@@ -179,6 +181,8 @@ export {
   VuiGrid,
   VuiHorizontalRule,
   VuiIcon,
+  VuiImage,
+  VuiImagePreview,
   VuiInfoList,
   VuiInfoMenu,
   VuiInfoTable,

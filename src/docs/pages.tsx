@@ -18,6 +18,7 @@ import { formGroup } from "./pages/formGroup";
 import { grid } from "./pages/grid";
 import { horizontalRule } from "./pages/horizontalRule";
 import { icon } from "./pages/icon";
+import { image } from "./pages/image";
 import { infoList } from "./pages/infoList";
 import { infoMenu } from "./pages/infoMenu";
 import { infoTable } from "./pages/infoTable";
@@ -87,7 +88,7 @@ export const categories: Category[] = [
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, icon, inProgress, spinner, skeleton, progressBar, text, tooltip]
+    pages: [badge, status, callout, code, icon, image, inProgress, spinner, skeleton, progressBar, text, tooltip]
   },
   {
     name: "Form",
