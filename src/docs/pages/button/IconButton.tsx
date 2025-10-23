@@ -6,11 +6,15 @@ import {
   VuiFlexItem,
   VuiIcon,
   BUTTON_SIZE,
-  VuiSpacer
+  VuiSpacer,
+  VuiToggle
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
+import { useState } from "react";
 
 export const IconButton = () => {
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
   const icon = (
     <VuiIcon>
       <BiStar />
@@ -19,6 +23,14 @@ export const IconButton = () => {
 
   return (
     <>
+      <VuiToggle
+        label="Disabled (not clickable, visual)"
+        checked={isDisabled}
+        onChange={() => setIsDisabled(!isDisabled)}
+      />
+
+      <VuiSpacer size="m" />
+
       <VuiFlexContainer>
         {BUTTON_COLOR.map((color) => (
           <VuiFlexItem grow={false} key={color}>
@@ -26,6 +38,7 @@ export const IconButton = () => {
               aria-label="Example button"
               icon={icon}
               color={color}
+              isDisabled={isDisabled}
               onClick={() => console.log("click")}
               onMouseOver={() => console.log("mouse over")}
               onMouseOut={() => console.log("mouse out")}
@@ -39,7 +52,7 @@ export const IconButton = () => {
       <VuiFlexContainer>
         {BUTTON_SIZE.map((size) => (
           <VuiFlexItem grow={false} key={size}>
-            <VuiIconButton aria-label="Example button" icon={icon} color="primary" size={size} />
+            <VuiIconButton aria-label="Example button" icon={icon} color="primary" size={size} isDisabled={isDisabled} />
           </VuiFlexItem>
         ))}
       </VuiFlexContainer>
@@ -52,6 +65,7 @@ export const IconButton = () => {
             <VuiFlexItem grow={false} key={color}>
               <VuiIconButton
                 isSelected
+                isDisabled={isDisabled}
                 aria-label="Button with selected state"
                 icon={icon}
                 color={color}
