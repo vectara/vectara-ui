@@ -41,9 +41,11 @@ export const VuiImage = ({
   if (isLoading) {
     return (
       <div className="vuiImage__placeholder">
-        <VuiIcon size="xxxl" color="subdued">
-          <BiImage />
-        </VuiIcon>
+        <div className="vuiImage__iconWrapper">
+          <VuiIcon color="subdued" size="xxxl">
+            <BiImage />
+          </VuiIcon>
+        </div>
       </div>
     );
   }

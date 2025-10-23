@@ -53,7 +53,7 @@ export const Image = () => {
       </VuiTitle>
       <VuiSpacer size="m" />
 
-      <div style={{ width: "400px" }}>
+      <div style={{ maxWidth: "400px" }}>
         <VuiImage
           src={sampleImageUrl}
           alt="Sample landscape image"
