@@ -30,6 +30,14 @@ const getNotification = () => {
         language: "js"
       },
       hasCopyButton: true
+    },
+    {
+      color: "primary",
+      message: "Check out our documentation for more information",
+      link: {
+        children: "View Documentation",
+        href: "#"
+      }
     }
   ] as const;
 
