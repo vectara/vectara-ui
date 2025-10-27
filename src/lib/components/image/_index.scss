@@ -51,8 +51,13 @@
 }
 
 .vuiImagePreview__header {
-  padding: $sizeXs $sizeM;
-  padding-left: calc($sizeM + 6px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: $sizeM;
+  pointer-events: none;
+  z-index: 3;
 
   &--isVisible {
     background-color: $colorFullShade;
@@ -65,10 +70,10 @@
 
 .vuiImagePreview__imageContainer {
   position: absolute;
-  top: 0;
+  top: $sizeXl;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: $sizeXl;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +98,7 @@
 
 .vuiImagePreview__image {
   max-width: calc(100vw - #{$sizeXl * 2});
-  max-height: calc(100vh - #{$sizeXl * 2});
+  max-height: calc(100vh - #{$sizeXl * 4});
   width: auto;
   height: auto;
   object-fit: contain;
@@ -104,7 +109,7 @@
 .vuiImagePreview__placeholder {
   aspect-ratio: 16 / 9;
   max-width: calc(100vw - #{$sizeXl * 2});
-  max-height: calc(100vh - #{$sizeXl * 2});
+  max-height: calc(100vh - #{$sizeXl * 4});
   display: flex;
   align-items: center;
   justify-content: center;
