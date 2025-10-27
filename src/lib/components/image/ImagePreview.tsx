@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import { BiX } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
@@ -6,16 +6,26 @@ import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
 
-type Props = {
+type ImageData = {
   src: string;
   alt?: string;
+  caption?: string;
+};
+
+type Props = {
+  images: ImageData | ImageData[];
+  initialIndex?: number;
   isOpen: boolean;
   onClose: () => void;
   className?: string;
 };
 
-export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props) => {
+export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, className }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
+
+  // Normalize single image to array
+  const imageArray = Array.isArray(images) ? images : [images];
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   // Return focus on unmount
   useEffect(() => {
@@ -53,7 +63,12 @@ export const VuiImagePreview = ({ src, alt, isOpen, onClose, className }: Props)
                 </div>
 
                 <div className="vuiImagePreview__imageContainer">
-                  <img src={src} alt={alt} className="vuiImagePreview__image" draggable={false} />
+                  <img
+                    src={imageArray[currentIndex].src}
+                    alt={imageArray[currentIndex].alt}
+                    className="vuiImagePreview__image"
+                    draggable={false}
+                  />
                 </div>
               </div>
             </VuiScreenBlock>
