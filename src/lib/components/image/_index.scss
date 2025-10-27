@@ -85,7 +85,6 @@
   top: 50%;
   transform: translateY(-50%);
   pointer-events: all;
-  z-index: 2;
 
   &--prev {
     left: $sizeM;
@@ -104,33 +103,4 @@
   object-fit: contain;
   user-select: none;
   pointer-events: all;
-}
-
-.vuiImagePreview__placeholder {
-  aspect-ratio: 16 / 9;
-  max-width: calc(100vw - #{$sizeXl * 2});
-  max-height: calc(100vh - #{$sizeXxl + $sizeM});
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $colorLightShade;
-  border-radius: $sizeXxs;
-  pointer-events: all;
-
-  &--error {
-    background-color: $colorDangerLighterShade;
-
-    p {
-      color: $colorDanger;
-    }
-  }
-}
-
-.vuiImagePreview__iconWrapper {
-  max-width: 64px;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 }
