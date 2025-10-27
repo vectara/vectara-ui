@@ -8,6 +8,8 @@ import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
+import classNames from "classnames";
+import { VuiTextColor } from "../typography/TextColor";
 
 type ImageData = {
   src: string;
@@ -29,6 +31,12 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [imageLoadingStates, setImageLoadingStates] = useState<{ [key: number]: boolean }>({});
   const [imageErrorStates, setImageErrorStates] = useState<{ [key: number]: boolean }>({});
+
+  const isCarousel = images.length > 1;
+
+  const headerClasses = classNames("vuiImagePreview__header", {
+    "vuiImagePreview__header--isVisible": isCarousel
+  });
 
   // Reset index when opening/closing
   useEffect(() => {
@@ -79,26 +87,33 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
           <FocusOn onEscapeKey={handleOnClose} returnFocus={false} autoFocus={isOpen}>
             <VuiScreenBlock onClick={handleOnClose}>
               <div className="vuiImagePreview__container">
-                {/* Header with caption and close button */}
-                <div className="vuiImagePreview__header">
-                  <div className="vuiImagePreview__caption">
-                    {images[currentIndex].caption && (
-                      <span>{images[currentIndex].caption}</span>
-                    )}
-                  </div>
-                  <div className="vuiImagePreview__closeButton">
-                    <VuiIconButton
-                      aria-label="Close preview"
-                      onClick={handleOnClose}
-                      color="neutral"
-                      icon={
-                        <VuiIcon size="l" color="empty">
-                          <BiX />
-                        </VuiIcon>
-                      }
-                    />
-                  </div>
-                </div>
+                <VuiFlexContainer
+                  alignItems="center"
+                  justifyContent={isCarousel ? "spaceBetween" : "end"}
+                  className={headerClasses}
+                >
+                  {isCarousel && (
+                    <VuiFlexItem>
+                      <VuiText size="s">
+                        <VuiTextColor color="empty">{images[currentIndex].caption}</VuiTextColor>
+                      </VuiText>
+                    </VuiFlexItem>
+                  )}
+                  <VuiFlexItem>
+                    <div className="vuiImagePreview__closeButton">
+                      <VuiIconButton
+                        aria-label="Close preview"
+                        onClick={handleOnClose}
+                        color="neutral"
+                        icon={
+                          <VuiIcon size="l" color="empty">
+                            <BiX />
+                          </VuiIcon>
+                        }
+                      />
+                    </div>
+                  </VuiFlexItem>
+                </VuiFlexContainer>
 
                 <div className="vuiImagePreview__imageContainer">
                   {/* Previous button - only show if multiple images */}
@@ -169,8 +184,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                       setImageErrorStates((prev) => ({ ...prev, [currentIndex]: true }));
                     }}
                     style={{
-                      display:
-                        imageLoadingStates[currentIndex] || imageErrorStates[currentIndex] ? "none" : "block"
+                      display: imageLoadingStates[currentIndex] || imageErrorStates[currentIndex] ? "none" : "block"
                     }}
                   />
 
