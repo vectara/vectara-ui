@@ -2,46 +2,43 @@ import { useState } from "react";
 import { VuiFlexContainer, VuiFlexItem, VuiImage, VuiImagePreview, VuiSpacer, VuiTitle, VuiToggle } from "../../../lib";
 
 export const Image = () => {
-  // State for controls
   const [showCaption, setShowCaption] = useState(true);
   const [showPreview, setShowPreview] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [showError, setShowError] = useState(false);
-  const sampleImageUrl = "https://picsum.photos/seed/picsum/4000/3500";
+  const sampleImageUrl = "https://picsum.photos/seed/476/4000/3500";
 
-  // State for multi-image carousel
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [carouselStartIndex, setCarouselStartIndex] = useState(0);
 
-  // Sample images for carousel
   const carouselImages = [
     {
-      src: "https://picsum.photos/seed/image1/800/600",
+      src: "https://picsum.photos/seed/476/4000/3500",
       alt: "Mountain landscape",
       caption: "Beautiful mountain landscape with snow peaks"
     },
     {
-      src: "https://picsum.photos/seed/image2/800/600",
+      src: "https://picsum.photos/seed/888/2000/1800",
       alt: "Ocean sunset",
       caption: "Stunning ocean sunset with vibrant colors"
     },
     {
-      src: "https://picsum.photos/seed/image3/800/600",
+      src: "https://picsum.photos/seed/232/800/600",
       alt: "Forest path",
       caption: "Peaceful forest path in autumn"
     },
     {
-      src: "https://picsum.photos/seed/image4/800/600",
+      src: "https://picsum.photos/seed/222/800/600",
       alt: "Desert dunes",
       caption: "Golden desert dunes at dusk"
     },
     {
-      src: "https://picsum.photos/seed/image5/800/600",
+      src: "https://picsum.photos/seed/343/800/600",
       alt: "City skyline",
       caption: "Modern city skyline at night"
     },
     {
-      src: "https://picsum.photos/seed/image6/800/600",
+      src: "https://picsum.photos/seed/232/800/600",
       alt: "Waterfall",
       caption: "Majestic waterfall in tropical jungle"
     }
@@ -90,7 +87,6 @@ export const Image = () => {
 
       <VuiSpacer size="xl" />
 
-      {/* Preview */}
       <VuiTitle size="s">
         <h3>Preview</h3>
       </VuiTitle>
@@ -109,14 +105,12 @@ export const Image = () => {
 
       <VuiSpacer size="xl" />
 
-      {/* Multi-image carousel */}
       <VuiTitle size="s">
         <h3>Multi-image carousel</h3>
       </VuiTitle>
       <VuiSpacer size="m" />
 
       <div style={{ maxWidth: "600px" }}>
-        {/* Thumbnail grid */}
         <div
           style={{
             display: "grid",
@@ -145,7 +139,6 @@ export const Image = () => {
                   objectFit: "cover"
                 }}
               />
-              {/* "See more" overlay on 4th thumbnail */}
               {index === 3 && (
                 <div
                   style={{
@@ -171,7 +164,6 @@ export const Image = () => {
         </div>
       </div>
 
-      {/* Image carousel modal */}
       <VuiImagePreview
         images={carouselImages}
         initialIndex={carouselStartIndex}
