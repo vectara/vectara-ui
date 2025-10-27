@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { FocusOn } from "react-focus-on";
-import { BiX, BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { BiX, BiChevronLeft, BiChevronRight, BiImage, BiError } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiText } from "../typography/Text";
 
 type ImageData = {
   src: string;
@@ -26,6 +29,8 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   // Normalize single image to array
   const imageArray = Array.isArray(images) ? images : [images];
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [imageLoadingStates, setImageLoadingStates] = useState<{ [key: number]: boolean }>({});
+  const [imageErrorStates, setImageErrorStates] = useState<{ [key: number]: boolean }>({});
 
   // Reset index when opening/closing
   useEffect(() => {
@@ -117,11 +122,58 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                     </div>
                   )}
 
+                  {/* Loading state */}
+                  {imageLoadingStates[currentIndex] && !imageErrorStates[currentIndex] && (
+                    <div className="vuiImagePreview__placeholder">
+                      <div className="vuiImagePreview__iconWrapper">
+                        <VuiIcon color="subdued" size="xxxl">
+                          <BiImage />
+                        </VuiIcon>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Error state */}
+                  {imageErrorStates[currentIndex] && (
+                    <div className="vuiImagePreview__placeholder vuiImagePreview__placeholder--error">
+                      <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" spacing="s">
+                        <VuiFlexItem grow={false}>
+                          <div className="vuiImagePreview__iconWrapper">
+                            <VuiIcon size="m" color="danger">
+                              <BiError />
+                            </VuiIcon>
+                          </div>
+                        </VuiFlexItem>
+                        <VuiFlexItem grow={false}>
+                          <VuiText size="s" align="center">
+                            <p>Failed to load image</p>
+                          </VuiText>
+                        </VuiFlexItem>
+                      </VuiFlexContainer>
+                    </div>
+                  )}
+
+                  {/* Image - hidden during loading/error */}
                   <img
                     src={imageArray[currentIndex].src}
                     alt={imageArray[currentIndex].alt}
                     className="vuiImagePreview__image"
                     draggable={false}
+                    onLoadStart={() => {
+                      setImageLoadingStates((prev) => ({ ...prev, [currentIndex]: true }));
+                    }}
+                    onLoad={() => {
+                      setImageLoadingStates((prev) => ({ ...prev, [currentIndex]: false }));
+                      setImageErrorStates((prev) => ({ ...prev, [currentIndex]: false }));
+                    }}
+                    onError={() => {
+                      setImageLoadingStates((prev) => ({ ...prev, [currentIndex]: false }));
+                      setImageErrorStates((prev) => ({ ...prev, [currentIndex]: true }));
+                    }}
+                    style={{
+                      display:
+                        imageLoadingStates[currentIndex] || imageErrorStates[currentIndex] ? "none" : "block"
+                    }}
                   />
 
                   {/* Next button - only show if multiple images */}
