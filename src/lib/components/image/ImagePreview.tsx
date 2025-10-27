@@ -27,15 +27,42 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   const imageArray = Array.isArray(images) ? images : [images];
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  // Return focus on unmount
+  // Reset index when opening/closing
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
+      setCurrentIndex(initialIndex);
     } else {
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
     }
-  }, [isOpen]);
+  }, [isOpen, initialIndex]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        handlePrevious();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, currentIndex]);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : imageArray.length - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev < imageArray.length - 1 ? prev + 1 : 0));
+  };
 
   // Allow contents to respond to blur events before unmounting
   const handleOnClose = () => {
