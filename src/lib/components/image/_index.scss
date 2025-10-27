@@ -55,9 +55,9 @@
   top: 0;
   left: 0;
   right: 0;
+  height: $sizeL * 2;
   padding: $sizeS $sizeM;
   pointer-events: none;
-  z-index: 3;
 
   &--isVisible {
     background-color: $colorFullShade;
@@ -70,10 +70,10 @@
 
 .vuiImagePreview__imageContainer {
   position: absolute;
-  top: $sizeXxl;
+  top: $sizeL * 2;
   left: 0;
   right: 0;
-  bottom: $sizeM;
+  height: calc(100vh - #{$sizeL * 2});
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,7 +98,7 @@
 
 .vuiImagePreview__image {
   max-width: calc(100vw - #{$sizeXl * 2});
-  max-height: calc(100vh - #{$sizeXxl + $sizeM});
+  max-height: calc(100vh - #{$sizeL * 4});
   width: auto;
   height: auto;
   object-fit: contain;
