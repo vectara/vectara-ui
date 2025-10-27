@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FocusOn } from "react-focus-on";
-import { BiX, BiChevronLeft, BiChevronRight, BiImage, BiError } from "react-icons/bi";
+import { BiX, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
@@ -29,11 +29,8 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   const returnFocusElRef = useRef<HTMLElement | null>(null);
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [imageLoadingStates, setImageLoadingStates] = useState<{ [key: number]: boolean }>({});
-  const [imageErrorStates, setImageErrorStates] = useState<{ [key: number]: boolean }>({});
 
   const isCarousel = images.length > 1;
-
   const headerClasses = classNames("vuiImagePreview__header", {
     "vuiImagePreview__header--isVisible": isCarousel
   });
@@ -86,128 +83,86 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
         <div className={className}>
           <FocusOn onEscapeKey={handleOnClose} returnFocus={false} autoFocus={isOpen}>
             <VuiScreenBlock onClick={handleOnClose}>
-              <div className="vuiImagePreview__container">
-                <VuiFlexContainer
-                  alignItems="center"
-                  justifyContent={isCarousel ? "spaceBetween" : "end"}
-                  className={headerClasses}
-                >
-                  {isCarousel && (
+              <figure>
+                <div className="vuiImagePreview__container">
+                  <VuiFlexContainer
+                    alignItems="center"
+                    justifyContent={isCarousel ? "spaceBetween" : "end"}
+                    className={headerClasses}
+                  >
+                    {isCarousel && (
+                      <VuiFlexItem>
+                        <VuiText size="s">
+                          <VuiTextColor color="empty">
+                            <figcaption>{images[currentIndex].caption}</figcaption>
+                          </VuiTextColor>
+                        </VuiText>
+                      </VuiFlexItem>
+                    )}
                     <VuiFlexItem>
-                      <VuiText size="s">
-                        <VuiTextColor color="empty">{images[currentIndex].caption}</VuiTextColor>
-                      </VuiText>
-                    </VuiFlexItem>
-                  )}
-                  <VuiFlexItem>
-                    <div className="vuiImagePreview__closeButton">
-                      <VuiIconButton
-                        aria-label="Close preview"
-                        onClick={handleOnClose}
-                        color="neutral"
-                        icon={
-                          <VuiIcon size="l" color="empty">
-                            <BiX />
-                          </VuiIcon>
-                        }
-                      />
-                    </div>
-                  </VuiFlexItem>
-                </VuiFlexContainer>
-
-                <div className="vuiImagePreview__imageContainer">
-                  {/* Previous button - only show if multiple images */}
-                  {images.length > 1 && (
-                    <div className="vuiImagePreview__navButton vuiImagePreview__navButton--prev">
-                      <VuiIconButton
-                        aria-label="Previous image"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handlePrevious();
-                        }}
-                        color="neutral"
-                        icon={
-                          <VuiIcon size="l" color="empty">
-                            <BiChevronLeft />
-                          </VuiIcon>
-                        }
-                      />
-                    </div>
-                  )}
-
-                  {/* Loading state */}
-                  {imageLoadingStates[currentIndex] && !imageErrorStates[currentIndex] && (
-                    <div className="vuiImagePreview__placeholder">
-                      <div className="vuiImagePreview__iconWrapper">
-                        <VuiIcon color="subdued" size="xxxl">
-                          <BiImage />
-                        </VuiIcon>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Error state */}
-                  {imageErrorStates[currentIndex] && (
-                    <div className="vuiImagePreview__placeholder vuiImagePreview__placeholder--error">
-                      <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" spacing="s">
-                        <VuiFlexItem grow={false}>
-                          <div className="vuiImagePreview__iconWrapper">
-                            <VuiIcon size="m" color="danger">
-                              <BiError />
+                      <div className="vuiImagePreview__closeButton">
+                        <VuiIconButton
+                          aria-label="Close preview"
+                          onClick={handleOnClose}
+                          color="neutral"
+                          icon={
+                            <VuiIcon size="l" color="empty">
+                              <BiX />
                             </VuiIcon>
-                          </div>
-                        </VuiFlexItem>
-                        <VuiFlexItem grow={false}>
-                          <VuiText size="s" align="center">
-                            <p>Failed to load image</p>
-                          </VuiText>
-                        </VuiFlexItem>
-                      </VuiFlexContainer>
-                    </div>
-                  )}
+                          }
+                        />
+                      </div>
+                    </VuiFlexItem>
+                  </VuiFlexContainer>
 
-                  {/* Image - hidden during loading/error */}
-                  <img
-                    src={images[currentIndex].src}
-                    alt={images[currentIndex].alt}
-                    className="vuiImagePreview__image"
-                    draggable={false}
-                    onLoadStart={() => {
-                      setImageLoadingStates((prev) => ({ ...prev, [currentIndex]: true }));
-                    }}
-                    onLoad={() => {
-                      setImageLoadingStates((prev) => ({ ...prev, [currentIndex]: false }));
-                      setImageErrorStates((prev) => ({ ...prev, [currentIndex]: false }));
-                    }}
-                    onError={() => {
-                      setImageLoadingStates((prev) => ({ ...prev, [currentIndex]: false }));
-                      setImageErrorStates((prev) => ({ ...prev, [currentIndex]: true }));
-                    }}
-                    style={{
-                      display: imageLoadingStates[currentIndex] || imageErrorStates[currentIndex] ? "none" : "block"
-                    }}
-                  />
+                  <div className="vuiImagePreview__imageContainer">
+                    {isCarousel && (
+                      <div className="vuiImagePreview__navButton vuiImagePreview__navButton--prev">
+                        <VuiIconButton
+                          aria-label="Previous image"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePrevious();
+                          }}
+                          color="neutral"
+                          size="l"
+                          icon={
+                            <VuiIcon color="empty">
+                              <BiChevronLeft />
+                            </VuiIcon>
+                          }
+                        />
+                      </div>
+                    )}
 
-                  {/* Next button - only show if multiple images */}
-                  {images.length > 1 && (
-                    <div className="vuiImagePreview__navButton vuiImagePreview__navButton--next">
-                      <VuiIconButton
-                        aria-label="Next image"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleNext();
-                        }}
-                        color="neutral"
-                        icon={
-                          <VuiIcon size="l" color="empty">
-                            <BiChevronRight />
-                          </VuiIcon>
-                        }
-                      />
-                    </div>
-                  )}
+                    <img
+                      src={images[currentIndex].src}
+                      alt={images[currentIndex].alt}
+                      className="vuiImagePreview__image"
+                      draggable={false}
+                    />
+
+                    {isCarousel && (
+                      <div className="vuiImagePreview__navButton vuiImagePreview__navButton--next">
+                        <VuiIconButton
+                          aria-label="Next image"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNext();
+                          }}
+                          color="neutral"
+                          size="l"
+                          icon={
+                            <VuiIcon color="empty">
+                              <BiChevronRight />
+                            </VuiIcon>
+                          }
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </figure>
             </VuiScreenBlock>
           </FocusOn>
         </div>
