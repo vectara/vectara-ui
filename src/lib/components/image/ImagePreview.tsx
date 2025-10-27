@@ -76,17 +76,25 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
           <FocusOn onEscapeKey={handleOnClose} returnFocus={false} autoFocus={isOpen}>
             <VuiScreenBlock onClick={handleOnClose}>
               <div className="vuiImagePreview__container">
-                <div className="vuiImagePreview__closeButton">
-                  <VuiIconButton
-                    aria-label="Close preview"
-                    onClick={handleOnClose}
-                    color="neutral"
-                    icon={
-                      <VuiIcon size="l" color="empty">
-                        <BiX />
-                      </VuiIcon>
-                    }
-                  />
+                {/* Header with caption and close button */}
+                <div className="vuiImagePreview__header">
+                  <div className="vuiImagePreview__caption">
+                    {imageArray[currentIndex].caption && (
+                      <span>{imageArray[currentIndex].caption}</span>
+                    )}
+                  </div>
+                  <div className="vuiImagePreview__closeButton">
+                    <VuiIconButton
+                      aria-label="Close preview"
+                      onClick={handleOnClose}
+                      color="neutral"
+                      icon={
+                        <VuiIcon size="l" color="empty">
+                          <BiX />
+                        </VuiIcon>
+                      }
+                    />
+                  </div>
                 </div>
 
                 <div className="vuiImagePreview__imageContainer">
