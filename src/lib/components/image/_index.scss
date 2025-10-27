@@ -50,12 +50,35 @@
   pointer-events: none;
 }
 
-.vuiImagePreview__closeButton {
+.vuiImagePreview__header {
   position: absolute;
-  top: $sizeM;
-  right: $sizeM;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $sizeM;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vuiImagePreview__caption {
+  flex: 1;
+  color: $colorEmptyShade;
+  font-size: $sizeSm;
+  pointer-events: none;
+
+  span {
+    background-color: rgba($colorFullShade, 0.7);
+    padding: $sizeXxs $sizeXs;
+    border-radius: $sizeXxs;
+    backdrop-filter: blur(8px);
+  }
+}
+
+.vuiImagePreview__closeButton {
   pointer-events: all;
-  z-index: 1;
 }
 
 .vuiImagePreview__imageContainer {
@@ -70,6 +93,22 @@
   overflow: visible;
 }
 
+.vuiImagePreview__navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: all;
+  z-index: 2;
+
+  &--prev {
+    left: $sizeM;
+  }
+
+  &--next {
+    right: $sizeM;
+  }
+}
+
 .vuiImagePreview__image {
   max-width: calc(100vw - #{$sizeXl * 2});
   max-height: calc(100vh - #{$sizeXl * 2});
@@ -78,4 +117,33 @@
   object-fit: contain;
   user-select: none;
   pointer-events: all;
+}
+
+.vuiImagePreview__placeholder {
+  aspect-ratio: 16 / 9;
+  max-width: calc(100vw - #{$sizeXl * 2});
+  max-height: calc(100vh - #{$sizeXl * 2});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $colorLightShade;
+  border-radius: $sizeXxs;
+  pointer-events: all;
+
+  &--error {
+    background-color: $colorDangerLighterShade;
+
+    p {
+      color: $colorDanger;
+    }
+  }
+}
+
+.vuiImagePreview__iconWrapper {
+  max-width: 64px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
