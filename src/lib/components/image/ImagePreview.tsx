@@ -16,7 +16,7 @@ type ImageData = {
 };
 
 type Props = {
-  images: ImageData | ImageData[];
+  images: ImageData[];
   initialIndex?: number;
   isOpen: boolean;
   onClose: () => void;
@@ -26,8 +26,6 @@ type Props = {
 export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, className }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
 
-  // Normalize single image to array
-  const imageArray = Array.isArray(images) ? images : [images];
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [imageLoadingStates, setImageLoadingStates] = useState<{ [key: number]: boolean }>({});
   const [imageErrorStates, setImageErrorStates] = useState<{ [key: number]: boolean }>({});
@@ -62,11 +60,11 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   }, [isOpen, currentIndex]);
 
   const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : imageArray.length - 1));
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < imageArray.length - 1 ? prev + 1 : 0));
+    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
 
   // Allow contents to respond to blur events before unmounting
@@ -84,8 +82,8 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                 {/* Header with caption and close button */}
                 <div className="vuiImagePreview__header">
                   <div className="vuiImagePreview__caption">
-                    {imageArray[currentIndex].caption && (
-                      <span>{imageArray[currentIndex].caption}</span>
+                    {images[currentIndex].caption && (
+                      <span>{images[currentIndex].caption}</span>
                     )}
                   </div>
                   <div className="vuiImagePreview__closeButton">
@@ -104,7 +102,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
 
                 <div className="vuiImagePreview__imageContainer">
                   {/* Previous button - only show if multiple images */}
-                  {imageArray.length > 1 && (
+                  {images.length > 1 && (
                     <div className="vuiImagePreview__navButton vuiImagePreview__navButton--prev">
                       <VuiIconButton
                         aria-label="Previous image"
@@ -155,8 +153,8 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
 
                   {/* Image - hidden during loading/error */}
                   <img
-                    src={imageArray[currentIndex].src}
-                    alt={imageArray[currentIndex].alt}
+                    src={images[currentIndex].src}
+                    alt={images[currentIndex].alt}
                     className="vuiImagePreview__image"
                     draggable={false}
                     onLoadStart={() => {
@@ -177,7 +175,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                   />
 
                   {/* Next button - only show if multiple images */}
-                  {imageArray.length > 1 && (
+                  {images.length > 1 && (
                     <div className="vuiImagePreview__navButton vuiImagePreview__navButton--next">
                       <VuiIconButton
                         aria-label="Next image"

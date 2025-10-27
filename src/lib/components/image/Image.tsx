@@ -91,7 +91,7 @@ export const VuiImage = ({
       </VuiFlexContainer>
       {allowPreview && (
         <VuiImagePreview
-          images={{ src, alt, caption }}
+          images={[{ src, alt, caption }]}
           isOpen={isPreviewOpen}
           onClose={() => setIsPreviewOpen(false)}
         />
