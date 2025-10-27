@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FocusOn } from "react-focus-on";
-import { BiX } from "react-icons/bi";
+import { BiX, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { VuiIconButton } from "../button/IconButton";
 import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
@@ -98,12 +98,50 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                 </div>
 
                 <div className="vuiImagePreview__imageContainer">
+                  {/* Previous button - only show if multiple images */}
+                  {imageArray.length > 1 && (
+                    <div className="vuiImagePreview__navButton vuiImagePreview__navButton--prev">
+                      <VuiIconButton
+                        aria-label="Previous image"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePrevious();
+                        }}
+                        color="neutral"
+                        icon={
+                          <VuiIcon size="l" color="empty">
+                            <BiChevronLeft />
+                          </VuiIcon>
+                        }
+                      />
+                    </div>
+                  )}
+
                   <img
                     src={imageArray[currentIndex].src}
                     alt={imageArray[currentIndex].alt}
                     className="vuiImagePreview__image"
                     draggable={false}
                   />
+
+                  {/* Next button - only show if multiple images */}
+                  {imageArray.length > 1 && (
+                    <div className="vuiImagePreview__navButton vuiImagePreview__navButton--next">
+                      <VuiIconButton
+                        aria-label="Next image"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleNext();
+                        }}
+                        color="neutral"
+                        icon={
+                          <VuiIcon size="l" color="empty">
+                            <BiChevronRight />
+                          </VuiIcon>
+                        }
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </VuiScreenBlock>
