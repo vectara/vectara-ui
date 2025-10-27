@@ -73,7 +73,6 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
     setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
   };
 
-  // Allow contents to respond to blur events before unmounting
   const handleOnClose = () => {
     onClose?.();
   };
