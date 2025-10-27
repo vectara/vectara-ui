@@ -38,7 +38,6 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
     "vuiImagePreview__imageContainer--topMargin": isCarousel
   });
 
-  // Reset index when opening/closing
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
@@ -49,7 +48,6 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
     }
   }, [isOpen, initialIndex]);
 
-  // Keyboard navigation
   useEffect(() => {
     if (!isOpen) return;
 
