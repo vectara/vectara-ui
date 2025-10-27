@@ -34,6 +34,9 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   const headerClasses = classNames("vuiImagePreview__header", {
     "vuiImagePreview__header--isVisible": isCarousel
   });
+  const imageContainerClasses = classNames("vuiImagePreview__imageContainer", {
+    "vuiImagePreview__imageContainer--topMargin": isCarousel
+  });
 
   // Reset index when opening/closing
   useEffect(() => {
@@ -115,7 +118,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                     </VuiFlexItem>
                   </VuiFlexContainer>
 
-                  <div className="vuiImagePreview__imageContainer">
+                  <div className={imageContainerClasses}>
                     {isCarousel && (
                       <div className="vuiImagePreview__navButton vuiImagePreview__navButton--prev">
                         <VuiIconButton
