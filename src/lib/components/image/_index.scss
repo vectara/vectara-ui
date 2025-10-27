@@ -77,10 +77,10 @@
   align-items: center;
   justify-content: center;
   overflow: visible;
+  height: 100vh;
   
   &--topMargin {
     top: $sizeL * 2;
-    left: 0;
     height: calc(100vh - #{$sizeL * 2});
   }
 }
