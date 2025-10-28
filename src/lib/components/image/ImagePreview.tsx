@@ -94,7 +94,10 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                       <VuiFlexItem>
                         <VuiText size="s">
                           <VuiTextColor color="empty">
-                            <figcaption>{images[currentIndex].caption}</figcaption>
+                            <figcaption>
+                              Image {currentIndex + 1} of {images.length}
+                              {images[currentIndex].caption && `: ${images[currentIndex].caption}`}
+                            </figcaption>
                           </VuiTextColor>
                         </VuiText>
                       </VuiFlexItem>
