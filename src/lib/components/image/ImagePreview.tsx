@@ -87,23 +87,61 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                 <div className="vuiImagePreview__container">
                   <VuiFlexContainer
                     alignItems="center"
-                    justifyContent={isCarousel ? "spaceBetween" : "end"}
+                    justifyContent="spaceBetween"
                     className={headerClasses}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {isCarousel && (
-                      <VuiFlexItem>
-                        <VuiText size="s">
-                          <VuiTextColor color="empty">
-                            <figcaption>
-                              Image {currentIndex + 1} of {images.length}
-                              {images[currentIndex].caption && `: ${images[currentIndex].caption}`}
-                            </figcaption>
-                          </VuiTextColor>
-                        </VuiText>
-                      </VuiFlexItem>
-                    )}
                     <VuiFlexItem>
+                      <VuiFlexContainer alignItems="center" spacing="xs">
+                        {isCarousel && (
+                          <>
+                            <VuiFlexItem grow={false}>
+                              <VuiIconButton
+                                aria-label="Previous image"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handlePrevious();
+                                }}
+                                color="neutral"
+                                size="s"
+                                icon={
+                                  <VuiIcon size="m" color="empty">
+                                    <BiChevronLeft />
+                                  </VuiIcon>
+                                }
+                              />
+                            </VuiFlexItem>
+                            <VuiFlexItem grow={false}>
+                              <VuiIconButton
+                                aria-label="Next image"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleNext();
+                                }}
+                                color="neutral"
+                                size="s"
+                                icon={
+                                  <VuiIcon size="m" color="empty">
+                                    <BiChevronRight />
+                                  </VuiIcon>
+                                }
+                              />
+                            </VuiFlexItem>
+                            <VuiFlexItem>
+                              <VuiText size="s">
+                                <VuiTextColor color="empty">
+                                  <figcaption>
+                                    Image {currentIndex + 1} of {images.length}
+                                    {images[currentIndex].caption && `: ${images[currentIndex].caption}`}
+                                  </figcaption>
+                                </VuiTextColor>
+                              </VuiText>
+                            </VuiFlexItem>
+                          </>
+                        )}
+                      </VuiFlexContainer>
+                    </VuiFlexItem>
+                    <VuiFlexItem grow={false}>
                       <div className="vuiImagePreview__closeButton">
                         <VuiIconButton
                           aria-label="Close preview"
@@ -120,50 +158,12 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                   </VuiFlexContainer>
 
                   <div className={imageContainerClasses}>
-                    {isCarousel && (
-                      <div className="vuiImagePreview__navButton vuiImagePreview__navButton--prev">
-                        <VuiIconButton
-                          aria-label="Previous image"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handlePrevious();
-                          }}
-                          color="neutral"
-                          size="l"
-                          icon={
-                            <VuiIcon color="empty">
-                              <BiChevronLeft />
-                            </VuiIcon>
-                          }
-                        />
-                      </div>
-                    )}
-
                     <img
                       src={images[currentIndex].src}
                       alt={images[currentIndex].alt}
                       className="vuiImagePreview__image"
                       draggable={false}
                     />
-
-                    {isCarousel && (
-                      <div className="vuiImagePreview__navButton vuiImagePreview__navButton--next">
-                        <VuiIconButton
-                          aria-label="Next image"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleNext();
-                          }}
-                          color="neutral"
-                          size="l"
-                          icon={
-                            <VuiIcon color="empty">
-                              <BiChevronRight />
-                            </VuiIcon>
-                          }
-                        />
-                      </div>
-                    )}
                   </div>
                 </div>
               </figure>
