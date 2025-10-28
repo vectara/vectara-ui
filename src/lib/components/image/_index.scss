@@ -85,21 +85,6 @@
   }
 }
 
-.vuiImagePreview__navButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: all;
-
-  &--prev {
-    left: $sizeM;
-  }
-
-  &--next {
-    right: $sizeM;
-  }
-}
-
 .vuiImagePreview__image {
   max-width: calc(100vw - #{$sizeXl * 2});
   max-height: calc(100vh - #{$sizeL * 4});
