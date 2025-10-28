@@ -89,6 +89,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                     alignItems="center"
                     justifyContent={isCarousel ? "spaceBetween" : "end"}
                     className={headerClasses}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {isCarousel && (
                       <VuiFlexItem>
