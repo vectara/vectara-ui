@@ -84,13 +84,13 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
             <figure>
               <div className="vuiImagePreview__container">
                 <div className="vuiImagePreview__mask" onClick={handleOnClose}>
-                  <div className={headerClasses} onClick={(e) => e.stopPropagation()}>
-                    <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <VuiFlexContainer alignItems="center" justifyContent="spaceBetween" className={headerClasses}>
                       <VuiFlexItem>
                         <VuiFlexContainer alignItems="center" spacing="xs">
                           {isCarousel && (
                             <>
-                              <VuiFlexItem grow={false}>
+                              <VuiFlexItem>
                                 <VuiIconButton
                                   aria-label="Previous image"
                                   onClick={(e) => {
@@ -106,7 +106,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                                   }
                                 />
                               </VuiFlexItem>
-                              <VuiFlexItem grow={false}>
+                              <VuiFlexItem>
                                 <VuiIconButton
                                   aria-label="Next image"
                                   onClick={(e) => {
@@ -126,8 +126,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                                 <VuiText size="s">
                                   <VuiTextColor color="empty">
                                     <figcaption>
-                                      Image {currentIndex + 1} of {images.length}
-                                      {images[currentIndex].caption && `: ${images[currentIndex].caption}`}
+                                      {`Image ${currentIndex + 1} of ${images.length}: ${images[currentIndex].caption}`}
                                     </figcaption>
                                   </VuiTextColor>
                                 </VuiText>
