@@ -65,11 +65,13 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   }, [isOpen, currentIndex]);
 
   const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    if (currentIndex === 0) return;
+    setCurrentIndex(currentIndex - 1);
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    if (currentIndex === images.length - 1) return;
+    setCurrentIndex(currentIndex + 1);
   };
 
   const handleOnClose = () => {
