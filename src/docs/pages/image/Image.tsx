@@ -6,7 +6,6 @@ export const Image = () => {
   const [showPreview, setShowPreview] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [showError, setShowError] = useState(false);
-  const sampleImageUrl = "https://picsum.photos/seed/476/4000/3500";
 
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [carouselStartIndex, setCarouselStartIndex] = useState(0);
@@ -94,7 +93,7 @@ export const Image = () => {
 
       <div style={{ maxWidth: "400px" }}>
         <VuiImage
-          src={sampleImageUrl}
+          src="https://picsum.photos/seed/476/4000/3500"
           alt="Sample landscape image"
           caption={showCaption ? "Beautiful landscape with mountains and lake" : undefined}
           allowPreview={showPreview}
@@ -130,15 +129,7 @@ export const Image = () => {
               }}
               onClick={() => handleThumbnailClick(index)}
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover"
-                }}
-              />
+              <VuiImage src={image.src} alt={image.alt} allowPreview={false} />
               {index === 3 && (
                 <div
                   style={{
