@@ -58,7 +58,6 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       onMouseOut,
       onMouseMove,
       tabIndex,
-      disabled: isDisabled,
       ...rest
     };
 
@@ -66,9 +65,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
 
     let iconButton;
 
-    // Anchor tags can't be disabled, so we'll just render a button instead
-    // if isDisabled is true.
-    if (href && !isDisabled) {
+    if (href) {
       iconButton = createLink({
         href,
         target,
@@ -78,7 +75,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       });
     } else {
       iconButton = (
-        <button {...props} ref={ref}>
+        <button {...props} ref={ref} disabled={isDisabled}>
           {buttonIcon}
         </button>
       );

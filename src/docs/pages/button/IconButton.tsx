@@ -1,4 +1,4 @@
-import { BiStar } from "react-icons/bi";
+import { BiLinkExternal, BiStar } from "react-icons/bi";
 import {
   BUTTON_COLOR,
   VuiIconButton,
@@ -7,7 +7,8 @@ import {
   VuiIcon,
   BUTTON_SIZE,
   VuiSpacer,
-  VuiToggle
+  VuiToggle,
+  VuiText
 } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 import { useState } from "react";
@@ -52,7 +53,13 @@ export const IconButton = () => {
       <VuiFlexContainer>
         {BUTTON_SIZE.map((size) => (
           <VuiFlexItem grow={false} key={size}>
-            <VuiIconButton aria-label="Example button" icon={icon} color="primary" size={size} isDisabled={isDisabled} />
+            <VuiIconButton
+              aria-label="Example button"
+              icon={icon}
+              color="primary"
+              size={size}
+              isDisabled={isDisabled}
+            />
           </VuiFlexItem>
         ))}
       </VuiFlexContainer>
@@ -75,6 +82,31 @@ export const IconButton = () => {
               />
             </VuiFlexItem>
           ))}
+        </VuiFlexContainer>
+      </Subsection>
+
+      <VuiSpacer size="s" />
+      <Subsection title="Icon button with link">
+        <VuiFlexContainer alignItems="center" spacing="xs">
+          <VuiFlexItem>
+            <VuiText>
+              <p>Follow the lint to visit Vectara.com</p>
+            </VuiText>
+          </VuiFlexItem>
+          <VuiFlexItem>
+            <VuiIconButton
+              aria-label="icon with link"
+              color="accent"
+              href="https://vectara.com"
+              target="_blank"
+              isDisabled={isDisabled}
+              icon={
+                <VuiIcon>
+                  <BiLinkExternal />
+                </VuiIcon>
+              }
+            />
+          </VuiFlexItem>
         </VuiFlexContainer>
       </Subsection>
     </>
