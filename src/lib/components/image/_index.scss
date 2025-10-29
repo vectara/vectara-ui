@@ -47,7 +47,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  z-index: $screenBlockZIndex;
+ }
+
+.vuiImagePreview__mask {
+  height: 100%;
+  background-color: transparentize($colorFullShade, 0.4);
 }
 
 .vuiImagePreview__header {
@@ -57,7 +62,6 @@
   right: 0;
   height: $sizeL * 2;
   padding: $sizeS $sizeM;
-  pointer-events: none;
 
   &--isVisible {
     background-color: $colorFullShade;
@@ -78,7 +82,7 @@
   justify-content: center;
   overflow: visible;
   height: 100vh;
-  
+
   &--topMargin {
     top: $sizeL * 2;
     height: calc(100vh - #{$sizeL * 2});
