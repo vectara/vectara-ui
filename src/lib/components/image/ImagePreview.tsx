@@ -29,8 +29,6 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  const isFirstImage = currentIndex === 0;
-  const isLastImage = currentIndex === images.length - 1;
   const isCarousel = images.length > 1;
   const headerClasses = classNames("vuiImagePreview__header", {
     "vuiImagePreview__header--isVisible": isCarousel
@@ -67,12 +65,12 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   }, [isOpen, currentIndex]);
 
   const handlePrevious = () => {
-    if (isFirstImage) return;
+    if (currentIndex === 0) return;
     setCurrentIndex(currentIndex - 1);
   };
 
   const handleNext = () => {
-    if (isLastImage) return;
+    if (currentIndex === images.length - 1) return;
     setCurrentIndex(currentIndex + 1);
   };
 
@@ -97,7 +95,6 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                               <VuiFlexItem>
                                 <VuiIconButton
                                   aria-label="Previous image"
-                                  isDisabled={isFirstImage}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handlePrevious();
@@ -114,7 +111,6 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                               <VuiFlexItem>
                                 <VuiIconButton
                                   aria-label="Next image"
-                                  isDisabled={isLastImage}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleNext();
