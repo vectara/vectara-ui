@@ -24,7 +24,7 @@ export const VuiImage = ({
   className,
   isLoading = false,
   allowPreview = true,
-  isFailure = false,
+  isFailure = false
 }: Props) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
@@ -52,7 +52,7 @@ export const VuiImage = ({
 
   if (isFailure) {
     return (
-      <div className={"vuiImage__placeholder vuiImage__placeholder--error"}>
+      <div className="vuiImage__placeholder vuiImage__placeholder--error">
         <VuiFlexContainer direction="column" alignItems="center" justifyContent="center" spacing="s">
           <VuiFlexItem grow={false}>
             <div className="vuiImage__iconWrapper">
@@ -90,7 +90,11 @@ export const VuiImage = ({
         </figure>
       </VuiFlexContainer>
       {allowPreview && (
-        <VuiImagePreview src={src} alt={alt} isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} />
+        <VuiImagePreview
+          images={[{ src, alt, caption }]}
+          isOpen={isPreviewOpen}
+          onClose={() => setIsPreviewOpen(false)}
+        />
       )}
     </>
   );

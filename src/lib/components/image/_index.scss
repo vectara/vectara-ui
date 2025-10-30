@@ -47,32 +47,43 @@
   left: 0;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  z-index: $screenBlockZIndex;
 }
 
-.vuiImagePreview__closeButton {
-  position: absolute;
-  top: $sizeM;
-  right: $sizeM;
-  pointer-events: all;
-  z-index: 1;
+.vuiImagePreview__mask {
+  height: 100%;
+  background-color: transparentize($colorFullShade, 0.4);
 }
 
-.vuiImagePreview__imageContainer {
+.vuiImagePreview__header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: $sizeL * 2;
+  padding: $sizeS $sizeM;
+  background-color: $colorFullShade;
+}
+
+.vuiImagePreview__closeButton {
+  pointer-events: all;
+}
+
+.vuiImagePreview__imageContainer {
+  position: absolute;
+  top: $sizeL * 2;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
+  height: calc(100vh - #{$sizeL * 2});
 }
 
 .vuiImagePreview__image {
   max-width: calc(100vw - #{$sizeXl * 2});
-  max-height: calc(100vh - #{$sizeXl * 2});
+  max-height: calc(100vh - #{$sizeL * 4});
   width: auto;
   height: auto;
   object-fit: contain;
