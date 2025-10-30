@@ -127,7 +127,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                               <VuiTextColor color="empty">
                                 <figcaption>
                                   {isCarousel && `Image ${currentIndex + 1} of ${images.length}: `}
-                                  {`${images[currentIndex].caption ?? ""}`}
+                                  {images[currentIndex].caption}
                                 </figcaption>
                               </VuiTextColor>
                             </VuiText>
