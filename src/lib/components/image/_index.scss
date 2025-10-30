@@ -62,10 +62,7 @@
   right: 0;
   height: $sizeL * 2;
   padding: $sizeS $sizeM;
-
-  &--isVisible {
-    background-color: $colorFullShade;
-  }
+  background-color: $colorFullShade;
 }
 
 .vuiImagePreview__closeButton {
@@ -74,19 +71,14 @@
 
 .vuiImagePreview__imageContainer {
   position: absolute;
-  top: 0;
+  top: $sizeL * 2;
   left: 0;
   right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
-  height: 100vh;
-
-  &--topMargin {
-    top: $sizeL * 2;
-    height: calc(100vh - #{$sizeL * 2});
-  }
+  height: calc(100vh - #{$sizeL * 2});
 }
 
 .vuiImagePreview__image {

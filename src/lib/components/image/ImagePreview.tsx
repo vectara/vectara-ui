@@ -7,7 +7,6 @@ import { VuiPortal } from "../portal/Portal";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
-import classNames from "classnames";
 import { VuiTextColor } from "../typography/TextColor";
 
 type ImageData = {
@@ -30,16 +29,11 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   const isCarousel = images.length > 1;
-  const headerClasses = classNames("vuiImagePreview__header", {
-    "vuiImagePreview__header--isVisible": isCarousel
-  });
-  const imageContainerClasses = classNames("vuiImagePreview__imageContainer", {
-    "vuiImagePreview__imageContainer--topMargin": isCarousel
-  });
 
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
+
       setCurrentIndex(initialIndex);
     } else {
       returnFocusElRef.current?.focus();
@@ -85,7 +79,11 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
               <div className="vuiImagePreview__container">
                 <div className="vuiImagePreview__mask" onClick={handleOnClose}>
                   <div onClick={(e) => e.stopPropagation()}>
-                    <VuiFlexContainer alignItems="center" justifyContent="spaceBetween" className={headerClasses}>
+                    <VuiFlexContainer
+                      alignItems="center"
+                      justifyContent="spaceBetween"
+                      className="vuiImagePreview__header"
+                    >
                       <VuiFlexItem>
                         <VuiFlexContainer alignItems="center" spacing="xs">
                           {isCarousel && (
@@ -122,17 +120,18 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                                   }
                                 />
                               </VuiFlexItem>
-                              <VuiFlexItem>
-                                <VuiText size="s">
-                                  <VuiTextColor color="empty">
-                                    <figcaption>
-                                      {`Image ${currentIndex + 1} of ${images.length}: ${images[currentIndex].caption}`}
-                                    </figcaption>
-                                  </VuiTextColor>
-                                </VuiText>
-                              </VuiFlexItem>
                             </>
                           )}
+                          <VuiFlexItem>
+                            <VuiText size="s">
+                              <VuiTextColor color="empty">
+                                <figcaption>
+                                  {isCarousel && `Image ${currentIndex + 1} of ${images.length}: `}
+                                  {`${images[currentIndex].caption ?? ""}`}
+                                </figcaption>
+                              </VuiTextColor>
+                            </VuiText>
+                          </VuiFlexItem>
                         </VuiFlexContainer>
                       </VuiFlexItem>
                       <VuiFlexItem grow={false}>
@@ -152,7 +151,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                     </VuiFlexContainer>
                   </div>
 
-                  <div className={imageContainerClasses}>
+                  <div className="vuiImagePreview__imageContainer">
                     <img
                       src={images[currentIndex].src}
                       alt={images[currentIndex].alt}
