@@ -4,11 +4,13 @@ import {
   VuiCopyButton,
   VuiFlexContainer,
   VuiFlexItem,
+  VuiFormGroup,
   VuiIcon,
   VuiLink,
   VuiSpacer,
   VuiText,
   VuiTextColor,
+  VuiTextInput,
   VuiToggle
 } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
@@ -88,22 +90,18 @@ export const Table = () => {
       ? [...filteredPeople].sort((a, b) => {
           const aValue = a[sortColumn as keyof Person];
           const bValue = b[sortColumn as keyof Person];
-          
+
           // Handle arrays (like roles)
           if (Array.isArray(aValue) && Array.isArray(bValue)) {
             const aStr = aValue.join(", ");
             const bStr = bValue.join(", ");
-            return sortDirection === "asc" 
-              ? aStr.localeCompare(bStr) 
-              : bStr.localeCompare(aStr);
+            return sortDirection === "asc" ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
           }
-          
+
           // Handle strings
           const aStr = String(aValue);
           const bStr = String(bValue);
-          return sortDirection === "asc" 
-            ? aStr.localeCompare(bStr) 
-            : bStr.localeCompare(aStr);
+          return sortDirection === "asc" ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
         })
       : filteredPeople;
 
@@ -389,6 +387,11 @@ export const Table = () => {
         onSort={handleSort}
         onReload={onReload}
         search={search}
+        customControls={
+          <VuiFormGroup label="Enter input" labelFor="input1">
+            <VuiTextInput id="input1" value="Text input" onChange={(event) => console.log(event.target.value)} />
+          </VuiFormGroup>
+        }
         isDisabled={isDisabled}
         bodyStyle={{
           verticalAlign: isAlignTop ? "top" : undefined

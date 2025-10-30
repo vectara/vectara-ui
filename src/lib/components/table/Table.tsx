@@ -235,7 +235,7 @@ export const VuiTable = <T extends Row>({
         <>
           <VuiFlexContainer
             spacing="s"
-            alignItems="center"
+            alignItems="end"
             className={isHeaderSticky ? "vuiTableStickyHeader" : undefined}
           >
             {/* Bulk actions */}
