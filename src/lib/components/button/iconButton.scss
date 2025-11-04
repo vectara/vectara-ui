@@ -13,7 +13,7 @@ $color: (
   warning: var(--color-warning),
   danger: var(--color-danger),
   neutral: var(--color-text),
-  subdued: $colorSubdued
+  subdued: var(--color-subdued)
 );
 
 @each $colorName, $colorValue in $color {
