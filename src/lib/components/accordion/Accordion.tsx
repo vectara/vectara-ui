@@ -27,6 +27,7 @@ export const VuiAccordion = ({ header, children, isOpen, setIsOpen, ...rest }: P
         id={buttonId}
         aria-controls={contentId}
         aria-expanded={isOpen}
+        type="button"
         {...rest}
       >
         <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xxs">

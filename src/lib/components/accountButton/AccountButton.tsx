@@ -15,7 +15,7 @@ const Button = forwardRef<HTMLButtonElement | null, BaseButtonProps>(
     });
 
     return (
-      <button className={classes} {...rest} ref={ref} aria-expanded={isSelected} aria-haspopup="menu">
+      <button className={classes} type="button" {...rest} ref={ref} aria-expanded={isSelected} aria-haspopup="menu">
         {children}
       </button>
     );

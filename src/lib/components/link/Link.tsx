@@ -12,7 +12,7 @@ export const VuiLink = ({ children, href, target, onClick, className, track, isA
 
   if (!href) {
     return (
-      <button className={classNames("vuiLink", "vuiLink--button", className)} onClick={onClick} {...rest}>
+      <button className={classNames("vuiLink", "vuiLink--button", className)} onClick={onClick} type="button" {...rest}>
         {children}
       </button>
     );

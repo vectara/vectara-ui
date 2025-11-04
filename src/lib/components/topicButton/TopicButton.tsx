@@ -65,7 +65,7 @@ export const VuiTopicButton = ({
   }
 
   return (
-    <button className={classes} onClick={onClick} {...rest}>
+    <button className={classes} onClick={onClick} type="button" {...rest}>
       {content}
     </button>
   );

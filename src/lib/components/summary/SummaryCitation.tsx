@@ -13,7 +13,7 @@ export const VuiSummaryCitation = ({ reference, isSelected, onClick, className, 
   });
 
   return (
-    <button className={classes} onClick={onClick} {...rest}>
+    <button className={classes} onClick={onClick} type="button" {...rest}>
       {reference}
     </button>
   );

@@ -41,7 +41,11 @@ export const VuiMenuItem = ({ className, title, text, onClick, href, color = "ne
   }
 
   if (onClick) {
-    return <button {...props}>{content}</button>;
+    return (
+      <button type="button" {...props}>
+        {content}
+      </button>
+    );
   }
 
   return <div {...props}>{content}</div>;
