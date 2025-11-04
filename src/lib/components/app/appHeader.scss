@@ -7,7 +7,7 @@
   background-color: var(--color-empty-shade);
   padding: $sizeXs $sizeM;
   z-index: $appHeaderZIndex;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .vuiAppHeader__inner {

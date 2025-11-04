@@ -25,8 +25,8 @@ $minChatWidth: 600px;
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
   color: var(--color-text);
-  background-color: var(--color-primary) LighterShade;
-  border: 1px solid var(--border-color);
+  background-color: var(--color-primary-lighter-shade);
+  border: 1px solid var(--color-border);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: all $transitionSpeed;
   animation: popUp 0.4s cubic-bezier(0.5, 0, 0.5, 1) 1;
@@ -58,7 +58,7 @@ $minChatWidth: 600px;
   max-width: 420px;
   border-radius: $sizeXs;
   overflow: hidden;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   background-color: $colorLightShade;
 
   @media screen and (max-height: $minChatHeight) {
@@ -104,7 +104,7 @@ $minChatWidth: 600px;
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
   color: var(--color-text);
-  background-color: var(--color-primary) LighterShade;
+  background-color: var(--color-primary-lighter-shade);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   // Ensure shadow overlaps on top of conversation.
   z-index: 2;
@@ -131,7 +131,7 @@ $minChatWidth: 600px;
 }
 
 .vuiChat__input {
-  border-top: 1px solid var(--border-color-light);
+  border-top: 1px solid var(--color-border-light);
   padding: $sizeXs $sizeS;
 }
 
@@ -145,6 +145,6 @@ $minChatWidth: 600px;
   padding: $sizeXxs $sizeS;
   overflow-y: auto;
   background-color: $colorEmptyShade;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }

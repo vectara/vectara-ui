@@ -35,19 +35,19 @@
 // Color
 $color: (
   accent: (
-    "background-color": linear-gradient(to top, var(--color-accent), var(--color-accent) LightShade)
+    "background-color": linear-gradient(to top, var(--color-accent), var(--color-accent-light-shade))
   ),
   primary: (
-    "background-color": linear-gradient(to top, var(--color-primary), var(--color-primary) LightShade)
+    "background-color": linear-gradient(to top, var(--color-primary), var(--color-primary-light-shade))
   ),
   success: (
-    "background-color": linear-gradient(to top, var(--color-success), var(--color-success) LightShade)
+    "background-color": linear-gradient(to top, var(--color-success), var(--color-success-light-shade))
   ),
   warning: (
-    "background-color": linear-gradient(to top, var(--color-warning), var(--color-warning) LightShade)
+    "background-color": linear-gradient(to top, var(--color-warning), var(--color-warning-light-shade))
   ),
   danger: (
-    "background-color": linear-gradient(to top, var(--color-danger), var(--color-danger) LightShade)
+    "background-color": linear-gradient(to top, var(--color-danger), var(--color-danger-light-shade))
   ),
   neutral: (
     "background-color": linear-gradient(to top, $colorDarkShade, $colorMediumShade)

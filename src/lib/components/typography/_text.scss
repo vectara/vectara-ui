@@ -35,7 +35,7 @@ $textRhythm: $sizeM;
     border-right: none;
     border-bottom: 1px solid;
     width: 100%;
-    border-bottom-color: var(--border-color);
+    border-bottom-color: var(--color-border);
     margin-bottom: $textRhythm;
   }
 
@@ -79,16 +79,16 @@ $textRhythm: $sizeM;
   table {
     width: 100%;
     table-layout: fixed;
-    border: 1px solid var(--border-color-light);
+    border: 1px solid var(--color-border-light);
     margin-bottom: $textRhythm;
 
     thead {
       background-color: $colorLightShade;
-      border-bottom: 1px solid var(--border-color-light);
+      border-bottom: 1px solid var(--color-border-light);
     }
 
     tbody tr {
-      border-bottom: 1px solid var(--border-color-light);
+      border-bottom: 1px solid var(--color-border-light);
     }
 
     th {

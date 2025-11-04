@@ -26,10 +26,10 @@ $color: (
     "border-color": var(--color-warning)
   ),
   neutral: (
-    "border-color": var(--border-color)
+    "border-color": var(--color-border)
   ),
   subdued: (
-    "border-color": var(--border-color-light)
+    "border-color": var(--color-border-light)
   )
 );
 
