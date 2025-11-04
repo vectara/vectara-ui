@@ -33,11 +33,11 @@ $color: (
     "color": var(--color-warning)
   ),
   neutral: (
-    "border-color": var(--border-color),
+    "border-color": var(--color-border),
     "color": var(--color-text)
   ),
   subdued: (
-    "border-color": var(--border-color-light),
+    "border-color": var(--color-border-light),
     "color": $colorSubdued
   )
 );

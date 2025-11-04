@@ -24,7 +24,7 @@
   border-radius: $sizeXxs;
 
   &--error {
-    background-color: var(--color-danger) LighterShade;
+    background-color: var(--color-danger-lighter-shade);
 
     p {
       color: var(--color-danger);

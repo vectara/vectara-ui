@@ -71,8 +71,8 @@ $colorFullShade: #0b0c0e !default;
   --color-label: var(--color-text);
 
   // Border color.
-  --border-color: var(--color-medium-shade);
-  --border-color-light: #e3e4f3;
+  --color-border: var(--color-medium-shade);
+  --color-border-light: #e3e4f3;
 }
 
 .darkMode {
@@ -114,5 +114,5 @@ $colorFullShade: #0b0c0e !default;
   --color-label: var(--color-text);
 
   // Border color.
-  --border-color-light: #323338;
+  --color-border-light: #323338;
 }

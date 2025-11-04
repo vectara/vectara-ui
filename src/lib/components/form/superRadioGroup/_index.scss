@@ -16,7 +16,7 @@
   &:hover {
     text-decoration: underline;
     text-decoration-color: var(--color-primary);
-    background-color: var(--color-primary) LighterShade;
+    background-color: var(--color-primary-lighter-shade);
 
     .vuiSuperRadioButton__text {
       color: var(--color-primary) !important;

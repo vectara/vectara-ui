@@ -47,32 +47,32 @@ $color: (
   accent: (
     "color": var(--color-accent),
     "hover-color": var(--color-accent),
-    "selected-color": var(--color-accent) LighterShade
+    "selected-color": var(--color-accent-lighter-shade)
   ),
   primary: (
     "color": var(--color-primary),
     "hover-color": var(--color-primary),
-    "selected-color": var(--color-primary) LighterShade
+    "selected-color": var(--color-primary-lighter-shade)
   ),
   success: (
     "color": var(--color-success),
     "hover-color": var(--color-success),
-    "selected-color": var(--color-success) LighterShade
+    "selected-color": var(--color-success-lighter-shade)
   ),
   danger: (
     "color": var(--color-danger),
     "hover-color": var(--color-danger),
-    "selected-color": var(--color-danger) LighterShade
+    "selected-color": var(--color-danger-lighter-shade)
   ),
   warning: (
     "color": var(--color-warning),
     "hover-color": var(--color-warning),
-    "selected-color": var(--color-warning) LighterShade
+    "selected-color": var(--color-warning-lighter-shade)
   ),
   neutral: (
     "color": var(--color-text),
     "hover-color": var(--color-primary),
-    "selected-color": var(--color-primary) LighterShade
+    "selected-color": var(--color-primary-lighter-shade)
   )
 );
 

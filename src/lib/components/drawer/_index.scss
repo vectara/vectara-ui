@@ -22,7 +22,7 @@ $drawerWidth: 680px;
   width: 100%;
   max-width: $drawerWidth;
   background-color: $colorEmptyShade;
-  border-left: 1px solid var(--border-color);
+  border-left: 1px solid var(--color-border);
   z-index: $drawerZIndex;
   animation: drawerIn $transitionSpeed cubic-bezier(0, 1, 0, 1);
 }

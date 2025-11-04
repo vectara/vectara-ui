@@ -4,9 +4,9 @@ $color: (
   success: var(--color-success),
   warning: var(--color-warning),
   danger: var(--color-danger),
-  subdued: $colorSubdued,
+  subdued: var(--color-subdued),
   neutral: var(--color-text),
-  empty: $colorEmptyShade
+  empty: var(--color-empty-shade)
 );
 
 @each $colorName, $colorValue in $color {

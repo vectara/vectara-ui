@@ -14,27 +14,27 @@ $color: (
   accent: (
     "icon": var(--color-accent),
     "fill": var(--color-accent),
-    "token": var(--color-accent) LighterShade
+    "token": var(--color-accent-lighter-shade)
   ),
   primary: (
     "icon": var(--color-primary),
     "fill": var(--color-primary),
-    "token": var(--color-primary) LighterShade
+    "token": var(--color-primary-lighter-shade)
   ),
   success: (
     "icon": var(--color-success),
     "fill": var(--color-success),
-    "token": var(--color-success) LighterShade
+    "token": var(--color-success-lighter-shade)
   ),
   warning: (
     "icon": var(--color-warning),
     "fill": var(--color-warning),
-    "token": var(--color-warning) LighterShade
+    "token": var(--color-warning-lighter-shade)
   ),
   danger: (
     "icon": var(--color-danger),
     "fill": var(--color-danger),
-    "token": var(--color-danger) LighterShade
+    "token": var(--color-danger-lighter-shade)
   ),
   subdued: (
     "icon": $colorSubdued,
@@ -65,11 +65,11 @@ $colors: (
 );
 
 $tokenColors: (
-  accent: var(--color-accent) LighterShade,
-  primary: var(--color-primary) LighterShade,
-  success: var(--color-success) LighterShade,
-  warning: var(--color-warning) LighterShade,
-  danger: var(--color-danger) LighterShade,
+  accent: var(--color-accent-lighter-shade),
+  primary: var(--color-primary-lighter-shade),
+  success: var(--color-success-lighter-shade),
+  warning: var(--color-warning-lighter-shade),
+  danger: var(--color-danger-lighter-shade),
   subdued: $colorMediumShade,
   neutral: $colorDarkShade,
   empty: #ffffff

@@ -1,6 +1,6 @@
 .vuiTabs--open {
   display: flex;
-  border-bottom: 1px solid var(--border-color-light);
+  border-bottom: 1px solid var(--color-border-light);
 
   &.vuiTabs--s {
     .vuiTab {
@@ -25,7 +25,7 @@
     &:hover {
       .vuiTab__inner {
         color: var(--color-primary);
-        background-color: var(--color-primary) LighterShade;
+        background-color: var(--color-primary-lighter-shade);
 
         .vuiIcon__inner {
           color: var(--color-primary) !important;
@@ -34,7 +34,7 @@
     }
 
     &.vuiTab-isActive {
-      box-shadow: var(--border-color) 0px 1px 0px;
+      box-shadow: var(--color-border) 0px 1px 0px;
 
       .vuiTab__inner {
         background-color: $colorLightShade;
