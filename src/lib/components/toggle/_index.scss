@@ -21,7 +21,7 @@ $buttonWidth: $toggleWidth * 0.75 - ($buttonOffset * 2);
   }
 
   &:focus-visible + .vuiToggle__button {
-    outline: 2px solid rgba(var(--color-primary), 0.25);
+    outline: 2px solid rgba(var(--color-primary-rgb), 0.75);
     outline-offset: 2px;
   }
 

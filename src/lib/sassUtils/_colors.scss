@@ -1,3 +1,10 @@
+// Convert a hex value to comma-delimited rgb values
+// In: #000
+// Out: 0,0,0
+@function toRgb($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
 // Semantic colors
 $colorAccent: #5f30c3 !default;
 $colorAccentLightShade: transparentize($colorAccent, 0.5) !default;
@@ -35,36 +42,59 @@ $colorFullShade: #0b0c0e !default;
 .lightMode {
   // Semantic colors
   --color-accent: #{$colorAccent};
+  --color-accent-rgb: #{toRgb($colorAccent)};
   --color-accent-light-shade: #{$colorAccentLightShade};
+  --color-accent-light-shade-rgb: #{toRgb($colorAccentLightShade)};
   --color-accent-lighter-shade: #{$colorAccentLighterShade};
+  --color-accent-lighter-shade-rgb: #{toRgb($colorAccentLighterShade)};
 
   --color-primary: #{$colorPrimary};
+  --color-primary-rgb: #{toRgb($colorPrimary)};
   --color-primary-light-shade: #{$colorPrimaryLightShade};
+  --color-primary-light-shade-rgb: #{toRgb($colorPrimaryLightShade)};
   --color-primary-lighter-shade: #{$colorPrimaryLighterShade};
+  --color-primary-lighter-shade-rgb: #{toRgb($colorPrimaryLighterShade)};
 
   --color-success: #{$colorSuccess};
+  --color-success-rgb: #{toRgb($colorSuccess)};
   --color-success-light-shade: #{$colorSuccessLightShade};
+  --color-success-light-shade-rgb: #{toRgb($colorSuccessLightShade)};
   --color-success-lighter-shade: #{$colorSuccessLighterShade};
+  --color-success-lighter-shade-rgb: #{toRgb($colorSuccessLighterShade)};
 
   --color-warning: #{$colorWarning};
+  --color-warning-rgb: #{toRgb($colorWarning)};
   --color-warning-light-shade: #{$colorWarningLightShade};
+  --color-warning-light-shade-rgb: #{toRgb($colorWarningLightShade)};
   --color-warning-lighter-shade: #{$colorWarningLighterShade};
+  --color-warning-lighter-shade-rgb: #{toRgb($colorWarningLighterShade)};
 
   --color-danger: #{$colorDanger};
+  --color-danger-rgb: #{toRgb($colorDanger)};
   --color-danger-light-shade: #{$colorDangerLightShade};
+  --color-danger-light-shade-rgb: #{toRgb($colorDangerLightShade)};
   --color-danger-lighter-shade: #{$colorDangerLighterShade};
+  --color-danger-lighter-shade-rgb: #{toRgb($colorDangerLighterShade)};
 
   // Special colors
   --color-primary-highlight: #{$colorPrimaryHighlight};
+  --color-primary-highlight-rgb: #{toRgb($colorPrimaryHighlight)};
   --color-subdued: #{$colorSubdued};
+  --color-subdued-rgb: #{toRgb($colorSubdued)};
 
   // Neutral colors
   --color-empty-shade: #{$colorEmptyShade};
+  --color-empty-shade-rgb: #{toRgb($colorEmptyShade)};
   --color-light-shade: #{$colorLightShade};
+  --color-light-shade-rgb: #{toRgb($colorLightShade)};
   --color-medium-shade: #{$colorMediumShade};
+  --color-medium-shade-rgb: #{toRgb($colorMediumShade)};
   --color-dark-shade: #{$colorDarkShade};
+  --color-dark-shade-rgb: #{toRgb($colorDarkShade)};
   --color-darker-shade: #{$colorDarkerShade};
+  --color-darker-shade-rgb: #{toRgb($colorDarkerShade)};
   --color-full-shade: #{$colorFullShade};
+  --color-full-shade-rgb: #{toRgb($colorFullShade)};
 
   // Text color.
   --color-text: var(--color-darker-shade);
@@ -99,15 +129,23 @@ $colorFullShade: #0b0c0e !default;
 
   // Special colors
   --color-primary-highlight: #{$colorPrimaryHighlight};
+  --color-primary-highlight-rgb: #{toRgb($colorPrimaryHighlight)};
   --color-subdued: #{$colorSubdued};
+  --color-subdued-rgb: #{toRgb($colorSubdued)};
 
   // Neutral colors
   --color-empty-shade: #{$colorFullShade};
+  --color-empty-shade-rgb: #{toRgb($colorFullShade)};
   --color-light-shade: #{$colorDarkerShade};
+  --color-light-shade-rgb: #{toRgb($colorDarkerShade)};
   --color-medium-shade: #{$colorDarkShade};
+  --color-medium-shade-rgb: #{toRgb($colorDarkShade)};
   --color-dark-shade: #{$colorMediumShade};
+  --color-dark-shade-rgb: #{toRgb($colorMediumShade)};
   --color-darker-shade: #{$colorLightShade};
+  --color-darker-shade-rgb: #{toRgb($colorLightShade)};
   --color-full-shade: #{$colorEmptyShade};
+  --color-full-shade-rgb: #{toRgb($colorEmptyShade)};
 
   // Text color.
   --color-text: var(--color-darker-shade);

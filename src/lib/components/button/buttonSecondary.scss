@@ -13,23 +13,23 @@
 // Color
 $color: (
   accent: (
-    "border-color": rgba(var(--color-accent), 0.5),
+    "border-color": rgba(var(--color-accent-rgb), 0.5),
     "color": var(--color-accent)
   ),
   primary: (
-    "border-color": rgba(var(--color-primary), 0.5),
+    "border-color": rgba(var(--color-primary-rgb), 0.5),
     "color": var(--color-primary)
   ),
   success: (
-    "border-color": rgba(var(--color-success), 0.5),
+    "border-color": rgba(var(--color-success-rgb), 0.5),
     "color": var(--color-success)
   ),
   danger: (
-    "border-color": rgba(var(--color-danger), 0.5),
+    "border-color": rgba(var(--color-danger-rgb), 0.5),
     "color": var(--color-danger)
   ),
   warning: (
-    "border-color": rgba(var(--color-warning), 0.5),
+    "border-color": rgba(var(--color-warning-rgb), 0.5),
     "color": var(--color-warning)
   ),
   neutral: (
