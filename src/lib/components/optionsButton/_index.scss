@@ -17,7 +17,7 @@ $colorPrimaryButton: (
   success: transparentize($colorEmptyShade, 0.5),
   danger: transparentize($colorEmptyShade, 0.5),
   warning: transparentize($colorEmptyShade, 0.5),
-  neutral: transparentize($colorText, 0.8)
+  neutral: rgba(var(--color-text), 0.8)
 );
 
 @each $colorName, $colorValue in $colorPrimaryButton {
@@ -26,16 +26,16 @@ $colorPrimaryButton: (
   }
 }
 
-$coloSecondaryButton: (
-  accent: transparentize($colorAccent, 0.7),
-  primary: transparentize($colorPrimary, 0.7),
-  success: transparentize($colorSuccess, 0.7),
-  danger: transparentize($colorDanger, 0.7),
-  warning: transparentize($colorWarning, 0.7),
-  neutral: transparentize($colorText, 0.8)
+$colorSecondaryButton: (
+  accent: rgba(var(--color-accent), 0.7),
+  primary: rgba(var(--color-primary), 0.7),
+  success: rgba(var(--color-success), 0.7),
+  danger: rgba(var(--color-danger), 0.7),
+  warning: rgba(var(--color-warning), 0.7),
+  neutral: rgba(var(--color-text), 0.8)
 );
 
-@each $colorName, $colorValue in $coloSecondaryButton {
+@each $colorName, $colorValue in $colorSecondaryButton {
   .vuiButtonSecondary.vuiOptionsButtonRight--#{$colorName} {
     border-left-color: $colorValue;
   }

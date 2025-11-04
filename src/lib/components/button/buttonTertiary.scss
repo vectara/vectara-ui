@@ -16,32 +16,32 @@
 // Color
 $color: (
   accent: (
-    "color": $colorAccent,
-    "selected-color": transparentize($colorAccent, 0.9)
+    "color": var(--color-accent),
+    "selected-color": rgba(var(--color-accent), 0.9)
   ),
   primary: (
-    "color": $colorPrimary,
-    "selected-color": transparentize($colorPrimary, 0.9)
+    "color": var(--color-primary),
+    "selected-color": rgba(var(--color-primary), 0.9)
   ),
   success: (
-    "color": $colorSuccess,
-    "selected-color": transparentize($colorSuccess, 0.9)
+    "color": var(--color-success),
+    "selected-color": rgba(var(--color-success), 0.9)
   ),
   danger: (
-    "color": $colorDanger,
-    "selected-color": transparentize($colorDanger, 0.9)
+    "color": var(--color-danger),
+    "selected-color": rgba(var(--color-danger), 0.9)
   ),
   warning: (
-    "color": $colorWarning,
-    "selected-color": transparentize($colorWarning, 0.9)
+    "color": var(--color-warning),
+    "selected-color": rgba(var(--color-warning), 0.9)
   ),
   neutral: (
-    "color": $colorText,
-    "selected-color": transparentize($colorText, 0.9)
+    "color": var(--color-text),
+    "selected-color": rgba(var(--color-text), 0.9)
   ),
   subdued: (
     "color": $colorSubdued,
-    "selected-color": transparentize($colorSubdued, 0.9)
+    "selected-color": rgba(var(--color-subdued), 0.9)
   )
 );
 

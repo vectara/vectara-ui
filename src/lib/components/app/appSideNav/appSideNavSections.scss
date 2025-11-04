@@ -13,7 +13,7 @@
 }
 
 .vuiAppSideNavSection__title {
-  color: $colorText;
+  color: var(--color-text);
   font-weight: $fontWeightBold;
   font-size: $fontSizeStandard;
 }

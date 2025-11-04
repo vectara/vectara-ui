@@ -4,20 +4,20 @@
   padding: $sizeXs $sizeS;
   // Work inside panels or other containers with different background colors.
   background-color: transparent;
-  border: 1px solid $borderColorLight;
+  border: 1px solid var(--border-color-light);
   width: 100%;
   border-radius: $sizeXxs;
 
   &:hover {
-    color: $colorPrimary;
-    background-color: $colorPrimaryLighterShade;
-    border-color: transparentize($colorPrimary, 0.5);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light-shade);
+    border-color: rgba(var(--color-primary), 0.5);
     text-decoration: underline;
   }
 }
 
 .vuiAccordionHeader--isOpen {
-  color: $colorText;
+  color: var(--color-text);
   font-weight: $fontWeightBold;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -28,7 +28,7 @@
 }
 
 .vuiAccordionBody {
-  border: 1px solid $borderColorLight;
+  border: 1px solid var(--border-color-light);
   border-top: none;
   padding: $sizeM $sizeL;
   border-bottom-right-radius: $sizeXxs;

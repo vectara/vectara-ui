@@ -47,7 +47,7 @@
 
 .vuiSelect-isInvalid {
   select {
-    border-color: $colorDanger;
+    border-color: var(--color-danger);
   }
 }
 

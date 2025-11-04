@@ -10,16 +10,16 @@
   cursor: pointer;
   text-decoration: none;
   transition: all $transitionSpeed;
-  text-decoration-color: $colorText;
+  text-decoration-color: var(--color-text);
   text-align: left;
 
   &:hover {
     text-decoration: underline;
-    text-decoration-color: $colorPrimary;
-    background-color: $colorPrimaryLighterShade;
+    text-decoration-color: var(--color-primary);
+    background-color: var(--color-primary) LighterShade;
 
     .vuiSuperRadioButton__text {
-      color: $colorPrimary !important;
+      color: var(--color-primary) !important;
     }
   }
 }

@@ -1,5 +1,5 @@
 .vuiLink {
-  color: $colorPrimary !important;
+  color: var(--color-primary) !important;
   text-decoration: none;
 
   &:hover {

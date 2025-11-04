@@ -119,14 +119,14 @@ $stepSizeM: 36px;
   }
 
   &--complete {
-    background-color: $colorSuccessLighterShade;
+    background-color: var(--color-success) LighterShade;
   }
 
   &--current {
-    color: $colorPrimary;
+    color: var(--color-primary);
     width: calc(var(--step-size) - 4px);
     height: calc(var(--step-size) - 4px);
-    box-shadow: 0 0 0 2px $colorPrimary;
+    box-shadow: 0 0 0 2px var(--color-primary);
     margin-top: 2px;
     margin-bottom: 2px;
   }
@@ -138,11 +138,11 @@ $stepSizeM: 36px;
   }
 
   &--warning {
-    background-color: $colorWarningLighterShade;
+    background-color: var(--color-warning) LighterShade;
   }
 
   &--danger {
-    background-color: $colorDangerLighterShade;
+    background-color: var(--color-danger) LighterShade;
   }
 
   &--disabled {
@@ -171,7 +171,7 @@ $stepSizeM: 36px;
   color: $colorSubdued;
 
   .vuiStep__title--current & {
-    color: $colorPrimary;
+    color: var(--color-primary);
   }
 }
 
@@ -182,7 +182,7 @@ $stepSizeM: 36px;
   text-align: center;
 
   &--current {
-    color: $colorPrimary;
+    color: var(--color-primary);
   }
 
   .vuiStep--disabled & {

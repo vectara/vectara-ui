@@ -23,24 +23,24 @@
 // Color
 $color: (
   accent: (
-    "border-color": $colorAccentLightShade,
-    "background-color": $colorAccentLighterShade
+    "border-color": var(--color-accent) LightShade,
+    "background-color": var(--color-accent) LighterShade
   ),
   primary: (
-    "border-color": $colorPrimaryLightShade,
-    "background-color": $colorPrimaryLighterShade
+    "border-color": var(--color-primary) LightShade,
+    "background-color": var(--color-primary) LighterShade
   ),
   success: (
-    "border-color": $colorSuccessLightShade,
-    "background-color": $colorSuccessLighterShade
+    "border-color": var(--color-success) LightShade,
+    "background-color": var(--color-success) LighterShade
   ),
   warning: (
-    "border-color": $colorWarningLightShade,
-    "background-color": $colorWarningLighterShade
+    "border-color": var(--color-warning) LightShade,
+    "background-color": var(--color-warning) LighterShade
   ),
   danger: (
-    "border-color": $colorDangerLightShade,
-    "background-color": $colorDangerLighterShade
+    "border-color": var(--color-danger) LightShade,
+    "background-color": var(--color-danger) LighterShade
   ),
   neutral: (
     "border-color": $colorMediumShade,

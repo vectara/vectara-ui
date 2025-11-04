@@ -23,7 +23,7 @@
 }
 
 .vuiSearchResultPosition--selected {
-  background-color: $colorPrimary;
+  background-color: var(--color-primary);
   color: $colorEmptyShade;
   height: 100%;
 }

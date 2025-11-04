@@ -30,3 +30,89 @@ $colorMediumShade: #cbd1de !default;
 $colorDarkShade: #3f4551 !default;
 $colorDarkerShade: #1c1d22 !default;
 $colorFullShade: #0b0c0e !default;
+
+:root,
+.lightMode {
+  // Semantic colors
+  --color-accent: #{$colorAccent};
+  --color-accent-light-shade: #{$colorAccentLightShade};
+  --color-accent-lighter-shade: #{$colorAccentLighterShade};
+
+  --color-primary: #{$colorPrimary};
+  --color-primary-light-shade: #{$colorPrimaryLightShade};
+  --color-primary-lighter-shade: #{$colorPrimaryLighterShade};
+
+  --color-success: #{$colorSuccess};
+  --color-success-light-shade: #{$colorSuccessLightShade};
+  --color-success-lighter-shade: #{$colorSuccessLighterShade};
+
+  --color-warning: #{$colorWarning};
+  --color-warning-light-shade: #{$colorWarningLightShade};
+  --color-warning-lighter-shade: #{$colorWarningLighterShade};
+
+  --color-danger: #{$colorDanger};
+  --color-danger-light-shade: #{$colorDangerLightShade};
+  --color-danger-lighter-shade: #{$colorDangerLighterShade};
+
+  // Special colors
+  --color-primary-highlight: #{$colorPrimaryHighlight};
+  --color-subdued: #{$colorSubdued};
+
+  // Neutral colors
+  --color-empty-shade: #{$colorEmptyShade};
+  --color-light-shade: #{$colorLightShade};
+  --color-medium-shade: #{$colorMediumShade};
+  --color-dark-shade: #{$colorDarkShade};
+  --color-darker-shade: #{$colorDarkerShade};
+  --color-full-shade: #{$colorFullShade};
+
+  // Text color.
+  --color-text: var(--color-darker-shade);
+  --color-label: var(--color-text);
+
+  // Border color.
+  --border-color: var(--color-medium-shade);
+  --border-color-light: #e3e4f3;
+}
+
+.darkMode {
+  // // Semantic colors
+  // --color-accent: #{$colorAccentLighterShade};
+  // --color-accent-light-shade: #{$colorAccentLightShade};
+  // --color-accent-lighter-shade: #{$colorAccent};
+
+  // --color-primary: #{$colorPrimaryLighterShade};
+  // --color-primary-light-shade: #{$colorPrimaryLightShade};
+  // --color-primary-lighter-shade: #{$colorPrimary};
+
+  // --color-success: #{$colorSuccessLighterShade};
+  // --color-success-light-shade: #{$colorSuccessLightShade};
+  // --color-success-lighter-shade: #{$colorSuccess};
+
+  // --color-warning: #{$colorWarningLighterShade};
+  // --color-warning-light-shade: #{$colorWarningLightShade};
+  // --color-warning-lighter-shade: #{$colorWarningLighterShade};
+
+  // --color-danger: #{$colorDangerLighterShade};
+  // --color-danger-light-shade: #{$colorDangerLightShade};
+  // --color-danger-lighter-shade: #{$colorDanger};
+
+  // Special colors
+  --color-primary-highlight: #{$colorPrimaryHighlight};
+  --color-subdued: #{$colorSubdued};
+
+  // Neutral colors
+  --color-empty-shade: #{$colorFullShade};
+  --color-light-shade: #{$colorDarkerShade};
+  --color-medium-shade: #{$colorDarkShade};
+  --color-dark-shade: #{$colorMediumShade};
+  --color-darker-shade: #{$colorLightShade};
+  --color-full-shade: #{$colorEmptyShade};
+
+  // Text color.
+  --color-text: var(--color-darker-shade);
+  --color-label: var(--color-text);
+
+  // Border color.
+  --border-color-light: #323338;
+}

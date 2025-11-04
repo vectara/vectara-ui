@@ -1,7 +1,7 @@
 @use "sass:map";
 
 .vuiMenu {
-  border: 1px solid $borderColor;
+  border: 1px solid var(--border-color);
   border-radius: $sizeXs;
   overflow: hidden;
 }
@@ -30,19 +30,19 @@
 // Color
 $color: (
   neutral: (
-    "color": $colorText,
-    "background-color": $colorPrimaryLighterShade,
-    "hover-color": $colorPrimary
+    "color": var(--color-text),
+    "background-color": var(--color-primary) LighterShade,
+    "hover-color": var(--color-primary)
   ),
   primary: (
-    "color": $colorPrimary,
-    "background-color": $colorPrimaryLighterShade,
-    "hover-color": $colorPrimary
+    "color": var(--color-primary),
+    "background-color": var(--color-primary) LighterShade,
+    "hover-color": var(--color-primary)
   ),
   danger: (
-    "color": $colorDanger,
-    "background-color": $colorDangerLighterShade,
-    "hover-color": $colorDanger
+    "color": var(--color-danger),
+    "background-color": var(--color-danger) LighterShade,
+    "hover-color": var(--color-danger)
   )
 );
 

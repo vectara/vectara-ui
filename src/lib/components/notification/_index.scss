@@ -2,7 +2,7 @@
   border-radius: $sizeS;
   padding: $sizeS;
   font-size: $fontSizeStandard;
-  color: $colorText;
+  color: var(--color-text);
   width: 420px;
   box-shadow: $shadowLargeStart;
   background-color: $colorEmptyShade;

@@ -29,16 +29,16 @@
 
 .vuiPrompt--interactive {
   &:hover {
-    background-color: $colorAccentLighterShade;
-    color: $colorAccent;
+    background-color: var(--color-accent) LighterShade;
+    color: var(--color-accent);
   }
 }
 
 // Color
 $color: (
   danger: (
-    "color": $colorDanger,
-    "background-color": $colorDangerLighterShade
+    "color": var(--color-danger),
+    "background-color": var(--color-danger) LighterShade
   ),
   neutral: (
     "color": $colorDarkShade,

@@ -59,7 +59,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-top: 1px solid $borderColorLight;
+  border-top: 1px solid var(--border-color-light);
   padding: $sizeM $sizeL;
   flex-grow: 1;
 }
@@ -105,13 +105,13 @@
 }
 
 .vuiCard--highlight {
-  border: 2px solid $colorPrimary;
+  border: 2px solid var(--color-primary);
 
   .vuiCard__header {
-    background-color: $colorPrimaryLighterShade;
+    background-color: var(--color-primary) LighterShade;
   }
 
   .vuiCard__body {
-    border-top: $colorPrimaryLighterShade;
+    border-top: var(--color-primary) LighterShade;
   }
 }

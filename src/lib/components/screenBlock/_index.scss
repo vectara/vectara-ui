@@ -24,18 +24,18 @@
 
 .vuiScreenBlock--primary {
   .vuiScreenBlock__mask {
-    background-color: transparentize($colorPrimary, 0.4);
+    background-color: rgba(var(--color-primary), 0.4);
   }
 }
 
 .vuiScreenBlock--success {
   .vuiScreenBlock__mask {
-    background-color: transparentize($colorSuccess, 0.4);
+    background-color: rgba(var(--color-success), 0.4);
   }
 }
 
 .vuiScreenBlock--danger {
   .vuiScreenBlock__mask {
-    background-color: transparentize($colorDanger, 0.4);
+    background-color: rgba(var(--color-danger), 0.4);
   }
 }

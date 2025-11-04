@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-right: 1px solid $borderColorLight;
+  border-right: 1px solid var(--border-color-light);
 }
 
 .appExampleNav__bottom {

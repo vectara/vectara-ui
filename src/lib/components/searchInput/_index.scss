@@ -23,7 +23,7 @@
   outline-offset: -1px !important;
 
   &:focus-visible {
-    outline-color: $colorPrimary !important;
+    outline-color: var(--color-primary) !important;
     box-shadow: $shadowSmallEnd;
   }
 }
@@ -41,7 +41,7 @@
   transition: color $transitionSpeed;
 
   &:hover {
-    color: $colorAccent;
+    color: var(--color-accent);
   }
 }
 
@@ -77,7 +77,7 @@
   transition: all $transitionSpeed;
 
   &:hover {
-    color: $colorAccent;
+    color: var(--color-accent);
   }
 }
 .vuiSearchInputSuggestionsContainer {
@@ -114,13 +114,13 @@
   text-decoration: none;
   padding: ($sizeXxs + 1px) $sizeS;
   font-size: $fontSizeStandard;
-  color: $colorText;
+  color: var(--color-text);
 
   &:focus-visible,
   &:hover {
     text-decoration: underline;
-    color: $colorPrimary;
-    background-color: $colorPrimaryLighterShade;
+    color: var(--color-primary);
+    background-color: var(--color-primary) LighterShade;
   }
 
   &:focus-visible {

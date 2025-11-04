@@ -1,15 +1,15 @@
 .vuiInfoTable {
   width: 100%;
   table-layout: fixed;
-  border: 1px solid $borderColorLight;
+  border: 1px solid var(--border-color-light);
 
   thead {
     background-color: $colorLightShade;
-    border-bottom: 1px solid $borderColorLight;
+    border-bottom: 1px solid var(--border-color-light);
   }
 
   tbody tr {
-    border-bottom: 1px solid $borderColorLight;
+    border-bottom: 1px solid var(--border-color-light);
   }
 
   th {

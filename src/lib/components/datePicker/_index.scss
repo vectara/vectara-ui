@@ -9,7 +9,7 @@
   }
 
   .react-datepicker__header {
-    border-bottom: 1px solid $borderColorLight;
+    border-bottom: 1px solid var(--border-color-light);
     background-color: $colorEmptyShade;
     padding: $sizeXs 0;
   }
@@ -19,15 +19,15 @@
   }
 
   .react-datepicker__navigation:hover *::before {
-    border-color: $colorPrimary;
+    border-color: var(--color-primary);
   }
 
   .react-datepicker__current-month {
-    color: $colorText;
+    color: var(--color-text);
   }
 
   .react-datepicker__month-container {
-    border-bottom: 1px solid $borderColorLight;
+    border-bottom: 1px solid var(--border-color-light);
   }
 
   .react-datepicker__month {
@@ -39,7 +39,7 @@
   }
 
   .react-datepicker__day {
-    color: $colorText;
+    color: var(--color-text);
     margin: 1px;
     border: 1px solid $colorEmptyShade;
     width: $sizeXl;
@@ -55,7 +55,7 @@
   .react-datepicker__day--in-range,
   .react-datepicker__day--in-selecting-range,
   .react-datepicker__day--range-end {
-    background-color: $colorPrimary !important;
+    background-color: var(--color-primary) !important;
     color: $colorEmptyShade;
     border-radius: $sizeXxs;
   }
@@ -72,7 +72,7 @@
     text-align: left;
 
     &:hover {
-      color: $colorPrimary;
+      color: var(--color-primary);
     }
   }
 
@@ -81,14 +81,14 @@
   }
 
   .react-datepicker__time-list-item--selected {
-    background-color: $colorPrimary !important;
+    background-color: var(--color-primary) !important;
     color: $colorEmptyShade !important;
   }
 }
 
 .vuiDatePicker--inline {
   .react-datepicker {
-    border: 1px solid $borderColor;
+    border: 1px solid var(--border-color);
   }
 }
 

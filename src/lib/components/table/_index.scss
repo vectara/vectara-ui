@@ -19,11 +19,11 @@
   table-layout: fixed;
 
   thead {
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid var(--border-color);
   }
 
   tbody tr {
-    border-bottom: 1px solid $borderColorLight;
+    border-bottom: 1px solid var(--border-color-light);
 
     &.vuiTableRow-isBeingActedUpon,
     &:not(.vuiTableRow--inert):hover {
@@ -33,7 +33,7 @@
     }
 
     &:last-child {
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .vuiTableCell__label {
@@ -69,7 +69,7 @@
 .vuiTableCell__label {
   font-size: $fontSizeSmall;
   font-weight: $labelFontWeight;
-  color: $labelColor;
+  color: var(--color-label);
 }
 
 @container (width < 800px) {
