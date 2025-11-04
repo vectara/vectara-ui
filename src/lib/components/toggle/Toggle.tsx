@@ -1,6 +1,7 @@
 import { createId } from "../../utils/createId";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiText } from "../typography/Text";
 
 type Props = {
   id?: string;
@@ -37,7 +38,11 @@ export const VuiToggle = ({ id, checked, onChange, label, ...rest }: Props) => {
 
       {label && (
         <VuiFlexItem grow={false}>
-          <div id={labelId}>{label}</div>
+          <div id={labelId}>
+            <VuiText>
+              <p>{label}</p>
+            </VuiText>
+          </div>
         </VuiFlexItem>
       )}
     </VuiFlexContainer>

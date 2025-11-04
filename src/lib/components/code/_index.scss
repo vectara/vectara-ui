@@ -26,7 +26,7 @@
   width: 100%;
   padding: $sizeM $sizeL;
   background-color: $colorLightShade;
-  color: $colorText;
+  color: var(--color-text);
   font-family: "Roboto Mono", monospace;
   // Ensure PrismJS components wrap their lines.
   word-wrap: break-word !important;

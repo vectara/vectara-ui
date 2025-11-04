@@ -17,13 +17,13 @@
   transition: all $transitionSpeed;
 
   &:hover {
-    color: $colorPrimary;
-    background-color: $colorPrimaryLighterShade;
+    color: var(--color-primary);
+    background-color: var(--color-primary) LighterShade;
     text-decoration: underline;
   }
 }
 
 .vuiSummaryCitation-isSelected {
-  background-color: $colorPrimary;
+  background-color: var(--color-primary);
   color: $colorEmptyShade;
 }

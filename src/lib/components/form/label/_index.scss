@@ -1,6 +1,6 @@
 .vuiLabel {
   font-weight: $labelFontWeight;
-  color: $labelColor;
+  color: var(--color-label);
 }
 
 .vuiLabel--xs {

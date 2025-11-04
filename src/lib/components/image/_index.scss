@@ -24,10 +24,10 @@
   border-radius: $sizeXxs;
 
   &--error {
-    background-color: $colorDangerLighterShade;
+    background-color: var(--color-danger) LighterShade;
 
     p {
-      color: $colorDanger;
+      color: var(--color-danger);
     }
   }
 }

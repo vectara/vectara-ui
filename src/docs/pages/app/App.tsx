@@ -12,6 +12,7 @@ import {
   VuiSpacer,
   VuiTab,
   VuiTabs,
+  VuiTextColor,
   VuiTitle,
   VuiToggle
 } from "../../../lib";
@@ -34,6 +35,7 @@ export const App = () => {
   const [padding, setPadding] = useState<AppContentPadding>("xl");
   const [isAltLayout, setIsAltLayout] = useState<boolean>(false);
   const [isAlternateHeader, setIsAlternateHeader] = useState<boolean>(false);
+  const [isDarkHeader, setIsDarkHeader] = useState<boolean>(false);
 
   const content = (
     <VuiAppContent className="appExampleContent" fullWidth={isFullWidth} padding={padding}>
@@ -64,6 +66,32 @@ export const App = () => {
 
   const DynamicLayout = isAltLayout ? AltLayout : Layout;
 
+  const headerLeftContent = (
+    <VuiFlexContainer alignItems="center" spacing="xl">
+      <VuiTitle size="xs">
+        <h1>
+          <VuiTextColor color={isDarkHeader ? "empty" : "neutral"}>App example</VuiTextColor>
+        </h1>
+      </VuiTitle>
+
+      <VuiToggle label="Alternate side nav" checked={isAltLayout} onChange={() => setIsAltLayout(!isAltLayout)} />
+
+      <VuiToggle
+        label="Alternate header layout"
+        checked={isAlternateHeader}
+        onChange={() => setIsAlternateHeader(!isAlternateHeader)}
+      />
+
+      <VuiToggle label="Dark header" checked={isDarkHeader} onChange={() => setIsDarkHeader(!isDarkHeader)} />
+    </VuiFlexContainer>
+  );
+
+  const headerRightContent = (
+    <VuiButtonPrimary className="appExample__close" color="danger" onClick={() => setIsExampleVisible(false)}>
+      Close example
+    </VuiButtonPrimary>
+  );
+
   return (
     <>
       <VuiButtonPrimary color="primary" onClick={() => setIsExampleVisible(true)}>
@@ -72,71 +100,28 @@ export const App = () => {
 
       {isExampleVisible && (
         <div className="appExample">
-          {isAlternateHeader ? (
-            <VuiAppHeader
-              content={
+          <VuiAppHeader
+            className={isDarkHeader ? "darkMode" : ""}
+            content={
+              isAlternateHeader ? (
                 <VuiGrid columns={3}>
-                  <VuiFlexContainer>
-                    <VuiTitle size="xs">
-                      <h1>
-                        <strong>App example</strong>
-                      </h1>
-                    </VuiTitle>
+                  {headerLeftContent}
 
-                    <VuiToggle
-                      label="Alternate side nav"
-                      checked={isAltLayout}
-                      onChange={() => setIsAltLayout(!isAltLayout)}
-                    />
-                    <VuiToggle
-                      label="Alternate header layout"
-                      checked={isAlternateHeader}
-                      onChange={() => setIsAlternateHeader(!isAlternateHeader)}
-                    />
-                  </VuiFlexContainer>
                   <VuiTabs className="appExample__tabs" style="enclosed">
                     <VuiTab isActive>Tab 1</VuiTab>
                     <VuiTab>Tab 2</VuiTab>
                   </VuiTabs>
-                  <VuiButtonPrimary
-                    className="appExample__close"
-                    color="danger"
-                    onClick={() => setIsExampleVisible(false)}
-                  >
-                    Close example
-                  </VuiButtonPrimary>
-                </VuiGrid>
-              }
-            />
-          ) : (
-            <VuiAppHeader
-              left={
-                <VuiFlexContainer spacing="xl">
-                  <VuiTitle size="xs">
-                    <h1>
-                      <strong>App example</strong>
-                    </h1>
-                  </VuiTitle>
 
-                  <VuiToggle
-                    label="Alternate side nav"
-                    checked={isAltLayout}
-                    onChange={() => setIsAltLayout(!isAltLayout)}
-                  />
-                  <VuiToggle
-                    label="Alternate header layout"
-                    checked={isAlternateHeader}
-                    onChange={() => setIsAlternateHeader(!isAlternateHeader)}
-                  />
+                  {headerRightContent}
+                </VuiGrid>
+              ) : (
+                <VuiFlexContainer fullWidth justifyContent="spaceBetween" alignItems="center">
+                  {headerLeftContent}
+                  {headerRightContent}
                 </VuiFlexContainer>
-              }
-              right={
-                <VuiButtonPrimary color="danger" onClick={() => setIsExampleVisible(false)}>
-                  Close example
-                </VuiButtonPrimary>
-              }
-            />
-          )}
+              )
+            }
+          />
 
           <DynamicLayout>{content}</DynamicLayout>
         </div>

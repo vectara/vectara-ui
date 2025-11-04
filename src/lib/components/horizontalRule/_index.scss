@@ -11,25 +11,25 @@
 // Color
 $color: (
   accent: (
-    "border-color": $colorAccent
+    "border-color": var(--color-accent)
   ),
   primary: (
-    "border-color": $colorPrimary
+    "border-color": var(--color-primary)
   ),
   success: (
-    "border-color": $colorSuccess
+    "border-color": var(--color-success)
   ),
   danger: (
-    "border-color": $colorDanger
+    "border-color": var(--color-danger)
   ),
   warning: (
-    "border-color": $colorWarning
+    "border-color": var(--color-warning)
   ),
   neutral: (
-    "border-color": $borderColor
+    "border-color": var(--border-color)
   ),
   subdued: (
-    "border-color": $borderColorLight
+    "border-color": var(--border-color-light)
   )
 );
 

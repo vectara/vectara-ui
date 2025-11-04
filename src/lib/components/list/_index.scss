@@ -24,6 +24,6 @@
 }
 
 .vuiListNumber-isComplete {
-  background-color: $colorAccentLighterShade;
-  color: $colorAccent;
+  background-color: var(--color-accent) LighterShade;
+  color: var(--color-accent);
 }

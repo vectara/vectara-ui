@@ -61,7 +61,7 @@ $modalWidth: 500px;
   font-size: $fontSizeMedium;
   font-weight: $fontWeightBold;
   line-height: 1.2;
-  color: $colorText;
+  color: var(--color-text);
 }
 
 .vuiModalContent {
@@ -76,10 +76,10 @@ $modalWidth: 500px;
 // Color
 $color: (
   primary: (
-    "color": $colorPrimary
+    "color": var(--color-primary)
   ),
   danger: (
-    "color": $colorDanger
+    "color": var(--color-danger)
   )
 );
 

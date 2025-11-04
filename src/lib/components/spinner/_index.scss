@@ -7,19 +7,19 @@
 // Color
 $color: (
   accent: (
-    "color": $colorAccent
+    "color": var(--color-accent)
   ),
   primary: (
-    "color": $colorPrimary
+    "color": var(--color-primary)
   ),
   success: (
-    "color": $colorSuccess
+    "color": var(--color-success)
   ),
   danger: (
-    "color": $colorDanger
+    "color": var(--color-danger)
   ),
   warning: (
-    "color": $colorWarning
+    "color": var(--color-warning)
   ),
   empty: (
     "color": $colorEmptyShade

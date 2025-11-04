@@ -43,7 +43,7 @@
   margin-bottom: $sizeM;
 
   &:hover {
-    color: $colorPrimary;
+    color: var(--color-primary);
     text-decoration: underline;
   }
 }
@@ -65,7 +65,7 @@
 
   &:hover {
     background-color: $colorLightShade;
-    color: $colorPrimary;
+    color: var(--color-primary);
     text-decoration: underline;
   }
 }

@@ -10,31 +10,31 @@
 $color: (
   accent: (
     "color": #ffffff,
-    "background-color": $colorAccent,
-    "border-color": $colorAccent
+    "background-color": var(--color-accent),
+    "border-color": var(--color-accent)
   ),
   primary: (
     "color": #ffffff,
-    "background-color": $colorPrimary,
-    "border-color": $colorPrimary
+    "background-color": var(--color-primary),
+    "border-color": var(--color-primary)
   ),
   success: (
     "color": #ffffff,
-    "background-color": $colorSuccess,
-    "border-color": $colorSuccess
+    "background-color": var(--color-success),
+    "border-color": var(--color-success)
   ),
   danger: (
     "color": #ffffff,
-    "background-color": $colorDanger,
-    "border-color": $colorDanger
+    "background-color": var(--color-danger),
+    "border-color": var(--color-danger)
   ),
   warning: (
     "color": #ffffff,
-    "background-color": $colorWarning,
-    "border-color": $colorWarning
+    "background-color": var(--color-warning),
+    "border-color": var(--color-warning)
   ),
   neutral: (
-    "color": $colorText,
+    "color": var(--color-text),
     "background-color": $colorEmptyShade,
     "border-color": $colorEmptyShade
   ),

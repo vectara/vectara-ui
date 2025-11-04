@@ -23,34 +23,34 @@
 // Color
 $color: (
   accent: (
-    "color": $colorAccent,
-    "background-color": transparentize($colorAccent, 0.9),
-    "border-color": transparentize($colorAccent, 0.9)
+    "color": var(--color-accent),
+    "background-color": rgba(var(--color-accent), 0.9),
+    "border-color": rgba(var(--color-accent), 0.9)
   ),
   primary: (
-    "color": $colorPrimary,
-    "background-color": transparentize($colorPrimary, 0.9),
-    "border-color": transparentize($colorPrimary, 0.9)
+    "color": var(--color-primary),
+    "background-color": rgba(var(--color-primary), 0.9),
+    "border-color": rgba(var(--color-primary), 0.9)
   ),
   success: (
-    "color": $colorSuccess,
-    "background-color": transparentize($colorSuccess, 0.9),
-    "border-color": transparentize($colorSuccess, 0.9)
+    "color": var(--color-success),
+    "background-color": rgba(var(--color-success), 0.9),
+    "border-color": rgba(var(--color-success), 0.9)
   ),
   warning: (
-    "color": $colorWarning,
-    "background-color": transparentize($colorWarning, 0.9),
-    "border-color": transparentize($colorWarning, 0.9)
+    "color": var(--color-warning),
+    "background-color": rgba(var(--color-warning), 0.9),
+    "border-color": rgba(var(--color-warning), 0.9)
   ),
   danger: (
-    "color": $colorDanger,
-    "background-color": transparentize($colorDanger, 0.9),
-    "border-color": transparentize($colorDanger, 0.9)
+    "color": var(--color-danger),
+    "background-color": rgba(var(--color-danger), 0.9),
+    "border-color": rgba(var(--color-danger), 0.9)
   ),
   neutral: (
-    "color": $colorText,
-    "background-color": $colorLightShade,
-    "border-color": transparentize($colorText, 0.9)
+    "color": var(--color-text),
+    "background-color": var(--color-light-shade),
+    "border-color": rgba(var(--color-text), 0.9)
   )
 );
 

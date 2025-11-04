@@ -12,29 +12,29 @@
 
 $color: (
   accent: (
-    "icon": $colorAccent,
-    "fill": $colorAccent,
-    "token": $colorAccentLighterShade
+    "icon": var(--color-accent),
+    "fill": var(--color-accent),
+    "token": var(--color-accent) LighterShade
   ),
   primary: (
-    "icon": $colorPrimary,
-    "fill": $colorPrimary,
-    "token": $colorPrimaryLighterShade
+    "icon": var(--color-primary),
+    "fill": var(--color-primary),
+    "token": var(--color-primary) LighterShade
   ),
   success: (
-    "icon": $colorSuccess,
-    "fill": $colorSuccess,
-    "token": $colorSuccessLighterShade
+    "icon": var(--color-success),
+    "fill": var(--color-success),
+    "token": var(--color-success) LighterShade
   ),
   warning: (
-    "icon": $colorWarning,
-    "fill": $colorWarning,
-    "token": $colorWarningLighterShade
+    "icon": var(--color-warning),
+    "fill": var(--color-warning),
+    "token": var(--color-warning) LighterShade
   ),
   danger: (
-    "icon": $colorDanger,
-    "fill": $colorDanger,
-    "token": $colorDangerLighterShade
+    "icon": var(--color-danger),
+    "fill": var(--color-danger),
+    "token": var(--color-danger) LighterShade
   ),
   subdued: (
     "icon": $colorSubdued,
@@ -42,8 +42,8 @@ $color: (
     "token": $colorLightShade
   ),
   neutral: (
-    "icon": $colorText,
-    "fill": $colorText,
+    "icon": var(--color-text),
+    "fill": var(--color-text),
     "token": $colorLightShade
   ),
   empty: (
@@ -54,22 +54,22 @@ $color: (
 );
 
 $colors: (
-  accent: $colorAccent,
-  primary: $colorPrimary,
-  success: $colorSuccess,
-  warning: $colorWarning,
-  danger: $colorDanger,
+  accent: var(--color-accent),
+  primary: var(--color-primary),
+  success: var(--color-success),
+  warning: var(--color-warning),
+  danger: var(--color-danger),
   subdued: $colorSubdued,
-  neutral: $colorText,
+  neutral: var(--color-text),
   empty: #ffffff
 );
 
 $tokenColors: (
-  accent: $colorAccentLighterShade,
-  primary: $colorPrimaryLighterShade,
-  success: $colorSuccessLighterShade,
-  warning: $colorWarningLighterShade,
-  danger: $colorDangerLighterShade,
+  accent: var(--color-accent) LighterShade,
+  primary: var(--color-primary) LighterShade,
+  success: var(--color-success) LighterShade,
+  warning: var(--color-warning) LighterShade,
+  danger: var(--color-danger) LighterShade,
   subdued: $colorMediumShade,
   neutral: $colorDarkShade,
   empty: #ffffff

@@ -13,31 +13,31 @@
 // Color
 $color: (
   accent: (
-    "border-color": transparentize($colorAccent, 0.5),
-    "color": $colorAccent
+    "border-color": rgba(var(--color-accent), 0.5),
+    "color": var(--color-accent)
   ),
   primary: (
-    "border-color": transparentize($colorPrimary, 0.5),
-    "color": $colorPrimary
+    "border-color": rgba(var(--color-primary), 0.5),
+    "color": var(--color-primary)
   ),
   success: (
-    "border-color": transparentize($colorSuccess, 0.5),
-    "color": $colorSuccess
+    "border-color": rgba(var(--color-success), 0.5),
+    "color": var(--color-success)
   ),
   danger: (
-    "border-color": transparentize($colorDanger, 0.5),
-    "color": $colorDanger
+    "border-color": rgba(var(--color-danger), 0.5),
+    "color": var(--color-danger)
   ),
   warning: (
-    "border-color": transparentize($colorWarning, 0.5),
-    "color": $colorWarning
+    "border-color": rgba(var(--color-warning), 0.5),
+    "color": var(--color-warning)
   ),
   neutral: (
-    "border-color": $borderColor,
-    "color": $colorText
+    "border-color": var(--border-color),
+    "color": var(--color-text)
   ),
   subdued: (
-    "border-color": $borderColorLight,
+    "border-color": var(--border-color-light),
     "color": $colorSubdued
   )
 );

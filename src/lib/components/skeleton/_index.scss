@@ -39,19 +39,19 @@
 // Color variants
 $color: (
   accent: (
-    "backgroundColor": $colorAccentLighterShade
+    "backgroundColor": var(--color-accent) LighterShade
   ),
   primary: (
-    "backgroundColor": $colorPrimaryLighterShade
+    "backgroundColor": var(--color-primary) LighterShade
   ),
   success: (
-    "backgroundColor": $colorSuccessLighterShade
+    "backgroundColor": var(--color-success) LighterShade
   ),
   danger: (
-    "backgroundColor": $colorDangerLighterShade
+    "backgroundColor": var(--color-danger) LighterShade
   ),
   warning: (
-    "backgroundColor": $colorWarningLighterShade
+    "backgroundColor": var(--color-warning) LighterShade
   ),
   neutral: (
     "backgroundColor": $colorMediumShade

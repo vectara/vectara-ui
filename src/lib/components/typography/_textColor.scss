@@ -1,12 +1,12 @@
 $color: (
-  accent: $colorAccent,
-  primary: $colorPrimary,
-  success: $colorSuccess,
-  warning: $colorWarning,
-  danger: $colorDanger,
+  accent: var(--color-accent),
+  primary: var(--color-primary),
+  success: var(--color-success),
+  warning: var(--color-warning),
+  danger: var(--color-danger),
   subdued: $colorSubdued,
-  neutral: $colorText,
-  empty: $colorEmptyShade,
+  neutral: var(--color-text),
+  empty: $colorEmptyShade
 );
 
 @each $colorName, $colorValue in $color {

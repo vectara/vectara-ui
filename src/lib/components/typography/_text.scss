@@ -7,7 +7,7 @@ $textRhythm: $sizeM;
   word-break: break-word;
 
   a {
-    color: $colorPrimary !important;
+    color: var(--color-primary) !important;
     text-decoration: none;
 
     &:hover {
@@ -35,7 +35,7 @@ $textRhythm: $sizeM;
     border-right: none;
     border-bottom: 1px solid;
     width: 100%;
-    border-bottom-color: $borderColor;
+    border-bottom-color: var(--border-color);
     margin-bottom: $textRhythm;
   }
 
@@ -79,16 +79,16 @@ $textRhythm: $sizeM;
   table {
     width: 100%;
     table-layout: fixed;
-    border: 1px solid $borderColorLight;
+    border: 1px solid var(--border-color-light);
     margin-bottom: $textRhythm;
 
     thead {
       background-color: $colorLightShade;
-      border-bottom: 1px solid $borderColorLight;
+      border-bottom: 1px solid var(--border-color-light);
     }
 
     tbody tr {
-      border-bottom: 1px solid $borderColorLight;
+      border-bottom: 1px solid var(--border-color-light);
     }
 
     th {
@@ -119,7 +119,7 @@ $textRhythm: $sizeM;
 }
 
 @mixin defineTextStyles($fontSize, $fontWeight) {
-  color: $colorText;
+  color: var(--color-text);
   font-size: $fontSize;
   line-height: 1.4;
 

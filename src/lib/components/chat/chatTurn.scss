@@ -19,14 +19,14 @@
 }
 
 .vuiChatQuestion {
-  color: $colorAccent;
+  color: var(--color-accent);
   font-weight: $fontWeightBold;
   font-size: $fontSizeStandard;
   margin-bottom: $sizeXs;
 }
 
 .vuiChatQuestion--error {
-  color: $colorDanger;
+  color: var(--color-danger);
 }
 
 .vuiChat__inspectButton {

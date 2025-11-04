@@ -17,11 +17,11 @@ $buttonWidth: $toggleWidth * 0.75 - ($buttonOffset * 2);
   height: 0;
 
   &:checked + .vuiToggle__button {
-    background-color: $colorPrimary;
+    background-color: var(--color-primary);
   }
 
   &:focus-visible + .vuiToggle__button {
-    outline: 2px solid transparentize($colorPrimary, 0.25);
+    outline: 2px solid rgba(var(--color-primary), 0.25);
     outline-offset: 2px;
   }
 
@@ -37,7 +37,7 @@ $buttonWidth: $toggleWidth * 0.75 - ($buttonOffset * 2);
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $colorMediumShade;
+  background-color: var(--color-medium-shade);
   transition: $transitionSpeed;
   border-radius: $buttonHeight;
   box-shadow: inset rgba(0, 0, 0, 0.1) 0px 2px 2px;
@@ -49,7 +49,7 @@ $buttonWidth: $toggleWidth * 0.75 - ($buttonOffset * 2);
     width: $buttonWidth;
     left: $buttonOffset;
     bottom: $buttonOffset;
-    background-color: $colorEmptyShade;
+    background-color: var(--color-empty-shade);
     transition: $transitionSpeed;
     border-radius: $buttonHeight;
   }

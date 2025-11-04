@@ -45,34 +45,34 @@
 // Color
 $color: (
   accent: (
-    "color": $colorAccent,
-    "hover-color": $colorAccent,
-    "selected-color": $colorAccentLighterShade
+    "color": var(--color-accent),
+    "hover-color": var(--color-accent),
+    "selected-color": var(--color-accent) LighterShade
   ),
   primary: (
-    "color": $colorPrimary,
-    "hover-color": $colorPrimary,
-    "selected-color": $colorPrimaryLighterShade
+    "color": var(--color-primary),
+    "hover-color": var(--color-primary),
+    "selected-color": var(--color-primary) LighterShade
   ),
   success: (
-    "color": $colorSuccess,
-    "hover-color": $colorSuccess,
-    "selected-color": $colorSuccessLighterShade
+    "color": var(--color-success),
+    "hover-color": var(--color-success),
+    "selected-color": var(--color-success) LighterShade
   ),
   danger: (
-    "color": $colorDanger,
-    "hover-color": $colorDanger,
-    "selected-color": $colorDangerLighterShade
+    "color": var(--color-danger),
+    "hover-color": var(--color-danger),
+    "selected-color": var(--color-danger) LighterShade
   ),
   warning: (
-    "color": $colorWarning,
-    "hover-color": $colorWarning,
-    "selected-color": $colorWarningLighterShade
+    "color": var(--color-warning),
+    "hover-color": var(--color-warning),
+    "selected-color": var(--color-warning) LighterShade
   ),
   neutral: (
-    "color": $colorText,
-    "hover-color": $colorPrimary,
-    "selected-color": $colorPrimaryLighterShade
+    "color": var(--color-text),
+    "hover-color": var(--color-primary),
+    "selected-color": var(--color-primary) LighterShade
   )
 );
 
