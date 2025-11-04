@@ -12,7 +12,6 @@ import {
   VuiSpacer,
   VuiTab,
   VuiTabs,
-  VuiTextColor,
   VuiTitle,
   VuiToggle
 } from "../../../lib";
@@ -69,9 +68,7 @@ export const App = () => {
   const headerLeftContent = (
     <VuiFlexContainer alignItems="center" spacing="xl">
       <VuiTitle size="xs">
-        <h1>
-          <VuiTextColor color={isDarkHeader ? "empty" : "neutral"}>App example</VuiTextColor>
-        </h1>
+        <h1>App example</h1>
       </VuiTitle>
 
       <VuiToggle label="Alternate side nav" checked={isAltLayout} onChange={() => setIsAltLayout(!isAltLayout)} />
