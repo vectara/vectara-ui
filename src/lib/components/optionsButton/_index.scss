@@ -17,7 +17,8 @@ $colorPrimaryButton: (
   success: transparentize($colorEmptyShade, 0.5),
   danger: transparentize($colorEmptyShade, 0.5),
   warning: transparentize($colorEmptyShade, 0.5),
-  neutral: rgba(var(--color-text), 0.8)
+  subdued: rgba(var(--color-dark-shade-rgb), 0.2),
+  neutral: rgba(var(--color-darker-shade-rgb), 0.2)
 );
 
 @each $colorName, $colorValue in $colorPrimaryButton {
@@ -27,12 +28,13 @@ $colorPrimaryButton: (
 }
 
 $colorSecondaryButton: (
-  accent: rgba(var(--color-accent), 0.7),
-  primary: rgba(var(--color-primary), 0.7),
-  success: rgba(var(--color-success), 0.7),
-  danger: rgba(var(--color-danger), 0.7),
-  warning: rgba(var(--color-warning), 0.7),
-  neutral: rgba(var(--color-text), 0.8)
+  accent: rgba(var(--color-accent-rgb), 0.3),
+  primary: rgba(var(--color-primary-rgb), 0.3),
+  success: rgba(var(--color-success-rgb), 0.3),
+  danger: rgba(var(--color-danger-rgb), 0.3),
+  warning: rgba(var(--color-warning-rgb), 0.3),
+  subdued: rgba(var(--color-dark-shade-rgb), 0.3),
+  neutral: rgba(var(--color-darker-shade-rgb), 0.2)
 );
 
 @each $colorName, $colorValue in $colorSecondaryButton {

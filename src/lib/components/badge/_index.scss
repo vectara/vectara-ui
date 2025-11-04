@@ -24,33 +24,33 @@
 $color: (
   accent: (
     "color": var(--color-accent),
-    "background-color": rgba(var(--color-accent), 0.9),
-    "border-color": rgba(var(--color-accent), 0.9)
+    "background-color": rgba(var(--color-accent-rgb), 0.1),
+    "border-color": rgba(var(--color-accent-rgb), 0.1)
   ),
   primary: (
     "color": var(--color-primary),
-    "background-color": rgba(var(--color-primary), 0.9),
-    "border-color": rgba(var(--color-primary), 0.9)
+    "background-color": rgba(var(--color-primary-rgb), 0.1),
+    "border-color": rgba(var(--color-primary-rgb), 0.1)
   ),
   success: (
     "color": var(--color-success),
-    "background-color": rgba(var(--color-success), 0.9),
-    "border-color": rgba(var(--color-success), 0.9)
+    "background-color": rgba(var(--color-success-rgb), 0.1),
+    "border-color": rgba(var(--color-success-rgb), 0.1)
   ),
   warning: (
     "color": var(--color-warning),
-    "background-color": rgba(var(--color-warning), 0.9),
-    "border-color": rgba(var(--color-warning), 0.9)
+    "background-color": rgba(var(--color-warning-rgb), 0.1),
+    "border-color": rgba(var(--color-warning-rgb), 0.1)
   ),
   danger: (
     "color": var(--color-danger),
-    "background-color": rgba(var(--color-danger), 0.9),
-    "border-color": rgba(var(--color-danger), 0.9)
+    "background-color": rgba(var(--color-danger-rgb), 0.1),
+    "border-color": rgba(var(--color-danger-rgb), 0.1)
   ),
   neutral: (
     "color": var(--color-text),
     "background-color": var(--color-light-shade),
-    "border-color": rgba(var(--color-text), 0.9)
+    "border-color": rgba(var(--color-text-rgb), 0.1)
   )
 );
 
