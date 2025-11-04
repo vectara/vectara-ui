@@ -75,7 +75,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       });
     } else {
       iconButton = (
-        <button {...props} ref={ref} disabled={isDisabled}>
+        <button type="button" {...props} ref={ref} disabled={isDisabled}>
           {buttonIcon}
         </button>
       );

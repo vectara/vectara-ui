@@ -174,6 +174,7 @@ export const VuiChat = ({
         className={buttonClasses}
         onClick={() => setChatStyle("condensed")}
         ref={buttonRef}
+        type="button"
       >
         <VuiFlexContainer alignItems="center" spacing="s">
           <VuiFlexItem shrink={false} grow={false}>

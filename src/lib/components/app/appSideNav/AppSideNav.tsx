@@ -79,6 +79,7 @@ export const VuiAppSideNav = ({ size = "m", items = [], content, canCollapseSelf
                   setIsTouched(true);
                   setIsCollapsed(true);
                 }}
+                type="button"
               >
                 <VuiFlexContainer alignItems="center" spacing="xxs">
                   <VuiFlexItem shrink={false} grow={false}>

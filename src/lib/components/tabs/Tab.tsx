@@ -29,7 +29,7 @@ export const VuiTab = ({ children, className, href, onClick, isActive = false, .
   }
 
   return (
-    <button className={classes} onClick={onClick} {...rest}>
+    <button className={classes} onClick={onClick} type="button" {...rest}>
       {content}
     </button>
   );

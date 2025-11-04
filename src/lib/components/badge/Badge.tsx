@@ -56,7 +56,7 @@ export const VuiBadge = ({ children, className, color, onClick, onClose, href, t
 
   if (onClick) {
     return (
-      <button className={classes} onClick={onClick} {...rest}>
+      <button className={classes} onClick={onClick} type="button" {...rest}>
         {content}
       </button>
     );
