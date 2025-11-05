@@ -19,10 +19,13 @@ type ContentProps = {
 
 type Props = (SidedProps | ContentProps) & {
   className?: string;
+  darkTheme?: boolean;
 };
 
-export const VuiAppHeader = ({ left, right, content, growRight, className, ...rest }: Props) => {
-  const classes = classNames("vuiAppHeader", className);
+export const VuiAppHeader = ({ left, right, content, growRight, className, darkTheme, ...rest }: Props) => {
+  const classes = classNames("vuiAppHeader", className, {
+    vuiThemeDark: darkTheme
+  });
 
   return (
     <div className={classes} {...rest}>

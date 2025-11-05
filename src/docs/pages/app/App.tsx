@@ -98,7 +98,7 @@ export const App = () => {
       {isExampleVisible && (
         <div className="appExample">
           <VuiAppHeader
-            className={isDarkHeader ? "darkMode" : ""}
+            darkTheme={isDarkHeader}
             content={
               isAlternateHeader ? (
                 <VuiGrid columns={3}>
