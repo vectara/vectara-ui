@@ -37,7 +37,7 @@
       box-shadow: var(--color-border) 0px 1px 0px;
 
       .vuiTab__inner {
-        background-color: $colorLightShade;
+        background-color: var(--color-light-shade);
       }
     }
   }
