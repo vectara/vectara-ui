@@ -8,6 +8,8 @@ import {
   VuiFlexContainer,
   VuiFlexItem,
   VuiGrid,
+  VuiIcon,
+  VuiIconButton,
   VuiSelect,
   VuiSpacer,
   VuiTab,
@@ -18,6 +20,7 @@ import {
 import { Layout } from "./Layout";
 import { AltLayout } from "./AltLayout";
 import "./appExample.scss";
+import { BiMenu } from "react-icons/bi";
 
 const paddingOptions = [
   { text: "none", value: "none" },
@@ -67,9 +70,24 @@ export const App = () => {
 
   const headerLeftContent = (
     <VuiFlexContainer alignItems="center" spacing="xl">
-      <VuiTitle size="xs">
-        <h1>App example</h1>
-      </VuiTitle>
+      <VuiFlexContainer alignItems="center" spacing="s">
+        <VuiIconButton
+          aria-label="Show navigation"
+          color="neutral"
+          tooltip={{
+            position: "bottom-end"
+          }}
+          icon={
+            <VuiIcon>
+              <BiMenu />
+            </VuiIcon>
+          }
+        />
+
+        <VuiTitle size="xs">
+          <h1>App example</h1>
+        </VuiTitle>
+      </VuiFlexContainer>
 
       <VuiToggle label="Alternate side nav" checked={isAltLayout} onChange={() => setIsAltLayout(!isAltLayout)} />
 

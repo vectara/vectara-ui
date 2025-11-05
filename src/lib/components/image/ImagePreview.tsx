@@ -102,8 +102,13 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                                       <BiChevronLeft />
                                     </VuiIcon>
                                   }
+                                  tooltip={{
+                                    darkTheme: true,
+                                    position: "bottom-end"
+                                  }}
                                 />
                               </VuiFlexItem>
+
                               <VuiFlexItem>
                                 <VuiIconButton
                                   aria-label="Next image"
@@ -118,10 +123,15 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                                       <BiChevronRight />
                                     </VuiIcon>
                                   }
+                                  tooltip={{
+                                    darkTheme: true,
+                                    position: "bottom"
+                                  }}
                                 />
                               </VuiFlexItem>
                             </>
                           )}
+
                           <VuiFlexItem>
                             <VuiText size="s">
                               <VuiTextColor color="empty">
@@ -134,6 +144,7 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                           </VuiFlexItem>
                         </VuiFlexContainer>
                       </VuiFlexItem>
+
                       <VuiFlexItem grow={false}>
                         <div className="vuiImagePreview__closeButton">
                           <VuiIconButton
@@ -145,6 +156,10 @@ export const VuiImagePreview = ({ images, initialIndex = 0, isOpen, onClose, cla
                                 <BiX />
                               </VuiIcon>
                             }
+                            tooltip={{
+                              darkTheme: true,
+                              position: "bottom-end"
+                            }}
                           />
                         </div>
                       </VuiFlexItem>
