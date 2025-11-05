@@ -21,7 +21,11 @@ export const VuiTooltip = ({ children, darkTheme, position, tip }: Props) => {
   });
 
   const classes = classNames("vuiTooltip", {
-    vuiThemeDark: darkTheme
+    vuiThemeDark: darkTheme,
+    // Tooltips can be used in a dark-themed component, so we need to explicitly set
+    // the light theme class in order to enable having a different theme than the
+    // parent.
+    vuiThemeLight: darkTheme === false
   });
 
   return (
