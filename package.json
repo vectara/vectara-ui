@@ -31,8 +31,7 @@
     "build": "npx tsc --project tsconfig.lib.json && npm run copyStyleUtils && npm run copyComponentStyles && npm run compileCss",
     "compileCss": "sass --no-source-map src/lib/styles/styles.scss lib/styles/index.css",
     "copyStyleUtils": "copyfiles -u 2 src/lib/sassUtils/* lib",
-    "copyComponentStyles": "copyfiles -u 2 src/lib/components/index.scss lib && copyfiles -u 2 src/lib/components/**/*.scss lib && copyfiles -u 2 src/lib/components/**/**/*.scss lib",
-    "publish": "npm run build && npm publish --access public"
+    "copyComponentStyles": "copyfiles -u 2 src/lib/components/index.scss lib && copyfiles -u 2 src/lib/components/**/*.scss lib && copyfiles -u 2 src/lib/components/**/**/*.scss lib"
   },
   "dependencies": {
     "@types/jest": "^27.5.2",
