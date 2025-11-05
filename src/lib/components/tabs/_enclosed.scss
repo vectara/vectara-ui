@@ -1,6 +1,6 @@
 .vuiTabs--enclosed {
   display: inline-flex;
-  background-color: $colorLightShade;
+  background-color: var(--color-light-shade);
   border-radius: $sizeXxs;
   padding: $sizeXxxs $sizeXs;
 
@@ -23,18 +23,18 @@
   .vuiTab {
     &:hover {
       .vuiTab__inner {
-        color: $colorFullShade;
-        background-color: transparentize($colorEmptyShade, 0.25);
+        color: var(--color-full-shade);
+        background-color: rgba(var(--color-empty-shade-rgb), 0.75);
 
         .vuiIcon__inner {
-          color: $colorFullShade !important;
+          color: var(--color-full-shade) !important;
         }
       }
     }
 
     &.vuiTab-isActive {
       .vuiTab__inner {
-        background-color: $colorEmptyShade;
+        background-color: var(--color-empty-shade);
         box-shadow: $shadowSmallEnd;
       }
     }

@@ -39,7 +39,7 @@ $colorDarkerShade: #1c1d22 !default;
 $colorFullShade: #0b0c0e !default;
 
 :root,
-.lightMode {
+.vuiThemeLight {
   // Semantic colors
   --color-accent: #{$colorAccent};
   --color-accent-rgb: #{toRgb($colorAccent)};
@@ -105,7 +105,7 @@ $colorFullShade: #0b0c0e !default;
   --color-border-light: #e3e4f3;
 }
 
-.darkMode {
+.vuiThemeDark {
   // // Semantic colors
   // --color-accent: #{$colorAccentLighterShade};
   // --color-accent-light-shade: #{$colorAccentLightShade};

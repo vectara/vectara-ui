@@ -1,26 +1,33 @@
+import classNames from "classnames";
 import { useState, cloneElement } from "react";
-import { Tooltip } from "react-tooltip";
+import { Tooltip, TooltipRefProps } from "react-tooltip";
 
-type Props = {
+export type Props = {
   children: React.ReactNode;
   tip: React.ReactNode;
+  darkTheme?: boolean;
+  position?: TooltipRefProps["place"];
 };
 
 const generateTooltipId = () => {
   return `tooltip-${Math.random().toString(36).slice(2, 9)}`;
 };
 
-export const VuiTooltip = ({ children, tip }: Props) => {
+export const VuiTooltip = ({ children, darkTheme, position, tip }: Props) => {
   const [id] = useState(generateTooltipId());
 
   const target = cloneElement(children as React.ReactElement, {
     "data-tooltip-id": id
   });
 
+  const classes = classNames("vuiTooltip", {
+    vuiThemeDark: darkTheme
+  });
+
   return (
     <>
       {target}
-      <Tooltip id={id} offset={10} className="vuiTooltip" opacity={1}>
+      <Tooltip id={id} offset={10} className={classes} opacity={1} place={position}>
         {tip}
       </Tooltip>
     </>

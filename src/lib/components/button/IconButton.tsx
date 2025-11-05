@@ -5,7 +5,7 @@ import { ButtonColor, BUTTON_SIZE } from "./types";
 import { createButtonIcon } from "./createButtonIcon";
 import { LinkProps } from "../link/types";
 import { useVuiContext } from "../context/Context";
-import { VuiTooltip } from "../tooltip/Tooltip";
+import { Props as TooltipProps, VuiTooltip } from "../tooltip/Tooltip";
 
 type Props = {
   className?: string;
@@ -23,6 +23,10 @@ type Props = {
   tabIndex?: number;
   isSelected?: boolean;
   isDisabled?: boolean;
+  tooltip?: {
+    darkTheme?: TooltipProps["darkTheme"];
+    position?: TooltipProps["position"];
+  };
 };
 
 export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
@@ -40,6 +44,7 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       target,
       track,
       tabIndex,
+      tooltip = {},
       isSelected = false,
       isDisabled = false,
       ...rest
@@ -81,6 +86,10 @@ export const VuiIconButton = forwardRef<HTMLButtonElement | null, Props>(
       );
     }
 
-    return <VuiTooltip tip={rest["aria-label"]}>{iconButton}</VuiTooltip>;
+    return (
+      <VuiTooltip {...tooltip} tip={rest["aria-label"]}>
+        {iconButton}
+      </VuiTooltip>
+    );
   }
 );

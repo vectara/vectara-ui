@@ -59,9 +59,11 @@ export const Image = () => {
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show caption" checked={showCaption} onChange={(e) => setShowCaption(e.target.checked)} />
         </VuiFlexItem>
+
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Show preview" checked={showPreview} onChange={(e) => setShowPreview(e.target.checked)} />
         </VuiFlexItem>
+
         <VuiFlexItem shrink={false}>
           <VuiToggle
             label="Loading state"
@@ -72,6 +74,7 @@ export const Image = () => {
             }}
           />
         </VuiFlexItem>
+
         <VuiFlexItem shrink={false}>
           <VuiToggle
             label="Error state"

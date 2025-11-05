@@ -1,5 +1,6 @@
 .vuiTooltip {
-  background-color: $colorDarkerShade !important;
+  background-color: var(--color-darker-shade) !important;
+  color: var(--color-empty-shade) !important;
   z-index: $tooltipZIndex !important;
 }
 
