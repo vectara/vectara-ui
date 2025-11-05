@@ -75,7 +75,8 @@ export const App = () => {
           aria-label="Show navigation"
           color="neutral"
           tooltip={{
-            position: "bottom-end"
+            position: "bottom-end",
+            darkTheme: false
           }}
           icon={
             <VuiIcon>
