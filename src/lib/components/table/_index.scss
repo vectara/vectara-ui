@@ -218,8 +218,14 @@
   align-items: center;
 }
 
-.vuiTableHeaderCell__label {
-  margin-right: 4px;
+.vuiTableHeaderCell--sortable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $sizeXs;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: $sizeXxs;
 }
 
 .vuiTableHeaderCell__icon {

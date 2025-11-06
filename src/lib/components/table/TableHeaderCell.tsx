@@ -3,7 +3,6 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiIcon } from "../icon/Icon";
 import { Column, OnSort, Row } from "./types";
 import BidirectionalArrow from "./BidirectionalArrow";
-import { VuiIconButton } from "../button/IconButton";
 
 export type Props<T> = {
   column: Column<T>;
@@ -42,35 +41,19 @@ export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirectio
 
   return (
     <VuiFlexContainer spacing="xxs" alignItems="center" justifyContent="start">
-      <div 
-        className="vuiTableHeaderCell"
-        {...(isSortable && {
-          onClick: handleSort,
-          // This is so that the div is not read by screen readers, the VuiIconButton will handle the announcement 
-          "aria-hidden": "true",
-          style: { cursor: "pointer" }
-        })}
-      >
-        <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
-
-        {onSort && isSortable && (
-          <VuiIconButton
-            isSelected={isActive}
-            color="neutral"
+      {onSort && isSortable ? (
+        <button className="vuiTableHeaderCell--sortable" onClick={handleSort} aria-label={ariaLabel} type="button">
+          <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
+          <VuiIcon
+            className={`vuiTableHeaderCell__icon ` + (sortDirection === "desc" && "vuiTableHeaderCell__icon--desc")}
             size="s"
-            aria-label={ariaLabel}
-            onClick={handleSort}
-            icon={
-              <VuiIcon
-                className={`vuiTableHeaderCell__icon ` + (sortDirection === "desc" && "vuiTableHeaderCell__icon--desc")}
-                size="s"
-              >
-                {sortDirection === "none" ? <BidirectionalArrow /> : <BiSolidUpArrowAlt />}
-              </VuiIcon>
-            }
-          />
-        )}
-      </div>
+          >
+            {sortDirection === "none" ? <BidirectionalArrow /> : <BiSolidUpArrowAlt />}
+          </VuiIcon>
+        </button>
+      ) : (
+        <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
+      )}
     </VuiFlexContainer>
   );
 };
