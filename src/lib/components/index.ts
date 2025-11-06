@@ -43,6 +43,8 @@ import {
 } from "./form";
 import { VuiFormGroup } from "./formGroup/FormGroup";
 import { VuiGrid } from "./grid/Grid";
+import { VuiGridItem } from "./grid/GridItem";
+import { VuiSimpleGrid } from "./grid/SimpleGrid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
@@ -182,6 +184,8 @@ export {
   VuiFlexItem,
   VuiFormGroup,
   VuiGrid,
+  VuiGridItem,
+  VuiSimpleGrid,
   VuiHorizontalRule,
   VuiIcon,
   VuiImage,
