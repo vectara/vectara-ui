@@ -9,10 +9,9 @@ export type Props<T> = {
   column: Column<T>;
   onSort?: OnSort;
   sortDirection: "asc" | "desc" | "none";
-  isActive: boolean;
 };
 
-export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirection, isActive }: Props<T>) => {
+export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirection }: Props<T>) => {
   const { name, header } = column;
 
   const handleSort = () => {

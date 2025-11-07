@@ -321,11 +321,10 @@ export const VuiTable = <T extends Row>({
 
               return (
                 <th key={name} style={styles}>
-                  <VuiTableHeaderCell 
-                    column={column} 
+                  <VuiTableHeaderCell
+                    column={column}
                     onSort={handleSort}
                     sortDirection={sortColumn === name ? sortDirection : "none"}
-                    isActive={sortColumn === name}
                   />
                 </th>
               );
