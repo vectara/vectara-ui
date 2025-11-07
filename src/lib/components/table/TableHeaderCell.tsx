@@ -3,6 +3,7 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiIcon } from "../icon/Icon";
 import { Column, OnSort, Row } from "./types";
 import BidirectionalArrow from "./BidirectionalArrow";
+import { VuiTooltip } from "../tooltip/Tooltip";
 
 export type Props<T> = {
   column: Column<T>;
@@ -30,11 +31,11 @@ export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirectio
 
   let ariaLabel;
   if (sortDirection === "asc") {
-    ariaLabel = "Sort ascending";
-  } else if (sortDirection === "desc") {
     ariaLabel = "Sort descending";
-  } else {
+  } else if (sortDirection === "desc") {
     ariaLabel = "No sorting";
+  } else {
+    ariaLabel = "Sort ascending";
   }
 
   const isSortable = onSort && header.isSortable;
@@ -42,15 +43,17 @@ export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirectio
   return (
     <VuiFlexContainer spacing="xxs" alignItems="center" justifyContent="start">
       {onSort && isSortable ? (
-        <button className="vuiTableHeaderCell--sortable" onClick={handleSort} aria-label={ariaLabel} type="button">
-          <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
-          <VuiIcon
-            className={`vuiTableHeaderCell__icon ` + (sortDirection === "desc" && "vuiTableHeaderCell__icon--desc")}
-            size="s"
-          >
-            {sortDirection === "none" ? <BidirectionalArrow /> : <BiSolidUpArrowAlt />}
-          </VuiIcon>
-        </button>
+        <VuiTooltip tip={ariaLabel}>
+          <button className="vuiTableHeaderCell--sortable" onClick={handleSort} aria-label={ariaLabel} type="button">
+            <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
+            <VuiIcon
+              className={`vuiTableHeaderCell__icon ` + (sortDirection === "desc" && "vuiTableHeaderCell__icon--desc")}
+              size="s"
+            >
+              {sortDirection === "none" ? <BidirectionalArrow /> : <BiSolidUpArrowAlt />}
+            </VuiIcon>
+          </button>
+        </VuiTooltip>
       ) : (
         <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
       )}
