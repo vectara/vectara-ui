@@ -49,7 +49,7 @@ export const Table = () => {
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">("asc");
 
   const fetchPeople = () => {
     setIsLoading(true);
@@ -71,9 +71,14 @@ export const Table = () => {
     fetchPeople();
   };
 
-  const handleSort = (column: string, direction: "asc" | "desc") => {
-    setSortColumn(column);
-    setSortDirection(direction);
+  const handleSort = (column: string, direction: "asc" | "desc" | "none") => {
+    if (direction === "none") {
+      setSortColumn(null);
+      setSortDirection("none");
+    } else {
+      setSortColumn(column);
+      setSortDirection(direction);
+    }
     setCurrentPage(1);
   };
 
@@ -86,7 +91,7 @@ export const Table = () => {
       : [];
 
     // Apply sorting
-    const sortedPeople = sortColumn
+    const sortedPeople = sortColumn && sortDirection !== "none"
       ? [...filteredPeople].sort((a, b) => {
           const aValue = a[sortColumn as keyof Person];
           const bValue = b[sortColumn as keyof Person];

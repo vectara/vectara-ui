@@ -212,6 +212,16 @@
   }
 }
 
+.vuiTableHeaderCell--sortable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $sizeXs;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: $sizeXxs;
+}
+
 .vuiTableHeaderCell__icon {
   transition: 150ms ease-out;
 }

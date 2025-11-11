@@ -14,4 +14,4 @@ export type Column<T> = {
   testId?: string | ((row: T) => string);
 };
 
-export type OnSort = (column: string, direction: "asc" | "desc") => void;
+export type OnSort = (column: string, direction: "asc" | "desc" | "none") => void;

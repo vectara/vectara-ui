@@ -94,9 +94,22 @@ export const VuiTable = <T extends Row>({
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
+  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">("none");
 
   const { bulkActions, onSelectRow, selectedRows } = selection || {};
   const { value: searchValue } = search || {};
+
+  const handleSort = (columnName: string, direction: "asc" | "desc" | "none") => {
+    if (direction === "none") {
+      setSortColumn(null);
+      setSortDirection("none");
+    } else {
+      setSortColumn(columnName);
+      setSortDirection(direction);
+    }
+    onSort?.(columnName, direction);
+  };
 
   const isEmpty = !isLoading && rows.length === 0;
   // The user interacts with the table rows by selecting them or performing actions on them.
@@ -308,7 +321,11 @@ export const VuiTable = <T extends Row>({
 
               return (
                 <th key={name} style={styles}>
-                  <VuiTableHeaderCell column={column} onSort={onSort} />
+                  <VuiTableHeaderCell
+                    column={column}
+                    onSort={handleSort}
+                    sortDirection={sortColumn === name ? sortDirection : "none"}
+                  />
                 </th>
               );
             })}
