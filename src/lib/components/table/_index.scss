@@ -220,6 +220,11 @@
   font-size: inherit;
   font-weight: inherit;
   padding: $sizeXxs;
+
+  &:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
 }
 
 .vuiTableHeaderCell__icon {
@@ -228,4 +233,8 @@
 
 .vuiTableHeaderCell__icon--desc {
   transform: rotate(180deg);
+}
+
+.vuiTableHeaderCell__icon--none {
+  opacity: 0.75;
 }
