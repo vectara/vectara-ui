@@ -1,9 +1,9 @@
-import { BiSolidUpArrowAlt } from "react-icons/bi";
+import { BiRadioCircle, BiSolidUpArrowAlt } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiIcon } from "../icon/Icon";
 import { Column, OnSort, Row } from "./types";
-import BidirectionalArrow from "./BidirectionalArrow";
 import { VuiTooltip } from "../tooltip/Tooltip";
+import classNames from "classnames";
 
 export type Props<T> = {
   column: Column<T>;
@@ -32,12 +32,17 @@ export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirectio
   if (sortDirection === "asc") {
     ariaLabel = "Sort descending";
   } else if (sortDirection === "desc") {
-    ariaLabel = "No sorting";
+    ariaLabel = "Use default sort";
   } else {
     ariaLabel = "Sort ascending";
   }
 
   const isSortable = onSort && header.isSortable;
+
+  const iconClasses = classNames("vuiTableHeaderCell__icon", {
+    "vuiTableHeaderCell__icon--none": sortDirection === "none",
+    "vuiTableHeaderCell__icon--desc": sortDirection === "desc"
+  });
 
   return (
     <VuiFlexContainer spacing="xxs" alignItems="center" justifyContent="start">
@@ -45,11 +50,8 @@ export const VuiTableHeaderCell = <T extends Row>({ column, onSort, sortDirectio
         <VuiTooltip tip={ariaLabel}>
           <button className="vuiTableHeaderCell--sortable" onClick={handleSort} aria-label={ariaLabel} type="button">
             <div className="vuiTableHeaderCell__label">{header.render ? header.render() : name}</div>
-            <VuiIcon
-              className={`vuiTableHeaderCell__icon ` + (sortDirection === "desc" && "vuiTableHeaderCell__icon--desc")}
-              size="s"
-            >
-              {sortDirection === "none" ? <BidirectionalArrow /> : <BiSolidUpArrowAlt />}
+            <VuiIcon className={iconClasses} size="s" color={sortDirection === "none" ? "subdued" : "neutral"}>
+              {sortDirection === "none" ? <BiRadioCircle /> : <BiSolidUpArrowAlt />}
             </VuiIcon>
           </button>
         </VuiTooltip>
