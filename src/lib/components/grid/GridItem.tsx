@@ -30,14 +30,13 @@ export const VuiGridItem = ({
   const classes = classNames(
     "vuiGridItem",
     {
-      [`vuiGridItem--colSpan${colSpan}`]: !isColSpanResponsive && colSpan && typeof colSpan === "number" && colSpan <= 12,
+      [`vuiGridItem--colSpan${colSpan}`]:
+        !isColSpanResponsive && colSpan && typeof colSpan === "number" && colSpan <= 12,
       [`vuiGridItem--rowSpan${rowSpan}`]: rowSpan && typeof rowSpan === "number" && rowSpan <= 12,
-      // Position classes
       [`vuiGridItem--colStart${colStart}`]: colStart && typeof colStart === "number" && colStart <= 12,
       [`vuiGridItem--colEnd${colEnd}`]: colEnd && typeof colEnd === "number" && colEnd <= 12,
       [`vuiGridItem--rowStart${rowStart}`]: rowStart && typeof rowStart === "number" && rowStart <= 12,
       [`vuiGridItem--rowEnd${rowEnd}`]: rowEnd && typeof rowEnd === "number" && rowEnd <= 12,
-      // Alignment classes
       [`vuiGridItem--alignSelf${alignSelf?.charAt(0).toUpperCase()}${alignSelf?.slice(1)}`]: alignSelf,
       [`vuiGridItem--justifySelf${justifySelf?.charAt(0).toUpperCase()}${justifySelf?.slice(1)}`]: justifySelf
     },
@@ -71,8 +70,7 @@ export const VuiGridItem = ({
       style["--grid-item-colSpan-lg"] = normalizeGridSpan(lgValue);
       dataAttributes["data-colSpan-lg"] = "true";
     }
-  }
-  else if (colSpan === "auto" || (typeof colSpan === "number" && colSpan > 12)) {
+  } else if (colSpan === "auto" || (typeof colSpan === "number" && colSpan > 12)) {
     style.gridColumn = colSpan === "auto" ? "auto" : `span ${colSpan}`;
   }
 
@@ -106,12 +104,7 @@ export const VuiGridItem = ({
   }
 
   return (
-    <div
-      className={classes}
-      style={Object.keys(style).length > 0 ? style : undefined}
-      {...dataAttributes}
-      {...rest}
-    >
+    <div className={classes} style={Object.keys(style).length > 0 ? style : undefined} {...dataAttributes} {...rest}>
       {children}
     </div>
   );
