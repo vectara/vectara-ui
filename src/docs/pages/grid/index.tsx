@@ -3,12 +3,14 @@ import { GridSpanning } from "./GridSpanning";
 import { GridTemplateAreas } from "./GridTemplateAreas";
 import { GridSimple } from "./GridSimple";
 import { GridAlignment } from "./GridAlignment";
+import { GridResponsive } from "./GridResponsive";
 
 const GridSource = require("!!raw-loader!./Grid");
 const GridSpanningSource = require("!!raw-loader!./GridSpanning");
 const GridTemplateAreasSource = require("!!raw-loader!./GridTemplateAreas");
 const GridSimpleSource = require("!!raw-loader!./GridSimple");
 const GridAlignmentSource = require("!!raw-loader!./GridAlignment");
+const GridResponsiveSource = require("!!raw-loader!./GridResponsive");
 
 export const grid = {
   name: "Grid",
@@ -38,6 +40,11 @@ export const grid = {
       name: "Alignment",
       component: <GridAlignment />,
       source: GridAlignmentSource.default.toString()
+    },
+    {
+      name: "Responsive Columns",
+      component: <GridResponsive />,
+      source: GridResponsiveSource.default.toString()
     }
   ]
 };
