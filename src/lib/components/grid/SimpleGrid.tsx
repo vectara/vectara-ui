@@ -23,14 +23,12 @@ export const VuiSimpleGrid = ({
   className,
   ...rest
 }: Props) => {
-  // Calculate grid template columns based on props
   let templateColumns: string | undefined;
 
   if (minChildWidth) {
     // Use auto-fit with minmax for responsive behavior
     templateColumns = `repeat(auto-fit, minmax(${minChildWidth}, 1fr))`;
   } else if (typeof columns === "number") {
-    // Fixed number of columns
     templateColumns = `repeat(${columns}, 1fr)`;
   } else if (columns && typeof columns === "object") {
     // TODO: Responsive columns object - would need media queries or container queries

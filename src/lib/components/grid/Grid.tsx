@@ -17,23 +17,19 @@ type Props = {
   children?: React.ReactNode;
   columns?: Columns;
   spacing?: FlexSpacing;
-  // New grid layout props
   templateColumns?: ResponsiveValue<string>;
   templateRows?: string;
   templateAreas?: string;
   autoFlow?: GridAutoFlow;
   autoColumns?: string;
   autoRows?: string;
-  // Gap control (enhanced)
-  gap?: FlexSpacing; // Unified gap (alias for spacing)
-  rowGap?: FlexSpacing; // Individual row gap
-  columnGap?: FlexSpacing; // Individual column gap
-  // Alignment
+  gap?: FlexSpacing;
+  rowGap?: FlexSpacing;
+  columnGap?: FlexSpacing;
   alignItems?: GridAlignItems;
   justifyItems?: GridJustifyItems;
   alignContent?: GridAlignContent;
   justifyContent?: GridJustifyContent;
-  // Display options
   inline?: boolean;
   fullWidth?: boolean;
   className?: string;
@@ -66,27 +62,19 @@ export const VuiGrid = ({
 
   const classes = classNames("vuiGridContainer", className);
 
-  const contentClasses = classNames(
-    "vuiGrid",
-    // Gap classes
-    {
-      [`vuiGrid--${effectiveGap}`]: effectiveGap && !rowGap && !columnGap,
-      [`vuiGrid--rowGap${rowGap}`]: rowGap,
-      [`vuiGrid--columnGap${columnGap}`]: columnGap,
-      // Legacy columns class (only used if templateColumns not provided)
-      [`vuiGrid--columns${columns}`]: !templateColumns && columns,
-      // Auto flow
-      [`vuiGrid--autoFlow${autoFlow?.replace(/\s/g, "-")}`]: autoFlow,
-      // Alignment
-      [`vuiGrid--alignItems${alignItems?.charAt(0).toUpperCase()}${alignItems?.slice(1)}`]: alignItems,
-      [`vuiGrid--justifyItems${justifyItems?.charAt(0).toUpperCase()}${justifyItems?.slice(1)}`]: justifyItems,
-      [`vuiGrid--alignContent${alignContent?.charAt(0).toUpperCase()}${alignContent?.slice(1)}`]: alignContent,
-      [`vuiGrid--justifyContent${justifyContent?.charAt(0).toUpperCase()}${justifyContent?.slice(1)}`]: justifyContent,
-      // Display options
-      "vuiGrid--inline": inline,
-      "vuiGrid--fullWidth": fullWidth
-    }
-  );
+  const contentClasses = classNames("vuiGrid", {
+    [`vuiGrid--${effectiveGap}`]: effectiveGap && !rowGap && !columnGap,
+    [`vuiGrid--rowGap${rowGap}`]: rowGap,
+    [`vuiGrid--columnGap${columnGap}`]: columnGap,
+    [`vuiGrid--columns${columns}`]: !templateColumns && columns,
+    [`vuiGrid--autoFlow${autoFlow?.replace(/\s/g, "-")}`]: autoFlow,
+    [`vuiGrid--alignItems${alignItems?.charAt(0).toUpperCase()}${alignItems?.slice(1)}`]: alignItems,
+    [`vuiGrid--justifyItems${justifyItems?.charAt(0).toUpperCase()}${justifyItems?.slice(1)}`]: justifyItems,
+    [`vuiGrid--alignContent${alignContent?.charAt(0).toUpperCase()}${alignContent?.slice(1)}`]: alignContent,
+    [`vuiGrid--justifyContent${justifyContent?.charAt(0).toUpperCase()}${justifyContent?.slice(1)}`]: justifyContent,
+    "vuiGrid--inline": inline,
+    "vuiGrid--fullWidth": fullWidth
+  });
 
   const gridStyle: React.CSSProperties & Record<string, any> = {};
   const dataAttributes: Record<string, string> = {};
