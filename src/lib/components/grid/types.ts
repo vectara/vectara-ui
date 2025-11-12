@@ -1,5 +1,12 @@
 import React from "react";
 
+export type ResponsiveValue<T> = T | {
+  default?: T; // fallback value that applies when no breakpoint matches
+  sm?: T;      // applies from 0px up
+  md?: T;      // > 500px container width
+  lg?: T;      // > 800px container width
+};
+
 export const GRID_AUTO_FLOW = ["row", "column", "dense", "row dense", "column dense"] as const;
 export type GridAutoFlow = (typeof GRID_AUTO_FLOW)[number];
 
@@ -45,7 +52,7 @@ export type SimpleGridColumns = number | Record<string, number>;
 export interface GridItemProps {
   children?: React.ReactNode;
   area?: string;
-  colSpan?: GridSpan;
+  colSpan?: ResponsiveValue<GridSpan>;
   rowSpan?: GridSpan;
   colStart?: GridLine;
   colEnd?: GridLine;

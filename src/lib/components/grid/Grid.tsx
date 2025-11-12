@@ -6,7 +6,8 @@ import {
   GridAlignItems,
   GridJustifyItems,
   GridAlignContent,
-  GridJustifyContent
+  GridJustifyContent,
+  ResponsiveValue
 } from "./types";
 
 export const COLUMNS = [1, 2, 3, 4] as const;
@@ -17,7 +18,7 @@ type Props = {
   columns?: Columns;
   spacing?: FlexSpacing;
   // New grid layout props
-  templateColumns?: string;
+  templateColumns?: ResponsiveValue<string>;
   templateRows?: string;
   templateAreas?: string;
   autoFlow?: GridAutoFlow;
@@ -75,7 +76,7 @@ export const VuiGrid = ({
       // Legacy columns class (only used if templateColumns not provided)
       [`vuiGrid--columns${columns}`]: !templateColumns && columns,
       // Auto flow
-      [`vuiGrid--autoFlow${autoFlow?.replace(/\s/g, '-')}`]: autoFlow,
+      [`vuiGrid--autoFlow${autoFlow?.replace(/\s/g, "-")}`]: autoFlow,
       // Alignment
       [`vuiGrid--alignItems${alignItems?.charAt(0).toUpperCase()}${alignItems?.slice(1)}`]: alignItems,
       [`vuiGrid--justifyItems${justifyItems?.charAt(0).toUpperCase()}${justifyItems?.slice(1)}`]: justifyItems,
@@ -87,10 +88,33 @@ export const VuiGrid = ({
     }
   );
 
-  const gridStyle: React.CSSProperties = {};
+  const gridStyle: React.CSSProperties & Record<string, any> = {};
+  const dataAttributes: Record<string, string> = {};
 
   if (templateColumns) {
-    gridStyle.gridTemplateColumns = templateColumns;
+    if (typeof templateColumns === "string") {
+      gridStyle.gridTemplateColumns = templateColumns;
+    } else {
+      // Implement cascading: each breakpoint inherits from the previous if not defined
+      // If 'default' is specified, use it as the base fallback value
+      const defaultValue = templateColumns.default;
+      const smValue = templateColumns.sm || defaultValue;
+      const mdValue = templateColumns.md || smValue;
+      const lgValue = templateColumns.lg || mdValue;
+
+      if (smValue) {
+        gridStyle["--grid-template-sm"] = smValue;
+        dataAttributes["data-responsive-sm"] = "true";
+      }
+      if (mdValue) {
+        gridStyle["--grid-template-md"] = mdValue;
+        dataAttributes["data-responsive-md"] = "true";
+      }
+      if (lgValue) {
+        gridStyle["--grid-template-lg"] = lgValue;
+        dataAttributes["data-responsive-lg"] = "true";
+      }
+    }
   }
 
   if (templateRows) {
@@ -111,7 +135,11 @@ export const VuiGrid = ({
 
   return (
     <div className={classes} {...rest}>
-      <div className={contentClasses} style={Object.keys(gridStyle).length > 0 ? gridStyle : undefined}>
+      <div
+        className={contentClasses}
+        style={Object.keys(gridStyle).length > 0 ? gridStyle : undefined}
+        {...dataAttributes}
+      >
         {children}
       </div>
     </div>

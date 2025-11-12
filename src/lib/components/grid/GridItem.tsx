@@ -1,6 +1,15 @@
 import React from "react";
 import classNames from "classnames";
-import { GridItemProps } from "./types";
+import { GridItemProps, GridSpan } from "./types";
+
+const isResponsiveValue = <T,>(value: any): value is { default?: T; sm?: T; md?: T; lg?: T } => {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+};
+
+const normalizeGridSpan = (value: GridSpan): string => {
+  if (value === "auto") return "auto";
+  return `span ${value}`;
+};
 
 export const VuiGridItem = ({
   children,
@@ -16,11 +25,12 @@ export const VuiGridItem = ({
   className,
   ...rest
 }: GridItemProps) => {
+  const isColSpanResponsive = isResponsiveValue(colSpan);
+
   const classes = classNames(
     "vuiGridItem",
     {
-      // Span classes
-      [`vuiGridItem--colSpan${colSpan}`]: colSpan && typeof colSpan === "number" && colSpan <= 12,
+      [`vuiGridItem--colSpan${colSpan}`]: !isColSpanResponsive && colSpan && typeof colSpan === "number" && colSpan <= 12,
       [`vuiGridItem--rowSpan${rowSpan}`]: rowSpan && typeof rowSpan === "number" && rowSpan <= 12,
       // Position classes
       [`vuiGridItem--colStart${colStart}`]: colStart && typeof colStart === "number" && colStart <= 12,
@@ -34,14 +44,35 @@ export const VuiGridItem = ({
     className
   );
 
-  const style: React.CSSProperties = {};
+  const style: React.CSSProperties & Record<string, any> = {};
+  const dataAttributes: Record<string, string> = {};
 
   if (area) {
     style.gridArea = area;
   }
 
-  // Handle span values that are auto or > 12
-  if (colSpan === "auto" || (typeof colSpan === "number" && colSpan > 12)) {
+  if (isColSpanResponsive) {
+    // Implement cascading: each breakpoint inherits from the previous if not defined
+    // If 'default' is specified, use it as the base fallback value
+    const defaultValue = colSpan.default;
+    const smValue = colSpan.sm !== undefined ? colSpan.sm : defaultValue;
+    const mdValue = colSpan.md !== undefined ? colSpan.md : smValue;
+    const lgValue = colSpan.lg !== undefined ? colSpan.lg : mdValue;
+
+    if (smValue !== undefined) {
+      style["--grid-item-colSpan-sm"] = normalizeGridSpan(smValue);
+      dataAttributes["data-colSpan-sm"] = "true";
+    }
+    if (mdValue !== undefined) {
+      style["--grid-item-colSpan-md"] = normalizeGridSpan(mdValue);
+      dataAttributes["data-colSpan-md"] = "true";
+    }
+    if (lgValue !== undefined) {
+      style["--grid-item-colSpan-lg"] = normalizeGridSpan(lgValue);
+      dataAttributes["data-colSpan-lg"] = "true";
+    }
+  }
+  else if (colSpan === "auto" || (typeof colSpan === "number" && colSpan > 12)) {
     style.gridColumn = colSpan === "auto" ? "auto" : `span ${colSpan}`;
   }
 
@@ -75,7 +106,12 @@ export const VuiGridItem = ({
   }
 
   return (
-    <div className={classes} style={Object.keys(style).length > 0 ? style : undefined} {...rest}>
+    <div
+      className={classes}
+      style={Object.keys(style).length > 0 ? style : undefined}
+      {...dataAttributes}
+      {...rest}
+    >
       {children}
     </div>
   );
