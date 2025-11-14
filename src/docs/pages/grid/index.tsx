@@ -1,13 +1,11 @@
 import { Grid } from "./Grid";
 import { GridSpanning } from "./GridSpanning";
-import { GridTemplateAreas } from "./GridTemplateAreas";
 import { GridSimple } from "./GridSimple";
 import { GridAlignment } from "./GridAlignment";
 import { GridResponsive } from "./GridResponsive";
 
 const GridSource = require("!!raw-loader!./Grid");
 const GridSpanningSource = require("!!raw-loader!./GridSpanning");
-const GridTemplateAreasSource = require("!!raw-loader!./GridTemplateAreas");
 const GridSimpleSource = require("!!raw-loader!./GridSimple");
 const GridAlignmentSource = require("!!raw-loader!./GridAlignment");
 const GridResponsiveSource = require("!!raw-loader!./GridResponsive");
@@ -17,22 +15,17 @@ export const grid = {
   path: "/grid",
   examples: [
     {
-      name: "Basic Grid",
+      name: "Basic grid",
       component: <Grid />,
       source: GridSource.default.toString()
     },
     {
-      name: "Column and Row Spanning",
+      name: "Column and row spanning",
       component: <GridSpanning />,
       source: GridSpanningSource.default.toString()
     },
     {
-      name: "Template Areas",
-      component: <GridTemplateAreas />,
-      source: GridTemplateAreasSource.default.toString()
-    },
-    {
-      name: "SimpleGrid",
+      name: "Simple grid",
       component: <GridSimple />,
       source: GridSimpleSource.default.toString()
     },
@@ -42,7 +35,7 @@ export const grid = {
       source: GridAlignmentSource.default.toString()
     },
     {
-      name: "Responsive Columns",
+      name: "Responsive columns",
       component: <GridResponsive />,
       source: GridResponsiveSource.default.toString()
     }

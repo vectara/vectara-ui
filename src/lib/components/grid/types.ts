@@ -7,9 +7,6 @@ export type ResponsiveValue<T> = T | {
   lg?: T;      // > 800px container width
 };
 
-export const GRID_AUTO_FLOW = ["row", "column", "dense", "row dense", "column dense"] as const;
-export type GridAutoFlow = (typeof GRID_AUTO_FLOW)[number];
-
 export const GRID_ALIGN_ITEMS = ["start", "end", "center", "stretch", "baseline"] as const;
 export type GridAlignItems = (typeof GRID_ALIGN_ITEMS)[number];
 

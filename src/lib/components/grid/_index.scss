@@ -96,27 +96,6 @@ $spacing: (
   }
 }
 
-// Auto-flow options
-.vuiGrid--autoFlowrow {
-  grid-auto-flow: row;
-}
-
-.vuiGrid--autoFlowcolumn {
-  grid-auto-flow: column;
-}
-
-.vuiGrid--autoFlowdense {
-  grid-auto-flow: dense;
-}
-
-.vuiGrid--autoFlowrow-dense {
-  grid-auto-flow: row dense;
-}
-
-.vuiGrid--autoFlowcolumn-dense {
-  grid-auto-flow: column dense;
-}
-
 // Alignment - align-items
 .vuiGrid--alignItemsStart {
   align-items: start;

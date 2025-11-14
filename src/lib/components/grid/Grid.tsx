@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import { FlexSpacing } from "../flex/types";
 import {
-  GridAutoFlow,
   GridAlignItems,
   GridJustifyItems,
   GridAlignContent,
@@ -19,10 +18,6 @@ type Props = {
   spacing?: FlexSpacing;
   templateColumns?: ResponsiveValue<string>;
   templateRows?: string;
-  templateAreas?: string;
-  autoFlow?: GridAutoFlow;
-  autoColumns?: string;
-  autoRows?: string;
   gap?: FlexSpacing;
   rowGap?: FlexSpacing;
   columnGap?: FlexSpacing;
@@ -41,10 +36,6 @@ export const VuiGrid = ({
   spacing = "m",
   templateColumns,
   templateRows,
-  templateAreas,
-  autoFlow,
-  autoColumns,
-  autoRows,
   gap,
   rowGap,
   columnGap,
@@ -67,7 +58,6 @@ export const VuiGrid = ({
     [`vuiGrid--rowGap${rowGap}`]: rowGap,
     [`vuiGrid--columnGap${columnGap}`]: columnGap,
     [`vuiGrid--columns${columns}`]: !templateColumns && columns,
-    [`vuiGrid--autoFlow${autoFlow?.replace(/\s/g, "-")}`]: autoFlow,
     [`vuiGrid--alignItems${alignItems?.charAt(0).toUpperCase()}${alignItems?.slice(1)}`]: alignItems,
     [`vuiGrid--justifyItems${justifyItems?.charAt(0).toUpperCase()}${justifyItems?.slice(1)}`]: justifyItems,
     [`vuiGrid--alignContent${alignContent?.charAt(0).toUpperCase()}${alignContent?.slice(1)}`]: alignContent,
@@ -107,18 +97,6 @@ export const VuiGrid = ({
 
   if (templateRows) {
     gridStyle.gridTemplateRows = templateRows;
-  }
-
-  if (templateAreas) {
-    gridStyle.gridTemplateAreas = templateAreas;
-  }
-
-  if (autoColumns) {
-    gridStyle.gridAutoColumns = autoColumns;
-  }
-
-  if (autoRows) {
-    gridStyle.gridAutoRows = autoRows;
   }
 
   return (
