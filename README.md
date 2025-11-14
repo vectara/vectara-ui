@@ -34,7 +34,7 @@ We use these principles to guide how we design components, utilities, and other 
 
 ### Features must have clear use cases
 
-- Adding code is easy. Removing code is hard. So try not to add code.
+- Adding code is easy. Removing code is hard. Try not to add code.
 - Only add code if we'll use it.
 - If we'll use the code, demonstrate how with an example in the docs.
 
@@ -48,7 +48,7 @@ We use these principles to guide how we design components, utilities, and other 
 
 - Nobody enjoys CSS. The primary interface of VUI is React and TS, not CSS.
 - Design props as abstractions over the CSS. Optimize for common use cases.
-- Expect the consumer to think about the CSS as a last resort.
+- Expect the consuming developer to think about the CSS as a last resort.
 
 ### Components should be composable
 
@@ -58,7 +58,7 @@ We use these principles to guide how we design components, utilities, and other 
 
 ### Optimize for greppability
 
-- JS refers to CSS via strings. Our tools don't tel us when those references break.
+- JS refers to CSS via strings. Our tools don't tell us when those references break.
 - Grep is the best way to find relevant CSS class names.
 - Write CSS class names out fully. Avoid Sass concatenation outside of loops.
 
