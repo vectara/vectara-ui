@@ -28,6 +28,40 @@ If you are using Sass and need Vectara UI's Sass variables, you can use this imp
 @import "@vectara/vectara-ui/lib/sassUtils/index";
 ```
 
+## Software design principles
+
+We use these principles to guide how we design components, utilities, and other code in VUI.
+
+### Features must have clear use cases
+
+- Adding code is easy. Removing code is hard. So try not to add code.
+- Only add code if we'll use it.
+- If we'll use the code, demonstrate how with an example in the docs.
+
+### Module surface area should be as small as possible
+
+- Nobody enjoys tracking dependencies.
+- Modules with many exports make it hard to know which exports matter.
+- Keep modules simple. Export only what the consumer will need.
+
+### Props should be opinionated
+
+- Nobody enjoys CSS. The primary interface of VUI is React and TS, not CSS.
+- Design props as abstractions over the CSS. Optimize for common use cases.
+- Expect the consumer to think about the CSS as a last resort.
+
+### Components should be composable
+
+- Treat components like Legos.
+- Only add a feature to a component if it can't be done by putting components together.
+- If you're writing a lot of custom code in an example, consider moving it to a component.
+
+### Optimize for greppability
+
+- JS refers to CSS via strings. Our tools don't tel us when those references break.
+- Grep is the best way to find relevant CSS class names.
+- Write CSS class names out fully. Avoid Sass concatenation outside of loops.
+
 ## Publishing
 
 Publishing a new version of the package consists of three steps:
