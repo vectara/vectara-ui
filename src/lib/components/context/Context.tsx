@@ -20,6 +20,7 @@ type Props = {
   pathProvider?: PathProvider;
   drawerTitle?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   theme?: Theme;
+  isThemeIsolated?: boolean;
 };
 
 export const VuiContextProvider = ({
@@ -27,7 +28,8 @@ export const VuiContextProvider = ({
   linkProvider,
   pathProvider,
   drawerTitle = "h2",
-  theme = LIGHT_THEME
+  theme = LIGHT_THEME,
+  isThemeIsolated
 }: Props) => {
   const createLink = (linkConfig: LinkProps) => {
     if (linkProvider) return linkProvider(linkConfig);
@@ -53,12 +55,14 @@ export const VuiContextProvider = ({
   }, [theme]);
 
   useEffect(() => {
+    if (isThemeIsolated) return;
+
     // Apply the CSS variables to the document root
     const root = document.documentElement;
     Object.entries(cssVariables).forEach(([key, value]) => {
       root.style.setProperty(key, value);
     });
-  }, [cssVariables]);
+  }, [isThemeIsolated, cssVariables]);
 
   const getThemeStyle = (theme: "dark" | "light") => {
     if (theme === "dark") {
@@ -68,8 +72,12 @@ export const VuiContextProvider = ({
     return toStyle(LIGHT_THEME);
   };
 
+  const themedChildren = isThemeIsolated ? <div style={cssVariables}>{children}</div> : children;
+
   return (
-    <VuiContext.Provider value={{ createLink, getPath, DrawerTitle, getThemeStyle }}>{children}</VuiContext.Provider>
+    <VuiContext.Provider value={{ createLink, getPath, DrawerTitle, getThemeStyle }}>
+      {themedChildren}
+    </VuiContext.Provider>
   );
 };
 
