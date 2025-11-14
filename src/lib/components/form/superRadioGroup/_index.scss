@@ -10,20 +10,20 @@
   cursor: pointer;
   text-decoration: none;
   transition: all $transitionSpeed;
-  text-decoration-color: var(--color-text);
+  text-decoration-color: var(--vui-color-text);
   text-align: left;
 
   &:hover {
     text-decoration: underline;
-    text-decoration-color: var(--color-primary);
-    background-color: var(--color-primary-lighter-shade);
+    text-decoration-color: var(--vui-color-primary-shade);
+    background-color: var(--vui-color-primary-lighter-shade);
 
     .vuiSuperRadioButton__text {
-      color: var(--color-primary) !important;
+      color: var(--vui-color-primary-shade) !important;
     }
   }
 }
 
 .vuiSuperRadioButton__description {
-  color: $colorSubdued;
+  color: var(--vui-color-subdued-shade);
 }

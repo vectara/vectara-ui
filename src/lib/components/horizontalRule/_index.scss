@@ -11,25 +11,25 @@
 // Color
 $color: (
   accent: (
-    "border-color": var(--color-accent)
+    "border-color": var(--vui-color-accent-shade)
   ),
   primary: (
-    "border-color": var(--color-primary)
+    "border-color": var(--vui-color-primary-shade)
   ),
   success: (
-    "border-color": var(--color-success)
+    "border-color": var(--vui-color-success-shade)
   ),
   danger: (
-    "border-color": var(--color-danger)
+    "border-color": var(--vui-color-danger-shade)
   ),
   warning: (
-    "border-color": var(--color-warning)
+    "border-color": var(--vui-color-warning-shade)
   ),
   neutral: (
-    "border-color": var(--color-border)
+    "border-color": var(--vui-color-border-medium)
   ),
   subdued: (
-    "border-color": var(--color-border-light)
+    "border-color": var(--vui-color-border-light)
   )
 );
 

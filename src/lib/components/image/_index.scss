@@ -28,14 +28,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $colorLightShade;
+  background-color: var(--vui-color-light-shade);
   border-radius: $sizeXxs;
 
   &--error {
-    background-color: var(--color-danger-lighter-shade);
+    background-color: var(--vui-color-danger-lighter-shade);
 
     p {
-      color: var(--color-danger);
+      color: var(--vui-color-danger-shade);
     }
   }
 }
@@ -64,7 +64,7 @@
 
 .vuiImagePreview__mask {
   height: 100%;
-  background-color: transparentize($colorFullShade, 0.4);
+  background-color: rgba(var(--vui-color-full-shade-rgb), 0.6);
 }
 
 .vuiImagePreview__header {
@@ -74,7 +74,7 @@
   right: 0;
   height: $sizeL * 2;
   padding: $sizeS $sizeM;
-  background-color: $colorFullShade;
+  background-color: var(--vui-color-full-shade);
 }
 
 .vuiImagePreview__closeButton {

@@ -24,9 +24,9 @@ $minChatWidth: 600px;
 .vuiChatButton {
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
-  color: var(--color-text);
-  background-color: var(--color-primary-lighter-shade);
-  border: 1px solid var(--color-border);
+  color: var(--vui-color-text);
+  background-color: var(--vui-color-primary-lighter-shade);
+  border: 1px solid var(--vui-color-border-medium);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: all $transitionSpeed;
   animation: popUp 0.4s cubic-bezier(0.5, 0, 0.5, 1) 1;
@@ -58,8 +58,8 @@ $minChatWidth: 600px;
   max-width: 420px;
   border-radius: $sizeXs;
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  background-color: $colorLightShade;
+  border: 1px solid var(--vui-color-border-medium);
+  background-color: var(--vui-color-light-shade);
 
   @media screen and (max-height: $minChatHeight) {
     & {
@@ -103,8 +103,8 @@ $minChatWidth: 600px;
 .vuiChat__header {
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
-  color: var(--color-text);
-  background-color: var(--color-primary-lighter-shade);
+  color: var(--vui-color-text);
+  background-color: var(--vui-color-primary-lighter-shade);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   // Ensure shadow overlaps on top of conversation.
   z-index: 2;
@@ -119,7 +119,7 @@ $minChatWidth: 600px;
 .vuiChat__introduction {
   padding: $sizeM $sizeL 0;
   font-size: $fontSizeStandard;
-  color: $colorFullShade;
+  color: var(--vui-color-full-shade);
 }
 
 .vuiChat__turns {
@@ -131,7 +131,7 @@ $minChatWidth: 600px;
 }
 
 .vuiChat__input {
-  border-top: 1px solid var(--color-border-light);
+  border-top: 1px solid var(--vui-color-border-light);
   padding: $sizeXs $sizeS;
 }
 
@@ -144,7 +144,7 @@ $minChatWidth: 600px;
   bottom: $sizeXxs;
   padding: $sizeXxs $sizeS;
   overflow-y: auto;
-  background-color: $colorEmptyShade;
-  border: 1px solid var(--color-border);
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-border-medium);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }

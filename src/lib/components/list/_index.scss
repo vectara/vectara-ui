@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   border-radius: $sizeL;
-  background-color: $colorLightShade;
-  color: $colorSubdued;
+  background-color: var(--vui-color-light-shade);
+  color: var(--vui-color-subdued-shade);
   font-weight: $fontWeightBold;
   line-height: 0;
   align-items: center;
@@ -24,6 +24,6 @@
 }
 
 .vuiListNumber-isComplete {
-  background-color: var(--color-accent-lighter-shade);
-  color: var(--color-accent);
+  background-color: var(--vui-color-accent-lighter-shade);
+  color: var(--vui-color-accent-shade);
 }

@@ -1,8 +1,8 @@
 .vuiInput {
   appearance: none;
   border-radius: $sizeXxs;
-  border: 1px solid $colorMediumShade;
-  background-color: $colorEmptyShade;
+  border: 1px solid var(--vui-color-medium-shade);
+  background-color: var(--vui-color-empty-shade);
 }
 
 .vuiInput--m {
@@ -25,5 +25,5 @@
 }
 
 .vuiInput-isInvalid {
-  border-color: var(--color-danger);
+  border-color: var(--vui-color-danger-shade);
 }

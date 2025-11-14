@@ -1,7 +1,7 @@
 .vuiTextArea {
   appearance: none;
   border-radius: $sizeXxs;
-  border: 1px solid $colorMediumShade;
+  border: 1px solid var(--vui-color-medium-shade);
   max-width: 100%;
   resize: none;
   min-height: 80px;
@@ -10,7 +10,7 @@
 }
 
 .vuiTextArea-isInvalid {
-  border-color: var(--color-danger);
+  border-color: var(--vui-color-danger-shade);
 }
 
 .vuiTextArea--fullWidth {

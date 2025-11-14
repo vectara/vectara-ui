@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import { useState, cloneElement } from "react";
 import { Tooltip, TooltipRefProps } from "react-tooltip";
+import { useVuiContext } from "../context/Context";
 
 export type Props = {
   children: React.ReactNode;
@@ -14,24 +14,22 @@ const generateTooltipId = () => {
 };
 
 export const VuiTooltip = ({ children, darkTheme, position, tip }: Props) => {
+  const { getThemeStyle } = useVuiContext();
   const [id] = useState(generateTooltipId());
 
   const target = cloneElement(children as React.ReactElement, {
     "data-tooltip-id": id
   });
 
-  const classes = classNames("vuiTooltip", {
-    vuiThemeDark: darkTheme,
-    // Tooltips can be used in a dark-themed component, so we need to explicitly set
-    // the light theme class in order to enable having a different theme than the
-    // parent.
-    vuiThemeLight: darkTheme === false
-  });
+  // Tooltips can be used in a dark-themed component, so we need to explicitly set
+  // the light theme class in order to enable having a different theme than the
+  // parent.
+  const style = getThemeStyle(darkTheme ? "dark" : "light");
 
   return (
     <>
       {target}
-      <Tooltip id={id} offset={10} className={classes} opacity={1} place={position}>
+      <Tooltip id={id} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
         {tip}
       </Tooltip>
     </>

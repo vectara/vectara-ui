@@ -3,7 +3,7 @@
   cursor: text;
 
   &:focus-visible {
-    outline: var(--color-primary) auto $sizeXxxs;
+    outline: var(--vui-color-primary-shade) auto $sizeXxxs;
     outline-offset: $sizeXxxs;
     -moz-outline-radius: $sizeXxs;
   }

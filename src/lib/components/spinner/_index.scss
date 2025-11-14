@@ -7,28 +7,28 @@
 // Color
 $color: (
   accent: (
-    "color": var(--color-accent)
+    "color": var(--vui-color-accent-shade)
   ),
   primary: (
-    "color": var(--color-primary)
+    "color": var(--vui-color-primary-shade)
   ),
   success: (
-    "color": var(--color-success)
+    "color": var(--vui-color-success-shade)
   ),
   danger: (
-    "color": var(--color-danger)
+    "color": var(--vui-color-danger-shade)
   ),
   warning: (
-    "color": var(--color-warning)
+    "color": var(--vui-color-warning-shade)
   ),
   empty: (
-    "color": $colorEmptyShade
+    "color": var(--vui-color-empty-shade)
   ),
   dark: (
-    "color": $colorDarkerShade
+    "color": var(--vui-color-darker-shade)
   ),
   subdued: (
-    "color": $colorSubdued
+    "color": var(--vui-color-subdued-shade)
   )
 );
 

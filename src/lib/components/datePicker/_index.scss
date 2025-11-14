@@ -9,25 +9,25 @@
   }
 
   .react-datepicker__header {
-    border-bottom: 1px solid var(--color-border-light);
-    background-color: $colorEmptyShade;
+    border-bottom: 1px solid var(--vui-color-border-light);
+    background-color: var(--vui-color-empty-shade);
     padding: $sizeXs 0;
   }
 
   .react-datepicker__navigation-icon::before {
-    border-color: $colorMediumShade;
+    border-color: var(--vui-color-medium-shade);
   }
 
   .react-datepicker__navigation:hover *::before {
-    border-color: var(--color-primary);
+    border-color: var(--vui-color-primary-shade);
   }
 
   .react-datepicker__current-month {
-    color: var(--color-text);
+    color: var(--vui-color-text);
   }
 
   .react-datepicker__month-container {
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--vui-color-border-light);
   }
 
   .react-datepicker__month {
@@ -35,19 +35,19 @@
   }
 
   .react-datepicker__day-name {
-    color: $colorSubdued;
+    color: var(--vui-color-subdued-shade);
   }
 
   .react-datepicker__day {
-    color: var(--color-text);
+    color: var(--vui-color-text);
     margin: 1px;
-    border: 1px solid $colorEmptyShade;
+    border: 1px solid var(--vui-color-empty-shade);
     width: $sizeXl;
     line-height: $sizeXl;
 
     &:not([aria-disabled="true"]):hover {
       border-radius: $sizeXxs;
-      background-color: $colorLightShade;
+      background-color: var(--vui-color-light-shade);
     }
   }
 
@@ -55,13 +55,13 @@
   .react-datepicker__day--in-range,
   .react-datepicker__day--in-selecting-range,
   .react-datepicker__day--range-end {
-    background-color: var(--color-primary) !important;
-    color: $colorEmptyShade;
+    background-color: var(--vui-color-primary-shade) !important;
+    color: var(--vui-color-empty-shade);
     border-radius: $sizeXxs;
   }
 
   .react-datepicker__day--keyboard-selected {
-    background-color: $colorEmptyShade;
+    background-color: var(--vui-color-empty-shade);
   }
 
   .react-datepicker__today-button {
@@ -72,7 +72,7 @@
     text-align: left;
 
     &:hover {
-      color: var(--color-primary);
+      color: var(--vui-color-primary-shade);
     }
   }
 
@@ -81,14 +81,14 @@
   }
 
   .react-datepicker__time-list-item--selected {
-    background-color: var(--color-primary) !important;
-    color: $colorEmptyShade !important;
+    background-color: var(--vui-color-primary-shade) !important;
+    color: var(--vui-color-empty-shade) !important;
   }
 }
 
 .vuiDatePicker--inline {
   .react-datepicker {
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--vui-color-border-medium);
   }
 }
 

@@ -7,13 +7,13 @@
 
 // Color
 $color: (
-  accent: var(--color-accent),
-  primary: var(--color-primary),
-  success: var(--color-success),
-  warning: var(--color-warning),
-  danger: var(--color-danger),
-  neutral: var(--color-text),
-  subdued: var(--color-subdued)
+  accent: var(--vui-color-accent-shade),
+  primary: var(--vui-color-primary-shade),
+  success: var(--vui-color-success-shade),
+  warning: var(--vui-color-warning-shade),
+  danger: var(--vui-color-danger-shade),
+  neutral: var(--vui-color-text),
+  subdued: var(--vui-color-subdued)
 );
 
 @each $colorName, $colorValue in $color {

@@ -7,38 +7,38 @@
 }
 
 .vuiButtonSecondary--solid {
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
 }
 
 // Color
 $color: (
   accent: (
-    "border-color": rgba(var(--color-accent-rgb), 0.5),
-    "color": var(--color-accent)
+    "border-color": rgba(var(--vui-color-accent-shade-rgb), 0.5),
+    "color": var(--vui-color-accent-shade)
   ),
   primary: (
-    "border-color": rgba(var(--color-primary-rgb), 0.5),
-    "color": var(--color-primary)
+    "border-color": rgba(var(--vui-color-primary-shade-rgb), 0.5),
+    "color": var(--vui-color-primary-shade)
   ),
   success: (
-    "border-color": rgba(var(--color-success-rgb), 0.5),
-    "color": var(--color-success)
+    "border-color": rgba(var(--vui-color-success-shade-rgb), 0.5),
+    "color": var(--vui-color-success-shade)
   ),
   danger: (
-    "border-color": rgba(var(--color-danger-rgb), 0.5),
-    "color": var(--color-danger)
+    "border-color": rgba(var(--vui-color-danger-shade-rgb), 0.5),
+    "color": var(--vui-color-danger-shade)
   ),
   warning: (
-    "border-color": rgba(var(--color-warning-rgb), 0.5),
-    "color": var(--color-warning)
+    "border-color": rgba(var(--vui-color-warning-shade-rgb), 0.5),
+    "color": var(--vui-color-warning-shade)
   ),
   neutral: (
-    "border-color": var(--color-border),
-    "color": var(--color-text)
+    "border-color": var(--vui-color-border-medium),
+    "color": var(--vui-color-text)
   ),
   subdued: (
-    "border-color": var(--color-border-light),
-    "color": $colorSubdued
+    "border-color": var(--vui-color-border-light),
+    "color": var(--vui-color-subdued-shade)
   )
 );
 

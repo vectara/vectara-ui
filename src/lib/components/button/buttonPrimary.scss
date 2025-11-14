@@ -10,38 +10,38 @@
 $color: (
   accent: (
     "color": #ffffff,
-    "background-color": var(--color-accent),
-    "border-color": var(--color-accent)
+    "background-color": var(--vui-color-accent-shade),
+    "border-color": var(--vui-color-accent-shade)
   ),
   primary: (
     "color": #ffffff,
-    "background-color": var(--color-primary),
-    "border-color": var(--color-primary)
+    "background-color": var(--vui-color-primary-shade),
+    "border-color": var(--vui-color-primary-shade)
   ),
   success: (
     "color": #ffffff,
-    "background-color": var(--color-success),
-    "border-color": var(--color-success)
+    "background-color": var(--vui-color-success-shade),
+    "border-color": var(--vui-color-success-shade)
   ),
   danger: (
     "color": #ffffff,
-    "background-color": var(--color-danger),
-    "border-color": var(--color-danger)
+    "background-color": var(--vui-color-danger-shade),
+    "border-color": var(--vui-color-danger-shade)
   ),
   warning: (
     "color": #ffffff,
-    "background-color": var(--color-warning),
-    "border-color": var(--color-warning)
+    "background-color": var(--vui-color-warning-shade),
+    "border-color": var(--vui-color-warning-shade)
   ),
   neutral: (
-    "color": var(--color-text),
-    "background-color": $colorEmptyShade,
-    "border-color": $colorEmptyShade
+    "color": var(--vui-color-text),
+    "background-color": var(--vui-color-empty-shade),
+    "border-color": var(--vui-color-empty-shade)
   ),
   subdued: (
-    "color": $colorSubdued,
-    "background-color": transparentize($colorSubdued, 0.9),
-    "border-color": transparentize($colorSubdued, 0.9)
+    "color": var(--vui-color-subdued-shade),
+    "background-color": rgba(var(--vui-color-subdued-shade-rgb), 0.1),
+    "border-color": rgba(var(--vui-color-subdued-shade-rgb), 0.1)
   )
 );
 

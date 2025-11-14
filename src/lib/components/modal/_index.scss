@@ -33,7 +33,7 @@ $modalWidth: 500px;
   width: 100%;
   max-width: $modalWidth;
   max-height: calc(100vh - $sizeXl);
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
   border-radius: $sizeXxs;
   z-index: $modalZIndex;
   pointer-events: all;
@@ -61,7 +61,7 @@ $modalWidth: 500px;
   font-size: $fontSizeMedium;
   font-weight: $fontWeightBold;
   line-height: 1.2;
-  color: var(--color-text);
+  color: var(--vui-color-text);
 }
 
 .vuiModalContent {
@@ -76,10 +76,10 @@ $modalWidth: 500px;
 // Color
 $color: (
   primary: (
-    "color": var(--color-primary)
+    "color": var(--vui-color-primary-shade)
   ),
   danger: (
-    "color": var(--color-danger)
+    "color": var(--vui-color-danger-shade)
   )
 );
 

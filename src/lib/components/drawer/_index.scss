@@ -21,8 +21,8 @@ $drawerWidth: 680px;
   bottom: 0;
   width: 100%;
   max-width: $drawerWidth;
-  background-color: $colorEmptyShade;
-  border-left: 1px solid var(--color-border);
+  background-color: var(--vui-color-empty-shade);
+  border-left: 1px solid var(--vui-color-border-medium);
   z-index: $drawerZIndex;
   animation: drawerIn $transitionSpeed cubic-bezier(0, 1, 0, 1);
 }
@@ -35,7 +35,7 @@ $drawerWidth: 680px;
   font-size: $fontSizeMedium;
   font-weight: $fontWeightBold;
   line-height: 1.2;
-  color: var(--color-text);
+  color: var(--vui-color-text);
 }
 
 .vuiDrawerContent {
@@ -50,10 +50,10 @@ $drawerWidth: 680px;
 // Color
 $color: (
   primary: (
-    "color": var(--color-primary)
+    "color": var(--vui-color-primary-shade)
   ),
   danger: (
-    "color": var(--color-danger)
+    "color": var(--vui-color-danger-shade)
   )
 );
 

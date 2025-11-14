@@ -1,6 +1,6 @@
 @mixin appSideNavItem--m {
   display: block;
-  color: var(--color-text);
+  color: var(--vui-color-text);
   font-size: $fontSizeStandard;
   padding: 0 $sizeM;
   margin-left: -$sizeM;
@@ -10,7 +10,7 @@
 
 @mixin appSideNavItem--l {
   display: block;
-  color: var(--color-text);
+  color: var(--vui-color-text);
   font-size: $fontSizeMedium;
   padding: 0 $sizeM;
   padding-top: $appSideNavLinkSpacing + 2px;

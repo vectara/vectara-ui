@@ -7,7 +7,7 @@ $textRhythm: $sizeM;
   word-break: break-word;
 
   a {
-    color: var(--color-primary) !important;
+    color: var(--vui-color-primary-shade) !important;
     text-decoration: none;
 
     &:hover {
@@ -35,19 +35,19 @@ $textRhythm: $sizeM;
     border-right: none;
     border-bottom: 1px solid;
     width: 100%;
-    border-bottom-color: var(--color-border);
+    border-bottom-color: var(--vui-color-border-medium);
     margin-bottom: $textRhythm;
   }
 
   pre:not(:has(> code)),
   code {
-    background-color: $colorLightShade;
+    background-color: var(--vui-color-light-shade);
     padding: $sizeXxxs $sizeXxs;
   }
 
   pre:has(> code) {
     display: block;
-    background-color: $colorLightShade;
+    background-color: var(--vui-color-light-shade);
     padding: $sizeXs $sizeS;
     margin-bottom: $textRhythm;
     border-radius: $sizeXs;
@@ -66,29 +66,29 @@ $textRhythm: $sizeM;
     border: none;
     border-radius: $sizeXs;
     overflow: auto;
-    background-color: $colorLightShade;
+    background-color: var(--vui-color-light-shade);
   }
 
   blockquote {
-    border-left: 4px solid $colorLightShade;
+    border-left: 4px solid var(--vui-color-light-shade);
     padding-left: $sizeM;
-    color: $colorDarkerShade;
+    color: var(--vui-color-darker-shade);
     margin-bottom: $textRhythm;
   }
 
   table {
     width: 100%;
     table-layout: fixed;
-    border: 1px solid var(--color-border-light);
+    border: 1px solid var(--vui-color-border-light);
     margin-bottom: $textRhythm;
 
     thead {
-      background-color: $colorLightShade;
-      border-bottom: 1px solid var(--color-border-light);
+      background-color: var(--vui-color-light-shade);
+      border-bottom: 1px solid var(--vui-color-border-light);
     }
 
     tbody tr {
-      border-bottom: 1px solid var(--color-border-light);
+      border-bottom: 1px solid var(--vui-color-border-light);
     }
 
     th {
@@ -119,7 +119,7 @@ $textRhythm: $sizeM;
 }
 
 @mixin defineTextStyles($fontSize, $fontWeight) {
-  color: var(--color-text);
+  color: var(--vui-color-text);
   font-size: $fontSize;
   line-height: 1.4;
 

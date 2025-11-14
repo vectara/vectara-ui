@@ -12,66 +12,66 @@
 
 $color: (
   accent: (
-    "icon": var(--color-accent),
-    "fill": var(--color-accent),
-    "token": var(--color-accent-lighter-shade)
+    "icon": var(--vui-color-accent-shade),
+    "fill": var(--vui-color-accent-shade),
+    "token": var(--vui-color-accent-lighter-shade)
   ),
   primary: (
-    "icon": var(--color-primary),
-    "fill": var(--color-primary),
-    "token": var(--color-primary-lighter-shade)
+    "icon": var(--vui-color-primary-shade),
+    "fill": var(--vui-color-primary-shade),
+    "token": var(--vui-color-primary-lighter-shade)
   ),
   success: (
-    "icon": var(--color-success),
-    "fill": var(--color-success),
-    "token": var(--color-success-lighter-shade)
+    "icon": var(--vui-color-success-shade),
+    "fill": var(--vui-color-success-shade),
+    "token": var(--vui-color-success-lighter-shade)
   ),
   warning: (
-    "icon": var(--color-warning),
-    "fill": var(--color-warning),
-    "token": var(--color-warning-lighter-shade)
+    "icon": var(--vui-color-warning-shade),
+    "fill": var(--vui-color-warning-shade),
+    "token": var(--vui-color-warning-lighter-shade)
   ),
   danger: (
-    "icon": var(--color-danger),
-    "fill": var(--color-danger),
-    "token": var(--color-danger-lighter-shade)
+    "icon": var(--vui-color-danger-shade),
+    "fill": var(--vui-color-danger-shade),
+    "token": var(--vui-color-danger-lighter-shade)
   ),
   subdued: (
-    "icon": $colorSubdued,
-    "fill": $colorSubdued,
-    "token": $colorLightShade
+    "icon": var(--vui-color-subdued-shade),
+    "fill": var(--vui-color-subdued-shade),
+    "token": var(--vui-color-light-shade)
   ),
   neutral: (
-    "icon": var(--color-text),
-    "fill": var(--color-text),
-    "token": $colorLightShade
+    "icon": var(--vui-color-text),
+    "fill": var(--vui-color-text),
+    "token": var(--vui-color-light-shade)
   ),
   empty: (
-    "icon": $colorEmptyShade,
-    "fill": $colorFullShade,
-    "token": $colorDarkerShade
+    "icon": var(--vui-color-empty-shade),
+    "fill": var(--vui-color-full-shade),
+    "token": var(--vui-color-darker-shade)
   )
 );
 
 $colors: (
-  accent: var(--color-accent),
-  primary: var(--color-primary),
-  success: var(--color-success),
-  warning: var(--color-warning),
-  danger: var(--color-danger),
-  subdued: $colorSubdued,
-  neutral: var(--color-text),
+  accent: var(--vui-color-accent-shade),
+  primary: var(--vui-color-primary-shade),
+  success: var(--vui-color-success-shade),
+  warning: var(--vui-color-warning-shade),
+  danger: var(--vui-color-danger-shade),
+  subdued: var(--vui-color-subdued-shade),
+  neutral: var(--vui-color-text),
   empty: #ffffff
 );
 
 $tokenColors: (
-  accent: var(--color-accent-lighter-shade),
-  primary: var(--color-primary-lighter-shade),
-  success: var(--color-success-lighter-shade),
-  warning: var(--color-warning-lighter-shade),
-  danger: var(--color-danger-lighter-shade),
-  subdued: $colorMediumShade,
-  neutral: $colorDarkShade,
+  accent: var(--vui-color-accent-lighter-shade),
+  primary: var(--vui-color-primary-lighter-shade),
+  success: var(--vui-color-success-lighter-shade),
+  warning: var(--vui-color-warning-lighter-shade),
+  danger: var(--vui-color-danger-lighter-shade),
+  subdued: var(--vui-color-medium-shade),
+  neutral: var(--vui-color-dark-shade),
   empty: #ffffff
 );
 
@@ -94,7 +94,7 @@ $tokenColors: (
       background-color: #{map.get($colorValue, "fill")};
 
       .vuiIcon__inner {
-        color: $colorEmptyShade;
+        color: var(--vui-color-empty-shade);
       }
     }
   }

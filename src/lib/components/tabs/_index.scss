@@ -65,7 +65,7 @@
   white-space: nowrap;
   flex-grow: 0;
   flex-shrink: 0;
-  color: var(--color-subdued);
+  color: var(--vui-color-subdued);
   text-decoration: none;
   cursor: pointer;
 
@@ -79,6 +79,6 @@
 
   &.vuiTab-isActive {
     pointer-events: none;
-    color: var(--color-full-shade);
+    color: var(--vui-color-full-shade);
   }
 }

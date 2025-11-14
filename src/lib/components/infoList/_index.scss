@@ -7,11 +7,11 @@
 .vuiInfoListItem__title {
   font-size: $fontSizeSmall;
   font-weight: $fontWeightBold;
-  color: $colorDarkerShade;
+  color: var(--vui-color-darker-shade);
 }
 
 .vuiInfoListItem__value {
   font-size: $fontSizeStandard;
-  color: $colorDarkerShade;
+  color: var(--vui-color-darker-shade);
   margin-top: $sizeXxs;
 }
