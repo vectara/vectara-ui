@@ -9,10 +9,12 @@ export const popover = {
   path: "/popover",
   examples: [
     {
+      name: "Popover",
       component: <Popover />,
       source: PopoverSource.default.toString()
     },
     {
+      name: "Popover with button",
       component: <IconButton />,
       source: IconButtonSource.default.toString()
     }

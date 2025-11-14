@@ -67,8 +67,8 @@ import { validation } from "./pages/validation";
 import { truncate } from "./pages/truncate";
 
 type Category = { name: string; pages: Page[] };
-type Page = { name: string; path: string; examples: Example[] };
-export type Example = { name?: string; component: React.ReactNode; source: string };
+export type Page = { name: string; path: string; examples?: Array<Example & { name: string }>; example?: Example };
+type Example = { component: React.ReactNode; source: string };
 
 export const categories: Category[] = [
   {
@@ -130,7 +130,7 @@ export const paths: Paths = categories.reduce(
     const list = acc.list.concat(curr.pages);
 
     const mappedPaths = curr.pages.reduce(
-      (obj, { path, name, examples }) => ({ ...obj, [path]: { name, examples } }),
+      (obj, { path, name, example, examples }) => ({ ...obj, [path]: { name, example, examples } }),
       {}
     );
 

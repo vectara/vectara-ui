@@ -4,10 +4,8 @@ const ChatSource = require("!!raw-loader!./Chat");
 export const chat = {
   name: "Chat",
   path: "/chat",
-  examples: [
-    {
-      component: <Chat />,
-      source: ChatSource.default.toString()
-    }
-  ]
+  example: {
+    component: <Chat />,
+    source: ChatSource.default.toString()
+  }
 };

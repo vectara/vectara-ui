@@ -4,10 +4,8 @@ const PromptSource = require("!!raw-loader!./Prompt");
 export const prompt = {
   name: "Prompt",
   path: "/prompt",
-  examples: [
-    {
-      component: <Prompt />,
-      source: PromptSource.default.toString()
-    }
-  ]
+  example: {
+    component: <Prompt />,
+    source: PromptSource.default.toString()
+  }
 };

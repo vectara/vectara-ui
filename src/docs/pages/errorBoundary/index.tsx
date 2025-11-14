@@ -5,10 +5,8 @@ const ErrorBoundarySource = require("!!raw-loader!./ErrorBoundary");
 export const errorBoundary = {
   name: "Error Boundary",
   path: "/errorBoundary",
-  examples: [
-    {
-      component: <ErrorBoundary />,
-      source: ErrorBoundarySource.default.toString()
-    }
-  ]
+  example: {
+    component: <ErrorBoundary />,
+    source: ErrorBoundarySource.default.toString()
+  }
 };

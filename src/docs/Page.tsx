@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
 import { VuiIconButton, VuiFlexContainer, VuiFlexItem, VuiIcon, VuiTitle, VuiAppContent, VuiSpacer } from "../lib";
-import { Example as ExampleType, paths } from "./pages";
+import { Page as PageType, paths } from "./pages";
 import { Example } from "./components/Example";
 import React from "react";
 
-export const Page = ({ name, examples }: { name: string; examples: ExampleType[] }) => {
+export const Page = ({ page }: { page: PageType }) => {
+  const { name, example, examples } = page;
   const location = useLocation();
   const navigate = useNavigate();
   const currentPageIndex = paths.list.findIndex((page) => page.path === location.pathname);
@@ -62,12 +63,16 @@ export const Page = ({ name, examples }: { name: string; examples: ExampleType[]
       <VuiSpacer size="m" />
 
       <>
-        {examples.map(({ name: exampleName, component, source }) => (
-          <React.Fragment key={`example-${name}-${exampleName}`}>
-            <Example name={exampleName} component={component} source={source} />
-            <VuiSpacer size="l" />
-          </React.Fragment>
-        ))}
+        {example ? (
+          <Example name={undefined} component={example.component} source={example.source} />
+        ) : (
+          examples?.map(({ name: exampleName, component, source }) => (
+            <React.Fragment key={`example-${name}-${exampleName}`}>
+              <Example name={exampleName} component={component} source={source} />
+              <VuiSpacer size="l" />
+            </React.Fragment>
+          ))
+        )}
       </>
     </VuiAppContent>
   );

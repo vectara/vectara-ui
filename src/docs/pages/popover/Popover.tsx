@@ -23,7 +23,7 @@ export const Popover = () => {
   const [anchorSide, setAnchorSide] = useState<AnchorSide>("right");
 
   return (
-    <>
+    <div key="popoverExample">
       <VuiFormGroup labelFor="anchorSideSelect" label="Anchor side">
         <VuiSelect
           id="anchorSideSelect"
@@ -68,6 +68,6 @@ export const Popover = () => {
           options={options}
         />
       </VuiPopover>
-    </>
+    </div>
   );
 };

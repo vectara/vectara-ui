@@ -4,10 +4,8 @@ const ValidationSource = require("!!raw-loader!./Validation");
 export const validation = {
   name: "Validation",
   path: "/validation",
-  examples: [
-    {
-      component: <Validation />,
-      source: ValidationSource.default.toString()
-    }
-  ]
+  example: {
+    component: <Validation />,
+    source: ValidationSource.default.toString()
+  }
 };

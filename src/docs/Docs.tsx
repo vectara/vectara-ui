@@ -32,8 +32,9 @@ const DocsContent = () => {
   const routes: React.ReactNode[] = [];
 
   categories.forEach(({ pages }) => {
-    pages.forEach(({ name, path, examples }) => {
-      routes.push(<Route key={name} path={path} element={<Page name={name} examples={examples} />} />);
+    pages.forEach((page) => {
+      const { name, path } = page;
+      routes.push(<Route key={name} path={path} element={<Page page={page} />} />);
     });
   });
 
