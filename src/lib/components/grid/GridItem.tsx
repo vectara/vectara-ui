@@ -2,6 +2,22 @@ import React from "react";
 import classNames from "classnames";
 import { GridItemProps, GridSpan } from "./types";
 
+// Mapping objects for alignment properties
+const alignSelfClassMap = {
+  start: "vuiGridItem--alignSelfStart",
+  end: "vuiGridItem--alignSelfEnd",
+  center: "vuiGridItem--alignSelfCenter",
+  stretch: "vuiGridItem--alignSelfStretch",
+  baseline: "vuiGridItem--alignSelfBaseline"
+} as const;
+
+const justifySelfClassMap = {
+  start: "vuiGridItem--justifySelfStart",
+  end: "vuiGridItem--justifySelfEnd",
+  center: "vuiGridItem--justifySelfCenter",
+  stretch: "vuiGridItem--justifySelfStretch"
+} as const;
+
 const isResponsiveValue = <T,>(value: any): value is { default?: T; sm?: T; md?: T; lg?: T } => {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 };
@@ -37,10 +53,10 @@ export const VuiGridItem = ({
       [`vuiGridItem--colEnd${colEnd}`]: colEnd && typeof colEnd === "number" && colEnd <= 12,
       [`vuiGridItem--rowStart${rowStart}`]: rowStart && typeof rowStart === "number" && rowStart <= 12,
       [`vuiGridItem--rowEnd${rowEnd}`]: rowEnd && typeof rowEnd === "number" && rowEnd <= 12,
-      [`vuiGridItem--alignSelf${alignSelf?.charAt(0).toUpperCase()}${alignSelf?.slice(1)}`]: alignSelf,
-      [`vuiGridItem--justifySelf${justifySelf?.charAt(0).toUpperCase()}${justifySelf?.slice(1)}`]: justifySelf,
       "vuiGridItem--responsive": isColSpanResponsive
     },
+    alignSelf && alignSelfClassMap[alignSelf],
+    justifySelf && justifySelfClassMap[justifySelf],
     className
   );
 
