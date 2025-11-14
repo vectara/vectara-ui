@@ -22,27 +22,27 @@
     border-width: 20px;
     margin-left: -20px;
     margin-bottom: -20px;
-    border-top-color: $colorLightShade;
+    border-top-color: var(--vui-color-light-shade);
     border-bottom: 0;
   }
 }
 
 .vuiPrompt--interactive {
   &:hover {
-    background-color: var(--color-accent-lighter-shade);
-    color: var(--color-accent);
+    background-color: var(--vui-color-accent-lighter-shade);
+    color: var(--vui-color-accent-shade);
   }
 }
 
 // Color
 $color: (
   danger: (
-    "color": var(--color-danger),
-    "background-color": var(--color-danger-lighter-shade)
+    "color": var(--vui-color-danger-shade),
+    "background-color": var(--vui-color-danger-lighter-shade)
   ),
   neutral: (
-    "color": $colorDarkShade,
-    "background-color": $colorLightShade
+    "color": var(--vui-color-dark-shade),
+    "background-color": var(--vui-color-light-shade)
   )
 );
 

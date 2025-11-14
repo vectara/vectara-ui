@@ -12,7 +12,7 @@
   top: 0;
   font-weight: 600;
   padding: $sizeXs;
-  color: $colorSubdued;
+  color: var(--vui-color-subdued-shade);
   padding: 4px 8px;
   width: 30px;
   text-align: center;
@@ -23,7 +23,7 @@
 }
 
 .vuiSearchResultPosition--selected {
-  background-color: var(--color-primary);
-  color: $colorEmptyShade;
+  background-color: var(--vui-color-primary-shade);
+  color: var(--vui-color-empty-shade);
   height: 100%;
 }

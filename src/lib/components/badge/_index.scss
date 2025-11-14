@@ -23,34 +23,34 @@
 // Color
 $color: (
   accent: (
-    "color": var(--color-accent),
-    "background-color": rgba(var(--color-accent-rgb), 0.1),
-    "border-color": rgba(var(--color-accent-rgb), 0.1)
+    "color": var(--vui-color-accent-shade),
+    "background-color": rgba(var(--vui-color-accent-shade-rgb), 0.1),
+    "border-color": rgba(var(--vui-color-accent-shade-rgb), 0.1)
   ),
   primary: (
-    "color": var(--color-primary),
-    "background-color": rgba(var(--color-primary-rgb), 0.1),
-    "border-color": rgba(var(--color-primary-rgb), 0.1)
+    "color": var(--vui-color-primary-shade),
+    "background-color": rgba(var(--vui-color-primary-shade-rgb), 0.1),
+    "border-color": rgba(var(--vui-color-primary-shade-rgb), 0.1)
   ),
   success: (
-    "color": var(--color-success),
-    "background-color": rgba(var(--color-success-rgb), 0.1),
-    "border-color": rgba(var(--color-success-rgb), 0.1)
+    "color": var(--vui-color-success-shade),
+    "background-color": rgba(var(--vui-color-success-shade-rgb), 0.1),
+    "border-color": rgba(var(--vui-color-success-shade-rgb), 0.1)
   ),
   warning: (
-    "color": var(--color-warning),
-    "background-color": rgba(var(--color-warning-rgb), 0.1),
-    "border-color": rgba(var(--color-warning-rgb), 0.1)
+    "color": var(--vui-color-warning-shade),
+    "background-color": rgba(var(--vui-color-warning-shade-rgb), 0.1),
+    "border-color": rgba(var(--vui-color-warning-shade-rgb), 0.1)
   ),
   danger: (
-    "color": var(--color-danger),
-    "background-color": rgba(var(--color-danger-rgb), 0.1),
-    "border-color": rgba(var(--color-danger-rgb), 0.1)
+    "color": var(--vui-color-danger-shade),
+    "background-color": rgba(var(--vui-color-danger-shade-rgb), 0.1),
+    "border-color": rgba(var(--vui-color-danger-shade-rgb), 0.1)
   ),
   neutral: (
-    "color": var(--color-text),
-    "background-color": var(--color-light-shade),
-    "border-color": rgba(var(--color-text-rgb), 0.1)
+    "color": var(--vui-color-text),
+    "background-color": var(--vui-color-light-shade),
+    "border-color": rgba(var(--vui-color-text-rgb), 0.1)
   )
 );
 

@@ -11,7 +11,7 @@
 
   &:hover,
   &.vuiAccountButton-isActive {
-    border-color: $colorMediumShade;
+    border-color: var(--vui-color-medium-shade);
   }
 }
 
@@ -24,14 +24,14 @@
 
 .vuiAccountButton__primaryLabel {
   font-size: $fontSizeStandard;
-  color: $colorFullShade;
+  color: var(--vui-color-full-shade);
   font-weight: $fontWeightBold;
 }
 
 .vuiAccountButton__secondaryLabel {
   margin-top: $sizeXxs;
   font-size: $fontSizeSmall;
-  color: $colorDarkShade;
+  color: var(--vui-color-dark-shade);
 }
 
 .vuiAccountButton__labels {

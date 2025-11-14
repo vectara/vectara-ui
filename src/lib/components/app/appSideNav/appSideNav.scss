@@ -35,7 +35,7 @@
 
 .vuiAppSideNavCollapseButton {
   display: block;
-  color: $colorSubdued;
+  color: var(--vui-color-subdued-shade);
   font-size: $fontSizeStandard;
   text-decoration: none;
   padding: 0 $sizeM;
@@ -43,7 +43,7 @@
   margin-bottom: $sizeM;
 
   &:hover {
-    color: var(--color-primary);
+    color: var(--vui-color-primary-shade);
     text-decoration: underline;
   }
 }
@@ -60,18 +60,18 @@
   text-decoration: none;
   border-radius: $sizeXxs;
   line-height: 1.1;
-  border-top: 1px solid $colorEmptyShade;
-  border-bottom: 1px solid $colorEmptyShade;
+  border-top: 1px solid var(--vui-color-empty-shade);
+  border-bottom: 1px solid var(--vui-color-empty-shade);
 
   &:hover {
-    background-color: $colorLightShade;
-    color: var(--color-primary);
+    background-color: var(--vui-color-light-shade);
+    color: var(--vui-color-primary-shade);
     text-decoration: underline;
   }
 }
 
 .vuiAppSideNavLink--active {
-  background-color: $colorLightShade;
+  background-color: var(--vui-color-light-shade);
 }
 
 .vuiAppSideNav--m {

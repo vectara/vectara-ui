@@ -30,7 +30,7 @@
 }
 
 .vuiOptionsListItem {
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
   text-decoration: none;
 
   &:hover {
@@ -45,34 +45,34 @@
 // Color
 $color: (
   accent: (
-    "color": var(--color-accent),
-    "hover-color": var(--color-accent),
-    "selected-color": var(--color-accent-lighter-shade)
+    "color": var(--vui-color-accent-shade),
+    "hover-color": var(--vui-color-accent-shade),
+    "selected-color": var(--vui-color-accent-lighter-shade)
   ),
   primary: (
-    "color": var(--color-primary),
-    "hover-color": var(--color-primary),
-    "selected-color": var(--color-primary-lighter-shade)
+    "color": var(--vui-color-primary-shade),
+    "hover-color": var(--vui-color-primary-shade),
+    "selected-color": var(--vui-color-primary-lighter-shade)
   ),
   success: (
-    "color": var(--color-success),
-    "hover-color": var(--color-success),
-    "selected-color": var(--color-success-lighter-shade)
+    "color": var(--vui-color-success-shade),
+    "hover-color": var(--vui-color-success-shade),
+    "selected-color": var(--vui-color-success-lighter-shade)
   ),
   danger: (
-    "color": var(--color-danger),
-    "hover-color": var(--color-danger),
-    "selected-color": var(--color-danger-lighter-shade)
+    "color": var(--vui-color-danger-shade),
+    "hover-color": var(--vui-color-danger-shade),
+    "selected-color": var(--vui-color-danger-lighter-shade)
   ),
   warning: (
-    "color": var(--color-warning),
-    "hover-color": var(--color-warning),
-    "selected-color": var(--color-warning-lighter-shade)
+    "color": var(--vui-color-warning-shade),
+    "hover-color": var(--vui-color-warning-shade),
+    "selected-color": var(--vui-color-warning-lighter-shade)
   ),
   neutral: (
-    "color": var(--color-text),
-    "hover-color": var(--color-primary),
-    "selected-color": var(--color-primary-lighter-shade)
+    "color": var(--vui-color-text),
+    "hover-color": var(--vui-color-primary-shade),
+    "selected-color": var(--vui-color-primary-lighter-shade)
   )
 );
 

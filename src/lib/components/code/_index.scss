@@ -17,7 +17,7 @@
   padding: 0 !important;
   margin: 0 !important;
   max-height: inherit;
-  background-color: $colorLightShade !important;
+  background-color: var(--vui-color-light-shade) !important;
   border-radius: $sizeXxs;
 }
 
@@ -25,8 +25,8 @@
   display: block;
   width: 100%;
   padding: $sizeM $sizeL;
-  background-color: $colorLightShade;
-  color: var(--color-text);
+  background-color: var(--vui-color-light-shade);
+  color: var(--vui-color-text);
   font-family: "Roboto Mono", monospace;
   // Ensure PrismJS components wrap their lines.
   word-wrap: break-word !important;
@@ -34,7 +34,7 @@
   word-break: break-word !important;
   white-space: pre-wrap !important;
   font-size: $fontSizeSmall !important;
-  color: $colorDarkShade !important;
+  color: var(--vui-color-dark-shade) !important;
 }
 
 .vuiCodeFullscreen {

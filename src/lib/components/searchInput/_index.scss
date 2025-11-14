@@ -12,8 +12,8 @@
 
 .vuiSearchInput__input {
   flex-grow: 1;
-  background-color: $colorEmptyShade;
-  border: 1px solid $colorMediumShade;
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-medium-shade);
   border-radius: $sizeXs;
   box-shadow: $shadowSmallStart;
   transition: box-shadow $transitionSpeed;
@@ -23,7 +23,7 @@
   outline-offset: -1px !important;
 
   &:focus-visible {
-    outline-color: var(--color-primary) !important;
+    outline-color: var(--vui-color-primary-shade) !important;
     box-shadow: $shadowSmallEnd;
   }
 }
@@ -37,11 +37,11 @@
   position: absolute;
   right: $sizeS;
   line-height: 0; // TODO: Should this be applied to all buttons?
-  color: $colorDarkShade;
+  color: var(--vui-color-dark-shade);
   transition: color $transitionSpeed;
 
   &:hover {
-    color: var(--color-accent);
+    color: var(--vui-color-accent-shade);
   }
 }
 
@@ -73,11 +73,11 @@
   top: 50%;
   transform: translateY(-50%);
   border-radius: 0 $sizeXs $sizeXs 0;
-  color: $colorDarkShade;
+  color: var(--vui-color-dark-shade);
   transition: all $transitionSpeed;
 
   &:hover {
-    color: var(--color-accent);
+    color: var(--vui-color-accent-shade);
   }
 }
 .vuiSearchInputSuggestionsContainer {
@@ -96,8 +96,8 @@
   // left: 0;
   // right: 0;
   overflow: hidden;
-  background-color: $colorEmptyShade;
-  border: 1px solid $colorMediumShade;
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-medium-shade);
   border-top: none;
   border-radius: 0 0 $sizeXs $sizeXs;
   box-shadow: $shadowLargeEnd;
@@ -110,17 +110,17 @@
 
 .vuiSearchInputSuggestions__suggestion {
   display: block;
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
   text-decoration: none;
   padding: ($sizeXxs + 1px) $sizeS;
   font-size: $fontSizeStandard;
-  color: var(--color-text);
+  color: var(--vui-color-text);
 
   &:focus-visible,
   &:hover {
     text-decoration: underline;
-    color: var(--color-primary);
-    background-color: var(--color-primary-lighter-shade);
+    color: var(--vui-color-primary-shade);
+    background-color: var(--vui-color-primary-lighter-shade);
   }
 
   &:focus-visible {

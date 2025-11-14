@@ -4,11 +4,11 @@
   width: 100%;
 
   select {
-    background-color: $colorEmptyShade;
+    background-color: var(--vui-color-empty-shade);
     appearance: none;
     border-radius: $sizeXxs;
-    border: 1px solid $colorMediumShade;
-    color: $colorFullShade;
+    border: 1px solid var(--vui-color-medium-shade);
+    color: var(--vui-color-full-shade);
     width: 100%;
   }
 }
@@ -47,7 +47,7 @@
 
 .vuiSelect-isInvalid {
   select {
-    border-color: var(--color-danger);
+    border-color: var(--vui-color-danger-shade);
   }
 }
 

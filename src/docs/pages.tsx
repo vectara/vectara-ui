@@ -56,6 +56,7 @@ import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
 import { text } from "./pages/text";
 import { textArea } from "./pages/textArea";
+import { theme } from "./pages/theme";
 import { timeline } from "./pages/timeline";
 import { toggle } from "./pages/toggle";
 import { tooltip } from "./pages/tooltip";
@@ -76,7 +77,7 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, drawer, modal, notifications, accountButton]
+    pages: [app, drawer, modal, notifications, accountButton, theme]
   },
   {
     name: "Info",

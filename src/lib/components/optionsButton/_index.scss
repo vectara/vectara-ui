@@ -12,13 +12,13 @@
 
 // Color
 $colorPrimaryButton: (
-  accent: transparentize($colorEmptyShade, 0.5),
-  primary: transparentize($colorEmptyShade, 0.5),
-  success: transparentize($colorEmptyShade, 0.5),
-  danger: transparentize($colorEmptyShade, 0.5),
-  warning: transparentize($colorEmptyShade, 0.5),
-  subdued: rgba(var(--color-dark-shade-rgb), 0.2),
-  neutral: rgba(var(--color-darker-shade-rgb), 0.2)
+  accent: rgba(var(--vui-color-empty-shade-rgb), 0.5),
+  primary: rgba(var(--vui-color-empty-shade-rgb), 0.5),
+  success: rgba(var(--vui-color-empty-shade-rgb), 0.5),
+  danger: rgba(var(--vui-color-empty-shade-rgb), 0.5),
+  warning: rgba(var(--vui-color-empty-shade-rgb), 0.5),
+  subdued: rgba(var(--vui-color-dark-shade-rgb), 0.2),
+  neutral: rgba(var(--vui-color-darker-shade-rgb), 0.2)
 );
 
 @each $colorName, $colorValue in $colorPrimaryButton {
@@ -28,13 +28,13 @@ $colorPrimaryButton: (
 }
 
 $colorSecondaryButton: (
-  accent: rgba(var(--color-accent-rgb), 0.3),
-  primary: rgba(var(--color-primary-rgb), 0.3),
-  success: rgba(var(--color-success-rgb), 0.3),
-  danger: rgba(var(--color-danger-rgb), 0.3),
-  warning: rgba(var(--color-warning-rgb), 0.3),
-  subdued: rgba(var(--color-dark-shade-rgb), 0.3),
-  neutral: rgba(var(--color-darker-shade-rgb), 0.2)
+  accent: rgba(var(--vui-color-accent-shade-rgb), 0.3),
+  primary: rgba(var(--vui-color-primary-shade-rgb), 0.3),
+  success: rgba(var(--vui-color-success-shade-rgb), 0.3),
+  danger: rgba(var(--vui-color-danger-shade-rgb), 0.3),
+  warning: rgba(var(--vui-color-warning-shade-rgb), 0.3),
+  subdued: rgba(var(--vui-color-dark-shade-rgb), 0.3),
+  neutral: rgba(var(--vui-color-darker-shade-rgb), 0.2)
 );
 
 @each $colorName, $colorValue in $colorSecondaryButton {

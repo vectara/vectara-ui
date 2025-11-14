@@ -7,8 +7,8 @@
   position: relative;
   top: -2px;
   display: inline-block;
-  background-color: $colorLightShade;
-  color: $colorDarkShade;
+  background-color: var(--vui-color-light-shade);
+  color: var(--vui-color-dark-shade);
   padding: $sizeXxxs $sizeXs;
   font-size: $fontSizeSmall;
   border-radius: $sizeXxs;
@@ -17,13 +17,13 @@
   transition: all $transitionSpeed;
 
   &:hover {
-    color: var(--color-primary);
-    background-color: var(--color-primary-lighter-shade);
+    color: var(--vui-color-primary-shade);
+    background-color: var(--vui-color-primary-lighter-shade);
     text-decoration: underline;
   }
 }
 
 .vuiSummaryCitation-isSelected {
-  background-color: var(--color-primary);
-  color: $colorEmptyShade;
+  background-color: var(--vui-color-primary-shade);
+  color: var(--vui-color-empty-shade);
 }

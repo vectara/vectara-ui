@@ -4,10 +4,10 @@
   align-items: center;
   width: 100vw;
   height: $appHeaderHeight;
-  background-color: var(--color-empty-shade);
+  background-color: var(--vui-color-empty-shade);
   padding: $sizeXs $sizeM;
   z-index: $appHeaderZIndex;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--vui-color-border-medium);
 }
 
 .vuiAppHeader__inner {

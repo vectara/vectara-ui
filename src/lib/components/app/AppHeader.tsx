@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
+import { useVuiContext } from "../context/Context";
 
 type SidedProps = {
   left?: React.ReactNode;
@@ -23,12 +23,12 @@ type Props = (SidedProps | ContentProps) & {
 };
 
 export const VuiAppHeader = ({ left, right, content, growRight, className, darkTheme, ...rest }: Props) => {
-  const classes = classNames("vuiAppHeader", className, {
-    vuiThemeDark: darkTheme
-  });
+  const { getThemeStyle } = useVuiContext();
+
+  const style = darkTheme ? getThemeStyle("dark") : {};
 
   return (
-    <div className={classes} {...rest}>
+    <div className="vuiAppHeader" {...rest} style={style}>
       {content ? (
         content
       ) : (

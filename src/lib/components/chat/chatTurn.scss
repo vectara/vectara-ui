@@ -2,7 +2,7 @@
   position: relative;
   left: 0;
   box-shadow: $shadowLargeStart;
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
   padding: $sizeL $sizeS $sizeL $sizeL;
   margin-right: $sizeXxs;
   transition: all $transitionSpeed;
@@ -19,14 +19,14 @@
 }
 
 .vuiChatQuestion {
-  color: var(--color-accent);
+  color: var(--vui-color-accent-shade);
   font-weight: $fontWeightBold;
   font-size: $fontSizeStandard;
   margin-bottom: $sizeXs;
 }
 
 .vuiChatQuestion--error {
-  color: var(--color-danger);
+  color: var(--vui-color-danger-shade);
 }
 
 .vuiChat__inspectButton {
@@ -34,5 +34,5 @@
 }
 
 .vuiChatAnswer {
-  color: $colorFullShade;
+  color: var(--vui-color-full-shade);
 }

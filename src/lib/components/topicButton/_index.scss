@@ -1,7 +1,7 @@
 .vuiTopicButton {
   display: inline-block;
   text-decoration: none;
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
   border-radius: $sizeXs;
   box-shadow: $shadowLargeStart;
   transition: box-shadow $transitionSpeed, border-color $transitionSpeed;
@@ -11,7 +11,7 @@
 
   &:hover {
     text-decoration: none;
-    box-shadow: $shadowLargeEnd, var(--color-primary) 0 0 1px 1px;
+    box-shadow: $shadowLargeEnd, var(--vui-color-primary-shade) 0 0 1px 1px;
     z-index: 1;
   }
 }

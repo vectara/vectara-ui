@@ -19,7 +19,7 @@
 
 .vuiAppSideNavTreeSection__subTitle {
   font-weight: $fontWeightBold;
-  color: $colorDarkShade;
+  color: var(--vui-color-dark-shade);
 }
 
 .vuiAppSideNav--m {

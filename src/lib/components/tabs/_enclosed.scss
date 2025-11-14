@@ -1,6 +1,6 @@
 .vuiTabs--enclosed {
   display: inline-flex;
-  background-color: var(--color-light-shade);
+  background-color: var(--vui-color-light-shade);
   border-radius: $sizeXxs;
   padding: $sizeXxxs $sizeXs;
 
@@ -23,18 +23,18 @@
   .vuiTab {
     &:hover {
       .vuiTab__inner {
-        color: var(--color-full-shade);
-        background-color: rgba(var(--color-empty-shade-rgb), 0.75);
+        color: var(--vui-color-full-shade);
+        background-color: rgba(var(--vui-color-empty-shade-rgb), 0.75);
 
         .vuiIcon__inner {
-          color: var(--color-full-shade) !important;
+          color: var(--vui-color-full-shade) !important;
         }
       }
     }
 
     &.vuiTab-isActive {
       .vuiTab__inner {
-        background-color: var(--color-empty-shade);
+        background-color: var(--vui-color-empty-shade);
         box-shadow: $shadowSmallEnd;
       }
     }

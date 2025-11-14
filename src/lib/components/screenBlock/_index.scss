@@ -13,29 +13,29 @@
 .vuiScreenBlock__mask {
   width: 100%;
   height: 100%;
-  background-color: transparentize($colorFullShade, 0.6);
+  background-color: rgba(var(--vui-color-full-shade-rgb), 0.4);
 }
 
 .vuiScreenBlock--neutral {
   .vuiScreenBlock__mask {
-    background-color: transparentize($colorFullShade, 0.6);
+    background-color: rgba(var(--vui-color-full-shade-rgb), 0.4);
   }
 }
 
 .vuiScreenBlock--primary {
   .vuiScreenBlock__mask {
-    background-color: rgba(var(--color-primary-rgb), 0.6);
+    background-color: rgba(var(--vui-color-primary-shade-rgb), 0.6);
   }
 }
 
 .vuiScreenBlock--success {
   .vuiScreenBlock__mask {
-    background-color: rgba(var(--color-success-rgb), 0.6);
+    background-color: rgba(var(--vui-color-success-shade-rgb), 0.6);
   }
 }
 
 .vuiScreenBlock--danger {
   .vuiScreenBlock__mask {
-    background-color: rgba(var(--color-danger-rgb), 0.6);
+    background-color: rgba(var(--vui-color-danger-shade-rgb), 0.6);
   }
 }

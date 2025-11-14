@@ -2,8 +2,8 @@
   border-radius: $sizeS;
   padding: $sizeS;
   font-size: $fontSizeStandard;
-  color: var(--color-text);
+  color: var(--vui-color-text);
   width: 420px;
   box-shadow: $shadowLargeStart;
-  background-color: $colorEmptyShade;
+  background-color: var(--vui-color-empty-shade);
 }

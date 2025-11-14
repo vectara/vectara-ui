@@ -100,6 +100,7 @@ import { VuiToggle } from "./toggle/Toggle";
 import { VuiTooltip } from "./tooltip/Tooltip";
 import { VuiTopicButton } from "./topicButton/TopicButton";
 import { copyToClipboard } from "../utils/copyToClipboard";
+import { toRgb, toRgba } from "./context/Theme";
 
 export type {
   AnchorSide,
@@ -152,6 +153,8 @@ export {
   TITLE_SIZE,
   addNotification,
   copyToClipboard,
+  toRgb,
+  toRgba,
   VuiAccordion,
   VuiAccountButton,
   VuiAppContent,

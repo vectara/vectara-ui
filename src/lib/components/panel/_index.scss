@@ -19,7 +19,7 @@
 }
 
 .vuiPanel--default {
-  background-color: $colorLightShade;
+  background-color: var(--vui-color-light-shade);
 }
 
 .vuiPanel--transparent {

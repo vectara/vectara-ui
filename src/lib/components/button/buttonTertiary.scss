@@ -16,32 +16,32 @@
 // Color
 $color: (
   accent: (
-    "color": var(--color-accent),
-    "selected-color": rgba(var(--color-accent-rgb), 0.1)
+    "color": var(--vui-color-accent-shade),
+    "selected-color": rgba(var(--vui-color-accent-shade-rgb), 0.1)
   ),
   primary: (
-    "color": var(--color-primary),
-    "selected-color": rgba(var(--color-primary-rgb), 0.1)
+    "color": var(--vui-color-primary-shade),
+    "selected-color": rgba(var(--vui-color-primary-shade-rgb), 0.1)
   ),
   success: (
-    "color": var(--color-success),
-    "selected-color": rgba(var(--color-success-rgb), 0.1)
+    "color": var(--vui-color-success-shade),
+    "selected-color": rgba(var(--vui-color-success-shade-rgb), 0.1)
   ),
   danger: (
-    "color": var(--color-danger),
-    "selected-color": rgba(var(--color-danger-rgb), 0.1)
+    "color": var(--vui-color-danger-shade),
+    "selected-color": rgba(var(--vui-color-danger-shade-rgb), 0.1)
   ),
   warning: (
-    "color": var(--color-warning),
-    "selected-color": rgba(var(--color-warning-rgb), 0.1)
+    "color": var(--vui-color-warning-shade),
+    "selected-color": rgba(var(--vui-color-warning-shade-rgb), 0.1)
   ),
   neutral: (
-    "color": var(--color-text),
-    "selected-color": rgba(var(--color-text-rgb), 0.1)
+    "color": var(--vui-color-text),
+    "selected-color": rgba(var(--vui-color-text-rgb), 0.1)
   ),
   subdued: (
-    "color": $colorSubdued,
-    "selected-color": rgba(var(--color-subdued-rgb), 0.1)
+    "color": var(--vui-color-subdued-shade),
+    "selected-color": rgba(var(--vui-color-subdued-rgb), 0.1)
   )
 );
 

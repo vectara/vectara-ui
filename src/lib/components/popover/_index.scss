@@ -1,7 +1,7 @@
 .vuiPopover {
   position: absolute;
-  background-color: $colorEmptyShade;
-  border: 1px solid var(--color-border);
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-border-medium);
   z-index: $popoverZIndex;
   box-shadow: $shadowLargeEnd;
   border-radius: $sizeXxs;
@@ -32,10 +32,10 @@
 
 .vuiPopoverTitle {
   padding: $sizeXs $sizeS;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--vui-color-border-medium);
   font-weight: $fontWeightBold;
   font-size: $fontSizeStandard;
-  color: $colorDarkerShade;
+  color: var(--vui-color-darker-shade);
 }
 
 .vuiPopoverContent {
