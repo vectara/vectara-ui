@@ -68,19 +68,16 @@ $spacing: (
   }
 }
 
-// Small (applies from 0px up - default/mobile-first)
-.vuiGrid[data-responsive-sm] {
+// Responsive grid template columns using CSS custom properties
+.vuiGrid--responsive {
+  // Small (applies from 0px up - default/mobile-first)
   grid-template-columns: var(--grid-template-sm);
-}
 
-@container (width > 500px) {
-  .vuiGrid[data-responsive-md] {
+  @container (width > 500px) {
     grid-template-columns: var(--grid-template-md);
   }
-}
 
-@container (width > 800px) {
-  .vuiGrid[data-responsive-lg] {
+  @container (width > 800px) {
     grid-template-columns: var(--grid-template-lg);
   }
 }
@@ -280,19 +277,16 @@ $spacing: (
   justify-self: stretch;
 }
 
-// Small (applies from 0px up - default/mobile-first)
-.vuiGridItem[data-colSpan-sm] {
+// Responsive grid item column span using CSS custom properties
+.vuiGridItem--responsive {
+  // Small (applies from 0px up - default/mobile-first)
   grid-column: var(--grid-item-colSpan-sm);
-}
 
-@container (width > 500px) {
-  .vuiGridItem[data-colSpan-md] {
+  @container (width > 500px) {
     grid-column: var(--grid-item-colSpan-md);
   }
-}
 
-@container (width > 800px) {
-  .vuiGridItem[data-colSpan-lg] {
+  @container (width > 800px) {
     grid-column: var(--grid-item-colSpan-lg);
   }
 }

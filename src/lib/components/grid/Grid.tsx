@@ -53,6 +53,9 @@ export const VuiGrid = ({
 
   const classes = classNames("vuiGridContainer", className);
 
+  // Check if templateColumns is responsive
+  const isResponsiveTemplateColumns = templateColumns && typeof templateColumns === "object";
+
   const contentClasses = classNames("vuiGrid", {
     [`vuiGrid--${effectiveGap}`]: effectiveGap && !rowGap && !columnGap,
     [`vuiGrid--rowGap${rowGap}`]: rowGap,
@@ -63,11 +66,11 @@ export const VuiGrid = ({
     [`vuiGrid--alignContent${alignContent?.charAt(0).toUpperCase()}${alignContent?.slice(1)}`]: alignContent,
     [`vuiGrid--justifyContent${justifyContent?.charAt(0).toUpperCase()}${justifyContent?.slice(1)}`]: justifyContent,
     "vuiGrid--inline": inline,
-    "vuiGrid--fullWidth": fullWidth
+    "vuiGrid--fullWidth": fullWidth,
+    "vuiGrid--responsive": isResponsiveTemplateColumns
   });
 
   const gridStyle: React.CSSProperties & Record<string, any> = {};
-  const dataAttributes: Record<string, string> = {};
 
   if (templateColumns) {
     if (typeof templateColumns === "string") {
@@ -82,15 +85,12 @@ export const VuiGrid = ({
 
       if (smValue) {
         gridStyle["--grid-template-sm"] = smValue;
-        dataAttributes["data-responsive-sm"] = "true";
       }
       if (mdValue) {
         gridStyle["--grid-template-md"] = mdValue;
-        dataAttributes["data-responsive-md"] = "true";
       }
       if (lgValue) {
         gridStyle["--grid-template-lg"] = lgValue;
-        dataAttributes["data-responsive-lg"] = "true";
       }
     }
   }
@@ -104,7 +104,6 @@ export const VuiGrid = ({
       <div
         className={contentClasses}
         style={Object.keys(gridStyle).length > 0 ? gridStyle : undefined}
-        {...dataAttributes}
       >
         {children}
       </div>
