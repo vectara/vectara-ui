@@ -12,6 +12,42 @@ import {
 export const COLUMNS = [1, 2, 3, 4] as const;
 export type Columns = (typeof COLUMNS)[number];
 
+// Mapping objects for alignment properties
+const alignItemsClassMap = {
+  start: "vuiGrid--alignItemsStart",
+  end: "vuiGrid--alignItemsEnd",
+  center: "vuiGrid--alignItemsCenter",
+  stretch: "vuiGrid--alignItemsStretch",
+  baseline: "vuiGrid--alignItemsBaseline"
+} as const;
+
+const justifyItemsClassMap = {
+  start: "vuiGrid--justifyItemsStart",
+  end: "vuiGrid--justifyItemsEnd",
+  center: "vuiGrid--justifyItemsCenter",
+  stretch: "vuiGrid--justifyItemsStretch"
+} as const;
+
+const alignContentClassMap = {
+  start: "vuiGrid--alignContentStart",
+  end: "vuiGrid--alignContentEnd",
+  center: "vuiGrid--alignContentCenter",
+  stretch: "vuiGrid--alignContentStretch",
+  "space-around": "vuiGrid--alignContentSpace-around",
+  "space-between": "vuiGrid--alignContentSpace-between",
+  "space-evenly": "vuiGrid--alignContentSpace-evenly"
+} as const;
+
+const justifyContentClassMap = {
+  start: "vuiGrid--justifyContentStart",
+  end: "vuiGrid--justifyContentEnd",
+  center: "vuiGrid--justifyContentCenter",
+  stretch: "vuiGrid--justifyContentStretch",
+  "space-around": "vuiGrid--justifyContentSpace-around",
+  "space-between": "vuiGrid--justifyContentSpace-between",
+  "space-evenly": "vuiGrid--justifyContentSpace-evenly"
+} as const;
+
 type Props = {
   children?: React.ReactNode;
   columns?: Columns;
@@ -56,19 +92,22 @@ export const VuiGrid = ({
   // Check if templateColumns is responsive
   const isResponsiveTemplateColumns = templateColumns && typeof templateColumns === "object";
 
-  const contentClasses = classNames("vuiGrid", {
-    [`vuiGrid--${effectiveGap}`]: effectiveGap && !rowGap && !columnGap,
-    [`vuiGrid--rowGap${rowGap}`]: rowGap,
-    [`vuiGrid--columnGap${columnGap}`]: columnGap,
-    [`vuiGrid--columns${columns}`]: !templateColumns && columns,
-    [`vuiGrid--alignItems${alignItems?.charAt(0).toUpperCase()}${alignItems?.slice(1)}`]: alignItems,
-    [`vuiGrid--justifyItems${justifyItems?.charAt(0).toUpperCase()}${justifyItems?.slice(1)}`]: justifyItems,
-    [`vuiGrid--alignContent${alignContent?.charAt(0).toUpperCase()}${alignContent?.slice(1)}`]: alignContent,
-    [`vuiGrid--justifyContent${justifyContent?.charAt(0).toUpperCase()}${justifyContent?.slice(1)}`]: justifyContent,
-    "vuiGrid--inline": inline,
-    "vuiGrid--fullWidth": fullWidth,
-    "vuiGrid--responsive": isResponsiveTemplateColumns
-  });
+  const contentClasses = classNames(
+    "vuiGrid",
+    {
+      [`vuiGrid--${effectiveGap}`]: effectiveGap && !rowGap && !columnGap,
+      [`vuiGrid--rowGap${rowGap}`]: rowGap,
+      [`vuiGrid--columnGap${columnGap}`]: columnGap,
+      [`vuiGrid--columns${columns}`]: !templateColumns && columns,
+      "vuiGrid--inline": inline,
+      "vuiGrid--fullWidth": fullWidth,
+      "vuiGrid--responsive": isResponsiveTemplateColumns
+    },
+    alignItems && alignItemsClassMap[alignItems],
+    justifyItems && justifyItemsClassMap[justifyItems],
+    alignContent && alignContentClassMap[alignContent],
+    justifyContent && justifyContentClassMap[justifyContent]
+  );
 
   const gridStyle: React.CSSProperties & Record<string, any> = {};
 
