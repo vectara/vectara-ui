@@ -1,20 +1,20 @@
-import { useState } from "react";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiText } from "../typography/Text";
-import { VuiImagePreview } from "./ImagePreview";
 import { VuiIcon } from "../icon/Icon";
 import { BiImage, BiError } from "react-icons/bi";
+import { VuiTextColor } from "../typography/TextColor";
 
 type Props = {
   src: string;
   alt?: string;
   caption?: string;
   className?: string;
+  onClick?: () => void;
   isLoading?: boolean;
   isFailure?: boolean;
-  allowPreview?: boolean; // allows image to be opened in a modal
+  aspectRatio?: string;
 };
 
 export const VuiImage = ({
@@ -22,20 +22,13 @@ export const VuiImage = ({
   alt,
   caption,
   className,
+  onClick,
   isLoading = false,
-  allowPreview = true,
-  isFailure = false
+  isFailure = false,
+  aspectRatio
 }: Props) => {
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-
-  const handlePreviewClick = () => {
-    if (allowPreview) {
-      setIsPreviewOpen(true);
-    }
-  };
-
-  const imageClasses = classNames("vuiImage__image", className, {
-    "vuiImage__image--clickable": allowPreview
+  const imageWrapperClasses = classNames("vuiImage__imageWrapper", className, {
+    "vuiImage__imageWrapper--clickable": onClick
   });
 
   if (isLoading) {
@@ -71,31 +64,27 @@ export const VuiImage = ({
     );
   }
 
+  const WrapperEl = onClick ? "button" : "div";
+
   return (
-    <>
-      <VuiFlexContainer direction="column" spacing="s">
-        <figure>
+    <VuiFlexContainer direction="column" spacing="s">
+      <figure>
+        <VuiFlexItem grow={false}>
+          <WrapperEl className={imageWrapperClasses} onClick={onClick}>
+            <img src={src} alt={alt} className="vuiImage__image" style={{ aspectRatio }} />
+          </WrapperEl>
+        </VuiFlexItem>
+
+        {caption && (
           <VuiFlexItem grow={false}>
-            <div className="vuiImage__imageWrapper">
-              <img src={src} alt={alt} className={imageClasses} onClick={handlePreviewClick} />
-            </div>
+            <VuiText size="s" className="vuiImage__caption">
+              <figcaption>
+                <VuiTextColor color="subdued">{caption}</VuiTextColor>
+              </figcaption>
+            </VuiText>
           </VuiFlexItem>
-          {caption && (
-            <VuiFlexItem grow={false}>
-              <VuiText size="s">
-                <figcaption>{caption}</figcaption>
-              </VuiText>
-            </VuiFlexItem>
-          )}
-        </figure>
-      </VuiFlexContainer>
-      {allowPreview && (
-        <VuiImagePreview
-          images={[{ src, alt, caption }]}
-          isOpen={isPreviewOpen}
-          onClose={() => setIsPreviewOpen(false)}
-        />
-      )}
-    </>
+        )}
+      </figure>
+    </VuiFlexContainer>
   );
 };
