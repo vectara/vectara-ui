@@ -4,13 +4,14 @@ import {
   VuiButtonPrimary,
   VuiContextProvider,
   VuiFlexContainer,
-  VuiFlexItem
+  VuiFlexItem,
+  toRgb
 } from "../../../lib";
 import { Link, useLocation } from "react-router-dom";
 import { Subsection } from "../../components/Subsection";
-import { toRgb } from "../../../lib/components/context/Colors";
 
 const customTheme = {
+  fontFamily: "Comic Sans MS, Comic Sans, cursive",
   colorAccentShade: "#FF4500",
   colorPrimaryShade: "#4B0082",
   colorSuccessShade: "#458d0fff",
@@ -39,7 +40,7 @@ export const Theme = () => {
 
   return (
     <VuiContextProvider linkProvider={linkProvider} pathProvider={pathProvider} theme={customTheme} isThemeIsolated>
-      <Subsection title="Primary button">
+      <Subsection title="Custom-themed primary button">
         <VuiFlexContainer>
           {BUTTON_COLOR.map((color) => (
             <VuiFlexItem grow={false} key={color}>

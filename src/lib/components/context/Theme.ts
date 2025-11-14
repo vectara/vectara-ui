@@ -1,57 +1,9 @@
 import { ColorTranslator } from "colortranslator";
 
-export const toRgba = (hex: string, alpha: number) => {
-  return new ColorTranslator(hex, { legacyCSS: true }).setA(alpha).RGBA;
-};
-
-export const toRgb = (hex: string) => {
-  // Return as "r, g, b"
-  return new ColorTranslator(hex, { legacyCSS: true }).RGB.slice(4, -1);
-};
-
-const colorAccent = "#5f30c3";
-const colorPrimary = "#045dda";
-const colorSuccess = "#249719";
-const colorWarning = "#a86f1b";
-const colorDanger = "#d22d2d";
-
-// Semantic colors
-export const colorAccentShade = colorAccent;
-export const colorAccentLightShade = toRgba(colorAccent, 0.5);
-export const colorAccentLighterShade = "#eee7ff";
-
-export const colorPrimaryShade = colorPrimary;
-export const colorPrimaryLightShade = toRgba(colorPrimary, 0.5);
-export const colorPrimaryLighterShade = "#f1f7ff";
-
-export const colorSuccessShade = colorSuccess;
-export const colorSuccessLightShade = toRgba(colorSuccess, 0.5);
-export const colorSuccessLighterShade = "#e2f2e0";
-
-export const colorWarningShade = colorWarning;
-export const colorWarningLightShade = toRgba(colorWarning, 0.5);
-export const colorWarningLighterShade = "#ffeed4";
-
-export const colorDangerShade = colorDanger;
-export const colorDangerLightShade = toRgba(colorDanger, 0.5);
-export const colorDangerLighterShade = "#fff1f1";
-
-// Special colors
-export const colorPrimaryHighlightShade = "#d9e2ff";
-export const colorSubduedShade = "#6d7686";
-
-// Neutral colors
-export const colorEmptyShade = "#ffffff";
-export const colorLightShade = "#f1f4f6";
-export const colorMediumShade = "#cbd1de";
-export const colorDarkShade = "#3f4551";
-export const colorDarkerShade = "#1c1d22";
-export const colorFullShade = "#0b0c0e";
-
-// Border colors
-export const colorBorderLightShade = "#e3e4f3";
-
 export type Theme = {
+  // Font
+  fontFamily?: string;
+
   // Semantic colors
   colorAccentShade?: string;
   colorAccentShadeRgb?: string;
@@ -117,7 +69,64 @@ export type Theme = {
   colorBorderLight?: string;
 };
 
+const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  "Droid Sans", "Helvetica Neue", sans-serif`;
+
+export const toRgba = (hex: string, alpha: number) => {
+  return new ColorTranslator(hex, { legacyCSS: true }).setA(alpha).RGBA;
+};
+
+export const toRgb = (hex: string) => {
+  // Return as "r, g, b"
+  return new ColorTranslator(hex, { legacyCSS: true }).RGB.slice(4, -1);
+};
+
+const colorAccent = "#5f30c3";
+const colorPrimary = "#045dda";
+const colorSuccess = "#249719";
+const colorWarning = "#a86f1b";
+const colorDanger = "#d22d2d";
+
+// Semantic colors
+const colorAccentShade = colorAccent;
+const colorAccentLightShade = toRgba(colorAccent, 0.5);
+const colorAccentLighterShade = "#eee7ff";
+
+const colorPrimaryShade = colorPrimary;
+const colorPrimaryLightShade = toRgba(colorPrimary, 0.5);
+const colorPrimaryLighterShade = "#f1f7ff";
+
+const colorSuccessShade = colorSuccess;
+const colorSuccessLightShade = toRgba(colorSuccess, 0.5);
+const colorSuccessLighterShade = "#e2f2e0";
+
+const colorWarningShade = colorWarning;
+const colorWarningLightShade = toRgba(colorWarning, 0.5);
+const colorWarningLighterShade = "#ffeed4";
+
+const colorDangerShade = colorDanger;
+const colorDangerLightShade = toRgba(colorDanger, 0.5);
+const colorDangerLighterShade = "#fff1f1";
+
+// Special colors
+const colorPrimaryHighlightShade = "#d9e2ff";
+const colorSubduedShade = "#6d7686";
+
+// Neutral colors
+const colorEmptyShade = "#ffffff";
+const colorLightShade = "#f1f4f6";
+const colorMediumShade = "#cbd1de";
+const colorDarkShade = "#3f4551";
+const colorDarkerShade = "#1c1d22";
+const colorFullShade = "#0b0c0e";
+
+// Border colors
+const colorBorderLightShade = "#e3e4f3";
+
 export const LIGHT_THEME: Theme = {
+  // Font
+  fontFamily,
+
   // Semantic colors
   colorAccentShade,
   colorAccentShadeRgb: toRgb(colorAccentShade),
@@ -213,7 +222,10 @@ export const DARK_THEME: Theme = {
 };
 
 export const toStyle = (theme: Theme) => {
-  const colors = {
+  const vars = {
+    // Font
+    "--vui-font-family": theme.fontFamily,
+
     // Semantic colors
     "--vui-color-accent-shade": theme.colorAccentShade,
     "--vui-color-accent-shade-rgb": theme.colorAccentShadeRgb,
@@ -280,5 +292,5 @@ export const toStyle = (theme: Theme) => {
   };
 
   // Remove undefined values.
-  return Object.fromEntries(Object.entries(colors).filter(([_, v]) => v !== undefined)) as Record<string, string>;
+  return Object.fromEntries(Object.entries(vars).filter(([_, v]) => v !== undefined)) as Record<string, string>;
 };

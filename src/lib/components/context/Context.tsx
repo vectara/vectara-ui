@@ -1,6 +1,6 @@
 import { createContext, useContext, ReactNode, useMemo, useEffect } from "react";
 import { LinkProps } from "../link/types";
-import { LIGHT_THEME, DARK_THEME, Theme, toStyle } from "./Colors";
+import { LIGHT_THEME, DARK_THEME, Theme, toStyle } from "./Theme";
 
 type LinkProvider = (linkConfig: LinkProps) => JSX.Element;
 type PathProvider = () => string;
