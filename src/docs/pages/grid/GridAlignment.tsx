@@ -9,58 +9,72 @@ export const GridAlignment = () => (
     <VuiSpacer size="m" />
 
     <VuiGrid
-      templateColumns="repeat(3, 1fr)"
+      templateColumns="repeat(4, 1fr)"
       templateRows="100px"
       spacing="m"
       alignItems="center"
-      justifyItems="center"
+      justifyItems="stretch"
     >
-      <VuiPanel>
-        <VuiText>
-          <p>Centered</p>
-        </VuiText>
-      </VuiPanel>
-      <VuiPanel>
-        <VuiText>
-          <p>Centered</p>
-        </VuiText>
-      </VuiPanel>
-      <VuiPanel>
-        <VuiText>
-          <p>Centered</p>
-        </VuiText>
-      </VuiPanel>
-    </VuiGrid>
-
-    <VuiSpacer size="m" />
-
-    <VuiTitle size="s">
-      <p>Individual Item Alignment</p>
-    </VuiTitle>
-
-    <VuiSpacer size="m" />
-
-    <VuiGrid templateColumns="repeat(3, 150px)" templateRows="150px" spacing="m">
-      <VuiGridItem alignSelf="start" justifySelf="start">
+      <VuiGridItem justifySelf="start">
         <VuiPanel>
           <VuiText>
-            <p>Top-left</p>
+            <p>Start</p>
           </VuiText>
         </VuiPanel>
       </VuiGridItem>
 
-      <VuiGridItem alignSelf="center" justifySelf="center">
+      <VuiGridItem justifySelf="center">
         <VuiPanel>
           <VuiText>
-            <p>Center</p>
+            <p>Centered</p>
           </VuiText>
         </VuiPanel>
       </VuiGridItem>
 
-      <VuiGridItem alignSelf="end" justifySelf="end">
+      <VuiGridItem justifySelf="stretch">
         <VuiPanel>
           <VuiText>
-            <p>Bottom-right</p>
+            <p>Stretched</p>
+          </VuiText>
+        </VuiPanel>
+      </VuiGridItem>
+
+      <VuiGridItem justifySelf="end">
+        <VuiPanel>
+          <VuiText>
+            <p>End</p>
+          </VuiText>
+        </VuiPanel>
+      </VuiGridItem>
+
+      <VuiGridItem>
+        <VuiPanel>
+          <VuiText>
+            <p>Stretched</p>
+          </VuiText>
+        </VuiPanel>
+      </VuiGridItem>
+
+      <VuiGridItem>
+        <VuiPanel>
+          <VuiText>
+            <p>Stretched</p>
+          </VuiText>
+        </VuiPanel>
+      </VuiGridItem>
+
+      <VuiGridItem>
+        <VuiPanel>
+          <VuiText>
+            <p>Stretched</p>
+          </VuiText>
+        </VuiPanel>
+      </VuiGridItem>
+
+      <VuiGridItem>
+        <VuiPanel>
+          <VuiText>
+            <p>Stretched</p>
           </VuiText>
         </VuiPanel>
       </VuiGridItem>
