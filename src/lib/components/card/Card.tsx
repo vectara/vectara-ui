@@ -12,7 +12,7 @@ type Props = {
   highlight?: boolean;
   ungrouped?: boolean;
   fullHeight?: boolean;
-  bodyOverflowHidden?: boolean;
+  bodyOverflowYHidden?: boolean;
 };
 
 export const VuiCard = ({
@@ -27,7 +27,7 @@ export const VuiCard = ({
   highlight,
   ungrouped,
   fullHeight,
-  bodyOverflowHidden = false,
+  bodyOverflowYHidden = false,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -46,10 +46,7 @@ export const VuiCard = ({
 
   const headerContent = header && <div className="vuiCard__header">{header}</div>;
   const bodyContent = body && (
-    <div
-      className="vuiCard__body"
-      style={bodyOverflowHidden ? { overflowY: 'hidden' } : undefined}
-    >
+    <div className="vuiCard__body" style={bodyOverflowYHidden ? { overflowY: "hidden" } : undefined}>
       {body}
     </div>
   );
