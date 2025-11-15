@@ -110,7 +110,6 @@ export const VuiGrid = ({
 
   const classes = classNames("vuiGridContainer", className);
 
-  // Check if templateColumns is responsive
   const isResponsiveTemplateColumns = templateColumns && typeof templateColumns === "object";
 
   const contentClasses = classNames(
