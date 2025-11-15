@@ -7,26 +7,26 @@
 
 // Color
 $color: (
-  accent: var(--vui-color-accent-shade),
-  primary: var(--vui-color-primary-shade),
-  success: var(--vui-color-success-shade),
-  warning: var(--vui-color-warning-shade),
-  danger: var(--vui-color-danger-shade),
-  neutral: var(--vui-color-text),
-  subdued: var(--vui-color-subdued)
+  accent: var(--vui-color-accent-shade-rgb),
+  primary: var(--vui-color-primary-shade-rgb),
+  success: var(--vui-color-success-shade-rgb),
+  warning: var(--vui-color-warning-shade-rgb),
+  danger: var(--vui-color-danger-shade-rgb),
+  neutral: var(--vui-color-darker-shade-rgb),
+  subdued: var(--vui-color-subdued-shade-rgb)
 );
 
 @each $colorName, $colorValue in $color {
   .vuiIconButton--#{$colorName} {
-    color: $colorValue;
-    background-color: rgba($colorValue, 1);
+    color: rgb($colorValue);
+    background-color: rgba($colorValue, 0);
 
     &:hover {
-      background-color: rgba($colorValue, 0.9);
+      background-color: rgba($colorValue, 0.1);
     }
 
     &-isSelected {
-      background-color: rgba($colorValue, 0.9);
+      background-color: rgba($colorValue, 0.1);
     }
   }
 }
