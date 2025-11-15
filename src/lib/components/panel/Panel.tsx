@@ -9,6 +9,8 @@ type Props = {
   background?: string;
   backgroundScale?: "width" | "height";
   backgroundMaxSize?: string;
+  fullHeight?: boolean;
+  fullWidth?: boolean;
 };
 
 export const VuiPanel = ({
@@ -19,9 +21,15 @@ export const VuiPanel = ({
   backgroundScale = "height",
   align = "top",
   color = "default",
-  backgroundMaxSize
+  backgroundMaxSize,
+  fullHeight,
+  fullWidth,
+  ...rest
 }: Props) => {
-  const classes = classNames("vuiPanel", `vuiPanel--${color}`, `vuiPanel--align-${align}`);
+  const classes = classNames("vuiPanel", `vuiPanel--${color}`, `vuiPanel--align-${align}`, {
+    "vuiPanel--fullHeight": fullHeight,
+    "vuiPanel--fullWidth": fullWidth
+  });
   const style =
     backgroundMaxSize !== undefined
       ? {
@@ -31,7 +39,7 @@ export const VuiPanel = ({
       : {};
 
   return (
-    <div className={classes}>
+    <div className={classes} {...rest}>
       {background && (
         <img className={`vuiPanelBackground vuiBackgroundScale--${backgroundScale}`} src={background} style={style} />
       )}

@@ -26,6 +26,14 @@
   background-color: transparent;
 }
 
+.vuiPanel--fullHeight {
+  height: 100%;
+}
+
+.vuiPanel--fullWidth {
+  width: 100%;
+}
+
 .vuiPanelIcon {
   margin-bottom: $sizeS;
 }

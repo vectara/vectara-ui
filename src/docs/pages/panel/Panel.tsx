@@ -22,6 +22,7 @@ export const Panel = () => {
         <VuiPanel
           color="transparent"
           align="bottom"
+          fullHeight
           actions={
             <VuiFlexContainer wrap>
               <VuiFlexItem>
@@ -52,6 +53,7 @@ export const Panel = () => {
         </VuiPanel>
 
         <VuiPanel
+          fullHeight
           icon={
             <VuiIcon isEnclosed color="primary" size="xl">
               <BiSolidWrench />
