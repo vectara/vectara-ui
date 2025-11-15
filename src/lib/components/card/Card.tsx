@@ -12,6 +12,7 @@ type Props = {
   highlight?: boolean;
   ungrouped?: boolean;
   fullHeight?: boolean;
+  bodyOverflowHidden?: boolean;
 };
 
 export const VuiCard = ({
@@ -26,6 +27,7 @@ export const VuiCard = ({
   highlight,
   ungrouped,
   fullHeight,
+  bodyOverflowHidden = false,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -43,7 +45,14 @@ export const VuiCard = ({
   );
 
   const headerContent = header && <div className="vuiCard__header">{header}</div>;
-  const bodyContent = body && <div className="vuiCard__body">{body}</div>;
+  const bodyContent = body && (
+    <div
+      className="vuiCard__body"
+      style={bodyOverflowHidden ? { overflowY: 'hidden' } : undefined}
+    >
+      {body}
+    </div>
+  );
   const footerContent = footer && <div className="vuiCard__footer">{footer}</div>;
 
   if (href) {
