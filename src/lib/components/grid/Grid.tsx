@@ -33,9 +33,9 @@ const alignContentClassMap = {
   end: "vuiGrid--alignContentEnd",
   center: "vuiGrid--alignContentCenter",
   stretch: "vuiGrid--alignContentStretch",
-  "space-around": "vuiGrid--alignContentSpace-around",
-  "space-between": "vuiGrid--alignContentSpace-between",
-  "space-evenly": "vuiGrid--alignContentSpace-evenly"
+  "space-around": "vuiGrid--alignContentSpaceAround",
+  "space-between": "vuiGrid--alignContentSpaceBetween",
+  "space-evenly": "vuiGrid--alignContentSpaceEvenly"
 } as const;
 
 const justifyContentClassMap = {
@@ -43,9 +43,9 @@ const justifyContentClassMap = {
   end: "vuiGrid--justifyContentEnd",
   center: "vuiGrid--justifyContentCenter",
   stretch: "vuiGrid--justifyContentStretch",
-  "space-around": "vuiGrid--justifyContentSpace-around",
-  "space-between": "vuiGrid--justifyContentSpace-between",
-  "space-evenly": "vuiGrid--justifyContentSpace-evenly"
+  "space-around": "vuiGrid--justifyContentSpaceAround",
+  "space-between": "vuiGrid--justifyContentSpaceBetween",
+  "space-evenly": "vuiGrid--justifyContentSpaceEvenly"
 } as const;
 
 type Props = {
