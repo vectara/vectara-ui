@@ -1,18 +1,39 @@
 import React from "react";
 import classNames from "classnames";
 import { FlexSpacing } from "../flex/types";
-import {
-  GridAlignItems,
-  GridJustifyItems,
-  GridAlignContent,
-  GridJustifyContent,
-  ResponsiveValue
-} from "./types";
+import { ResponsiveGridValue } from "./types";
 
 export const COLUMNS = [1, 2, 3, 4] as const;
 export type Columns = (typeof COLUMNS)[number];
 
-// Mapping objects for alignment properties
+const GRID_ALIGN_ITEMS = ["start", "end", "center", "stretch", "baseline"] as const;
+type GridAlignItems = (typeof GRID_ALIGN_ITEMS)[number];
+
+const GRID_JUSTIFY_ITEMS = ["start", "end", "center", "stretch"] as const;
+type GridJustifyItems = (typeof GRID_JUSTIFY_ITEMS)[number];
+
+const GRID_ALIGN_CONTENT = [
+  "start",
+  "end",
+  "center",
+  "stretch",
+  "space-around",
+  "space-between",
+  "space-evenly"
+] as const;
+type GridAlignContent = (typeof GRID_ALIGN_CONTENT)[number];
+
+const GRID_JUSTIFY_CONTENT = [
+  "start",
+  "end",
+  "center",
+  "stretch",
+  "space-around",
+  "space-between",
+  "space-evenly"
+] as const;
+type GridJustifyContent = (typeof GRID_JUSTIFY_CONTENT)[number];
+
 const alignItemsClassMap = {
   start: "vuiGrid--alignItemsStart",
   end: "vuiGrid--alignItemsEnd",
@@ -52,7 +73,7 @@ type Props = {
   children?: React.ReactNode;
   columns?: Columns;
   spacing?: FlexSpacing;
-  templateColumns?: ResponsiveValue<string>;
+  templateColumns?: ResponsiveGridValue<string>;
   templateRows?: string;
   gap?: FlexSpacing;
   rowGap?: FlexSpacing;
