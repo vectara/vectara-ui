@@ -1,6 +1,29 @@
 import React from "react";
 import classNames from "classnames";
-import { GridItemProps, GridSpan } from "./types";
+import { ResponsiveGridValue } from "./types";
+
+const GRID_ALIGN_SELF = ["start", "end", "center", "stretch", "baseline"] as const;
+type GridAlignSelf = (typeof GRID_ALIGN_SELF)[number];
+
+const GRID_JUSTIFY_SELF = ["start", "end", "center", "stretch"] as const;
+type GridJustifySelf = (typeof GRID_JUSTIFY_SELF)[number];
+
+type GridSpan = number | "auto";
+type GridLine = number | "auto" | `span ${number}`;
+
+type GridItemProps = {
+  children?: React.ReactNode;
+  area?: string;
+  colSpan?: ResponsiveGridValue<GridSpan>;
+  rowSpan?: GridSpan;
+  colStart?: GridLine;
+  colEnd?: GridLine;
+  rowStart?: GridLine;
+  rowEnd?: GridLine;
+  alignSelf?: GridAlignSelf;
+  justifySelf?: GridJustifySelf;
+  className?: string;
+};
 
 // Mapping objects for alignment properties
 const alignSelfClassMap = {
@@ -18,13 +41,18 @@ const justifySelfClassMap = {
   stretch: "vuiGridItem--justifySelfStretch"
 } as const;
 
-const isResponsiveValue = <T,>(value: any): value is { default?: T; sm?: T; md?: T; lg?: T } => {
+const isResponsiveGridValue = <T,>(value: any): value is { default?: T; sm?: T; md?: T; lg?: T } => {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 };
 
 const normalizeGridSpan = (value: GridSpan): string => {
   if (value === "auto") return "auto";
   return `span ${value}`;
+};
+
+// Helper to check if a grid value is a number within the valid range for CSS classes
+const isGridValueInRange = (value: unknown, maxValue = 12): value is number => {
+  return typeof value === "number" && value >= 1 && value <= maxValue;
 };
 
 export const VuiGridItem = ({
@@ -41,18 +69,17 @@ export const VuiGridItem = ({
   className,
   ...rest
 }: GridItemProps) => {
-  const isColSpanResponsive = isResponsiveValue(colSpan);
+  const isColSpanResponsive = isResponsiveGridValue(colSpan);
 
   const classes = classNames(
     "vuiGridItem",
     {
-      [`vuiGridItem--colSpan${colSpan}`]:
-        !isColSpanResponsive && colSpan && typeof colSpan === "number" && colSpan <= 12,
-      [`vuiGridItem--rowSpan${rowSpan}`]: rowSpan && typeof rowSpan === "number" && rowSpan <= 12,
-      [`vuiGridItem--colStart${colStart}`]: colStart && typeof colStart === "number" && colStart <= 12,
-      [`vuiGridItem--colEnd${colEnd}`]: colEnd && typeof colEnd === "number" && colEnd <= 12,
-      [`vuiGridItem--rowStart${rowStart}`]: rowStart && typeof rowStart === "number" && rowStart <= 12,
-      [`vuiGridItem--rowEnd${rowEnd}`]: rowEnd && typeof rowEnd === "number" && rowEnd <= 12,
+      [`vuiGridItem--colSpan${colSpan}`]: !isColSpanResponsive && isGridValueInRange(colSpan),
+      [`vuiGridItem--rowSpan${rowSpan}`]: isGridValueInRange(rowSpan),
+      [`vuiGridItem--colStart${colStart}`]: isGridValueInRange(colStart),
+      [`vuiGridItem--colEnd${colEnd}`]: isGridValueInRange(colEnd),
+      [`vuiGridItem--rowStart${rowStart}`]: isGridValueInRange(rowStart),
+      [`vuiGridItem--rowEnd${rowEnd}`]: isGridValueInRange(rowEnd),
       "vuiGridItem--responsive": isColSpanResponsive
     },
     alignSelf && alignSelfClassMap[alignSelf],
