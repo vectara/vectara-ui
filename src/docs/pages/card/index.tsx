@@ -1,8 +1,10 @@
 import { Card } from "./Card";
 import { Highlight } from "./Highlight";
+import { BodyOverflowHidden } from "./BodyOverflowHidden";
 
 const CardSource = require("!!raw-loader!./Card");
 const HighlightSource = require("!!raw-loader!./Highlight");
+const BodyOverflowHiddenSource = require("!!raw-loader!./BodyOverflowHidden");
 
 export const card = {
   name: "Card",
@@ -17,6 +19,11 @@ export const card = {
       name: "Highlight",
       component: <Highlight />,
       source: HighlightSource.default.toString()
+    },
+    {
+      name: "Body Overflow Hidden",
+      component: <BodyOverflowHidden />,
+      source: BodyOverflowHiddenSource.default.toString()
     }
   ]
 };
