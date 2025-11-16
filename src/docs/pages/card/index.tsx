@@ -1,10 +1,10 @@
 import { Card } from "./Card";
 import { Highlight } from "./Highlight";
-import { BodyOverflowHidden } from "./BodyOverflowHidden";
+import { Scrollable } from "./Scrollable";
 
 const CardSource = require("!!raw-loader!./Card");
 const HighlightSource = require("!!raw-loader!./Highlight");
-const BodyOverflowHiddenSource = require("!!raw-loader!./BodyOverflowHidden");
+const ScrollableSource = require("!!raw-loader!./Scrollable");
 
 export const card = {
   name: "Card",
@@ -21,9 +21,9 @@ export const card = {
       source: HighlightSource.default.toString()
     },
     {
-      name: "Body Overflow Hidden",
-      component: <BodyOverflowHidden />,
-      source: BodyOverflowHiddenSource.default.toString()
+      name: "Scrollable",
+      component: <Scrollable />,
+      source: ScrollableSource.default.toString()
     }
   ]
 };
