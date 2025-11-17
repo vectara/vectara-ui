@@ -67,3 +67,215 @@ $spacing: (
     grid-template-columns: 1fr;
   }
 }
+
+// Responsive grid template columns using CSS custom properties
+.vuiGrid--responsive {
+  // Small (applies from 0px up - default/mobile-first)
+  grid-template-columns: var(--grid-template-sm);
+
+  @container (width > 500px) {
+    grid-template-columns: var(--grid-template-md);
+  }
+
+  @container (width > 800px) {
+    grid-template-columns: var(--grid-template-lg);
+  }
+}
+
+// Alignment - align-items
+.vuiGrid--alignItemsStart {
+  align-items: start;
+}
+
+.vuiGrid--alignItemsEnd {
+  align-items: end;
+}
+
+.vuiGrid--alignItemsCenter {
+  align-items: center;
+}
+
+.vuiGrid--alignItemsStretch {
+  align-items: stretch;
+}
+
+.vuiGrid--alignItemsBaseline {
+  align-items: baseline;
+}
+
+// Alignment - justify-items
+.vuiGrid--justifyItemsStart {
+  justify-items: start;
+}
+
+.vuiGrid--justifyItemsEnd {
+  justify-items: end;
+}
+
+.vuiGrid--justifyItemsCenter {
+  justify-items: center;
+}
+
+.vuiGrid--justifyItemsStretch {
+  justify-items: stretch;
+}
+
+// Alignment - align-content
+.vuiGrid--alignContentStart {
+  align-content: start;
+}
+
+.vuiGrid--alignContentEnd {
+  align-content: end;
+}
+
+.vuiGrid--alignContentCenter {
+  align-content: center;
+}
+
+.vuiGrid--alignContentStretch {
+  align-content: stretch;
+}
+
+.vuiGrid--alignContentSpaceAround {
+  align-content: space-around;
+}
+
+.vuiGrid--alignContentSpaceBetween {
+  align-content: space-between;
+}
+
+.vuiGrid--alignContentSpaceEvenly {
+  align-content: space-evenly;
+}
+
+// Alignment - justify-content
+.vuiGrid--justifyContentStart {
+  justify-content: start;
+}
+
+.vuiGrid--justifyContentEnd {
+  justify-content: end;
+}
+
+.vuiGrid--justifyContentCenter {
+  justify-content: center;
+}
+
+.vuiGrid--justifyContentStretch {
+  justify-content: stretch;
+}
+
+.vuiGrid--justifyContentSpaceAround {
+  justify-content: space-around;
+}
+
+.vuiGrid--justifyContentSpaceBetween {
+  justify-content: space-between;
+}
+
+.vuiGrid--justifyContentSpaceEvenly {
+  justify-content: space-evenly;
+}
+
+// Display options
+.vuiGrid--inline {
+  display: inline-grid;
+}
+
+.vuiGrid--fullWidth {
+  width: 100%;
+}
+
+// GridItem styles
+.vuiGridItem {
+  // Base styles if needed
+}
+
+// GridItem column span helpers
+@for $i from 1 through 12 {
+  .vuiGridItem--colSpan#{$i} {
+    grid-column: span $i;
+  }
+}
+
+// GridItem row span helpers
+@for $i from 1 through 12 {
+  .vuiGridItem--rowSpan#{$i} {
+    grid-row: span $i;
+  }
+}
+
+// GridItem position helpers - column start/end
+@for $i from 1 through 12 {
+  .vuiGridItem--colStart#{$i} {
+    grid-column-start: $i;
+  }
+
+  .vuiGridItem--colEnd#{$i} {
+    grid-column-end: $i;
+  }
+}
+
+// GridItem position helpers - row start/end
+@for $i from 1 through 12 {
+  .vuiGridItem--rowStart#{$i} {
+    grid-row-start: $i;
+  }
+
+  .vuiGridItem--rowEnd#{$i} {
+    grid-row-end: $i;
+  }
+}
+
+// GridItem alignment - align-self
+.vuiGridItem--alignSelfStart {
+  align-self: start;
+}
+
+.vuiGridItem--alignSelfEnd {
+  align-self: end;
+}
+
+.vuiGridItem--alignSelfCenter {
+  align-self: center;
+}
+
+.vuiGridItem--alignSelfStretch {
+  align-self: stretch;
+}
+
+.vuiGridItem--alignSelfBaseline {
+  align-self: baseline;
+}
+
+// GridItem alignment - justify-self
+.vuiGridItem--justifySelfStart {
+  justify-self: start;
+}
+
+.vuiGridItem--justifySelfEnd {
+  justify-self: end;
+}
+
+.vuiGridItem--justifySelfCenter {
+  justify-self: center;
+}
+
+.vuiGridItem--justifySelfStretch {
+  justify-self: stretch;
+}
+
+// Responsive grid item column span using CSS custom properties
+.vuiGridItem--responsive {
+  // Small (applies from 0px up - default/mobile-first)
+  grid-column: var(--grid-item-colSpan-sm);
+
+  @container (width > 500px) {
+    grid-column: var(--grid-item-colSpan-md);
+  }
+
+  @container (width > 800px) {
+    grid-column: var(--grid-item-colSpan-lg);
+  }
+}
