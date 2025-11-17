@@ -64,6 +64,10 @@
   flex-grow: 1;
 }
 
+.vuiCard__body--scrollable {
+  overflow-y: auto;
+}
+
 .vuiCard__footer {
   display: flex;
   flex-direction: column;

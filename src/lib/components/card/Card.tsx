@@ -12,6 +12,7 @@ type Props = {
   highlight?: boolean;
   ungrouped?: boolean;
   fullHeight?: boolean;
+  isScrollable?: boolean;
 };
 
 export const VuiCard = ({
@@ -26,6 +27,7 @@ export const VuiCard = ({
   highlight,
   ungrouped,
   fullHeight,
+  isScrollable,
   ...rest
 }: Props) => {
   const classes = classNames(
@@ -42,8 +44,12 @@ export const VuiCard = ({
     className
   );
 
+  const bodyClasses = classNames("vuiCard__body", {
+    "vuiCard__body--scrollable": isScrollable
+  });
+
   const headerContent = header && <div className="vuiCard__header">{header}</div>;
-  const bodyContent = body && <div className="vuiCard__body">{body}</div>;
+  const bodyContent = body && <div className={bodyClasses}>{body}</div>;
   const footerContent = footer && <div className="vuiCard__footer">{footer}</div>;
 
   if (href) {
