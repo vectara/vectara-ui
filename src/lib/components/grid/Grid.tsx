@@ -75,9 +75,6 @@ type Props = {
   spacing?: FlexSpacing;
   templateColumns?: ResponsiveGridValue<string>;
   templateRows?: string;
-  gap?: FlexSpacing;
-  rowGap?: FlexSpacing;
-  columnGap?: FlexSpacing;
   alignItems?: GridAlignItems;
   justifyItems?: GridJustifyItems;
   alignContent?: GridAlignContent;
@@ -93,9 +90,6 @@ export const VuiGrid = ({
   spacing = "m",
   templateColumns,
   templateRows,
-  gap,
-  rowGap,
-  columnGap,
   alignItems,
   justifyItems,
   alignContent,
@@ -105,8 +99,6 @@ export const VuiGrid = ({
   className,
   ...rest
 }: Props) => {
-  // Use gap if provided, otherwise fall back to spacing for backward compatibility
-  const effectiveGap = gap || spacing;
 
   const classes = classNames("vuiGridContainer", className);
 
@@ -115,9 +107,7 @@ export const VuiGrid = ({
   const contentClasses = classNames(
     "vuiGrid",
     {
-      [`vuiGrid--${effectiveGap}`]: effectiveGap && !rowGap && !columnGap,
-      [`vuiGrid--rowGap${rowGap}`]: rowGap,
-      [`vuiGrid--columnGap${columnGap}`]: columnGap,
+      [`vuiGrid--${spacing}`]: spacing,
       [`vuiGrid--columns${columns}`]: !templateColumns && columns,
       "vuiGrid--inline": inline,
       "vuiGrid--fullWidth": fullWidth,

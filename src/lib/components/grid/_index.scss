@@ -82,17 +82,6 @@ $spacing: (
   }
 }
 
-// Separate row and column gap controls
-@each $spacingName, $spacingValue in $spacing {
-  .vuiGrid--rowGap#{$spacingName} {
-    row-gap: $spacingValue;
-  }
-
-  .vuiGrid--columnGap#{$spacingName} {
-    column-gap: $spacingValue;
-  }
-}
-
 // Alignment - align-items
 .vuiGrid--alignItemsStart {
   align-items: start;

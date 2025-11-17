@@ -8,8 +8,6 @@ type Props = {
   columns?: number | Record<string, number>;
   minChildWidth?: string;
   spacing?: FlexSpacing;
-  spacingX?: FlexSpacing;
-  spacingY?: FlexSpacing;
   className?: string;
 };
 
@@ -18,8 +16,6 @@ export const VuiSimpleGrid = ({
   columns,
   minChildWidth,
   spacing = "m",
-  spacingX,
-  spacingY,
   className,
   ...rest
 }: Props) => {
@@ -42,9 +38,7 @@ export const VuiSimpleGrid = ({
   return (
     <VuiGrid
       templateColumns={templateColumns}
-      gap={spacing}
-      columnGap={spacingX}
-      rowGap={spacingY}
+      spacing={spacing}
       className={classes}
       {...rest}
     >
