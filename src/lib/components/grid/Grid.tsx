@@ -17,9 +17,9 @@ const GRID_ALIGN_CONTENT = [
   "end",
   "center",
   "stretch",
-  "space-around",
-  "space-between",
-  "space-evenly"
+  "spaceAround",
+  "spaceBetween",
+  "spaceEvenly"
 ] as const;
 type GridAlignContent = (typeof GRID_ALIGN_CONTENT)[number];
 
@@ -28,9 +28,9 @@ const GRID_JUSTIFY_CONTENT = [
   "end",
   "center",
   "stretch",
-  "space-around",
-  "space-between",
-  "space-evenly"
+  "spaceAround",
+  "spaceBetween",
+  "spaceEvenly"
 ] as const;
 type GridJustifyContent = (typeof GRID_JUSTIFY_CONTENT)[number];
 
@@ -54,9 +54,9 @@ const alignContentClassMap = {
   end: "vuiGrid--alignContentEnd",
   center: "vuiGrid--alignContentCenter",
   stretch: "vuiGrid--alignContentStretch",
-  "space-around": "vuiGrid--alignContentSpaceAround",
-  "space-between": "vuiGrid--alignContentSpaceBetween",
-  "space-evenly": "vuiGrid--alignContentSpaceEvenly"
+  spaceAround: "vuiGrid--alignContentSpaceAround",
+  spaceBetween: "vuiGrid--alignContentSpaceBetween",
+  spaceEvenly: "vuiGrid--alignContentSpaceEvenly"
 } as const;
 
 const justifyContentClassMap = {
@@ -64,9 +64,9 @@ const justifyContentClassMap = {
   end: "vuiGrid--justifyContentEnd",
   center: "vuiGrid--justifyContentCenter",
   stretch: "vuiGrid--justifyContentStretch",
-  "space-around": "vuiGrid--justifyContentSpaceAround",
-  "space-between": "vuiGrid--justifyContentSpaceBetween",
-  "space-evenly": "vuiGrid--justifyContentSpaceEvenly"
+  spaceAround: "vuiGrid--justifyContentSpaceAround",
+  spaceBetween: "vuiGrid--justifyContentSpaceBetween",
+  spaceEvenly: "vuiGrid--justifyContentSpaceEvenly"
 } as const;
 
 type Props = {
