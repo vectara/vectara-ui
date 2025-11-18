@@ -96,20 +96,6 @@ $spacing: (
   }
 }
 
-// Responsive grid auto columns using CSS custom properties
-.vuiGrid--responsiveAutoColumns {
-  // Small (applies from 0px up - default/mobile-first)
-  grid-auto-columns: var(--grid-auto-columns-sm);
-
-  @container (width > 500px) {
-    grid-auto-columns: var(--grid-auto-columns-md);
-  }
-
-  @container (width > 800px) {
-    grid-auto-columns: var(--grid-auto-columns-lg);
-  }
-}
-
 // Alignment - align-items
 .vuiGrid--alignItemsStart {
   align-items: start;

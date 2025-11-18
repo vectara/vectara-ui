@@ -68,7 +68,6 @@ type Props = {
   templateColumns?: ResponsiveGridValue<string>;
   templateRows?: string;
   autoRows?: ResponsiveGridValue<string>;
-  autoColumns?: ResponsiveGridValue<string>;
   alignItems?: GridAlignItems;
   justifyItems?: GridJustifyItems;
   alignContent?: GridAlignContent;
@@ -85,7 +84,6 @@ export const VuiGrid = ({
   templateColumns,
   templateRows,
   autoRows,
-  autoColumns,
   alignItems,
   justifyItems,
   alignContent,
@@ -99,7 +97,6 @@ export const VuiGrid = ({
 
   const isResponsiveTemplateColumns = templateColumns && typeof templateColumns === "object";
   const isResponsiveAutoRows = autoRows && typeof autoRows === "object";
-  const isResponsiveAutoColumns = autoColumns && typeof autoColumns === "object";
 
   const contentClasses = classNames(
     "vuiGrid",
@@ -109,8 +106,7 @@ export const VuiGrid = ({
       "vuiGrid--inline": inline,
       "vuiGrid--fullWidth": fullWidth,
       "vuiGrid--responsive": isResponsiveTemplateColumns,
-      "vuiGrid--responsiveAutoRows": isResponsiveAutoRows,
-      "vuiGrid--responsiveAutoColumns": isResponsiveAutoColumns
+      "vuiGrid--responsiveAutoRows": isResponsiveAutoRows
     },
     alignItems && alignItemsClassMap[alignItems],
     justifyItems && justifyItemsClassMap[justifyItems],
@@ -165,28 +161,6 @@ export const VuiGrid = ({
       }
       if (lgValue) {
         gridStyle["--grid-auto-rows-lg"] = lgValue;
-      }
-    }
-  }
-
-  if (autoColumns) {
-    if (typeof autoColumns === "string") {
-      gridStyle.gridAutoColumns = autoColumns;
-    } else {
-      // Implement cascading: each breakpoint inherits from the previous if not defined
-      const defaultValue = autoColumns.default;
-      const smValue = autoColumns.sm || defaultValue;
-      const mdValue = autoColumns.md || smValue;
-      const lgValue = autoColumns.lg || mdValue;
-
-      if (smValue) {
-        gridStyle["--grid-auto-columns-sm"] = smValue;
-      }
-      if (mdValue) {
-        gridStyle["--grid-auto-columns-md"] = mdValue;
-      }
-      if (lgValue) {
-        gridStyle["--grid-auto-columns-lg"] = lgValue;
       }
     }
   }
