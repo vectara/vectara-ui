@@ -10,6 +10,7 @@ interface VuiContextType {
   getPath: PathProvider;
   DrawerTitle: keyof JSX.IntrinsicElements;
   getThemeStyle: (theme: "dark" | "light") => Record<string, string>;
+  portalContainer?: HTMLElement;
 }
 
 const VuiContext = createContext<VuiContextType | undefined>(undefined);
@@ -21,6 +22,7 @@ type Props = {
   drawerTitle?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   theme?: Theme;
   isThemeIsolated?: boolean;
+  portalContainer?: HTMLElement;
 };
 
 export const VuiContextProvider = ({
@@ -29,6 +31,7 @@ export const VuiContextProvider = ({
   pathProvider,
   drawerTitle = "h2",
   theme = LIGHT_THEME,
+  portalContainer = document.body,
   isThemeIsolated
 }: Props) => {
   const createLink = (linkConfig: LinkProps) => {
@@ -75,7 +78,7 @@ export const VuiContextProvider = ({
   const themedChildren = isThemeIsolated ? <div style={cssVariables}>{children}</div> : children;
 
   return (
-    <VuiContext.Provider value={{ createLink, getPath, DrawerTitle, getThemeStyle }}>
+    <VuiContext.Provider value={{ createLink, getPath, DrawerTitle, getThemeStyle, portalContainer }}>
       {themedChildren}
     </VuiContext.Provider>
   );
