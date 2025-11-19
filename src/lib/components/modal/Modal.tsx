@@ -21,6 +21,7 @@ type Props = {
   onClose?: () => void;
   color?: (typeof COLOR)[number];
   key?: string;
+  size?: "s" | "m" | "l";
 };
 
 export const VuiModal = ({
@@ -32,6 +33,7 @@ export const VuiModal = ({
   isOpen,
   onClose,
   key,
+  size = "s",
   ...rest
 }: Props) => {
   const { DrawerTitle } = useVuiContext();
@@ -54,7 +56,7 @@ export const VuiModal = ({
     }, 0);
   };
 
-  const classes = classNames("vuiModal", `vuiModal--${color}`, className);
+  const classes = classNames("vuiModal", `vuiModal--${color}`, `vuiModal--${size}`, className);
 
   return (
     <VuiPortal>
