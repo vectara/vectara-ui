@@ -94,7 +94,7 @@ export const VuiModal = ({
                     {onClose && (
                       <VuiFlexItem>
                         <VuiIconButton
-                          aria-label="Close modal"
+                          aria-label="Close"
                           onClick={onCloseDelayed}
                           color="neutral"
                           icon={
