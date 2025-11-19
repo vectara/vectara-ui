@@ -1,7 +1,5 @@
 @use "sass:map";
 
-$modalWidth: 500px;
-
 @keyframes modalIn {
   0% {
     transform: translateY(12px);
@@ -31,7 +29,6 @@ $modalWidth: 500px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: $modalWidth;
   max-height: calc(100% - $sizeM * 2);
   background-color: var(--vui-color-empty-shade);
   border-radius: $sizeXxs;
@@ -39,10 +36,22 @@ $modalWidth: 500px;
   pointer-events: all;
   box-shadow: rgba(57, 57, 75, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   transition: height $transitionSpeed, max-width $transitionSpeed, max-height $transitionSpeed;
+}
 
-  @media screen and (max-width: 1000px) {
-    & {
-      max-width: calc(100% - $sizeM * 2);
+$size: (
+  s: 500px,
+  m: 900px,
+  l: 1300px
+);
+
+@each $sizeName, $sizeValue in $size {
+  .vuiModal--#{$sizeName} {
+    max-width: $sizeValue;
+
+    @media screen and (max-width: ($sizeValue + $sizeXl * 2)) {
+      & {
+        max-width: calc(100% - $sizeM * 2);
+      }
     }
   }
 }
