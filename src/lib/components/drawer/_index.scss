@@ -25,6 +25,10 @@ $drawerWidth: 680px;
   border-left: 1px solid var(--vui-color-border-medium);
   z-index: $drawerZIndex;
   animation: drawerIn $transitionSpeed cubic-bezier(0, 1, 0, 1);
+
+  @media screen and (max-width: $drawerWidth + $sizeM) {
+    max-width: calc(100% - $sizeM);
+  }
 }
 
 .vuiDrawerHeader {
