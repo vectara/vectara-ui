@@ -21,7 +21,24 @@
 
   td {
     font-size: $fontSizeStandard;
+  }
+}
+
+.vuiInfoTable--alignTop {
+  td {
+    vertical-align: top;
+  }
+}
+
+.vuiInfoTable--alignMiddle {
+  td {
     vertical-align: middle;
+  }
+}
+
+.vuiInfoTable--alignBottom {
+  td {
+    vertical-align: bottom;
   }
 }
 
