@@ -30,6 +30,7 @@ type Props = {
   rows: InfoTableRow[];
   isHeaderVisible?: boolean;
   padding?: (typeof PADDING)[number];
+  align?: "top" | "middle" | "bottom";
 };
 
 const paddingToClassMap = {
@@ -38,13 +39,19 @@ const paddingToClassMap = {
   s: "vuiInfoTable--paddingS"
 };
 
+const alignToClassMap = {
+  top: "vuiInfoTable--alignTop",
+  middle: "vuiInfoTable--alignMiddle",
+  bottom: "vuiInfoTable--alignBottom"
+};
+
 const typeToRowClassMap = {
   sectionHeader: "vuiInfoTableRow--sectionHeader",
   footer: "vuiInfoTableRow--footer"
 };
 
-export const VuiInfoTable = ({ columns, rows, isHeaderVisible, padding = "xs" }: Props) => {
-  const classes = classNames("vuiInfoTable", paddingToClassMap[padding]);
+export const VuiInfoTable = ({ columns, rows, isHeaderVisible, padding = "xs", align = "middle" }: Props) => {
+  const classes = classNames("vuiInfoTable", alignToClassMap[align], paddingToClassMap[padding]);
 
   return (
     <table className={classes}>
