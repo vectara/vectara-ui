@@ -46,6 +46,7 @@ import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
+import { stat } from "./pages/stat";
 import { status } from "./pages/status";
 import { statList } from "./pages/statList";
 import { steps } from "./pages/steps";
@@ -90,7 +91,7 @@ export const categories: Category[] = [
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, icon, image, inProgress, spinner, skeleton, progressBar, text, tooltip]
+    pages: [badge, status, callout, code, icon, image, inProgress, spinner, skeleton, stat, progressBar, text, tooltip]
   },
   {
     name: "Form",

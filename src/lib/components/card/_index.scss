@@ -1,23 +1,42 @@
 .vuiCard {
   display: flex;
   flex-direction: column;
-  background-color: var(--vui-color-empty-shade);
   border-radius: $sizeXs;
-  box-shadow: $shadowLargeStart;
   width: 100%;
-  transition: box-shadow $transitionSpeed;
   overflow: hidden;
+}
+
+.vuiCard--full {
+  background-color: var(--vui-color-light-shade);
+  transition: background-color $transitionSpeed, box-shadow $transitionSpeed;
+
+  &.vuiCard--interactive {
+    &:hover {
+      background-color: var(--vui-color-empty-shade);
+      box-shadow: $shadowSmallEnd;
+    }
+  }
+}
+
+.vuiCard--outlined {
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-border-light);
+
+  .vuiCard__body--withHeader {
+    border-top: 1px solid var(--vui-color-border-light);
+  }
+
+  transition: box-shadow $transitionSpeed;
+
+  &.vuiCard--interactive {
+    &:hover {
+      box-shadow: $shadowSmallEnd;
+    }
+  }
 }
 
 .vuiCard--fullHeight {
   height: 100%;
-}
-
-.vuiCard--interactive {
-  &:hover {
-    box-shadow: $shadowLargeEnd;
-    z-index: 1;
-  }
 }
 
 .vuiCard--ungrouped {
@@ -29,8 +48,7 @@
   text-align: center;
 
   .vuiCard__header,
-  .vuiCard__body,
-  .vuiCard__footer {
+  .vuiCard__body {
     align-items: center;
     text-align: center;
   }
@@ -41,8 +59,7 @@
   text-align: left;
 
   .vuiCard__header,
-  .vuiCard__body,
-  .vuiCard__footer {
+  .vuiCard__body {
     align-items: flex-start;
     text-align: left;
   }
@@ -59,7 +76,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-top: 1px solid var(--vui-color-border-light);
   padding: $sizeM $sizeL;
   flex-grow: 1;
 }
@@ -68,21 +84,10 @@
   overflow-y: auto;
 }
 
-.vuiCard__footer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0 $sizeL $sizeM;
-}
-
 .vuiCard--s {
   .vuiCard__header,
   .vuiCard__body {
     padding: $sizeM $sizeL;
-  }
-
-  .vuiCard__footer {
-    padding: 0 $sizeL $sizeM;
   }
 }
 
@@ -91,31 +96,11 @@
   .vuiCard__body {
     padding: $sizeL $sizeXl;
   }
-
-  .vuiCard__footer {
-    padding: 0 $sizeXl $sizeL;
-  }
 }
 
 .vuiCard--l {
   .vuiCard__header,
   .vuiCard__body {
     padding: $sizeXl $sizeXxl;
-  }
-
-  .vuiCard__footer {
-    padding: 0 $sizeXxl $sizeXl;
-  }
-}
-
-.vuiCard--highlight {
-  border: 2px solid var(--vui-color-primary-shade);
-
-  .vuiCard__header {
-    background-color: var(--vui-color-primary-lighter-shade);
-  }
-
-  .vuiCard__body {
-    border-top: var(--vui-color-primary-lighter-shade);
   }
 }
