@@ -292,11 +292,15 @@ export const toStyle = (theme: Theme) => {
 
     // Text colors
     "--vui-color-text": theme.colorText,
+    "--vui-color-text-rgb": theme.colorTextRgb,
     "--vui-color-label": theme.colorLabel,
+    "--vui-color-label-rgb": theme.colorLabelRgb,
 
     // Border colors
     "--vui-color-border-medium": theme.colorBorderMedium,
-    "--vui-color-border-light": theme.colorBorderLight
+    "--vui-color-border-medium-rgb": theme.colorBorderMediumRgb,
+    "--vui-color-border-light": theme.colorBorderLight,
+    "--vui-color-border-light-rgb": theme.colorBorderLightRgb
   };
 
   // Remove undefined values.
