@@ -62,11 +62,15 @@ export type Theme = {
 
   // Text colors
   colorText?: string;
+  colorTextRgb?: string;
   colorLabel?: string;
+  colorLabelRgb?: string;
 
   // Border colors
   colorBorderMedium?: string;
+  colorBorderMediumRgb?: string;
   colorBorderLight?: string;
+  colorBorderLightRgb?: string;
 };
 
 const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -185,11 +189,15 @@ export const LIGHT_THEME: Theme = {
 
   // Text color
   colorText: colorDarkerShade,
+  colorTextRgb: toRgb(colorDarkerShade),
   colorLabel: colorDarkerShade,
+  colorLabelRgb: toRgb(colorDarkerShade),
 
   // Border color
   colorBorderMedium: colorMediumShade,
-  colorBorderLight: colorBorderLightShade
+  colorBorderMediumRgb: toRgb(colorMediumShade),
+  colorBorderLight: colorBorderLightShade,
+  colorBorderLightRgb: toRgb(colorBorderLightShade)
 };
 
 export const DARK_THEME: Theme = {

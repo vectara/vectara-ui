@@ -13,6 +13,7 @@ import { useVuiContext } from "../context/Context";
 const COLOR = ["primary", "danger"] as const;
 
 type Props = {
+  canClickOutsideToClose?: boolean;
   className?: string;
   title: ReactNode;
   icon?: ReactNode;
@@ -33,6 +34,7 @@ export const VuiModal = ({
   isOpen,
   onClose,
   key,
+  canClickOutsideToClose = true,
   size = "s",
   ...rest
 }: Props) => {
@@ -64,7 +66,7 @@ export const VuiModal = ({
         <VuiScreenBlock key={key}>
           <FocusOn
             onEscapeKey={onCloseDelayed}
-            onClickOutside={onCloseDelayed}
+            onClickOutside={canClickOutsideToClose ? onCloseDelayed : undefined}
             // Enable manual focus return to work.
             returnFocus={false}
             // Enable focus on contents when it's open,
