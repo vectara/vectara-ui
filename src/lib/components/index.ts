@@ -83,6 +83,7 @@ import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
 import { SPINNER_COLOR, SPINNER_SIZE } from "./spinner/types";
 import { Stat, VuiStatList } from "./statList/StatList";
+import { VuiStat } from "./stat/Stat";
 import { VuiStatus } from "./status/Status";
 import { VuiSteps, StepStatus, StepSize, VuiStepProps } from "./steps/Steps";
 import { SKELETON_COLOR, VuiSkeleton } from "./skeleton/Skeleton";
@@ -223,6 +224,7 @@ export {
   VuiSetting,
   VuiSpacer,
   VuiSpinner,
+  VuiStat,
   VuiStatList,
   VuiStatus,
   VuiSteps,
