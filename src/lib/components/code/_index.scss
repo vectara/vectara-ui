@@ -37,16 +37,35 @@
   color: var(--vui-color-dark-shade) !important;
 }
 
+@keyframes fullscreenIn {
+  0% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+$fullscreenMargin: $sizeM;
+
 .vuiCodeFullscreen {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: $fullscreenMargin;
+  left: $fullscreenMargin;
+  right: $fullscreenMargin;
+  bottom: $fullscreenMargin;
   z-index: $fullscreenZIndex;
   // PrismJS theme color.
   background-color: #f5f2f0;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  border-radius: $sizeXxs;
+  box-shadow: rgba(57, 57, 75, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  animation: fullscreenIn $transitionSpeed cubic-bezier(0, 1, 1, 1);
 }
 
 .vuiCodeFullscreen__actions {
