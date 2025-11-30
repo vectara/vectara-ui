@@ -4,13 +4,12 @@ import {
   VuiCopyButton,
   VuiFlexContainer,
   VuiFlexItem,
-  VuiFormGroup,
   VuiIcon,
   VuiLink,
+  VuiSelect,
   VuiSpacer,
   VuiText,
   VuiTextColor,
-  VuiTextInput,
   VuiToggle
 } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
@@ -91,24 +90,25 @@ export const Table = () => {
       : [];
 
     // Apply sorting
-    const sortedPeople = sortColumn && sortDirection !== "none"
-      ? [...filteredPeople].sort((a, b) => {
-          const aValue = a[sortColumn as keyof Person];
-          const bValue = b[sortColumn as keyof Person];
+    const sortedPeople =
+      sortColumn && sortDirection !== "none"
+        ? [...filteredPeople].sort((a, b) => {
+            const aValue = a[sortColumn as keyof Person];
+            const bValue = b[sortColumn as keyof Person];
 
-          // Handle arrays (like roles)
-          if (Array.isArray(aValue) && Array.isArray(bValue)) {
-            const aStr = aValue.join(", ");
-            const bStr = bValue.join(", ");
+            // Handle arrays (like roles)
+            if (Array.isArray(aValue) && Array.isArray(bValue)) {
+              const aStr = aValue.join(", ");
+              const bStr = bValue.join(", ");
+              return sortDirection === "asc" ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
+            }
+
+            // Handle strings
+            const aStr = String(aValue);
+            const bStr = String(bValue);
             return sortDirection === "asc" ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
-          }
-
-          // Handle strings
-          const aStr = String(aValue);
-          const bStr = String(bValue);
-          return sortDirection === "asc" ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
-        })
-      : filteredPeople;
+          })
+        : filteredPeople;
 
     return sortedPeople;
   }, [hasData, searchValue, sortColumn, sortDirection]);
@@ -378,6 +378,7 @@ export const Table = () => {
       {/* TODO: Async sorting */}
 
       <VuiTable
+        data-testid="peopleTable"
         isLoading={isLoading}
         idField="id"
         rowDecorator={(person: Person) => ({ className: "testRowClass", "data-testid": person.name })}
@@ -393,9 +394,16 @@ export const Table = () => {
         onReload={onReload}
         search={search}
         customControls={
-          <VuiFormGroup label="Enter input" labelFor="input1">
-            <VuiTextInput id="input1" value="Text input" onChange={(event) => console.log(event.target.value)} />
-          </VuiFormGroup>
+          <VuiSelect
+            id="optionsList1"
+            options={[
+              { text: "All roles", value: "all" },
+              { text: "Guests", value: "guests" },
+              { text: "Staff", value: "staff" }
+            ]}
+            value="all"
+            onChange={(event) => console.log(`Selected ${event.target.value}`)}
+          />
         }
         isDisabled={isDisabled}
         bodyStyle={{
