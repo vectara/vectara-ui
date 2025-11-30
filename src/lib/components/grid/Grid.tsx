@@ -12,15 +12,7 @@ type GridAlignItems = (typeof GRID_ALIGN_ITEMS)[number];
 const GRID_JUSTIFY_ITEMS = ["start", "end", "center", "stretch"] as const;
 type GridJustifyItems = (typeof GRID_JUSTIFY_ITEMS)[number];
 
-const GRID_ALIGN_CONTENT = [
-  "start",
-  "end",
-  "center",
-  "stretch",
-  "spaceAround",
-  "spaceBetween",
-  "spaceEvenly"
-] as const;
+const GRID_ALIGN_CONTENT = ["start", "end", "center", "stretch", "spaceAround", "spaceBetween", "spaceEvenly"] as const;
 type GridAlignContent = (typeof GRID_ALIGN_CONTENT)[number];
 
 const GRID_JUSTIFY_CONTENT = [
@@ -75,6 +67,7 @@ type Props = {
   spacing?: FlexSpacing;
   templateColumns?: ResponsiveGridValue<string>;
   templateRows?: string;
+  autoRows?: ResponsiveGridValue<string>;
   alignItems?: GridAlignItems;
   justifyItems?: GridJustifyItems;
   alignContent?: GridAlignContent;
@@ -90,6 +83,7 @@ export const VuiGrid = ({
   spacing = "m",
   templateColumns,
   templateRows,
+  autoRows,
   alignItems,
   justifyItems,
   alignContent,
@@ -99,10 +93,10 @@ export const VuiGrid = ({
   className,
   ...rest
 }: Props) => {
-
   const classes = classNames("vuiGridContainer", className);
 
   const isResponsiveTemplateColumns = templateColumns && typeof templateColumns === "object";
+  const isResponsiveAutoRows = autoRows && typeof autoRows === "object";
 
   const contentClasses = classNames(
     "vuiGrid",
@@ -111,7 +105,8 @@ export const VuiGrid = ({
       [`vuiGrid--columns${columns}`]: !templateColumns && columns,
       "vuiGrid--inline": inline,
       "vuiGrid--fullWidth": fullWidth,
-      "vuiGrid--responsive": isResponsiveTemplateColumns
+      "vuiGrid--responsive": isResponsiveTemplateColumns,
+      "vuiGrid--responsiveAutoRows": isResponsiveAutoRows
     },
     alignItems && alignItemsClassMap[alignItems],
     justifyItems && justifyItemsClassMap[justifyItems],
@@ -148,12 +143,31 @@ export const VuiGrid = ({
     gridStyle.gridTemplateRows = templateRows;
   }
 
+  if (autoRows) {
+    if (typeof autoRows === "string") {
+      gridStyle.gridAutoRows = autoRows;
+    } else {
+      // Implement cascading: each breakpoint inherits from the previous if not defined
+      const defaultValue = autoRows.default;
+      const smValue = autoRows.sm || defaultValue;
+      const mdValue = autoRows.md || smValue;
+      const lgValue = autoRows.lg || mdValue;
+
+      if (smValue) {
+        gridStyle["--grid-auto-rows-sm"] = smValue;
+      }
+      if (mdValue) {
+        gridStyle["--grid-auto-rows-md"] = mdValue;
+      }
+      if (lgValue) {
+        gridStyle["--grid-auto-rows-lg"] = lgValue;
+      }
+    }
+  }
+
   return (
     <div className={classes} {...rest}>
-      <div
-        className={contentClasses}
-        style={Object.keys(gridStyle).length > 0 ? gridStyle : undefined}
-      >
+      <div className={contentClasses} style={Object.keys(gridStyle).length > 0 ? gridStyle : undefined}>
         {children}
       </div>
     </div>
