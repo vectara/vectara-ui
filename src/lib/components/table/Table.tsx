@@ -237,9 +237,32 @@ export const VuiTable = <T extends Row>({
     });
   }
 
+  const selectAllCheckboxProps = {
+    disabled: !isInteractive,
+    checked: isInteractive ? allRowsSelected : false,
+    onChange: () => {
+      let newSelectedRows: T[];
+
+      if (allRowsSelected) {
+        newSelectedRows = [];
+      } else {
+        newSelectedRows = rows.reduce((acc, row) => {
+          acc.push(row);
+          return acc;
+        }, [] as T[]);
+      }
+
+      onSelectRow?.(newSelectedRows);
+    },
+    "data-testid": "selectAllRowsCheckbox"
+  };
+
+  // @ts-expect-error data-testid doesn't exist on {}.
+  const { "data-testid": dataTestId, ...restProps } = rest;
+
   return (
     // @ts-expect-error React doesn't support inert yet
-    <div className="vuiTableWrapper" inert={isDisabled ? "" : null}>
+    <div className="vuiTableWrapper" inert={isDisabled ? "" : null} data-testid={dataTestId}>
       {isDisabled && <div className="vuiTableBlock" />}
       {(hasSearch ||
         customControls ||
@@ -248,27 +271,38 @@ export const VuiTable = <T extends Row>({
         <>
           <VuiFlexContainer
             spacing="s"
-            alignItems="end"
+            alignItems="center"
             className={isHeaderSticky ? "vuiTableStickyHeader" : undefined}
+            wrap
           >
+            {/* Responsive select-all checkbox */}
+            {onSelectRow && (
+              <VuiFlexItem grow={false} shrink={false} className="vuiTableHeader__responsiveSelectAllCheckbox">
+                <VuiCheckbox label="Select all" {...selectAllCheckboxProps} />
+              </VuiFlexItem>
+            )}
+
             {/* Bulk actions */}
             {selectedRows && selectedRows.length > 0 && hasBulkActions && (
               <VuiFlexItem grow={false} shrink={false}>
                 <VuiTableBulkActions selectedRows={selectedRows} actions={bulkActions} />
               </VuiFlexItem>
             )}
+
             {/* Search */}
             {hasSearch && (
               <VuiFlexItem grow={1} shrink={false}>
                 <VuiTextInput fullWidth {...search} />
               </VuiFlexItem>
             )}
+
             {/* Custom controls */}
             {customControls && (
               <VuiFlexItem grow={false} shrink={false}>
                 {customControls}
               </VuiFlexItem>
             )}
+
             {/* Reload */}
             {onReload && (
               <VuiFlexItem grow={1} shrink={false}>
@@ -285,31 +319,14 @@ export const VuiTable = <T extends Row>({
         </>
       )}
 
-      <table className={classes} {...rest}>
+      <table className={classes} {...restProps}>
         <thead>
           <tr>
             {/* Checkbox column */}
             {onSelectRow && (
               <th className="vuiTableHeaderSelect">
                 <VuiTableCell>
-                  <VuiCheckbox
-                    disabled={!isInteractive}
-                    checked={isInteractive ? allRowsSelected : false}
-                    onChange={() => {
-                      let newSelectedRows: T[];
-
-                      if (allRowsSelected) {
-                        newSelectedRows = [];
-                      } else {
-                        newSelectedRows = rows.reduce((acc, row) => {
-                          acc.push(row);
-                          return acc;
-                        }, [] as T[]);
-                      }
-
-                      onSelectRow(newSelectedRows);
-                    }}
-                  />
+                  <VuiCheckbox {...selectAllCheckboxProps} />
                 </VuiTableCell>
               </th>
             )}

@@ -1,3 +1,6 @@
+$tableResponsiveBreakpointMedium: 800px;
+$tableResponsiveBreakpointSmall: 500px;
+
 .vuiTableWrapper {
   container-type: inline-size;
   width: 100%;
@@ -66,13 +69,21 @@
   }
 }
 
+.vuiTableHeader__responsiveSelectAllCheckbox {
+  display: none;
+}
+
 .vuiTableCell__label {
   font-size: $fontSizeSmall;
   font-weight: $labelFontWeight;
   color: var(--vui-color-label);
 }
 
-@container (width < 800px) {
+@container (width < #{$tableResponsiveBreakpointMedium}) {
+  .vuiTableHeader__responsiveSelectAllCheckbox {
+    display: flex;
+  }
+
   .vuiTable--responsive {
     thead {
       display: none;
@@ -140,7 +151,7 @@
   }
 }
 
-@container (width < 500px) {
+@container (width < #{$tableResponsiveBreakpointSmall}) {
   .vuiTable--responsive {
     tbody tr {
       grid-template-columns: 1fr;
