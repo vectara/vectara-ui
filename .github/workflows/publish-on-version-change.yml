@@ -1,8 +1,15 @@
 name: publish-on-version-change
+
 on:
   push:
     branches:
       - main
+
+permissions:
+  # Allows GitHub Actions to generate OIDC token.
+  id-token: write
+  contents: read
+
 jobs:
   check-version-change:
     name: check-version-change
@@ -28,8 +35,12 @@ jobs:
     needs: [check-version-change]
     if: needs.check-version-change.outputs.did-version-change == 'true'
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.13.0"
+          registry-url: "https://registry.npmjs.org"
 
       # Draft a release if version name changed
       - name: Draft release
@@ -37,15 +48,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js for NPM
-        uses: actions/setup-node@v4
-        with:
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Build lib
-        run: "npm i && npm run build"
-
-      - name: Publish package to NPM
-        run: npm publish --access=public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      # Per https://docs.npmjs.com/trusted-publishers, ensure npm 11.5.1 or later is installed.
+      - name: Update npm
+        run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - run: npm publish
