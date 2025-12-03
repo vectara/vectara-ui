@@ -42,12 +42,6 @@ jobs:
           node-version: "18.13.0"
           registry-url: "https://registry.npmjs.org"
 
-      # Draft a release if version name changed
-      - name: Draft release
-        run: 'gh release create v${{ needs.check-version-change.outputs.new-version }} -d --title "Release ${{ needs.check-version-change.outputs.new-version }}" --generate-notes'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # Per https://docs.npmjs.com/trusted-publishers, ensure npm 11.5.1 or later is installed.
       - name: Update npm
         run: npm install -g npm@latest
