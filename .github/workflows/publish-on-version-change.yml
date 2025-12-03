@@ -39,7 +39,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "18.13.0"
+          node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
       # Per https://docs.npmjs.com/trusted-publishers, ensure npm 11.5.1 or later is installed.
