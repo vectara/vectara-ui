@@ -39,22 +39,14 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "18.13.0"
           registry-url: "https://registry.npmjs.org"
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
       # Draft a release if version name changed
       - name: Draft release
         run: 'gh release create v${{ needs.check-version-change.outputs.new-version }} -d --title "Release ${{ needs.check-version-change.outputs.new-version }}" --generate-notes'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Node.js for NPM
-        uses: actions/setup-node@v4
-        with:
-          registry-url: "https://registry.npmjs.org"
 
       # Per https://docs.npmjs.com/trusted-publishers, ensure npm 11.5.1 or later is installed.
       - name: Update npm
