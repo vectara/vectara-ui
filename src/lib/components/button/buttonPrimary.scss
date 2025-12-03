@@ -4,6 +4,10 @@
   &:hover {
     box-shadow: $shadowSmallEnd;
   }
+
+  &:focus-visible {
+    outline-offset: 4px;
+  }
 }
 
 // Color
