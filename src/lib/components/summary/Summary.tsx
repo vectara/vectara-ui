@@ -60,10 +60,8 @@ export const VuiSummary = ({ summary, className, SummaryCitation, statusIndicato
     <div className={classes} dir="auto" {...rest}>
       {summary ? (
         <VuiText size="m">
-          <p>
-            {parsedSummary}
-            {statusIndicator}
-          </p>
+          {parsedSummary}
+          {statusIndicator}
         </VuiText>
       ) : (
         statusIndicator
