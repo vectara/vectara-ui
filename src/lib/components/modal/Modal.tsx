@@ -9,6 +9,7 @@ import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
 import { useVuiContext } from "../context/Context";
+import { getOverlayProps } from "../../utils/getOverlayProps";
 
 const COLOR = ["primary", "danger"] as const;
 
@@ -73,7 +74,7 @@ export const VuiModal = ({
             // but enable manual focus return to work when it's closed.
             autoFocus={isOpen}
           >
-            <div className="vuiModalContainer">
+            <div className="vuiModalContainer" {...getOverlayProps("modalTitle")}>
               <div className={classes} {...rest}>
                 <div className="vuiModalHeader">
                   <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
@@ -87,7 +88,7 @@ export const VuiModal = ({
 
                         <VuiFlexItem grow={false}>
                           <div className="vuiModalHeader__title">
-                            <DrawerTitle>{title}</DrawerTitle>
+                            <DrawerTitle id="modalTitle">{title}</DrawerTitle>
                           </div>
                         </VuiFlexItem>
                       </VuiFlexContainer>

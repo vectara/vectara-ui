@@ -59,7 +59,7 @@ $fullscreenMargin: $sizeM;
   bottom: $fullscreenMargin;
   z-index: $fullscreenZIndex;
   // PrismJS theme color.
-  background-color: #f5f2f0;
+  background-color: var(--vui-color-light-shade);
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
@@ -69,7 +69,5 @@ $fullscreenMargin: $sizeM;
 }
 
 .vuiCodeFullscreen__actions {
-  position: absolute;
-  right: $sizeS;
-  top: $sizeXxs;
+  padding: $sizeXs $sizeXxs 0 $sizeL;
 }
