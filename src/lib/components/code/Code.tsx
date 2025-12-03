@@ -17,6 +17,9 @@ import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiPortal } from "../portal/Portal";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
+import { VuiFlexItem } from "../flex/FlexItem";
+import { getOverlayProps } from "../../utils/getOverlayProps";
+import { VuiText } from "../typography/Text";
 
 type Props = {
   language?: CodeLanguage;
@@ -118,42 +121,58 @@ export const VuiCode = ({
                 setIsFullscreen(false);
               }}
             >
-              <div className="vuiCodeFullscreen">
-                <VuiFlexContainer className="vuiCodeFullscreen__actions" spacing="xxs">
-                  {isCopyEnabled && (
-                    <VuiIconButton
-                      color="neutral"
-                      size="m"
-                      icon={
-                        <VuiIcon>
-                          <BiClipboard />
-                        </VuiIcon>
-                      }
-                      aria-label="Copy to clipboard"
-                      onClick={async () => {
-                        await copyToClipboard(children);
-                        if (onCopy) onCopy();
-                      }}
-                      tooltip={{
-                        position: "bottom-end"
-                      }}
-                    />
-                  )}
-                  <VuiIconButton
-                    className="vuiCodeFullscreen__closeButton"
-                    color="neutral"
-                    size="m"
-                    icon={
-                      <VuiIcon>
-                        <BiX />
-                      </VuiIcon>
-                    }
-                    aria-label="Exit fullscreen code"
-                    onClick={() => setIsFullscreen(false)}
-                    tooltip={{
-                      position: "bottom-end"
-                    }}
-                  />
+              <div className="vuiCodeFullscreen" {...getOverlayProps("fullscreenCodeTitle")}>
+                <VuiFlexContainer
+                  alignItems="center"
+                  justifyContent="spaceBetween"
+                  className="vuiCodeFullscreen__actions"
+                >
+                  <VuiFlexItem>
+                    <VuiText>
+                      <p id="fullscreenCodeTitle">
+                        <strong>Code</strong>
+                      </p>
+                    </VuiText>
+                  </VuiFlexItem>
+
+                  <VuiFlexItem>
+                    <VuiFlexContainer spacing="xxs">
+                      {isCopyEnabled && (
+                        <VuiIconButton
+                          color="neutral"
+                          size="m"
+                          icon={
+                            <VuiIcon>
+                              <BiClipboard />
+                            </VuiIcon>
+                          }
+                          aria-label="Copy to clipboard"
+                          onClick={async () => {
+                            await copyToClipboard(children);
+                            if (onCopy) onCopy();
+                          }}
+                          tooltip={{
+                            position: "bottom-end"
+                          }}
+                        />
+                      )}
+                      <VuiIconButton
+                        className="vuiCodeFullscreen__closeButton"
+                        color="neutral"
+                        size="m"
+                        icon={
+                          <VuiIcon>
+                            <BiX />
+                          </VuiIcon>
+                        }
+                        aria-label="Exit fullscreen code"
+                        onClick={() => setIsFullscreen(false)}
+                        tooltip={{
+                          position: "bottom-end"
+                        }}
+                      />
+                    </VuiFlexContainer>
+                  </VuiFlexItem>
                 </VuiFlexContainer>
 
                 {code}

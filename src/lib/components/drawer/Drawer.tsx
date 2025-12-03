@@ -9,6 +9,7 @@ import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
 import { useVuiContext } from "../context/Context";
+import { getOverlayProps } from "../../utils/getOverlayProps";
 
 const COLOR = ["primary", "danger"] as const;
 
@@ -58,7 +59,7 @@ export const VuiDrawer = ({ className, color = "primary", title, icon, children,
             // but enable manual focus return to work when it's closed.
             autoFocus={isOpen}
           >
-            <div className={classes} {...rest}>
+            <div className={classes} {...rest} {...getOverlayProps("drawerTitle")}>
               <div className="vuiDrawerHeader">
                 <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
                   <VuiFlexItem grow={false}>
@@ -71,7 +72,7 @@ export const VuiDrawer = ({ className, color = "primary", title, icon, children,
 
                       <VuiFlexItem grow={false}>
                         <div className="vuiDrawerHeader__title">
-                          <DrawerTitle>{title}</DrawerTitle>
+                          <DrawerTitle id="drawerTitle">{title}</DrawerTitle>
                         </div>
                       </VuiFlexItem>
                     </VuiFlexContainer>
