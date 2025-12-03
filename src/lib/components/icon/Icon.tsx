@@ -44,7 +44,8 @@ export const VuiIcon = ({
 
   return (
     <IconContext.Provider value={{ className: innerClasses }}>
-      <span className={classes} {...rest}>
+      {/* Assume that icons will always be used in conjunction with tooltips or labels. */}
+      <span className={classes} {...rest} aria-hidden="true">
         {icon}
       </span>
     </IconContext.Provider>
