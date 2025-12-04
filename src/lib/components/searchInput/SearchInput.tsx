@@ -109,6 +109,10 @@ export const VuiSearchInput = ({
         setAreSuggestionsVisible(false);
         break;
       }
+
+      case "Enter": {
+        break;
+      }
     }
   };
 
@@ -170,7 +174,7 @@ export const VuiSearchInput = ({
   });
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} role="search">
       <div
         ref={containerRef}
         className={classes}
