@@ -21,6 +21,7 @@ type Props = {
   alignItems?: keyof typeof alignItemsToClassNameMap;
   className?: string;
   truncate?: boolean;
+  id?: string;
 };
 
 export const VuiFlexItem = ({
