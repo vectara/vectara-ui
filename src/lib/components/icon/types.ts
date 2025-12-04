@@ -10,6 +10,6 @@ export const ICON_COLOR = [
   "empty"
 ] as const;
 
-export const ICON_SIZE = ["s", "m", "l", "xl", "xxl", "xxxl"] as const;
+export const ICON_SIZE = ["xs", "s", "m", "l", "xl", "xxl", "xxxl"] as const;
 
 export const ICON_TYPE = ["default", "enclosed", "token"] as const;

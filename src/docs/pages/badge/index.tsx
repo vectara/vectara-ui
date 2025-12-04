@@ -1,10 +1,12 @@
 import { BadgeColors } from "./BadgeColors";
 import { ClickableBadges } from "./ClickableBadges";
 import { DismissibleBadges } from "./DismissibleBadges";
+import { Selection } from "./Selection";
 
 const BadgeColorsSource = require("!!raw-loader!./BadgeColors");
 const ClickableBadgesSource = require("!!raw-loader!./ClickableBadges");
 const DismissibleBadgesSource = require("!!raw-loader!./DismissibleBadges");
+const SelectionSource = require("!!raw-loader!./Selection");
 
 export const badge = {
   name: "Badge",
@@ -24,6 +26,11 @@ export const badge = {
       name: "Dismissible badges",
       component: <DismissibleBadges />,
       source: DismissibleBadgesSource.default.toString()
+    },
+    {
+      name: "Selection",
+      component: <Selection />,
+      source: SelectionSource.default.toString()
     }
   ]
 };
