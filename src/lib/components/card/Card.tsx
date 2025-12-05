@@ -1,4 +1,9 @@
 import classNames from "classnames";
+import { BiChevronDown, BiChevronRight } from "react-icons/bi";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiIcon } from "../icon/Icon";
+import { createId } from "../../utils/createId";
 
 type Props = {
   type?: "full" | "outlined";
@@ -12,6 +17,9 @@ type Props = {
   ungrouped?: boolean;
   fullHeight?: boolean;
   isScrollable?: boolean;
+  isAccordion?: boolean;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 };
 
 export const VuiCard = ({
@@ -26,18 +34,25 @@ export const VuiCard = ({
   ungrouped,
   fullHeight,
   isScrollable,
+  isAccordion,
+  isExpanded,
+  onToggle,
   ...rest
 }: Props) => {
+  const buttonId = createId();
+  const bodyId = createId();
+
   const classes = classNames(
     "vuiCard",
     `vuiCard--${type}`,
     `vuiCard--${align}`,
     `vuiCard--${padding}`,
     {
-      "vuiCard--interactive": interactive && !href,
+      "vuiCard--interactive": interactive && !href && !isAccordion,
       "vuiCard--link": href,
       "vuiCard--ungrouped": ungrouped,
-      "vuiCard--fullHeight": fullHeight
+      "vuiCard--fullHeight": fullHeight,
+      "vuiCard--accordion": isAccordion
     },
     className
   );
@@ -47,6 +62,41 @@ export const VuiCard = ({
     "vuiCard__body--scrollable": isScrollable
   });
 
+  // Accordion mode rendering
+  if (isAccordion) {
+    return (
+      <div className={classes} {...rest}>
+        {header && (
+          <button
+            className="vuiCard__accordionButton"
+            onClick={onToggle}
+            id={buttonId}
+            aria-controls={bodyId}
+            aria-expanded={isExpanded}
+            type="button"
+          >
+            <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xs">
+              <VuiFlexItem grow={false} shrink={false}>
+                <VuiIcon size="m" color="neutral" className="vuiCard__accordionIcon">
+                  {isExpanded ? <BiChevronDown /> : <BiChevronRight />}
+                </VuiIcon>
+              </VuiFlexItem>
+              <VuiFlexItem className="vuiCard__accordionHeader" grow={1}>
+                {header}
+              </VuiFlexItem>
+            </VuiFlexContainer>
+          </button>
+        )}
+        {isExpanded && body && (
+          <div className={bodyClasses} id={bodyId} aria-labelledby={buttonId}>
+            {body}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Standard card rendering (existing logic)
   const headerContent = header && <div className="vuiCard__header">{header}</div>;
   const bodyContent = body && <div className={bodyClasses}>{body}</div>;
 

@@ -104,3 +104,62 @@
     padding: $sizeXl $sizeXxl;
   }
 }
+
+// Accordion variant styles
+.vuiCard--accordion {
+  .vuiCard__accordionButton {
+    display: block;
+    width: 100%;
+    padding: $sizeM $sizeL;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: background-color $transitionSpeed;
+
+    &:hover {
+      background-color: var(--vui-color-light-shade);
+    }
+
+    &:focus {
+      outline: 2px solid var(--vui-color-primary);
+      outline-offset: -2px;
+    }
+  }
+
+  .vuiCard__accordionIcon {
+    transition: transform $transitionSpeed ease-in-out;
+  }
+
+  .vuiCard__accordionHeader {
+    text-align: inherit;
+  }
+
+  // Adjust button padding based on card padding size
+  &.vuiCard--s {
+    .vuiCard__accordionButton {
+      padding: $sizeM $sizeL;
+    }
+  }
+
+  &.vuiCard--m {
+    .vuiCard__accordionButton {
+      padding: $sizeL $sizeXl;
+    }
+  }
+
+  &.vuiCard--l {
+    .vuiCard__accordionButton {
+      padding: $sizeXl $sizeXxl;
+    }
+  }
+
+  // Style adjustments for outlined variant
+  &.vuiCard--outlined {
+    .vuiCard__body {
+      border-top: 1px solid var(--vui-color-border-light);
+    }
+  }
+}
