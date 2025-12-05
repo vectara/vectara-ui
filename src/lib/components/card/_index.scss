@@ -104,3 +104,50 @@
     padding: $sizeXl $sizeXxl;
   }
 }
+
+.vuiCard--expandable {
+  .vuiCard__expandableButton {
+    display: block;
+    width: 100%;
+    padding: $sizeM $sizeL;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color $transitionSpeed;
+  }
+
+  .vuiCard__expandableButton:hover {
+    background-color: var(--vui-color-light-shade);
+  }
+
+  .vuiCard__expandableButton:focus {
+    outline: 2px solid var(--vui-color-primary);
+    outline-offset: -2px;
+  }
+
+  .vuiCard__expandableIcon {
+    transition: transform $transitionSpeed ease-in-out;
+  }
+
+  .vuiCard__expandableHeader {
+    text-align: inherit;
+  }
+}
+
+// Size-specific expandable button padding
+.vuiCard--expandable.vuiCard--s .vuiCard__expandableButton {
+  padding: $sizeM $sizeL;
+}
+
+.vuiCard--expandable.vuiCard--m .vuiCard__expandableButton {
+  padding: $sizeL $sizeXl;
+}
+
+.vuiCard--expandable.vuiCard--l .vuiCard__expandableButton {
+  padding: $sizeXl $sizeXxl;
+}
+
+.vuiCard--expandable.vuiCard--outlined .vuiCard__body {
+  border-top: 1px solid var(--vui-color-border-light);
+}

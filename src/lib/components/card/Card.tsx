@@ -1,6 +1,11 @@
 import classNames from "classnames";
+import { BiChevronDown, BiChevronRight } from "react-icons/bi";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
+import { VuiIcon } from "../icon/Icon";
+import { createId } from "../../utils/createId";
 
-type Props = {
+type BaseProps = {
   type?: "full" | "outlined";
   header?: React.ReactNode;
   body?: React.ReactNode;
@@ -14,6 +19,20 @@ type Props = {
   isScrollable?: boolean;
 };
 
+type ExpandableProps =
+  | {
+      isExpandable?: false | undefined;
+      isExpanded?: never;
+      onToggleExpansion?: never;
+    }
+  | {
+      isExpandable: true;
+      isExpanded?: boolean;
+      onToggleExpansion?: () => void;
+    };
+
+type Props = BaseProps & ExpandableProps;
+
 export const VuiCard = ({
   type = "outlined",
   header,
@@ -26,18 +45,26 @@ export const VuiCard = ({
   ungrouped,
   fullHeight,
   isScrollable,
+  isExpandable,
+  isExpanded,
+  onToggleExpansion,
   ...rest
 }: Props) => {
+  const buttonId = createId();
+  const bodyId = createId();
+
   const classes = classNames(
     "vuiCard",
-    `vuiCard--${type}`,
+    // for now, we only support outlined cards for expandable cards
+    `vuiCard--${isExpandable ? "outlined" : type}`,
     `vuiCard--${align}`,
     `vuiCard--${padding}`,
     {
-      "vuiCard--interactive": interactive && !href,
+      "vuiCard--interactive": interactive && !href && !isExpandable,
       "vuiCard--link": href,
       "vuiCard--ungrouped": ungrouped,
-      "vuiCard--fullHeight": fullHeight
+      "vuiCard--fullHeight": fullHeight,
+      "vuiCard--expandable": isExpandable
     },
     className
   );
@@ -46,6 +73,37 @@ export const VuiCard = ({
     "vuiCard__body--withHeader": header,
     "vuiCard__body--scrollable": isScrollable
   });
+
+  if (isExpandable) {
+    return (
+      <div className={classes} {...rest}>
+        {header && (
+          <button
+            className="vuiCard__expandableButton"
+            onClick={onToggleExpansion}
+            id={buttonId}
+            aria-controls={bodyId}
+            aria-expanded={isExpanded}
+            type="button"
+          >
+            <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xs">
+              <VuiIcon size="m" color="neutral" className="vuiCard__expandableIcon">
+                {isExpanded ? <BiChevronDown /> : <BiChevronRight />}
+              </VuiIcon>
+              <VuiFlexItem className="vuiCard__expandableHeader" grow={1}>
+                {header}
+              </VuiFlexItem>
+            </VuiFlexContainer>
+          </button>
+        )}
+        {isExpanded && body && (
+          <div className={bodyClasses} id={bodyId} aria-labelledby={buttonId}>
+            {body}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   const headerContent = header && <div className="vuiCard__header">{header}</div>;
   const bodyContent = body && <div className={bodyClasses}>{body}</div>;
