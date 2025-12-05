@@ -1,10 +1,10 @@
 import { Card } from "./Card";
 import { Scrollable } from "./Scrollable";
-import { Accordion } from "./Accordion";
+import { Expandable } from "./Expandable";
 
 const CardSource = require("!!raw-loader!./Card");
 const ScrollableSource = require("!!raw-loader!./Scrollable");
-const AccordionSource = require("!!raw-loader!./Accordion");
+const ExpandableSource = require("!!raw-loader!./Expandable");
 
 export const card = {
   name: "Card",
@@ -21,9 +21,9 @@ export const card = {
       source: ScrollableSource.default.toString()
     },
     {
-      name: "Accordion",
-      component: <Accordion />,
-      source: AccordionSource.default.toString()
+      name: "Expandable",
+      component: <Expandable />,
+      source: ExpandableSource.default.toString()
     }
   ]
 };

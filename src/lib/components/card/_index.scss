@@ -105,8 +105,8 @@
   }
 }
 
-.vuiCard--accordion {
-  .vuiCard__accordionButton {
+.vuiCard--expandable {
+  .vuiCard__expandableButton {
     display: block;
     width: 100%;
     padding: $sizeM $sizeL;
@@ -117,38 +117,37 @@
     transition: background-color $transitionSpeed;
   }
 
-  .vuiCard__accordionButton:hover {
+  .vuiCard__expandableButton:hover {
     background-color: var(--vui-color-light-shade);
   }
 
-  .vuiCard__accordionButton:focus {
+  .vuiCard__expandableButton:focus {
     outline: 2px solid var(--vui-color-primary);
     outline-offset: -2px;
   }
 
-  .vuiCard__accordionIcon {
+  .vuiCard__expandableIcon {
     transition: transform $transitionSpeed ease-in-out;
   }
 
-  .vuiCard__accordionHeader {
+  .vuiCard__expandableHeader {
     text-align: inherit;
   }
 }
 
-// Size-specific accordion button padding
-.vuiCard--accordion.vuiCard--s .vuiCard__accordionButton {
+// Size-specific expandable button padding
+.vuiCard--expandable.vuiCard--s .vuiCard__expandableButton {
   padding: $sizeM $sizeL;
 }
 
-.vuiCard--accordion.vuiCard--m .vuiCard__accordionButton {
+.vuiCard--expandable.vuiCard--m .vuiCard__expandableButton {
   padding: $sizeL $sizeXl;
 }
 
-.vuiCard--accordion.vuiCard--l .vuiCard__accordionButton {
+.vuiCard--expandable.vuiCard--l .vuiCard__expandableButton {
   padding: $sizeXl $sizeXxl;
 }
 
-// Outlined accordion body border
-.vuiCard--accordion.vuiCard--outlined .vuiCard__body {
+.vuiCard--expandable.vuiCard--outlined .vuiCard__body {
   border-top: 1px solid var(--vui-color-border-light);
 }

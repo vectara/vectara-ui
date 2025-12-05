@@ -5,7 +5,7 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
 import { createId } from "../../utils/createId";
 
-type Props = {
+type BaseProps = {
   type?: "full" | "outlined";
   header?: React.ReactNode;
   body?: React.ReactNode;
@@ -17,10 +17,21 @@ type Props = {
   ungrouped?: boolean;
   fullHeight?: boolean;
   isScrollable?: boolean;
-  isAccordion?: boolean;
-  isExpanded?: boolean;
-  onToggleExpansion?: () => void;
 };
+
+type ExpandableProps =
+  | {
+      isExpandable?: false | undefined;
+      isExpanded?: never;
+      onToggleExpansion?: never;
+    }
+  | {
+      isExpandable: true;
+      isExpanded?: boolean;
+      onToggleExpansion?: () => void;
+    };
+
+type Props = BaseProps & ExpandableProps;
 
 export const VuiCard = ({
   type = "outlined",
@@ -34,7 +45,7 @@ export const VuiCard = ({
   ungrouped,
   fullHeight,
   isScrollable,
-  isAccordion,
+  isExpandable,
   isExpanded,
   onToggleExpansion,
   ...rest
@@ -44,15 +55,16 @@ export const VuiCard = ({
 
   const classes = classNames(
     "vuiCard",
-    `vuiCard--${type}`,
+    // for now, we only support outlined cards for expandable cards
+    `vuiCard--${isExpandable ? "outlined" : type}`,
     `vuiCard--${align}`,
     `vuiCard--${padding}`,
     {
-      "vuiCard--interactive": interactive && !href && !isAccordion,
+      "vuiCard--interactive": interactive && !href && !isExpandable,
       "vuiCard--link": href,
       "vuiCard--ungrouped": ungrouped,
       "vuiCard--fullHeight": fullHeight,
-      "vuiCard--accordion": isAccordion
+      "vuiCard--expandable": isExpandable
     },
     className
   );
@@ -62,12 +74,12 @@ export const VuiCard = ({
     "vuiCard__body--scrollable": isScrollable
   });
 
-  if (isAccordion) {
+  if (isExpandable) {
     return (
       <div className={classes} {...rest}>
         {header && (
           <button
-            className="vuiCard__accordionButton"
+            className="vuiCard__expandableButton"
             onClick={onToggleExpansion}
             id={buttonId}
             aria-controls={bodyId}
@@ -75,10 +87,10 @@ export const VuiCard = ({
             type="button"
           >
             <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xs">
-              <VuiIcon size="m" color="neutral" className="vuiCard__accordionIcon">
+              <VuiIcon size="m" color="neutral" className="vuiCard__expandableIcon">
                 {isExpanded ? <BiChevronDown /> : <BiChevronRight />}
               </VuiIcon>
-              <VuiFlexItem className="vuiCard__accordionHeader" grow={1}>
+              <VuiFlexItem className="vuiCard__expandableHeader" grow={1}>
                 {header}
               </VuiFlexItem>
             </VuiFlexContainer>

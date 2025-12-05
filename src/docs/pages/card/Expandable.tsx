@@ -5,20 +5,13 @@ import {
   VuiFlexContainer,
   VuiFlexItem,
   VuiIcon,
-  VuiSelect,
   VuiSpacer,
   VuiText,
   VuiTitle
 } from "../../../lib";
 import { useState } from "react";
 
-const typeOptions = [
-  { text: "Full", value: "full" },
-  { text: "Outlined", value: "outlined" }
-];
-
-export const Accordion = () => {
-  const [type, setType] = useState<"full" | "outlined">("outlined");
+export const Expandable = () => {
   const [isExpanded1, setIsExpanded1] = useState(false);
   const [isExpanded2, setIsExpanded2] = useState(true);
   const [isExpanded3, setIsExpanded3] = useState(false);
@@ -26,25 +19,15 @@ export const Accordion = () => {
   return (
     <>
       <VuiText>
-        <p>Cards can act as accordions with controlled expand/collapse functionality.</p>
+        <p>Cards can act as expandable containers with controlled expand/collapse functionality.</p>
       </VuiText>
-
-      <VuiSpacer size="m" />
-
-      <VuiSelect
-        id="accordionTypeOptions"
-        options={typeOptions}
-        value={type}
-        onChange={(event) => setType(event.target.value as "full" | "outlined")}
-      />
 
       <VuiSpacer size="m" />
 
       <VuiFlexContainer direction="column" spacing="m">
         <VuiFlexItem>
           <VuiCard
-            type={type}
-            isAccordion
+            isExpandable
             isExpanded={isExpanded1}
             onToggleExpansion={() => setIsExpanded1(!isExpanded1)}
             header={
@@ -66,14 +49,16 @@ export const Accordion = () => {
                 <VuiText>
                   <p>
                     Alpha Centauri is the closest star system and closest planetary system to Earth's Solar System at
-                    4.37 light-years from the Sun. The name is Latinized from α Centauri, and abbreviated Alpha Cen or α Cen.
+                    4.37 light-years from the Sun. The name is Latinized from α Centauri, and abbreviated Alpha Cen or α
+                    Cen.
                   </p>
                 </VuiText>
                 <VuiSpacer size="s" />
                 <VuiText>
                   <p>
-                    It is a triple star system, consisting of the three stars: α Centauri A (officially Rigil Kentaurus),
-                    α Centauri B (officially Toliman), and the closest star α Centauri C (officially Proxima Centauri).
+                    It is a triple star system, consisting of the three stars: α Centauri A (officially Rigil
+                    Kentaurus), α Centauri B (officially Toliman), and the closest star α Centauri C (officially Proxima
+                    Centauri).
                   </p>
                 </VuiText>
                 <VuiSpacer size="m" />
@@ -86,8 +71,7 @@ export const Accordion = () => {
 
         <VuiFlexItem>
           <VuiCard
-            type={type}
-            isAccordion
+            isExpandable
             isExpanded={isExpanded2}
             onToggleExpansion={() => setIsExpanded2(!isExpanded2)}
             header={
@@ -127,8 +111,7 @@ export const Accordion = () => {
 
         <VuiFlexItem>
           <VuiCard
-            type={type}
-            isAccordion
+            isExpandable
             isExpanded={isExpanded3}
             onToggleExpansion={() => setIsExpanded3(!isExpanded3)}
             header={
@@ -139,7 +122,7 @@ export const Accordion = () => {
             body={
               <VuiText>
                 <p>
-                  This accordion card demonstrates a simpler header without icons. The accordion functionality works
+                  This expandable card demonstrates a simpler header without icons. The expandable functionality works
                   with any content you provide as the header and body props. The parent component maintains full control
                   over the expanded/collapsed state through the isExpanded and onToggleExpansion props.
                 </p>
