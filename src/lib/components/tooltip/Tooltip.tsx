@@ -1,19 +1,21 @@
 import { useState, cloneElement } from "react";
 import { Tooltip, TooltipRefProps } from "react-tooltip";
 import { useVuiContext } from "../context/Context";
+import { VuiPortal } from "../portal/Portal";
 
 export type Props = {
   children: React.ReactNode;
   tip: React.ReactNode;
   darkTheme?: boolean;
   position?: TooltipRefProps["place"];
+  usePortal?: boolean;
 };
 
 const generateTooltipId = () => {
   return `tooltip-${Math.random().toString(36).slice(2, 9)}`;
 };
 
-export const VuiTooltip = ({ children, darkTheme, position, tip }: Props) => {
+export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal }: Props) => {
   const { getThemeStyle } = useVuiContext();
   const [id] = useState(generateTooltipId());
 
@@ -25,13 +27,16 @@ export const VuiTooltip = ({ children, darkTheme, position, tip }: Props) => {
   // the light theme class in order to enable having a different theme than the
   // parent.
   const style = getThemeStyle(darkTheme ? "dark" : "light");
+  const tooltip = (
+    <Tooltip id={id} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
+      {tip}
+    </Tooltip>
+  );
 
   return (
     <>
       {target}
-      <Tooltip id={id} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
-        {tip}
-      </Tooltip>
+      {usePortal ? <VuiPortal>{tooltip}</VuiPortal> : tooltip}
     </>
   );
 };

@@ -26,6 +26,7 @@ type Props = {
   tooltip?: {
     darkTheme?: TooltipProps["darkTheme"];
     position?: TooltipProps["position"];
+    usePortal?: TooltipProps["usePortal"];
   };
 };
 
