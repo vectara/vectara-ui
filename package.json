@@ -1,6 +1,6 @@
 {
   "name": "@vectara/vectara-ui",
-  "version": "13.3.0",
+  "version": "13.3.1",
   "homepage": "./",
   "description": "Vectara's design system, codified as a React and Sass component library",
   "author": "Vectara",
@@ -53,7 +53,7 @@
     "react-focus-on": "^3.8.1",
     "react-icons": "^4.10.1",
     "react-scripts": "^5.0.1",
-    "react-tooltip": "^5.28.1",
+    "react-tooltip": "^5.30.0",
     "sonner": "^2.0.6",
     "web-vitals": "^2.1.4"
   },
