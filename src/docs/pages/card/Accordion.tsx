@@ -46,7 +46,7 @@ export const Accordion = () => {
             type={type}
             isAccordion
             isExpanded={isExpanded1}
-            onToggle={() => setIsExpanded1(!isExpanded1)}
+            onToggleExpansion={() => setIsExpanded1(!isExpanded1)}
             header={
               <VuiFlexContainer alignItems="center" spacing="s">
                 <VuiFlexItem grow={false}>
@@ -89,7 +89,7 @@ export const Accordion = () => {
             type={type}
             isAccordion
             isExpanded={isExpanded2}
-            onToggle={() => setIsExpanded2(!isExpanded2)}
+            onToggleExpansion={() => setIsExpanded2(!isExpanded2)}
             header={
               <VuiFlexContainer alignItems="center" spacing="s">
                 <VuiFlexItem grow={false}>
@@ -130,7 +130,7 @@ export const Accordion = () => {
             type={type}
             isAccordion
             isExpanded={isExpanded3}
-            onToggle={() => setIsExpanded3(!isExpanded3)}
+            onToggleExpansion={() => setIsExpanded3(!isExpanded3)}
             header={
               <VuiTitle size="s">
                 <h4>Simple Text Header</h4>
@@ -141,7 +141,7 @@ export const Accordion = () => {
                 <p>
                   This accordion card demonstrates a simpler header without icons. The accordion functionality works
                   with any content you provide as the header and body props. The parent component maintains full control
-                  over the expanded/collapsed state through the isExpanded and onToggle props.
+                  over the expanded/collapsed state through the isExpanded and onToggleExpansion props.
                 </p>
               </VuiText>
             }

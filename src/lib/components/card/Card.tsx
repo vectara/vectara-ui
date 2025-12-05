@@ -19,7 +19,7 @@ type Props = {
   isScrollable?: boolean;
   isAccordion?: boolean;
   isExpanded?: boolean;
-  onToggle?: () => void;
+  onToggleExpansion?: () => void;
 };
 
 export const VuiCard = ({
@@ -36,7 +36,7 @@ export const VuiCard = ({
   isScrollable,
   isAccordion,
   isExpanded,
-  onToggle,
+  onToggleExpansion,
   ...rest
 }: Props) => {
   const buttonId = createId();
@@ -62,25 +62,22 @@ export const VuiCard = ({
     "vuiCard__body--scrollable": isScrollable
   });
 
-  // Accordion mode rendering
   if (isAccordion) {
     return (
       <div className={classes} {...rest}>
         {header && (
           <button
             className="vuiCard__accordionButton"
-            onClick={onToggle}
+            onClick={onToggleExpansion}
             id={buttonId}
             aria-controls={bodyId}
             aria-expanded={isExpanded}
             type="button"
           >
             <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xs">
-              <VuiFlexItem grow={false} shrink={false}>
-                <VuiIcon size="m" color="neutral" className="vuiCard__accordionIcon">
-                  {isExpanded ? <BiChevronDown /> : <BiChevronRight />}
-                </VuiIcon>
-              </VuiFlexItem>
+              <VuiIcon size="m" color="neutral" className="vuiCard__accordionIcon">
+                {isExpanded ? <BiChevronDown /> : <BiChevronRight />}
+              </VuiIcon>
               <VuiFlexItem className="vuiCard__accordionHeader" grow={1}>
                 {header}
               </VuiFlexItem>
@@ -96,7 +93,6 @@ export const VuiCard = ({
     );
   }
 
-  // Standard card rendering (existing logic)
   const headerContent = header && <div className="vuiCard__header">{header}</div>;
   const bodyContent = body && <div className={bodyClasses}>{body}</div>;
 
