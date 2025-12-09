@@ -5,7 +5,7 @@ import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIcon } from "../icon/Icon";
 import { createId } from "../../utils/createId";
 
-type BaseProps = {
+type Props = {
   type?: "full" | "outlined";
   header?: React.ReactNode;
   body?: React.ReactNode;
@@ -17,21 +17,9 @@ type BaseProps = {
   ungrouped?: boolean;
   fullHeight?: boolean;
   isScrollable?: boolean;
+  isExpanded?: boolean;
+  onToggleExpansion?: () => void;
 };
-
-type ExpandableProps =
-  | {
-      isExpandable?: false | undefined;
-      isExpanded?: never;
-      onToggleExpansion?: never;
-    }
-  | {
-      isExpandable: true;
-      isExpanded?: boolean;
-      onToggleExpansion?: () => void;
-    };
-
-type Props = BaseProps & ExpandableProps;
 
 export const VuiCard = ({
   type = "outlined",
@@ -45,11 +33,11 @@ export const VuiCard = ({
   ungrouped,
   fullHeight,
   isScrollable,
-  isExpandable,
   isExpanded,
   onToggleExpansion,
   ...rest
 }: Props) => {
+  const isExpandable = Boolean(onToggleExpansion);
   const buttonId = createId();
   const bodyId = createId();
 

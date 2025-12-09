@@ -27,7 +27,6 @@ export const Expandable = () => {
       <VuiFlexContainer direction="column" spacing="m">
         <VuiFlexItem>
           <VuiCard
-            isExpandable
             isExpanded={isExpanded1}
             onToggleExpansion={() => setIsExpanded1(!isExpanded1)}
             header={
@@ -71,7 +70,6 @@ export const Expandable = () => {
 
         <VuiFlexItem>
           <VuiCard
-            isExpandable
             isExpanded={isExpanded2}
             onToggleExpansion={() => setIsExpanded2(!isExpanded2)}
             header={
@@ -111,7 +109,6 @@ export const Expandable = () => {
 
         <VuiFlexItem>
           <VuiCard
-            isExpandable
             isExpanded={isExpanded3}
             onToggleExpansion={() => setIsExpanded3(!isExpanded3)}
             header={
