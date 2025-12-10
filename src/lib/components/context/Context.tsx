@@ -35,15 +35,18 @@ export const VuiContextProvider = ({
   isThemeIsolated
 }: Props) => {
   const createLink = (linkConfig: LinkProps) => {
-    if (linkProvider) return linkProvider(linkConfig);
+    if (!linkProvider || linkConfig.download) {
+      const { className, href, onClick, children, ref, ...rest } = linkConfig;
 
-    const { className, href, onClick, children, ref, ...rest } = linkConfig;
+      // To support downloads, we must use anchor tags, not a react-router Link.
+      return (
+        <a className={className} href={href} onClick={onClick} {...rest}>
+          {children}
+        </a>
+      );
+    }
 
-    return (
-      <a className={className} href={href} onClick={onClick} {...rest}>
-        {children}
-      </a>
-    );
+    return linkProvider(linkConfig);
   };
 
   const getPath = () => {

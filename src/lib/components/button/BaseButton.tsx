@@ -38,6 +38,7 @@ export type BaseButtonProps = {
   href?: LinkProps["href"];
   target?: LinkProps["target"];
   track?: LinkProps["track"];
+  download?: LinkProps["download"];
   htmlFor?: string;
   tabIndex?: number;
   title?: string;
@@ -143,7 +144,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       onMouseOut,
       onMouseMove,
       tabIndex,
-      ["type"]: isSubmit ? "submit" : "button",
+      type: isSubmit ? "submit" : "button",
       disabled: isDisabled,
       ...rest
     } as const;

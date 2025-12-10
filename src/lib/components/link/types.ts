@@ -18,4 +18,5 @@ export type LinkProps = {
   tabIndex?: number;
   "data-testid"?: string;
   ref?: ForwardedRef<HTMLAnchorElement | null>;
+  download?: string;
 };
