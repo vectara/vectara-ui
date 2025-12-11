@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { BiBook, BiCreditCard, BiData, BiKey, BiLineChart, BiLogOut, BiRightArrowAlt, BiUser } from "react-icons/bi";
+import {
+  BiBook,
+  BiCreditCard,
+  BiData,
+  BiError,
+  BiHeart,
+  BiKey,
+  BiLineChart,
+  BiLogOut,
+  BiRightArrowAlt,
+  BiUser
+} from "react-icons/bi";
 import {
   VuiAppSideNav,
   VuiAppSideNavLink,
@@ -63,9 +74,9 @@ const AccountButton = () => {
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState<"corpora" | "apiKeys" | "team" | "usage" | "billing" | "docs">(
-    "corpora"
-  );
+  const [activeItem, setActiveItem] = useState<
+    "corpora" | "apiKeys" | "team" | "usage" | "billing" | "health" | "docs"
+  >("corpora");
 
   const navContent = (
     <>
@@ -107,6 +118,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         data-testid="navBilling"
         onClick={() => setActiveItem("billing")}
         isSelected={activeItem === "billing"}
+      />
+
+      <VuiAppSideNavLink
+        name="Health"
+        iconBefore={<BiHeart />}
+        data-testid="navHealth"
+        iconAfterAlignEnd
+        iconAfter={<BiError />}
+        onClick={() => setActiveItem("health")}
+        isSelected={activeItem === "health"}
       />
 
       <VuiPopover
