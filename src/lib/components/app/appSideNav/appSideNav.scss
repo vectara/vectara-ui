@@ -74,6 +74,10 @@
   background-color: var(--vui-color-light-shade);
 }
 
+.vuiAppSideNavLink__iconAfter--alignEnd {
+  margin-left: auto;
+}
+
 .vuiAppSideNav--m {
   .vuiAppSideNav__inner {
     padding: 28px 32px 32px 33px;
