@@ -5,6 +5,7 @@ import {
   VuiFlexContainer,
   VuiFlexItem,
   VuiIcon,
+  VuiLabel,
   VuiSpacer,
   VuiText,
   VuiTextColor,
@@ -15,7 +16,7 @@ import { Subsection } from "../../components/Subsection";
 
 export const Layouts = () => (
   <>
-    <Subsection title={"Header layout"}>
+    <Subsection title="Header layout">
       <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
         <VuiFlexItem grow={1}>
           <VuiTitle size="m">
@@ -37,14 +38,10 @@ export const Layouts = () => (
       </VuiFlexContainer>
     </Subsection>
 
-    <Subsection title={"Searchbar layout"}>
+    <Subsection title="Searchbar layout">
       <VuiFlexContainer justifyContent="spaceBetween" alignItems="center">
         <VuiFlexItem grow={false} truncate>
-          <VuiText truncate>
-            <VuiTextColor color="subdued">
-              <p>Find stuff in your data</p>
-            </VuiTextColor>
-          </VuiText>
+          <VuiLabel>Find stuff in your data</VuiLabel>
         </VuiFlexItem>
 
         <VuiFlexItem grow={1}>
@@ -57,7 +54,7 @@ export const Layouts = () => (
       </VuiFlexContainer>
     </Subsection>
 
-    <Subsection title={"Status layout"}>
+    <Subsection title="Status layout">
       <VuiFlexContainer alignItems="center" spacing="xs">
         <VuiFlexItem grow={false}>
           <VuiIcon color="danger">
@@ -75,9 +72,9 @@ export const Layouts = () => (
       </VuiFlexContainer>
     </Subsection>
 
-    <Subsection title={"Flag layout"}>
+    <Subsection title="Flag layout">
       <VuiFlexContainer alignItems="start" spacing="xs" className="flexExampleFlag">
-        <VuiFlexItem grow={false}>
+        <VuiFlexItem grow={false} shrink={0}>
           <VuiIcon color="accent">
             <BiTestTube />
           </VuiIcon>

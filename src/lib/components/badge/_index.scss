@@ -20,6 +20,14 @@
   height: min-content !important;
 }
 
+.vuiBadge__content {
+  // text-overflow doesn't work on flexbox elements.
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 // Color
 $color: (
   accent: (

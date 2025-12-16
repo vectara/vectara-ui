@@ -53,7 +53,9 @@ export const VuiBadge = ({
         </VuiFlexItem>
       )}
 
-      <VuiFlexItem id={id}>{children}</VuiFlexItem>
+      <VuiFlexItem id={id}>
+        <div className="vuiBadge__content">{children}</div>
+      </VuiFlexItem>
 
       {onClose && (
         <VuiFlexItem>
