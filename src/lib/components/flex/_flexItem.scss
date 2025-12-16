@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  // Required to enable text truncation within flex items.
+  min-width: 0;
 }
 
 .vuiFlexItem--truncate {

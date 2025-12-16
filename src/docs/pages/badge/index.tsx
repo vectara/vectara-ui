@@ -2,11 +2,13 @@ import { BadgeColors } from "./BadgeColors";
 import { ClickableBadges } from "./ClickableBadges";
 import { DismissibleBadges } from "./DismissibleBadges";
 import { Selection } from "./Selection";
+import { MaxWidth } from "./MaxWidth";
 
 const BadgeColorsSource = require("!!raw-loader!./BadgeColors");
 const ClickableBadgesSource = require("!!raw-loader!./ClickableBadges");
 const DismissibleBadgesSource = require("!!raw-loader!./DismissibleBadges");
 const SelectionSource = require("!!raw-loader!./Selection");
+const MaxWidthSource = require("!!raw-loader!./MaxWidth");
 
 export const badge = {
   name: "Badge",
@@ -31,6 +33,11 @@ export const badge = {
       name: "Selection",
       component: <Selection />,
       source: SelectionSource.default.toString()
+    },
+    {
+      name: "Max width",
+      component: <MaxWidth />,
+      source: MaxWidthSource.default.toString()
     }
   ]
 };
