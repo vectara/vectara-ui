@@ -1,5 +1,5 @@
-.vuiInfoListItem {
-  & + & {
+.vuiInfoList {
+  .vuiInfoListItem + .vuiInfoListItem {
     margin-top: $sizeM;
   }
 }

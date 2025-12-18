@@ -1,7 +1,6 @@
-export type InfoListType = Array<{
-  title: string;
-  value: React.ReactNode;
-}>;
+import { InfoListItemType, VuiInfoListItem } from "./InfoListItem";
+
+export type InfoListType = Array<InfoListItemType>;
 
 type Props = {
   info: InfoListType;
@@ -9,13 +8,10 @@ type Props = {
 
 export const VuiInfoList = ({ info }: Props) => {
   return (
-    <>
+    <div className="vuiInfoList">
       {info.map((item, index) => (
-        <div key={index} className="vuiInfoListItem">
-          <div className="vuiInfoListItem__title">{item.title}</div>
-          <div className="vuiInfoListItem__value">{item.value}</div>
-        </div>
+        <VuiInfoListItem key={index} title={item.title} value={item.value} />
       ))}
-    </>
+    </div>
   );
 };

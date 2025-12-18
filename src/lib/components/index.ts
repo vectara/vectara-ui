@@ -51,6 +51,7 @@ import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
 import { VuiImage } from "./image/Image";
 import { VuiImagePreview } from "./image/ImagePreview";
 import { InfoListType, VuiInfoList } from "./infoList/InfoList";
+import { InfoListItemType, VuiInfoListItem } from "./infoList/InfoListItem";
 import { VuiInfoMenu } from "./infoMenu/InfoMenu";
 import { VuiInfoTable, InfoTableColumnAlign, InfoTableRow, InfoTableRowType } from "./infoTable/InfoTable";
 import { VuiInProgress } from "./inProgress/InProgress";
@@ -114,6 +115,7 @@ export type {
   ChatStyle,
   ChatTurn,
   CodeLanguage,
+  InfoListItemType,
   InfoListType,
   InfoTableColumnAlign,
   InfoTableRow,
@@ -192,6 +194,7 @@ export {
   VuiImage,
   VuiImagePreview,
   VuiInfoList,
+  VuiInfoListItem,
   VuiInfoMenu,
   VuiInfoTable,
   VuiInProgress,
