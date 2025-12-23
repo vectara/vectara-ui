@@ -69,6 +69,7 @@ export const VuiCard = ({
           <button
             className="vuiCard__expandableButton"
             onClick={onToggleExpansion}
+            data-testid="cardToggleExpansionButton"
             id={buttonId}
             aria-controls={bodyId}
             aria-expanded={isExpanded}
