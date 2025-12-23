@@ -38,7 +38,10 @@ export const sayValue = ({ value }: Config) => {
 
   js: `export const sayValue = ({ value }) => {
   console.log(value);
-};`
+};`,
+
+  py: `def isThreshold(value: int, threshold: int) -> bool:
+    return value > threshold`
 } as const;
 
 type Language = keyof typeof languageToSampleMap;
