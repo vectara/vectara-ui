@@ -24,7 +24,7 @@ export const VuiSuperRadioButton = <T extends string>({
   return (
     <label className="vuiSuperRadioButton" htmlFor={id}>
       <VuiFlexContainer spacing="l" alignItems="center">
-        <VuiFlexItem grow={false} shrink={1}>
+        <VuiFlexItem grow={false} shrink={0}>
           <input id={id} name={groupName} type="radio" checked={checked} onChange={() => onChange(value)} {...rest} />
         </VuiFlexItem>
 
