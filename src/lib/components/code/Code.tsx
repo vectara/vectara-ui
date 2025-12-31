@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import { BiClipboard, BiFullscreen, BiX } from "react-icons/bi";
 import classNames from "classnames";
@@ -43,9 +43,16 @@ export const VuiCode = ({
   ...rest
 }: Props) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const codeRef = useRef(null);
 
   useEffect(() => {
-    Prism.highlightAll();
+    if (codeRef.current) {
+      // Skip highlighting for very large code blocks to avoid performance issues.
+      const contentLength = children.trim().length;
+      if (contentLength > 20000) return;
+
+      Prism.highlightElement(codeRef.current);
+    }
   }, [children, language, isFullscreen]);
 
   const containerClasses = classNames("vuiCodeContainer", {
@@ -97,7 +104,9 @@ export const VuiCode = ({
 
   const code = (
     <pre className="vuiCodePre">
-      <code className={classes}>{children}</code>
+      <code className={classes} ref={codeRef}>
+        {children}
+      </code>
     </pre>
   );
 
