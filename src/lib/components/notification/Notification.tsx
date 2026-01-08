@@ -83,6 +83,8 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
       icon = null;
   }
 
+  const copyValue = code ? `${message}\n\n${code.content}` : message;
+
   return (
     <div className={classes} data-testid={`notification-${color}`}>
       <VuiFlexContainer alignItems="start" spacing="s">
@@ -102,10 +104,10 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
                 </>
               )}
 
-              {hasCopyButton && !code && (
+              {hasCopyButton && (
                 <>
                   <VuiSpacer size="s" />
-                  <VuiCopyButton value={message} size="s" label="Copy" />
+                  <VuiCopyButton value={copyValue} size="s" label="Copy" />
                 </>
               )}
 
