@@ -3,7 +3,7 @@ import * as monacoTypes from "monaco-editor/esm/vs/editor/editor.api";
 import { useRef } from "react";
 import { generateTokensProvider } from "./generateTokensProvider";
 
-export type ColorConfig = {
+export type CodeEditorColorConfig = {
   token: string;
   // There are more exhaustive ways of typing this as a hex string,
   // but for now, requiring a # should be a good enough indicator of the required value type.
@@ -23,7 +23,7 @@ interface Props {
   TokensProvider?: ReturnType<typeof generateTokensProvider>;
   onChange?: (value?: string) => void;
   onError?: (errors: Array<CodeEditorError>) => void;
-  colorConfig?: Array<ColorConfig>;
+  colorConfig?: Array<CodeEditorColorConfig>;
   value?: string;
   defaultValue?: string;
   error?: CodeEditorError;
