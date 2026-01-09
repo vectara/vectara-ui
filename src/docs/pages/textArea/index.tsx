@@ -5,16 +5,16 @@ const TextAreaSource = require("!!raw-loader!./TextArea");
 const TextAreaResizeableSource = require("!!raw-loader!./TextAreaResizeable");
 
 export const textArea = {
-  name: "TextArea",
+  name: "Text Area",
   path: "/textArea",
   examples: [
     {
-      name: "TextArea",
+      name: "Text Area",
       component: <TextArea />,
       source: TextAreaSource.default.toString()
     },
     {
-      name: "Resizable TextArea",
+      name: "Resizable Text Area",
       component: <TextAreaResizeable />,
       source: TextAreaResizeableSource.default.toString()
     }

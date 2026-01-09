@@ -1,0 +1,20 @@
+.vuiCodeEditor {
+  position: relative;
+  border: 1px solid var(--vui-color-border-medium);
+  border-radius: $sizeXxs;
+  padding: $sizeS;
+  padding-right: 0;
+}
+
+.vuiCodeEditor-placeholder {
+  position: absolute;
+  top: $sizeS;
+  left: $sizeS;
+  color: #999999;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 12px;
+  line-height: 18px;
+  pointer-events: none;
+  z-index: 1;
+  white-space: pre-wrap;
+}
