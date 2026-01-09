@@ -30,7 +30,9 @@ import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
 import {
   RadioButtonConfig,
+  generateTokensProvider,
   VuiCheckbox,
+  VuiCodeEditor,
   VuiItemsInput,
   VuiLabel,
   VuiNumberInput,
@@ -158,6 +160,7 @@ export {
   TITLE_SIZE,
   addNotification,
   copyToClipboard,
+  generateTokensProvider,
   toRgb,
   toRgba,
   VuiAccordion,
@@ -177,6 +180,7 @@ export {
   VuiChat,
   VuiCheckbox,
   VuiCode,
+  VuiCodeEditor,
   VuiContextProvider,
   VuiCopyButton,
   VuiDatePicker,

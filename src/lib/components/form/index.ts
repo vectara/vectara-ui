@@ -1,4 +1,6 @@
 export { VuiCheckbox } from "./checkbox/Checkbox";
+export { VuiCodeEditor } from "./codeEditor/CodeEditor";
+export { generateTokensProvider } from "./codeEditor/generateTokensProvider";
 export { VuiItemsInput } from "./itemsInput/ItemsInput";
 export { VuiLabel } from "./label/Label";
 export { VuiNumberInput } from "./input/NumberInput";
