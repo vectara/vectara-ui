@@ -29,6 +29,7 @@ import { VuiErrorBoundary } from "./errorBoundary/ErrorBoundary";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
 import {
+  CodeEditorError,
   RadioButtonConfig,
   generateTokensProvider,
   VuiCheckbox,
@@ -116,6 +117,7 @@ export type {
   ChatLanguage,
   ChatStyle,
   ChatTurn,
+  CodeEditorError,
   CodeLanguage,
   InfoListItemType,
   InfoListType,
