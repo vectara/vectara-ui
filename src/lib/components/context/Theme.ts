@@ -3,6 +3,7 @@ import { ColorTranslator } from "colortranslator";
 export type Theme = {
   // Font
   fontFamily?: string;
+  fontFamilyMonospace?: string;
 
   // Semantic colors
   colorAccentShade?: string;
@@ -76,6 +77,8 @@ export type Theme = {
 const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
   "Droid Sans", "Helvetica Neue", sans-serif`;
 
+const fontFamilyMonospace = '"Roboto Mono", monospace';
+
 export const toRgba = (hex: string, alpha: number) => {
   return new ColorTranslator(hex, { legacyCSS: true }).setA(alpha).RGBA;
 };
@@ -130,6 +133,7 @@ const colorBorderLightShade = "#e3e4f3";
 export const LIGHT_THEME: Theme = {
   // Font
   fontFamily,
+  fontFamilyMonospace,
 
   // Semantic colors
   colorAccentShade,
@@ -233,6 +237,7 @@ export const toStyle = (theme: Theme) => {
   const vars = {
     // Font
     "--vui-font-family": theme.fontFamily,
+    "--vui-font-family-monospace": theme.fontFamilyMonospace,
 
     // Semantic colors
     "--vui-color-accent-shade": theme.colorAccentShade,

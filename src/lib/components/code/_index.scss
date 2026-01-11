@@ -27,7 +27,7 @@
   padding: $sizeM $sizeL;
   background-color: var(--vui-color-light-shade);
   color: var(--vui-color-text);
-  font-family: "Roboto Mono", monospace;
+  font-family: var(--vui-font-family-monospace);
   // Ensure PrismJS components wrap their lines.
   word-wrap: break-word !important;
   // Ensure PrismJS components wrap their lines instead of making the container super-wide.

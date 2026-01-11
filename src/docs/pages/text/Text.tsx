@@ -22,6 +22,10 @@ export const Text = () => (
               can get idea of the line-height.<sup>5</sup>
             </p>
 
+            <p>
+              Text with some <code>code</code>.
+            </p>
+
             <blockquote>
               <p>
                 A long paragraph of text that's inside a blockquote. This is to demonstrate how blockquotes look when
@@ -77,6 +81,15 @@ export const Text = () => (
 > In Markdown's ring.`}
               </code>
             </pre>
+
+            <code>
+              {`# Markdown's Grace
+
+*Italic* and **bold**,  
+\`Code\` unfolds,  
+> Quotes that sing,  
+> In Markdown's ring.`}
+            </code>
 
             <table>
               <thead>
