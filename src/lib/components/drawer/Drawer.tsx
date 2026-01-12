@@ -21,9 +21,20 @@ type Props = {
   isOpen?: boolean;
   onClose?: () => void;
   color?: (typeof COLOR)[number];
+  footer?: ReactNode;
 };
 
-export const VuiDrawer = ({ className, color = "primary", title, icon, children, isOpen, onClose, ...rest }: Props) => {
+export const VuiDrawer = ({
+  className,
+  color = "primary",
+  title,
+  icon,
+  children,
+  isOpen,
+  onClose,
+  footer,
+  ...rest
+}: Props) => {
   const { DrawerTitle } = useVuiContext();
   const returnFocusElRef = useRef<HTMLElement | null>(null);
 
@@ -99,6 +110,8 @@ export const VuiDrawer = ({ className, color = "primary", title, icon, children,
               <div className="vuiDrawerContent">
                 <div className="vuiDrawerContent__inner">{children}</div>
               </div>
+
+              {footer && <div className="vuiDrawerFooter">{footer}</div>}
             </div>
           </FocusOn>
         </VuiScreenBlock>

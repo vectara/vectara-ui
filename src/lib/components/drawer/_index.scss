@@ -45,10 +45,15 @@ $drawerWidth: 680px;
 .vuiDrawerContent {
   overflow-y: auto;
   overscroll-behavior: contain;
+  flex-grow: 1;
 }
 
 .vuiDrawerContent__inner {
   padding: $sizeS $sizeL $sizeL;
+}
+
+.vuiDrawerFooter {
+  padding: $sizeS $sizeL;
 }
 
 // Color
