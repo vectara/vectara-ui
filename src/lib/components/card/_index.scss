@@ -12,7 +12,6 @@
 
   &.vuiCard--interactive {
     &:hover {
-      background-color: var(--vui-color-empty-shade);
       box-shadow: $shadowSmallEnd;
     }
   }
@@ -150,4 +149,43 @@
 
 .vuiCard--expandable.vuiCard--outlined .vuiCard__body {
   border-top: 1px solid var(--vui-color-border-light);
+}
+
+.vuiSimpleCard {
+  border-radius: $sizeXs;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-border-light);
+}
+
+.vuiSimpleCard--interactive {
+  border: 1px solid var(--vui-color-primary-highlight-shade);
+  transition: box-shadow $transitionSpeed, border-color $transitionSpeed;
+
+  &:hover {
+    border-color: var(--vui-color-primary-shade);
+    box-shadow: $shadowLargeEnd;
+  }
+}
+
+.vuiSimpleCard--fullHeight {
+  height: 100%;
+}
+
+.vuiSimpleCard--xs {
+  padding: $sizeS $sizeM;
+}
+
+.vuiSimpleCard--s {
+  padding: $sizeM $sizeL;
+}
+
+.vuiSimpleCard--m {
+  padding: $sizeL $sizeXl;
+}
+
+.vuiSimpleCard--l {
+  padding: $sizeXl $sizeXxl;
 }

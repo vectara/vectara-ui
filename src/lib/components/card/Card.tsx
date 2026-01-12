@@ -49,7 +49,6 @@ export const VuiCard = ({
     `vuiCard--${padding}`,
     {
       "vuiCard--interactive": interactive && !href && !isExpandable,
-      "vuiCard--link": href,
       "vuiCard--ungrouped": ungrouped,
       "vuiCard--fullHeight": fullHeight,
       "vuiCard--expandable": isExpandable

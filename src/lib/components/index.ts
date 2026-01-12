@@ -14,7 +14,7 @@ import { VuiButtonSecondary } from "./button/ButtonSecondary";
 import { VuiButtonTertiary } from "./button/ButtonTertiary";
 import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
-import { VuiCard } from "./card/Card";
+import { VuiCard, VuiSimpleCard } from "./card";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
@@ -46,9 +46,7 @@ import {
   VuiPasswordInput
 } from "./form";
 import { VuiFormGroup } from "./formGroup/FormGroup";
-import { VuiGrid } from "./grid/Grid";
-import { VuiGridItem } from "./grid/GridItem";
-import { VuiSimpleGrid } from "./grid/SimpleGrid";
+import { VuiGrid, VuiGridItem, VuiSimpleGrid } from "./grid";
 import { VuiHorizontalRule } from "./horizontalRule/HorizontalRule";
 import { VuiIcon } from "./icon/Icon";
 import { ICON_COLOR, ICON_SIZE, ICON_TYPE } from "./icon/types";
@@ -92,8 +90,7 @@ import { VuiStat } from "./stat/Stat";
 import { VuiStatus } from "./status/Status";
 import { VuiSteps, StepStatus, StepSize, VuiStepProps } from "./steps/Steps";
 import { SKELETON_COLOR, VuiSkeleton } from "./skeleton/Skeleton";
-import { VuiSummary } from "./summary/Summary";
-import { VuiSummaryCitation } from "./summary/SummaryCitation";
+import { VuiSummary, VuiSummaryCitation } from "./summary";
 import { VuiTable } from "./table/Table";
 import { VuiTab } from "./tabs/Tab";
 import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
@@ -196,7 +193,6 @@ export {
   VuiFormGroup,
   VuiGrid,
   VuiGridItem,
-  VuiSimpleGrid,
   VuiHorizontalRule,
   VuiIcon,
   VuiImage,
@@ -233,6 +229,8 @@ export {
   VuiSearchSelect,
   VuiSelect,
   VuiSetting,
+  VuiSimpleCard,
+  VuiSimpleGrid,
   VuiSpacer,
   VuiSpinner,
   VuiStat,
