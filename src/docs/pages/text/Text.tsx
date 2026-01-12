@@ -23,7 +23,11 @@ export const Text = () => (
             </p>
 
             <p>
-              Text with some <code>code</code>.
+              Text with some <code>code</code> and{" "}
+              <strong>
+                <code>bolded code</code>
+              </strong>
+              .
             </p>
 
             <blockquote>

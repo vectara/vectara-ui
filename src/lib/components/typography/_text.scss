@@ -66,8 +66,8 @@ $textRhythm: $sizeM;
     margin-bottom: 0;
   }
 
-  p > pre,
-  p > code {
+  p pre,
+  p code {
     display: inline;
     padding: $sizeXxxs $sizeXxs;
     border: none;
