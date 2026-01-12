@@ -41,32 +41,40 @@ $textRhythm: $sizeM;
 
   pre:not(:has(> code)),
   code {
+    display: block;
+    padding: $sizeXs $sizeS;
     background-color: var(--vui-color-light-shade);
-    padding: $sizeXxxs $sizeXxs;
+    font-family: var(--vui-font-family-monospace);
+    border-radius: $sizeXs;
+    margin-bottom: $textRhythm;
   }
 
   pre:has(> code) {
     display: block;
-    background-color: var(--vui-color-light-shade);
     padding: $sizeXs $sizeS;
+    background-color: var(--vui-color-light-shade);
     margin-bottom: $textRhythm;
     border-radius: $sizeXs;
+    font-family: var(--vui-font-family-monospace);
   }
 
   pre > code {
     word-wrap: break-word;
     word-break: break-word;
     white-space: pre-wrap;
+    font-family: var(--vui-font-family-monospace);
+    margin-bottom: 0;
   }
 
-  p > pre:only-child,
-  p > code:only-child {
-    display: block;
-    padding: $sizeXs $sizeS;
+  p > pre,
+  p > code {
+    display: inline;
+    padding: $sizeXxxs $sizeXxs;
     border: none;
     border-radius: $sizeXs;
     overflow: auto;
     background-color: var(--vui-color-light-shade);
+    font-family: var(--vui-font-family-monospace);
   }
 
   blockquote {
@@ -135,6 +143,7 @@ $textRhythm: $sizeM;
   code,
   pre {
     font-size: $fontSize * 0.85;
+    font-family: var(--vui-font-family-monospace);
   }
 
   h1 {
