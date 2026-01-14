@@ -16,8 +16,14 @@
   overflow: visible;
 }
 
-.vuiPopover--rightUp {
+.vuiPopover--rightUp,
+.vuiPopover--leftUp {
   transform: translateY(-100%) !important;
+}
+
+.vuiPopover--upLeft,
+.vuiPopover--upRight {
+  transform: translateY($sizeXs);
 }
 
 .vuiPopover-isLoaded {

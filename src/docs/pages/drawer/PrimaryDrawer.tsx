@@ -9,6 +9,7 @@ import {
   VuiToggle
 } from "../../../lib";
 import { BiInfoCircle } from "react-icons/bi";
+import { FormGroup } from "../searchSelect/FormGroup";
 
 export const PrimaryDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -181,6 +182,9 @@ export const PrimaryDrawer = () => {
             </tbody>
           </table>
         </VuiText>
+        <VuiSpacer size="l" />
+        <FormGroup />
+        <VuiSpacer size="l" />
       </VuiDrawer>
     </>
   );
