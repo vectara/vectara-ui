@@ -3,10 +3,11 @@ import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi";
 import { VuiIconButton, VuiFlexContainer, VuiFlexItem, VuiIcon, VuiTitle, VuiAppContent, VuiSpacer } from "../lib";
 import { Page as PageType, paths } from "./pages";
 import { Example } from "./components/Example";
+import { Api } from "./components/Api";
 import React from "react";
 
 export const Page = ({ page }: { page: PageType }) => {
-  const { name, example, examples } = page;
+  const { name, example, examples, api } = page;
   const location = useLocation();
   const navigate = useNavigate();
   const currentPageIndex = paths.list.findIndex((page) => page.path === location.pathname);
@@ -74,6 +75,13 @@ export const Page = ({ page }: { page: PageType }) => {
           ))
         )}
       </>
+
+      {api && api.length > 0 && (
+        <>
+          <VuiSpacer size="l" />
+          <Api components={api} />
+        </>
+      )}
     </VuiAppContent>
   );
 };
