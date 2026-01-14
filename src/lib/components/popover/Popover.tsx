@@ -4,7 +4,7 @@ import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 import { VuiItemsInput, VuiNumberInput, VuiTextInput } from "../form";
 
-export type AnchorSide = "left" | "right" | "rightUp";
+export type AnchorSide = "left" | "right" | "rightUp" | "leftUp" | "upLeft" | "upRight";
 
 export type Props = {
   button: React.ReactElement;
@@ -36,6 +36,26 @@ const calculatePopoverPosition = (button: HTMLElement | null, anchorSide: Anchor
     // TODO: Hardcoded offset is intended for use with VuiAppSideNav. Extract this into a configurable prop.
     const adjustedLeft = left + width + 26;
     return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
+  }
+
+  if (anchorSide === "leftUp") {
+    // Anchor popover to the left side of the button, extending upwards.
+    const adjustedTop = top + height + document.documentElement.scrollTop;
+    const adjustedRight = document.documentElement.clientWidth - left + 26;
+    return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
+  }
+
+  if (anchorSide === "upLeft") {
+    // Anchor popover above the button, aligned to the left edge.
+    const adjustedBottom = document.documentElement.clientHeight - top + 2;
+    return { bottom: `${adjustedBottom}px`, left: `${left}px` };
+  }
+
+  if (anchorSide === "upRight") {
+    // Anchor popover above the button, aligned to the right edge.
+    const adjustedBottom = document.documentElement.clientHeight - top + 2;
+    const adjustedRight = document.documentElement.clientWidth - right;
+    return { bottom: `${adjustedBottom}px`, right: `${adjustedRight}px` };
   }
 
   const adjustedTop = bottom + 2 + document.documentElement.scrollTop;
@@ -152,7 +172,10 @@ export const VuiPopover = ({
 
   const classes = classNames("vuiPopover", className, {
     "vuiPopover-isLoaded": showTransition,
-    "vuiPopover--rightUp": anchorSide === "rightUp"
+    "vuiPopover--rightUp": anchorSide === "rightUp",
+    "vuiPopover--leftUp": anchorSide === "leftUp",
+    "vuiPopover--upLeft": anchorSide === "upLeft",
+    "vuiPopover--upRight": anchorSide === "upRight"
   });
 
   const contentClasses = classNames("vuiPopoverContent", {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiFormGroup, VuiSearchSelect, VuiTextInput } from "../../../lib";
+import { AnchorSide, VuiFormGroup, VuiSearchSelect, VuiSelect, VuiSpacer, VuiText, VuiTextInput } from "../../../lib";
 
 const options = [
   { value: "a", label: "Caffeine-free" },
@@ -45,7 +45,33 @@ export const FormGroup = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
+    const [anchorSide, setAnchorSide] = useState<AnchorSide | undefined>("left");
+  const anchorOptions = [
+    { text: "Left", value: "left" },
+    { text: "Right", value: "right" },
+    { text: "Right Up", value: "rightUp" },
+    { text: "Left Up", value: "leftUp" },
+    { text: "Up Left", value: "upLeft" },
+    { text: "Up Right", value: "upRight" }
+  ];
+
+
   return (
+    <>
+    <VuiText size="s">
+      <p>
+        <strong>
+          Popover position
+        </strong>
+      </p>
+    </VuiText>
+    <VuiSpacer size="xs" />
+     <VuiSelect
+        options={anchorOptions}
+        value={anchorSide}
+        onChange={(event) => setAnchorSide(event.target.value as AnchorSide)}
+      />
+      <VuiSpacer size="l" />
     <VuiFormGroup label="Search select" labelFor="searchSelect">
       <VuiSearchSelect
         title="Choose one or more"
@@ -58,10 +84,11 @@ export const FormGroup = () => {
         }}
         selectedOptions={selectedOptions}
         options={options}
-        anchorSide="left"
-      >
+        anchorSide={anchorSide}
+        >
         <VuiTextInput fullWidth color="neutral" id="searchSelect" value={humanizeOptions(selectedOptions)} />
       </VuiSearchSelect>
     </VuiFormGroup>
+        </>
   );
 };
