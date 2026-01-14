@@ -69,8 +69,16 @@ import { validation } from "./pages/validation";
 // Utils
 import { truncate } from "./pages/truncate";
 
+import { ComponentApi } from "./components/Api";
+
 type Category = { name: string; pages: Page[] };
-export type Page = { name: string; path: string; examples?: Array<Example & { name: string }>; example?: Example };
+export type Page = {
+  name: string;
+  path: string;
+  examples?: Array<Example & { name: string }>;
+  example?: Example;
+  api?: ComponentApi[];
+};
 type Example = { component: React.ReactNode; source: string };
 
 export const categories: Category[] = [
