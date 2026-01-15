@@ -13,8 +13,9 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   headerSize?: (typeof TEXT_SIZE)[number];
-  noPadding?: boolean;
-  frameless?: boolean;
+  padding?: "m" | "none";
+  frame?: boolean;
+  append?: React.ReactNode;
 };
 
 export const VuiAccordion = ({
@@ -23,45 +24,66 @@ export const VuiAccordion = ({
   isOpen,
   setIsOpen,
   headerSize,
-  noPadding,
-  frameless,
+  padding = "m",
+  frame = true,
+  append,
   ...rest
 }: Props) => {
   const buttonId = createId();
   const contentId = createId();
   const headerClasses = classNames("vuiAccordionHeader", {
     "vuiAccordionHeader--isOpen": isOpen,
-    "vuiAccordionHeader--noPadding": noPadding,
-    "vuiAccordionHeader--frameless": frameless
+    "vuiAccordionHeader--noPadding": padding === "none",
+    "vuiAccordionHeader--frameless": !frame || append
   });
   const bodyClasses = classNames("vuiAccordionBody", {
-    "vuiAccordionBody--noPadding": noPadding,
-    "vuiAccordionBody--frameless": frameless
+    "vuiAccordionBody--noPadding": padding === "none",
+    "vuiAccordionBody--frameless": !frame
   });
+
+  const button = (
+    <button
+      className={headerClasses}
+      onClick={() => setIsOpen(!isOpen)}
+      id={buttonId}
+      aria-controls={contentId}
+      aria-expanded={isOpen}
+      type="button"
+      {...rest}
+    >
+      <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xxs">
+        <VuiFlexItem grow={false} shrink={false}>
+          <VuiIcon size="m" color="neutral">
+            {isOpen ? <BiChevronDown /> : <BiChevronRight />}
+          </VuiIcon>
+        </VuiFlexItem>
+
+        <VuiFlexItem className="vuiAccordionHeader__title" grow={1}>
+          <VuiText size={headerSize}>{header}</VuiText>
+        </VuiFlexItem>
+      </VuiFlexContainer>
+    </button>
+  );
 
   return (
     <>
-      <button
-        className={headerClasses}
-        onClick={() => setIsOpen(!isOpen)}
-        id={buttonId}
-        aria-controls={contentId}
-        aria-expanded={isOpen}
-        type="button"
-        {...rest}
-      >
-        <VuiFlexContainer alignItems="center" justifyContent="start" spacing="xxs">
+      {append ? (
+        <VuiFlexContainer
+          className={classNames("vuiAccordionHeader__wrapper", {
+            "vuiAccordionHeader__wrapper--isOpen": isOpen,
+            "vuiAccordionHeader__wrapper--frameless": !frame
+          })}
+          alignItems="center"
+          justifyContent="spaceBetween"
+        >
+          <VuiFlexItem grow={1}>{button}</VuiFlexItem>
           <VuiFlexItem grow={false} shrink={false}>
-            <VuiIcon size="m" color="neutral">
-              {isOpen ? <BiChevronDown /> : <BiChevronRight />}
-            </VuiIcon>
-          </VuiFlexItem>
-
-          <VuiFlexItem className="vuiAccordionHeader__title" grow={1}>
-            <VuiText size={headerSize}>{header}</VuiText>
+            {append}
           </VuiFlexItem>
         </VuiFlexContainer>
-      </button>
+      ) : (
+        button
+      )}
 
       {isOpen && (
         <div className={bodyClasses} id={contentId} aria-labelledby={buttonId}>

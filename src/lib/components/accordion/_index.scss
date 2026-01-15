@@ -50,3 +50,17 @@
 .vuiAccordionBody--frameless {
   border: none;
 }
+
+.vuiAccordionHeader__wrapper {
+  border: 1px solid var(--vui-color-border-light);
+  border-radius: $sizeXxs;
+}
+
+.vuiAccordionHeader__wrapper--isOpen {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.vuiAccordionHeader__wrapper--frameless {
+  border: none;
+}
