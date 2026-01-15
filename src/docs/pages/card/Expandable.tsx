@@ -5,13 +5,23 @@ import {
   VuiFlexContainer,
   VuiFlexItem,
   VuiIcon,
+  VuiSelect,
   VuiSpacer,
   VuiText,
   VuiTitle
 } from "../../../lib";
 import { useState } from "react";
 
+const paddingOptions = [
+  { text: "Extra extra small", value: "xxs" },
+  { text: "Extra small", value: "xs" },
+  { text: "Small", value: "s" },
+  { text: "Medium", value: "m" },
+  { text: "Large", value: "l" }
+];
+
 export const Expandable = () => {
+  const [padding, setPadding] = useState<"xxs" | "xs" | "s" | "m" | "l">("xs");
   const [isExpanded1, setIsExpanded1] = useState(false);
   const [isExpanded2, setIsExpanded2] = useState(true);
   const [isExpanded3, setIsExpanded3] = useState(false);
@@ -22,22 +32,32 @@ export const Expandable = () => {
         <p>Cards can act as expandable containers with controlled expand/collapse functionality.</p>
       </VuiText>
 
+      <VuiSpacer size="s" />
+
+      <VuiSelect
+        id="paddingOptions"
+        options={paddingOptions}
+        value={padding}
+        onChange={(event) => setPadding(event.target.value as "xxs" | "xs" | "s" | "m" | "l")}
+      />
+
       <VuiSpacer size="m" />
 
       <VuiFlexContainer direction="column" spacing="m">
         <VuiFlexItem>
           <VuiCard
+            padding={padding}
             isExpanded={isExpanded1}
             onToggleExpansion={() => setIsExpanded1(!isExpanded1)}
             header={
               <VuiFlexContainer alignItems="center" spacing="s">
                 <VuiFlexItem grow={false}>
-                  <VuiIcon color="neutral" size="m">
+                  <VuiIcon color="neutral" size="s">
                     <BiPlanet />
                   </VuiIcon>
                 </VuiFlexItem>
                 <VuiFlexItem grow={1}>
-                  <VuiTitle size="s">
+                  <VuiTitle size="xs">
                     <h4>Explore Alpha Centauri</h4>
                   </VuiTitle>
                 </VuiFlexItem>
@@ -64,12 +84,12 @@ export const Expandable = () => {
                 <VuiButtonPrimary color="success">Learn More</VuiButtonPrimary>
               </>
             }
-            padding="m"
           />
         </VuiFlexItem>
 
         <VuiFlexItem>
           <VuiCard
+            padding={padding}
             isExpanded={isExpanded2}
             onToggleExpansion={() => setIsExpanded2(!isExpanded2)}
             header={
@@ -103,12 +123,12 @@ export const Expandable = () => {
                 </VuiText>
               </>
             }
-            padding="m"
           />
         </VuiFlexItem>
 
         <VuiFlexItem>
           <VuiCard
+            padding={padding}
             isExpanded={isExpanded3}
             onToggleExpansion={() => setIsExpanded3(!isExpanded3)}
             header={
@@ -125,7 +145,6 @@ export const Expandable = () => {
                 </p>
               </VuiText>
             }
-            padding="s"
           />
         </VuiFlexItem>
       </VuiFlexContainer>

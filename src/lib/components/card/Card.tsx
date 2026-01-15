@@ -13,7 +13,7 @@ type Props = {
   className?: string;
   interactive?: boolean;
   href?: string;
-  padding?: "s" | "m" | "l";
+  padding?: "xxs" | "xs" | "s" | "m" | "l";
   ungrouped?: boolean;
   fullHeight?: boolean;
   isScrollable?: boolean;
