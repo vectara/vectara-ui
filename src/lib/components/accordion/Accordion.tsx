@@ -33,12 +33,12 @@ export const VuiAccordion = ({
   const contentId = createId();
   const headerClasses = classNames("vuiAccordionHeader", {
     "vuiAccordionHeader--isOpen": isOpen,
-    "vuiAccordionHeader--noPadding": padding === "none",
-    "vuiAccordionHeader--frameless": !frame || append
+    "vuiAccordionHeader--paddingNone": padding === "none",
+    "vuiAccordionHeader--noFrame": !frame || append
   });
   const bodyClasses = classNames("vuiAccordionBody", {
-    "vuiAccordionBody--noPadding": padding === "none",
-    "vuiAccordionBody--frameless": !frame
+    "vuiAccordionBody--paddingNone": padding === "none",
+    "vuiAccordionBody--noFrame": !frame
   });
 
   const button = (
@@ -71,7 +71,7 @@ export const VuiAccordion = ({
         <VuiFlexContainer
           className={classNames("vuiAccordionHeader__wrapper", {
             "vuiAccordionHeader__wrapper--isOpen": isOpen,
-            "vuiAccordionHeader__wrapper--frameless": !frame
+            "vuiAccordionHeader__wrapper--noFrame": !frame
           })}
           alignItems="center"
           justifyContent="spaceBetween"

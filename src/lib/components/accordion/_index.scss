@@ -35,19 +35,19 @@
   border-bottom-left-radius: $sizeXxs;
 }
 
-.vuiAccordionHeader--noPadding {
+.vuiAccordionHeader--paddingNone {
   padding: 0;
 }
 
-.vuiAccordionHeader--frameless {
+.vuiAccordionHeader--noFrame {
   border: none;
 }
 
-.vuiAccordionBody--noPadding {
+.vuiAccordionBody--paddingNone {
   padding: 0;
 }
 
-.vuiAccordionBody--frameless {
+.vuiAccordionBody--noFrame {
   border: none;
 }
 
@@ -61,6 +61,6 @@
   border-bottom-left-radius: 0;
 }
 
-.vuiAccordionHeader__wrapper--frameless {
+.vuiAccordionHeader__wrapper--noFrame {
   border: none;
 }
