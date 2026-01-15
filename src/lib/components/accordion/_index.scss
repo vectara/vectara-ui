@@ -34,3 +34,19 @@
   border-bottom-right-radius: $sizeXxs;
   border-bottom-left-radius: $sizeXxs;
 }
+
+.vuiAccordionHeader--noPadding {
+  padding: 0;
+}
+
+.vuiAccordionHeader--frameless {
+  border: none;
+}
+
+.vuiAccordionBody--noPadding {
+  padding: 0;
+}
+
+.vuiAccordionBody--frameless {
+  border: none;
+}
