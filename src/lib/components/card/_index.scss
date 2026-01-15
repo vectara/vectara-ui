@@ -83,8 +83,25 @@
   overflow-y: auto;
 }
 
+.vuiCard--xxs {
+  .vuiCard__header,
+  .vuiCard__expandableButton,
+  .vuiCard__body {
+    padding: $sizeXs $sizeS;
+  }
+}
+
+.vuiCard--xs {
+  .vuiCard__header,
+  .vuiCard__expandableButton,
+  .vuiCard__body {
+    padding: $sizeS $sizeM;
+  }
+}
+
 .vuiCard--s {
   .vuiCard__header,
+  .vuiCard__expandableButton,
   .vuiCard__body {
     padding: $sizeM $sizeL;
   }
@@ -92,6 +109,7 @@
 
 .vuiCard--m {
   .vuiCard__header,
+  .vuiCard__expandableButton,
   .vuiCard__body {
     padding: $sizeL $sizeXl;
   }
@@ -99,6 +117,7 @@
 
 .vuiCard--l {
   .vuiCard__header,
+  .vuiCard__expandableButton,
   .vuiCard__body {
     padding: $sizeXl $sizeXxl;
   }
@@ -108,7 +127,6 @@
   .vuiCard__expandableButton {
     display: block;
     width: 100%;
-    padding: $sizeM $sizeL;
     text-align: left;
     background: transparent;
     border: none;
@@ -172,6 +190,10 @@
 
 .vuiSimpleCard--fullHeight {
   height: 100%;
+}
+
+.vuiSimpleCard--xxs {
+  padding: $sizeXs $sizeS;
 }
 
 .vuiSimpleCard--xs {

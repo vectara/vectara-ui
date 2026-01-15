@@ -7,7 +7,7 @@ type Props = {
   fullHeight?: boolean;
   href?: string;
   onClick?: (e: MouseEvent) => void;
-  padding?: "xs" | "s" | "m" | "l";
+  padding?: "xxs" | "xs" | "s" | "m" | "l";
   children?: React.ReactNode;
 };
 

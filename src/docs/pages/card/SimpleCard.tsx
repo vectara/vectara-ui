@@ -13,14 +13,15 @@ import {
 import { BiPencil } from "react-icons/bi";
 
 const paddingOptions = [
-  { text: "Extra Small", value: "xs" },
+  { text: "Extra extra small", value: "xxs" },
+  { text: "Extra small", value: "xs" },
   { text: "Small", value: "s" },
   { text: "Medium", value: "m" },
   { text: "Large", value: "l" }
 ];
 
 export const SimpleCard = () => {
-  const [padding, setPadding] = useState<"xs" | "s" | "m" | "l">("xs");
+  const [padding, setPadding] = useState<"xxs" | "xs" | "s" | "m" | "l">("xs");
 
   return (
     <>
@@ -28,7 +29,7 @@ export const SimpleCard = () => {
         id="paddingOptions"
         options={paddingOptions}
         value={padding}
-        onChange={(event) => setPadding(event.target.value as "xs" | "s" | "m" | "l")}
+        onChange={(event) => setPadding(event.target.value as "xxs" | "xs" | "s" | "m" | "l")}
       />
 
       <VuiSpacer size="m" />
