@@ -16,6 +16,8 @@ export type Props = {
   onClickButton?: (e: React.MouseEvent<HTMLElement>) => void;
   padding?: boolean;
   anchorSide?: AnchorSide;
+  anchorOffsetX?: number;
+  anchorOffsetY?: number;
 };
 
 type Position = {
@@ -25,40 +27,44 @@ type Position = {
   right?: string;
 };
 
-const calculatePopoverPosition = (button: HTMLElement | null, anchorSide: AnchorSide): Position | undefined => {
+const calculatePopoverPosition = (
+  button: HTMLElement | null,
+
+  anchorOptions: { anchorSide: AnchorSide; offsetX: number; offsetY: number }
+): Position | undefined => {
   if (!button) return undefined;
 
+  const { anchorSide, offsetX, offsetY } = anchorOptions;
   const { left, right, width, height, top, bottom } = button.getBoundingClientRect();
 
   if (anchorSide === "rightUp") {
     // Anchor popover to the right side of the button, extending upwards.
     const adjustedTop = top + height + document.documentElement.scrollTop;
-    // TODO: Hardcoded offset is intended for use with VuiAppSideNav. Extract this into a configurable prop.
-    const adjustedLeft = left + width + 26;
+    const adjustedLeft = left + width + offsetX;
     return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
   }
 
   if (anchorSide === "leftUp") {
     // Anchor popover to the left side of the button, extending upwards.
     const adjustedTop = top + height + document.documentElement.scrollTop;
-    const adjustedRight = document.documentElement.clientWidth - left + 26;
+    const adjustedRight = document.documentElement.clientWidth - left + offsetX;
     return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
   }
 
   if (anchorSide === "upLeft") {
     // Anchor popover above the button, aligned to the left edge.
-    const adjustedBottom = document.documentElement.clientHeight - top + 2;
+    const adjustedBottom = document.documentElement.clientHeight - top + offsetY;
     return { bottom: `${adjustedBottom}px`, left: `${left}px` };
   }
 
   if (anchorSide === "upRight") {
     // Anchor popover above the button, aligned to the right edge.
-    const adjustedBottom = document.documentElement.clientHeight - top + 2;
+    const adjustedBottom = document.documentElement.clientHeight - top + offsetY;
     const adjustedRight = document.documentElement.clientWidth - right;
     return { bottom: `${adjustedBottom}px`, right: `${adjustedRight}px` };
   }
 
-  const adjustedTop = bottom + 2 + document.documentElement.scrollTop;
+  const adjustedTop = bottom + offsetY + document.documentElement.scrollTop;
 
   if (anchorSide === "left") {
     return { top: `${adjustedTop}px`, left: `${left}px` };
@@ -78,6 +84,8 @@ export const VuiPopover = ({
   setIsOpen,
   padding,
   anchorSide = "right",
+  anchorOffsetX = 2,
+  anchorOffsetY = 2,
   onClickButton,
   ...rest
 }: Props) => {
@@ -168,7 +176,11 @@ export const VuiPopover = ({
   // Always keep menu position up to date. If we tried to cache this inside
   // a useEffect based on isOpen then there'd be a flicker if the width
   // of the button changes.
-  const position = calculatePopoverPosition(buttonRef.current, anchorSide);
+  const position = calculatePopoverPosition(buttonRef.current, {
+    anchorSide,
+    offsetX: anchorOffsetX,
+    offsetY: anchorOffsetY
+  });
 
   const classes = classNames("vuiPopover", className, {
     "vuiPopover-isLoaded": showTransition,
