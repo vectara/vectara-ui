@@ -29,12 +29,11 @@ type Position = {
 
 const calculatePopoverPosition = (
   button: HTMLElement | null,
-
   anchorOptions: { anchorSide: AnchorSide; offsetX: number; offsetY: number }
 ): Position | undefined => {
   if (!button) return undefined;
 
-  const { anchorSide, offsetX, offsetY } = anchorOptions;
+  const { anchorSide, offsetX = 0, offsetY = 0} = anchorOptions;
   const { left, right, width, height, top, bottom } = button.getBoundingClientRect();
 
   if (anchorSide === "rightUp") {

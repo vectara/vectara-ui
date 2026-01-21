@@ -29,7 +29,11 @@ export const Popover = () => {
           id="anchorSideSelect"
           options={[
             { text: "Left", value: "left" },
-            { text: "Right", value: "right" }
+            { text: "Right", value: "right" },
+            { text: "Left Up", value: "leftUp" },
+            { text: "Right Up", value: "rightUp" },
+            { text: "Up Left", value: "upLeft" },
+            { text: "Up Right", value: "upRight" }
           ]}
           value={anchorSide}
           onChange={(event) => setAnchorSide(event.target.value as AnchorSide)}
