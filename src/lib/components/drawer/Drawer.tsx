@@ -82,7 +82,7 @@ export const VuiDrawer = ({
                       )}
 
                       <VuiFlexItem grow={false}>
-                        <div className="vuiDrawerHeader__title">
+                        <div className="vuiDrawerHeader__title" data-testid="drawerTitle">
                           <DrawerTitle id="drawerTitle">{title}</DrawerTitle>
                         </div>
                       </VuiFlexItem>
