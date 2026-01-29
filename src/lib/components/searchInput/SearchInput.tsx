@@ -111,6 +111,8 @@ export const VuiSearchInput = ({
       }
 
       case "Enter": {
+        // Prevent form submission from triggering a page refresh.
+        if (!onSubmit) e.preventDefault();
         break;
       }
     }
