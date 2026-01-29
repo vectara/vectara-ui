@@ -121,7 +121,7 @@ export const VuiTable = <T extends Row>({
   const selectableRowsCount = isRowSelectable
     ? rows.reduce((count, row) => (isRowSelectable(row) ? count + 1 : count), 0)
     : rows.length;
-  const allRowsSelected = selectedRows?.length === selectableRowsCount;
+  const allRowsSelected = selectableRowsCount > 0 && selectedRows?.length === selectableRowsCount;
   const selectedIds: Record<string, boolean> =
     selectedRows?.reduce((acc, row) => {
       acc[extractId(row, idField)] = true;
