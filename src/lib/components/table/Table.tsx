@@ -121,7 +121,8 @@ export const VuiTable = <T extends Row>({
   const selectableRowsCount = isRowSelectable
     ? rows.reduce((count, row) => (isRowSelectable(row) ? count + 1 : count), 0)
     : rows.length;
-  const allRowsSelected = selectableRowsCount > 0 && selectedRows?.length === selectableRowsCount;
+  const areAnyRowsSelectable = selectableRowsCount > 0;
+  const allRowsSelected = areAnyRowsSelectable && selectedRows?.length === selectableRowsCount;
   const selectedIds: Record<string, boolean> =
     selectedRows?.reduce((acc, row) => {
       acc[extractId(row, idField)] = true;
@@ -243,7 +244,7 @@ export const VuiTable = <T extends Row>({
   }
 
   const selectAllCheckboxProps = {
-    disabled: !isInteractive,
+    disabled: !isInteractive || !areAnyRowsSelectable,
     checked: isInteractive ? allRowsSelected : false,
     onChange: () => {
       let newSelectedRows: T[];
