@@ -57,6 +57,7 @@ type BodyStyle = {
 
 type Selection<T> = {
   bulkActions?: TableBulkActionProps<T[]>["actions"];
+  isRowSelectable?: (row: T) => boolean;
   onSelectRow?: (selectedRows: T[]) => void;
   selectedRows?: T[];
 };
@@ -97,7 +98,7 @@ export const VuiTable = <T extends Row>({
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">("none");
 
-  const { bulkActions, onSelectRow, selectedRows } = selection || {};
+  const { bulkActions, isRowSelectable, onSelectRow, selectedRows } = selection || {};
   const { value: searchValue } = search || {};
 
   const handleSort = (columnName: string, direction: "asc" | "desc" | "none") => {
@@ -186,6 +187,7 @@ export const VuiTable = <T extends Row>({
             <td className="vuiTableRowSelect">
               <VuiTableCell>
                 <VuiCheckbox
+                  disabled={isRowSelectable ? !isRowSelectable(row) : undefined}
                   checked={selectedIds[rowId] ?? false}
                   onChange={() => {
                     if (selectedIds[rowId]) {
