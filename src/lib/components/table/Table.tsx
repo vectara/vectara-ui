@@ -118,7 +118,10 @@ export const VuiTable = <T extends Row>({
   // replaces the rows), and if it’s not in a loading state or empty state.
   const isInteractive = Boolean(!content && !isLoading && !isEmpty);
 
-  const allRowsSelected = selectedRows?.length === rows.length;
+  const selectableRowsCount = isRowSelectable
+    ? rows.reduce((count, row) => (isRowSelectable(row) ? count + 1 : count), 0)
+    : rows.length;
+  const allRowsSelected = selectedRows?.length === selectableRowsCount;
   const selectedIds: Record<string, boolean> =
     selectedRows?.reduce((acc, row) => {
       acc[extractId(row, idField)] = true;
@@ -249,6 +252,9 @@ export const VuiTable = <T extends Row>({
         newSelectedRows = [];
       } else {
         newSelectedRows = rows.reduce((acc, row) => {
+          if (isRowSelectable && !isRowSelectable(row)) {
+            return acc;
+          }
           acc.push(row);
           return acc;
         }, [] as T[]);
