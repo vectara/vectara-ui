@@ -266,6 +266,7 @@ export const Table = () => {
   const selection = canSelectRows
     ? {
         selectedRows,
+        isRowSelectable: (row: Person) => row.status === "Active",
         onSelectRow: (selectedRows: Person[]) => setSelectedRows(selectedRows),
         bulkActions: [
           {
