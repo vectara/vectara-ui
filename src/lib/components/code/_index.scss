@@ -19,6 +19,8 @@
   max-height: inherit;
   background-color: var(--vui-color-light-shade) !important;
   border-radius: $sizeXxs;
+  // Ensure scrolling in case prism doesn't apply the correct styles.
+  overflow: auto;
 }
 
 .vuiCode {
