@@ -37,6 +37,7 @@ export const Accordion = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [headerSize, setHeaderSize] = useState<"xs" | "s" | "m" | "l">("s");
   const [padding, setPadding] = useState<"m" | "none">("m");
+  const [bodyPadding, setBodyPadding] = useState<"m" | "none">("m");
   const [frame, setFrame] = useState(true);
   const [showAppend, setShowAppend] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -67,19 +68,22 @@ export const Accordion = () => {
         </VuiFlexItem>
 
         <VuiFlexItem>
-          <VuiCheckbox
-            label="Frame"
-            checked={frame}
-            onChange={(e) => setFrame(e.target.checked)}
-          />
+          <VuiFormGroup label="Body padding" labelFor="bodyPaddingSelect">
+            <VuiSelect
+              id="bodyPaddingSelect"
+              options={paddingOptions}
+              value={bodyPadding}
+              onChange={(e) => setBodyPadding(e.target.value as "m" | "none")}
+            />
+          </VuiFormGroup>
         </VuiFlexItem>
 
         <VuiFlexItem>
-          <VuiCheckbox
-            label="Append"
-            checked={showAppend}
-            onChange={(e) => setShowAppend(e.target.checked)}
-          />
+          <VuiCheckbox label="Frame" checked={frame} onChange={(e) => setFrame(e.target.checked)} />
+        </VuiFlexItem>
+
+        <VuiFlexItem>
+          <VuiCheckbox label="Append" checked={showAppend} onChange={(e) => setShowAppend(e.target.checked)} />
         </VuiFlexItem>
       </VuiFlexContainer>
 
@@ -91,6 +95,7 @@ export const Accordion = () => {
         setIsOpen={setIsOpen}
         headerSize={headerSize}
         padding={padding}
+        bodyPadding={bodyPadding}
         frame={frame}
         append={
           showAppend ? (

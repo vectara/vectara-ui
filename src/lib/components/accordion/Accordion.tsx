@@ -14,6 +14,7 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
   headerSize?: (typeof TEXT_SIZE)[number];
   padding?: "m" | "none";
+  bodyPadding?: "m" | "none";
   frame?: boolean;
   append?: React.ReactNode;
 };
@@ -25,19 +26,22 @@ export const VuiAccordion = ({
   setIsOpen,
   headerSize,
   padding = "m",
+  bodyPadding = "m",
   frame = true,
   append,
   ...rest
 }: Props) => {
   const buttonId = createId();
   const contentId = createId();
+
   const headerClasses = classNames("vuiAccordionHeader", {
     "vuiAccordionHeader--isOpen": isOpen,
     "vuiAccordionHeader--paddingNone": padding === "none",
     "vuiAccordionHeader--noFrame": !frame || append
   });
+
   const bodyClasses = classNames("vuiAccordionBody", {
-    "vuiAccordionBody--paddingNone": padding === "none",
+    "vuiAccordionBody--paddingNone": padding === "none" || bodyPadding === "none",
     "vuiAccordionBody--noFrame": !frame
   });
 
