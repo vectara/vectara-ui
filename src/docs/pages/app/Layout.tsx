@@ -1,15 +1,19 @@
 import { useState } from "react";
 import {
   BiBook,
+  BiBrain,
+  BiBulb,
   BiCreditCard,
   BiData,
   BiError,
   BiHeart,
+  BiHome,
   BiKey,
   BiLineChart,
   BiLogOut,
   BiRightArrowAlt,
-  BiUser
+  BiUser,
+  BiWrench
 } from "react-icons/bi";
 import {
   VuiAppSideNav,
@@ -25,7 +29,8 @@ import {
   VuiSpacer,
   VuiSearchInput,
   VuiLink,
-  VuiButtonPrimary
+  VuiButtonPrimary,
+  VuiAppSideNavGroup
 } from "../../../lib";
 
 const AccountButton = () => {
@@ -75,109 +80,153 @@ const AccountButton = () => {
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState<
-    "corpora" | "apiKeys" | "team" | "usage" | "billing" | "health" | "docs"
-  >("corpora");
+    "home" | "corpora" | "agents" | "tools" | "llms" | "apiKeys" | "team" | "usage" | "billing" | "health" | "docs"
+  >("home");
 
   const navContent = (
     <>
       <VuiAppSideNavLink
-        name="Corpora"
-        iconBefore={<BiData />}
-        data-testid="navCorpora"
-        onClick={() => setActiveItem("corpora")}
-        isSelected={activeItem === "corpora"}
+        name="Home"
+        iconBefore={<BiHome />}
+        data-testid="navHome"
+        onClick={() => setActiveItem("home")}
+        isSelected={activeItem === "home"}
       />
 
-      <VuiAppSideNavLink
-        name="API keys"
-        iconBefore={<BiKey />}
-        data-testid="navApiKeys"
-        onClick={() => setActiveItem("apiKeys")}
-        isSelected={activeItem === "apiKeys"}
-      />
+      <VuiSpacer size="l" />
 
-      <VuiAppSideNavLink
-        name="Team"
-        iconBefore={<BiUser />}
-        data-testid="navTeam"
-        onClick={() => setActiveItem("team")}
-        isSelected={activeItem === "team"}
-      />
+      <VuiAppSideNavGroup title="Build">
+        <VuiAppSideNavLink
+          name="Agents"
+          iconBefore={<BiBrain />}
+          data-testid="navAgents"
+          onClick={() => setActiveItem("agents")}
+          isSelected={activeItem === "agents"}
+        />
 
-      <VuiAppSideNavLink
-        name="Usage"
-        iconBefore={<BiLineChart />}
-        data-testid="navUsage"
-        onClick={() => setActiveItem("usage")}
-        isSelected={activeItem === "usage"}
-      />
+        <VuiAppSideNavLink
+          name="Corpora"
+          iconBefore={<BiData />}
+          data-testid="navCorpora"
+          onClick={() => setActiveItem("corpora")}
+          isSelected={activeItem === "corpora"}
+        />
 
-      <VuiAppSideNavLink
-        name="Billing"
-        iconBefore={<BiCreditCard />}
-        data-testid="navBilling"
-        onClick={() => setActiveItem("billing")}
-        isSelected={activeItem === "billing"}
-      />
+        <VuiAppSideNavLink
+          name="Tools"
+          iconBefore={<BiWrench />}
+          data-testid="navTools"
+          onClick={() => setActiveItem("tools")}
+          isSelected={activeItem === "tools"}
+        />
 
-      <VuiAppSideNavLink
-        name="Health"
-        iconBefore={<BiHeart />}
-        data-testid="navHealth"
-        iconAfterAlignEnd
-        iconAfter={<BiError />}
-        onClick={() => setActiveItem("health")}
-        isSelected={activeItem === "health"}
-      />
+        <VuiAppSideNavLink
+          name="LLMs"
+          iconBefore={<BiBulb />}
+          data-testid="navLlms"
+          onClick={() => setActiveItem("llms")}
+          isSelected={activeItem === "llms"}
+        />
+      </VuiAppSideNavGroup>
 
-      <VuiPopover
-        anchorSide="rightUp"
-        isOpen={isOpen}
-        setIsOpen={() => setIsOpen(!isOpen)}
-        padding={true}
-        header="Documentation"
-        button={
-          <VuiAppSideNavLink
-            name="Docs"
-            iconBefore={<BiBook />}
-            data-testid="navDocs"
-            onClick={() => setActiveItem("docs")}
-            isSelected={activeItem === "docs"}
-          />
-        }
-      >
-        <div style={{ width: "280px" }}>
-          <VuiSearchInput size="m" placeholder="Search docs" />
-          <VuiSpacer size="s" />
-          <VuiFlexContainer alignItems="center" spacing="l" justifyContent="start">
-            <VuiText size="m">
-              <VuiLink href="https://docs.vectara.com/docs/rest-api" target="_blank">
-                <VuiFlexContainer alignItems="center" spacing="xxs" justifyContent="start">
-                  <VuiFlexItem>API reference</VuiFlexItem>
-                  <VuiFlexItem>
-                    <VuiIcon size="s">
-                      <BiRightArrowAlt />
-                    </VuiIcon>
-                  </VuiFlexItem>
-                </VuiFlexContainer>
-              </VuiLink>
-            </VuiText>
+      <VuiSpacer size="l" />
 
-            <VuiText size="m">
-              <VuiLink href="https://docs.vectara.com" target="_blank">
-                <VuiFlexContainer alignItems="center" spacing="xxs" justifyContent="start">
-                  <VuiFlexItem>Docs</VuiFlexItem>
-                  <VuiFlexItem>
-                    <VuiIcon size="s">
-                      <BiRightArrowAlt />
-                    </VuiIcon>
-                  </VuiFlexItem>
-                </VuiFlexContainer>
-              </VuiLink>
-            </VuiText>
-          </VuiFlexContainer>
-        </div>
-      </VuiPopover>
+      <VuiAppSideNavGroup title="Collaborate">
+        <VuiAppSideNavLink
+          name="API keys"
+          iconBefore={<BiKey />}
+          data-testid="navApiKeys"
+          onClick={() => setActiveItem("apiKeys")}
+          isSelected={activeItem === "apiKeys"}
+        />
+
+        <VuiAppSideNavLink
+          name="Team"
+          iconBefore={<BiUser />}
+          data-testid="navTeam"
+          onClick={() => setActiveItem("team")}
+          isSelected={activeItem === "team"}
+        />
+      </VuiAppSideNavGroup>
+
+      <VuiSpacer size="l" />
+
+      <VuiAppSideNavGroup title="Manage">
+        <VuiAppSideNavLink
+          name="Usage"
+          iconBefore={<BiLineChart />}
+          data-testid="navUsage"
+          onClick={() => setActiveItem("usage")}
+          isSelected={activeItem === "usage"}
+        />
+
+        <VuiAppSideNavLink
+          name="Billing"
+          iconBefore={<BiCreditCard />}
+          data-testid="navBilling"
+          onClick={() => setActiveItem("billing")}
+          isSelected={activeItem === "billing"}
+        />
+
+        <VuiAppSideNavLink
+          name="Health"
+          iconBefore={<BiHeart />}
+          data-testid="navHealth"
+          iconAfterAlignEnd
+          iconAfter={<BiError />}
+          onClick={() => setActiveItem("health")}
+          isSelected={activeItem === "health"}
+        />
+
+        <VuiPopover
+          anchorSide="rightUp"
+          isOpen={isOpen}
+          setIsOpen={() => setIsOpen(!isOpen)}
+          padding={true}
+          header="Documentation"
+          button={
+            <VuiAppSideNavLink
+              name="Docs"
+              iconBefore={<BiBook />}
+              data-testid="navDocs"
+              onClick={() => setActiveItem("docs")}
+              isSelected={activeItem === "docs"}
+            />
+          }
+        >
+          <div style={{ width: "280px" }}>
+            <VuiSearchInput size="m" placeholder="Search docs" />
+            <VuiSpacer size="s" />
+            <VuiFlexContainer alignItems="center" spacing="l" justifyContent="start">
+              <VuiText size="m">
+                <VuiLink href="https://docs.vectara.com/docs/rest-api" target="_blank">
+                  <VuiFlexContainer alignItems="center" spacing="xxs" justifyContent="start">
+                    <VuiFlexItem>API reference</VuiFlexItem>
+                    <VuiFlexItem>
+                      <VuiIcon size="s">
+                        <BiRightArrowAlt />
+                      </VuiIcon>
+                    </VuiFlexItem>
+                  </VuiFlexContainer>
+                </VuiLink>
+              </VuiText>
+
+              <VuiText size="m">
+                <VuiLink href="https://docs.vectara.com" target="_blank">
+                  <VuiFlexContainer alignItems="center" spacing="xxs" justifyContent="start">
+                    <VuiFlexItem>Docs</VuiFlexItem>
+                    <VuiFlexItem>
+                      <VuiIcon size="s">
+                        <BiRightArrowAlt />
+                      </VuiIcon>
+                    </VuiFlexItem>
+                  </VuiFlexContainer>
+                </VuiLink>
+              </VuiText>
+            </VuiFlexContainer>
+          </div>
+        </VuiPopover>
+      </VuiAppSideNavGroup>
     </>
   );
 

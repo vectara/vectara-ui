@@ -5,6 +5,7 @@ import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
 import { VuiAppSideNav } from "./app/appSideNav/AppSideNav";
 import { VuiAppSideNavLink } from "./app/appSideNav/AppSideNavLink";
+import { VuiAppSideNavGroup } from "./app/appSideNav/AppSideNavGroup";
 import { Sections, SectionItem, Tree, TreeItem } from "./app/types";
 import { AppContentPadding } from "./app/types";
 import { BADGE_COLOR, VuiBadge } from "./badge/Badge";
@@ -171,6 +172,7 @@ export {
   VuiAppLayout,
   VuiAppSideNav,
   VuiAppSideNavLink,
+  VuiAppSideNavGroup,
   VuiBadge,
   VuiButtonPrimary,
   VuiButtonSecondary,

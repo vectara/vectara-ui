@@ -12,10 +12,15 @@
   margin-top: $sizeL;
 }
 
+.vuiAppSideNavGroup__title,
 .vuiAppSideNavSection__title {
   color: var(--vui-color-text);
   font-weight: $fontWeightBold;
   font-size: $fontSizeStandard;
+}
+
+.vuiAppSideNavGroup__title {
+  padding-left: $sizeM;
 }
 
 .vuiAppSideNavSection__items {
