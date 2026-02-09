@@ -33,7 +33,7 @@ const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagi
 type Props<T> = {
   isLoading?: boolean;
   idField: keyof T | ((row: T) => string);
-  rowDecorator?: (row: T) => Record<string, string>;
+  rowDecorator?: (row: T) => React.HTMLAttributes<HTMLTableRowElement>;
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps<T>["actions"];
@@ -223,8 +223,9 @@ export const VuiTable = <T extends Row>({
                       }
 
                       const selectedRowIds = Object.keys(selectedIds);
-                      // Map selected row IDs to selected rows.
-                      const selectedRows = selectedRowIds.map((id) => rows.find((row) => row.id === id) as T);
+                      const selectedRows = selectedRowIds
+                        .map((id) => rows.find((row) => extractId(row, idField) === id))
+                        .filter((row): row is T => row !== undefined);
                       onSelectRow(selectedRows);
                     }}
                   />
