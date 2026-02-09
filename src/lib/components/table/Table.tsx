@@ -33,7 +33,7 @@ const isComplexPagination = (pagination: Pagination | Pager): pagination is Pagi
 type Props<T> = {
   isLoading?: boolean;
   idField: keyof T | ((row: T) => string);
-  rowDecorator?: (row: T) => Record<string, string>;
+  rowDecorator?: (row: T) => React.HTMLAttributes<HTMLTableRowElement>;
   columns: Column<T>[];
   rows: T[];
   actions?: TableRowActionsProps<T>["actions"];
@@ -107,8 +107,6 @@ export const VuiTable = <T extends Row>({
   const { bulkActions, isRowSelectable, onSelectRow, selectedRows } = selection || {};
   const { value: searchValue } = search || {};
   
-  console.log("SelectedRows:::", selectedRows);
-
   const handleSort = (columnName: string, direction: "asc" | "desc" | "none") => {
     if (direction === "none") {
       setSortColumn(null);
