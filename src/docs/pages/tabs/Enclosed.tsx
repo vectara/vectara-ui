@@ -6,7 +6,7 @@ export const Enclosed = () => {
 
   return (
     <>
-      <VuiTabs style="enclosed" size="m">
+      <VuiTabs tabStyle="enclosed" size="m">
         <VuiTab isActive={tab === "first"} onClick={() => setTab("first")}>
           First tab
         </VuiTab>
@@ -22,7 +22,7 @@ export const Enclosed = () => {
 
       <VuiSpacer size="m" />
 
-      <VuiTabs style="enclosed" size="s">
+      <VuiTabs tabStyle="enclosed" size="s">
         <VuiTab isActive={tab === "first"} onClick={() => setTab("first")}>
           First tab
         </VuiTab>

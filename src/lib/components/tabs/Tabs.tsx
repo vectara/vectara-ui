@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { TabSize } from "./types";
 
-type Style = "enclosed" | "open";
+type TabStyle = "enclosed" | "open";
 
 type Props = {
   children: React.ReactNode;
@@ -9,11 +9,11 @@ type Props = {
   className?: string;
   size?: TabSize;
   fullWidth?: boolean;
-  style?: Style;
+  tabStyle?: TabStyle;
 };
 
-export const VuiTabs = ({ children, className, append, size = "s", fullWidth, style = "open" }: Props) => {
-  const classes = classNames(className, "vuiTabs", `vuiTabs--${size}`, `vuiTabs--${style}`, {
+export const VuiTabs = ({ children, className, append, size = "s", fullWidth, tabStyle = "open" }: Props) => {
+  const classes = classNames(className, "vuiTabs", `vuiTabs--${size}`, `vuiTabs--${tabStyle}`, {
     "vuiTabs--fullWidth": fullWidth
   });
   return (

@@ -123,7 +123,7 @@ export const App = () => {
                 <VuiGrid columns={3}>
                   {headerLeftContent}
 
-                  <VuiTabs className="appExample__tabs" style="enclosed">
+                  <VuiTabs className="appExample__tabs" tabStyle="enclosed">
                     <VuiTab isActive>Tab 1</VuiTab>
                     <VuiTab>Tab 2</VuiTab>
                   </VuiTabs>
