@@ -223,6 +223,7 @@ export const VuiTable = <T extends Row>({
                       }
 
                       const selectedRowIds = Object.keys(selectedIds);
+                      // Map selected row IDs to selected rows.
                       const selectedRows = selectedRowIds
                         .map((id) => rows.find((row) => extractId(row, idField) === id))
                         .filter((row): row is T => row !== undefined);
@@ -247,7 +248,7 @@ export const VuiTable = <T extends Row>({
             {/* Actions column */}
             {(actions || hasExpandableRows) && (
               <td className="vuiTableRowActions">
-                <VuiFlexContainer alignItems="center" justifyContent="end" spacing="s">
+                <VuiFlexContainer alignItems="center" justifyContent="end" spacing="xs">
                   {actions && (
                     <VuiFlexItem grow={false}>
                       <VuiTableRowActions
@@ -268,6 +269,7 @@ export const VuiTable = <T extends Row>({
                     <VuiFlexItem grow={false} className="vuiTableRowExpandToggle">
                       <VuiIconButton
                         icon={<VuiIcon>{isExpanded ? <BiChevronDown /> : <BiChevronRight />}</VuiIcon>}
+                        size="s"
                         color="neutral"
                         aria-label={isExpanded ? "Collapse row" : "Expand row"}
                         onClick={toggleExpand}
@@ -406,7 +408,13 @@ export const VuiTable = <T extends Row>({
             })}
 
             {/* Actions column */}
-            {(actions || hasExpandableRows) && <th className="vuiTableHeaderActions" />}
+            {(actions || hasExpandableRows) && (
+              <th
+                className={classNames("vuiTableHeaderActions", {
+                  "vuiTableHeaderActions--extended": actions && hasExpandableRows
+                })}
+              />
+            )}
           </tr>
         </thead>
 
