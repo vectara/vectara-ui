@@ -106,6 +106,8 @@ export const VuiTable = <T extends Row>({
 
   const { bulkActions, isRowSelectable, onSelectRow, selectedRows } = selection || {};
   const { value: searchValue } = search || {};
+  
+  console.log("SelectedRows:::", selectedRows);
 
   const handleSort = (columnName: string, direction: "asc" | "desc" | "none") => {
     if (direction === "none") {
@@ -223,8 +225,9 @@ export const VuiTable = <T extends Row>({
                       }
 
                       const selectedRowIds = Object.keys(selectedIds);
-                      // Map selected row IDs to selected rows.
-                      const selectedRows = selectedRowIds.map((id) => rows.find((row) => row.id === id) as T);
+                      const selectedRows = selectedRowIds
+                      .map((id) => rows.find((row) => extractId(row, idField) === id))
+                      .filter((row): row is T => row !== undefined);
                       onSelectRow(selectedRows);
                     }}
                   />
