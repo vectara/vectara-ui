@@ -116,7 +116,7 @@ export const SimpleCard = () => {
           </VuiText>
         </VuiSimpleCard>
 
-        <VuiSimpleCard padding={padding} error="Has errors">
+        <VuiSimpleCard padding={padding} error="Has errors" onClick={() => console.log("Porcupine says hi!")}>
           <VuiTitle size="xs">
             <h3>Porcupine</h3>
           </VuiTitle>
@@ -130,7 +130,7 @@ export const SimpleCard = () => {
           </VuiText>
         </VuiSimpleCard>
 
-        <VuiSimpleCard padding={padding} warning="Missing configuration">
+        <VuiSimpleCard padding={padding} warning="Missing configuration" onClick={() => console.log("Raccoon says hi!")}>
           <VuiTitle size="xs">
             <h3>Raccoon</h3>
           </VuiTitle>
