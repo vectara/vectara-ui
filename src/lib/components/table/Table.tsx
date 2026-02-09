@@ -223,6 +223,7 @@ export const VuiTable = <T extends Row>({
                       }
 
                       const selectedRowIds = Object.keys(selectedIds);
+                      // Map selected row IDs to selected rows.
                       const selectedRows = selectedRowIds
                         .map((id) => rows.find((row) => extractId(row, idField) === id))
                         .filter((row): row is T => row !== undefined);
