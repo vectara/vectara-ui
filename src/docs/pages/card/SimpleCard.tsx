@@ -115,6 +115,34 @@ export const SimpleCard = () => {
             </p>
           </VuiText>
         </VuiSimpleCard>
+
+        <VuiSimpleCard padding={padding} error="Has errors">
+          <VuiTitle size="xs">
+            <h3>Porcupine</h3>
+          </VuiTitle>
+
+          <VuiSpacer size="xxs" />
+
+          <VuiText>
+            <p>
+              <VuiTextColor color="subdued">Spiky, defensive, error-prone</VuiTextColor>
+            </p>
+          </VuiText>
+        </VuiSimpleCard>
+
+        <VuiSimpleCard padding={padding} warning="Missing configuration">
+          <VuiTitle size="xs">
+            <h3>Raccoon</h3>
+          </VuiTitle>
+
+          <VuiSpacer size="xxs" />
+
+          <VuiText>
+            <p>
+              <VuiTextColor color="subdued">Masked, mischievous, needs setup</VuiTextColor>
+            </p>
+          </VuiText>
+        </VuiSimpleCard>
       </VuiGrid>
     </>
   );

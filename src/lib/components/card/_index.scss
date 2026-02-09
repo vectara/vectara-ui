@@ -188,6 +188,22 @@
   }
 }
 
+.vuiSimpleCard--danger {
+  border-color: var(--vui-color-danger-shade);
+
+  &.vuiSimpleCard--interactive:hover {
+    border-color: var(--vui-color-danger-shade);
+  }
+}
+
+.vuiSimpleCard--warning {
+  border-color: var(--vui-color-warning-shade);
+
+  &.vuiSimpleCard--interactive:hover {
+    border-color: var(--vui-color-warning-shade);
+  }
+}
+
 .vuiSimpleCard--fullHeight {
   height: 100%;
 }
