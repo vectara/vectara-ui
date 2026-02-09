@@ -216,6 +216,9 @@ $tableResponsiveBreakpointSmall: 500px;
 .vuiTableHeaderActions {
   width: 42px;
 }
+.vuiTableHeaderActions--extended {
+  width: 76px;
+}
 
 .vuiTableContent {
   height: 80px;
