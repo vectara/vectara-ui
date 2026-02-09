@@ -39,6 +39,7 @@ export const Table = () => {
   const [isAlignTop, setIsAlignTop] = useState(false);
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const [isResponsive, setIsResponsive] = useState(true);
+  const [hasExpandableRows, setHasExpandableRows] = useState(false);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -371,6 +372,14 @@ export const Table = () => {
         <VuiFlexItem shrink={false}>
           <VuiToggle label="Is responsive" checked={isResponsive} onChange={(e) => setIsResponsive(e.target.checked)} />
         </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Has expandable rows"
+            checked={hasExpandableRows}
+            onChange={(e) => setHasExpandableRows(e.target.checked)}
+          />
+        </VuiFlexItem>
       </VuiFlexContainer>
 
       <VuiSpacer size="xl" />
@@ -412,6 +421,23 @@ export const Table = () => {
         }}
         isHeaderSticky={isHeaderSticky}
         isResponsive={isResponsive}
+        collapsedContent={
+          hasExpandableRows
+            ? (person: Person) => (
+              
+                <VuiText size="s">
+                  <p>
+                    <strong>Roles:</strong> {person.role.length > 0 ? person.role.join(", ") : "None assigned"}
+                  </p>
+                  <p>
+                    <VuiTextColor color="subdued">
+                      This expanded area can contain any content such as additional details about {person.name}.
+                    </VuiTextColor>
+                  </p>
+                </VuiText>
+              )
+            : undefined
+        }
       />
     </>
   );

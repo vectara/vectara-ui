@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import { BiChevronDown, BiChevronRight } from "react-icons/bi";
 import { TextInputProps, VuiCheckbox, VuiTextInput } from "../form";
 import { VuiSpacer } from "../spacer/Spacer";
 import { Props as TableRowActionsProps, VuiTableRowActions } from "./TableRowActions";
@@ -14,7 +15,9 @@ import { Props as TableBulkActionProps, VuiTableBulkActions } from "./TableBulkA
 import { VuiSpinner } from "../spinner/Spinner";
 import { VuiTableContent } from "./TableContent";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
+import { VuiIconButton } from "../button/IconButton";
 import { Column, OnSort, Row } from "./types";
+import { VuiIcon } from "../icon/Icon";
 
 const verticalAlignToClass = {
   top: "vuiTable--verticalAlignTop",
@@ -49,6 +52,7 @@ type Props<T> = {
   bodyStyle?: BodyStyle;
   isHeaderSticky?: boolean;
   isResponsive?: boolean;
+  collapsedContent?: (row: T) => React.ReactNode;
 };
 
 type BodyStyle = {
@@ -92,11 +96,13 @@ export const VuiTable = <T extends Row>({
   bodyStyle,
   isHeaderSticky,
   isResponsive = true,
+  collapsedContent,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">("none");
+  const [expandedRowIds, setExpandedRowIds] = useState<Set<string>>(new Set());
 
   const { bulkActions, isRowSelectable, onSelectRow, selectedRows } = selection || {};
   const { value: searchValue } = search || {};
@@ -131,7 +137,8 @@ export const VuiTable = <T extends Row>({
 
   const hasSearch = search !== undefined;
   const hasBulkActions = bulkActions !== undefined;
-  const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions ? 1 : 0);
+  const hasExpandableRows = collapsedContent !== undefined;
+  const columnCount = columns.length + (onSelectRow ? 1 : 0) + (actions || hasExpandableRows ? 1 : 0);
 
   const classes = classNames(
     "vuiTable",
@@ -178,67 +185,108 @@ export const VuiTable = <T extends Row>({
       const rowId = extractId(row, idField);
       const rowAttributes = rowDecorator?.(row) ?? {};
       const { className: rowClassNameAttribute, ...restRowAttributes } = rowAttributes;
+      const isExpanded = expandedRowIds.has(rowId);
       const rowClassName = classNames(rowClassNameAttribute, {
         "vuiTableRow-isBeingActedUpon": rowBeingActedUpon === row,
-        "vuiTableRow--hasActions": Boolean(actions),
-        "vuiTableRow--isSelectable": Boolean(onSelectRow)
+        "vuiTableRow--hasActions": Boolean(actions) || hasExpandableRows,
+        "vuiTableRow--isSelectable": Boolean(onSelectRow),
+        "vuiTableRow--expanded": isExpanded
       });
 
+      const toggleExpand = () => {
+        setExpandedRowIds((prev) => {
+          const next = new Set(prev);
+          if (next.has(rowId)) {
+            next.delete(rowId);
+          } else {
+            next.add(rowId);
+          }
+          return next;
+        });
+      };
+
       return (
-        <tr key={rowId} className={rowClassName} {...restRowAttributes}>
-          {/* Checkbox column */}
-          {onSelectRow && (
-            <td className="vuiTableRowSelect">
-              <VuiTableCell>
-                <VuiCheckbox
-                  disabled={isRowSelectable ? !isRowSelectable(row) : undefined}
-                  checked={selectedIds[rowId] ?? false}
-                  onChange={() => {
-                    if (selectedIds[rowId]) {
-                      delete selectedIds[rowId];
-                    } else {
-                      selectedIds[rowId] = true;
-                    }
+        <React.Fragment key={rowId}>
+          <tr className={rowClassName} {...restRowAttributes}>
+            {/* Checkbox column */}
+            {onSelectRow && (
+              <td className="vuiTableRowSelect">
+                <VuiTableCell>
+                  <VuiCheckbox
+                    disabled={isRowSelectable ? !isRowSelectable(row) : undefined}
+                    checked={selectedIds[rowId] ?? false}
+                    onChange={() => {
+                      if (selectedIds[rowId]) {
+                        delete selectedIds[rowId];
+                      } else {
+                        selectedIds[rowId] = true;
+                      }
 
-                    const selectedRowIds = Object.keys(selectedIds);
-                    // Map selected row IDs to selected rows.
-                    const selectedRows = selectedRowIds.map((id) => rows.find((row) => row.id === id) as T);
-                    onSelectRow(selectedRows);
-                  }}
-                />
-              </VuiTableCell>
-            </td>
-          )}
-
-          {/* Row info */}
-          {columns.map((column) => {
-            const { name, render, className, testId } = column;
-
-            return (
-              <td key={name} className={className} data-testid={typeof testId === "function" ? testId(row) : testId}>
-                <VuiTableCell column={column}>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
+                      const selectedRowIds = Object.keys(selectedIds);
+                      // Map selected row IDs to selected rows.
+                      const selectedRows = selectedRowIds.map((id) => rows.find((row) => row.id === id) as T);
+                      onSelectRow(selectedRows);
+                    }}
+                  />
+                </VuiTableCell>
               </td>
-            );
-          })}
+            )}
 
-          {/* Actions column */}
-          {actions && (
-            <td className="vuiTableRowActions">
-              <VuiTableRowActions
-                row={row}
-                actions={actions}
-                onToggle={(isSelected: boolean) => {
-                  if (isSelected) {
-                    setRowBeingActedUpon(row);
-                  } else {
-                    setRowBeingActedUpon(undefined);
-                  }
-                }}
-                testId={actionsTestIdProvider?.(row) ?? undefined}
-              />
-            </td>
+            {/* Row info */}
+            {columns.map((column) => {
+              const { name, render, className, testId } = column;
+
+              return (
+                <td key={name} className={className} data-testid={typeof testId === "function" ? testId(row) : testId}>
+                  <VuiTableCell column={column}>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
+                </td>
+              );
+            })}
+
+            {/* Actions column */}
+            {(actions || hasExpandableRows) && (
+              <td className="vuiTableRowActions">
+                <VuiFlexContainer alignItems="center" justifyContent="end" spacing="s">
+                  {actions && (
+                    <VuiFlexItem grow={false}>
+                      <VuiTableRowActions
+                        row={row}
+                        actions={actions}
+                        onToggle={(isSelected: boolean) => {
+                          if (isSelected) {
+                            setRowBeingActedUpon(row);
+                          } else {
+                            setRowBeingActedUpon(undefined);
+                          }
+                        }}
+                        testId={actionsTestIdProvider?.(row) ?? undefined}
+                      />
+                    </VuiFlexItem>
+                  )}
+                  {hasExpandableRows && (
+                    <VuiFlexItem grow={false} className="vuiTableRowExpandToggle">
+                      <VuiIconButton
+                        icon={<VuiIcon>{isExpanded ? <BiChevronDown /> : <BiChevronRight />}</VuiIcon>}
+                        color="neutral"
+                        aria-label={isExpanded ? "Collapse row" : "Expand row"}
+                        onClick={toggleExpand}
+                      />
+                    </VuiFlexItem>
+                  )}
+                </VuiFlexContainer>
+              </td>
+            )}
+          </tr>
+
+          {/* Expanded content row */}
+          {hasExpandableRows && isExpanded && (
+            <tr className="vuiTableRowExpandedContent vuiTableRow--inert">
+              <td className="vuiTableRowExpandedContent__cell" colSpan={columnCount}>
+                {collapsedContent(row)}
+              </td>
+            </tr>
           )}
-        </tr>
+        </React.Fragment>
       );
     });
   }
@@ -357,7 +405,7 @@ export const VuiTable = <T extends Row>({
             })}
 
             {/* Actions column */}
-            {actions && <th className="vuiTableHeaderActions" />}
+            {(actions || hasExpandableRows) && <th className="vuiTableHeaderActions" />}
           </tr>
         </thead>
 

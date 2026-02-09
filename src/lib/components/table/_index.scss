@@ -97,7 +97,7 @@ $tableResponsiveBreakpointSmall: 500px;
       padding-right: $sizeXxl;
     }
 
-    tbody tr {
+    tbody tr:not(.vuiTableRowExpandedContent) {
       position: relative;
       column-gap: $sizeM;
       row-gap: $sizeM;
@@ -109,6 +109,11 @@ $tableResponsiveBreakpointSmall: 500px;
       border-radius: $sizeXs;
       box-shadow: $shadowLargeStart;
       margin-bottom: $sizeS;
+
+      &.vuiTableRow--expanded {
+        margin-bottom: 0;
+        border-radius: $sizeXs $sizeXs 0 0;
+      }
 
       td {
         padding: 0;
@@ -138,14 +143,28 @@ $tableResponsiveBreakpointSmall: 500px;
     }
 
     &.vuiTable--notSelectable {
-      tbody tr {
+      tbody tr:not(.vuiTableRowExpandedContent) {
         padding-left: $sizeM;
       }
     }
 
     &.vuiTable--noActions {
-      tbody tr {
+      tbody tr:not(.vuiTableRowExpandedContent) {
         padding-right: $sizeM;
+      }
+    }
+
+    // Expanded content in responsive mode
+    tbody tr.vuiTableRowExpandedContent {
+      display: block;
+      margin-top: -$sizeS - $sizeXxs; // Pull up to connect with parent row
+      margin-bottom: $sizeS;
+      padding: $sizeL;
+      border-radius: 0 0 $sizeXs $sizeXs;
+      box-shadow: $shadowLargeStart;
+
+      .vuiTableRowExpandedContent__cell {
+        padding: 0;
       }
     }
   }
@@ -153,7 +172,7 @@ $tableResponsiveBreakpointSmall: 500px;
 
 @container (width < #{$tableResponsiveBreakpointSmall}) {
   .vuiTable--responsive {
-    tbody tr {
+    tbody tr:not(.vuiTableRowExpandedContent) {
       grid-template-columns: 1fr;
     }
   }
@@ -248,4 +267,31 @@ $tableResponsiveBreakpointSmall: 500px;
 
 .vuiTableHeaderCell__icon--none {
   opacity: 0.75;
+}
+
+// Expandable rows
+.vuiTableRowExpandToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vuiTableRow--expanded {
+  border-bottom-color: transparent;
+}
+
+.vuiTableRowExpandedContent {
+  background-color: rgba(var(--vui-color-light-shade-rgb), 0.25);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--vui-color-border-light);
+  }
+
+  &:last-child {
+    border-bottom: 1px solid var(--vui-color-border-medium);
+  }
+}
+
+.vuiTable .vuiTableRowExpandedContent__cell {
+  padding: $sizeL $sizeXl;
 }
