@@ -269,6 +269,7 @@ export const VuiTable = <T extends Row>({
                     <VuiFlexItem grow={false} className="vuiTableRowExpandToggle">
                       <VuiIconButton
                         icon={<VuiIcon>{isExpanded ? <BiChevronDown /> : <BiChevronRight />}</VuiIcon>}
+                        size="s"
                         color="neutral"
                         aria-label={isExpanded ? "Collapse row" : "Expand row"}
                         onClick={toggleExpand}
