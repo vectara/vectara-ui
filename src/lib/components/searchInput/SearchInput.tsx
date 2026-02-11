@@ -1,4 +1,13 @@
-import { ChangeEventHandler, FormEventHandler, useRef, useState, KeyboardEvent, useEffect, useMemo } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  KeyboardEventHandler,
+  useRef,
+  useState,
+  KeyboardEvent,
+  useEffect,
+  useMemo
+} from "react";
 import classNames from "classnames";
 import { VuiIconButton } from "../button/IconButton";
 import { BiSearch, BiX } from "react-icons/bi";
@@ -15,6 +24,7 @@ type Props = {
   value?: string;
   size?: (typeof SIZE)[number];
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   placeholder?: string;
   autoFocus?: boolean;
   onSubmit?: FormEventHandler;
@@ -37,6 +47,7 @@ export const VuiSearchInput = ({
   size = "m",
   value,
   onChange,
+  onKeyDown,
   placeholder,
   autoFocus,
   onSubmit,
@@ -196,7 +207,10 @@ export const VuiSearchInput = ({
           value={value}
           onChange={onChange}
           onFocus={handleInputFocus}
-          onKeyDown={handleInputKeyDown}
+          onKeyDown={(e) => {
+            handleInputKeyDown(e);
+            onKeyDown?.(e);
+          }}
           aria-autocomplete="list"
           aria-controls={hasSuggestions ? controlsId : undefined}
           {...rest}
