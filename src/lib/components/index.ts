@@ -30,6 +30,7 @@ import { VuiErrorBoundary } from "./errorBoundary/ErrorBoundary";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
 import {
+  CheckboxConfig,
   CodeEditorColorConfig,
   CodeEditorError,
   RadioButtonConfig,
@@ -41,6 +42,7 @@ import {
   VuiNumberInput,
   VuiRadioButton,
   VuiSelect,
+  VuiSuperCheckboxGroup,
   VuiSuperRadioGroup,
   VuiTextInput,
   VuiTextArea,
@@ -116,6 +118,7 @@ export type {
   ChatLanguage,
   ChatStyle,
   ChatTurn,
+  CheckboxConfig,
   CodeEditorColorConfig,
   CodeEditorError,
   CodeLanguage,
@@ -242,6 +245,7 @@ export {
   VuiSummary,
   VuiSkeleton,
   VuiSummaryCitation,
+  VuiSuperCheckboxGroup,
   VuiSuperRadioGroup,
   VuiTable,
   VuiTab,
