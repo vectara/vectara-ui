@@ -1,0 +1,29 @@
+.vuiSuperCheckboxGroup {
+  display: grid;
+}
+
+.vuiSuperCheckbox {
+  display: block;
+  width: 100%;
+  border-radius: $sizeXs;
+  padding: $sizeS $sizeL;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all $transitionSpeed;
+  text-decoration-color: var(--vui-color-text);
+  text-align: left;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--vui-color-primary-shade);
+    background-color: var(--vui-color-primary-lighter-shade);
+
+    .vuiSuperCheckbox__text {
+      color: var(--vui-color-primary-shade) !important;
+    }
+  }
+}
+
+.vuiSuperCheckbox__description {
+  color: var(--vui-color-subdued-shade);
+}

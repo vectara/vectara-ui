@@ -53,6 +53,7 @@ import { statList } from "./pages/statList";
 import { steps } from "./pages/steps";
 import { summary } from "./pages/summary";
 import { skeleton } from "./pages/skeleton";
+import { superCheckboxGroup } from "./pages/superCheckboxGroup";
 import { superRadioGroup } from "./pages/superRadioGroup";
 import { table } from "./pages/table";
 import { tabs } from "./pages/tabs";
@@ -109,6 +110,7 @@ export const categories: Category[] = [
       codeEditor,
       checkbox,
       radioButton,
+      superCheckboxGroup,
       superRadioGroup,
       itemsInput
     ]
