@@ -7,6 +7,7 @@ import {
   BiData,
   BiError,
   BiHeart,
+  BiHistory,
   BiHome,
   BiKey,
   BiLineChart,
@@ -30,7 +31,8 @@ import {
   VuiSearchInput,
   VuiLink,
   VuiButtonPrimary,
-  VuiAppSideNavGroup
+  VuiAppSideNavGroup,
+  VuiIconButton
 } from "../../../lib";
 
 const AccountButton = () => {
@@ -85,13 +87,32 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const navContent = (
     <>
-      <VuiAppSideNavLink
-        name="Home"
-        iconBefore={<BiHome />}
-        data-testid="navHome"
-        onClick={() => setActiveItem("home")}
-        isSelected={activeItem === "home"}
-      />
+      <VuiFlexContainer spacing="xs" alignItems="center">
+        <VuiFlexItem grow={1} shrink={0}>
+          <VuiAppSideNavLink
+            name="Home"
+            iconBefore={<BiHome />}
+            data-testid="navHome"
+            onClick={() => setActiveItem("home")}
+            isSelected={activeItem === "home"}
+          />
+        </VuiFlexItem>
+
+        <VuiFlexItem grow={0} shrink={0}>
+          <VuiIconButton
+            color="neutral"
+            aria-label="Recent items"
+            tooltip={{
+              position: "right"
+            }}
+            icon={
+              <VuiIcon>
+                <BiHistory />
+              </VuiIcon>
+            }
+          />
+        </VuiFlexItem>
+      </VuiFlexContainer>
 
       <VuiSpacer size="l" />
 
