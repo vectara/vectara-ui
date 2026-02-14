@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .vuiIconButton {
   display: inline-block;
   border-radius: $sizeXxs;
@@ -7,26 +9,47 @@
 
 // Color
 $color: (
-  accent: var(--vui-color-accent-shade-rgb),
-  primary: var(--vui-color-primary-shade-rgb),
-  success: var(--vui-color-success-shade-rgb),
-  warning: var(--vui-color-warning-shade-rgb),
-  danger: var(--vui-color-danger-shade-rgb),
-  neutral: var(--vui-color-darker-shade-rgb),
-  subdued: var(--vui-color-subdued-shade-rgb)
+  accent: (
+    "color": var(--vui-color-accent-shade-rgb),
+    "background-color": var(--vui-color-accent-shade-rgb)
+  ),
+  primary: (
+    "color": var(--vui-color-primary-shade-rgb),
+    "background-color": var(--vui-color-primary-shade-rgb)
+  ),
+  success: (
+    "color": var(--vui-color-success-shade-rgb),
+    "background-color": var(--vui-color-success-shade-rgb)
+  ),
+  danger: (
+    "color": var(--vui-color-danger-shade-rgb),
+    "background-color": var(--vui-color-danger-shade-rgb)
+  ),
+  warning: (
+    "color": var(--vui-color-warning-shade-rgb),
+    "background-color": var(--vui-color-warning-shade-rgb)
+  ),
+  neutral: (
+    "color": var(--vui-color-darker-shade-rgb),
+    "background-color": var(--vui-color-subdued-shade-rgb)
+  ),
+  subdued: (
+    "color": var(--vui-color-subdued-shade-rgb),
+    "background-color": var(--vui-color-subdued-shade-rgb)
+  )
 );
 
 @each $colorName, $colorValue in $color {
   .vuiIconButton--#{$colorName} {
-    color: rgb($colorValue);
-    background-color: rgba($colorValue, 0);
+    color: rgb(#{map.get($colorValue, "color")});
+    background-color: rgba(#{map.get($colorValue, "background-color")}, 0);
 
     &:hover {
-      background-color: rgba($colorValue, 0.1);
+      background-color: rgba(#{map.get($colorValue, "background-color")}, 0.1);
     }
 
     &-isSelected {
-      background-color: rgba($colorValue, 0.1);
+      background-color: rgba(#{map.get($colorValue, "background-color")}, 0.1);
     }
   }
 }
