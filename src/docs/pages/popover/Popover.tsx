@@ -31,7 +31,9 @@ export const Popover = () => {
             { text: "Left", value: "left" },
             { text: "Right", value: "right" },
             { text: "Left Up", value: "leftUp" },
+            { text: "Left Down", value: "leftDown" },
             { text: "Right Up", value: "rightUp" },
+            { text: "Right Down", value: "rightDown" },
             { text: "Up Left", value: "upLeft" },
             { text: "Up Right", value: "upRight" }
           ]}
