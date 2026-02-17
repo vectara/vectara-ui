@@ -25,7 +25,7 @@
   font-weight: 500;
   box-shadow: $shadowSmallStart;
   transition: all $transitionSpeed;
-  line-height: 1;
+  line-height: 1.2;
   cursor: pointer;
 }
 
@@ -93,4 +93,9 @@
   font-size: $fontSizeMedium;
   padding: $sizeS $sizeL;
   height: 47px;
+}
+
+.vuiBaseButtonLabel--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

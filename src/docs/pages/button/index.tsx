@@ -4,6 +4,7 @@ import { Icons } from "./Icons";
 import { IconButton } from "./IconButton";
 import { Link } from "./Link";
 import { Submit } from "./Submit";
+import { Truncate } from "./Truncate";
 
 const ColorsSource = require("!!raw-loader!./Colors");
 const SizesSource = require("!!raw-loader!./Sizes");
@@ -11,6 +12,7 @@ const IconsSource = require("!!raw-loader!./Icons");
 const IconButtonSource = require("!!raw-loader!./IconButton");
 const LinkSource = require("!!raw-loader!./Link");
 const SubmitSource = require("!!raw-loader!./Submit");
+const TruncateSource = require("!!raw-loader!./Truncate");
 
 export const button = {
   name: "Button",
@@ -45,6 +47,11 @@ export const button = {
       name: "Submit form",
       component: <Submit />,
       source: SubmitSource.default.toString()
+    },
+    {
+      name: "Truncate",
+      component: <Truncate />,
+      source: TruncateSource.default.toString()
     }
   ]
 };
