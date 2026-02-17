@@ -67,6 +67,37 @@
   }
 }
 
+.vuiSearchInput__ghostText {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: pre;
+}
+
+.vuiSearchInput__ghostText--hidden {
+  visibility: hidden;
+}
+
+.vuiSearchInput__ghostText--visible {
+  color: var(--vui-color-subdued-shade);
+}
+
+.vuiSearchInput--m .vuiSearchInput__ghostText {
+  padding: $sizeXs $sizeM $sizeXs $sizeXl + $sizeXs;
+  font-size: $fontSizeStandard;
+}
+
+.vuiSearchInput--l .vuiSearchInput__ghostText {
+  padding: $sizeS $sizeM $sizeS $sizeXl + $sizeS;
+  font-size: $fontSizeLarge;
+}
+
 .vuiSearchInput__clearButton {
   position: absolute;
   right: 0;
@@ -115,6 +146,8 @@
   padding: ($sizeXxs + 1px) $sizeS;
   font-size: $fontSizeStandard;
   color: var(--vui-color-text);
+  width: 100%;
+  text-align: left;
 
   &:focus-visible,
   &:hover {
