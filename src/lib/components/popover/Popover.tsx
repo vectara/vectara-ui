@@ -4,7 +4,7 @@ import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 import { VuiItemsInput, VuiNumberInput, VuiTextInput } from "../form";
 
-export type AnchorSide = "left" | "right" | "rightUp" | "leftUp" | "upLeft" | "upRight";
+export type AnchorSide = "left" | "right" | "rightUp" | "rightDown" | "leftUp" | "leftDown" | "upLeft" | "upRight";
 
 export type Props = {
   button: React.ReactElement;
@@ -33,7 +33,7 @@ const calculatePopoverPosition = (
 ): Position | undefined => {
   if (!button) return undefined;
 
-  const { anchorSide, offsetX = 0, offsetY = 0} = anchorOptions;
+  const { anchorSide, offsetX = 0, offsetY = 0 } = anchorOptions;
   const { left, right, width, height, top, bottom } = button.getBoundingClientRect();
 
   if (anchorSide === "rightUp") {
@@ -43,9 +43,23 @@ const calculatePopoverPosition = (
     return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
   }
 
+  if (anchorSide === "rightDown") {
+    // Anchor popover to the right side of the button, extending downwards.
+    const adjustedTop = top - offsetY + document.documentElement.scrollTop;
+    const adjustedLeft = left + width + offsetX;
+    return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
+  }
+
   if (anchorSide === "leftUp") {
     // Anchor popover to the left side of the button, extending upwards.
     const adjustedTop = top + height + document.documentElement.scrollTop;
+    const adjustedRight = document.documentElement.clientWidth - left + offsetX;
+    return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
+  }
+
+  if (anchorSide === "leftDown") {
+    // Anchor popover to the left side of the button, extending downwards.
+    const adjustedTop = top - offsetY + document.documentElement.scrollTop;
     const adjustedRight = document.documentElement.clientWidth - left + offsetX;
     return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
   }
