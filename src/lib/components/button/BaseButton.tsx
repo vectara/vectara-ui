@@ -44,6 +44,7 @@ export type BaseButtonProps = {
   title?: string;
   isSubmit?: boolean;
   isLoading?: boolean;
+  truncate?: boolean;
 };
 
 type Props = BaseButtonProps & {
@@ -74,6 +75,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       isSubmit,
       isLoading,
       spinnerColor,
+      truncate,
       ...rest
     }: Props,
     ref
@@ -138,6 +140,10 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       });
     }
 
+    const labelClasses = classNames({
+      "vuiBaseButtonLabel--truncate": truncate
+    });
+
     const props = {
       onClick,
       onMouseOver,
@@ -152,7 +158,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
     return (
       <button className={classes} {...props} ref={ref}>
         {iconContainer}
-        {children}
+        <span className={labelClasses}>{children}</span>
       </button>
     );
   }
