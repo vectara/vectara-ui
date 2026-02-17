@@ -29,6 +29,7 @@ type Props = {
   autoFocus?: boolean;
   onSubmit?: FormEventHandler;
   suggestions?: SearchSuggestion[];
+  onSelectSuggestion?: (suggestion: SearchSuggestion) => void;
   isLoading?: boolean;
 };
 
@@ -54,6 +55,7 @@ export const VuiSearchInput = ({
   isClearable,
   onClear,
   suggestions,
+  onSelectSuggestion,
   isLoading,
   ...rest
 }: Props & ClearableProps) => {
@@ -61,8 +63,30 @@ export const VuiSearchInput = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [areSuggestionsVisible, setAreSuggestionsVisible] = useState(true);
-  const suggestionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const suggestionRefs = useRef<(HTMLElement | null)[]>([]);
   const suppressNextFocus = useRef(false);
+
+  // Reset suggestions visibility when suggestions change.
+  const prevSuggestionsRef = useRef(suggestions);
+  if (prevSuggestionsRef.current !== suggestions) {
+    prevSuggestionsRef.current = suggestions;
+    if (suggestions && suggestions.length > 0) {
+      setAreSuggestionsVisible(true);
+    }
+  }
+
+  const hasSuggestions = suggestions && suggestions.length > 0 && areSuggestionsVisible;
+  const controlsId = useMemo(() => `searchSuggestions-${createId()}`, []);
+
+  // Derive ghost text from the first suggestion if it extends the current value.
+  const ghostText = useMemo(() => {
+    if (!hasSuggestions || !value || !suggestions[0]?.value) return "";
+    const firstValue = suggestions[0].value;
+    if (firstValue.startsWith(value) && firstValue !== value) {
+      return firstValue.slice(value.length);
+    }
+    return "";
+  }, [hasSuggestions, value, suggestions]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -116,8 +140,13 @@ export const VuiSearchInput = ({
       }
 
       case "Tab": {
-        // Hide suggestions and allow default tab behavior.
-        setAreSuggestionsVisible(false);
+        // If there's a matching value suggestion, select it instead of default tab.
+        if (hasSuggestions && ghostText && onSelectSuggestion && suggestions[0]?.value) {
+          e.preventDefault();
+          onSelectSuggestion(suggestions[0]);
+        } else {
+          setAreSuggestionsVisible(false);
+        }
         break;
       }
 
@@ -129,7 +158,7 @@ export const VuiSearchInput = ({
     }
   };
 
-  const handleSuggestionKeyDown = (e: KeyboardEvent<HTMLAnchorElement>, index: number) => {
+  const handleSuggestionKeyDown = (e: KeyboardEvent<HTMLElement>, index: number) => {
     switch (e.key) {
       case "ArrowDown": {
         e.preventDefault();
@@ -163,6 +192,17 @@ export const VuiSearchInput = ({
         break;
       }
 
+      case "Enter": {
+        // For value suggestions, trigger selection, hide suggestions, and refocus input.
+        if (suggestions && suggestions[index]?.value && onSelectSuggestion) {
+          e.preventDefault();
+          onSelectSuggestion(suggestions[index]);
+          setAreSuggestionsVisible(false);
+          inputRef.current?.focus();
+        }
+        break;
+      }
+
       case "Tab": {
         // Hide suggestions and allow default tab behavior.
         setAreSuggestionsVisible(false);
@@ -171,17 +211,6 @@ export const VuiSearchInput = ({
     }
   };
 
-  // Reset suggestions visibility when suggestions change
-  const prevSuggestionsRef = useRef(suggestions);
-  if (prevSuggestionsRef.current !== suggestions) {
-    prevSuggestionsRef.current = suggestions;
-    if (suggestions && suggestions.length > 0) {
-      setAreSuggestionsVisible(true);
-    }
-  }
-
-  const hasSuggestions = suggestions && suggestions.length > 0 && areSuggestionsVisible;
-  const controlsId = useMemo(() => `searchSuggestions-${createId()}`, []);
   const inputClasses = classNames("vuiSearchInput__input", {
     "vuiSearchInput__input--hasSuggestions": hasSuggestions
   });
@@ -216,6 +245,13 @@ export const VuiSearchInput = ({
           {...rest}
         />
 
+        {ghostText && (
+          <div className="vuiSearchInput__ghostText" aria-hidden="true">
+            <span className="vuiSearchInput__ghostText--hidden">{value}</span>
+            <span className="vuiSearchInput__ghostText--visible">{ghostText}</span>
+          </div>
+        )}
+
         <div className="vuiSearchInput__icon">
           {isLoading ? (
             <VuiSpinner size={size === "m" ? "s" : "m"} />
@@ -248,6 +284,7 @@ export const VuiSearchInput = ({
             suggestions={suggestions}
             onSuggestionKeyDown={handleSuggestionKeyDown}
             suggestionRefs={suggestionRefs}
+            onSelectSuggestion={onSelectSuggestion}
           />
         )}
       </div>
