@@ -1,4 +1,5 @@
 export type SearchSuggestion = {
   label: string;
-  href: string;
+  href?: string;
+  value?: string;
 };

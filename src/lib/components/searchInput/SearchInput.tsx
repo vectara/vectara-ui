@@ -29,6 +29,7 @@ type Props = {
   autoFocus?: boolean;
   onSubmit?: FormEventHandler;
   suggestions?: SearchSuggestion[];
+  onSelectSuggestion?: (suggestion: SearchSuggestion) => void;
   isLoading?: boolean;
 };
 
@@ -54,6 +55,7 @@ export const VuiSearchInput = ({
   isClearable,
   onClear,
   suggestions,
+  onSelectSuggestion,
   isLoading,
   ...rest
 }: Props & ClearableProps) => {
@@ -61,7 +63,7 @@ export const VuiSearchInput = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [areSuggestionsVisible, setAreSuggestionsVisible] = useState(true);
-  const suggestionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const suggestionRefs = useRef<(HTMLElement | null)[]>([]);
   const suppressNextFocus = useRef(false);
 
   useEffect(() => {
@@ -129,7 +131,7 @@ export const VuiSearchInput = ({
     }
   };
 
-  const handleSuggestionKeyDown = (e: KeyboardEvent<HTMLAnchorElement>, index: number) => {
+  const handleSuggestionKeyDown = (e: KeyboardEvent<HTMLElement>, index: number) => {
     switch (e.key) {
       case "ArrowDown": {
         e.preventDefault();
@@ -160,6 +162,17 @@ export const VuiSearchInput = ({
         setAreSuggestionsVisible(false);
         suppressNextFocus.current = true;
         inputRef.current?.focus();
+        break;
+      }
+
+      case "Enter": {
+        // For value suggestions, trigger selection, hide suggestions, and refocus input.
+        if (suggestions && suggestions[index]?.value && onSelectSuggestion) {
+          e.preventDefault();
+          onSelectSuggestion(suggestions[index]);
+          setAreSuggestionsVisible(false);
+          inputRef.current?.focus();
+        }
         break;
       }
 
@@ -248,6 +261,7 @@ export const VuiSearchInput = ({
             suggestions={suggestions}
             onSuggestionKeyDown={handleSuggestionKeyDown}
             suggestionRefs={suggestionRefs}
+            onSelectSuggestion={onSelectSuggestion}
           />
         )}
       </div>
