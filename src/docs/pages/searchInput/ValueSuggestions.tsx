@@ -97,7 +97,6 @@ export const ValueSuggestions = () => {
       <VuiFlexItem grow={1}>
         <VuiSearchInput
           isClearable
-          size="l"
           placeholder="Type a filter expression"
           value={searchValue}
           onChange={(e) => updateSuggestions(e.target.value)}
