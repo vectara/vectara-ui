@@ -23,6 +23,13 @@
   "module": "lib/index.js",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib/",
+    "src/docs/",
+    "README.md",
+    "NO_LICENSE",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "start": "PORT=2000 react-scripts start",
     "buildDocs": "BUILD_PATH='./docs/public' PUBLIC_URL='.' react-scripts build",
