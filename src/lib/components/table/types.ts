@@ -12,6 +12,7 @@ export type Column<T> = {
   render?: (row: T, rowIndex: number) => React.ReactNode;
   className?: string;
   testId?: string | ((row: T) => string);
+  truncate?: boolean;
 };
 
 export type OnSort = (column: string, direction: "asc" | "desc" | "none") => void;

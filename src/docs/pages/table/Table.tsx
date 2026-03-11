@@ -13,15 +13,8 @@ import {
   VuiToggle
 } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
-import { createFakePeople } from "./createFakePeople";
+import { createFakePeople, Person } from "./createFakePeople";
 import { BiError } from "react-icons/bi";
-
-type Person = {
-  name: string;
-  id: string;
-  role: string[];
-  status: string;
-};
 
 const ROWS_PER_PAGE = 20;
 const people: Person[] = createFakePeople(152);
@@ -170,6 +163,20 @@ export const Table = () => {
           return "ID";
         }
       }
+    },
+    {
+      name: "description",
+      header: {
+        render: () => {
+          return "Description";
+        }
+      },
+      render: (person: Person) => (
+        <VuiText truncate>
+          <p>{person.description}</p>
+        </VuiText>
+      ),
+      truncate: true
     },
     {
       name: "role",
@@ -424,7 +431,6 @@ export const Table = () => {
         collapsedContent={
           hasExpandableRows
             ? (person: Person) => (
-              
                 <VuiText size="s">
                   <p>
                     <strong>Roles:</strong> {person.role.length > 0 ? person.role.join(", ") : "None assigned"}

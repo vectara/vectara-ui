@@ -97,6 +97,14 @@ $tableResponsiveBreakpointSmall: 500px;
       padding-right: $sizeXxl;
     }
 
+    // This enables truncated VuiText children to actually be truncated.
+    .vuiTableCell--truncate {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     tbody tr:not(.vuiTableRowExpandedContent) {
       position: relative;
       column-gap: $sizeM;
