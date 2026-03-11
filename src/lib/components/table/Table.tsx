@@ -237,9 +237,16 @@ export const VuiTable = <T extends Row>({
             {/* Row info */}
             {columns.map((column) => {
               const { name, render, className, testId } = column;
+              const cellClasses = classNames(className, {
+                "vuiTableCell--truncate": column.truncate
+              });
 
               return (
-                <td key={name} className={className} data-testid={typeof testId === "function" ? testId(row) : testId}>
+                <td
+                  key={name}
+                  className={cellClasses}
+                  data-testid={typeof testId === "function" ? testId(row) : testId}
+                >
                   <VuiTableCell column={column}>{render ? render(row, rowIndex) : row[column.name]}</VuiTableCell>
                 </td>
               );

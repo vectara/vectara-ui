@@ -1,3 +1,11 @@
+export type Person = {
+  name: string;
+  id: string;
+  role: string[];
+  status: string;
+  description: string;
+};
+
 const firstNames = [
   "John",
   "Jane",
@@ -56,6 +64,14 @@ const roles = [
   "Marketing"
 ] as const;
 
+const descriptions = [
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+] as const;
+
 const statuses = ["Active", "Inactive", "Pending"] as const;
 
 const getIndex = (max: number) => Math.floor(Math.random() * max);
@@ -82,6 +98,8 @@ const getRoles = () => {
 
 const getStatus = () => statuses[getIndex(statuses.length)];
 
+const getDescription = () => descriptions[getIndex(descriptions.length)];
+
 export const createFakePeople = (count: number) => {
   const fakePeople = [];
 
@@ -90,7 +108,8 @@ export const createFakePeople = (count: number) => {
       name: getName(),
       id: getId(),
       role: getRoles(),
-      status: getStatus()
+      status: getStatus(),
+      description: getDescription()
     });
   }
 
