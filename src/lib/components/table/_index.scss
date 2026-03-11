@@ -7,6 +7,11 @@ $tableResponsiveBreakpointSmall: 500px;
   position: relative;
 }
 
+// Enable nesting tables inside other tables as expandable content.
+.vuiTableRowExpandedContent__cell > .vuiTableWrapper {
+  container-type: normal;
+}
+
 .vuiTableBlock {
   background-color: rgba(var(--vui-color-empty-shade-rgb), 0.4);
   height: 100%;
@@ -84,28 +89,30 @@ $tableResponsiveBreakpointSmall: 500px;
     display: flex;
   }
 
+  // Direct descendent selectors enable non-responsive tables to
+  // be nested inside of responsive tables.
   .vuiTable--responsive {
-    thead {
+    & > thead {
       display: none;
     }
 
-    .vuiTableRow--isSelectable {
+    & > tbody > .vuiTableRow--isSelectable {
       padding-left: $sizeXxl;
     }
 
-    .vuiTableRow--hasActions {
+    & > tbody > .vuiTableRow--hasActions {
       padding-right: $sizeXxl;
     }
 
     // This enables truncated VuiText children to actually be truncated.
-    .vuiTableCell--truncate {
+    & > tbody > tr > .vuiTableCell--truncate {
       min-width: 0;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
 
-    tbody tr:not(.vuiTableRowExpandedContent) {
+    & > tbody > tr:not(.vuiTableRowExpandedContent) {
       position: relative;
       column-gap: $sizeM;
       row-gap: $sizeM;
@@ -123,27 +130,27 @@ $tableResponsiveBreakpointSmall: 500px;
         border-radius: $sizeXs $sizeXs 0 0;
       }
 
-      td {
+      & > td {
         padding: 0;
       }
 
-      .vuiTableCellWrapper {
+      & > td > .vuiTableCellWrapper {
         display: flex;
         flex-direction: column;
         gap: $sizeXxs;
+
+        & > .vuiTableCell__label {
+          display: block;
+        }
       }
 
-      .vuiTableCell__label {
-        display: block;
-      }
-
-      .vuiTableRowSelect {
+      & > .vuiTableRowSelect {
         position: absolute;
         top: $sizeM;
         left: $sizeXs;
       }
 
-      .vuiTableRowActions {
+      & > .vuiTableRowActions {
         position: absolute;
         top: $sizeXs * 1.25;
         right: $sizeXs;
@@ -157,13 +164,13 @@ $tableResponsiveBreakpointSmall: 500px;
     }
 
     &.vuiTable--noActions {
-      tbody tr:not(.vuiTableRowExpandedContent) {
+      & > tbody tr:not(.vuiTableRowExpandedContent) {
         padding-right: $sizeM;
       }
     }
 
     // Expanded content in responsive mode
-    tbody tr.vuiTableRowExpandedContent {
+    & > tbody > tr.vuiTableRowExpandedContent {
       display: block;
       margin-bottom: $sizeS;
       padding: $sizeL;
@@ -179,7 +186,7 @@ $tableResponsiveBreakpointSmall: 500px;
 
 @container (width < #{$tableResponsiveBreakpointSmall}) {
   .vuiTable--responsive {
-    tbody tr:not(.vuiTableRowExpandedContent) {
+    & > tbody > tr:not(.vuiTableRowExpandedContent) {
       grid-template-columns: 1fr;
     }
   }
