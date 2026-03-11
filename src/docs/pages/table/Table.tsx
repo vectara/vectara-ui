@@ -32,7 +32,7 @@ export const Table = () => {
   const [isAlignTop, setIsAlignTop] = useState(false);
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const [isResponsive, setIsResponsive] = useState(true);
-  const [hasExpandableRows, setHasExpandableRows] = useState(false);
+  const [hasExpandableRows, setHasExpandableRows] = useState(true);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -431,16 +431,42 @@ export const Table = () => {
         collapsedContent={
           hasExpandableRows
             ? (person: Person) => (
-                <VuiText size="s">
-                  <p>
-                    <strong>Roles:</strong> {person.role.length > 0 ? person.role.join(", ") : "None assigned"}
-                  </p>
-                  <p>
-                    <VuiTextColor color="subdued">
-                      This expanded area can contain any content such as additional details about {person.name}.
-                    </VuiTextColor>
-                  </p>
-                </VuiText>
+                <VuiTable
+                  isResponsive={false}
+                  idField="color"
+                  rows={[
+                    {
+                      color: "red",
+                      item: "apple"
+                    },
+                    {
+                      color: "orange",
+                      item: "orange"
+                    },
+                    {
+                      color: "yellow",
+                      item: "banana"
+                    }
+                  ]}
+                  columns={[
+                    {
+                      name: "color",
+                      header: {
+                        render: () => {
+                          return "Color";
+                        }
+                      }
+                    },
+                    {
+                      name: "item",
+                      header: {
+                        render: () => {
+                          return "Item";
+                        }
+                      }
+                    }
+                  ]}
+                />
               )
             : undefined
         }
