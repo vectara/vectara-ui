@@ -3,7 +3,7 @@ import { VuiIcon } from "../../icon/Icon";
 import { BiCaretDown } from "react-icons/bi";
 import { forwardRef } from "react";
 
-const SIZE = ["m", "l"] as const;
+const SIZE = ["s", "m", "l"] as const;
 
 type Props = Omit<React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>, "size"> & {
   isInvalid?: boolean;
@@ -16,6 +16,7 @@ type Props = Omit<React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectE
 };
 
 const sizeToIconSizeMap = {
+  s: "s",
   m: "m",
   l: "l"
 } as const;

@@ -21,11 +21,23 @@
   right: 12px;
 }
 
+.vuiSelect--s {
+  select {
+    padding: $sizeXxs $sizeS;
+    font-size: $fontSizeSmall;
+    padding-right: 36px;
+  }
+
+  .vuiSelect__caret {
+    top: calc(50% - 8px);
+  }
+}
+
 .vuiSelect--m {
   select {
     padding: $sizeXs $sizeM;
     font-size: $fontSizeStandard;
-    padding-right: 32px;
+    padding-right: 40px;
   }
 
   .vuiSelect__caret {
