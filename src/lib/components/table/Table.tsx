@@ -280,6 +280,7 @@ export const VuiTable = <T extends Row>({
                         color="neutral"
                         aria-label={isExpanded ? "Collapse row" : "Expand row"}
                         onClick={toggleExpand}
+                        data-testid={`expandToggle-${rowId}`}
                       />
                     </VuiFlexItem>
                   )}
