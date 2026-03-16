@@ -53,6 +53,8 @@ type Props<T> = {
   isHeaderSticky?: boolean;
   isResponsive?: boolean;
   collapsedContent?: (row: T) => React.ReactNode;
+  defaultSortColumn?: string;
+  defaultSortDirection?: "asc" | "desc";
 };
 
 type BodyStyle = {
@@ -97,11 +99,13 @@ export const VuiTable = <T extends Row>({
   isHeaderSticky,
   isResponsive = true,
   collapsedContent,
+  defaultSortColumn,
+  defaultSortDirection,
   ...rest
 }: Props<T>) => {
   const [rowBeingActedUpon, setRowBeingActedUpon] = useState<T | undefined>(undefined);
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">("none");
+  const [sortColumn, setSortColumn] = useState<string | null>(defaultSortColumn ?? null);
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">(defaultSortDirection ?? "none");
   const [expandedRowIds, setExpandedRowIds] = useState<Set<string>>(new Set());
 
   const { bulkActions, isRowSelectable, onSelectRow, selectedRows } = selection || {};
