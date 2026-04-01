@@ -128,7 +128,7 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
           </VuiFlexContainer>
         </VuiFlexItem>
 
-        <VuiFlexItem grow={false}>
+        <VuiFlexItem grow={false} shrink={false}>
           <VuiIconButton
             aria-label="Dismiss message"
             size="xs"
