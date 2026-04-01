@@ -11,9 +11,19 @@ type Props = {
   size?: (typeof TEXT_SIZE)[number];
   align?: (typeof TEXT_ALIGN)[number];
   truncate?: boolean;
+  preserveWhiteSpace?: boolean;
 };
 
-export const VuiText = ({ children, className, id, truncate, size = "s", align, ...rest }: Props) => {
+export const VuiText = ({
+  children,
+  className,
+  id,
+  truncate,
+  preserveWhiteSpace,
+  size = "s",
+  align,
+  ...rest
+}: Props) => {
   const classes = classNames(
     "vuiText",
     `vuiText--${size}`,
@@ -21,7 +31,8 @@ export const VuiText = ({ children, className, id, truncate, size = "s", align, 
       // Don't default to left alignment, so that the component inherits
       // whatever has been defined by an ancestor.
       [`vuiText--${align}`]: align,
-      "vuiText--truncate": truncate
+      "vuiText--truncate": truncate,
+      "vuiText--preserveWhiteSpace": preserveWhiteSpace
     },
     className
   );

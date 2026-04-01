@@ -126,6 +126,10 @@ $textRhythm: $sizeM;
   @include truncateText;
 }
 
+.vuiText--preserveWhiteSpace {
+  white-space: pre-wrap;
+}
+
 @mixin defineTextStyles($fontSize, $fontWeight) {
   color: var(--vui-color-text);
   font-size: $fontSize;
