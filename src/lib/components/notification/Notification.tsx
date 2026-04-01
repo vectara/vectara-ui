@@ -93,7 +93,7 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
             {icon}
 
             <div>
-              <VuiText>
+              <VuiText preserveWhiteSpace>
                 <VuiTextColor color={color}>{message}</VuiTextColor>
               </VuiText>
 
@@ -107,7 +107,7 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
               {hasCopyButton && (
                 <>
                   <VuiSpacer size="s" />
-                  <VuiCopyButton value={copyValue} size="s" label="Copy" />
+                  <VuiCopyButton value={copyValue} size="s" label="Copy notification" />
                 </>
               )}
 
