@@ -95,6 +95,20 @@ export const Text = () => (
 > In Markdown's ring.`}
             </code>
 
+            <ol>
+              <li>
+                Choose:
+                <ul>
+                  <li>
+                    <strong>Option A:</strong> <code>EXECUTE</code>
+                  </li>
+                  <li>
+                    <strong>Option B:</strong> <code>ABORT</code>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+
             <table>
               <thead>
                 <tr>
