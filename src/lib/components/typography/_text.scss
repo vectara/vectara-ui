@@ -39,6 +39,7 @@ $textRhythm: $sizeM;
     margin-bottom: $textRhythm;
   }
 
+  // Default block styles for code and pre.
   pre:not(:has(> code)),
   code {
     display: block;
@@ -59,22 +60,63 @@ $textRhythm: $sizeM;
   }
 
   pre > code {
+    display: block;
     word-wrap: break-word;
     word-break: break-word;
     white-space: pre-wrap;
     font-family: var(--vui-font-family-monospace);
     margin-bottom: 0;
+    padding: 0;
+    background-color: transparent;
   }
 
-  p pre,
-  p code {
-    display: inline;
-    padding: $sizeXxxs $sizeXxs;
-    border: none;
-    border-radius: $sizeXs;
-    overflow: auto;
-    background-color: var(--vui-color-light-shade);
-    font-family: var(--vui-font-family-monospace);
+  // Inline styles when nested in text-like elements.
+  strong,
+  b,
+  em,
+  i,
+  p,
+  li,
+  td,
+  th,
+  span,
+  label,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    > pre,
+    > code {
+      display: inline;
+      padding: $sizeXxxs $sizeXxs;
+      border-radius: $sizeXs;
+      overflow: auto;
+      background-color: var(--vui-color-light-shade);
+      font-family: var(--vui-font-family-monospace);
+      margin-bottom: 0;
+    }
+  }
+
+  // Block styles when nested in block-like elements.
+  div,
+  blockquote,
+  section,
+  article,
+  aside,
+  main,
+  nav,
+  header,
+  footer {
+    > pre:not(:has(> code)),
+    > code {
+      display: block;
+    }
+
+    > pre:has(> code) {
+      display: block;
+    }
   }
 
   blockquote {
