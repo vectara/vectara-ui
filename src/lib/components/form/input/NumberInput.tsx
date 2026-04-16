@@ -32,7 +32,8 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
       // indicates the user has entered a decimal point (Firefox workaround).
       // When allowUndefined is on, also ignore undefined — otherwise the
       // parent reflecting undefined back would clear the input mid-typing.
-      if (value !== 0 && !(allowUndefined && value === undefined)) {
+      const isUndefined = !(allowUndefined && value === undefined);
+      if (value !== 0 && isUndefined) {
         setLocalValue(value);
       }
     }, [value]);
@@ -42,7 +43,7 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
     // consumers always receive a number. With allowUndefined, undefined
     // passes through so consumers can treat empty as "no value."
     useEffect(() => {
-      onChange(allowUndefined ? localValue : (localValue ?? 0));
+      onChange(allowUndefined ? localValue : localValue ?? 0);
     }, [localValue]);
 
     const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
