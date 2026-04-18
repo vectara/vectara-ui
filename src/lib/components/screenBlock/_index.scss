@@ -4,10 +4,17 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: $screenBlockZIndex;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.vuiScreenBlock--default {
+  z-index: $screenBlockZIndex;
+}
+
+.vuiScreenBlock--modal {
+  z-index: $modalZIndex;
 }
 
 .vuiScreenBlock__mask {
