@@ -64,7 +64,7 @@ export const VuiModal = ({
   return (
     <VuiPortal>
       {isOpen && (
-        <VuiScreenBlock key={key}>
+        <VuiScreenBlock key={key} type="modal">
           <FocusOn
             onEscapeKey={onCloseDelayed}
             onClickOutside={canClickOutsideToClose ? onCloseDelayed : undefined}
