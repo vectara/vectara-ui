@@ -7,10 +7,14 @@ type Props = Omit<BasicInputProps, "onChange"> & {
   max?: number;
   min?: number;
   step?: number;
+  // By default, an empty input calls onChange with 0. When true, an empty
+  // input calls onChange with undefined instead, letting consumers distinguish
+  // "no value" from "zero."
+  allowUndefined?: boolean;
 };
 
 export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
-  ({ value, onChange, max, min, step, ...rest }: Props, ref) => {
+  ({ value, onChange, max, min, step, allowUndefined, ...rest }: Props, ref) => {
     const [localValue, setLocalValue] = useState<number | undefined>(value);
 
     // This is a hacky solution to the number input misbehaving on Firefox.
@@ -24,18 +28,22 @@ export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
     // For some reason, using a useState hook to store the value doesn't have
     // this problem.
     useEffect(() => {
-      // Reflect the upstream value when it changes. Ignore 0
-      // because that indicates the user has entered a decimal point.
-      if (value !== 0) {
+      // Reflect the upstream value when it changes. Ignore 0 because that
+      // indicates the user has entered a decimal point (Firefox workaround).
+      // When allowUndefined is on, also ignore undefined — otherwise the
+      // parent reflecting undefined back would clear the input mid-typing.
+      const isUndefined = !(allowUndefined && value === undefined);
+      if (value !== 0 && isUndefined) {
         setLocalValue(value);
       }
     }, [value]);
 
-    // Part of the hacky solution above.
+    // Propagate localValue changes upstream. Without allowUndefined, an
+    // undefined localValue (empty input) is coerced to 0 so existing
+    // consumers always receive a number. With allowUndefined, undefined
+    // passes through so consumers can treat empty as "no value."
     useEffect(() => {
-      // Set value locally so an undefined value doesn't reset it to 0.
-      // Pass the value upstream, e.g. so it can be persisted.
-      onChange(localValue ?? 0);
+      onChange(allowUndefined ? localValue : localValue ?? 0);
     }, [localValue]);
 
     const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
