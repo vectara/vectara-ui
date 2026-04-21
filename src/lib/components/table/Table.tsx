@@ -347,8 +347,8 @@ export const VuiTable = <T extends Row>({
             className={isHeaderSticky ? "vuiTableStickyHeader" : undefined}
             wrap
           >
-            {/* Responsive select-all checkbox */}
-            {onSelectRow && (
+            {/* Responsive select-all checkbox - shown when isResponsive is true. */}
+            {onSelectRow && isResponsive && (
               <VuiFlexItem grow={false} shrink={false} className="vuiTableHeader__responsiveSelectAllCheckbox">
                 <VuiCheckbox label="Select all" {...selectAllCheckboxProps} />
               </VuiFlexItem>
