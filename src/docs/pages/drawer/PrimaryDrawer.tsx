@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {
+  addNotification,
   VuiButtonPrimary,
   VuiButtonSecondary,
   VuiDrawer,
   VuiFlexContainer,
+  VuiNotifications,
   VuiSpacer,
   VuiText,
   VuiToggle
@@ -51,6 +53,20 @@ export const PrimaryDrawer = () => {
           )
         }
       >
+        <VuiButtonSecondary
+          color="primary"
+          onClick={() => {
+            addNotification({
+              color: "primary",
+              message: "Just some information, FYI"
+            });
+          }}
+        >
+          Add notification
+        </VuiButtonSecondary>
+
+        <VuiSpacer size="m" />
+
         <VuiText>
           <p>I just thought you should know that your drawer is showing.</p>
         </VuiText>
@@ -186,6 +202,8 @@ export const PrimaryDrawer = () => {
         <FormGroup />
         <VuiSpacer size="l" />
       </VuiDrawer>
+
+      <VuiNotifications />
     </>
   );
 };

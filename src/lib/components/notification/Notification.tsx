@@ -85,8 +85,10 @@ export const VuiNotification = ({ color, message, onDismiss, children, hasCopyBu
 
   const copyValue = code ? `${message}\n\n${code.content}` : message;
 
+  // data-awareness="notification" enables notifications to be closed when a drawer is open,
+  // without triggering the drawer to close.
   return (
-    <div className={classes} data-testid={`notification-${color}`}>
+    <div className={classes} data-testid={`notification-${color}`} data-awareness="notification">
       <VuiFlexContainer alignItems="start" spacing="s">
         <VuiFlexItem grow={1}>
           <VuiFlexContainer alignItems="start" spacing="xs">
