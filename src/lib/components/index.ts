@@ -106,6 +106,7 @@ import { TEXT_COLOR, TEXT_SIZE, TITLE_SIZE } from "./typography/types";
 import { VuiTitle } from "./typography/Title";
 import { VuiToggle } from "./toggle/Toggle";
 import { VuiTooltip } from "./tooltip/Tooltip";
+import { VuiInfoTooltip } from "./tooltip/InfoTooltip";
 import { VuiTopicButton } from "./topicButton/TopicButton";
 import { copyToClipboard } from "../utils/copyToClipboard";
 import { toRgb, toRgba } from "./context/Theme";
@@ -206,6 +207,7 @@ export {
   VuiInfoListItem,
   VuiInfoMenu,
   VuiInfoTable,
+  VuiInfoTooltip,
   VuiInProgress,
   VuiItemsInput,
   VuiLabel,
