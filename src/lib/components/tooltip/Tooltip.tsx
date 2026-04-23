@@ -15,12 +15,39 @@ const generateTooltipId = () => {
   return `tooltip-${Math.random().toString(36).slice(2, 9)}`;
 };
 
+// Naturally focusable elements that don't need tabIndex.
+const FOCUSABLE_ELEMENTS = ["a", "button", "input", "select", "textarea"];
+
+// Determine if the element needs tabIndex to be keyboard accessible.
+const needsTabIndex = (element: React.ReactNode): boolean => {
+  if (!element || typeof element !== "object" || !("type" in element)) {
+    return false;
+  }
+
+  const child = element as React.ReactElement;
+  const elementType = typeof child.type === "string" ? child.type.toLowerCase() : "";
+
+  // Don't add tabIndex if element is naturally focusable.
+  if (FOCUSABLE_ELEMENTS.includes(elementType)) {
+    return false;
+  }
+
+  // Don't add tabIndex if it already has one.
+  if (child.props?.tabIndex !== undefined) {
+    return false;
+  }
+
+  return true;
+};
+
 export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal }: Props) => {
   const { getThemeStyle } = useVuiContext();
   const [id] = useState(generateTooltipId());
 
   const target = cloneElement(children as React.ReactElement, {
-    "data-tooltip-id": id
+    "data-tooltip-id": id,
+    // Make non-focusable elements keyboard accessible.
+    ...(needsTabIndex(children) && { tabIndex: 0 })
   });
 
   // Tooltips can be used in a dark-themed component, so we need to explicitly set
