@@ -55,6 +55,16 @@ export const VuiDrawer = ({
     }, 0);
   };
 
+  // Handle outside clicks, but ignore clicks on notifications.
+  const handleClickOutside = (event: Event) => {
+    const target = event.target as HTMLElement;
+    // Check if the click is within a notification.
+    if (target.closest("[data-awareness='notification']")) {
+      return;
+    }
+    onCloseDelayed();
+  };
+
   const classes = classNames("vuiDrawer", `vuiDrawer--${color}`, className);
 
   return (
@@ -63,7 +73,7 @@ export const VuiDrawer = ({
         <VuiScreenBlock>
           <FocusOn
             onEscapeKey={onCloseDelayed}
-            onClickOutside={onCloseDelayed}
+            onClickOutside={handleClickOutside}
             // Enable manual focus return to work.
             returnFocus={false}
             // Enable focus on contents when it's open,
