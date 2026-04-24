@@ -3,12 +3,14 @@ import { Medium } from "./Medium";
 import { FullWidth } from "./FullWidth";
 import { Links } from "./Links";
 import { Enclosed } from "./Enclosed";
+import { TabsNavigator } from "./TabsNavigator";
 
 const SmallSource = require("!!raw-loader!./Small");
 const MediumSource = require("!!raw-loader!./Medium");
 const FullWidthSource = require("!!raw-loader!./FullWidth");
 const LinksSource = require("!!raw-loader!./Links");
 const EnclosedSource = require("!!raw-loader!./Enclosed");
+const TabsNavigatorSource = require("!!raw-loader!./TabsNavigator");
 
 export const tabs = {
   name: "Tabs",
@@ -38,6 +40,11 @@ export const tabs = {
       name: "Enclosed",
       component: <Enclosed />,
       source: EnclosedSource.default.toString()
+    },
+    {
+      name: "Tabs Navigator",
+      component: <TabsNavigator />,
+      source: TabsNavigatorSource.default.toString()
     }
   ]
 };

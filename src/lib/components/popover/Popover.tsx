@@ -14,7 +14,7 @@ export type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   onClickButton?: (e: React.MouseEvent<HTMLElement>) => void;
-  padding?: boolean;
+  padding?: boolean | "none";
   anchorSide?: AnchorSide;
   anchorOffsetX?: number;
   anchorOffsetY?: number;
@@ -204,7 +204,8 @@ export const VuiPopover = ({
   });
 
   const contentClasses = classNames("vuiPopoverContent", {
-    "vuiPopoverContent--padding": padding
+    "vuiPopoverContent--padding": padding === true,
+    "vuiPopoverContent--paddingNone": padding === "none"
   });
 
   return (
