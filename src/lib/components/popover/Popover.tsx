@@ -179,6 +179,12 @@ export const VuiPopover = ({
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
       setShowTransition(false);
+
+      // Wait for the transition to complete before unmounting.
+      // This duration should match the CSS transition speed.
+      window.setTimeout(() => {
+        setIsContentVisible(false);
+      }, 200);
     }
   }, [isOpen]);
 
@@ -187,15 +193,7 @@ export const VuiPopover = ({
   // outside of the popover.
   const onCloseDelayed = () => {
     window.setTimeout(() => {
-      // First remove the transition class to trigger the exit animation.
-      setShowTransition(false);
       setIsOpen(false);
-
-      // Wait for the transition to complete before unmounting.
-      // This duration should match the CSS transition speed.
-      window.setTimeout(() => {
-        setIsContentVisible(false);
-      }, 200);
     }, 0);
   };
 
