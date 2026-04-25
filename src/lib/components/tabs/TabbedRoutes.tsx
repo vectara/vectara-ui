@@ -1,17 +1,11 @@
-import { TabSize } from "./types";
+import { TabRoute, TabSize } from "./types";
 import { VuiTabs } from "./Tabs";
 import { VuiTab } from "./Tab";
 import { VuiSpacer } from "../spacer/Spacer";
 import { useVuiContext } from "../context/Context";
 
 type Props = {
-  tabs: Array<{
-    href: string;
-    title: string;
-    render?: (tabLink: React.ReactNode) => React.ReactNode;
-    component: React.ReactNode;
-    testId?: string;
-  }>;
+  tabs: TabRoute[];
   size?: TabSize;
   sideContent?: React.ReactNode;
   children?: React.ReactNode;
@@ -23,10 +17,9 @@ export const VuiTabbedRoutes = ({ tabs, size, sideContent, children }: Props) =>
   return (
     <>
       <VuiTabs append={sideContent} size={size}>
-        {tabs.map(({ href, title, render, testId }, index) => {
-          const isActive = getPath().includes(href);
+        {tabs.map(({ href, title, render, testId, isActive }, index) => {
           const tabLink = (
-            <VuiTab key={index} href={href} isActive={isActive} data-testid={testId}>
+            <VuiTab key={index} href={href} isActive={isActive ?? getPath().includes(href)} data-testid={testId}>
               {title}
             </VuiTab>
           );

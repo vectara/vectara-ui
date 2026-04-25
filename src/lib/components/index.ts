@@ -98,6 +98,7 @@ import { VuiTable } from "./table/Table";
 import { VuiTab } from "./tabs/Tab";
 import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
 import { VuiTabs } from "./tabs/Tabs";
+import { VuiTabsNavigator } from "./tabs/TabNavigator";
 import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
@@ -253,6 +254,7 @@ export {
   VuiTab,
   VuiTabbedRoutes,
   VuiTabs,
+  VuiTabsNavigator,
   VuiText,
   VuiTextArea,
   VuiTextColor,
