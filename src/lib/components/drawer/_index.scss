@@ -2,16 +2,6 @@
 
 $drawerWidth: 680px;
 
-@keyframes drawerIn {
-  0% {
-    right: -$drawerWidth;
-  }
-
-  100% {
-    right: 0;
-  }
-}
-
 .vuiDrawer {
   display: flex;
   flex-direction: column;
@@ -24,11 +14,16 @@ $drawerWidth: 680px;
   background-color: var(--vui-color-empty-shade);
   border-left: 1px solid var(--vui-color-border-medium);
   z-index: $drawerZIndex;
-  animation: drawerIn $transitionSpeed cubic-bezier(0, 1, 0, 1);
+  right: -$drawerWidth;
+  transition: right $transitionSpeed cubic-bezier(0, 1, 0, 1);
 
-  @media screen and (max-width: $drawerWidth + $sizeM) {
+  @media screen and (max-width: ($drawerWidth + $sizeM)) {
     max-width: calc(100% - $sizeM);
   }
+}
+
+.vuiDrawer-isLoaded {
+  right: 0;
 }
 
 .vuiDrawerHeader {

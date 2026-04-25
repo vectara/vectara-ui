@@ -106,6 +106,10 @@ export const VuiPopover = ({
   const buttonRef = useRef<HTMLElement | null>(null);
   const [, setPositionMarker] = useState<number>(0);
   const [showTransition, setShowTransition] = useState(false);
+  // Uncouple open state from visibile state so that when the popover is closed,
+  // we can set the button to be unselected immediately while the popover content
+  // is still transitioning out.
+  const [isContentVisible, setIsContentVisible] = useState(false);
 
   const buttonProps: any = {
     ref: (node: HTMLElement) => {
@@ -167,12 +171,14 @@ export const VuiPopover = ({
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
+      setIsContentVisible(true);
       requestAnimationFrame(() => {
         setShowTransition(true);
       });
     } else {
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
+      setShowTransition(false);
     }
   }, [isOpen]);
 
@@ -181,8 +187,15 @@ export const VuiPopover = ({
   // outside of the popover.
   const onCloseDelayed = () => {
     window.setTimeout(() => {
-      setIsOpen(false);
+      // First remove the transition class to trigger the exit animation.
       setShowTransition(false);
+      setIsOpen(false);
+
+      // Wait for the transition to complete before unmounting.
+      // This duration should match the CSS transition speed.
+      window.setTimeout(() => {
+        setIsContentVisible(false);
+      }, 200);
     }, 0);
   };
 
@@ -212,7 +225,7 @@ export const VuiPopover = ({
       {button}
 
       <VuiPortal>
-        {isOpen && position && (
+        {(isOpen || isContentVisible || showTransition) && position && (
           <FocusOn
             onEscapeKey={onCloseDelayed}
             onClickOutside={onCloseDelayed}

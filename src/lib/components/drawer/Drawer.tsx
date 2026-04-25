@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { FocusOn } from "react-focus-on";
 import { BiX } from "react-icons/bi";
@@ -37,21 +37,39 @@ export const VuiDrawer = ({
 }: Props) => {
   const { DrawerTitle } = useVuiContext();
   const returnFocusElRef = useRef<HTMLElement | null>(null);
+  // Uncouple open state from visibile state so that when the popover is closed,
+  // we can set the button to be unselected immediately while the popover content
+  // is still transitioning out.
+  const [showTransition, setShowTransition] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false);
 
   // Return focus on unmount.
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
+      setIsContentVisible(true);
+      requestAnimationFrame(() => {
+        setShowTransition(true);
+      });
     } else {
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
+      setShowTransition(false);
     }
   }, [isOpen]);
 
   // Allow contents to respond to blur events before unmounting.
   const onCloseDelayed = () => {
     window.setTimeout(() => {
+      // First remove the transition class to trigger the exit animation.
+      setShowTransition(false);
       onClose?.();
+
+      // Wait for the transition to complete before unmounting.
+      // This duration should match the CSS transition speed.
+      window.setTimeout(() => {
+        setIsContentVisible(false);
+      }, 200);
     }, 0);
   };
 
@@ -65,12 +83,14 @@ export const VuiDrawer = ({
     onCloseDelayed();
   };
 
-  const classes = classNames("vuiDrawer", `vuiDrawer--${color}`, className);
+  const classes = classNames("vuiDrawer", `vuiDrawer--${color}`, className, {
+    "vuiDrawer-isLoaded": showTransition
+  });
 
   return (
     <VuiPortal>
-      {isOpen && (
-        <VuiScreenBlock>
+      {(isOpen || isContentVisible || showTransition) && (
+        <VuiScreenBlock isHidden={!isOpen}>
           <FocusOn
             onEscapeKey={onCloseDelayed}
             onClickOutside={handleClickOutside}
