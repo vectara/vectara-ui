@@ -17,6 +17,11 @@ export const tabs = {
   path: "/tabs",
   examples: [
     {
+      name: "Tabs Navigator",
+      component: <TabsNavigator />,
+      source: TabsNavigatorSource.default.toString()
+    },
+    {
       name: "Small",
       component: <Small />,
       source: SmallSource.default.toString()
@@ -40,11 +45,6 @@ export const tabs = {
       name: "Enclosed",
       component: <Enclosed />,
       source: EnclosedSource.default.toString()
-    },
-    {
-      name: "Tabs Navigator",
-      component: <TabsNavigator />,
-      source: TabsNavigatorSource.default.toString()
     }
   ]
 };
