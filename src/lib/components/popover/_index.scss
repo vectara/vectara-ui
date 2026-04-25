@@ -11,6 +11,11 @@
   transition: opacity $transitionSpeed, transform $transitionSpeed;
 }
 
+.vuiPopover-isLoaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .vuiPopover--allowOverflow {
   overflow: visible;
 }
@@ -22,11 +27,6 @@
 
 .vuiPopover--upLeft,
 .vuiPopover--upRight {
-  transform: translateY($sizeXs);
-}
-
-.vuiPopover-isLoaded {
-  opacity: 1;
   transform: translateY(0);
 }
 

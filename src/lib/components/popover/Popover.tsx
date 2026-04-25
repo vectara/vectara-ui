@@ -190,6 +190,7 @@ export const VuiPopover = ({
       // First remove the transition class to trigger the exit animation.
       setShowTransition(false);
       setIsOpen(false);
+
       // Wait for the transition to complete before unmounting.
       // This duration should match the CSS transition speed.
       window.setTimeout(() => {

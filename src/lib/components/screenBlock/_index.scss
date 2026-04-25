@@ -7,6 +7,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: initial;
+  opacity: 1;
+  transition: opacity $transitionSpeed;
+}
+
+.vuiScreenBlock-isHidden {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .vuiScreenBlock--default {

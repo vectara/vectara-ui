@@ -1,17 +1,5 @@
 @use "sass:map";
 
-@keyframes modalIn {
-  0% {
-    transform: translateY(12px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 .vuiModalContainer {
   position: fixed;
   top: 0;
@@ -21,8 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: modalIn $transitionSpeed cubic-bezier(0, 1, 1, 1);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform $transitionSpeed cubic-bezier(0, 1, 1, 1), opacity $transitionSpeed;
   pointer-events: none;
+}
+
+.vuiModalContainer-isLoaded {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .vuiModal {
