@@ -59,21 +59,19 @@ export const VuiModal = ({
       returnFocusElRef.current?.focus();
       returnFocusElRef.current = null;
       setShowTransition(false);
-    }
-  }, [isOpen]);
-
-  // Allow contents to respond to blur events before unmounting.
-  const onCloseDelayed = () => {
-    window.setTimeout(() => {
-      // First remove the transition class to trigger the exit animation.
-      setShowTransition(false);
-      onClose?.();
 
       // Wait for the transition to complete before unmounting.
       // This duration should match the CSS transition speed.
       window.setTimeout(() => {
         setIsContentVisible(false);
       }, 200);
+    }
+  }, [isOpen]);
+
+  // Allow contents to respond to blur events before unmounting.
+  const onCloseDelayed = () => {
+    window.setTimeout(() => {
+      onClose?.();
     }, 0);
   };
 
