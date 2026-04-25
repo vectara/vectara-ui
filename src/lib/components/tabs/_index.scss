@@ -7,6 +7,23 @@
   column-gap: $sizeXxs;
 }
 
+.vuiTabs--vertical {
+  .vuiTabs__tabs {
+    flex-direction: column;
+    align-items: stretch;
+
+    .vuiTab {
+      &:first-child {
+        padding-left: $sizeXxs;
+      }
+
+      &:last-child {
+        padding-right: $sizeXxs;
+      }
+    }
+  }
+}
+
 .vuiTabs--fullWidth {
   .vuiTabs__tabs {
     flex-grow: 1;

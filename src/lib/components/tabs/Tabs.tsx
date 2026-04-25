@@ -10,11 +10,13 @@ type Props = {
   size?: TabSize;
   fullWidth?: boolean;
   tabStyle?: TabStyle;
+  vertical?: boolean;
 };
 
-export const VuiTabs = ({ children, className, append, size = "s", fullWidth, tabStyle = "open" }: Props) => {
+export const VuiTabs = ({ children, className, append, size = "s", fullWidth, tabStyle = "open", vertical }: Props) => {
   const classes = classNames(className, "vuiTabs", `vuiTabs--${size}`, `vuiTabs--${tabStyle}`, {
-    "vuiTabs--fullWidth": fullWidth
+    "vuiTabs--fullWidth": fullWidth,
+    "vuiTabs--vertical": vertical
   });
   return (
     <div className={classes}>
