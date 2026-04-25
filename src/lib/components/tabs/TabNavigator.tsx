@@ -29,7 +29,7 @@ export const VuiTabsNavigator = ({ routes, popover }: Props) => {
       }
       padding="none"
     >
-      <VuiTabs size="s" tabStyle="enclosed">
+      <VuiTabs size="s" tabStyle="enclosed" vertical>
         {routes.map(({ href, title, render, testId, isActive }, index) => {
           const tabLink = (
             <VuiTab
