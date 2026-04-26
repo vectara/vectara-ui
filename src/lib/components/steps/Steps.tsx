@@ -1,11 +1,13 @@
 import classNames from "classnames";
 import { BiCheck, BiError, BiSolidHand } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
-import { VuiStep, VuiStepProps } from "./Step";
+import { VuiStep, StepProps } from "./Step";
 import { StepSize, StepStatus } from "./types";
 import { ICON_COLOR } from "../icon/types";
 
-export type { VuiStepProps, StepSize, StepStatus };
+export type { StepSize, StepStatus };
+
+export type Steps = Array<Omit<StepProps & { icon?: React.ReactNode }, "stepNode">>;
 
 const statusToColor: Record<StepStatus, (typeof ICON_COLOR)[number]> = {
   complete: "success",
@@ -16,7 +18,7 @@ const statusToColor: Record<StepStatus, (typeof ICON_COLOR)[number]> = {
 };
 
 type Props = {
-  steps: VuiStepProps[];
+  steps: Steps;
   className?: string;
   size?: StepSize;
   "data-testid"?: string;

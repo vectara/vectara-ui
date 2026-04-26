@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiSteps, VuiStepProps, StepStatus } from "../../../lib";
+import { VuiSteps, Steps, StepStatus } from "../../../lib";
 
 export const InteractiveSteps = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,7 +13,7 @@ export const InteractiveSteps = () => {
     return "incomplete";
   };
 
-  const dynamicSteps: VuiStepProps[] = [
+  const dynamicSteps: Steps = [
     {
       title: "Account Setup",
       status: getStepStatus(0, "danger"),

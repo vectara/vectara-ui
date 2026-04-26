@@ -1,7 +1,7 @@
-import { VuiSteps, VuiStepProps } from "../../../lib";
+import { VuiSteps, Steps } from "../../../lib";
 
 export const StepStatuses = () => {
-  const statusSteps: VuiStepProps[] = [
+  const statusSteps: Steps = [
     {
       title: "Complete Step",
       subTitle: "This step has been completed",

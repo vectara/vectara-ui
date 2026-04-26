@@ -1,9 +1,9 @@
-import { VuiSteps, VuiStepProps } from "../../../lib";
+import { VuiSteps, Steps } from "../../../lib";
 import { BiUser, BiCog, BiCheck, BiPlanet, BiRocket, BiStar } from "react-icons/bi";
 import { Subsection } from "../../components/Subsection";
 
 export const CustomSteps = () => {
-  const customIconSteps: VuiStepProps[] = [
+  const customIconSteps: Steps = [
     {
       title: "User Registration",
       subTitle: "Create your account",

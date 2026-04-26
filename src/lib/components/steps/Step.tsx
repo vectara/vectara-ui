@@ -13,17 +13,13 @@ const statusToClassMap: Record<StepStatus, string> = {
   danger: "danger"
 };
 
-export type VuiStepProps = {
+export type StepProps = {
   title: React.ReactNode;
   status?: StepStatus;
   subTitle?: React.ReactNode;
   onClick?: () => void;
-  icon?: ReactNode;
   className?: string;
   ["data-testid"]?: string;
-};
-
-type StepProps = Omit<VuiStepProps, "icon"> & {
   size?: StepSize;
   stepNode: ReactNode;
 };
