@@ -34,7 +34,7 @@ export const InteractiveSteps = () => {
     },
     {
       title: "Complete",
-      status: getStepStatus(3, "complete"),
+      status: "incomplete",
       subTitle: "Finish setup",
       onClick: () => setCurrentStep(3)
     }

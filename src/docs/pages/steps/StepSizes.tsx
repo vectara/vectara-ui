@@ -14,10 +14,6 @@ export const StepSizes = () => {
     {
       title: "Incomplete step which will wrap to the next line",
       status: "incomplete"
-    },
-    {
-      title: "Disabled step",
-      status: "disabled"
     }
   ];
 

@@ -1,2 +1,2 @@
-export type StepStatus = "complete" | "current" | "incomplete" | "disabled" | "warning" | "danger" | "loading";
+export type StepStatus = "complete" | "current" | "incomplete" | "warning" | "danger";
 export type StepSize = "xs" | "s" | "m";

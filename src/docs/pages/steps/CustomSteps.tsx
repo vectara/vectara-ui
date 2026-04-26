@@ -39,39 +39,10 @@ export const CustomSteps = () => {
     }
   ];
 
-  const customStepValues: VuiStepProps[] = [
-    {
-      title: "Initialize",
-      subTitle: "Setting up environment",
-      status: "complete",
-      value: "A"
-    },
-    {
-      title: "Configure",
-      subTitle: "Applying settings",
-      status: "current",
-      value: "B"
-    },
-    {
-      title: "Deploy",
-      subTitle: "Launching application",
-      value: "C"
-    },
-    {
-      title: "Monitor",
-      subTitle: "Tracking performance",
-      value: "D"
-    }
-  ];
-
   return (
     <>
       <Subsection title="Custom icons">
         <VuiSteps steps={customIconSteps} />
-      </Subsection>
-
-      <Subsection title="Custom step values">
-        <VuiSteps steps={customStepValues} />
       </Subsection>
     </>
   );
