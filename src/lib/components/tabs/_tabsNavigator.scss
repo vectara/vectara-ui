@@ -1,0 +1,29 @@
+.vuiTabsNavigatorButton {
+  font-size: $fontSizeStandard;
+  background-color: var(--vui-color-light-shade);
+  border-radius: $sizeXxs;
+  padding: 6px $sizeXs;
+
+  &:hover {
+    .vuiTabsNavigatorButton__inner {
+      box-shadow: $shadowLargeEnd;
+    }
+  }
+}
+
+.vuiTabsNavigatorButton__inner {
+  display: flex;
+  align-items: center;
+  gap: $sizeXs;
+  padding: $sizeXxs $sizeS;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--vui-color-full-shade);
+  background-color: var(--vui-color-empty-shade);
+  box-shadow: $shadowSmallEnd;
+  border-radius: $sizeXxs;
+  transition: box-shadow $transitionSpeed;
+}

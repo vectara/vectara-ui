@@ -4,6 +4,8 @@ import { VuiTab } from "./Tab";
 import { TabRoute } from "./types";
 import { VuiTabs } from "./Tabs";
 import { useVuiContext } from "../context/Context";
+import { VuiIcon } from "../icon/Icon";
+import { BiDotsVertical } from "react-icons/bi";
 
 type Props = {
   routes: TabRoute[];
@@ -23,9 +25,15 @@ export const VuiTabsNavigator = ({ routes, popover }: Props) => {
       isOpen={isOpen}
       setIsOpen={() => setIsOpen(!isOpen)}
       button={
-        <div className="vuiTabs vuiTabs--s vuiTabs--enclosed">
-          <VuiTab isActive>{activeRoute?.title ?? "No selection"}</VuiTab>
-        </div>
+        <button className="vuiTabsNavigatorButton">
+          <div className="vuiTabsNavigatorButton__inner">
+            <VuiIcon size="xs">
+              <BiDotsVertical />
+            </VuiIcon>
+
+            <div>{activeRoute?.title ?? "No selection"}</div>
+          </div>
+        </button>
       }
       padding="none"
     >
