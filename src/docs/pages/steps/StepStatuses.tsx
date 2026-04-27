@@ -1,7 +1,7 @@
-import { VuiSteps, VuiStepProps } from "../../../lib";
+import { VuiSteps, Steps } from "../../../lib";
 
 export const StepStatuses = () => {
-  const statusSteps: VuiStepProps[] = [
+  const statusSteps: Steps = [
     {
       title: "Complete Step",
       subTitle: "This step has been completed",
@@ -18,11 +18,6 @@ export const StepStatuses = () => {
       status: "incomplete"
     },
     {
-      title: "Disabled Step",
-      subTitle: "This step is disabled",
-      status: "disabled"
-    },
-    {
       title: "Warning Step",
       subTitle: "This step has a warning",
       status: "warning"
@@ -31,11 +26,6 @@ export const StepStatuses = () => {
       title: "Danger Step",
       subTitle: "This step has an error",
       status: "danger"
-    },
-    {
-      title: "Loading Step",
-      subTitle: "This step is processing",
-      status: "loading"
     }
   ];
 

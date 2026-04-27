@@ -51,6 +51,7 @@ import { stat } from "./pages/stat";
 import { status } from "./pages/status";
 import { statList } from "./pages/statList";
 import { steps } from "./pages/steps";
+import { stepsVertical } from "./pages/stepsVertical";
 import { summary } from "./pages/summary";
 import { skeleton } from "./pages/skeleton";
 import { superCheckboxGroup } from "./pages/superCheckboxGroup";
@@ -89,7 +90,21 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [tabs, timeline, accordion, steps, popover, infoMenu, flex, grid, spacer, card, panel, horizontalRule]
+    pages: [
+      tabs,
+      timeline,
+      accordion,
+      stepsVertical,
+      steps,
+      popover,
+      infoMenu,
+      flex,
+      grid,
+      spacer,
+      card,
+      panel,
+      horizontalRule
+    ]
   },
   {
     name: "Content",

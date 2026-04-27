@@ -1,25 +1,24 @@
 import classNames from "classnames";
 import { BiCheck, BiError, BiSolidHand } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
-import { VuiSpinner } from "../spinner/Spinner";
-import { VuiStep, VuiStepProps } from "./Step";
+import { VuiStep, StepProps } from "./Step";
 import { StepSize, StepStatus } from "./types";
 import { ICON_COLOR } from "../icon/types";
 
-export type { VuiStepProps, StepSize, StepStatus };
+export type { StepSize, StepStatus };
+
+export type Steps = Array<Omit<StepProps & { icon?: React.ReactNode }, "stepNode">>;
 
 const statusToColor: Record<StepStatus, (typeof ICON_COLOR)[number]> = {
   complete: "success",
   current: "primary",
   incomplete: "subdued",
-  disabled: "neutral",
   warning: "warning",
-  danger: "danger",
-  loading: "accent"
+  danger: "danger"
 };
 
 type Props = {
-  steps: VuiStepProps[];
+  steps: Steps;
   className?: string;
   size?: StepSize;
   "data-testid"?: string;
@@ -71,16 +70,12 @@ export const VuiSteps = ({ steps, className, size = "s", "data-testid": dataTest
                 onClick={step.onClick}
                 data-testid={step["data-testid"] ?? `${dataTestId}-step-${index}`}
                 stepNode={
-                  step.status === "loading" ? (
-                    <div>
-                      <VuiSpinner />
-                    </div>
-                  ) : icon ? (
+                  icon ? (
                     <VuiIcon color={statusToColor[step.status ?? "incomplete"]} size={size === "xs" ? undefined : size}>
                       {icon}
                     </VuiIcon>
                   ) : size === "xs" ? null : (
-                    <span className="vuiStep__numberText">{step.value ?? index + 1}</span>
+                    <span className="vuiStep__numberText">{index + 1}</span>
                   )
                 }
                 size={size}

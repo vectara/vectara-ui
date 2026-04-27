@@ -9,24 +9,17 @@ const statusToClassMap: Record<StepStatus, string> = {
   complete: "complete",
   current: "current",
   incomplete: "incomplete",
-  disabled: "disabled",
   warning: "warning",
-  danger: "danger",
-  loading: "loading"
+  danger: "danger"
 };
 
-export type VuiStepProps = {
+export type StepProps = {
   title: React.ReactNode;
   status?: StepStatus;
   subTitle?: React.ReactNode;
   onClick?: () => void;
-  value?: string | number;
-  icon?: ReactNode;
   className?: string;
   ["data-testid"]?: string;
-};
-
-type StepProps = Omit<VuiStepProps, "step" | "icon"> & {
   size?: StepSize;
   stepNode: ReactNode;
 };
@@ -41,14 +34,9 @@ export const VuiStep = ({
   className,
   "data-testid": dataTestId
 }: StepProps) => {
-  const isClickable = onClick && status !== "disabled";
-
-  const stepContainerClasses = classNames("vuiStep", className, {
-    "vuiStep--clickable": isClickable
-  });
+  const stepContainerClasses = classNames("vuiStep", className);
 
   const numberClasses = classNames("vuiStep__number", `vuiStep__number--${statusToClassMap[status]}`, {
-    "vuiStep__number--clickable": isClickable,
     [`vuiStep__number--${size}`]: size
   });
 
@@ -60,14 +48,10 @@ export const VuiStep = ({
     "vuiStep__subTitle--current": status === "current"
   });
 
-  const handleClick = () => {
-    if (isClickable) {
-      onClick();
-    }
-  };
-
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (isClickable && (event.key === "Enter" || event.key === " ")) {
+    if (!onClick) return;
+
+    if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       onClick();
     }
@@ -92,29 +76,17 @@ export const VuiStep = ({
     </>
   );
 
-  if (isClickable) {
-    return (
-      <button
-        className={stepContainerClasses}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
-        type="button"
-        aria-current={status === "current" ? "step" : undefined}
-        data-testid={dataTestId}
-        data-status={status}
-      >
-        {stepContent}
-      </button>
-    );
-  }
-
   return (
-    <div
+    <button
       className={stepContainerClasses}
+      onKeyDown={handleKeyDown}
+      onClick={onClick}
+      type="button"
       aria-current={status === "current" ? "step" : undefined}
       data-testid={dataTestId}
+      data-status={status}
     >
       {stepContent}
-    </div>
+    </button>
   );
 };

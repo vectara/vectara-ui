@@ -1,8 +1,8 @@
-import { VuiSteps, VuiStepProps } from "../../../lib";
+import { VuiSteps, Steps } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
 export const StepSizes = () => {
-  const basicSteps: VuiStepProps[] = [
+  const basicSteps: Steps = [
     {
       title: "Completed step",
       status: "complete"
@@ -14,10 +14,6 @@ export const StepSizes = () => {
     {
       title: "Incomplete step which will wrap to the next line",
       status: "incomplete"
-    },
-    {
-      title: "Disabled step",
-      status: "disabled"
     }
   ];
 

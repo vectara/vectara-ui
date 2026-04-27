@@ -1,0 +1,81 @@
+.vuiStepsVertical {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 280px;
+}
+
+.vuiStepVerticalContainer {
+  padding-left: $sizeS;
+  border-left: 1px solid var(--vui-color-medium-shade);
+}
+
+.vuiStepVerticalContainer-isActive {
+  padding-left: $sizeS - 1px;
+  border-left: 2px solid var(--vui-color-primary-shade);
+}
+
+.vuiStepVerticalContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: $sizeS;
+}
+
+.vuiStepVertical {
+  flex-grow: 1;
+  display: flex;
+  gap: $sizeS;
+  align-items: center;
+  padding: $sizeXs $sizeS $sizeXs $sizeM;
+  font-size: $fontSizeStandard;
+  color: var(--vui-color-text);
+  background-color: var(--vui-color-empty-shade);
+  border-radius: $sizeXxs;
+  width: 100%;
+
+  &:focus {
+    // Ensures focus ring is visible.
+    z-index: 2;
+  }
+
+  &:hover,
+  &.vuiStepVertical-isActive {
+    background-color: var(--vui-color-light-shade);
+
+    .vuiStepVerticalContainer__icon {
+      .vuiIcon--token {
+        // border-color: var(--vui-color-medium-shade);
+        box-shadow: $shadowSmallEnd;
+      }
+    }
+  }
+}
+
+.vuiStepVertical__index {
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 26px;
+  text-align: left;
+}
+
+.vuiStepVertical__content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sizeXs;
+}
+
+.vuiStepVerticalContainer__icon {
+  // Set consistent size so that empty icons still take up space
+  // and the button height doesn't change when there's no icon.
+  height: 20px;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  .vuiIcon--token {
+    box-shadow: $shadowSmallStart;
+    transition: box-shadow $transitionSpeed;
+  }
+}
