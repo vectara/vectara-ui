@@ -17,11 +17,11 @@
   opacity: 0;
 }
 
-.vuiScreenBlock--default {
+.vuiScreenBlock.vuiScreenBlock--default {
   z-index: $screenBlockZIndex;
 }
 
-.vuiScreenBlock--modal {
+.vuiScreenBlock.vuiScreenBlock--modal {
   z-index: $modalZIndex;
 }
 
