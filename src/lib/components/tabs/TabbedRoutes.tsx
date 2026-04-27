@@ -19,7 +19,12 @@ export const VuiTabbedRoutes = ({ tabs, size, sideContent, children }: Props) =>
       <VuiTabs append={sideContent} size={size}>
         {tabs.map(({ href, title, render, testId, isActive }, index) => {
           const tabLink = (
-            <VuiTab key={index} href={href} isActive={isActive ?? getPath().includes(href)} data-testid={testId}>
+            <VuiTab
+              key={index}
+              href={href}
+              isActive={isActive ?? (href ? getPath().includes(href) : false)}
+              data-testid={testId}
+            >
               {title}
             </VuiTab>
           );
