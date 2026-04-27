@@ -12,8 +12,8 @@ import { VuiSelect } from "../form/select/Select";
 const VALIDATION_ALLOWLIST = [VuiTextInput, VuiNumberInput, VuiTextArea, VuiSelect] as const;
 
 type Props = {
-  labelFor: string;
-  label: string;
+  labelFor?: string;
+  label?: string;
   labelSize?: "s" | "xs";
   children: React.ReactElement;
   helpText?: React.ReactNode;
@@ -56,7 +56,7 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, labelSize = 
   }
 
   const cloneProps: {
-    id: string;
+    id?: string;
     required: boolean | undefined;
     isInvalid?: boolean;
   } = {
@@ -75,12 +75,16 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, labelSize = 
 
   return (
     <div>
-      <VuiLabel labelFor={labelFor} size={labelSize}>
-        {label}
-        {isRequired && " (required)"}
-      </VuiLabel>
+      {label && (
+        <>
+          <VuiLabel labelFor={labelFor} size={labelSize}>
+            {label}
+            {isRequired && " (required)"}
+          </VuiLabel>
 
-      <VuiSpacer size={labelSize === "s" ? "xs" : "xxs"} />
+          <VuiSpacer size={labelSize === "s" ? "xs" : "xxs"} />
+        </>
+      )}
 
       {helpText && (
         <>
