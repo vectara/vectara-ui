@@ -92,7 +92,7 @@ import { Stat, VuiStatList } from "./statList/StatList";
 import { VuiStat } from "./stat/Stat";
 import { VuiStatus } from "./status/Status";
 import { VuiSteps, StepStatus, StepSize, Steps } from "./steps/Steps";
-import { VuiStepsVertical, StepsVertical } from "./stepsVertical/StepsVertical";
+import { VuiStepsVertical, StepsVertical, StepVerticalStatus } from "./stepsVertical/StepsVertical";
 import { SKELETON_COLOR, VuiSkeleton } from "./skeleton/Skeleton";
 import { VuiSummary, VuiSummaryCitation } from "./summary";
 import { VuiTable } from "./table/Table";
@@ -144,6 +144,7 @@ export type {
   StepSize,
   Steps,
   StepsVertical,
+  StepVerticalStatus,
   TabSize,
   Tree,
   TreeItem
