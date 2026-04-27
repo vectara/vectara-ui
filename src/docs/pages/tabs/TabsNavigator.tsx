@@ -9,19 +9,22 @@ export const TabsNavigator = () => {
       href: "#home",
       title: "Home",
       testId: "home-tab",
-      isActive: hash.endsWith("#home")
+      isActive: hash.endsWith("#home"),
+      onClick: () => console.log("Home tab clicked")
     },
     {
       href: "#profile",
       title: "Profile",
       testId: "profile-tab",
-      isActive: hash.endsWith("#profile")
+      isActive: hash.endsWith("#profile"),
+      onClick: () => console.log("Profile tab clicked")
     },
     {
       href: "#settings",
       title: "Settings",
       testId: "settings-tab",
-      isActive: hash.endsWith("#settings")
+      isActive: hash.endsWith("#settings"),
+      onClick: () => console.log("Settings tab clicked")
     }
   ];
 

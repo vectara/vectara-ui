@@ -17,7 +17,11 @@ export const VuiTabsNavigator = ({ routes, popover }: Props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const activeRoute = routes.find((route) => route.isActive || getPath().includes(route.href));
+  const isRouteActive = (route: TabRoute) => {
+    return route.isActive ?? (route.href ? getPath().includes(route.href) : false);
+  };
+
+  const activeRoute = routes.find((route) => isRouteActive(route));
 
   return (
     <VuiPopover
@@ -38,18 +42,24 @@ export const VuiTabsNavigator = ({ routes, popover }: Props) => {
       padding="none"
     >
       <VuiTabs size="s" tabStyle="enclosed" vertical>
-        {routes.map(({ href, title, render, testId, isActive }, index) => {
+        {routes.map((route, index) => {
+          const { href, onClick, title, render, testId } = route;
+
           const tabLink = (
             <VuiTab
               key={index}
               href={href}
-              isActive={isActive ?? getPath().includes(href)}
+              isActive={isRouteActive(route)}
               data-testid={testId}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                onClick?.();
+                setIsOpen(false);
+              }}
             >
               {title}
             </VuiTab>
           );
+
           if (render) return render(tabLink);
           return tabLink;
         })}

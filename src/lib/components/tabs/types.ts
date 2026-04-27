@@ -1,7 +1,8 @@
 export const TAB_SIZE = ["s", "m"] as const;
 export type TabSize = (typeof TAB_SIZE)[number];
 export type TabRoute = {
-  href: string;
+  href?: string;
+  onClick?: () => void;
   title: React.ReactNode;
   render?: (tabLink: React.ReactNode) => React.ReactNode;
   testId?: string;
