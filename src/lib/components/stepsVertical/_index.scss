@@ -8,11 +8,13 @@
 .vuiStepVerticalContainer {
   padding-left: $sizeS;
   border-left: 1px solid var(--vui-color-medium-shade);
+  transition: border-left-color $transitionSpeed;
 }
 
 .vuiStepVerticalContainer-isActive {
   padding-left: $sizeS - 1px;
-  border-left: 2px solid var(--vui-color-primary-shade);
+  border-left-width: 2px;
+  border-left-color: var(--vui-color-primary-shade);
 }
 
 .vuiStepVerticalContainer {
@@ -45,7 +47,6 @@
 
     .vuiStepVerticalContainer__icon {
       .vuiIcon--token {
-        // border-color: var(--vui-color-medium-shade);
         box-shadow: $shadowSmallEnd;
       }
     }
