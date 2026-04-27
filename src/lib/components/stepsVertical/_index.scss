@@ -34,6 +34,11 @@
   border-radius: $sizeXxs;
   width: 100%;
 
+  &:focus {
+    // Ensures focus ring is visible.
+    z-index: 2;
+  }
+
   &:hover,
   &.vuiStepVertical-isActive {
     background-color: var(--vui-color-light-shade);

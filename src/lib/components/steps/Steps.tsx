@@ -55,7 +55,7 @@ export const VuiSteps = ({ steps, className, size = "s", "data-testid": dataTest
             ) : null);
 
           return (
-            <button key={index} className={stepContainerClasses}>
+            <div key={index} className={stepContainerClasses}>
               {!isLastStep && (
                 <div
                   className={classNames("vuiSteps__connector", {
@@ -81,7 +81,7 @@ export const VuiSteps = ({ steps, className, size = "s", "data-testid": dataTest
                 size={size}
                 subTitle={step.subTitle}
               />
-            </button>
+            </div>
           );
         })}
       </div>
