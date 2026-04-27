@@ -1,9 +1,11 @@
 import { FormGroup } from "./FormGroup";
 import { NonFormElement } from "./NonFormElement";
+import { NoLabel } from "./NoLabel";
 import { Size } from "./Size";
 
 const FormGroupSource = require("!!raw-loader!./FormGroup");
 const NonFormElementSource = require("!!raw-loader!./NonFormElement");
+const NoLabelSource = require("!!raw-loader!./NoLabel");
 const SizeSource = require("!!raw-loader!./Size");
 
 export const formGroup = {
@@ -19,6 +21,11 @@ export const formGroup = {
       name: "Non-form elements",
       component: <NonFormElement />,
       source: NonFormElementSource.default.toString()
+    },
+    {
+      name: "Without label",
+      component: <NoLabel />,
+      source: NoLabelSource.default.toString()
     },
     {
       name: "Label size",
