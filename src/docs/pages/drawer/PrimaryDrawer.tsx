@@ -5,6 +5,7 @@ import {
   VuiButtonSecondary,
   VuiDrawer,
   VuiFlexContainer,
+  VuiModal,
   VuiNotifications,
   VuiSpacer,
   VuiText,
@@ -16,6 +17,7 @@ import { FormGroup } from "../searchSelect/FormGroup";
 export const PrimaryDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasFooter, setHasFooter] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -63,6 +65,12 @@ export const PrimaryDrawer = () => {
           }}
         >
           Add notification
+        </VuiButtonSecondary>
+
+        <VuiSpacer size="m" />
+
+        <VuiButtonSecondary color="primary" onClick={() => setIsModalOpen(true)}>
+          Open modal from drawer
         </VuiButtonSecondary>
 
         <VuiSpacer size="m" />
@@ -202,6 +210,15 @@ export const PrimaryDrawer = () => {
         <FormGroup />
         <VuiSpacer size="l" />
       </VuiDrawer>
+
+      <VuiModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="I'm a modal inside a drawer!">
+        <VuiText>
+          <p>
+            This modal is rendered inside the drawer. It demonstrates that you can have multiple layers of overlays and
+            that the focus management and scroll locking still work as expected.
+          </p>
+        </VuiText>
+      </VuiModal>
 
       <VuiNotifications />
     </>
