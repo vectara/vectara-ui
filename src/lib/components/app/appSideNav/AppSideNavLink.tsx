@@ -7,11 +7,11 @@ import { useVuiContext } from "../../context/Context";
 import { forwardRef } from "react";
 
 type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isSelected" | "className"> & {
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
   iconAfterAlignEnd?: boolean;
 };
 
-export const VuiAppSideNavLink = forwardRef<HTMLAnchorElement | null, Props>(
+export const VuiAppSideNavLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
   ({ path, onClick, name, iconBefore, iconAfter, isSelected, className, iconAfterAlignEnd, ...rest }: Props, ref) => {
     const { createLink, getPath } = useVuiContext();
 
@@ -50,8 +50,16 @@ export const VuiAppSideNavLink = forwardRef<HTMLAnchorElement | null, Props>(
         name
       );
 
+    if (!path) {
+      return (
+        <button className={classes} onClick={onClick} type="button" ref={ref as React.ForwardedRef<HTMLButtonElement>} {...rest}>
+          {content}
+        </button>
+      );
+    }
+
     return createLink({
-      ref,
+      ref: ref as React.ForwardedRef<HTMLAnchorElement | null>,
       className: classes,
       children: content,
       href: path,
