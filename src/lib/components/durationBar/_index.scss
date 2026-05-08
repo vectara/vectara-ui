@@ -1,0 +1,40 @@
+@use "sass:map";
+
+.vuiDurationBar {
+  position: relative;
+}
+
+.vuiDurationBar__bar {
+  position: absolute;
+  height: $sizeXs;
+}
+
+// Color
+$color: (
+  accent: (
+    "background-color": var(--vui-color-accent-shade)
+  ),
+  primary: (
+    "background-color": var(--vui-color-primary-shade)
+  ),
+  success: (
+    "background-color": var(--vui-color-success-shade)
+  ),
+  warning: (
+    "background-color": var(--vui-color-warning-shade)
+  ),
+  danger: (
+    "background-color": var(--vui-color-danger-shade)
+  ),
+  neutral: (
+    "background-color": var(--vui-color-dark-shade)
+  )
+);
+
+@each $colorName, $colorValue in $color {
+  .vuiDurationBar--#{$colorName} {
+    .vuiDurationBar__bar {
+      background-color: #{map.get($colorValue, "background-color")};
+    }
+  }
+}
