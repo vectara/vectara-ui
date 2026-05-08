@@ -45,6 +45,17 @@
   }
 }
 
+.vuiSearchInput--s {
+  .vuiSearchInput__icon {
+    top: $sizeXxs + 3px;
+  }
+
+  .vuiSearchInput__input {
+    padding: $sizeXs * 0.6 $sizeS $sizeXs * 0.6 $sizeL + $sizeS;
+    font-size: $fontSizeStandard;
+  }
+}
+
 .vuiSearchInput--m {
   .vuiSearchInput__icon {
     top: $sizeXs + 1px;
