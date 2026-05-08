@@ -6,6 +6,7 @@ import { LinkProps } from "../link/types";
 import { useVuiContext } from "../context/Context";
 import { VuiSpinner } from "../spinner/Spinner";
 import { SPINNER_COLOR } from "../spinner/types";
+import { VuiTooltip } from "../tooltip/Tooltip";
 
 const alignToClassMap = {
   left: "vuiBaseButton--alignLeft",
@@ -45,6 +46,7 @@ export type BaseButtonProps = {
   isSubmit?: boolean;
   isLoading?: boolean;
   truncate?: boolean;
+  "aria-label"?: string;
 };
 
 type Props = BaseButtonProps & {
@@ -76,6 +78,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       isLoading,
       spinnerColor,
       truncate,
+      "aria-label": ariaLabel,
       ...rest
     }: Props,
     ref
@@ -86,6 +89,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       "vuiBaseButton-isInert": isInert,
       "vuiBaseButton-isDisabled": isDisabled,
       "vuiBaseButton--fullWidth": fullWidth,
+      "vuiBaseButton--truncate": truncate,
       [`vuiBaseButton--${isLoading ? "left" : iconSide}`]: (Boolean(icon) || isLoading) && Boolean(children)
     });
 
@@ -101,25 +105,27 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
       iconContainer = <span className="vuiBaseButtonIconContainer">{icon}</span>;
     }
 
-    // This is useful for controlling other elements, e.g. creating an <input type="file" />
-    // for uploading files and adding a button to trigger it.
+    let button;
+
     if (htmlFor) {
-      return (
-        <label htmlFor={htmlFor} className={classes} tabIndex={tabIndex} {...rest}>
+      // This is useful for controlling other elements, e.g. creating an <input type="file" />
+      // for uploading files and adding a button to trigger it.
+
+      button = (
+        <label aria-label={ariaLabel} htmlFor={htmlFor} className={classes} tabIndex={tabIndex} {...rest}>
           {iconContainer}
           {children}
         </label>
       );
-    }
+    } else if (href && !isDisabled) {
+      // Anchor tags can't be disabled, so we'll just render a button instead
+      // if isDisabled is true.
 
-    // Anchor tags can't be disabled, so we'll just render a button instead
-    // if isDisabled is true.
-    if (href && !isDisabled) {
       const wrapperClasses = classNames("vuiBaseButtonLinkWrapper", {
         "vuiBaseButtonLinkWrapper--fullWidth": fullWidth
       });
 
-      return createLink({
+      button = createLink({
         className: wrapperClasses,
         href,
         onClick,
@@ -128,7 +134,7 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         onMouseMove,
         children: (
           //* Wrap a button otherwise the flex layout breaks */}
-          <button className={classes} tabIndex={-1} ref={ref}>
+          <button aria-label={ariaLabel} className={classes} tabIndex={-1} ref={ref}>
             {iconContainer}
             {children}
           </button>
@@ -138,28 +144,34 @@ export const BaseButton = forwardRef<HTMLButtonElement | null, Props>(
         ...rest,
         ...getTrackingProps(track)
       });
+    } else {
+      const labelClasses = classNames({
+        "vuiBaseButtonLabel--truncate": truncate
+      });
+
+      const props = {
+        onClick,
+        onMouseOver,
+        onMouseOut,
+        onMouseMove,
+        tabIndex,
+        type: isSubmit ? "submit" : "button",
+        disabled: isDisabled,
+        ...rest
+      } as const;
+
+      button = (
+        <button aria-label={ariaLabel} className={classes} {...props} ref={ref}>
+          {iconContainer}
+          <span className={labelClasses}>{children}</span>
+        </button>
+      );
     }
 
-    const labelClasses = classNames({
-      "vuiBaseButtonLabel--truncate": truncate
-    });
+    if (ariaLabel) {
+      return <VuiTooltip tip={ariaLabel}>{button}</VuiTooltip>;
+    }
 
-    const props = {
-      onClick,
-      onMouseOver,
-      onMouseOut,
-      onMouseMove,
-      tabIndex,
-      type: isSubmit ? "submit" : "button",
-      disabled: isDisabled,
-      ...rest
-    } as const;
-
-    return (
-      <button className={classes} {...props} ref={ref}>
-        {iconContainer}
-        <span className={labelClasses}>{children}</span>
-      </button>
-    );
+    return button;
   }
 );

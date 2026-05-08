@@ -70,6 +70,11 @@
   width: 100%;
 }
 
+.vuiBaseButton--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 // Size
 .vuiBaseButton--xs {
   font-size: $fontSizeSmall;
