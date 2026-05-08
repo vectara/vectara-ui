@@ -8,6 +8,7 @@ import { VuiTextInput } from "../form/input/TextInput";
 import { VuiNumberInput } from "../form/input/NumberInput";
 import { VuiTextArea } from "../form/textArea/TextArea";
 import { VuiSelect } from "../form/select/Select";
+import { VuiFlexContainer } from "../flex/FlexContainer";
 
 const VALIDATION_ALLOWLIST = [VuiTextInput, VuiNumberInput, VuiTextArea, VuiSelect] as const;
 
@@ -15,13 +16,23 @@ type Props = {
   labelFor?: string;
   label?: string;
   labelSize?: "s" | "xs";
+  labelRightContent?: React.ReactNode;
   children: React.ReactElement;
   helpText?: React.ReactNode;
   errors?: string[];
   isRequired?: boolean;
 };
 
-export const VuiFormGroup = ({ children, labelFor, helpText, label, labelSize = "s", errors, isRequired }: Props) => {
+export const VuiFormGroup = ({
+  children,
+  labelFor,
+  helpText,
+  label,
+  labelSize = "s",
+  labelRightContent,
+  errors,
+  isRequired
+}: Props) => {
   const ariaProps: Record<string, string> = {
     "aria-describedby": ""
   };
@@ -75,12 +86,20 @@ export const VuiFormGroup = ({ children, labelFor, helpText, label, labelSize = 
 
   return (
     <div>
-      {label && (
+      {(label || labelRightContent) && (
         <>
-          <VuiLabel labelFor={labelFor} size={labelSize}>
-            {label}
-            {isRequired && " (required)"}
-          </VuiLabel>
+          <VuiFlexContainer justifyContent="spaceBetween" alignItems="center" spacing="s">
+            {label ? (
+              <VuiLabel labelFor={labelFor} size={labelSize}>
+                {label}
+                {isRequired && " (required)"}
+              </VuiLabel>
+            ) : (
+              <span />
+            )}
+
+            {labelRightContent}
+          </VuiFlexContainer>
 
           <VuiSpacer size={labelSize === "s" ? "xs" : "xxs"} />
         </>
