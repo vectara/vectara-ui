@@ -6,7 +6,7 @@ export const Colors = () => {
     <>
       {PROGRESS_BAR_COLOR.map((color) => (
         <Fragment key={color}>
-          <VuiDurationBar windowStart={0} windowEnd={100} barStart={10} duration={60} color={color} />
+          <VuiDurationBar window={100} start={10} end={70} color={color} />
           <VuiSpacer size="s" />
         </Fragment>
       ))}

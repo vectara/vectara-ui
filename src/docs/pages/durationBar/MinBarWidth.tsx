@@ -9,7 +9,7 @@ export const MinBarWidth = () => {
 
       <VuiSpacer size="s" />
 
-      <VuiDurationBar windowStart={0} windowEnd={10000} barStart={5000} duration={1} color="accent" />
+      <VuiDurationBar window={10000} start={5000} end={5001} color="accent" />
 
       <VuiSpacer size="m" />
 
@@ -19,14 +19,7 @@ export const MinBarWidth = () => {
 
       <VuiSpacer size="s" />
 
-      <VuiDurationBar
-        windowStart={0}
-        windowEnd={10000}
-        barStart={5000}
-        duration={1}
-        color="accent"
-        minBarWidthPx={16}
-      />
+      <VuiDurationBar window={10000} start={5000} end={5001} color="accent" minBarWidthPx={16} />
     </>
   );
 };

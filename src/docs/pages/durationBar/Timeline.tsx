@@ -1,21 +1,23 @@
 import { PROGRESS_BAR_COLOR, VuiDurationBar, VuiFlexContainer, VuiFlexItem, VuiText } from "../../../lib";
 
-const WINDOW_START = 0;
-const WINDOW_END = 12480;
+const WINDOW = 12480;
 
-type Bar =
-  | { label: string; barStart: number; barEnd: number; color: (typeof PROGRESS_BAR_COLOR)[number] }
-  | { label: string; barStart: number; duration: number; color: (typeof PROGRESS_BAR_COLOR)[number] };
+type Bar = {
+  label: string;
+  start: number;
+  end: number;
+  color: (typeof PROGRESS_BAR_COLOR)[number];
+};
 
 const bars: Bar[] = [
-  { label: "12.48s", barStart: 0, barEnd: 12480, color: "neutral" },
-  { label: "1.85s", barStart: 0, barEnd: 1850, color: "neutral" },
-  { label: "3.20s", barStart: 1850, duration: 3200, color: "neutral" },
-  { label: "880ms", barStart: 5700, duration: 880, color: "neutral" },
-  { label: "2.40s", barStart: 6200, duration: 2400, color: "neutral" },
-  { label: "80ms", barStart: 8700, duration: 80, color: "neutral" },
-  { label: "3.20s", barStart: 8900, duration: 3200, color: "neutral" },
-  { label: "540ms", barStart: 11400, duration: 540, color: "neutral" }
+  { label: "12.48s", start: 0, end: 12480, color: "neutral" },
+  { label: "1.85s", start: 0, end: 1850, color: "neutral" },
+  { label: "3.20s", start: 1850, end: 5050, color: "neutral" },
+  { label: "880ms", start: 5700, end: 6580, color: "neutral" },
+  { label: "2.40s", start: 6200, end: 8600, color: "neutral" },
+  { label: "80ms", start: 8700, end: 8780, color: "neutral" },
+  { label: "3.20s", start: 8900, end: 12100, color: "neutral" },
+  { label: "540ms", start: 11400, end: 11940, color: "neutral" }
 ];
 
 export const Timeline = () => {
@@ -32,23 +34,7 @@ export const Timeline = () => {
           </VuiFlexItem>
 
           <VuiFlexItem grow={1}>
-            {"barEnd" in bar ? (
-              <VuiDurationBar
-                windowStart={WINDOW_START}
-                windowEnd={WINDOW_END}
-                barStart={bar.barStart}
-                barEnd={bar.barEnd}
-                color={bar.color}
-              />
-            ) : (
-              <VuiDurationBar
-                windowStart={WINDOW_START}
-                windowEnd={WINDOW_END}
-                barStart={bar.barStart}
-                duration={bar.duration}
-                color={bar.color}
-              />
-            )}
+            <VuiDurationBar window={WINDOW} start={bar.start} end={bar.end} color={bar.color} />
           </VuiFlexItem>
         </VuiFlexContainer>
       ))}
