@@ -17,7 +17,13 @@ import { SearchSuggestion } from "./types";
 import { createId } from "../../utils/createId";
 import { VuiSpinner } from "../spinner/Spinner";
 
-const SIZE = ["m", "l"] as const;
+const SIZE = ["s", "m", "l"] as const;
+
+const sizeToIconSizeMap = {
+  s: "xs",
+  m: "s",
+  l: "m"
+} as const;
 
 type Props = {
   className?: string;
@@ -256,7 +262,7 @@ export const VuiSearchInput = ({
           {isLoading ? (
             <VuiSpinner size={size === "m" ? "s" : "m"} />
           ) : (
-            <VuiIcon color="subdued" size={size === "m" ? "s" : "m"}>
+            <VuiIcon color="subdued" size={sizeToIconSizeMap[size]}>
               <BiSearch />
             </VuiIcon>
           )}

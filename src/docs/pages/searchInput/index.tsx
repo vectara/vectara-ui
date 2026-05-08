@@ -1,11 +1,9 @@
 import { SearchInput } from "./SearchInput";
-import { Large } from "./Large";
 import { ClearableSearchInput } from "./Clearable";
 import { Suggestions } from "./Suggestions";
 import { ValueSuggestions } from "./ValueSuggestions";
 
 const SearchInputSource = require("!!raw-loader!./SearchInput");
-const LargeSource = require("!!raw-loader!./Large");
 const ClearableInputSource = require("!!raw-loader!./Clearable");
 const SuggestionsSource = require("!!raw-loader!./Suggestions");
 const ValueSuggestionsSource = require("!!raw-loader!./ValueSuggestions");
@@ -18,11 +16,6 @@ export const searchInput = {
       name: "Medium size",
       component: <SearchInput />,
       source: SearchInputSource.default.toString()
-    },
-    {
-      name: "Large size",
-      component: <Large />,
-      source: LargeSource.default.toString()
     },
     {
       name: "Clearable input",
