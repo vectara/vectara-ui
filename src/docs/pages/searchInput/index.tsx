@@ -13,7 +13,7 @@ export const searchInput = {
   path: "/searchInput",
   examples: [
     {
-      name: "Medium size",
+      name: "Sizes",
       component: <SearchInput />,
       source: SearchInputSource.default.toString()
     },
