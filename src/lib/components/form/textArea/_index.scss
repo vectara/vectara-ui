@@ -16,3 +16,9 @@
 .vuiTextArea--fullWidth {
   width: 100%;
 }
+
+.vuiTextArea--autoGrow {
+  min-height: 0;
+  line-height: 1.6;
+  max-height: 12rem;
+}
