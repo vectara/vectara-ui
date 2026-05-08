@@ -18,7 +18,7 @@ export const Icons = () => {
       </Subsection>
 
       <Subsection title="Icon only">
-        <VuiButtonPrimary icon={icon} color="primary" size="m" />
+        <VuiButtonPrimary icon={icon} color="primary" size="m" aria-label="Add to favorites" />
       </Subsection>
     </>
   );

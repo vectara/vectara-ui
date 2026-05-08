@@ -13,7 +13,7 @@ export const Truncate = () => {
           </VuiIcon>
         }
       >
-        A very long label that will get truncated
+        A very long label that will get truncated eventually if the text is long enough
       </VuiButtonSecondary>
     </div>
   );
