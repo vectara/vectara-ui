@@ -22,6 +22,7 @@ type Props = {
   target?: LinkProps["target"];
   track?: LinkProps["track"];
   isSelected?: boolean;
+  size?: "s" | "m" | "l";
 };
 
 export const VuiBadge = ({
@@ -34,12 +35,13 @@ export const VuiBadge = ({
   target,
   track,
   isSelected,
+  size = "m",
   ...rest
 }: Props) => {
   const { createLink } = useVuiContext();
   const id = onClose ? createId() : undefined;
 
-  const classes = classNames(className, "vuiBadge", `vuiBadge--${color}`, {
+  const classes = classNames(className, "vuiBadge", `vuiBadge--${size}`, `vuiBadge--${color}`, {
     "vuiBadge--clickable": onClick ?? href
   });
 

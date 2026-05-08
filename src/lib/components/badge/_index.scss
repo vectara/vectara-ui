@@ -2,13 +2,30 @@
 
 .vuiBadge {
   display: inline-block;
+  font-family: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.vuiBadge--l {
+  font-size: $fontSizeMedium;
+  line-height: 1.25;
+  padding: $sizeXs $sizeS;
+  border-radius: $sizeL;
+}
+
+.vuiBadge--m {
   font-size: $fontSizeSmall;
   line-height: 1.25;
   padding: $sizeXxs $sizeXs;
   border-radius: $sizeS;
-  font-family: inherit;
-  white-space: nowrap;
-  text-decoration: none;
+}
+
+.vuiBadge--s {
+  font-size: $fontSizeXsmall;
+  line-height: 1.25;
+  padding: $sizeXxxs $sizeXs;
+  border-radius: $sizeS;
 }
 
 .vuiBadge--clickable {
