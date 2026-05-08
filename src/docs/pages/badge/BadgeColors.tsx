@@ -4,6 +4,18 @@ import { Subsection } from "../../components/Subsection";
 export const BadgeColors = () => {
   return (
     <>
+      <Subsection title="Large">
+        <VuiFlexContainer>
+          {BADGE_COLOR.map((color) => (
+            <VuiFlexItem grow={false} key={color}>
+              <VuiBadge size="l" color={color}>
+                Color {color}
+              </VuiBadge>
+            </VuiFlexItem>
+          ))}
+        </VuiFlexContainer>
+      </Subsection>
+
       <Subsection title="Medium">
         <VuiFlexContainer>
           {BADGE_COLOR.map((color) => (

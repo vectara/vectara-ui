@@ -22,7 +22,7 @@ type Props = {
   target?: LinkProps["target"];
   track?: LinkProps["track"];
   isSelected?: boolean;
-  size?: "s" | "m";
+  size?: "s" | "m" | "l";
 };
 
 export const VuiBadge = ({
