@@ -41,7 +41,11 @@ export const VuiTextArea = forwardRef<HTMLTextAreaElement | null, Props>(
       const el = internalRef.current;
       if (!el) return;
       el.style.height = "auto";
-      el.style.height = `${el.scrollHeight}px`;
+      // scrollHeight excludes borders, but with box-sizing: border-box the
+      // assigned height includes them — without this offset the content would
+      // overflow by the border width and show a spurious scrollbar.
+      const borderY = el.offsetHeight - el.clientHeight;
+      el.style.height = `${el.scrollHeight + borderY}px`;
     }, [autoGrow, rest.value]);
 
     return <textarea {...rest} ref={setRefs} className={classes} style={style} />;
