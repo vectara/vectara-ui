@@ -2,13 +2,13 @@ import { TextInput } from "./TextInput";
 import { NumberInput } from "./NumberInput";
 import { PasswordInput } from "./PasswordInput";
 import { FullWidth } from "./FullWidth";
-import { Large } from "./Large";
+import { Sizes } from "./Sizes";
 
 const TextInputSource = require("!!raw-loader!./TextInput");
 const NumberInputSource = require("!!raw-loader!./NumberInput");
 const PasswordInputSource = require("!!raw-loader!./PasswordInput");
 const FullWidthSource = require("!!raw-loader!./FullWidth");
-const LargeSource = require("!!raw-loader!./Large");
+const SizesSource = require("!!raw-loader!./Sizes");
 
 export const input = {
   name: "Input",
@@ -35,9 +35,9 @@ export const input = {
       source: FullWidthSource.default.toString()
     },
     {
-      name: "Large size",
-      component: <Large />,
-      source: LargeSource.default.toString()
+      name: "Sizes",
+      component: <Sizes />,
+      source: SizesSource.default.toString()
     }
   ]
 };
