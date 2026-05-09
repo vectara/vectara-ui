@@ -2,7 +2,7 @@ import { BasicProps as DatePickerProps } from "./DatePicker";
 import { Props as PopoverProps, VuiPopover } from "../popover/Popover";
 import { VuiTextInput } from "../form";
 import { formatDate } from "../../utils";
-import { useEffect, useState } from "react";
+import { JSXElementConstructor, ReactElement, useEffect, useState } from "react";
 import { VuiCalendar } from "./Calendar";
 
 type DateProps = Pick<DatePickerProps, "placeholder" | "data-testid">;
@@ -14,6 +14,7 @@ type Props = Pick<PopoverProps, "isOpen" | "setIsOpen" | "anchorSide" | "header"
   dateRangeProps?: DateProps;
   fullWidth?: boolean;
   canClear?: boolean;
+  input?: ReactElement<any, string | JSXElementConstructor<any>>;
   "data-testid"?: string;
 };
 
@@ -25,6 +26,7 @@ export const VuiDateRangePicker = ({
   dateRangeProps,
   fullWidth,
   canClear,
+  input,
   ...rest
 }: Props) => {
   const [initialStartDate, setInitialStartDate] = useState<Date>();
@@ -75,7 +77,7 @@ export const VuiDateRangePicker = ({
 
   const { "data-testid": testId, ...restProps } = rest;
 
-  const input = (
+  const inputEl = input ?? (
     <VuiTextInput
       className="vuiDateRangePickerInput"
       value={
@@ -99,7 +101,7 @@ export const VuiDateRangePicker = ({
         }
         setIsOpen(isOpen);
       }}
-      button={input}
+      button={inputEl}
       {...restProps}
     >
       {dateRangePicker}

@@ -5,6 +5,11 @@
   background-color: var(--vui-color-empty-shade);
 }
 
+.vuiInput--s {
+  padding: $sizeXs * 0.75 $sizeS;
+  font-size: $fontSizeSmall;
+}
+
 .vuiInput--m {
   padding: $sizeXs $sizeM;
   font-size: $fontSizeStandard;

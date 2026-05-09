@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { forwardRef } from "react";
 
-const SIZE = ["m", "l"] as const;
+const SIZE = ["s", "m", "l"] as const;
 
 export type BasicInputProps = Omit<
   React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
