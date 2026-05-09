@@ -56,7 +56,6 @@ export const DateRangePickerCustomInput = () => {
         input={
           <VuiTextInput
             size="s"
-            className="vuiDateRangePickerInput"
             value={!startDate && !endDate ? "Select date range" : `${humanizedStartDate} to ${humanizedEndDate}`}
           />
         }
