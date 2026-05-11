@@ -105,7 +105,7 @@ import { SpansRow } from "./spans/types";
 import { VuiTab } from "./tabs/Tab";
 import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
 import { VuiTabs } from "./tabs/Tabs";
-import { VuiTabsNavigator } from "./tabs/TabsNavigator";
+import { TabNavigatorRoute, VuiTabsNavigator } from "./tabs/TabsNavigator";
 import { TAB_SIZE, TabSize } from "./tabs/types";
 import { VuiText } from "./typography/Text";
 import { VuiTextColor } from "./typography/TextColor";
@@ -156,6 +156,7 @@ export type {
   Steps,
   StepsVertical,
   StepVerticalStatus,
+  TabNavigatorRoute,
   TabSize,
   Tree,
   TreeItem
