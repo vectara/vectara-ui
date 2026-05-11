@@ -6,9 +6,14 @@ import { VuiTabs } from "./Tabs";
 import { useVuiContext } from "../context/Context";
 import { VuiIcon } from "../icon/Icon";
 import { BiDotsVertical } from "react-icons/bi";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+
+export type TabNavigatorRoute = Omit<TabRoute, "render"> & {
+  append?: React.ReactNode;
+};
 
 type Props = {
-  routes: TabRoute[];
+  routes: TabNavigatorRoute[];
   popover?: Omit<PopoverProps, "header" | "isOpen" | "setIsOpen" | "button" | "children" | "padding">;
   "data-testid"?: string;
 };
@@ -44,9 +49,9 @@ export const VuiTabsNavigator = ({ routes, popover, ...rest }: Props) => {
     >
       <VuiTabs size="s" tabStyle="enclosed" vertical>
         {routes.map((route, index) => {
-          const { href, onClick, title, render, testId } = route;
+          const { href, onClick, title, testId, append } = route;
 
-          const tabLink = (
+          return (
             <VuiTab
               key={index}
               href={href}
@@ -57,12 +62,12 @@ export const VuiTabsNavigator = ({ routes, popover, ...rest }: Props) => {
                 setIsOpen(false);
               }}
             >
-              {title}
+              <VuiFlexContainer spacing="s">
+                {title}
+                {append}
+              </VuiFlexContainer>
             </VuiTab>
           );
-
-          if (render) return render(tabLink);
-          return tabLink;
         })}
       </VuiTabs>
     </VuiPopover>

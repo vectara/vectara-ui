@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { VuiTabsNavigator } from "../../../lib";
+import { VuiBadge, VuiTabsNavigator } from "../../../lib";
 
 export const TabsNavigator = () => {
   const { hash } = useLocation();
@@ -10,7 +10,12 @@ export const TabsNavigator = () => {
       title: "Home",
       testId: "home-tab",
       isActive: hash.endsWith("#home"),
-      onClick: () => console.log("Home tab clicked")
+      onClick: () => console.log("Home tab clicked"),
+      append: (
+        <VuiBadge color="danger" size="s">
+          3
+        </VuiBadge>
+      )
     },
     {
       href: "#profile",
