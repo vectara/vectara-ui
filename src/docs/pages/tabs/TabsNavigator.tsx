@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { VuiBadge, VuiTabsNavigator } from "../../../lib";
+import { VuiIcon, VuiTabsNavigator } from "../../../lib";
+import { BiFlag } from "react-icons/bi";
 
 export const TabsNavigator = () => {
   const { hash } = useLocation();
@@ -12,9 +13,9 @@ export const TabsNavigator = () => {
       isActive: hash.endsWith("#home"),
       onClick: () => console.log("Home tab clicked"),
       append: (
-        <VuiBadge color="danger" size="s">
-          3
-        </VuiBadge>
+        <VuiIcon color="warning" size="xs">
+          <BiFlag />
+        </VuiIcon>
       )
     },
     {

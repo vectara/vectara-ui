@@ -62,7 +62,7 @@ export const VuiTabsNavigator = ({ routes, popover, ...rest }: Props) => {
                 setIsOpen(false);
               }}
             >
-              <VuiFlexContainer spacing="s">
+              <VuiFlexContainer spacing="s" alignItems="center">
                 {title}
                 {append}
               </VuiFlexContainer>
