@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { VuiOptionsList } from "../optionsList/OptionsList";
 import { VuiPopover } from "../popover/Popover";
@@ -14,6 +14,7 @@ export type Action<T> = {
   href?: (row: T) => string | undefined;
   testId?: string;
   color?: ButtonColor;
+  icon?: ReactElement | null;
 };
 
 export type Props<T> = {
@@ -28,9 +29,9 @@ export const VuiTableRowActions = <T extends Row>({ row, actions, onToggle, test
 
   // Filter out disabled actions.
   const actionOptions = actions.reduce((acc, action) => {
-    const { label, isDisabled, onClick, href, testId, color } = action;
+    const { label, isDisabled, onClick, href, testId, color, icon } = action;
     if (!isDisabled?.(row)) {
-      acc.push({ label, onClick, href: href?.(row), value: row, testId, color });
+      acc.push({ label, onClick, href: href?.(row), value: row, testId, color, icon });
     }
     return acc;
   }, [] as any);
