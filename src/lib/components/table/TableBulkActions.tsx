@@ -24,6 +24,7 @@ export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Pr
         size="m"
         data-testid={actions[0].testId}
         onClick={() => actions[0].onClick && actions[0].onClick(selectedRows)}
+        icon={actions[0].icon}
       >
         {`${actions[0].label} (${selectedRows.length})`}
       </VuiButtonSecondary>

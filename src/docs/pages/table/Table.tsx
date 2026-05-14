@@ -14,7 +14,7 @@ import {
 } from "../../../lib";
 import { VuiTable } from "../../../lib/components/table/Table";
 import { createFakePeople, Person } from "./createFakePeople";
-import { BiError } from "react-icons/bi";
+import { BiError, BiTrash } from "react-icons/bi";
 
 const ROWS_PER_PAGE = 20;
 const people: Person[] = createFakePeople(152);
@@ -238,7 +238,12 @@ export const Table = () => {
         console.log("Delete", person);
       },
       testId: "deleteAction",
-      color: "danger" as const
+      color: "danger" as const,
+      icon: (
+        <VuiIcon color="danger">
+          <BiTrash />
+        </VuiIcon>
+      )
     }
   ];
 
@@ -295,7 +300,12 @@ export const Table = () => {
             onClick: (people: Person[]) => {
               console.log("Delete", people);
             },
-            color: "danger" as const
+            color: "danger" as const,
+            icon: (
+              <VuiIcon color="danger">
+                <BiTrash />
+              </VuiIcon>
+            )
           }
         ]
       }
