@@ -4,6 +4,7 @@ import { VuiOptionsList } from "../optionsList/OptionsList";
 import { VuiPopover } from "../popover/Popover";
 import { VuiIcon } from "../icon/Icon";
 import { VuiButtonSecondary } from "../button/ButtonSecondary";
+import { ButtonColor } from "../button/types";
 import { Row } from "./types";
 
 export type Action<T> = {
@@ -12,6 +13,7 @@ export type Action<T> = {
   onClick?: (row: T) => void;
   href?: (row: T) => string | undefined;
   testId?: string;
+  color?: ButtonColor;
 };
 
 export type Props<T> = {
@@ -26,9 +28,9 @@ export const VuiTableRowActions = <T extends Row>({ row, actions, onToggle, test
 
   // Filter out disabled actions.
   const actionOptions = actions.reduce((acc, action) => {
-    const { label, isDisabled, onClick, href, testId } = action;
+    const { label, isDisabled, onClick, href, testId, color } = action;
     if (!isDisabled?.(row)) {
-      acc.push({ label, onClick, href: href?.(row), value: row, testId });
+      acc.push({ label, onClick, href: href?.(row), value: row, testId, color });
     }
     return acc;
   }, [] as any);
