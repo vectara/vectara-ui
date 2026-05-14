@@ -20,12 +20,12 @@ export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Pr
   if (actions.length === 1) {
     content = (
       <VuiButtonSecondary
-        color="neutral"
+        color={actions[0].color ?? "neutral"}
         size="m"
         data-testid={actions[0].testId}
         onClick={() => actions[0].onClick && actions[0].onClick(selectedRows)}
       >
-        {actions[0].label}
+        {`${actions[0].label} (${selectedRows.length})`}
       </VuiButtonSecondary>
     );
   } else {
@@ -35,7 +35,7 @@ export const VuiTableBulkActions = <T extends Row>({ selectedRows, actions }: Pr
         setIsOpen={() => setIsOpen(!isOpen)}
         button={
           <VuiButtonSecondary
-            color="neutral"
+            color="primary"
             size="m"
             data-testid="bulkActionsMenuButton"
             icon={

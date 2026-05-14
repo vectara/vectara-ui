@@ -228,16 +228,17 @@ export const Table = () => {
       testId: "editAction"
     },
     {
+      label: "Search",
+      href: (person: Person) => `https://www.google.com/search?q=${person.name}`,
+      testId: "searchAction"
+    },
+    {
       label: "Delete",
       onClick: (person: Person) => {
         console.log("Delete", person);
       },
-      testId: "deleteAction"
-    },
-    {
-      label: "Search",
-      href: (person: Person) => `https://www.google.com/search?q=${person.name}`,
-      testId: "searchAction"
+      testId: "deleteAction",
+      color: "danger" as const
     }
   ];
 
@@ -293,7 +294,8 @@ export const Table = () => {
             label: "Delete",
             onClick: (people: Person[]) => {
               console.log("Delete", people);
-            }
+            },
+            color: "danger" as const
           }
         ]
       }
