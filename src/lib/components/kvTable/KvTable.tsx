@@ -29,15 +29,24 @@ type Props = {
   label?: string;
   padding?: KvTablePadding;
   align?: KvTableAlign;
+  "data-testid"?: string;
 };
 
-export const VuiKvTable = ({ items, keyHeader, valueHeader, label, padding = "xs", align = "middle" }: Props) => {
+export const VuiKvTable = ({
+  items,
+  keyHeader,
+  valueHeader,
+  label,
+  padding = "xs",
+  align = "middle",
+  ...rest
+}: Props) => {
   const hasHeader = keyHeader !== undefined || valueHeader !== undefined;
   const classes = classNames("vuiKvTable", paddingToClassMap[padding], alignToClassMap[align]);
   const normalizedItems = normalizeItems(items);
 
   return (
-    <table className={classes} aria-label={label}>
+    <table className={classes} aria-label={label} {...rest}>
       {hasHeader && (
         <thead>
           <tr>
