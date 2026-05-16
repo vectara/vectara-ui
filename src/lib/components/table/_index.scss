@@ -26,11 +26,11 @@ $tableResponsiveBreakpointSmall: 500px;
   width: 100%;
   table-layout: fixed;
 
-  thead {
+  & > thead {
     border-bottom: 1px solid var(--vui-color-border-medium);
   }
 
-  tbody tr {
+  & > tbody > tr {
     border-bottom: 1px solid var(--vui-color-border-light);
 
     &.vuiTableRow-isBeingActedUpon,
@@ -60,13 +60,13 @@ $tableResponsiveBreakpointSmall: 500px;
     }
   }
 
-  th {
+  & > thead > tr > th {
     font-size: $fontSizeStandard;
     font-weight: $fontWeightBold;
     padding: $sizeXxs;
   }
 
-  td {
+  & > tbody > tr > td {
     font-size: $fontSizeStandard;
     padding: $sizeXxs;
     vertical-align: middle;
@@ -193,19 +193,19 @@ $tableResponsiveBreakpointSmall: 500px;
 }
 
 .vuiTable--verticalAlignTop {
-  tbody td {
+  & > tbody > tr > td {
     vertical-align: top;
   }
 }
 
 .vuiTable--verticalAlignMiddle {
-  tbody td {
+  & > tbody > tr > td {
     vertical-align: middle;
   }
 }
 
 .vuiTable--verticalAlignBottom {
-  tbody td {
+  & > tbody > tr > td {
     vertical-align: bottom;
   }
 }
