@@ -29,33 +29,37 @@ type Props = {
   label?: string;
   padding?: KvTablePadding;
   align?: KvTableAlign;
+  "data-testid"?: string;
 };
 
-export const VuiKvTable = ({ items, keyHeader, valueHeader, label, padding = "xs", align = "middle" }: Props) => {
+export const VuiKvTable = ({
+  items,
+  keyHeader,
+  valueHeader,
+  label,
+  padding = "xs",
+  align = "middle",
+  ...rest
+}: Props) => {
   const hasHeader = keyHeader !== undefined || valueHeader !== undefined;
   const classes = classNames("vuiKvTable", paddingToClassMap[padding], alignToClassMap[align]);
   const normalizedItems = normalizeItems(items);
 
   return (
-    <table className={classes} aria-label={label}>
+    <dl className={classes} aria-label={label} {...rest}>
       {hasHeader && (
-        <thead>
-          <tr>
-            {keyHeader !== undefined && <th>{keyHeader}</th>}
-            {valueHeader !== undefined && <th>{valueHeader}</th>}
-          </tr>
-        </thead>
+        <div className="vuiKvTableRow vuiKvTableRow--header">
+          <dt className="vuiKvTableCell--key">{keyHeader}</dt>
+          <dd className="vuiKvTableCell--value">{valueHeader}</dd>
+        </div>
       )}
-      <tbody>
-        {normalizedItems.map((item, i) => (
-          <tr key={i}>
-            <th scope="row" className="vuiKvTableCell--key">
-              {item.key}
-            </th>
-            <td className="vuiKvTableCell--value">{item.value}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+
+      {normalizedItems.map((item, i) => (
+        <div key={i} className="vuiKvTableRow">
+          <dt className="vuiKvTableCell--key">{item.key}</dt>
+          <dd className="vuiKvTableCell--value">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 };

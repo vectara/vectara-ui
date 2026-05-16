@@ -1,85 +1,82 @@
 .vuiKvTable {
+  display: table;
   width: 100%;
   table-layout: auto;
   border: 1px solid var(--vui-color-border-light);
+  border-collapse: collapse;
+}
 
-  thead {
-    background-color: var(--vui-color-light-shade);
-    border-bottom: 1px solid var(--vui-color-border-light);
-  }
+.vuiKvTableRow {
+  display: table-row;
+}
 
-  thead th {
-    font-size: $fontSizeSmall;
-    font-weight: $fontWeightBold;
-    padding: $sizeXs $sizeS;
-    text-align: left;
-  }
-
-  tbody tr {
-    border-bottom: 1px solid var(--vui-color-border-light);
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
-  td {
-    font-size: $fontSizeStandard;
-  }
+.vuiKvTableRow--header {
+  background-color: var(--vui-color-light-shade);
 }
 
 // Key cell: row header, subdued color, natural (non-wrapping) width.
 .vuiKvTableCell--key {
+  display: table-cell;
   color: var(--vui-color-subdued-shade);
   white-space: nowrap;
   font-weight: $fontWeightNormal;
   font-size: $fontSizeStandard;
   text-align: left;
+  border-bottom: 1px solid var(--vui-color-border-light);
 }
 
 // Value cell: consumes all remaining width in auto-layout table.
 .vuiKvTableCell--value {
+  display: table-cell;
   width: 100%;
+  font-size: $fontSizeStandard;
+  border-bottom: 1px solid var(--vui-color-border-light);
 }
 
-.vuiKvTable--paddingXxs {
-  td,
-  .vuiKvTableCell--key {
-    padding: $sizeXxs $sizeS;
-  }
+.vuiKvTableRow:last-child .vuiKvTableCell--key,
+.vuiKvTableRow:last-child .vuiKvTableCell--value {
+  border-bottom: none;
 }
 
-.vuiKvTable--paddingXs {
-  td,
-  .vuiKvTableCell--key {
-    padding: $sizeXs $sizeS;
-  }
+.vuiKvTable--paddingXxs .vuiKvTableCell--key,
+.vuiKvTable--paddingXxs .vuiKvTableCell--value {
+  padding: $sizeXxs $sizeS;
 }
 
-.vuiKvTable--paddingS {
-  td,
-  .vuiKvTableCell--key {
-    padding: $sizeS $sizeS;
-  }
+.vuiKvTable--paddingXs .vuiKvTableCell--key,
+.vuiKvTable--paddingXs .vuiKvTableCell--value {
+  padding: $sizeXs $sizeS;
 }
 
-.vuiKvTable--alignTop {
-  td,
-  .vuiKvTableCell--key {
-    vertical-align: top;
-  }
+.vuiKvTable--paddingS .vuiKvTableCell--key,
+.vuiKvTable--paddingS .vuiKvTableCell--value {
+  padding: $sizeS $sizeS;
 }
 
-.vuiKvTable--alignMiddle {
-  td,
-  .vuiKvTableCell--key {
-    vertical-align: middle;
-  }
+.vuiKvTable--alignTop .vuiKvTableCell--key,
+.vuiKvTable--alignTop .vuiKvTableCell--value {
+  vertical-align: top;
 }
 
-.vuiKvTable--alignBottom {
-  td,
-  .vuiKvTableCell--key {
-    vertical-align: bottom;
-  }
+.vuiKvTable--alignMiddle .vuiKvTableCell--key,
+.vuiKvTable--alignMiddle .vuiKvTableCell--value {
+  vertical-align: middle;
+}
+
+.vuiKvTable--alignBottom .vuiKvTableCell--key,
+.vuiKvTable--alignBottom .vuiKvTableCell--value {
+  vertical-align: bottom;
+}
+
+// Header row overrides: match the original thead th appearance regardless of
+// the table's padding variant.
+.vuiKvTableRow--header .vuiKvTableCell--key,
+.vuiKvTableRow--header .vuiKvTableCell--value {
+  color: inherit;
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightBold;
+  padding: $sizeXs $sizeS;
+  text-align: left;
+  vertical-align: middle;
+  white-space: normal;
 }

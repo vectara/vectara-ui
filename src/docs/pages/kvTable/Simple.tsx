@@ -3,6 +3,7 @@ import { VuiKvTable } from "../../../lib";
 export const Simple = () => {
   return (
     <VuiKvTable
+      data-testid="simpleKvTable"
       label="Span details"
       items={{
         span_id: "b7ad6b7169203331",
