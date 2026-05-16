@@ -442,7 +442,7 @@ export const Table = () => {
         isResponsive={isResponsive}
         collapsedContent={
           hasExpandableRows
-            ? (person: Person) => (
+            ? () => (
                 <VuiTable
                   isResponsive={false}
                   idField="color"
