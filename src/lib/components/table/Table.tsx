@@ -18,6 +18,7 @@ import { VuiButtonSecondary } from "../button/ButtonSecondary";
 import { VuiIconButton } from "../button/IconButton";
 import { Column, OnSort, Row } from "./types";
 import { VuiIcon } from "../icon/Icon";
+import { testIdify } from "../../utils";
 
 const verticalAlignToClass = {
   top: "vuiTable--verticalAlignTop",
@@ -284,7 +285,7 @@ export const VuiTable = <T extends Row>({
                         color="neutral"
                         aria-label={isExpanded ? "Collapse row" : "Expand row"}
                         onClick={toggleExpand}
-                        data-testid={`expandToggle-${rowId}`}
+                        data-testid={`expandToggle-${testIdify(rowId)}`}
                       />
                     </VuiFlexItem>
                   )}
