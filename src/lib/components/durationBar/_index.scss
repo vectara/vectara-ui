@@ -31,6 +31,12 @@ $color: (
   ),
   neutral: (
     "background-color": var(--vui-color-dark-shade)
+  ),
+  subdued: (
+    "background-color": var(--vui-color-subdued-shade)
+  ),
+  medium: (
+    "background-color": var(--vui-color-medium-shade)
   )
 );
 
