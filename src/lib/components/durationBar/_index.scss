@@ -2,11 +2,14 @@
 
 .vuiDurationBar {
   position: relative;
+  // Set height here to ensure the component's height
+  // affects the surrounding layout.
+  height: $sizeXs;
 }
 
 .vuiDurationBar__bar {
   position: absolute;
-  height: $sizeXs;
+  height: 100%;
 }
 
 // Color
