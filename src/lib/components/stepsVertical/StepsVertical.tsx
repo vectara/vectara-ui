@@ -1,7 +1,7 @@
 import { BiError } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
-import { VuiSideList } from "../sideList/VuiSideList";
-import { VuiSideListButton } from "../sideList/VuiSideListButton";
+import { VuiMenuList } from "../menuList/VuiMenuList";
+import { VuiMenuListButton } from "../menuList/VuiMenuListButton";
 
 export type { StepVerticalStatus } from "./types";
 export type StepsVertical = {
@@ -22,11 +22,11 @@ type Props = {
 
 export const VuiStepsVertical = ({ steps, className, "data-testid": dataTestId, ...rest }: Props) => {
   return (
-    <VuiSideList className={className} data-testid={dataTestId} {...rest}>
+    <VuiMenuList className={className} data-testid={dataTestId} {...rest}>
       {steps.map((step) => {
         const { id, title, isActive, hasErrors, icon, onSelect } = step;
         return (
-          <VuiSideListButton
+          <VuiMenuListButton
             key={id}
             isActive={isActive}
             onClick={() => onSelect()}
@@ -41,9 +41,9 @@ export const VuiStepsVertical = ({ steps, className, "data-testid": dataTestId, 
             }
           >
             {title}
-          </VuiSideListButton>
+          </VuiMenuListButton>
         );
       })}
-    </VuiSideList>
+    </VuiMenuList>
   );
 };

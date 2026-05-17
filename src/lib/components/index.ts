@@ -69,6 +69,8 @@ import { LinkProps } from "./link/types";
 import { VuiList } from "./list/List";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem, MenuItem } from "./menu/MenuItem";
+import { VuiMenuList } from "./menuList/VuiMenuList";
+import { VuiMenuListButton } from "./menuList/VuiMenuListButton";
 import { VuiModal } from "./modal/Modal";
 import { addNotification } from "./notification/Notification";
 import { VuiNotifications } from "./notification/Notifications";
@@ -238,6 +240,8 @@ export {
   VuiList,
   VuiMenu,
   VuiMenuItem,
+  VuiMenuList,
+  VuiMenuListButton,
   VuiModal,
   VuiNotifications,
   VuiNumberInput,
