@@ -1,41 +1,52 @@
 import { useState } from "react";
 import { VuiStepsVertical, StepsVertical } from "../../../lib";
+import { BiChat, BiChip, BiCog, BiInfoCircle, BiWrench } from "react-icons/bi";
 
 export const VerticalSteps = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const steps: StepsVertical = [
     {
+      id: "general",
+      icon: <BiInfoCircle />,
       title: "General",
-      status: "danger",
+      hasErrors: true,
       isActive: currentStep === 0,
-      onClick: () => setCurrentStep(0)
+      onSelect: () => setCurrentStep(0)
     },
     {
+      id: "model",
+      icon: <BiChip />,
       title: "Model",
-      status: "complete",
       isActive: currentStep === 1,
-      onClick: () => setCurrentStep(1)
+      onSelect: () => setCurrentStep(1)
     },
     {
+      id: "abilities",
+      icon: <BiWrench />,
       title: "Abilities",
-      status: "incomplete",
       isActive: currentStep === 2,
-      onClick: () => setCurrentStep(2)
+      onSelect: () => setCurrentStep(2)
     },
     {
+      id: "instructions",
+      icon: <BiChat />,
       title: "Instructions",
-      status: "incomplete",
       isActive: currentStep === 3,
-      onClick: () => setCurrentStep(3)
+      onSelect: () => setCurrentStep(3)
     },
     {
+      id: "advanced",
+      icon: <BiCog />,
       title: "Advanced",
-      status: "warning",
       isActive: currentStep === 4,
-      onClick: () => setCurrentStep(4)
+      onSelect: () => setCurrentStep(4)
     }
   ];
 
-  return <VuiStepsVertical steps={steps} />;
+  return (
+    <div style={{ maxWidth: "300px" }}>
+      <VuiStepsVertical steps={steps} />
+    </div>
+  );
 };

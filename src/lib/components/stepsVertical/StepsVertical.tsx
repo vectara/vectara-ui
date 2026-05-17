@@ -1,9 +1,18 @@
-import classNames from "classnames";
-import { Props as StepVerticalProps, VuiStepVertical } from "./StepVertical";
-import { BiCheck, BiError, BiSolidHand } from "react-icons/bi";
+import { BiError } from "react-icons/bi";
+import { VuiIcon } from "../icon/Icon";
+import { VuiSideList } from "../sideList/VuiSideList";
+import { VuiSideListButton } from "../sideList/VuiSideListButton";
 
 export type { StepVerticalStatus } from "./types";
-export type StepsVertical = Omit<StepVerticalProps, "index" | "icon">[];
+export type StepsVertical = {
+  id: string;
+  title: string;
+  isActive?: boolean;
+  hasErrors?: boolean;
+  icon: React.ReactNode;
+  onSelect: () => void;
+  "data-testid"?: string;
+}[];
 
 type Props = {
   steps: StepsVertical;
@@ -12,38 +21,29 @@ type Props = {
 };
 
 export const VuiStepsVertical = ({ steps, className, "data-testid": dataTestId, ...rest }: Props) => {
-  const classes = classNames("vuiStepsVertical", className);
-
   return (
-    <div className={classes} data-testid={dataTestId} {...rest}>
-      {steps.map((step, index) => {
-        const icon =
-          step.status === "complete" ? (
-            <BiCheck />
-          ) : step.status === "danger" ? (
-            <BiError />
-          ) : step.status === "warning" ? (
-            <BiSolidHand />
-          ) : null;
-
-        const stepContainerClasses = classNames("vuiStepVerticalContainer", {
-          "vuiStepVerticalContainer-isActive": step.isActive
-        });
-
+    <VuiSideList className={className} data-testid={dataTestId} {...rest}>
+      {steps.map((step) => {
+        const { id, title, isActive, hasErrors, icon, onSelect } = step;
         return (
-          <div className={stepContainerClasses} key={index}>
-            <VuiStepVertical
-              title={step.title}
-              status={step.status}
-              isActive={step.isActive}
-              onClick={step.onClick}
-              data-testid={step["data-testid"] ?? `${dataTestId}-step-${index}`}
-              index={index + 1}
-              icon={icon}
-            />
-          </div>
+          <VuiSideListButton
+            key={id}
+            isActive={isActive}
+            onClick={() => onSelect()}
+            data-testid={step["data-testid"] ?? `${dataTestId}-step-${id}`}
+            icon={icon}
+            append={
+              hasErrors && (
+                <VuiIcon size="s" color="danger" data-testid={`studioAgentSectionError-${id}`}>
+                  <BiError />
+                </VuiIcon>
+              )
+            }
+          >
+            {title}
+          </VuiSideListButton>
         );
       })}
-    </div>
+    </VuiSideList>
   );
 };

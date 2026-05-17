@@ -88,6 +88,8 @@ import { SearchSuggestion } from "./searchInput/types";
 import { SearchResult, VuiSearchResult } from "./searchResult/SearchResult";
 import { VuiSearchSelect } from "./searchSelect/SearchSelect";
 import { VuiSetting } from "./setting/Setting";
+import { VuiSideList } from "./sideList/VuiSideList";
+import { VuiSideListButton } from "./sideList/VuiSideListButton";
 import { VuiSpacer } from "./spacer/Spacer";
 import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
@@ -256,6 +258,8 @@ export {
   VuiSearchSelect,
   VuiSelect,
   VuiSetting,
+  VuiSideList,
+  VuiSideListButton,
   VuiSimpleCard,
   VuiSimpleGrid,
   VuiSpacer,
