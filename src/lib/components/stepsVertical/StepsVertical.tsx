@@ -25,16 +25,17 @@ export const VuiStepsVertical = ({ steps, className, "data-testid": dataTestId, 
     <VuiMenuList className={className} data-testid={dataTestId} {...rest}>
       {steps.map((step) => {
         const { id, title, isActive, hasErrors, icon, onSelect } = step;
+        const stepTestId = step["data-testid"] ?? `${dataTestId}-step-${id}`;
         return (
           <VuiMenuListButton
             key={id}
             isActive={isActive}
             onClick={() => onSelect()}
-            data-testid={step["data-testid"] ?? `${dataTestId}-step-${id}`}
+            data-testid={stepTestId}
             icon={icon}
             append={
               hasErrors && (
-                <VuiIcon size="s" color="danger" data-testid={`studioAgentSectionError-${id}`}>
+                <VuiIcon size="s" color="danger" data-testid={`${stepTestId}-error`}>
                   <BiError />
                 </VuiIcon>
               )
