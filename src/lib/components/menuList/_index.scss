@@ -1,0 +1,53 @@
+// TODO: Migrate to using VUI vars.
+
+.vuiMenuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vuiMenuListButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #4b5563;
+  font: inherit;
+  font-size: 13px;
+  // Ensure button height doesn't shift when icons are added and removed.
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+
+  &:disabled {
+    color: #9ca3af;
+    cursor: not-allowed;
+    background-color: transparent;
+  }
+}
+
+.vuiMenuListButton-isActive {
+  background-color: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+
+  &:hover {
+    background-color: rgba(37, 99, 235, 0.12);
+    color: #1d4ed8;
+  }
+}
+
+.vuiMenuListButton__label {
+  flex: 1 1 auto;
+}

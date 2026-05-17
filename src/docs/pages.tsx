@@ -48,7 +48,7 @@ import { searchResult } from "./pages/searchResult";
 import { searchSelect } from "./pages/searchSelect";
 import { select } from "./pages/select";
 import { setting } from "./pages/setting";
-import { sideList } from "./pages/sideList";
+import { menuList } from "./pages/menuList";
 import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
 import { stat } from "./pages/stat";
@@ -99,7 +99,7 @@ export const categories: Category[] = [
   },
   {
     name: "Navigation",
-    pages: [tabs, sideList, stepsVertical, steps]
+    pages: [tabs, stepsVertical, steps]
   },
   {
     name: "Content",
@@ -148,6 +148,7 @@ export const categories: Category[] = [
       copyButton,
       link,
       topicButton,
+      menuList,
       menu,
       optionsButton,
       optionsList,
