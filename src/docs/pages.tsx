@@ -48,6 +48,7 @@ import { searchResult } from "./pages/searchResult";
 import { searchSelect } from "./pages/searchSelect";
 import { select } from "./pages/select";
 import { setting } from "./pages/setting";
+import { sideList } from "./pages/sideList";
 import { spacer } from "./pages/spacer";
 import { spinner } from "./pages/spinner";
 import { stat } from "./pages/stat";
@@ -94,25 +95,30 @@ export const categories: Category[] = [
   },
   {
     name: "Layout",
-    pages: [
-      tabs,
-      timeline,
-      accordion,
-      stepsVertical,
-      steps,
-      popover,
-      infoMenu,
-      flex,
-      grid,
-      spacer,
-      card,
-      panel,
-      horizontalRule
-    ]
+    pages: [timeline, accordion, popover, infoMenu, flex, grid, spacer, card, panel, horizontalRule]
+  },
+  {
+    name: "Navigation",
+    pages: [tabs, sideList, stepsVertical, steps]
   },
   {
     name: "Content",
-    pages: [badge, status, callout, code, durationBar, icon, image, inProgress, progressBar, spinner, skeleton, stat, text, tooltip]
+    pages: [
+      badge,
+      status,
+      callout,
+      code,
+      durationBar,
+      icon,
+      image,
+      inProgress,
+      progressBar,
+      spinner,
+      skeleton,
+      stat,
+      text,
+      tooltip
+    ]
   },
   {
     name: "Form",
