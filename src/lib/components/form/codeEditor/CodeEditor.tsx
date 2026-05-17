@@ -1,7 +1,14 @@
 import Editor from "@monaco-editor/react";
 import * as monacoTypes from "monaco-editor/esm/vs/editor/editor.api";
-import { useRef } from "react";
+import { useEffect, useId, useRef } from "react";
+import { VuiText } from "../../typography/Text";
+import { VuiTextColor } from "../../typography/TextColor";
 import { generateTokensProvider } from "./generateTokensProvider";
+import { VuiSpacer } from "../../spacer/Spacer";
+
+const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad|iPod/i.test(navigator.userAgent);
+// Mac vs Linux/Windows
+const SUGGEST_SHORTCUT_LABEL = isMac ? "⌃ Space" : "Ctrl + Space";
 
 export type CodeEditorColorConfig = {
   token: string;
@@ -32,6 +39,13 @@ interface Props {
   isReadOnly?: boolean;
   height?: string;
   resizable?: boolean;
+  /**
+   * Provides autocomplete suggestions. The provider is invoked on trigger characters and on Ctrl+Space,
+   * and additionally as the user types when `quickSuggestions` is enabled.
+   */
+  completionItemProvider?: monacoTypes.languages.CompletionItemProvider;
+  /** When true, suggestions appear as the user types. Defaults to false to match the previous behavior. */
+  quickSuggestions?: boolean;
   "data-testid"?: string;
 }
 
@@ -42,7 +56,7 @@ type Monaco = typeof monacoTypes;
  * As the need arises, this component can accept props to customize the internal Monaco editor options.
  */
 export const VuiCodeEditor = ({
-  language,
+  language: languageProp,
   TokensProvider,
   onChange,
   placeholder,
@@ -56,11 +70,22 @@ export const VuiCodeEditor = ({
   isReadOnly,
   height = "300px",
   resizable = false,
+  completionItemProvider,
+  quickSuggestions = false,
   "data-testid": testId
 }: Props) => {
+  const instanceId = useId().replace(/:/g, "");
+  const language = `${languageProp}-${instanceId}`;
   const tokensProvider = TokensProvider ? new TokensProvider() : null;
   const monacoRef = useRef<Monaco | null>(null);
   const modelRef = useRef<monacoTypes.editor.ITextModel | null>(null);
+  const completionProviderRef = useRef<monacoTypes.languages.CompletionItemProvider | undefined>(
+    completionItemProvider
+  );
+
+  useEffect(() => {
+    completionProviderRef.current = completionItemProvider;
+  }, [completionItemProvider]);
 
   if (modelRef.current && monacoRef.current) {
     if (error) {
@@ -87,6 +112,16 @@ export const VuiCodeEditor = ({
 
     if (tokensProvider) {
       monaco.languages.setTokensProvider(language, tokensProvider);
+    }
+
+    if (completionProviderRef.current) {
+      monaco.languages.registerCompletionItemProvider(language, {
+        triggerCharacters: completionProviderRef.current.triggerCharacters,
+        provideCompletionItems: (model, position, context, token) =>
+          completionProviderRef.current?.provideCompletionItems(model, position, context, token) ?? { suggestions: [] },
+        resolveCompletionItem: (item, token) =>
+          completionProviderRef.current?.resolveCompletionItem?.(item, token) ?? item
+      });
     }
 
     monaco.editor.defineTheme("vectaraEditor", {
@@ -117,66 +152,82 @@ export const VuiCodeEditor = ({
     placeholder && (!value || value.trim() === "") && (!defaultValue || defaultValue.trim() === "");
 
   return (
-    <div
-      className="vuiCodeEditor"
-      data-testid={testId}
-      style={resizable ? { minHeight: height, height, resize: "vertical", overflow: "auto" } : undefined}
-    >
-      {shouldShowPlaceholder && (
-        <div className="vuiCodeEditor-placeholder" aria-hidden="true">
-          {placeholder}
-        </div>
-      )}
-      <Editor
-        beforeMount={init}
-        height={resizable ? "100%" : height}
-        width="100%"
-        defaultLanguage={language}
-        defaultValue={defaultValue}
-        value={value}
-        onChange={onChange}
-        onValidate={(markers: Array<monacoTypes.editor.IMarkerData>) => {
-          const errors = markers.reduce((acc: Array<CodeEditorError>, marker: monacoTypes.editor.IMarkerData) => {
-            if (marker.severity === monacoTypes.MarkerSeverity.Error) {
-              acc.push({
-                startLine: marker.startLineNumber,
-                endLine: marker.endLineNumber,
-                startColumn: marker.startColumn,
-                endColumn: marker.endColumn,
-                message: marker.message
-              });
+    <>
+      <div
+        className="vuiCodeEditor"
+        data-testid={testId}
+        style={resizable ? { minHeight: height, height, resize: "vertical", overflow: "auto" } : undefined}
+      >
+        {shouldShowPlaceholder && (
+          <div className="vuiCodeEditor-placeholder" aria-hidden="true">
+            {placeholder}
+          </div>
+        )}
+        <Editor
+          beforeMount={init}
+          height={resizable ? "100%" : height}
+          width="100%"
+          defaultLanguage={language}
+          defaultValue={defaultValue}
+          value={value}
+          onChange={onChange}
+          onValidate={(markers: Array<monacoTypes.editor.IMarkerData>) => {
+            const errors = markers.reduce((acc: Array<CodeEditorError>, marker: monacoTypes.editor.IMarkerData) => {
+              if (marker.severity === monacoTypes.MarkerSeverity.Error) {
+                acc.push({
+                  startLine: marker.startLineNumber,
+                  endLine: marker.endLineNumber,
+                  startColumn: marker.startColumn,
+                  endColumn: marker.endColumn,
+                  message: marker.message
+                });
+              }
+
+              return acc;
+            }, []);
+
+            if (errors.length) {
+              onError(errors);
             }
+          }}
+          theme="vectaraEditor"
+          options={{
+            readOnly: isReadOnly,
+            fontSize: 12,
+            automaticLayout: true,
+            renderLineHighlight: "none",
+            lineNumbers: "off",
+            glyphMargin: false,
+            folding: false,
+            lineDecorationsWidth: 2,
+            fixedOverflowWidgets: true,
+            quickSuggestions: {
+              comments: false,
+              strings: false,
+              other: quickSuggestions
+            },
+            suggestOnTriggerCharacters: true,
+            minimap: {
+              enabled: false
+            },
+            wordWrap: "on"
+          }}
+        />
+      </div>
 
-            return acc;
-          }, []);
+      {completionItemProvider && (
+        <>
+          <VuiSpacer size="xs" />
 
-          if (errors.length) {
-            onError(errors);
-          }
-        }}
-        theme="vectaraEditor"
-        options={{
-          readOnly: isReadOnly,
-          fontSize: 12,
-          automaticLayout: true,
-          renderLineHighlight: "none",
-          lineNumbers: "off",
-          glyphMargin: false,
-          folding: false,
-          lineDecorationsWidth: 2,
-          fixedOverflowWidgets: true,
-          quickSuggestions: {
-            comments: false,
-            strings: false,
-            other: false
-          },
-          suggestOnTriggerCharacters: true,
-          minimap: {
-            enabled: false
-          },
-          wordWrap: "on"
-        }}
-      />
-    </div>
+          <VuiText size="xs">
+            <p>
+              <VuiTextColor color="subdued">
+                <kbd>{SUGGEST_SHORTCUT_LABEL}</kbd> shows suggestions.
+              </VuiTextColor>
+            </p>
+          </VuiText>
+        </>
+      )}
+    </>
   );
 };

@@ -70,6 +70,15 @@ $textRhythm: $sizeM;
     background-color: transparent;
   }
 
+  kbd {
+    background-color: var(--vui-color-light-shade);
+    border: 1px solid var(--vui-color-border-medium);
+    border-radius: $sizeXxs;
+    padding: 0 $sizeXxs;
+    font-family: var(--vui-font-family-monospace);
+    font-size: 0.9em;
+  }
+
   // Inline styles when nested in text-like elements.
   strong,
   b,
