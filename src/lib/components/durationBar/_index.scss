@@ -2,11 +2,14 @@
 
 .vuiDurationBar {
   position: relative;
+  // Set height here to ensure the component's height
+  // affects the surrounding layout.
+  height: $sizeXs;
 }
 
 .vuiDurationBar__bar {
   position: absolute;
-  height: $sizeXs;
+  height: 100%;
 }
 
 // Color
@@ -28,6 +31,12 @@ $color: (
   ),
   neutral: (
     "background-color": var(--vui-color-dark-shade)
+  ),
+  subdued: (
+    "background-color": var(--vui-color-subdued-shade)
+  ),
+  medium: (
+    "background-color": var(--vui-color-medium-shade)
   )
 );
 

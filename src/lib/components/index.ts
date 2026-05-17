@@ -27,7 +27,7 @@ import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDatePicker } from "./datePicker/DatePicker";
 import { VuiDateRangePicker } from "./datePicker/DateRangePicker";
 import { VuiDrawer } from "./drawer/Drawer";
-import { VuiDurationBar } from "./durationBar/DurationBar";
+import { DURATION_BAR_COLOR, VuiDurationBar } from "./durationBar/DurationBar";
 import { VuiErrorBoundary } from "./errorBoundary/ErrorBoundary";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
@@ -168,6 +168,7 @@ export {
   BUTTON_SIZE,
   CALLOUT_COLOR,
   CALLOUT_SIZE,
+  DURATION_BAR_COLOR,
   ICON_COLOR,
   ICON_SIZE,
   ICON_TYPE,

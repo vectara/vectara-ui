@@ -1,5 +1,15 @@
 import classNames from "classnames";
-import { PROGRESS_BAR_COLOR } from "../progressBar/ProgressBar";
+
+export const DURATION_BAR_COLOR = [
+  "accent",
+  "primary",
+  "danger",
+  "warning",
+  "success",
+  "neutral",
+  "subdued",
+  "medium"
+] as const;
 
 const DEFAULT_MIN_BAR_WIDTH_PX = 4;
 
@@ -9,7 +19,7 @@ type Props = {
   // The bar's start and end positions within the window.
   start: number;
   end: number;
-  color: (typeof PROGRESS_BAR_COLOR)[number];
+  color: (typeof DURATION_BAR_COLOR)[number];
   minBarWidthPx?: number;
   className?: string;
 };
