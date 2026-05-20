@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { BasicInputProps, VuiBasicInput } from "./BasicInput";
 
 type Props = Omit<BasicInputProps, "onChange"> & {
@@ -7,58 +7,69 @@ type Props = Omit<BasicInputProps, "onChange"> & {
   max?: number;
   min?: number;
   step?: number;
-  // By default, an empty input calls onChange with 0. When true, an empty
-  // input calls onChange with undefined instead, letting consumers distinguish
-  // "no value" from "zero."
+  // When true, an empty input emits undefined instead of 0 so consumers
+  // can distinguish "no value" from "zero."
   allowUndefined?: boolean;
 };
 
 export const VuiNumberInput = forwardRef<HTMLInputElement | null, Props>(
   ({ value, onChange, max, min, step, allowUndefined, ...rest }: Props, ref) => {
+    // localValue (rather than binding to `value` directly) sidesteps a
+    // Firefox quirk: `<input type="number">` reports "" mid-decimal when the
+    // the user types "1,0", which would round-trip through the parent and
+    // erase the user's input.
     const [localValue, setLocalValue] = useState<number | undefined>(value);
 
-    // This is a hacky solution to the number input misbehaving on Firefox.
-    // If we were to apply the value and onChange values directly to the
-    // value and onChange props of the input, then a user who:
-    //  1. Selects all
-    //  2. Types 1.0
-    // will have the input show "0" as soon as they enter a decimal point.
-    // When that character is entered, onChange is called with undefined.
-    // This value gets stored in the value state, which resets the value to 0.
-    // For some reason, using a useState hook to store the value doesn't have
-    // this problem.
+    // Last value exchanged with the parent. The resync effect ignores echoes
+    // of our own emits — without it, a stale prop ("6" arriving after the
+    // user has already typed "65") would clobber the in-flight edit.
+    const lastSyncedRef = useRef<number | undefined>(value);
+
     useEffect(() => {
-      // Reflect the upstream value when it changes. Ignore 0 because that
-      // indicates the user has entered a decimal point (Firefox workaround).
-      // When allowUndefined is on, also ignore undefined — otherwise the
-      // parent reflecting undefined back would clear the input mid-typing.
-      const isUndefined = !(allowUndefined && value === undefined);
-      if (value !== 0 && isUndefined) {
+      if (value !== lastSyncedRef.current) {
+        lastSyncedRef.current = value;
         setLocalValue(value);
       }
     }, [value]);
 
-    // Propagate localValue changes upstream. Without allowUndefined, an
-    // undefined localValue (empty input) is coerced to 0 so existing
-    // consumers always receive a number. With allowUndefined, undefined
-    // passes through so consumers can treat empty as "no value."
-    useEffect(() => {
-      onChange(allowUndefined ? localValue : localValue ?? 0);
-    }, [localValue]);
+    const emit = (next: number | undefined) => {
+      const outgoing = allowUndefined ? next : next ?? 0;
+      lastSyncedRef.current = outgoing;
+      onChange(outgoing);
+    };
 
     const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-      // Enable resetting the value to undefined.
-      if (e.target.value === "") return setLocalValue(undefined);
+      if (e.target.value === "") {
+        setLocalValue(undefined);
+        emit(undefined);
+        return;
+      }
 
       const numberValue = Number(e.target.value);
-      if (isNaN(numberValue)) return setLocalValue(undefined);
+      if (isNaN(numberValue)) {
+        setLocalValue(undefined);
+        emit(undefined);
+        return;
+      }
 
-      setLocalValue(Number(e.target.value));
+      setLocalValue(numberValue);
+      emit(numberValue);
     };
 
     const onBlur = () => {
-      if (min !== undefined && value !== undefined && value < min) onChange(min);
-      if (max !== undefined && value !== undefined && value > max) onChange(max);
+      // Clamp against the effective emitted value so empty + !allowUndefined
+      // (which emits 0) still clamps to min.
+      const current = allowUndefined ? localValue : localValue ?? 0;
+      if (current === undefined) return;
+      if (min !== undefined && current < min) {
+        // Clamp min.
+        setLocalValue(min);
+        emit(min);
+      } else if (max !== undefined && current > max) {
+        // Clamp max.
+        setLocalValue(max);
+        emit(max);
+      }
     };
 
     const props = {
