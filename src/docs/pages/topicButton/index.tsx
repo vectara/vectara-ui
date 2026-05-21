@@ -1,10 +1,12 @@
 import { Link } from "./Link";
 import { Color } from "./Color";
-import { Badges } from "./Badges";
+import { CompactRow } from "./CompactRow";
+import { CompactGrid } from "./CompactGrid";
 
 const LinkSource = require("!!raw-loader!./Link");
 const ColorSource = require("!!raw-loader!./Color");
-const BadgesSource = require("!!raw-loader!./Badges");
+const CompactRowSource = require("!!raw-loader!./CompactRow");
+const CompactGridSource = require("!!raw-loader!./CompactGrid");
 
 export const topicButton = {
   name: "Topic Button",
@@ -21,9 +23,14 @@ export const topicButton = {
       source: ColorSource.default.toString()
     },
     {
-      name: "Badges",
-      component: <Badges />,
-      source: BadgesSource.default.toString()
+      name: "Compact row",
+      component: <CompactRow />,
+      source: CompactRowSource.default.toString()
+    },
+    {
+      name: "Compact grid",
+      component: <CompactGrid />,
+      source: CompactGridSource.default.toString()
     }
   ]
 };
