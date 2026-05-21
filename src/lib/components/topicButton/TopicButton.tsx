@@ -138,7 +138,7 @@ export const VuiTopicButton = ({
           {title && (
             <>
               <VuiFlexContainer alignItems="center" spacing="s">
-                {icon && icon}
+                {icon} 
                 <VuiFlexItem grow={false} shrink={false}>
                   {titleNode}
                 </VuiFlexItem>
