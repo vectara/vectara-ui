@@ -5,9 +5,17 @@ import { VuiTitle } from "../typography/Title";
 import { useVuiContext } from "../context/Context";
 import { LinkProps } from "../link/types";
 import { getTrackingProps } from "../../utils/getTrackingProps";
+import { VuiBadge, BADGE_COLOR } from "../badge/Badge";
+import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiFlexItem } from "../flex/FlexItem";
 
 export const TOPIC_BUTTON_COLOR = ["primary", "accent"] as const;
 export type TopicButtonColor = (typeof TOPIC_BUTTON_COLOR)[number];
+
+type TopicButtonBadge = {
+  label: string;
+  color: (typeof BADGE_COLOR)[number];
+};
 
 type Props = {
   children?: React.ReactNode;
@@ -19,6 +27,7 @@ type Props = {
   title?: string;
   fullWidth?: boolean;
   color?: TopicButtonColor;
+  badges?: TopicButtonBadge[];
 };
 
 export const VuiTopicButton = ({
@@ -29,6 +38,7 @@ export const VuiTopicButton = ({
   title,
   fullWidth,
   color = "primary",
+  badges,
   target,
   track,
   ...rest
@@ -43,11 +53,23 @@ export const VuiTopicButton = ({
     <>
       {title && (
         <>
-          <VuiTitle size="s">
-            <p>
-              <VuiTextColor color={color}>{title}</VuiTextColor>
-            </p>
-          </VuiTitle>
+          <VuiFlexContainer alignItems="center" spacing="xs">
+            <VuiFlexItem grow={false} shrink={false}>
+              <VuiTitle size="s">
+                <p>
+                  <VuiTextColor color={color}>{title}</VuiTextColor>
+                </p>
+              </VuiTitle>
+            </VuiFlexItem>
+
+            {badges?.map((badge, index) => (
+              <VuiFlexItem key={index} grow={false} shrink={false}>
+                <VuiBadge color={badge.color} size="s">
+                  {badge.label}
+                </VuiBadge>
+              </VuiFlexItem>
+            ))}
+          </VuiFlexContainer>
 
           {children && <VuiSpacer size="xxs" />}
         </>
