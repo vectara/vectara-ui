@@ -11,11 +11,34 @@
 
   &:hover {
     text-decoration: none;
-    box-shadow: $shadowLargeEnd, var(--vui-color-primary-shade) 0 0 1px 1px;
     z-index: 1;
   }
 }
 
 .vuiTopicButton--fullWidth {
   width: 100%;
+}
+
+.vuiTopicButton--primary:hover {
+  box-shadow: $shadowLargeEnd, var(--vui-color-primary-shade) 0 0 1px 1px;
+}
+
+.vuiTopicButton--accent:hover {
+  box-shadow: $shadowLargeEnd, var(--vui-color-accent-shade) 0 0 1px 1px;
+}
+
+.vuiTopicButton--compactRow {
+  padding: $sizeS $sizeM;
+}
+
+.vuiTopicButton--compactGrid {
+  padding: $sizeM;
+}
+
+// A subtle vertical rule separating the title from the description in the compact row.
+.vuiTopicButton__divider {
+  display: block;
+  width: 1px;
+  height: $sizeM;
+  background-color: var(--vui-color-light-shade);
 }
