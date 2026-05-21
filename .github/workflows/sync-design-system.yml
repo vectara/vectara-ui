@@ -1,0 +1,108 @@
+name: sync-design-system
+
+# When a version bump lands on main, review component/style changes since the
+# last sync and open a follow-up PR refreshing DESIGN_SYSTEM.md.
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-version-change:
+    name: check-version-change
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Same version-detection convention as publish-on-version-change.yml.
+      - name: Check version changes
+        uses: EndBug/version-check@v2
+        with:
+          diff-search: true
+        id: check
+
+  sync-design-system:
+    name: sync-design-system
+    runs-on: ubuntu-latest
+    needs: [check-version-change]
+    if: needs.check-version-change.outputs.changed == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Full history so we can diff against the last-synced commit.
+          fetch-depth: 0
+
+      - name: Detect component changes since last sync
+        id: scope
+        run: |
+          last_synced=$(grep -oiE 'design-system-sync:[[:space:]]*[0-9a-f]{7,40}' DESIGN_SYSTEM.md \
+            | grep -oE '[0-9a-f]{7,40}' | head -n1)
+          if [ -z "$last_synced" ]; then
+            echo "::warning::No design-system-sync marker in DESIGN_SYSTEM.md — skipping."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Last synced at: $last_synced"
+          changed=$(git diff --name-only "$last_synced" HEAD -- \
+            src/lib/components src/lib/sassUtils src/lib/styles)
+          if [ -z "$changed" ]; then
+            echo "No component/style changes since $last_synced — nothing to sync."
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changed files:"; echo "$changed"
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node
+        if: steps.scope.outputs.has_changes == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Claude Code
+        if: steps.scope.outputs.has_changes == 'true'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Update DESIGN_SYSTEM.md with Claude
+        if: steps.scope.outputs.has_changes == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # Headless run. acceptEdits auto-applies file edits; the Bash allowlist
+          # lets Claude inspect git history. If a run still stalls on a prompt,
+          # swap to --dangerously-skip-permissions (safe — the runner is ephemeral).
+          claude -p "$(cat .github/prompts/sync-design-system.md)" \
+            --model claude-sonnet-4-6 \
+            --permission-mode acceptEdits \
+            --allowedTools "Read,Edit,Bash(git diff:*),Bash(git log:*),Bash(git show:*),Bash(git rev-parse:*),Bash(grep:*)"
+
+      - name: Open follow-up PR
+        if: steps.scope.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: main
+          branch: design-system/sync-v${{ needs.check-version-change.outputs.version }}
+          delete-branch: true
+          commit-message: "docs: sync DESIGN_SYSTEM.md for v${{ needs.check-version-change.outputs.version }}"
+          title: "docs: sync design system reference for v${{ needs.check-version-change.outputs.version }}"
+          labels: documentation
+          body: |
+            Automated by `.github/workflows/sync-design-system.yml`.
+
+            `v${{ needs.check-version-change.outputs.version }}` landed on `main`, so Claude reviewed
+            component and token changes since the last `design-system-sync` marker and refreshed
+            `DESIGN_SYSTEM.md`.
+
+            **Review before merging** — this is a generated edit. Confirm each changed entry matches
+            the actual code, and that nothing doc-worthy was missed or invented. If Claude found
+            nothing doc-worthy, this PR only advances the sync marker.

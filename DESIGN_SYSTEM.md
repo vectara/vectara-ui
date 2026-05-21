@@ -1,8 +1,16 @@
 # Vectara UI Design System Reference
 
-A reference document for generating pixel-perfect, high-fidelity designs that match VUI's React component library. All values reflect the codebase as of branch `main` (commit 919d72e).
+A reference document for generating pixel-perfect, high-fidelity designs that match VUI's React component library. All values reflect the codebase as of branch `main` (commit a4bb648).
 
 The library exports under `@vectara/vectara-ui` and all components are prefixed `Vui`. CSS class names follow the same convention (e.g. `.vuiButtonPrimary`, `.vuiBadge--accent`).
+
+> **Last synced:** 2026-05-21 · `main` @ `a4bb648` (v18.2.0) · last change reviewed: [PR #423 — Extend Topic Button](https://github.com/vectara/vectara-ui/pull/423).
+
+<!--
+  design-system-sync: a4bb648
+  Machine marker read by .github/workflows/sync-design-system.yml.
+  Keep the commit in sync with the "Last synced" stamp above.
+-->
 
 ---
 
@@ -275,9 +283,17 @@ Split button: a `VuiButtonPrimary`/`Secondary` action button + a caret-down trig
 #### VuiTopicButton
 
 Card-like CTA used for recommended topics / examples.
-- `padding: 16px 24px`, `border-radius: 8px`, `text-align: left`, background `--vui-color-empty-shade`.
-- Default shadow `$shadowLargeStart`; hover adds 1px primary outline + `$shadowLargeEnd`.
-- Composes `VuiTitle` (primary color) + body.
+- `border-radius: 8px`, `text-align: left`, background `--vui-color-empty-shade`.
+- Default shadow `$shadowLargeStart`; hover keeps `$shadowLargeEnd` and adds a 1px outline tinted to the `color` prop.
+- `color: primary` *(default)* `| accent` — tints both the title text and the 1px hover outline.
+- `icon` accepts any leading node (typically a `VuiIcon`); `badges` is an array of `{ label, color }` rendered as `VuiBadge size="s"`.
+- `buttonStyle` selects one of three layouts:
+
+| `buttonStyle` | Padding | Layout |
+|---|---|---|
+| *(unset — default)* | `16px 24px` | Title (`VuiTitle s`, 18px) with icon + badges on the title row; body stacked below. |
+| `compactRow` | `12px 16px` | Single row: icon, title (`VuiTitle xs`, 14px), a 1px vertical divider (`--vui-color-light-shade`, 16px tall), then the description; badges pushed to the right edge. |
+| `compactGrid` | `16px` | Square icon tile beside a single-line title (`VuiTitle xs`); body stacked under the title. |
 
 #### VuiAccountButton
 
