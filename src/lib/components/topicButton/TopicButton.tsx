@@ -6,6 +6,9 @@ import { useVuiContext } from "../context/Context";
 import { LinkProps } from "../link/types";
 import { getTrackingProps } from "../../utils/getTrackingProps";
 
+export const TOPIC_BUTTON_COLOR = ["primary", "accent"] as const;
+export type TopicButtonColor = (typeof TOPIC_BUTTON_COLOR)[number];
+
 type Props = {
   children?: React.ReactNode;
   className?: string;
@@ -15,6 +18,7 @@ type Props = {
   onClick?: () => void;
   title?: string;
   fullWidth?: boolean;
+  color?: TopicButtonColor;
 };
 
 export const VuiTopicButton = ({
@@ -24,13 +28,14 @@ export const VuiTopicButton = ({
   onClick,
   title,
   fullWidth,
+  color = "primary",
   target,
   track,
   ...rest
 }: Props) => {
   const { createLink } = useVuiContext();
 
-  const classes = classNames("vuiTopicButton", className, {
+  const classes = classNames("vuiTopicButton", `vuiTopicButton--${color}`, className, {
     "vuiTopicButton--fullWidth": fullWidth
   });
 
@@ -40,7 +45,7 @@ export const VuiTopicButton = ({
         <>
           <VuiTitle size="s">
             <p>
-              <VuiTextColor color="primary">{title}</VuiTextColor>
+              <VuiTextColor color={color}>{title}</VuiTextColor>
             </p>
           </VuiTitle>
 
