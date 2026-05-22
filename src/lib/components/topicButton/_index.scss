@@ -19,6 +19,11 @@
   width: 100%;
 }
 
+.vuiTopicButton--isDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .vuiTopicButton--primary:hover {
   box-shadow: $shadowLargeEnd, var(--vui-color-primary-shade) 0 0 1px 1px;
 }

@@ -33,6 +33,7 @@ type Props = {
   buttonStyle?: TopicButtonStyle;
   badges?: TopicButtonBadge[];
   icon?: React.ReactNode;
+  isDisabled?: boolean;
 };
 
 export const VuiTopicButton = ({
@@ -46,6 +47,7 @@ export const VuiTopicButton = ({
   buttonStyle,
   badges,
   icon,
+  isDisabled,
   target,
   track,
   ...rest
@@ -54,7 +56,8 @@ export const VuiTopicButton = ({
 
   const classes = classNames("vuiTopicButton", `vuiTopicButton--${color}`, className, {
     [`vuiTopicButton--${buttonStyle}`]: buttonStyle,
-    "vuiTopicButton--fullWidth": fullWidth
+    "vuiTopicButton--fullWidth": fullWidth,
+    "vuiTopicButton--isDisabled": isDisabled
   });
 
   const titleNode = title && (
@@ -156,7 +159,8 @@ export const VuiTopicButton = ({
     );
   }
 
-  if (href) {
+  // Anchor tags can't be disabled, so we render a disabled button instead.
+  if (href && !isDisabled) {
     return createLink({
       className: classes,
       href,
@@ -169,7 +173,7 @@ export const VuiTopicButton = ({
   }
 
   return (
-    <button className={classes} onClick={onClick} type="button" {...rest}>
+    <button className={classes} onClick={onClick} type="button" disabled={isDisabled} {...rest}>
       {content}
     </button>
   );
