@@ -226,6 +226,9 @@ export const VuiPopover = ({
       <VuiPortal>
         {(isOpen || isContentVisible || showTransition) && position && (
           <FocusOn
+            // Disable the focus guard as soon as the popover begins closing
+            // so it doesn't intercept clicks while transitioning out.
+            enabled={isOpen}
             onEscapeKey={onCloseDelayed}
             onClickOutside={onCloseDelayed}
             // Enable manual focus return to work.
