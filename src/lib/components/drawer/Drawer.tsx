@@ -90,6 +90,9 @@ export const VuiDrawer = ({
       {(isOpen || isContentVisible || showTransition) && (
         <VuiScreenBlock isHidden={!isOpen}>
           <FocusOn
+            // Disable the focus guard as soon as the drawer begins closing
+            // so it doesn't intercept clicks while transitioning out.
+            enabled={isOpen}
             onEscapeKey={onCloseDelayed}
             onClickOutside={handleClickOutside}
             // Enable manual focus return to work.
