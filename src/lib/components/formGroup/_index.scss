@@ -1,0 +1,25 @@
+.vuiInlineFormGroup {
+  select,
+  input,
+  textarea {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+}
+
+.vuiInlineFormGroup__label {
+  border-top-left-radius: $sizeXxs;
+  border-bottom-left-radius: $sizeXxs;
+  background-color: var(--vui-color-light-shade);
+  padding: 0 $sizeS;
+  border: 1px solid var(--vui-color-medium-shade);
+}
+
+.vuiInlineFormGroup-hasError {
+  .vuiInlineFormGroup__label {
+    border-top-color: var(--vui-color-danger-shade);
+    border-left-color: var(--vui-color-danger-shade);
+    border-bottom-color: var(--vui-color-danger-shade);
+  }
+}
