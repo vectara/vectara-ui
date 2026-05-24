@@ -96,6 +96,9 @@ export const VuiModal = ({
       {(isOpen || isContentVisible || showTransition) && (
         <VuiScreenBlock key={key} type="modal" isHidden={!isOpen}>
           <FocusOn
+            // Disable the focus guard as soon as the modal begins closing
+            // so it doesn't intercept clicks while transitioning out.
+            enabled={isOpen}
             onEscapeKey={onCloseDelayed}
             onClickOutside={canClickOutsideToClose ? handleClickOutside : undefined}
             // Enable manual focus return to work.

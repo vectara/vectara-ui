@@ -16,6 +16,7 @@ $drawerWidth: 680px;
   z-index: $drawerZIndex;
   right: -$drawerWidth;
   transition: right $transitionSpeed cubic-bezier(0, 1, 0, 1);
+  pointer-events: none;
 
   @media screen and (max-width: ($drawerWidth + $sizeM)) {
     max-width: calc(100% - $sizeM);
@@ -24,6 +25,7 @@ $drawerWidth: 680px;
 
 .vuiDrawer-isLoaded {
   right: 0;
+  pointer-events: auto;
 }
 
 .vuiDrawerHeader {

@@ -28,9 +28,13 @@
   background-color: var(--vui-color-empty-shade);
   border-radius: $sizeXxs;
   z-index: $modalZIndex;
-  pointer-events: all;
+  pointer-events: none;
   box-shadow: rgba(57, 57, 75, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   transition: height $transitionSpeed, max-width $transitionSpeed, max-height $transitionSpeed;
+}
+
+.vuiModalContainer-isLoaded .vuiModal {
+  pointer-events: all;
 }
 
 $size: (
