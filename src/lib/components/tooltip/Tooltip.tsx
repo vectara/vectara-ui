@@ -2,6 +2,8 @@ import { useState, cloneElement } from "react";
 import { Tooltip, TooltipRefProps } from "react-tooltip";
 import { useVuiContext } from "../context/Context";
 import { VuiPortal } from "../portal/Portal";
+import { VuiText } from "../typography/Text";
+import { VuiTextColor } from "../typography/TextColor";
 
 export type Props = {
   children: React.ReactNode;
@@ -9,6 +11,7 @@ export type Props = {
   darkTheme?: boolean;
   position?: TooltipRefProps["place"];
   usePortal?: boolean;
+  id?: string;
 };
 
 const generateTooltipId = () => {
@@ -40,23 +43,34 @@ const needsTabIndex = (element: React.ReactNode): boolean => {
   return true;
 };
 
-export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal }: Props) => {
+export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal, ...rest }: Props) => {
   const { getThemeStyle } = useVuiContext();
-  const [id] = useState(generateTooltipId());
+  const [tooltipId] = useState(generateTooltipId());
 
   const target = cloneElement(children as React.ReactElement, {
-    "data-tooltip-id": id,
+    "data-tooltip-id": tooltipId,
     // Make non-focusable elements keyboard accessible.
-    ...(needsTabIndex(children) && { tabIndex: 0 })
+    ...(needsTabIndex(children) && { tabIndex: 0 }),
+    ...rest
   });
 
   // Tooltips can be used in a dark-themed component, so we need to explicitly set
   // the light theme class in order to enable having a different theme than the
   // parent.
   const style = getThemeStyle(darkTheme ? "dark" : "light");
+  const content =
+    typeof tip === "string" ? (
+      <VuiText size="xs">
+        <p>
+          <VuiTextColor color="empty">{tip}</VuiTextColor>
+        </p>
+      </VuiText>
+    ) : (
+      tip
+    );
   const tooltip = (
-    <Tooltip id={id} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
-      {tip}
+    <Tooltip id={tooltipId} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
+      {content}
     </Tooltip>
   );
 

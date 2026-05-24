@@ -1,5 +1,4 @@
 import { cloneElement } from "react";
-import { VuiLabel } from "../form/label/Label";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
@@ -8,7 +7,8 @@ import { VuiTextInput } from "../form/input/TextInput";
 import { VuiNumberInput } from "../form/input/NumberInput";
 import { VuiTextArea } from "../form/textArea/TextArea";
 import { VuiSelect } from "../form/select/Select";
-import { VuiFlexContainer } from "../flex/FlexContainer";
+import { VuiInlineFormGroup } from "./InlineFormGroup";
+import { VuiBlockFormGroup } from "./BlockFormGroup";
 
 const VALIDATION_ALLOWLIST = [VuiTextInput, VuiNumberInput, VuiTextArea, VuiSelect] as const;
 
@@ -21,6 +21,7 @@ type Props = {
   helpText?: React.ReactNode;
   errors?: string[];
   isRequired?: boolean;
+  inline?: boolean;
 };
 
 export const VuiFormGroup = ({
@@ -31,7 +32,8 @@ export const VuiFormGroup = ({
   labelSize = "s",
   labelRightContent,
   errors,
-  isRequired
+  isRequired,
+  inline
 }: Props) => {
   const ariaProps: Record<string, string> = {
     "aria-describedby": ""
@@ -51,7 +53,7 @@ export const VuiFormGroup = ({
 
         <VuiText size="xs" key={error} id={id}>
           <p>
-            <VuiTextColor color="danger">{error}</VuiTextColor>
+            <VuiTextColor color={inline ? "empty" : "danger"}>{error}</VuiTextColor>
           </p>
         </VuiText>
       </div>
@@ -84,47 +86,21 @@ export const VuiFormGroup = ({
 
   const content = cloneElement(children, cloneProps);
 
-  return (
-    <div>
-      {(label || labelRightContent) && (
-        <>
-          <VuiFlexContainer justifyContent="spaceBetween" alignItems="center" spacing="s">
-            {label ? (
-              <VuiLabel labelFor={labelFor} size={labelSize}>
-                {label}
-                {isRequired && " (required)"}
-              </VuiLabel>
-            ) : (
-              <span />
-            )}
+  const props = {
+    label,
+    labelRightContent,
+    labelFor,
+    labelSize,
+    isRequired,
+    helpText,
+    ariaDescribedByLabel,
+    errorMessages,
+    content
+  };
 
-            {labelRightContent}
-          </VuiFlexContainer>
+  if (inline) {
+    return <VuiInlineFormGroup {...props} />;
+  }
 
-          <VuiSpacer size={labelSize === "s" ? "xs" : "xxs"} />
-        </>
-      )}
-
-      {helpText && (
-        <>
-          <VuiText size="xs" id={ariaDescribedByLabel}>
-            <p>
-              <VuiTextColor color="subdued">{helpText}</VuiTextColor>
-            </p>
-          </VuiText>
-
-          <VuiSpacer size="xs" />
-        </>
-      )}
-
-      {errorMessages && (
-        <>
-          {errorMessages}
-          <VuiSpacer size="xs" />
-        </>
-      )}
-
-      {content}
-    </div>
-  );
+  return <VuiBlockFormGroup {...props} />;
 };
