@@ -19,6 +19,7 @@ import { VuiCard, VuiSimpleCard } from "./card";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
+import { VuiChip } from "./chip/Chip";
 import { VuiCode } from "./code/Code";
 import { CodeLanguage } from "./code/types";
 import { VuiComplexConfigurationButton } from "./complexConfigurationButton/ComplexConfigurationButton";
@@ -207,6 +208,7 @@ export {
   VuiCard,
   VuiChat,
   VuiCheckbox,
+  VuiChip,
   VuiCode,
   VuiCodeEditor,
   VuiComplexConfigurationButton,

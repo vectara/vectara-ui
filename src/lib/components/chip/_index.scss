@@ -1,0 +1,47 @@
+.vuiChip {
+  display: inline-flex;
+  align-items: center;
+  gap: $sizeXs;
+  border: 1px solid var(--vui-color-border-light);
+  background-color: var(--vui-color-light-shade);
+  padding: $sizeXxs $sizeS;
+  border-radius: $sizeM;
+  transition: all $transitionSpeed;
+  box-shadow: $shadowSmallStart;
+
+  &:hover {
+    box-shadow: $shadowSmallEnd;
+    border-color: var(--vui-color-medium-shade);
+  }
+}
+
+.vuiChip__label {
+  font-weight: $fontWeightStrong;
+  font-size: $fontSizeStandard;
+  color: var(--vui-color-text);
+  line-height: 1.2;
+}
+
+.vuiChip__append {
+  color: var(--vui-color-subdued-shade);
+  padding: $sizeXxs $sizeXs;
+  font-size: $fontSizeSmall;
+  border-radius: $sizeS;
+}
+
+.vuiChip-isActive {
+  border: 1px solid var(--vui-color-primary-shade);
+  background-color: var(--vui-color-empty-shade);
+
+  &:hover {
+    border: 1px solid var(--vui-color-primary-shade);
+  }
+
+  .vuiChip__label,
+  .vuiChip__append {
+    color: var(--vui-color-primary-shade);
+  }
+  .vuiChip__append {
+    background-color: var(--vui-color-primary-lighter-shade);
+  }
+}
