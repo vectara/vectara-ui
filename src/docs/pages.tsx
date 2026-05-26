@@ -8,6 +8,7 @@ import { callout } from "./pages/callout";
 import { card } from "./pages/card";
 import { chat } from "./pages/chat";
 import { checkbox } from "./pages/checkbox";
+import { chip } from "./pages/chip";
 import { code } from "./pages/code";
 import { codeEditor } from "./pages/codeEditor";
 import { complexConfigurationButton } from "./pages/complexConfigurationButton";
@@ -99,7 +100,7 @@ export const categories: Category[] = [
   },
   {
     name: "Navigation",
-    pages: [tabs, stepsVertical, steps]
+    pages: [tabs, stepsVertical, steps, chip]
   },
   {
     name: "Content",
