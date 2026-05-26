@@ -19,7 +19,9 @@
   font-weight: $fontWeightStrong;
   font-size: $fontSizeStandard;
   color: var(--vui-color-text);
-  line-height: 1.2;
+  // Ensures consistent chip height regardless of whether
+  // append is present or not.
+  line-height: 1.6;
 }
 
 .vuiChip__append {
