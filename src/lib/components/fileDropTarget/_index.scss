@@ -1,0 +1,34 @@
+.vuiFileDropTarget__messageContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vuiFileDropTarget__message {
+  padding: $sizeL;
+  max-width: 400px;
+  width: 100%;
+  pointer-events: none;
+
+  p,
+  span {
+    color: var(--vui-color-empty-shade) !important;
+  }
+}
+
+// Scoped mode: portal-mounted overlay covering only the parent element (which
+// must be non-statically positioned).
+.vuiFileDropTarget__scopedOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--vui-color-primary-shade-rgb), 0.6);
+  z-index: 10;
+}
