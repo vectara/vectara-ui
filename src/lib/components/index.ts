@@ -22,6 +22,13 @@ import { VuiChat } from "./chat/Chat";
 import { VuiChip } from "./chip/Chip";
 import { VuiCode } from "./code/Code";
 import { CodeLanguage } from "./code/types";
+import {
+  VuiComposer,
+  ComposerFileError,
+  ComposerShortcutApi,
+  ComposerShortcutHandler,
+  ComposerSubmission
+} from "./composer/Composer";
 import { VuiComplexConfigurationButton } from "./complexConfigurationButton/ComplexConfigurationButton";
 import { VuiContextProvider } from "./context/Context";
 import { VuiCopyButton } from "./copyButton/CopyButton";
@@ -30,6 +37,7 @@ import { VuiDateRangePicker } from "./datePicker/DateRangePicker";
 import { VuiDrawer } from "./drawer/Drawer";
 import { DURATION_BAR_COLOR, VuiDurationBar } from "./durationBar/DurationBar";
 import { VuiErrorBoundary } from "./errorBoundary/ErrorBoundary";
+import { VuiFileDropTarget } from "./fileDropTarget/FileDropTarget";
 import { VuiFlexContainer } from "./flex/FlexContainer";
 import { VuiFlexItem } from "./flex/FlexItem";
 import {
@@ -136,6 +144,10 @@ export type {
   CodeEditorColorConfig,
   CodeEditorError,
   CodeLanguage,
+  ComposerFileError,
+  ComposerShortcutApi,
+  ComposerShortcutHandler,
+  ComposerSubmission,
   InfoListItemType,
   InfoListType,
   InfoTableColumnAlign,
@@ -211,6 +223,7 @@ export {
   VuiChip,
   VuiCode,
   VuiCodeEditor,
+  VuiComposer,
   VuiComplexConfigurationButton,
   VuiContextProvider,
   VuiCopyButton,
@@ -219,6 +232,7 @@ export {
   VuiDrawer,
   VuiDurationBar,
   VuiErrorBoundary,
+  VuiFileDropTarget,
   VuiFlexContainer,
   VuiFlexItem,
   VuiFormGroup,

@@ -12,11 +12,13 @@ import { chip } from "./pages/chip";
 import { code } from "./pages/code";
 import { codeEditor } from "./pages/codeEditor";
 import { complexConfigurationButton } from "./pages/complexConfigurationButton";
+import { composer } from "./pages/composer";
 import { copyButton } from "./pages/copyButton";
 import { datePicker } from "./pages/datePicker";
 import { drawer } from "./pages/drawer";
 import { durationBar } from "./pages/durationBar";
 import { errorBoundary } from "./pages/errorBoundary";
+import { fileDropTarget } from "./pages/fileDropTarget";
 import { flex } from "./pages/flex";
 import { formGroup } from "./pages/formGroup";
 import { grid } from "./pages/grid";
@@ -84,7 +86,7 @@ type Example = { component: React.ReactNode; source: string };
 export const categories: Category[] = [
   {
     name: "Query",
-    pages: [chat, prompt, searchInput, searchResult, summary]
+    pages: [chat, composer, prompt, searchInput, searchResult, summary]
   },
   {
     name: "Application",
@@ -138,7 +140,8 @@ export const categories: Category[] = [
       radioButton,
       superCheckboxGroup,
       superRadioGroup,
-      itemsInput
+      itemsInput,
+      fileDropTarget
     ]
   },
   {
