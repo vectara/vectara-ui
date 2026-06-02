@@ -11,6 +11,7 @@ import { checkbox } from "./pages/checkbox";
 import { chip } from "./pages/chip";
 import { code } from "./pages/code";
 import { codeEditor } from "./pages/codeEditor";
+import { colorPalette } from "./pages/colorPalette";
 import { complexConfigurationButton } from "./pages/complexConfigurationButton";
 import { composer } from "./pages/composer";
 import { copyButton } from "./pages/copyButton";
@@ -90,7 +91,7 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, drawer, modal, portalContainer, notifications, accountButton, theme]
+    pages: [app, drawer, modal, portalContainer, notifications, accountButton, theme, colorPalette]
   },
   {
     name: "Info",

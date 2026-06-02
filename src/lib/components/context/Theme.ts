@@ -72,6 +72,34 @@ export type Theme = {
   colorBorderMediumRgb?: string;
   colorBorderLight?: string;
   colorBorderLightRgb?: string;
+
+  // Categorical colors
+  // Interchangeable hue pairs for color-coding categories, e.g. a patch's background and icon.
+  // Each pair is named after its hue rather than a meaning, since the hue is arbitrary.
+  colorIndigoBackground?: string;
+  colorIndigoText?: string;
+  colorEmeraldBackground?: string;
+  colorEmeraldText?: string;
+  colorAmberBackground?: string;
+  colorAmberText?: string;
+  colorPinkBackground?: string;
+  colorPinkText?: string;
+  colorSkyBackground?: string;
+  colorSkyText?: string;
+  colorOrangeBackground?: string;
+  colorOrangeText?: string;
+  colorSlateBackground?: string;
+  colorSlateText?: string;
+  colorTealBackground?: string;
+  colorTealText?: string;
+  colorLimeBackground?: string;
+  colorLimeText?: string;
+  colorPurpleBackground?: string;
+  colorPurpleText?: string;
+  colorFuchsiaBackground?: string;
+  colorFuchsiaText?: string;
+  colorRedBackground?: string;
+  colorRedText?: string;
 };
 
 const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -129,6 +157,33 @@ const colorFullShade = "#0b0c0e";
 
 // Border colors
 const colorBorderLightShade = "#e3e4f3";
+
+// Categorical colors
+// Each hue pairs a tinted background with a saturated foreground for text and icons.
+const colorIndigoBackground = "#eef2ff";
+const colorIndigoText = "#4f46e5";
+const colorEmeraldBackground = "#ecfdf5";
+const colorEmeraldText = "#059669";
+const colorAmberBackground = "#fef3c7";
+const colorAmberText = "#b45309";
+const colorPinkBackground = "#fce7f3";
+const colorPinkText = "#be185d";
+const colorSkyBackground = "#e0f2fe";
+const colorSkyText = "#0369a1";
+const colorOrangeBackground = "#ffedd5";
+const colorOrangeText = "#c2410c";
+const colorSlateBackground = "#f1f5f9";
+const colorSlateText = "#475569";
+const colorTealBackground = "#ccfbf1";
+const colorTealText = "#0f766e";
+const colorLimeBackground = "#ecfccb";
+const colorLimeText = "#4d7c0f";
+const colorPurpleBackground = "#f3e8ff";
+const colorPurpleText = "#7e22ce";
+const colorFuchsiaBackground = "#fae8ff";
+const colorFuchsiaText = "#a21caf";
+const colorRedBackground = "#fee2e2";
+const colorRedText = "#b91c1c";
 
 export const LIGHT_THEME: Theme = {
   // Font
@@ -201,7 +256,33 @@ export const LIGHT_THEME: Theme = {
   colorBorderMedium: colorMediumShade,
   colorBorderMediumRgb: toRgb(colorMediumShade),
   colorBorderLight: colorBorderLightShade,
-  colorBorderLightRgb: toRgb(colorBorderLightShade)
+  colorBorderLightRgb: toRgb(colorBorderLightShade),
+
+  // Categorical colors
+  colorIndigoBackground,
+  colorIndigoText,
+  colorEmeraldBackground,
+  colorEmeraldText,
+  colorAmberBackground,
+  colorAmberText,
+  colorPinkBackground,
+  colorPinkText,
+  colorSkyBackground,
+  colorSkyText,
+  colorOrangeBackground,
+  colorOrangeText,
+  colorSlateBackground,
+  colorSlateText,
+  colorTealBackground,
+  colorTealText,
+  colorLimeBackground,
+  colorLimeText,
+  colorPurpleBackground,
+  colorPurpleText,
+  colorFuchsiaBackground,
+  colorFuchsiaText,
+  colorRedBackground,
+  colorRedText
 };
 
 export const DARK_THEME: Theme = {
@@ -305,7 +386,33 @@ export const toStyle = (theme: Theme) => {
     "--vui-color-border-medium": theme.colorBorderMedium,
     "--vui-color-border-medium-rgb": theme.colorBorderMediumRgb,
     "--vui-color-border-light": theme.colorBorderLight,
-    "--vui-color-border-light-rgb": theme.colorBorderLightRgb
+    "--vui-color-border-light-rgb": theme.colorBorderLightRgb,
+
+    // Categorical colors
+    "--vui-color-indigo-background": theme.colorIndigoBackground,
+    "--vui-color-indigo-text": theme.colorIndigoText,
+    "--vui-color-emerald-background": theme.colorEmeraldBackground,
+    "--vui-color-emerald-text": theme.colorEmeraldText,
+    "--vui-color-amber-background": theme.colorAmberBackground,
+    "--vui-color-amber-text": theme.colorAmberText,
+    "--vui-color-pink-background": theme.colorPinkBackground,
+    "--vui-color-pink-text": theme.colorPinkText,
+    "--vui-color-sky-background": theme.colorSkyBackground,
+    "--vui-color-sky-text": theme.colorSkyText,
+    "--vui-color-orange-background": theme.colorOrangeBackground,
+    "--vui-color-orange-text": theme.colorOrangeText,
+    "--vui-color-slate-background": theme.colorSlateBackground,
+    "--vui-color-slate-text": theme.colorSlateText,
+    "--vui-color-teal-background": theme.colorTealBackground,
+    "--vui-color-teal-text": theme.colorTealText,
+    "--vui-color-lime-background": theme.colorLimeBackground,
+    "--vui-color-lime-text": theme.colorLimeText,
+    "--vui-color-purple-background": theme.colorPurpleBackground,
+    "--vui-color-purple-text": theme.colorPurpleText,
+    "--vui-color-fuchsia-background": theme.colorFuchsiaBackground,
+    "--vui-color-fuchsia-text": theme.colorFuchsiaText,
+    "--vui-color-red-background": theme.colorRedBackground,
+    "--vui-color-red-text": theme.colorRedText
   };
 
   // Remove undefined values.
