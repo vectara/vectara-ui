@@ -9,13 +9,23 @@ type Props = {
   fullHeight?: boolean;
   href?: string;
   onClick?: (e: MouseEvent) => void;
-  padding?: "xxs" | "xs" | "s" | "m" | "l";
+  padding?: "s" | "m" | "l";
   children?: React.ReactNode;
   error?: string | ReactNode;
   warning?: string | ReactNode;
 };
 
-export const VuiSimpleCard = ({ href, className, fullHeight, padding = "s", children, onClick, error, warning, ...rest }: Props) => {
+export const VuiSimpleCard = ({
+  href,
+  className,
+  fullHeight,
+  padding = "s",
+  children,
+  onClick,
+  error,
+  warning,
+  ...rest
+}: Props) => {
   const { createLink } = useVuiContext();
 
   const classes = classNames(
