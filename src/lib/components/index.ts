@@ -89,6 +89,7 @@ import { VuiOptionsListItem } from "./optionsList/OptionsListItem";
 import { OptionListItem } from "./optionsList/types";
 import { VuiPagination, Pagination } from "./pagination/Pagination";
 import { VuiPanel } from "./panel/Panel";
+import { PATCH_COLOR, PatchColor, VuiPatch } from "./patch/VuiPatch";
 import { VuiPopover, AnchorSide } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
 import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
@@ -161,6 +162,7 @@ export type {
   MenuItem,
   OptionListItem,
   Pagination,
+  PatchColor,
   RadioButtonConfig,
   SearchResult,
   SearchSuggestion,
@@ -189,6 +191,7 @@ export {
   ICON_COLOR,
   ICON_SIZE,
   ICON_TYPE,
+  PATCH_COLOR,
   PROGRESS_BAR_COLOR,
   SPACER_SIZE,
   SPINNER_COLOR,
@@ -267,6 +270,7 @@ export {
   VuiPagination,
   VuiPanel,
   VuiPasswordInput,
+  VuiPatch,
   VuiPopover,
   VuiPortal,
   VuiProgressBar,
