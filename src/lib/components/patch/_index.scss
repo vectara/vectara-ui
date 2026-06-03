@@ -1,0 +1,30 @@
+.vuiPatch {
+  flex: 0 0 auto;
+  border-radius: $sizeXs;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$colors: "indigo", "emerald", "amber", "pink", "sky", "orange", "slate", "teal", "lime", "purple", "fuchsia", "red";
+
+@each $color in $colors {
+  .vuiPatch--#{$color} {
+    background-color: var(--vui-color-#{$color}-background);
+    color: var(--vui-color-#{$color}-text);
+  }
+}
+
+$size: (
+  xs: $sizeXs,
+  s: $sizeS,
+  m: $sizeM
+);
+
+$sizes: "xs", "s", "m";
+
+@each $sizeName, $sizeValue in $size {
+  .vuiPatch--#{$sizeName} {
+    padding: $sizeValue;
+  }
+}

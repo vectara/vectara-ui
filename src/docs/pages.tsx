@@ -43,6 +43,7 @@ import { optionsButton } from "./pages/optionsButton";
 import { optionsList } from "./pages/optionsList";
 import { pagination } from "./pages/pagination";
 import { panel } from "./pages/panel";
+import { patch } from "./pages/patch";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
@@ -109,6 +110,7 @@ export const categories: Category[] = [
     name: "Content",
     pages: [
       badge,
+      patch,
       status,
       callout,
       code,
