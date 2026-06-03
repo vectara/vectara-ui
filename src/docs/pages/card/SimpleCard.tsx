@@ -1,8 +1,11 @@
 import { useState } from "react";
 import {
+  VuiBadge,
   VuiFlexContainer,
   VuiGrid,
+  VuiHorizontalRule,
   VuiIcon,
+  VuiPatch,
   VuiSelect,
   VuiSimpleCard,
   VuiSpacer,
@@ -10,18 +13,16 @@ import {
   VuiTextColor,
   VuiTitle
 } from "../../../lib";
-import { BiPencil } from "react-icons/bi";
+import { BiData, BiPencil, BiRightArrowAlt } from "react-icons/bi";
 
 const paddingOptions = [
-  { text: "Extra extra small", value: "xxs" },
-  { text: "Extra small", value: "xs" },
   { text: "Small", value: "s" },
   { text: "Medium", value: "m" },
   { text: "Large", value: "l" }
 ];
 
 export const SimpleCard = () => {
-  const [padding, setPadding] = useState<"xxs" | "xs" | "s" | "m" | "l">("xs");
+  const [padding, setPadding] = useState<"s" | "m" | "l">("l");
 
   return (
     <>
@@ -29,7 +30,7 @@ export const SimpleCard = () => {
         id="paddingOptions"
         options={paddingOptions}
         value={padding}
-        onChange={(event) => setPadding(event.target.value as "xxs" | "xs" | "s" | "m" | "l")}
+        onChange={(event) => setPadding(event.target.value as "s" | "m" | "l")}
       />
 
       <VuiSpacer size="m" />
@@ -130,7 +131,11 @@ export const SimpleCard = () => {
           </VuiText>
         </VuiSimpleCard>
 
-        <VuiSimpleCard padding={padding} warning="Missing configuration" onClick={() => console.log("Raccoon says hi!")}>
+        <VuiSimpleCard
+          padding={padding}
+          warning="Missing configuration"
+          onClick={() => console.log("Raccoon says hi!")}
+        >
           <VuiTitle size="xs">
             <h3>Raccoon</h3>
           </VuiTitle>
@@ -144,6 +149,67 @@ export const SimpleCard = () => {
           </VuiText>
         </VuiSimpleCard>
       </VuiGrid>
+
+      <VuiSpacer size="m" />
+
+      <div style={{ maxWidth: "400px" }}>
+        <VuiSimpleCard padding={padding} onClick={() => console.log("Selected")}>
+          <VuiFlexContainer alignItems="start" justifyContent="spaceBetween">
+            <VuiPatch color="emerald" size="s">
+              <VuiIcon>
+                <BiData />
+              </VuiIcon>
+            </VuiPatch>
+
+            <VuiBadge color="primary">Sources</VuiBadge>
+          </VuiFlexContainer>
+
+          <VuiSpacer size="m" />
+
+          <VuiTitle size="s">
+            <h3>
+              <strong>Tyrannodata</strong>
+            </h3>
+          </VuiTitle>
+
+          <VuiSpacer size="xxs" />
+
+          <VuiText size="xs">
+            <p>
+              <VuiTextColor color="subdued">Terrible, horrible, no-good data</VuiTextColor>
+            </p>
+          </VuiText>
+
+          <VuiSpacer size="s" />
+
+          <VuiText size="s">
+            <p>
+              <VuiTextColor color="subdued">
+                This data has seen better days. Where once it soared, mighty and free, above the lesser data, these days
+                it spends its time scavenging for bytes.
+              </VuiTextColor>
+            </p>
+          </VuiText>
+
+          <VuiSpacer size="l" />
+
+          <VuiHorizontalRule color="subdued" />
+
+          <VuiSpacer size="l" />
+
+          <VuiFlexContainer alignItems="center" justifyContent="spaceBetween">
+            <VuiText size="s">
+              <p>
+                <VuiTextColor color="primary">Select</VuiTextColor>
+              </p>
+            </VuiText>
+
+            <VuiIcon color="primary" size="s">
+              <BiRightArrowAlt />
+            </VuiIcon>
+          </VuiFlexContainer>
+        </VuiSimpleCard>
+      </div>
     </>
   );
 };
