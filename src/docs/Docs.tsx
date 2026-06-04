@@ -17,7 +17,7 @@ import { HeaderLogo } from "./components/HeaderLogo";
 import { categories } from "./pages";
 import { Home } from "./Home";
 import { Page } from "./Page";
-import { version } from "../../package.json";
+import packageJson from "../../package.json";
 import "./index.scss";
 
 export const Docs = () => {
@@ -70,7 +70,7 @@ const DocsContent = () => {
             </VuiFlexItem>
 
             <VuiFlexItem grow={false} shrink={false}>
-              <VuiBadge color="neutral">{`v${version}`}</VuiBadge>
+              <VuiBadge color="neutral">{`v${packageJson.version}`}</VuiBadge>
             </VuiFlexItem>
 
             <VuiFlexItem grow={false} shrink={false}>
