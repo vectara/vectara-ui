@@ -17,8 +17,10 @@ import { HeaderLogo } from "./components/HeaderLogo";
 import { categories } from "./pages";
 import { Home } from "./Home";
 import { Page } from "./Page";
-import packageJson from "../../package.json";
 import "./index.scss";
+
+// Baked in at build time from package.json via the REACT_APP_VUI_VERSION env var.
+const VUI_VERSION = process.env.REACT_APP_VUI_VERSION;
 
 export const Docs = () => {
   return (
@@ -69,9 +71,11 @@ const DocsContent = () => {
               </VuiTitle>
             </VuiFlexItem>
 
-            <VuiFlexItem grow={false} shrink={false}>
-              <VuiBadge color="neutral">{`v${packageJson.version}`}</VuiBadge>
-            </VuiFlexItem>
+            {VUI_VERSION && (
+              <VuiFlexItem grow={false} shrink={false}>
+                <VuiBadge color="neutral">{`v${VUI_VERSION}`}</VuiBadge>
+              </VuiFlexItem>
+            )}
 
             <VuiFlexItem grow={false} shrink={false}>
               <VuiButtonSecondary size="s" color="neutral" href="/">
