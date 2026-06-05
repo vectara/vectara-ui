@@ -3,6 +3,7 @@ import { accordion } from "./pages/accordion";
 import { accountButton } from "./pages/accountButton";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
+import { barChart } from "./pages/barChart";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
 import { card } from "./pages/card";
@@ -161,6 +162,10 @@ export const categories: Category[] = [
       optionsList,
       searchSelect
     ]
+  },
+  {
+    name: "Data visualization",
+    pages: [barChart]
   },
   {
     name: "Utils",

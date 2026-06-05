@@ -1,0 +1,8 @@
+.vuiBarChart {
+  width: 100%;
+
+  // Soften Recharts' default legend spacing to match the design system rhythm.
+  .recharts-legend-item {
+    margin-right: $sizeM !important;
+  }
+}
