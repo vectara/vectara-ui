@@ -97,6 +97,10 @@ export const VuiBarChart = ({
               fill={s.color ? getChartColor(s.color) : getChartColorByIndex(index)}
               stackId={stacked ? "stack" : undefined}
               radius={isHorizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}
+              // A thin stroke separates touching segments regardless of fill,
+              // a redundant cue that aids color-blind readers.
+              stroke="var(--vui-color-empty-shade)"
+              strokeWidth={1}
             />
           ))}
         </RechartsBarChart>

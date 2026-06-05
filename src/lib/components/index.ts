@@ -17,7 +17,7 @@ import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
 import { VuiCard, VuiSimpleCard } from "./card";
 import { BarChartSeries, VuiBarChart } from "./chart/BarChart";
-import { CHART_COLOR } from "./chart/palette";
+import { CHART_PALETTE } from "./chart/palette";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
@@ -188,7 +188,7 @@ export {
   BADGE_COLOR,
   BUTTON_COLOR,
   BUTTON_SIZE,
-  CHART_COLOR,
+  CHART_PALETTE,
   CALLOUT_COLOR,
   CALLOUT_SIZE,
   DURATION_BAR_COLOR,
