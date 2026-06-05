@@ -1,4 +1,6 @@
 import {
+  Area,
+  AreaChart as RechartsAreaChart,
   CartesianGrid,
   Line,
   LineChart as RechartsLineChart,
@@ -21,12 +23,17 @@ export type LineChartSeries = {
   color?: PatchColor;
 };
 
+// "line" draws bare lines; "area" fills beneath each line with a translucent
+// wash; "stacked-area" stacks those areas so they sum rather than overlap.
+export type LineChartVariant = "line" | "area" | "stacked-area";
+
 type Props = {
   // The rows to plot. Each row holds the category value plus one value per series.
   data: Array<Record<string, string | number>>;
   // Key into each datum that holds the category label for the x-axis.
   categoryKey: string;
   series: LineChartSeries[];
+  variant?: LineChartVariant;
   // Smooth the lines between points rather than drawing straight segments.
   curved?: boolean;
   // Draw a dot at each data point.
@@ -42,6 +49,7 @@ export const VuiLineChart = ({
   data,
   categoryKey,
   series,
+  variant = "line",
   curved = false,
   showPoints = true,
   height = 320,
@@ -50,33 +58,62 @@ export const VuiLineChart = ({
   showTooltip = true,
   ...rest
 }: Props) => {
+  const isArea = variant === "area" || variant === "stacked-area";
+  const isStacked = variant === "stacked-area";
+
+  const axes = (
+    <>
+      {showGrid && <CartesianGrid stroke="var(--vui-color-border-light)" vertical={false} />}
+      <XAxis dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
+      <YAxis tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
+      {showTooltip && <Tooltip cursor={{ stroke: "var(--vui-color-border-medium)" }} {...chartTooltipProps} />}
+      {showLegend && <Legend {...chartLegendProps} />}
+    </>
+  );
+
+  // Shared marker props keep lines and areas visually identical apart from the fill.
+  const markProps = (s: LineChartSeries, index: number) => {
+    const color = s.color ? getChartColor(s.color) : getChartColorByIndex(index);
+    return {
+      key: s.dataKey,
+      type: curved ? ("monotone" as const) : ("linear" as const),
+      dataKey: s.dataKey,
+      name: s.name ?? s.dataKey,
+      stroke: color,
+      strokeWidth: 2,
+      dot: showPoints ? { r: 3, strokeWidth: 0, fill: color } : false,
+      activeDot: { r: 5 }
+    };
+  };
+
   return (
     <div className="vuiLineChart" {...rest}>
       <ResponsiveContainer width="100%" height={height}>
-        <RechartsLineChart data={data}>
-          {showGrid && <CartesianGrid stroke="var(--vui-color-border-light)" vertical={false} />}
-          <XAxis dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
-          <YAxis tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
-          {showTooltip && (
-            <Tooltip cursor={{ stroke: "var(--vui-color-border-medium)" }} {...chartTooltipProps} />
-          )}
-          {showLegend && <Legend {...chartLegendProps} />}
-          {series.map((s, index) => {
-            const color = s.color ? getChartColor(s.color) : getChartColorByIndex(index);
-            return (
-              <Line
-                key={s.dataKey}
-                type={curved ? "monotone" : "linear"}
-                dataKey={s.dataKey}
-                name={s.name ?? s.dataKey}
-                stroke={color}
-                strokeWidth={2}
-                dot={showPoints ? { r: 3, strokeWidth: 0, fill: color } : false}
-                activeDot={{ r: 5 }}
-              />
-            );
-          })}
-        </RechartsLineChart>
+        {isArea ? (
+          <RechartsAreaChart data={data}>
+            {axes}
+            {series.map((s, index) => {
+              const props = markProps(s, index);
+              // Stacked areas tile rather than overlap, so they take a more solid
+              // fill; overlapping areas stay translucent to remain readable.
+              return (
+                <Area
+                  {...props}
+                  fill={props.stroke}
+                  fillOpacity={isStacked ? 0.85 : 0.2}
+                  stackId={isStacked ? "stack" : undefined}
+                />
+              );
+            })}
+          </RechartsAreaChart>
+        ) : (
+          <RechartsLineChart data={data}>
+            {axes}
+            {series.map((s, index) => (
+              <Line {...markProps(s, index)} />
+            ))}
+          </RechartsLineChart>
+        )}
       </ResponsiveContainer>
     </div>
   );
