@@ -45,6 +45,8 @@ export const VuiSparkline = ({
             stroke={fill}
             strokeWidth={1.5}
             dot={false}
+            // No axes or tooltip means a hover dot conveys nothing, so suppress it.
+            activeDot={false}
             isAnimationActive={false}
           />
         </LineChart>
