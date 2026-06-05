@@ -3,6 +3,7 @@ import { accordion } from "./pages/accordion";
 import { accountButton } from "./pages/accountButton";
 import { app } from "./pages/app";
 import { badge } from "./pages/badge";
+import { barChart } from "./pages/barChart";
 import { button } from "./pages/button";
 import { callout } from "./pages/callout";
 import { card } from "./pages/card";
@@ -11,6 +12,7 @@ import { checkbox } from "./pages/checkbox";
 import { chip } from "./pages/chip";
 import { code } from "./pages/code";
 import { codeEditor } from "./pages/codeEditor";
+import { composedChart } from "./pages/composedChart";
 import { colorPalette } from "./pages/colorPalette";
 import { complexConfigurationButton } from "./pages/complexConfigurationButton";
 import { composer } from "./pages/composer";
@@ -34,6 +36,7 @@ import { inProgress } from "./pages/inProgress";
 import { input } from "./pages/input";
 import { itemsInput } from "./pages/itemsInput";
 import { label } from "./pages/label";
+import { lineChart } from "./pages/lineChart";
 import { link } from "./pages/link";
 import { list } from "./pages/list";
 import { menu } from "./pages/menu";
@@ -44,17 +47,20 @@ import { optionsList } from "./pages/optionsList";
 import { pagination } from "./pages/pagination";
 import { panel } from "./pages/panel";
 import { patch } from "./pages/patch";
+import { pieChart } from "./pages/pieChart";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
 import { radioButton } from "./pages/radioButton";
 import { searchInput } from "./pages/searchInput";
 import { searchResult } from "./pages/searchResult";
+import { scatterChart } from "./pages/scatterChart";
 import { searchSelect } from "./pages/searchSelect";
 import { select } from "./pages/select";
 import { setting } from "./pages/setting";
 import { menuList } from "./pages/menuList";
 import { spacer } from "./pages/spacer";
+import { sparkline } from "./pages/sparkline";
 import { spinner } from "./pages/spinner";
 import { stat } from "./pages/stat";
 import { status } from "./pages/status";
@@ -73,6 +79,7 @@ import { textArea } from "./pages/textArea";
 import { theme } from "./pages/theme";
 import { portalContainer } from "./pages/portalContainer";
 import { timeline } from "./pages/timeline";
+import { treeMap } from "./pages/treeMap";
 import { toggle } from "./pages/toggle";
 import { tooltip } from "./pages/tooltip";
 import { topicButton } from "./pages/topicButton";
@@ -161,6 +168,10 @@ export const categories: Category[] = [
       optionsList,
       searchSelect
     ]
+  },
+  {
+    name: "Data visualization",
+    pages: [barChart, lineChart, pieChart, scatterChart, composedChart, treeMap, sparkline]
   },
   {
     name: "Utils",

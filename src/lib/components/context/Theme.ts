@@ -100,6 +100,21 @@ export type Theme = {
   colorFuchsiaText?: string;
   colorRedBackground?: string;
   colorRedText?: string;
+
+  // Chart colors
+  // A categorical palette tuned for plotting data series, distinct from the
+  // categorical chip hues above. Each entry differs from its neighbors in both
+  // hue and luminance, so series stay distinguishable under color vision
+  // deficiency and in grayscale. Capped at 8 — the practical limit for
+  // reliably telling categories apart by color.
+  colorChart1?: string;
+  colorChart2?: string;
+  colorChart3?: string;
+  colorChart4?: string;
+  colorChart5?: string;
+  colorChart6?: string;
+  colorChart7?: string;
+  colorChart8?: string;
 };
 
 const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -184,6 +199,20 @@ const colorFuchsiaBackground = "#fae8ff";
 const colorFuchsiaText = "#a21caf";
 const colorRedBackground = "#fee2e2";
 const colorRedText = "#b91c1c";
+
+// Chart colors
+// Grounded in the Okabe-Ito colorblind-safe palette, ordered for maximum
+// contrast between adjacent series and anchored to the brand's blue and purple.
+// The light gold and pure black of the original palette are darkened and
+// softened so they read on a light background.
+const colorChart1 = "#0072b2"; // Blue, neighbors the brand primary.
+const colorChart2 = "#e69f00"; // Orange.
+const colorChart3 = "#009e73"; // Teal-green.
+const colorChart4 = "#cc79a7"; // Mauve, echoes the brand accent.
+const colorChart5 = "#56b4e9"; // Sky.
+const colorChart6 = "#d55e00"; // Vermillion.
+const colorChart7 = "#9a8200"; // Deep gold.
+const colorChart8 = "#3f4551"; // Dark slate.
 
 export const LIGHT_THEME: Theme = {
   // Font
@@ -282,7 +311,17 @@ export const LIGHT_THEME: Theme = {
   colorFuchsiaBackground,
   colorFuchsiaText,
   colorRedBackground,
-  colorRedText
+  colorRedText,
+
+  // Chart colors
+  colorChart1,
+  colorChart2,
+  colorChart3,
+  colorChart4,
+  colorChart5,
+  colorChart6,
+  colorChart7,
+  colorChart8
 };
 
 export const DARK_THEME: Theme = {
@@ -311,7 +350,14 @@ export const DARK_THEME: Theme = {
   colorLabel: colorLightShade,
 
   // Border color
-  colorBorderLight: "#323338"
+  colorBorderLight: "#323338",
+
+  // Chart colors
+  // Lighten the dark anchors so series stay legible on a dark background; the
+  // mid-toned hues fall through to their light-theme values.
+  colorChart1: "#4aa3e0", // Blue.
+  colorChart7: "#d4b400", // Gold.
+  colorChart8: "#aab3c2" // Light slate.
 };
 
 export const toStyle = (theme: Theme) => {
@@ -412,7 +458,17 @@ export const toStyle = (theme: Theme) => {
     "--vui-color-fuchsia-background": theme.colorFuchsiaBackground,
     "--vui-color-fuchsia-text": theme.colorFuchsiaText,
     "--vui-color-red-background": theme.colorRedBackground,
-    "--vui-color-red-text": theme.colorRedText
+    "--vui-color-red-text": theme.colorRedText,
+
+    // Chart colors
+    "--vui-chart-1": theme.colorChart1,
+    "--vui-chart-2": theme.colorChart2,
+    "--vui-chart-3": theme.colorChart3,
+    "--vui-chart-4": theme.colorChart4,
+    "--vui-chart-5": theme.colorChart5,
+    "--vui-chart-6": theme.colorChart6,
+    "--vui-chart-7": theme.colorChart7,
+    "--vui-chart-8": theme.colorChart8
   };
 
   // Remove undefined values.
