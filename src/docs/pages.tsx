@@ -35,6 +35,7 @@ import { inProgress } from "./pages/inProgress";
 import { input } from "./pages/input";
 import { itemsInput } from "./pages/itemsInput";
 import { label } from "./pages/label";
+import { lineChart } from "./pages/lineChart";
 import { link } from "./pages/link";
 import { list } from "./pages/list";
 import { menu } from "./pages/menu";
@@ -45,6 +46,7 @@ import { optionsList } from "./pages/optionsList";
 import { pagination } from "./pages/pagination";
 import { panel } from "./pages/panel";
 import { patch } from "./pages/patch";
+import { pieChart } from "./pages/pieChart";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
 import { prompt } from "./pages/prompt";
@@ -165,7 +167,7 @@ export const categories: Category[] = [
   },
   {
     name: "Data visualization",
-    pages: [barChart]
+    pages: [barChart, lineChart, pieChart]
   },
   {
     name: "Utils",

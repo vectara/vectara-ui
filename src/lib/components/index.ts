@@ -17,6 +17,8 @@ import { VuiIconButton } from "./button/IconButton";
 import { VuiCallout } from "./callout/Callout";
 import { VuiCard, VuiSimpleCard } from "./card";
 import { BarChartSeries, VuiBarChart } from "./chart/BarChart";
+import { LineChartSeries, VuiLineChart } from "./chart/LineChart";
+import { VuiPieChart } from "./chart/PieChart";
 import { CHART_PALETTE } from "./chart/palette";
 import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
@@ -139,6 +141,7 @@ export type {
   AnchorSide,
   AppContentPadding,
   BarChartSeries,
+  LineChartSeries,
   ButtonColor,
   CalloutColor,
   ChatLanguage,
@@ -220,6 +223,8 @@ export {
   VuiAppSideNavGroup,
   VuiBadge,
   VuiBarChart,
+  VuiLineChart,
+  VuiPieChart,
   VuiButtonPrimary,
   VuiButtonSecondary,
   VuiButtonTertiary,

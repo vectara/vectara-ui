@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { PatchColor } from "../patch/VuiPatch";
 import { getChartColor, getChartColorByIndex } from "./palette";
+import { chartAxisLineStyle, chartLegendProps, chartTickStyle, chartTooltipProps } from "./chartTheme";
 
 export type BarChartSeries = {
   // Key into each datum that holds this series' value.
@@ -37,9 +38,6 @@ type Props = {
   "data-testid"?: string;
 };
 
-const tickStyle = { fill: "var(--vui-color-label)", fontSize: 12 };
-const axisLineStyle = { stroke: "var(--vui-color-border-medium)" };
-
 export const VuiBarChart = ({
   data,
   categoryKey,
@@ -56,16 +54,16 @@ export const VuiBarChart = ({
   const categoryAxis = (
     <>
       {isHorizontal ? (
-        <YAxis type="category" dataKey={categoryKey} tick={tickStyle} axisLine={axisLineStyle} tickLine={false} />
+        <YAxis type="category" dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
       ) : (
-        <XAxis type="category" dataKey={categoryKey} tick={tickStyle} axisLine={axisLineStyle} tickLine={false} />
+        <XAxis type="category" dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
       )}
     </>
   );
   const valueAxis = isHorizontal ? (
-    <XAxis type="number" tick={tickStyle} axisLine={axisLineStyle} tickLine={false} />
+    <XAxis type="number" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
   ) : (
-    <YAxis type="number" tick={tickStyle} axisLine={axisLineStyle} tickLine={false} />
+    <YAxis type="number" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
   );
 
   return (
@@ -77,18 +75,8 @@ export const VuiBarChart = ({
           )}
           {categoryAxis}
           {valueAxis}
-          {showTooltip && (
-            <Tooltip
-              cursor={{ fill: "var(--vui-color-light-shade)" }}
-              contentStyle={{
-                backgroundColor: "var(--vui-color-empty-shade)",
-                border: "1px solid var(--vui-color-border-light)",
-                borderRadius: 6,
-                color: "var(--vui-color-text)"
-              }}
-            />
-          )}
-          {showLegend && <Legend wrapperStyle={{ fontSize: 12, color: "var(--vui-color-label)" }} />}
+          {showTooltip && <Tooltip cursor={{ fill: "var(--vui-color-light-shade)" }} {...chartTooltipProps} />}
+          {showLegend && <Legend {...chartLegendProps} />}
           {series.map((s, index) => (
             <Bar
               key={s.dataKey}
