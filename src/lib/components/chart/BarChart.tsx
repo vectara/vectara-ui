@@ -35,6 +35,14 @@ type Props = {
   showLegend?: boolean;
   showGrid?: boolean;
   showTooltip?: boolean;
+  // Charts sharing a syncId highlight the same category when the user hovers any
+  // one of them. Omit to leave a chart unsynced.
+  syncId?: string;
+  // Align the shared cursor by axis "value" rather than by data "index". Use
+  // "value" when synced charts have differing point counts. Defaults to "index".
+  syncMethod?: "index" | "value";
+  // Formats value-axis tick labels and tooltip values, e.g. milliseconds to "1.2s".
+  formatValue?: (value: number) => string;
   "data-testid"?: string;
 };
 
@@ -48,6 +56,9 @@ export const VuiBarChart = ({
   showLegend = series.length > 1,
   showGrid = true,
   showTooltip = true,
+  syncId,
+  syncMethod,
+  formatValue,
   ...rest
 }: Props) => {
   const isHorizontal = orientation === "bars";
@@ -61,21 +72,27 @@ export const VuiBarChart = ({
     </>
   );
   const valueAxis = isHorizontal ? (
-    <XAxis type="number" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
+    <XAxis type="number" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} tickFormatter={formatValue} />
   ) : (
-    <YAxis type="number" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
+    <YAxis type="number" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} tickFormatter={formatValue} />
   );
 
   return (
     <div className="vuiBarChart" {...rest}>
       <ResponsiveContainer width="100%" height={height}>
-        <RechartsBarChart data={data} layout={isHorizontal ? "vertical" : "horizontal"}>
+        <RechartsBarChart data={data} layout={isHorizontal ? "vertical" : "horizontal"} syncId={syncId} syncMethod={syncMethod}>
           {showGrid && (
             <CartesianGrid stroke="var(--vui-color-border-light)" vertical={isHorizontal} horizontal={!isHorizontal} />
           )}
           {categoryAxis}
           {valueAxis}
-          {showTooltip && <Tooltip cursor={{ fill: "var(--vui-color-light-shade)" }} {...chartTooltipProps} />}
+          {showTooltip && (
+            <Tooltip
+              cursor={{ fill: "var(--vui-color-light-shade)" }}
+              formatter={formatValue && ((value) => (typeof value === "number" ? formatValue(value) : value))}
+              {...chartTooltipProps}
+            />
+          )}
           {showLegend && <Legend {...chartLegendProps} />}
           {series.map((s, index) => (
             <Bar
