@@ -42,6 +42,14 @@ type Props = {
   showLegend?: boolean;
   showGrid?: boolean;
   showTooltip?: boolean;
+  // Charts sharing a syncId highlight the same x position when the user hovers
+  // any one of them. Omit to leave a chart unsynced.
+  syncId?: string;
+  // Align the shared cursor by x-axis "value" rather than by data "index". Use
+  // "value" when synced charts have differing point counts. Defaults to "index".
+  syncMethod?: "index" | "value";
+  // Formats value-axis tick labels and tooltip values, e.g. milliseconds to "1.2s".
+  formatValue?: (value: number) => string;
   "data-testid"?: string;
 };
 
@@ -56,6 +64,9 @@ export const VuiLineChart = ({
   showLegend = series.length > 1,
   showGrid = true,
   showTooltip = true,
+  syncId,
+  syncMethod,
+  formatValue,
   ...rest
 }: Props) => {
   const isArea = variant === "area" || variant === "stacked-area";
@@ -65,8 +76,14 @@ export const VuiLineChart = ({
     <>
       {showGrid && <CartesianGrid stroke="var(--vui-color-border-light)" vertical={false} />}
       <XAxis dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
-      <YAxis tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
-      {showTooltip && <Tooltip cursor={{ stroke: "var(--vui-color-border-medium)" }} {...chartTooltipProps} />}
+      <YAxis tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} tickFormatter={formatValue} />
+      {showTooltip && (
+        <Tooltip
+          cursor={{ stroke: "var(--vui-color-border-medium)" }}
+          formatter={formatValue && ((value) => (typeof value === "number" ? formatValue(value) : value))}
+          {...chartTooltipProps}
+        />
+      )}
       {showLegend && <Legend {...chartLegendProps} />}
     </>
   );
@@ -90,7 +107,7 @@ export const VuiLineChart = ({
     <div className="vuiLineChart" {...rest}>
       <ResponsiveContainer width="100%" height={height}>
         {isArea ? (
-          <RechartsAreaChart data={data}>
+          <RechartsAreaChart data={data} syncId={syncId} syncMethod={syncMethod}>
             {axes}
             {series.map((s, index) => {
               const props = markProps(s, index);
@@ -107,7 +124,7 @@ export const VuiLineChart = ({
             })}
           </RechartsAreaChart>
         ) : (
-          <RechartsLineChart data={data}>
+          <RechartsLineChart data={data} syncId={syncId} syncMethod={syncMethod}>
             {axes}
             {series.map((s, index) => (
               <Line {...markProps(s, index)} />

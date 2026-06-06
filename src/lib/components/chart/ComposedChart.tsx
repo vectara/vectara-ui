@@ -39,6 +39,18 @@ type Props = {
   showLegend?: boolean;
   showGrid?: boolean;
   showTooltip?: boolean;
+  // Charts sharing a syncId highlight the same category when the user hovers any
+  // one of them. Omit to leave a chart unsynced.
+  syncId?: string;
+  // Align the shared cursor by axis "value" rather than by data "index". Use
+  // "value" when synced charts have differing point counts. Defaults to "index".
+  syncMethod?: "index" | "value";
+  // Formats tick labels for the left y-axis, e.g. milliseconds to "1.2s". Also
+  // applied to tooltip values for series measured against the left axis.
+  formatLeftValue?: (value: number) => string;
+  // Formats tick labels for the right y-axis (present when a series opts into it).
+  // Also applied to tooltip values for series measured against the right axis.
+  formatRightValue?: (value: number) => string;
   "data-testid"?: string;
 };
 
@@ -50,21 +62,45 @@ export const VuiComposedChart = ({
   showLegend = series.length > 1,
   showGrid = true,
   showTooltip = true,
+  syncId,
+  syncMethod,
+  formatLeftValue,
+  formatRightValue,
   ...rest
 }: Props) => {
   const hasRightAxis = series.some((s) => s.axis === "right");
 
+  // A composed chart can mix two axes, so the tooltip formats each value by the
+  // axis its series is measured against rather than a single shared formatter.
+  const axisByDataKey = new Map(series.map((s) => [s.dataKey, s.axis ?? "left"]));
+  const hasValueFormatter = Boolean(formatLeftValue || formatRightValue);
+
   return (
     <div className="vuiComposedChart" {...rest}>
       <ResponsiveContainer width="100%" height={height}>
-        <RechartsComposedChart data={data}>
+        <RechartsComposedChart data={data} syncId={syncId} syncMethod={syncMethod}>
           {showGrid && <CartesianGrid stroke="var(--vui-color-border-light)" vertical={false} />}
           <XAxis dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
-          <YAxis yAxisId="left" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
+          <YAxis yAxisId="left" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} tickFormatter={formatLeftValue} />
           {hasRightAxis && (
-            <YAxis yAxisId="right" orientation="right" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
+            <YAxis yAxisId="right" orientation="right" tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} tickFormatter={formatRightValue} />
           )}
-          {showTooltip && <Tooltip cursor={{ fill: "var(--vui-color-light-shade)" }} {...chartTooltipProps} />}
+          {showTooltip && (
+            <Tooltip
+              cursor={{ fill: "var(--vui-color-light-shade)" }}
+              formatter={
+                hasValueFormatter
+                  ? (value, _name, item) => {
+                      if (typeof value !== "number") return value;
+                      const format =
+                        axisByDataKey.get(String(item?.dataKey)) === "right" ? formatRightValue : formatLeftValue;
+                      return format ? format(value) : value;
+                    }
+                  : undefined
+              }
+              {...chartTooltipProps}
+            />
+          )}
           {showLegend && <Legend {...chartLegendProps} />}
           {series.map((s, index) => {
             const color = s.color ? getChartColor(s.color) : getChartColorByIndex(index);
