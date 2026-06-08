@@ -23,7 +23,7 @@
 
 .vuiSelect--s {
   select {
-    padding: $sizeXxs $sizeS;
+    padding: $sizeXxs * 1.5 $sizeS;
     font-size: $fontSizeSmall;
     padding-right: 36px;
   }
