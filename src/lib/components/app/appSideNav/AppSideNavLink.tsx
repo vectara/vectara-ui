@@ -9,10 +9,14 @@ import { forwardRef } from "react";
 type Props = Pick<TreeItem, "name" | "path" | "iconBefore" | "iconAfter" | "isSelected" | "className"> & {
   onClick?: React.MouseEventHandler<HTMLElement>;
   iconAfterAlignEnd?: boolean;
+  after?: React.ReactNode;
 };
 
 export const VuiAppSideNavLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
-  ({ path, onClick, name, iconBefore, iconAfter, isSelected, className, iconAfterAlignEnd, ...rest }: Props, ref) => {
+  (
+    { path, onClick, name, iconBefore, iconAfter, after, isSelected, className, iconAfterAlignEnd, ...rest }: Props,
+    ref
+  ) => {
     const { createLink, getPath } = useVuiContext();
 
     const classes = classNames(
@@ -36,13 +40,16 @@ export const VuiAppSideNavLink = forwardRef<HTMLAnchorElement | HTMLButtonElemen
             {name}
           </VuiFlexItem>
 
-          {iconAfter && (
+          {(iconAfter || after) && (
             <VuiFlexItem
               grow={false}
               shrink={false}
               className={iconAfterAlignEnd ? "vuiAppSideNavLink__iconAfter--alignEnd" : undefined}
             >
-              <VuiIcon size="s">{iconAfter}</VuiIcon>
+              <VuiFlexContainer alignItems="center" spacing="xxs">
+                {after}
+                {iconAfter && <VuiIcon size="s">{iconAfter}</VuiIcon>}
+              </VuiFlexContainer>
             </VuiFlexItem>
           )}
         </VuiFlexContainer>
@@ -52,7 +59,13 @@ export const VuiAppSideNavLink = forwardRef<HTMLAnchorElement | HTMLButtonElemen
 
     if (!path) {
       return (
-        <button className={classes} onClick={onClick} type="button" ref={ref as React.ForwardedRef<HTMLButtonElement>} {...rest}>
+        <button
+          className={classes}
+          onClick={onClick}
+          type="button"
+          ref={ref as React.ForwardedRef<HTMLButtonElement>}
+          {...rest}
+        >
           {content}
         </button>
       );
