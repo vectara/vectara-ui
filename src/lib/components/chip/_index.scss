@@ -4,7 +4,6 @@
   gap: $sizeXs;
   border: 1px solid var(--vui-color-border-light);
   background-color: var(--vui-color-light-shade);
-  padding: $sizeXxs $sizeS;
   border-radius: $sizeM;
   transition: all $transitionSpeed;
   box-shadow: $shadowSmallStart;
@@ -17,18 +16,43 @@
 
 .vuiChip__label {
   font-weight: $fontWeightStrong;
-  font-size: $fontSizeStandard;
   color: var(--vui-color-text);
-  // Ensures consistent chip height regardless of whether
-  // append is present or not.
-  line-height: 1.6;
 }
 
 .vuiChip__append {
   color: var(--vui-color-subdued-shade);
-  padding: $sizeXxs $sizeXs;
   font-size: $fontSizeSmall;
   border-radius: $sizeS;
+}
+
+.vuiChip--s {
+  padding: $sizeXxs $sizeXs;
+
+  .vuiChip__label {
+    font-size: $fontSizeSmall;
+    // Ensures consistent chip height regardless of whether
+    // append is present or not.
+    line-height: 1.8;
+  }
+
+  .vuiChip__append {
+    padding: $sizeXxs $sizeXxs;
+  }
+}
+
+.vuiChip--m {
+  padding: $sizeXxs $sizeS;
+
+  .vuiChip__label {
+    font-size: $fontSizeStandard;
+    // Ensures consistent chip height regardless of whether
+    // append is present or not.
+    line-height: 1.6;
+  }
+
+  .vuiChip__append {
+    padding: $sizeXxs $sizeXs;
+  }
 }
 
 .vuiChip-isActive {
