@@ -2,14 +2,15 @@ import classNames from "classnames";
 
 type Props = {
   children: React.ReactNode;
+  size?: "s" | "m";
   isActive?: boolean;
   onClick: () => void;
   append?: React.ReactNode;
   "data-testid"?: string;
 };
 
-export const VuiChip = ({ children, isActive, append, ...rest }: Props) => {
-  const classes = classNames("vuiChip", {
+export const VuiChip = ({ children, size = "m", isActive, append, ...rest }: Props) => {
+  const classes = classNames("vuiChip", `vuiChip--${size}`, {
     "vuiChip-isActive": isActive
   });
 
