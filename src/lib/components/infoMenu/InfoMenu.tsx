@@ -3,9 +3,10 @@ import { Props as PopoverProps, VuiPopover } from "../popover/Popover";
 
 type Props = PopoverProps & {
   info?: InfoListType;
+  infoAfter?: React.ReactNode;
 };
 
-export const VuiInfoMenu = ({ isOpen, setIsOpen, button, info, children, ...rest }: Props) => {
+export const VuiInfoMenu = ({ isOpen, setIsOpen, button, info, infoAfter, children, ...rest }: Props) => {
   return (
     <VuiPopover
       className="vuiInfoMenu"
@@ -17,6 +18,7 @@ export const VuiInfoMenu = ({ isOpen, setIsOpen, button, info, children, ...rest
         info.length > 0 && (
           <div className="vuiInfoMenuHeader">
             <VuiInfoList info={info} />
+            {infoAfter}
           </div>
         )
       }

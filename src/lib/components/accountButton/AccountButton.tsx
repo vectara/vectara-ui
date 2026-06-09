@@ -27,9 +27,10 @@ type Props = {
   email: string;
   info?: InfoListType;
   options?: OptionListItem<string>[];
+  after?: React.ReactNode;
 };
 
-export const VuiAccountButton = ({ userName, email, info, options, ...rest }: Props) => {
+export const VuiAccountButton = ({ userName, email, info, options, after, ...rest }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const areUnique = userName && email && userName !== email;
@@ -51,7 +52,14 @@ export const VuiAccountButton = ({ userName, email, info, options, ...rest }: Pr
   );
 
   return (
-    <VuiInfoMenu isOpen={isOpen} setIsOpen={setIsOpen} button={button} info={info} anchorSide="rightUp">
+    <VuiInfoMenu
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      button={button}
+      info={info}
+      infoAfter={after}
+      anchorSide="rightUp"
+    >
       {options && (
         <VuiOptionsList
           size="l"
