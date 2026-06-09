@@ -1,16 +1,24 @@
-import { BiLogOut, BiUser } from "react-icons/bi";
-import { OptionListItem, VuiAccountButton, VuiCopyButton, VuiFlexContainer, VuiFlexItem, VuiIcon } from "../../../lib";
+import { BiLogOut, BiTransferAlt, BiUser } from "react-icons/bi";
+import {
+  OptionListItem,
+  VuiAccountButton,
+  VuiButtonSecondary,
+  VuiCopyButton,
+  VuiFlexContainer,
+  VuiFlexItem,
+  VuiIcon
+} from "../../../lib";
 
 export const AccountButton = () => {
   const options: OptionListItem<string>[] = [
     {
-      value: "edit",
-      label: "Manage account",
+      value: "switch",
+      label: "Switch accounts",
       color: "primary",
-      testId: "profileOption",
+      testId: "switchOption",
       icon: (
         <VuiIcon>
-          <BiUser />
+          <BiTransferAlt />
         </VuiIcon>
       )
     },
@@ -42,5 +50,29 @@ export const AccountButton = () => {
     }
   ];
 
-  return <VuiAccountButton userName="Falcor" email="falcor@neverendingstory.com" options={options} info={info} />;
+  return (
+    <VuiAccountButton
+      userName="Falcor"
+      email="falcor@neverendingstory.com"
+      options={options}
+      info={info}
+      after={
+        <div style={{ paddingTop: "12px" }}>
+          <VuiButtonSecondary
+            fullWidth
+            size="s"
+            color="neutral"
+            onClick={() => console.log("Clicked")}
+            icon={
+              <VuiIcon>
+                <BiUser />
+              </VuiIcon>
+            }
+          >
+            Manage account
+          </VuiButtonSecondary>
+        </div>
+      }
+    />
+  );
 };
