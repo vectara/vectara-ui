@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import { BiLogOut, BiTransferAlt, BiUser } from "react-icons/bi";
 import {
   OptionListItem,
   VuiAccountButton,
+  AccountButtonHandle,
   VuiButtonSecondary,
   VuiCopyButton,
   VuiFlexContainer,
@@ -10,6 +12,8 @@ import {
 } from "../../../lib";
 
 export const AccountButton = () => {
+  const accountButtonRef = useRef<AccountButtonHandle>(null);
+
   const options: OptionListItem<string>[] = [
     {
       value: "switch",
@@ -52,6 +56,7 @@ export const AccountButton = () => {
 
   return (
     <VuiAccountButton
+      ref={accountButtonRef}
       userName="Falcor"
       email="falcor@neverendingstory.com"
       options={options}
@@ -62,7 +67,7 @@ export const AccountButton = () => {
             fullWidth
             size="s"
             color="neutral"
-            onClick={() => console.log("Clicked")}
+            onClick={() => accountButtonRef.current?.closeMenu()}
             icon={
               <VuiIcon>
                 <BiUser />

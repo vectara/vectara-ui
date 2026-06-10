@@ -1,5 +1,5 @@
 import { VuiAccordion } from "./accordion/Accordion";
-import { VuiAccountButton } from "./accountButton/AccountButton";
+import { VuiAccountButton, AccountButtonHandle } from "./accountButton/AccountButton";
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
@@ -191,7 +191,8 @@ export type {
   TabNavigatorRoute,
   TabSize,
   Tree,
-  TreeItem
+  TreeItem,
+  AccountButtonHandle
 };
 
 export {
