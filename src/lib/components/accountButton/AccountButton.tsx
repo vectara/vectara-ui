@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { BiExpandVertical } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiIcon } from "../icon/Icon";
@@ -30,45 +30,56 @@ type Props = {
   after?: React.ReactNode;
 };
 
-export const VuiAccountButton = ({ userName, email, info, options, after, ...rest }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const areUnique = userName && email && userName !== email;
-
-  const primaryLabel = areUnique ? userName : email;
-  const secondaryLabel = areUnique ? email : null;
-
-  const button = (
-    <Button isSelected={isOpen} {...rest}>
-      <div className="vuiAccountButton__labels">
-        <div className="vuiAccountButton__primaryLabel">{primaryLabel}</div>
-        {secondaryLabel && <div className="vuiAccountButton__secondaryLabel">{secondaryLabel}</div>}
-      </div>
-
-      <VuiIcon size="s" color="neutral" className="vuiAccountButton__icon">
-        <BiExpandVertical />
-      </VuiIcon>
-    </Button>
-  );
-
-  return (
-    <VuiInfoMenu
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      button={button}
-      info={info}
-      infoAfter={after}
-      anchorSide="rightUp"
-    >
-      {options && (
-        <VuiOptionsList
-          size="l"
-          onSelectOption={() => {
-            setIsOpen(false);
-          }}
-          options={options}
-        />
-      )}
-    </VuiInfoMenu>
-  );
+// Imperative API for controlling the menu from the consumer.
+export type AccountButtonHandle = {
+  closeMenu: () => void;
 };
+
+export const VuiAccountButton = forwardRef<AccountButtonHandle, Props>(
+  ({ userName, email, info, options, after, ...rest }: Props, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    useImperativeHandle(ref, () => ({
+      closeMenu: () => setIsOpen(false)
+    }));
+
+    const areUnique = userName && email && userName !== email;
+
+    const primaryLabel = areUnique ? userName : email;
+    const secondaryLabel = areUnique ? email : null;
+
+    const button = (
+      <Button isSelected={isOpen} {...rest}>
+        <div className="vuiAccountButton__labels">
+          <div className="vuiAccountButton__primaryLabel">{primaryLabel}</div>
+          {secondaryLabel && <div className="vuiAccountButton__secondaryLabel">{secondaryLabel}</div>}
+        </div>
+
+        <VuiIcon size="s" color="neutral" className="vuiAccountButton__icon">
+          <BiExpandVertical />
+        </VuiIcon>
+      </Button>
+    );
+
+    return (
+      <VuiInfoMenu
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        button={button}
+        info={info}
+        infoAfter={after}
+        anchorSide="rightUp"
+      >
+        {options && (
+          <VuiOptionsList
+            size="l"
+            onSelectOption={() => {
+              setIsOpen(false);
+            }}
+            options={options}
+          />
+        )}
+      </VuiInfoMenu>
+    );
+  }
+);
