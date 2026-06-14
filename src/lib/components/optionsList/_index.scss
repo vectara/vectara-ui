@@ -47,32 +47,32 @@ $color: (
   accent: (
     "color": var(--vui-color-accent-shade),
     "hover-color": var(--vui-color-accent-shade),
-    "selected-color": var(--vui-color-accent-lighter-shade)
+    "selected-color": var(--vui-color-accent-background)
   ),
   primary: (
     "color": var(--vui-color-primary-shade),
     "hover-color": var(--vui-color-primary-shade),
-    "selected-color": var(--vui-color-primary-lighter-shade)
+    "selected-color": var(--vui-color-primary-background)
   ),
   success: (
     "color": var(--vui-color-success-shade),
     "hover-color": var(--vui-color-success-shade),
-    "selected-color": var(--vui-color-success-lighter-shade)
+    "selected-color": var(--vui-color-success-background)
   ),
   danger: (
     "color": var(--vui-color-danger-shade),
     "hover-color": var(--vui-color-danger-shade),
-    "selected-color": var(--vui-color-danger-lighter-shade)
+    "selected-color": var(--vui-color-danger-background)
   ),
   warning: (
     "color": var(--vui-color-warning-shade),
     "hover-color": var(--vui-color-warning-shade),
-    "selected-color": var(--vui-color-warning-lighter-shade)
+    "selected-color": var(--vui-color-warning-background)
   ),
   neutral: (
     "color": var(--vui-color-text),
     "hover-color": var(--vui-color-primary-shade),
-    "selected-color": var(--vui-color-primary-lighter-shade)
+    "selected-color": var(--vui-color-primary-background)
   )
 );
 

@@ -6,7 +6,8 @@
   justify-content: center;
 }
 
-$colors: "indigo", "emerald", "amber", "pink", "sky", "orange", "slate", "teal", "lime", "purple", "fuchsia", "red";
+$colors: "primary", "accent", "success", "warning", "danger", "indigo", "emerald", "amber", "pink", "sky", "orange",
+  "slate", "teal", "lime", "purple", "fuchsia", "red";
 
 @each $color in $colors {
   .vuiPatch--#{$color} {

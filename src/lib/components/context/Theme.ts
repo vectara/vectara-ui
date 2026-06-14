@@ -8,42 +8,40 @@ export type Theme = {
   // Semantic colors
   colorAccentShade?: string;
   colorAccentShadeRgb?: string;
-  colorAccentLightShade?: string;
-  colorAccentLightShadeRgb?: string;
-  colorAccentLighterShade?: string;
-  colorAccentLighterShadeRgb?: string;
+  colorAccentBorder?: string;
+  colorAccentBorderRgb?: string;
+  colorAccentBackground?: string;
+  colorAccentBackgroundRgb?: string;
 
   colorPrimaryShade?: string;
   colorPrimaryShadeRgb?: string;
-  colorPrimaryLightShade?: string;
-  colorPrimaryLightShadeRgb?: string;
-  colorPrimaryLighterShade?: string;
-  colorPrimaryLighterShadeRgb?: string;
+  colorPrimaryBorder?: string;
+  colorPrimaryBorderRgb?: string;
+  colorPrimaryBackground?: string;
+  colorPrimaryBackgroundRgb?: string;
 
   colorSuccessShade?: string;
   colorSuccessShadeRgb?: string;
-  colorSuccessLightShade?: string;
-  colorSuccessLightShadeRgb?: string;
-  colorSuccessLighterShade?: string;
-  colorSuccessLighterShadeRgb?: string;
+  colorSuccessBorder?: string;
+  colorSuccessBorderRgb?: string;
+  colorSuccessBackground?: string;
+  colorSuccessBackgroundRgb?: string;
 
   colorWarningShade?: string;
   colorWarningShadeRgb?: string;
-  colorWarningLightShade?: string;
-  colorWarningLightShadeRgb?: string;
-  colorWarningLighterShade?: string;
-  colorWarningLighterShadeRgb?: string;
+  colorWarningBorder?: string;
+  colorWarningBorderRgb?: string;
+  colorWarningBackground?: string;
+  colorWarningBackgroundRgb?: string;
 
   colorDangerShade?: string;
   colorDangerShadeRgb?: string;
-  colorDangerLightShade?: string;
-  colorDangerLightShadeRgb?: string;
-  colorDangerLighterShade?: string;
-  colorDangerLighterShadeRgb?: string;
+  colorDangerBorder?: string;
+  colorDangerBorderRgb?: string;
+  colorDangerBackground?: string;
+  colorDangerBackgroundRgb?: string;
 
   // Special colors
-  colorPrimaryHighlightShade?: string;
-  colorPrimaryHighlightShadeRgb?: string;
   colorSubduedShade?: string;
   colorSubduedShadeRgb?: string;
 
@@ -139,27 +137,26 @@ const colorDanger = "#d22d2d";
 
 // Semantic colors
 const colorAccentShade = colorAccent;
-const colorAccentLightShade = toRgba(colorAccent, 0.5);
-const colorAccentLighterShade = "#eee7ff";
+const colorAccentBorder = toRgba(colorAccent, 0.5);
+const colorAccentBackground = "#efeaf9";
 
 const colorPrimaryShade = colorPrimary;
-const colorPrimaryLightShade = toRgba(colorPrimary, 0.5);
-const colorPrimaryLighterShade = "#f1f7ff";
+const colorPrimaryBorder = toRgba(colorPrimary, 0.5);
+const colorPrimaryBackground = "#e8eefb";
 
 const colorSuccessShade = colorSuccess;
-const colorSuccessLightShade = toRgba(colorSuccess, 0.5);
-const colorSuccessLighterShade = "#e2f2e0";
+const colorSuccessBorder = toRgba(colorSuccess, 0.5);
+const colorSuccessBackground = "#ebf4e9";
 
 const colorWarningShade = colorWarning;
-const colorWarningLightShade = toRgba(colorWarning, 0.5);
-const colorWarningLighterShade = "#ffeed4";
+const colorWarningBorder = toRgba(colorWarning, 0.5);
+const colorWarningBackground = "#f6f1e9";
 
 const colorDangerShade = colorDanger;
-const colorDangerLightShade = toRgba(colorDanger, 0.5);
-const colorDangerLighterShade = "#fff1f1";
+const colorDangerBorder = toRgba(colorDanger, 0.5);
+const colorDangerBackground = "#fceaeb";
 
 // Special colors
-const colorPrimaryHighlightShade = "#d9e2ff";
 const colorSubduedShade = "#6d7686";
 
 // Neutral colors
@@ -222,42 +219,40 @@ export const LIGHT_THEME: Theme = {
   // Semantic colors
   colorAccentShade,
   colorAccentShadeRgb: toRgb(colorAccentShade),
-  colorAccentLightShade,
-  colorAccentLightShadeRgb: toRgb(colorAccentLightShade),
-  colorAccentLighterShade,
-  colorAccentLighterShadeRgb: toRgb(colorAccentLighterShade),
+  colorAccentBorder,
+  colorAccentBorderRgb: toRgb(colorAccentBorder),
+  colorAccentBackground,
+  colorAccentBackgroundRgb: toRgb(colorAccentBackground),
 
   colorPrimaryShade,
   colorPrimaryShadeRgb: toRgb(colorPrimaryShade),
-  colorPrimaryLightShade,
-  colorPrimaryLightShadeRgb: toRgb(colorPrimaryLightShade),
-  colorPrimaryLighterShade,
-  colorPrimaryLighterShadeRgb: toRgb(colorPrimaryLighterShade),
+  colorPrimaryBorder,
+  colorPrimaryBorderRgb: toRgb(colorPrimaryBorder),
+  colorPrimaryBackground,
+  colorPrimaryBackgroundRgb: toRgb(colorPrimaryBackground),
 
   colorSuccessShade,
   colorSuccessShadeRgb: toRgb(colorSuccessShade),
-  colorSuccessLightShade,
-  colorSuccessLightShadeRgb: toRgb(colorSuccessLightShade),
-  colorSuccessLighterShade,
-  colorSuccessLighterShadeRgb: toRgb(colorSuccessLighterShade),
+  colorSuccessBorder,
+  colorSuccessBorderRgb: toRgb(colorSuccessBorder),
+  colorSuccessBackground,
+  colorSuccessBackgroundRgb: toRgb(colorSuccessBackground),
 
   colorWarningShade,
   colorWarningShadeRgb: toRgb(colorWarningShade),
-  colorWarningLightShade,
-  colorWarningLightShadeRgb: toRgb(colorWarningLightShade),
-  colorWarningLighterShade,
-  colorWarningLighterShadeRgb: toRgb(colorWarningLighterShade),
+  colorWarningBorder,
+  colorWarningBorderRgb: toRgb(colorWarningBorder),
+  colorWarningBackground,
+  colorWarningBackgroundRgb: toRgb(colorWarningBackground),
 
   colorDangerShade,
   colorDangerShadeRgb: toRgb(colorDangerShade),
-  colorDangerLightShade,
-  colorDangerLightShadeRgb: toRgb(colorDangerLightShade),
-  colorDangerLighterShade,
-  colorDangerLighterShadeRgb: toRgb(colorDangerLighterShade),
+  colorDangerBorder,
+  colorDangerBorderRgb: toRgb(colorDangerBorder),
+  colorDangerBackground,
+  colorDangerBackgroundRgb: toRgb(colorDangerBackground),
 
   // Special colors
-  colorPrimaryHighlightShade,
-  colorPrimaryHighlightShadeRgb: toRgb(colorPrimaryHighlightShade),
   colorSubduedShade,
   colorSubduedShadeRgb: toRgb(colorSubduedShade),
 
@@ -326,8 +321,6 @@ export const LIGHT_THEME: Theme = {
 
 export const DARK_THEME: Theme = {
   // Special colors
-  colorPrimaryHighlightShade,
-  colorPrimaryHighlightShadeRgb: toRgb(colorPrimaryHighlightShade),
   colorSubduedShade,
   colorSubduedShadeRgb: toRgb(colorSubduedShade),
 
@@ -369,42 +362,40 @@ export const toStyle = (theme: Theme) => {
     // Semantic colors
     "--vui-color-accent-shade": theme.colorAccentShade,
     "--vui-color-accent-shade-rgb": theme.colorAccentShadeRgb,
-    "--vui-color-accent-light-shade": theme.colorAccentLightShade,
-    "--vui-color-accent-light-shade-rgb": theme.colorAccentLightShadeRgb,
-    "--vui-color-accent-lighter-shade": theme.colorAccentLighterShade,
-    "--vui-color-accent-lighter-shade-rgb": theme.colorAccentLighterShadeRgb,
+    "--vui-color-accent-border": theme.colorAccentBorder,
+    "--vui-color-accent-border-rgb": theme.colorAccentBorderRgb,
+    "--vui-color-accent-background": theme.colorAccentBackground,
+    "--vui-color-accent-background-rgb": theme.colorAccentBackgroundRgb,
 
     "--vui-color-primary-shade": theme.colorPrimaryShade,
     "--vui-color-primary-shade-rgb": theme.colorPrimaryShadeRgb,
-    "--vui-color-primary-light-shade": theme.colorPrimaryLightShade,
-    "--vui-color-primary-light-shade-rgb": theme.colorPrimaryLightShadeRgb,
-    "--vui-color-primary-lighter-shade": theme.colorPrimaryLighterShade,
-    "--vui-color-primary-lighter-shade-rgb": theme.colorPrimaryLighterShadeRgb,
+    "--vui-color-primary-border": theme.colorPrimaryBorder,
+    "--vui-color-primary-border-rgb": theme.colorPrimaryBorderRgb,
+    "--vui-color-primary-background": theme.colorPrimaryBackground,
+    "--vui-color-primary-background-rgb": theme.colorPrimaryBackgroundRgb,
 
     "--vui-color-success-shade": theme.colorSuccessShade,
     "--vui-color-success-shade-rgb": theme.colorSuccessShadeRgb,
-    "--vui-color-success-light-shade": theme.colorSuccessLightShade,
-    "--vui-color-success-light-shade-rgb": theme.colorSuccessLightShadeRgb,
-    "--vui-color-success-lighter-shade": theme.colorSuccessLighterShade,
-    "--vui-color-success-lighter-shade-rgb": theme.colorSuccessLighterShadeRgb,
+    "--vui-color-success-border": theme.colorSuccessBorder,
+    "--vui-color-success-border-rgb": theme.colorSuccessBorderRgb,
+    "--vui-color-success-background": theme.colorSuccessBackground,
+    "--vui-color-success-background-rgb": theme.colorSuccessBackgroundRgb,
 
     "--vui-color-warning-shade": theme.colorWarningShade,
     "--vui-color-warning-shade-rgb": theme.colorWarningShadeRgb,
-    "--vui-color-warning-light-shade": theme.colorWarningLightShade,
-    "--vui-color-warning-light-shade-rgb": theme.colorWarningLightShadeRgb,
-    "--vui-color-warning-lighter-shade": theme.colorWarningLighterShade,
-    "--vui-color-warning-lighter-shade-rgb": theme.colorWarningLighterShadeRgb,
+    "--vui-color-warning-border": theme.colorWarningBorder,
+    "--vui-color-warning-border-rgb": theme.colorWarningBorderRgb,
+    "--vui-color-warning-background": theme.colorWarningBackground,
+    "--vui-color-warning-background-rgb": theme.colorWarningBackgroundRgb,
 
     "--vui-color-danger-shade": theme.colorDangerShade,
     "--vui-color-danger-shade-rgb": theme.colorDangerShadeRgb,
-    "--vui-color-danger-light-shade": theme.colorDangerLightShade,
-    "--vui-color-danger-light-shade-rgb": theme.colorDangerLightShadeRgb,
-    "--vui-color-danger-lighter-shade": theme.colorDangerLighterShade,
-    "--vui-color-danger-lighter-shade-rgb": theme.colorDangerLighterShadeRgb,
+    "--vui-color-danger-border": theme.colorDangerBorder,
+    "--vui-color-danger-border-rgb": theme.colorDangerBorderRgb,
+    "--vui-color-danger-background": theme.colorDangerBackground,
+    "--vui-color-danger-background-rgb": theme.colorDangerBackgroundRgb,
 
     // Special colors
-    "--vui-color-primary-highlight-shade": theme.colorPrimaryHighlightShade,
-    "--vui-color-primary-highlight-shade-rgb": theme.colorPrimaryHighlightShadeRgb,
     "--vui-color-subdued-shade": theme.colorSubduedShade,
     "--vui-color-subdued-shade-rgb": theme.colorSubduedShadeRgb,
 
@@ -433,6 +424,13 @@ export const toStyle = (theme: Theme) => {
     "--vui-color-border-medium-rgb": theme.colorBorderMediumRgb,
     "--vui-color-border-light": theme.colorBorderLight,
     "--vui-color-border-light-rgb": theme.colorBorderLightRgb,
+
+    // Semantic colors mapped to categorical.
+    "--vui-color-accent-text": theme.colorAccentShade,
+    "--vui-color-primary-text": theme.colorPrimaryShade,
+    "--vui-color-success-text": theme.colorSuccessShade,
+    "--vui-color-warning-text": theme.colorWarningShade,
+    "--vui-color-danger-text": theme.colorDangerShade,
 
     // Categorical colors
     "--vui-color-indigo-background": theme.colorIndigoBackground,

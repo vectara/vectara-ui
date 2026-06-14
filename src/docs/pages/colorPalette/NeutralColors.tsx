@@ -14,10 +14,7 @@ const neutralSwatches = [
 ];
 
 // Special-purpose accents that sit outside the semantic families.
-const specialSwatches = [
-  { name: "Primary highlight", cssVariable: "--vui-color-primary-highlight-shade", value: "#d9e2ff" },
-  { name: "Subdued", cssVariable: "--vui-color-subdued-shade", value: "#6d7686" }
-];
+const specialSwatches = [{ name: "Subdued", cssVariable: "--vui-color-subdued-shade", value: "#6d7686" }];
 
 export const NeutralColors = () => {
   return (

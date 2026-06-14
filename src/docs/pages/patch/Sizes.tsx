@@ -8,7 +8,7 @@ export const Sizes = () => {
     <VuiFlexContainer spacing="m" wrap>
       {sizes.map((size) => (
         <div>
-          <VuiPatch color="indigo" size={size}>
+          <VuiPatch color="primary" size={size}>
             <VuiIcon>
               <BiCompass />
             </VuiIcon>

@@ -31,17 +31,17 @@
 $color: (
   neutral: (
     "color": var(--vui-color-text),
-    "background-color": var(--vui-color-primary-lighter-shade),
+    "background-color": var(--vui-color-primary-background),
     "hover-color": var(--vui-color-primary-shade)
   ),
   primary: (
     "color": var(--vui-color-primary-shade),
-    "background-color": var(--vui-color-primary-lighter-shade),
+    "background-color": var(--vui-color-primary-background),
     "hover-color": var(--vui-color-primary-shade)
   ),
   danger: (
     "color": var(--vui-color-danger-shade),
-    "background-color": var(--vui-color-danger-lighter-shade),
+    "background-color": var(--vui-color-danger-background),
     "hover-color": var(--vui-color-danger-shade)
   )
 );

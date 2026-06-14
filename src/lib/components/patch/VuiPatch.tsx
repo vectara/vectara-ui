@@ -1,6 +1,11 @@
 import classNames from "classnames";
 
 export const PATCH_COLOR = [
+  "primary",
+  "accent",
+  "success",
+  "warning",
+  "danger",
   "red",
   "orange",
   "amber",

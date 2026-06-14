@@ -1,6 +1,6 @@
 .vuiComplexConfigurationButton {
   width: 100%;
-  border: 1px solid var(--vui-color-primary-highlight-shade);
+  border: 1px solid var(--vui-color-border-light);
   padding: $sizeS $sizeM;
   border-radius: $sizeXs;
   transition: box-shadow $transitionSpeed, border-color $transitionSpeed;
