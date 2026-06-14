@@ -42,8 +42,6 @@ export type Theme = {
   colorDangerBackgroundRgb?: string;
 
   // Special colors
-  colorPrimaryHighlightShade?: string;
-  colorPrimaryHighlightShadeRgb?: string;
   colorSubduedShade?: string;
   colorSubduedShadeRgb?: string;
 
@@ -159,7 +157,6 @@ const colorDangerBorder = toRgba(colorDanger, 0.5);
 const colorDangerBackground = "#fceaeb";
 
 // Special colors
-const colorPrimaryHighlightShade = "#d9e2ff";
 const colorSubduedShade = "#6d7686";
 
 // Neutral colors
@@ -256,8 +253,6 @@ export const LIGHT_THEME: Theme = {
   colorDangerBackgroundRgb: toRgb(colorDangerBackground),
 
   // Special colors
-  colorPrimaryHighlightShade,
-  colorPrimaryHighlightShadeRgb: toRgb(colorPrimaryHighlightShade),
   colorSubduedShade,
   colorSubduedShadeRgb: toRgb(colorSubduedShade),
 
@@ -326,8 +321,6 @@ export const LIGHT_THEME: Theme = {
 
 export const DARK_THEME: Theme = {
   // Special colors
-  colorPrimaryHighlightShade,
-  colorPrimaryHighlightShadeRgb: toRgb(colorPrimaryHighlightShade),
   colorSubduedShade,
   colorSubduedShadeRgb: toRgb(colorSubduedShade),
 
@@ -403,8 +396,6 @@ export const toStyle = (theme: Theme) => {
     "--vui-color-danger-background-rgb": theme.colorDangerBackgroundRgb,
 
     // Special colors
-    "--vui-color-primary-highlight-shade": theme.colorPrimaryHighlightShade,
-    "--vui-color-primary-highlight-shade-rgb": theme.colorPrimaryHighlightShadeRgb,
     "--vui-color-subdued-shade": theme.colorSubduedShade,
     "--vui-color-subdued-shade-rgb": theme.colorSubduedShadeRgb,
 
