@@ -23,24 +23,24 @@
 // Color
 $color: (
   accent: (
-    "border-color": var(--vui-color-accent-light-shade),
-    "background-color": var(--vui-color-accent-lighter-shade)
+    "border-color": var(--vui-color-accent-border),
+    "background-color": var(--vui-color-accent-background)
   ),
   primary: (
-    "border-color": var(--vui-color-primary-light-shade),
-    "background-color": var(--vui-color-primary-lighter-shade)
+    "border-color": var(--vui-color-primary-border),
+    "background-color": var(--vui-color-primary-background)
   ),
   success: (
-    "border-color": var(--vui-color-success-light-shade),
-    "background-color": var(--vui-color-success-lighter-shade)
+    "border-color": var(--vui-color-success-border),
+    "background-color": var(--vui-color-success-background)
   ),
   warning: (
-    "border-color": var(--vui-color-warning-light-shade),
-    "background-color": var(--vui-color-warning-lighter-shade)
+    "border-color": var(--vui-color-warning-border),
+    "background-color": var(--vui-color-warning-background)
   ),
   danger: (
-    "border-color": var(--vui-color-danger-light-shade),
-    "background-color": var(--vui-color-danger-lighter-shade)
+    "border-color": var(--vui-color-danger-border),
+    "background-color": var(--vui-color-danger-background)
   ),
   neutral: (
     "border-color": var(--vui-color-medium-shade),

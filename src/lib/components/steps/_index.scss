@@ -115,7 +115,7 @@ $stepSizeM: 36px;
   }
 
   &--complete {
-    background-color: var(--vui-color-success-lighter-shade);
+    background-color: var(--vui-color-success-background);
   }
 
   &--current {
@@ -134,11 +134,11 @@ $stepSizeM: 36px;
   }
 
   &--warning {
-    background-color: var(--vui-color-warning-lighter-shade);
+    background-color: var(--vui-color-warning-background);
   }
 
   &--danger {
-    background-color: var(--vui-color-danger-lighter-shade);
+    background-color: var(--vui-color-danger-background);
   }
 }
 

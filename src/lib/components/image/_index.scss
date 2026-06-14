@@ -32,7 +32,7 @@
   border-radius: $sizeXxs;
 
   &--error {
-    background-color: var(--vui-color-danger-lighter-shade);
+    background-color: var(--vui-color-danger-background);
 
     p {
       color: var(--vui-color-danger-shade);

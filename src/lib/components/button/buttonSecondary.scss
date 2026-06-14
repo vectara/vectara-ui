@@ -13,23 +13,23 @@
 // Color
 $color: (
   accent: (
-    "border-color": rgba(var(--vui-color-accent-shade-rgb), 0.5),
+    "border-color": var(--vui-color-accent-border),
     "color": var(--vui-color-accent-shade)
   ),
   primary: (
-    "border-color": rgba(var(--vui-color-primary-shade-rgb), 0.5),
+    "border-color": var(--vui-color-primary-border),
     "color": var(--vui-color-primary-shade)
   ),
   success: (
-    "border-color": rgba(var(--vui-color-success-shade-rgb), 0.5),
+    "border-color": var(--vui-color-success-border),
     "color": var(--vui-color-success-shade)
   ),
   danger: (
-    "border-color": rgba(var(--vui-color-danger-shade-rgb), 0.5),
+    "border-color": var(--vui-color-danger-border),
     "color": var(--vui-color-danger-shade)
   ),
   warning: (
-    "border-color": rgba(var(--vui-color-warning-shade-rgb), 0.5),
+    "border-color": var(--vui-color-warning-border),
     "color": var(--vui-color-warning-shade)
   ),
   neutral: (

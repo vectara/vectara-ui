@@ -25,7 +25,7 @@ $minChatWidth: 600px;
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
   color: var(--vui-color-text);
-  background-color: var(--vui-color-primary-lighter-shade);
+  background-color: var(--vui-color-primary-background);
   border: 1px solid var(--vui-color-border-medium);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: all $transitionSpeed;
@@ -104,7 +104,7 @@ $minChatWidth: 600px;
   padding: $sizeXs $sizeS;
   font-size: $fontSizeStandard;
   color: var(--vui-color-text);
-  background-color: var(--vui-color-primary-lighter-shade);
+  background-color: var(--vui-color-primary-background);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   // Ensure shadow overlaps on top of conversation.
   z-index: 2;

@@ -39,19 +39,19 @@
 // Color variants
 $color: (
   accent: (
-    "backgroundColor": var(--vui-color-accent-lighter-shade)
+    "backgroundColor": var(--vui-color-accent-background)
   ),
   primary: (
-    "backgroundColor": var(--vui-color-primary-lighter-shade)
+    "backgroundColor": var(--vui-color-primary-background)
   ),
   success: (
-    "backgroundColor": var(--vui-color-success-lighter-shade)
+    "backgroundColor": var(--vui-color-success-background)
   ),
   danger: (
-    "backgroundColor": var(--vui-color-danger-lighter-shade)
+    "backgroundColor": var(--vui-color-danger-background)
   ),
   warning: (
-    "backgroundColor": var(--vui-color-warning-lighter-shade)
+    "backgroundColor": var(--vui-color-warning-background)
   ),
   neutral: (
     "backgroundColor": var(--vui-color-medium-shade)

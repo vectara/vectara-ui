@@ -10,7 +10,7 @@
 
   &:hover {
     color: var(--vui-color-primary-shade);
-    background-color: var(--vui-color-primary-lighter-shade);
+    background-color: var(--vui-color-primary-background);
     border-color: rgba(var(--vui-color-primary-shade-rgb), 0.5);
     text-decoration: underline;
   }
