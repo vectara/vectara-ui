@@ -1,9 +1,10 @@
-import { useState, cloneElement } from "react";
+import { useState, cloneElement, forwardRef } from "react";
 import { Tooltip, TooltipRefProps } from "react-tooltip";
 import { useVuiContext } from "../context/Context";
 import { VuiPortal } from "../portal/Portal";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
+import { mergeRefs } from "../../utils/mergeRefs";
 
 export type Props = {
   children: React.ReactNode;
@@ -43,44 +44,53 @@ const needsTabIndex = (element: React.ReactNode): boolean => {
   return true;
 };
 
-export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal, ...rest }: Props) => {
-  const { getThemeStyle } = useVuiContext();
-  const [tooltipId] = useState(generateTooltipId());
+export const VuiTooltip = forwardRef<HTMLElement, Props>(
+  ({ children, darkTheme, position, tip, usePortal, ...rest }, ref) => {
+    const { getThemeStyle } = useVuiContext();
+    const [tooltipId] = useState(generateTooltipId());
 
-  const target = cloneElement(children as React.ReactElement, {
-    "data-tooltip-id": tooltipId,
-    // Make non-focusable elements keyboard accessible.
-    ...(needsTabIndex(children) && { tabIndex: 0 }),
-    ...rest
-  });
+    const child = children as React.ReactElement;
+    // Forward a parent's ref (e.g. VuiPopover anchoring itself) onto the wrapped
+    // element while preserving any ref the child already had.
+    const childRef = child.props?.ref ?? (child as { ref?: React.Ref<HTMLElement> }).ref;
+    const target = cloneElement(child, {
+      "data-tooltip-id": tooltipId,
+      // Make non-focusable elements keyboard accessible.
+      ...(needsTabIndex(children) && { tabIndex: 0 }),
+      ...rest,
+      ref: mergeRefs(ref, childRef)
+    });
 
-  // Tooltips can be used in a dark-themed component, so we need to explicitly set
-  // the light theme class in order to enable having a different theme than the
-  // parent.
-  const style = getThemeStyle(darkTheme ? "dark" : "light");
-  const content =
-    typeof tip === "string" ? (
-      <VuiText size="xs">
-        <p>
-          <VuiTextColor color="empty">{tip}</VuiTextColor>
-        </p>
-      </VuiText>
-    ) : (
-      tip
+    // Tooltips can be used in a dark-themed component, so we need to explicitly set
+    // the light theme class in order to enable having a different theme than the
+    // parent.
+    const style = getThemeStyle(darkTheme ? "dark" : "light");
+    const content =
+      typeof tip === "string" ? (
+        <VuiText size="xs">
+          <p>
+            <VuiTextColor color="empty">{tip}</VuiTextColor>
+          </p>
+        </VuiText>
+      ) : (
+        tip
+      );
+    const tooltip = (
+      <Tooltip id={tooltipId} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
+        {content}
+      </Tooltip>
     );
-  const tooltip = (
-    <Tooltip id={tooltipId} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
-      {content}
-    </Tooltip>
-  );
 
-  return (
-    <>
-      {target}
-      {usePortal ? <VuiPortal>{tooltip}</VuiPortal> : tooltip}
-    </>
-  );
-};
+    return (
+      <>
+        {target}
+        {usePortal ? <VuiPortal>{tooltip}</VuiPortal> : tooltip}
+      </>
+    );
+  }
+);
+
+VuiTooltip.displayName = "VuiTooltip";
 
 // This is a workaround for the issue with ResizeObserver in ReactTooltip.
 // Without this, uncaught runtime errors are thrown: "ResizeObserver loop
