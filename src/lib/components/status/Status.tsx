@@ -1,6 +1,7 @@
 import { BiCheck, BiError, BiInfoCircle, BiSolidHand } from "react-icons/bi";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
+import { FlexSpacing } from "../flex/types";
 import { VuiIcon } from "../icon/Icon";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
@@ -8,6 +9,7 @@ import { VuiTextColor } from "../typography/TextColor";
 type Props = {
   status: "error" | "warning" | "success" | "info";
   label: string;
+  gap?: FlexSpacing;
 };
 
 const statusToColor = {
@@ -24,12 +26,12 @@ const statusToIcon = {
   info: <BiInfoCircle />
 } as const;
 
-export const VuiStatus = ({ status, label }: Props) => {
+export const VuiStatus = ({ status, label, gap = "xs" }: Props) => {
   const color = statusToColor[status];
   const icon = statusToIcon[status];
 
   return (
-    <VuiFlexContainer alignItems="center" spacing="xs">
+    <VuiFlexContainer alignItems="start" spacing={gap}>
       <VuiFlexItem grow={false}>
         <VuiIcon color={color}>{icon}</VuiIcon>
       </VuiFlexItem>
