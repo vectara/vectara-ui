@@ -49,6 +49,7 @@ export const Popover = () => {
         isOpen={isOpen}
         setIsOpen={() => setIsOpen(!isOpen)}
         header="Tribes"
+        tooltip="Select a tribe"
         button={
           <VuiButtonSecondary
             color="neutral"
