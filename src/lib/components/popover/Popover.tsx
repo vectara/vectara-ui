@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 import { VuiItemsInput, VuiNumberInput, VuiTextInput } from "../form";
+import { VuiTooltip, Props as VuiTooltipProps } from "../tooltip/Tooltip";
 
 export type AnchorSide = "left" | "right" | "rightUp" | "rightDown" | "leftUp" | "leftDown" | "upLeft" | "upRight";
 
@@ -18,6 +19,8 @@ export type Props = {
   anchorSide?: AnchorSide;
   anchorOffsetX?: number;
   anchorOffsetY?: number;
+  tooltip?: string;
+  tooltipProps?: Omit<VuiTooltipProps, "children" | "tip">;
 };
 
 type Position = {
@@ -100,6 +103,8 @@ export const VuiPopover = ({
   anchorOffsetX = 2,
   anchorOffsetY = 2,
   onClickButton,
+  tooltip,
+  tooltipProps,
   ...rest
 }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
@@ -149,7 +154,16 @@ export const VuiPopover = ({
     };
   }
 
-  const button = cloneElement(originalButton, buttonProps);
+  const clonedButton = cloneElement(originalButton, buttonProps);
+
+  const button =
+    tooltip !== undefined ? (
+      <VuiTooltip tip={tooltip} {...tooltipProps}>
+        {clonedButton}
+      </VuiTooltip>
+    ) : (
+      clonedButton
+    );
 
   useEffect(() => {
     const updatePosition = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VuiIcon, VuiIconButton, VuiPopover, VuiTooltip } from "../../../lib";
+import { VuiButtonSecondary, VuiIcon, VuiPopover } from "../../../lib";
 import { BiCaretDown } from "react-icons/bi";
 
 export const TooltipButton = () => {
@@ -11,18 +11,18 @@ export const TooltipButton = () => {
       setIsOpen={() => setIsOpen(!isOpen)}
       padding
       anchorSide="left"
+      tooltip="Options"
       button={
-        <VuiTooltip tip="Options">
-          <VuiIconButton
-            aria-label="Example button"
-            icon={
-              <VuiIcon>
-                <BiCaretDown />
-              </VuiIcon>
-            }
-            color="neutral"
-          />
-        </VuiTooltip>
+        <VuiButtonSecondary
+          icon={
+            <VuiIcon>
+              <BiCaretDown />
+            </VuiIcon>
+          }
+          color="neutral"
+        >
+          menu
+        </VuiButtonSecondary>
       }
     >
       <div>Content</div>
