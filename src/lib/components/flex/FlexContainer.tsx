@@ -1,30 +1,30 @@
 import { ReactNode } from "react";
 import classNames from "classnames";
-import { FlexSpacing } from "./types";
+import { AlignItemsPosition, FlexDirection, FlexSpacing, JustifyContentPosition } from "./types";
 
-const alignItemsToClassNameMap = {
+const alignItemsToClassNameMap: Record<AlignItemsPosition, string> = {
   baseline: "vuiFlexContainer--alignItemsBaseline",
   center: "vuiFlexContainer--alignItemsCenter",
   end: "vuiFlexContainer--alignItemsEnd",
   start: "vuiFlexContainer--alignItemsStart",
   stretch: "vuiFlexContainer--alignItemsStretch"
-} as const;
+};
 
-const directionToClassNameMap = {
+const directionToClassNameMap: Record<FlexDirection, string> = {
   column: "vuiFlexContainer--directionColumn",
   columnReverse: "vuiFlexContainer--directionColumnReverse",
   row: "vuiFlexContainer--directionRow",
   rowReverse: "vuiFlexContainer--directionRowReverse"
-} as const;
+};
 
-const justifyContentToClassNameMap = {
+const justifyContentToClassNameMap: Record<JustifyContentPosition, string> = {
   center: "vuiFlexContainer--justifyContentCenter",
   end: "vuiFlexContainer--justifyContentEnd",
   start: "vuiFlexContainer--justifyContentStart",
   spaceAround: "vuiFlexContainer--justifyContentSpaceAround",
   spaceBetween: "vuiFlexContainer--justifyContentSpaceBetween",
   spaceEvenly: "vuiFlexContainer--justifyContentSpaceEvenly"
-} as const;
+};
 
 const spacingToClassNameMap: Record<FlexSpacing, string> = {
   none: "vuiFlexContainer--spacingNone",
@@ -35,13 +35,13 @@ const spacingToClassNameMap: Record<FlexSpacing, string> = {
   l: "vuiFlexContainer--spacingL",
   xl: "vuiFlexContainer--spacingXl",
   xxl: "vuiFlexContainer--spacingXxl"
-} as const;
+};
 
 export type Props = {
   children?: ReactNode;
-  alignItems?: keyof typeof alignItemsToClassNameMap;
-  direction?: keyof typeof directionToClassNameMap;
-  justifyContent?: keyof typeof justifyContentToClassNameMap;
+  alignItems?: AlignItemsPosition;
+  direction?: FlexDirection;
+  justifyContent?: JustifyContentPosition;
   spacing?: FlexSpacing;
   wrap?: boolean;
   className?: string;

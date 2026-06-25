@@ -30,6 +30,7 @@ export const Status = () => {
           status="error"
           label="A multiline error message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis placerat sem, ut mattis sapien."
           gap="l"
+          align="start"
         />
 
         <VuiSpacer size="m" />
@@ -38,6 +39,7 @@ export const Status = () => {
           status="warning"
           label="A multiline warning message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis placerat sem, ut mattis sapien."
           gap="l"
+          align="start"
         />
 
         <VuiSpacer size="m" />
@@ -46,6 +48,7 @@ export const Status = () => {
           status="success"
           label="A multiline success message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis placerat sem, ut mattis sapien."
           gap="l"
+          align="start"
         />
 
         <VuiSpacer size="m" />
@@ -54,6 +57,7 @@ export const Status = () => {
           status="info"
           label="A multiline info message. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis placerat sem, ut mattis sapien."
           gap="l"
+          align="start"
         />
       </div>
     </>
