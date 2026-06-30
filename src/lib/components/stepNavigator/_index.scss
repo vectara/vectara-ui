@@ -52,7 +52,7 @@ $stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
   height: $stepNavigatorBarHeight;
   padding: 0 $sizeM;
   background-color: var(--vui-color-empty-shade);
-  border: 1.5px solid var(--vui-color-border-medium);
+  border: 1px solid var(--vui-color-medium-shade);
   border-radius: $stepNavigatorRadius;
   cursor: pointer;
   transition: border-color $transitionSpeed, box-shadow $transitionSpeed, background-color $transitionSpeed;
