@@ -27,6 +27,16 @@
   transform: translateY(-100%) !important;
 }
 
+// Centered below the button: shift left by half the popover's width while
+// preserving the vertical enter transition.
+.vuiPopover--center {
+  transform: translate(-50%, -$sizeXs);
+}
+
+.vuiPopover--center.vuiPopover-isLoaded {
+  transform: translate(-50%, 0);
+}
+
 .vuiPopover--upLeft,
 .vuiPopover--upRight {
   transform: translateY(0);

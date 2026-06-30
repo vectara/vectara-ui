@@ -188,7 +188,8 @@ export const VuiStepNavigator = ({
       <div className="vuiStepNavigator__center">
         <VuiPopover
           className="vuiStepNavigator__popover"
-          anchorSide="left"
+          anchorSide="center"
+          anchorOffsetY={8}
           padding="none"
           isOpen={isOpen}
           setIsOpen={setIsOpen}
