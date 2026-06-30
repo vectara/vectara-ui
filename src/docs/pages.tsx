@@ -65,6 +65,7 @@ import { spinner } from "./pages/spinner";
 import { stat } from "./pages/stat";
 import { status } from "./pages/status";
 import { statList } from "./pages/statList";
+import { stepNavigator } from "./pages/stepNavigator";
 import { steps } from "./pages/steps";
 import { stepsVertical } from "./pages/stepsVertical";
 import { summary } from "./pages/summary";
@@ -111,7 +112,7 @@ export const categories: Category[] = [
   },
   {
     name: "Navigation",
-    pages: [tabs, stepsVertical, steps, chip]
+    pages: [tabs, stepsVertical, steps, stepNavigator, chip]
   },
   {
     name: "Content",

@@ -1,0 +1,157 @@
+@import "../../sassUtils/index";
+
+$stepNavigatorBarHeight: 44px;
+$stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
+
+.vuiStepNavigator {
+  display: flex;
+  align-items: stretch;
+  gap: $sizeXs;
+  width: 100%;
+}
+
+// Square previous / next chevron buttons.
+.vuiStepNavigator__sideButton {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $stepNavigatorBarHeight;
+  height: $stepNavigatorBarHeight;
+  padding: 0;
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-border-medium);
+  border-radius: $stepNavigatorRadius;
+  color: var(--vui-color-darker-shade);
+  cursor: pointer;
+  transition: box-shadow $transitionSpeed;
+
+  &:not(:disabled):hover {
+    box-shadow: $shadowSmallEnd;
+  }
+
+  &:disabled {
+    color: var(--vui-color-subdued-shade);
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.vuiStepNavigator__center {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+// Center pill: current-step display and dropdown trigger.
+.vuiStepNavigator__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sizeXs;
+  width: 100%;
+  height: $stepNavigatorBarHeight;
+  padding: 0 $sizeM;
+  background-color: var(--vui-color-empty-shade);
+  border: 1.5px solid var(--vui-color-border-medium);
+  border-radius: $stepNavigatorRadius;
+  cursor: pointer;
+  transition: border-color $transitionSpeed, box-shadow $transitionSpeed, background-color $transitionSpeed;
+
+  &:hover {
+    box-shadow: $shadowSmallEnd;
+  }
+
+  &--open {
+    background-color: var(--vui-color-primary-lighter-shade);
+    border-color: var(--vui-color-primary-shade);
+    box-shadow: 0 0 0 3px rgba(var(--vui-color-primary-shade-rgb), 0.14);
+  }
+}
+
+.vuiStepNavigator__triggerTitle {
+  font-size: $fontSizeLarge - 3px; // 15px
+  font-weight: $fontWeightBold;
+  color: var(--vui-color-darker-shade);
+  white-space: nowrap;
+}
+
+.vuiStepNavigator__triggerCount {
+  font-size: $fontSizeStandard;
+  font-weight: $fontWeightNormal;
+  color: var(--vui-color-subdued-shade);
+  white-space: nowrap;
+}
+
+.vuiStepNavigator__caret {
+  display: flex;
+  transition: transform $transitionSpeed;
+
+  &--open {
+    transform: rotate(180deg);
+  }
+}
+
+// Dropdown panel: applied to the VuiPopover surface to round and lighten it.
+.vuiStepNavigator__popover {
+  border-radius: $sizeS;
+  border-color: var(--vui-color-border-light);
+}
+
+.vuiStepNavigator__menu {
+  width: 340px;
+  max-width: 94vw;
+  padding: $sizeXs;
+}
+
+// Step row inside the dropdown.
+.vuiStepNavigator__option {
+  display: flex;
+  align-items: center;
+  gap: $sizeS;
+  width: 100%;
+  padding: $sizeS;
+  background-color: transparent;
+  border: none;
+  border-radius: $stepNavigatorRadius;
+  color: var(--vui-color-darker-shade);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: rgba(var(--vui-color-primary-shade-rgb), 0.06);
+  }
+
+  &--active {
+    background-color: var(--vui-color-primary-lighter-shade);
+  }
+}
+
+.vuiStepNavigator__optionText {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.vuiStepNavigator__optionTitle {
+  font-size: $fontSizeStandard;
+  font-weight: $fontWeightBold;
+  line-height: 1.2;
+  color: var(--vui-color-darker-shade);
+
+  .vuiStepNavigator__option--active & {
+    color: var(--vui-color-primary-shade);
+  }
+}
+
+.vuiStepNavigator__optionSubtitle {
+  margin-top: 1px;
+  font-size: $fontSizeSmall;
+  line-height: 1.3;
+  color: var(--vui-color-subdued-shade);
+}
+
+.vuiStepNavigator__optionStatus {
+  display: flex;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
