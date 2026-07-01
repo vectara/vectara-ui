@@ -3,12 +3,12 @@ import { BiLink, BiLock, BiMessageRounded, BiPencil, BiShow, BiSolidMagicWand } 
 import { VuiStepNavigator, StepNavigatorSteps } from "../../../lib";
 
 const steps: StepNavigatorSteps = [
-  { id: "branding", title: "Branding", subtitle: "Logo & colors", icon: <BiPencil />, status: "complete" },
-  { id: "welcome", title: "Welcome", subtitle: "Intro message", icon: <BiMessageRounded />, status: "complete" },
-  { id: "prompts", title: "Suggested prompts", subtitle: "Starter questions", icon: <BiSolidMagicWand />, status: "error" },
-  { id: "events", title: "Event visibility", subtitle: "What users see", icon: <BiShow /> },
-  { id: "access", title: "Access & SSO", subtitle: "Who can sign in", icon: <BiLock /> },
-  { id: "url", title: "Public URL", subtitle: "Stable address", icon: <BiLink /> }
+  { id: "branding", title: "Branding", icon: <BiPencil />, isComplete: true },
+  { id: "welcome", title: "Welcome", icon: <BiMessageRounded />, isComplete: true },
+  { id: "prompts", title: "Suggested prompts", icon: <BiSolidMagicWand />, hasErrors: true },
+  { id: "events", title: "Event visibility", icon: <BiShow /> },
+  { id: "access", title: "Access & SSO", icon: <BiLock /> },
+  { id: "url", title: "Public URL", icon: <BiLink /> }
 ];
 
 export const BasicStepNavigator = () => {

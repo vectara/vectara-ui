@@ -1,32 +1,15 @@
 import { ReactNode, forwardRef, useState } from "react";
 import classNames from "classnames";
-import { BiCheckCircle, BiChevronDown, BiChevronLeft, BiChevronRight, BiError } from "react-icons/bi";
+import { BiChevronDown, BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
 import { VuiPopover } from "../popover/Popover";
-import { ICON_COLOR } from "../icon/types";
-import { StepNavigatorStatus } from "./types";
+import { StepVertical, VuiStepsVertical } from "../stepsVertical/StepsVertical";
 
-export type { StepNavigatorStatus };
-
-export type StepNavigatorStep = {
-  id: string;
-  title: string;
-  subtitle?: string;
-  icon: ReactNode;
-  status?: StepNavigatorStatus;
-};
+// A step shares the StepsVertical shape, minus the fields the navigator owns:
+// active state comes from `activeStep` and selection is dispatched via callbacks.
+export type StepNavigatorStep = Omit<StepVertical, "isActive" | "onSelect">;
 
 export type StepNavigatorSteps = StepNavigatorStep[];
-
-const statusToColor: Record<Exclude<StepNavigatorStatus, "incomplete">, (typeof ICON_COLOR)[number]> = {
-  complete: "success",
-  error: "danger"
-};
-
-const statusToIcon: Record<Exclude<StepNavigatorStatus, "incomplete">, ReactNode> = {
-  complete: <BiCheckCircle />,
-  error: <BiError />
-};
 
 type Props = {
   steps: StepNavigatorSteps;
@@ -131,43 +114,18 @@ export const VuiStepNavigator = ({
   const nextDisabled = active >= steps.length - 1;
   const stepLabel = `Step ${active + 1} of ${steps.length}`;
 
+  const verticalSteps = steps.map((step, index) => ({
+    ...step,
+    isActive: index === active,
+    onSelect: () => select(index)
+  }));
+
   const menu = (
-    <div className="vuiStepNavigator__menu" role="listbox" aria-label="Steps">
-      {steps.map((step, index) => {
-        const isActive = index === active;
-        const indicator = step.status && step.status !== "incomplete" ? step.status : undefined;
-        return (
-          <button
-            key={step.id}
-            type="button"
-            role="option"
-            aria-selected={isActive}
-            onClick={() => select(index)}
-            data-testid={`${dataTestId}-option-${step.id}`}
-            className={classNames("vuiStepNavigator__option", {
-              "vuiStepNavigator__option--active": isActive
-            })}
-          >
-            <VuiIcon size="s" color={isActive ? "primary" : "inherit"}>
-              {step.icon}
-            </VuiIcon>
-
-            <div className="vuiStepNavigator__optionText">
-              <div className="vuiStepNavigator__optionTitle">{step.title}</div>
-              {step.subtitle && <div className="vuiStepNavigator__optionSubtitle">{step.subtitle}</div>}
-            </div>
-
-            {indicator && (
-              <span className="vuiStepNavigator__optionStatus">
-                <VuiIcon size="s" color={statusToColor[indicator]}>
-                  {statusToIcon[indicator]}
-                </VuiIcon>
-              </span>
-            )}
-          </button>
-        );
-      })}
-    </div>
+    <VuiStepsVertical
+      className="vuiStepNavigator__menu"
+      steps={verticalSteps}
+      data-testid={dataTestId ? `${dataTestId}-menu` : undefined}
+    />
   );
 
   return (

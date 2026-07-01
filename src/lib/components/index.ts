@@ -117,14 +117,9 @@ import { SPINNER_COLOR, SPINNER_SIZE } from "./spinner/types";
 import { Stat, VuiStatList } from "./statList/StatList";
 import { VuiStat } from "./stat/Stat";
 import { VuiStatus } from "./status/Status";
-import {
-  VuiStepNavigator,
-  StepNavigatorStatus,
-  StepNavigatorStep,
-  StepNavigatorSteps
-} from "./stepNavigator/StepNavigator";
+import { VuiStepNavigator, StepNavigatorStep, StepNavigatorSteps } from "./stepNavigator/StepNavigator";
 import { VuiSteps, StepStatus, StepSize, Steps } from "./steps/Steps";
-import { VuiStepsVertical, StepsVertical, StepVerticalStatus } from "./stepsVertical/StepsVertical";
+import { VuiStepsVertical, StepVertical, StepsVertical, StepVerticalStatus } from "./stepsVertical/StepsVertical";
 import { SKELETON_COLOR, VuiSkeleton } from "./skeleton/Skeleton";
 import { VuiSummary, VuiSummaryCitation } from "./summary";
 import { VuiTable } from "./table/Table";
@@ -189,12 +184,12 @@ export type {
   SectionItem,
   SpansRow,
   Stat,
-  StepNavigatorStatus,
   StepNavigatorStep,
   StepNavigatorSteps,
   StepStatus,
   StepSize,
   Steps,
+  StepVertical,
   StepsVertical,
   StepVerticalStatus,
   TabNavigatorRoute,

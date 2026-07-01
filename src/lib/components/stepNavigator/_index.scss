@@ -97,61 +97,9 @@ $stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
   border-color: var(--vui-color-border-light);
 }
 
+// Dropdown body: VuiStepsVertical, constrained to the trigger's footprint.
 .vuiStepNavigator__menu {
   width: 340px;
   max-width: 94vw;
   padding: $sizeXs;
-}
-
-// Step row inside the dropdown.
-.vuiStepNavigator__option {
-  display: flex;
-  align-items: center;
-  gap: $sizeS;
-  width: 100%;
-  padding: $sizeS;
-  background-color: transparent;
-  border: none;
-  border-radius: $stepNavigatorRadius;
-  color: var(--vui-color-darker-shade);
-  text-align: left;
-  cursor: pointer;
-  transition: background-color 0.15s;
-
-  &:hover {
-    background-color: rgba(var(--vui-color-primary-shade-rgb), 0.06);
-  }
-
-  &--active {
-    background-color: var(--vui-color-primary-lighter-shade);
-  }
-}
-
-.vuiStepNavigator__optionText {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.vuiStepNavigator__optionTitle {
-  font-size: $fontSizeStandard;
-  font-weight: $fontWeightBold;
-  line-height: 1.2;
-  color: var(--vui-color-darker-shade);
-
-  .vuiStepNavigator__option--active & {
-    color: var(--vui-color-primary-shade);
-  }
-}
-
-.vuiStepNavigator__optionSubtitle {
-  margin-top: 1px;
-  font-size: $fontSizeSmall;
-  line-height: 1.3;
-  color: var(--vui-color-subdued-shade);
-}
-
-.vuiStepNavigator__optionStatus {
-  display: flex;
-  flex: 0 0 auto;
-  margin-left: auto;
 }
