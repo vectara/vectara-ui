@@ -41,8 +41,9 @@ export const Table = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedRows, setSelectedRows] = useState<Person[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortColumn, setSortColumn] = useState<string | null>(null);
+  const [sortColumn, setSortColumn] = useState<string>();
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | "none">("asc");
+  const [activeRowId, setActiveRowId] = useState<string>();
 
   const fetchPeople = () => {
     setIsLoading(true);
@@ -66,7 +67,7 @@ export const Table = () => {
 
   const handleSort = (column: string, direction: "asc" | "desc" | "none") => {
     if (direction === "none") {
-      setSortColumn(null);
+      setSortColumn(undefined);
       setSortDirection("none");
     } else {
       setSortColumn(column);
@@ -138,7 +139,7 @@ export const Table = () => {
       render: (person: Person) => (
         <div>
           <div>
-            <VuiLink onClick={() => console.log("Clicked", person.name)}>{person.name}</VuiLink>
+            <VuiLink onClick={() => setActiveRowId(person.id)}>{person.name}</VuiLink>
           </div>
 
           {areNicknamesVisible && (
@@ -419,6 +420,7 @@ export const Table = () => {
         reloadTestId="reloadButton"
         pagination={pagination}
         selection={selection}
+        activeRowId={activeRowId}
         onSort={handleSort}
         onReload={onReload}
         search={search}
