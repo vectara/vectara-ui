@@ -17,7 +17,6 @@ $stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
   align-items: center;
   justify-content: center;
   width: $stepNavigatorBarHeight;
-  height: $stepNavigatorBarHeight;
   padding: 0;
   background-color: var(--vui-color-empty-shade);
   border: 1px solid var(--vui-color-border-medium);
@@ -47,10 +46,11 @@ $stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: $sizeXs;
   width: 100%;
-  height: $stepNavigatorBarHeight;
-  padding: 0 $sizeM;
+  min-height: $stepNavigatorBarHeight;
+  padding: $sizeS $sizeM;
   background-color: var(--vui-color-empty-shade);
   border: 1px solid var(--vui-color-medium-shade);
   border-radius: $stepNavigatorRadius;
