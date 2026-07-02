@@ -35,7 +35,6 @@ $tableResponsiveBreakpointSmall: 500px;
 
     &.vuiTableRow-isBeingActedUpon,
     &:not(.vuiTableRow--inert):hover {
-      background-color: rgba(var(--vui-color-light-shade-rgb), 0.25);
       box-shadow: $shadowSmallEnd;
       border-bottom-color: transparent;
     }
@@ -58,6 +57,10 @@ $tableResponsiveBreakpointSmall: 500px;
       align-items: center;
       justify-content: flex-start;
     }
+  }
+
+  & > tbody > .vuiTableRow-isActive {
+    background-color: var(--vui-color-primary-background);
   }
 
   & > thead > tr > th {

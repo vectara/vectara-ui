@@ -43,6 +43,7 @@ type Props<T> = {
   pagination?: Pagination | Pager;
   selection?: Selection<T>;
   search?: Search;
+  activeRowId?: string;
   customControls?: React.ReactNode;
   onSort?: OnSort;
   onReload?: () => void;
@@ -89,6 +90,7 @@ export const VuiTable = <T extends Row>({
   pagination,
   selection,
   search,
+  activeRowId,
   customControls,
   onSort,
   onReload,
@@ -195,7 +197,8 @@ export const VuiTable = <T extends Row>({
         "vuiTableRow-isBeingActedUpon": rowBeingActedUpon === row,
         "vuiTableRow--hasActions": Boolean(actions) || hasExpandableRows,
         "vuiTableRow--isSelectable": Boolean(onSelectRow),
-        "vuiTableRow--expanded": isExpanded
+        "vuiTableRow--expanded": isExpanded,
+        "vuiTableRow-isActive": activeRowId === rowId
       });
 
       const toggleExpand = () => {
