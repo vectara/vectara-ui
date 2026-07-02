@@ -5,7 +5,16 @@ import { FocusOn } from "react-focus-on";
 import { VuiItemsInput, VuiNumberInput, VuiTextInput } from "../form";
 import { VuiTooltip, Props as VuiTooltipProps } from "../tooltip/Tooltip";
 
-export type AnchorSide = "left" | "right" | "rightUp" | "rightDown" | "leftUp" | "leftDown" | "upLeft" | "upRight";
+export type AnchorSide =
+  | "left"
+  | "right"
+  | "center"
+  | "rightUp"
+  | "rightDown"
+  | "leftUp"
+  | "leftDown"
+  | "upLeft"
+  | "upRight";
 
 export type Props = {
   button: React.ReactElement;
@@ -81,6 +90,12 @@ const calculatePopoverPosition = (
   }
 
   const adjustedTop = bottom + offsetY + document.documentElement.scrollTop;
+
+  if (anchorSide === "center") {
+    // Anchor below the button, horizontally centered on it. Pairs with a
+    // translateX(-50%) in CSS to offset by half the popover's own width.
+    return { top: `${adjustedTop}px`, left: `${left + width / 2}px` };
+  }
 
   if (anchorSide === "left") {
     return { top: `${adjustedTop}px`, left: `${left}px` };
@@ -222,6 +237,7 @@ export const VuiPopover = ({
 
   const classes = classNames("vuiPopover", className, {
     "vuiPopover-isLoaded": showTransition,
+    "vuiPopover--center": anchorSide === "center",
     "vuiPopover--rightUp": anchorSide === "rightUp",
     "vuiPopover--leftUp": anchorSide === "leftUp",
     "vuiPopover--upLeft": anchorSide === "upLeft",
