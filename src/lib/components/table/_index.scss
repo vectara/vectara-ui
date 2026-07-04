@@ -128,7 +128,7 @@ $tableResponsiveBreakpointSmall: 500px;
       padding-bottom: $sizeM;
       border: none;
       border-radius: $sizeXs;
-      box-shadow: $shadowLargeStart;
+      border: 1px solid var(--vui-color-border-light);
       margin-bottom: $sizeS;
 
       &.vuiTableRow--expanded {
