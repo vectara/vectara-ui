@@ -2,9 +2,12 @@ $tableResponsiveBreakpointMedium: 800px;
 $tableResponsiveBreakpointSmall: 500px;
 
 .vuiTableWrapper {
+  // Needed for responsive styles.
   container-type: inline-size;
   width: 100%;
   position: relative;
+  // Enable horizontal scrolling for tables that are too wide for their container.
+  overflow-x: auto;
 }
 
 // Enable nesting tables inside other tables as expandable content.
