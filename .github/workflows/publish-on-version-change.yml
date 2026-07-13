@@ -43,8 +43,9 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       # Per https://docs.npmjs.com/trusted-publishers, ensure npm 11.5.1 or later is installed.
+      # npm v12 is not compatible with Node v20, so pinning the version to 11 for now.
       - name: Update npm
-        run: npm install -g npm@latest
+        run: npm install -g npm@11
       - run: npm ci
       - run: npm run build
       - run: npm test
