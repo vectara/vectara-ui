@@ -39,6 +39,7 @@ import { label } from "./pages/label";
 import { lineChart } from "./pages/lineChart";
 import { link } from "./pages/link";
 import { list } from "./pages/list";
+import { loadingBar } from "./pages/loadingBar";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { notifications } from "./pages/notifications";
@@ -126,6 +127,7 @@ export const categories: Category[] = [
       icon,
       image,
       inProgress,
+      loadingBar,
       progressBar,
       spinner,
       skeleton,

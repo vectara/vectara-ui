@@ -33,6 +33,7 @@ export const Table = () => {
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const [isResponsive, setIsResponsive] = useState(true);
   const [hasExpandableRows, setHasExpandableRows] = useState(true);
+  const [hasStatusIndicator, setHasStatusIndicator] = useState(false);
 
   // Table state
   const [isLoading, setIsLoading] = useState(true);
@@ -400,6 +401,14 @@ export const Table = () => {
             onChange={(e) => setHasExpandableRows(e.target.checked)}
           />
         </VuiFlexItem>
+
+        <VuiFlexItem shrink={false}>
+          <VuiToggle
+            label="Has status indicator"
+            checked={hasStatusIndicator}
+            onChange={(e) => setHasStatusIndicator(e.target.checked)}
+          />
+        </VuiFlexItem>
       </VuiFlexContainer>
 
       <VuiSpacer size="xl" />
@@ -423,6 +432,13 @@ export const Table = () => {
         activeRowId={activeRowId}
         onSort={handleSort}
         onReload={onReload}
+        statusIndicator={
+          hasStatusIndicator ? (
+            <VuiBadge color={isLoading ? "primary" : "success"}>
+              {isLoading ? "Updating" : "Up to date"}
+            </VuiBadge>
+          ) : undefined
+        }
         search={search}
         customControls={
           <VuiSelect

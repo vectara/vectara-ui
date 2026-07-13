@@ -148,6 +148,20 @@ export const SimpleCard = () => {
             </p>
           </VuiText>
         </VuiSimpleCard>
+
+        <VuiSimpleCard padding={padding} isLoading>
+          <VuiTitle size="xs">
+            <h3>Beaver</h3>
+          </VuiTitle>
+
+          <VuiSpacer size="xxs" />
+
+          <VuiText>
+            <p>
+              <VuiTextColor color="subdued">Busy, industrious, still building</VuiTextColor>
+            </p>
+          </VuiText>
+        </VuiSimpleCard>
       </VuiGrid>
 
       <VuiSpacer size="m" />

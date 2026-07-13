@@ -84,6 +84,7 @@ import { KvTableItem, KvTableItems, KvTablePadding, KvTableAlign } from "./kvTab
 import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { LinkProps } from "./link/types";
 import { VuiList } from "./list/List";
+import { LOADING_BAR_COLOR, VuiLoadingBar } from "./loadingBar/LoadingBar";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem, MenuItem } from "./menu/MenuItem";
 import { VuiMenuList } from "./menuList/VuiMenuList";
@@ -210,6 +211,7 @@ export {
   ICON_COLOR,
   ICON_SIZE,
   ICON_TYPE,
+  LOADING_BAR_COLOR,
   PATCH_COLOR,
   PROGRESS_BAR_COLOR,
   SPACER_SIZE,
@@ -283,6 +285,7 @@ export {
   VuiLink,
   VuiLinkInternal,
   VuiList,
+  VuiLoadingBar,
   VuiMenu,
   VuiMenuItem,
   VuiMenuList,

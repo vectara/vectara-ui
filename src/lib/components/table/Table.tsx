@@ -45,6 +45,7 @@ type Props<T> = {
   search?: Search;
   activeRowId?: string;
   customControls?: React.ReactNode;
+  statusIndicator?: React.ReactNode;
   onSort?: OnSort;
   onReload?: () => void;
   content?: React.ReactNode;
@@ -92,6 +93,7 @@ export const VuiTable = <T extends Row>({
   search,
   activeRowId,
   customControls,
+  statusIndicator,
   onSort,
   onReload,
   content,
@@ -343,6 +345,7 @@ export const VuiTable = <T extends Row>({
       {(hasSearch ||
         customControls ||
         (hasBulkActions && selectedRows && selectedRows.length > 0) ||
+        Boolean(statusIndicator) ||
         Boolean(onReload)) && (
         <>
           <VuiFlexContainer
@@ -379,13 +382,19 @@ export const VuiTable = <T extends Row>({
               </VuiFlexItem>
             )}
 
-            {/* Reload */}
-            {onReload && (
+            {/* Status indicator and reload */}
+            {(statusIndicator || onReload) && (
               <VuiFlexItem grow={1} shrink={false}>
-                <VuiFlexContainer justifyContent="end">
-                  <VuiButtonSecondary color="neutral" onClick={() => onReload()} data-testid={reloadTestId}>
-                    Reload
-                  </VuiButtonSecondary>
+                <VuiFlexContainer justifyContent="end" alignItems="center" spacing="s">
+                  {statusIndicator && <VuiFlexItem grow={false}>{statusIndicator}</VuiFlexItem>}
+
+                  {onReload && (
+                    <VuiFlexItem grow={false}>
+                      <VuiButtonSecondary color="neutral" onClick={() => onReload()} data-testid={reloadTestId}>
+                        Reload
+                      </VuiButtonSecondary>
+                    </VuiFlexItem>
+                  )}
                 </VuiFlexContainer>
               </VuiFlexItem>
             )}

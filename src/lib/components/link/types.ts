@@ -17,6 +17,7 @@ export type LinkProps = {
   isAnchor?: boolean;
   tabIndex?: number;
   "data-testid"?: string;
+  "aria-busy"?: boolean;
   ref?: ForwardedRef<HTMLAnchorElement | null>;
   download?: string;
 };

@@ -1,0 +1,68 @@
+@use "sass:map";
+
+.vuiLoadingBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $sizeXxxs;
+  overflow: hidden;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+
+  // The sweeping segment.
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    animation: vuiLoadingBarSweep 1.5s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      animation: vuiLoadingBarPulse 2s ease-in-out infinite;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes vuiLoadingBarSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes vuiLoadingBarPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Color
+$color: (
+  accent: var(--vui-color-accent-shade),
+  primary: var(--vui-color-primary-shade),
+  success: var(--vui-color-success-shade),
+  warning: var(--vui-color-warning-shade),
+  danger: var(--vui-color-danger-shade),
+  neutral: var(--vui-color-dark-shade),
+  subdued: var(--vui-color-subdued-shade)
+);
+
+@each $colorName, $colorValue in $color {
+  .vuiLoadingBar--#{$colorName} {
+    &::after {
+      background: linear-gradient(90deg, transparent, #{$colorValue});
+    }
+  }
+}

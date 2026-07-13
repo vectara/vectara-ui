@@ -190,6 +190,11 @@
   height: 100%;
 }
 
+.vuiSimpleCard--loading {
+  position: relative;
+  overflow: hidden;
+}
+
 .vuiSimpleCard--s {
   padding: $sizeS;
 }
