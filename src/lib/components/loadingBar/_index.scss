@@ -10,7 +10,6 @@
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 
-  // The sweeping segment.
   &::after {
     content: "";
     position: absolute;
@@ -18,12 +17,13 @@
     bottom: 0;
     left: 0;
     width: 40%;
-    animation: vuiLoadingBarSweep 1.5s ease-in-out infinite;
+    opacity: 0.5;
+    animation: vuiLoadingBarSweep 2.5s ease-in-out infinite;
   }
 
   @media (prefers-reduced-motion: reduce) {
     &::after {
-      animation: vuiLoadingBarPulse 2s ease-in-out infinite;
+      animation: vuiLoadingBarPulse 2.5s ease-in-out infinite;
       width: 100%;
     }
   }
@@ -41,10 +41,10 @@
 @keyframes vuiLoadingBarPulse {
   0%,
   100% {
-    opacity: 0.3;
+    opacity: 0.15;
   }
   50% {
-    opacity: 1;
+    opacity: 0.5;
   }
 }
 
