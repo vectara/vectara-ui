@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { ReactNode, MouseEvent } from "react";
 import { useVuiContext } from "../context/Context";
+import { VuiLoadingBar } from "../loadingBar/LoadingBar";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiStatus } from "../status/Status";
 
@@ -13,6 +14,8 @@ type Props = {
   children?: React.ReactNode;
   error?: string | ReactNode;
   warning?: string | ReactNode;
+  isLoading?: boolean;
+  loadingIndicator?: ReactNode;
 };
 
 export const VuiSimpleCard = ({
@@ -24,6 +27,8 @@ export const VuiSimpleCard = ({
   onClick,
   error,
   warning,
+  isLoading,
+  loadingIndicator,
   ...rest
 }: Props) => {
   const { createLink } = useVuiContext();
@@ -35,7 +40,8 @@ export const VuiSimpleCard = ({
       "vuiSimpleCard--interactive": href || onClick,
       "vuiSimpleCard--fullHeight": fullHeight,
       "vuiSimpleCard--danger": error,
-      "vuiSimpleCard--warning": warning
+      "vuiSimpleCard--warning": warning,
+      "vuiSimpleCard--loading": isLoading
     },
     className
   );
@@ -43,6 +49,7 @@ export const VuiSimpleCard = ({
   const content = (
     <>
       {children}
+      {isLoading && (loadingIndicator ?? <VuiLoadingBar />)}
       {error && (
         <>
           <VuiSpacer size="s" />
@@ -64,20 +71,21 @@ export const VuiSimpleCard = ({
       href,
       onClick,
       children: content,
+      "aria-busy": isLoading,
       ...rest
     });
   }
 
   if (onClick) {
     return (
-      <button className={classes} onClick={onClick} {...rest}>
+      <button className={classes} onClick={onClick} aria-busy={isLoading} {...rest}>
         {content}
       </button>
     );
   }
 
   return (
-    <div className={classes} onClick={onClick} {...rest}>
+    <div className={classes} onClick={onClick} aria-busy={isLoading} {...rest}>
       {content}
     </div>
   );
