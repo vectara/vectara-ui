@@ -1,0 +1,29 @@
+@import "../../../lib/sassUtils/index";
+
+.dragBarExample {
+  display: flex;
+  align-items: stretch;
+  height: 320px;
+  border: 1px solid var(--vui-color-border-light);
+  border-radius: $sizeXxs;
+  overflow: hidden;
+}
+
+.dragBarExample__panel {
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-width: 0;
+  padding: $sizeM;
+  overflow: auto;
+  background-color: var(--vui-color-empty-shade);
+}
+
+.dragBarExample__panel--grow {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+.dragBarExample__dragBar {
+  border-left: 1px solid var(--vui-color-border-light);
+}

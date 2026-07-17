@@ -1,0 +1,14 @@
+@import "../../../lib/sassUtils/index";
+
+.sidePaneLayoutExample {
+  height: 360px;
+  border: 1px solid var(--vui-color-border-light);
+  border-radius: $sizeXxs;
+  overflow: hidden;
+}
+
+.sidePaneLayoutExample__pane {
+  height: 100%;
+  padding: $sizeM;
+  background-color: var(--vui-color-empty-shade);
+}

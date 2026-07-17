@@ -18,6 +18,7 @@ import { complexConfigurationButton } from "./pages/complexConfigurationButton";
 import { composer } from "./pages/composer";
 import { copyButton } from "./pages/copyButton";
 import { datePicker } from "./pages/datePicker";
+import { dragBar } from "./pages/dragBar";
 import { drawer } from "./pages/drawer";
 import { durationBar } from "./pages/durationBar";
 import { errorBoundary } from "./pages/errorBoundary";
@@ -58,6 +59,7 @@ import { searchResult } from "./pages/searchResult";
 import { scatterChart } from "./pages/scatterChart";
 import { searchSelect } from "./pages/searchSelect";
 import { select } from "./pages/select";
+import { sidePaneLayout } from "./pages/sidePaneLayout";
 import { setting } from "./pages/setting";
 import { menuList } from "./pages/menuList";
 import { spacer } from "./pages/spacer";
@@ -101,7 +103,18 @@ export const categories: Category[] = [
   },
   {
     name: "Application",
-    pages: [app, drawer, modal, portalContainer, notifications, accountButton, theme, colorPalette]
+    pages: [
+      app,
+      sidePaneLayout,
+      dragBar,
+      drawer,
+      modal,
+      portalContainer,
+      notifications,
+      accountButton,
+      theme,
+      colorPalette
+    ]
   },
   {
     name: "Info",

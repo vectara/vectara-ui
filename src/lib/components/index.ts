@@ -42,6 +42,7 @@ import { VuiContextProvider } from "./context/Context";
 import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDatePicker } from "./datePicker/DatePicker";
 import { VuiDateRangePicker } from "./datePicker/DateRangePicker";
+import { DragBarClamp, VuiDragBar } from "./dragBar/DragBar";
 import { VuiDrawer } from "./drawer/Drawer";
 import { DURATION_BAR_COLOR, VuiDurationBar } from "./durationBar/DurationBar";
 import { VuiErrorBoundary } from "./errorBoundary/ErrorBoundary";
@@ -111,6 +112,7 @@ import { VuiSearchSelect } from "./searchSelect/SearchSelect";
 import { VuiSetting } from "./setting/Setting";
 import { VuiSideList } from "./sideList/VuiSideList";
 import { VuiSideListButton } from "./sideList/VuiSideListButton";
+import { VuiSidePaneLayout } from "./sidePaneLayout/SidePaneLayout";
 import { VuiSpacer } from "./spacer/Spacer";
 import { SPACER_SIZE } from "./spacer/types";
 import { VuiSpinner } from "./spinner/Spinner";
@@ -155,6 +157,7 @@ export type {
   CalloutColor,
   ChatLanguage,
   ChatStyle,
+  DragBarClamp,
   ChatTurn,
   CheckboxConfig,
   CodeEditorColorConfig,
@@ -260,6 +263,7 @@ export {
   VuiCopyButton,
   VuiDatePicker,
   VuiDateRangePicker,
+  VuiDragBar,
   VuiDrawer,
   VuiDurationBar,
   VuiErrorBoundary,
@@ -313,6 +317,7 @@ export {
   VuiSetting,
   VuiSideList,
   VuiSideListButton,
+  VuiSidePaneLayout,
   VuiSimpleCard,
   VuiSimpleGrid,
   VuiSpacer,
