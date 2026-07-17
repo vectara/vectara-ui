@@ -1,0 +1,29 @@
+.vuiDragBar {
+  position: relative;
+  z-index: 7;
+}
+
+.vuiDragBar__hitArea {
+  position: absolute;
+  background-color: transparent;
+  width: $sizeM;
+  height: 100%;
+  top: 0;
+  left: -$sizeM * 0.5;
+  z-index: 9;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba(var(--vui-color-medium-shade-shade-rgb), 0.5);
+    cursor: col-resize;
+  }
+
+  &:active {
+    background-color: transparent;
+    cursor: col-resize;
+  }
+}
+
+.vuiDragBar__hitArea--disabled {
+  display: none;
+}
