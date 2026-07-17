@@ -4,22 +4,33 @@
   display: inline-block;
 }
 
+// The track is a full background circle behind the spinning arc. Each color
+// tints its track to match, falling back to a neutral light shade.
+.vuiSpinner__track {
+  stroke: var(--vui-color-light-shade);
+}
+
 // Color
 $color: (
   accent: (
-    "color": var(--vui-color-accent-shade)
+    "color": var(--vui-color-accent-shade),
+    "track": var(--vui-color-accent-background)
   ),
   primary: (
-    "color": var(--vui-color-primary-shade)
+    "color": var(--vui-color-primary-shade),
+    "track": var(--vui-color-primary-background)
   ),
   success: (
-    "color": var(--vui-color-success-shade)
+    "color": var(--vui-color-success-shade),
+    "track": var(--vui-color-success-background)
   ),
   danger: (
-    "color": var(--vui-color-danger-shade)
+    "color": var(--vui-color-danger-shade),
+    "track": var(--vui-color-danger-background)
   ),
   warning: (
-    "color": var(--vui-color-warning-shade)
+    "color": var(--vui-color-warning-shade),
+    "track": var(--vui-color-warning-background)
   ),
   empty: (
     "color": var(--vui-color-empty-shade)
@@ -37,6 +48,12 @@ $color: (
     svg path,
     svg rect {
       fill: #{map.get($colorValue, "color")};
+    }
+
+    @if map.has-key($colorValue, "track") {
+      .vuiSpinner__track {
+        stroke: #{map.get($colorValue, "track")};
+      }
     }
   }
 }
