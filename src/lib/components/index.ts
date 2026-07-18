@@ -24,7 +24,7 @@ import { VuiTreeMap } from "./chart/TreeMap";
 import { ScatterSeries, VuiScatterChart } from "./chart/ScatterChart";
 import { ComposedSeries, VuiComposedChart } from "./chart/ComposedChart";
 import { CHART_PALETTE } from "./chart/palette";
-import { CALLOUT_COLOR, CALLOUT_SIZE, CalloutColor } from "./callout/types";
+import { CALLOUT_COLOR, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
 import { VuiChat } from "./chat/Chat";
 import { VuiChip } from "./chip/Chip";
@@ -209,7 +209,6 @@ export {
   BUTTON_SIZE,
   CHART_PALETTE,
   CALLOUT_COLOR,
-  CALLOUT_SIZE,
   DURATION_BAR_COLOR,
   ICON_COLOR,
   ICON_SIZE,

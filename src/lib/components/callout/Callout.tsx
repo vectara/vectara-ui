@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiTitle } from "../typography/Title";
 import { VuiText } from "../typography/Text";
-import { CALLOUT_SIZE, CalloutColor } from "./types";
+import { CalloutColor } from "./types";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIconButton } from "../button/IconButton";
@@ -17,7 +17,6 @@ type Props = {
   title: string;
   headingElement: (typeof HEADING_ELEMENT)[number];
   color: CalloutColor;
-  size?: (typeof CALLOUT_SIZE)[number];
   onDismiss?: () => void;
 };
 
@@ -30,7 +29,7 @@ const colorToIconMap = {
   neutral: BiHelpCircle
 };
 
-export const VuiCallout = ({ children, title, headingElement, color, size = "m", onDismiss, ...rest }: Props) => {
+export const VuiCallout = ({ children, title, headingElement, color, onDismiss, ...rest }: Props) => {
   const classes = classNames("vuiCallout", `vuiCallout--${color}`);
   const HeadingElement = headingElement as keyof JSX.IntrinsicElements;
 

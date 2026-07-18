@@ -5,7 +5,7 @@ export const Variations = () => {
   return (
     <>
       <Subsection title="With content">
-        <VuiCallout color="primary" size="m" title="Carbon fiber" headingElement="h3">
+        <VuiCallout color="primary" title="Carbon fiber" headingElement="h3">
           <VuiText>
             <p>
               Carbon fibers or carbon fibres (alternatively CF, graphite fiber or graphite fibre) are fibers about 5 to
@@ -29,7 +29,6 @@ export const Variations = () => {
       <Subsection title="Title only">
         <VuiCallout
           color="primary"
-          size="m"
           title="Carbon fibers are relatively expensive compared to similar fibers, such as
           glass fiber, basalt fibers, or plastic fibers"
           headingElement="h3"
