@@ -3,8 +3,10 @@ import {
   BUTTON_COLOR,
   ButtonColor,
   CALLOUT_COLOR,
+  VuiButtonPrimary,
   VuiButtonSecondary,
   VuiCallout,
+  VuiFlexContainer,
   VuiSpacer,
   VuiText
 } from "../../../lib";
@@ -38,7 +40,10 @@ export const Colors = () => {
             {BUTTON_COLOR.includes(color as ButtonColor) && (
               <>
                 <VuiSpacer size="m" />
-                <VuiButtonSecondary color={color as ButtonColor}>Callout action</VuiButtonSecondary>
+                <VuiFlexContainer>
+                  <VuiButtonPrimary color={color as ButtonColor}>Primary action</VuiButtonPrimary>
+                  <VuiButtonSecondary color={color as ButtonColor}>Secondary action</VuiButtonSecondary>
+                </VuiFlexContainer>
               </>
             )}
           </VuiCallout>

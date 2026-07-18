@@ -2,21 +2,10 @@
 
 .vuiCallout {
   width: 100%;
-}
-
-.vuiCallout--m {
-  padding: $sizeM;
-
-  .vuiCallout__closeButton {
-    margin: -$sizeM * 0.5;
-  }
-}
-
-.vuiCallout--s {
   padding: $sizeS;
 
   .vuiCallout__closeButton {
-    margin: -$sizeS * 0.5;
+    margin: -$sizeS * 0.25;
   }
 }
 
@@ -50,7 +39,7 @@ $color: (
 
 @each $colorName, $colorValue in $color {
   .vuiCallout--#{$colorName} {
-    border-radius: $sizeXxs;
+    border-radius: $sizeXxxs;
     border: 1px solid #{map.get($colorValue, "border-color")};
     background-color: #{map.get($colorValue, "background-color")};
   }

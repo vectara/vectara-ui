@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { Link, Navigate, Route, HashRouter as Router, Routes, useLocation } from "react-router-dom";
 import { BiLogoGithub } from "react-icons/bi";
 import {
@@ -11,12 +12,17 @@ import {
   VuiButtonSecondary,
   VuiContextProvider,
   VuiBadge,
-  LinkProps
+  VuiText,
+  VuiTextColor,
+  buildSideNavItems,
+  LinkProps,
+  VuiTextInput
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
 import { categories } from "./pages";
 import { Home } from "./Home";
 import { Page } from "./Page";
+
 import "./index.scss";
 
 // Baked in at build time from package.json via the REACT_APP_VUI_VERSION env var.
@@ -32,6 +38,41 @@ export const Docs = () => {
 
 const DocsContent = () => {
   const location = useLocation();
+  const [searchValue, setSearchValue] = useState("");
+
+  // Filter the sidenav down to pages whose name matches the search value.
+  const filteredCategories = useMemo(() => {
+    const query = searchValue.trim().toLowerCase();
+    if (!query) return categories;
+
+    return categories.reduce<typeof categories>((matches, category) => {
+      const pages = category.pages.filter((page) => page.name.toLowerCase().includes(query));
+      if (pages.length > 0) matches.push({ ...category, pages });
+      return matches;
+    }, []);
+  }, [searchValue]);
+
+  const navContent = (
+    <>
+      <VuiTextInput
+        size="s"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Search"
+        className="navSearch"
+      />
+
+      {filteredCategories.length > 0 ? (
+        buildSideNavItems(filteredCategories)
+      ) : (
+        <VuiText size="s">
+          <p>
+            <VuiTextColor color="subdued">No matches</VuiTextColor>
+          </p>
+        </VuiText>
+      )}
+    </>
+  );
 
   const routes: React.ReactNode[] = [];
 
@@ -100,7 +141,7 @@ const DocsContent = () => {
         }
       />
 
-      <VuiAppLayout navItems={categories}>
+      <VuiAppLayout navContent={navContent}>
         <Routes>
           <Route path="/" element={<Home />} />
           {routes}
