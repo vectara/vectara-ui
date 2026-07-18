@@ -3,7 +3,7 @@ import { VuiAccountButton, AccountButtonHandle } from "./accountButton/AccountBu
 import { VuiAppContent } from "./app/AppContent";
 import { VuiAppHeader } from "./app/AppHeader";
 import { VuiAppLayout } from "./app/AppLayout";
-import { VuiAppSideNav } from "./app/appSideNav/AppSideNav";
+import { VuiAppSideNav, buildSideNavItems } from "./app/appSideNav/AppSideNav";
 import { VuiAppSideNavLink } from "./app/appSideNav/AppSideNavLink";
 import { VuiAppSideNavGroup } from "./app/appSideNav/AppSideNavGroup";
 import { Sections, SectionItem, Tree, TreeItem } from "./app/types";
@@ -236,6 +236,7 @@ export {
   VuiAppHeader,
   VuiAppLayout,
   VuiAppSideNav,
+  buildSideNavItems,
   VuiAppSideNavLink,
   VuiAppSideNavGroup,
   VuiBadge,

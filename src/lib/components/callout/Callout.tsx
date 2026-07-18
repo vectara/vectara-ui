@@ -2,13 +2,12 @@ import { ReactNode } from "react";
 import classNames from "classnames";
 import { VuiSpacer } from "../spacer/Spacer";
 import { VuiTitle } from "../typography/Title";
-import { VuiTextColor } from "../typography/TextColor";
 import { VuiText } from "../typography/Text";
 import { CALLOUT_SIZE, CalloutColor } from "./types";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
 import { VuiIconButton } from "../button/IconButton";
-import { BiX } from "react-icons/bi";
+import { BiCheckCircle, BiError, BiHelpCircle, BiInfoCircle, BiShow, BiTestTube, BiX } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
 
 const HEADING_ELEMENT = ["h1", "h2", "h3", "h4", "h5", "h6", "p"] as const;
@@ -22,61 +21,65 @@ type Props = {
   onDismiss?: () => void;
 };
 
-const sizeToTitleSizeMap = {
-  s: "xs",
-  m: "s"
-} as const;
-
-const sizeToSpacerSizeMap = {
-  s: "xxs",
-  m: "xs"
-} as const;
-
-const sizeToContentSizeMap = {
-  s: "xs",
-  m: "s"
-} as const;
+const colorToIconMap = {
+  accent: BiTestTube,
+  primary: BiInfoCircle,
+  danger: BiError,
+  success: BiCheckCircle,
+  warning: BiShow,
+  neutral: BiHelpCircle
+};
 
 export const VuiCallout = ({ children, title, headingElement, color, size = "m", onDismiss, ...rest }: Props) => {
-  const classes = classNames("vuiCallout", `vuiCallout--${color}`, `vuiCallout--${size}`);
+  const classes = classNames("vuiCallout", `vuiCallout--${color}`);
   const HeadingElement = headingElement as keyof JSX.IntrinsicElements;
+
+  const Icon = colorToIconMap[color];
 
   return (
     <div className={classes} {...rest}>
-      <VuiFlexContainer alignItems="start" justifyContent="spaceBetween">
-        <VuiFlexItem grow={1}>
-          <VuiTitle size={sizeToTitleSizeMap[size]}>
-            <HeadingElement>
-              <VuiTextColor color={color}>{title}</VuiTextColor>
-            </HeadingElement>
-          </VuiTitle>
+      <VuiFlexContainer alignItems="start" spacing="xs">
+        <VuiFlexItem grow={0} shrink={0}>
+          <VuiIcon color="neutral">
+            <Icon />
+          </VuiIcon>
         </VuiFlexItem>
 
-        {onDismiss && (
-          <VuiFlexItem shrink={false} grow={false}>
-            <VuiIconButton
-              aria-label="Hide information"
-              className="vuiCallout__closeButton"
-              data-testid="calloutCloseButton"
-              color={color}
-              onClick={onDismiss}
-              icon={
-                <VuiIcon>
-                  <BiX />
-                </VuiIcon>
-              }
-              size="s"
-            />
-          </VuiFlexItem>
-        )}
-      </VuiFlexContainer>
+        <VuiFlexItem grow={1} shrink={1}>
+          <VuiFlexContainer alignItems="start" justifyContent="spaceBetween">
+            <VuiFlexItem grow={1}>
+              <VuiTitle size="xs">
+                <HeadingElement>{title}</HeadingElement>
+              </VuiTitle>
+            </VuiFlexItem>
 
-      {children && (
-        <>
-          <VuiSpacer size={sizeToSpacerSizeMap[size]} />
-          <VuiText size={sizeToContentSizeMap[size]}>{children}</VuiText>
-        </>
-      )}
+            {onDismiss && (
+              <VuiFlexItem shrink={false} grow={false}>
+                <VuiIconButton
+                  aria-label="Hide information"
+                  className="vuiCallout__closeButton"
+                  data-testid="calloutCloseButton"
+                  color={color}
+                  onClick={onDismiss}
+                  icon={
+                    <VuiIcon>
+                      <BiX />
+                    </VuiIcon>
+                  }
+                  size="s"
+                />
+              </VuiFlexItem>
+            )}
+          </VuiFlexContainer>
+
+          {children && (
+            <>
+              <VuiSpacer size="s" />
+              <VuiText size="s">{children}</VuiText>
+            </>
+          )}
+        </VuiFlexItem>
+      </VuiFlexContainer>
     </div>
   );
 };
