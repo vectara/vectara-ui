@@ -18,6 +18,7 @@ import { complexConfigurationButton } from "./pages/complexConfigurationButton";
 import { composer } from "./pages/composer";
 import { copyButton } from "./pages/copyButton";
 import { datePicker } from "./pages/datePicker";
+import { diffViewer } from "./pages/diffViewer";
 import { dragBar } from "./pages/dragBar";
 import { drawer } from "./pages/drawer";
 import { durationBar } from "./pages/durationBar";
@@ -136,6 +137,7 @@ export const categories: Category[] = [
       status,
       callout,
       code,
+      diffViewer,
       durationBar,
       icon,
       image,
