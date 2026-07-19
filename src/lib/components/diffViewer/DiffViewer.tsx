@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { FocusOn } from "react-focus-on";
-import { BiX } from "react-icons/bi";
+import { BiMinus, BiPlus, BiX } from "react-icons/bi";
 import classNames from "classnames";
 import { VuiFlexContainer } from "../flex/FlexContainer";
 import { VuiFlexItem } from "../flex/FlexItem";
@@ -13,8 +13,10 @@ import { VuiTab } from "../tabs/Tab";
 import { VuiText } from "../typography/Text";
 import { getOverlayProps } from "../../utils/getOverlayProps";
 import { computeDiff } from "./computeDiff";
-import { DiffCellType, DiffSegment, DiffView, InlineDiffRow, SideBySideCell } from "./types";
+import { humanizeJsonDiff, isJsonComparison } from "./humanizeJsonDiff";
+import { DiffCellType, DiffSegment, DiffView, InlineDiffRow, JsonChange, SideBySideCell } from "./types";
 import { OptionsMenu } from "./OptionsMenu";
+import { VuiGrid } from "../grid";
 
 type Props = {
   original: string;
@@ -131,6 +133,49 @@ const SplitView = ({
   </div>
 );
 
+// Lists only the JSON nodes that changed, each labeled with its dot-notation path.
+const HumanizedView = ({ changes }: { changes: JsonChange[] }) => (
+  <div className="vuiDiffViewer__body vuiDiffViewer__humanized">
+    {changes.map((change, index) => (
+      <div key={index} className="vuiHumanizedChange">
+        <VuiFlexContainer alignItems="center" spacing="xs" className="vuiHumanizedChange__header">
+          {change.oldDisplay !== undefined && (
+            <VuiFlexItem grow={false}>
+              <VuiIcon color="danger" size="s" type="token">
+                <BiMinus />
+              </VuiIcon>
+            </VuiFlexItem>
+          )}
+
+          {change.newDisplay !== undefined && (
+            <VuiFlexItem grow={false}>
+              <VuiIcon color="success" size="s" type="token">
+                <BiPlus />
+              </VuiIcon>
+            </VuiFlexItem>
+          )}
+
+          <VuiFlexItem grow={false}>
+            <span className="vuiHumanizedChange__path">{change.path}</span>
+          </VuiFlexItem>
+        </VuiFlexContainer>
+
+        <VuiGrid columns={2} spacing="s">
+          {change.oldDisplay !== undefined ? (
+            <div className="vuiHumanizedValue vuiHumanizedValue--removed">{change.oldDisplay}</div>
+          ) : (
+            <div />
+          )}
+
+          {change.newDisplay !== undefined && (
+            <div className="vuiHumanizedValue vuiHumanizedValue--added">{change.newDisplay}</div>
+          )}
+        </VuiGrid>
+      </div>
+    ))}
+  </div>
+);
+
 // A fullscreen modal that displays a line-by-line diff between two strings,
 // toggling between side-by-side and inline views.
 export const VuiDiffViewer = ({
@@ -174,6 +219,13 @@ export const VuiDiffViewer = ({
 
   const { inlineRows, sideBySideRows, hasChanges } = useMemo(() => computeDiff(original, edited), [original, edited]);
 
+  // The humanized view only applies when both inputs are JSON.
+  const isJson = useMemo(() => isJsonComparison(original, edited), [original, edited]);
+  const jsonChanges = useMemo(() => (isJson ? humanizeJsonDiff(original, edited) : []), [isJson, original, edited]);
+
+  // Fall back to a valid view if humanized was requested for a non-JSON comparison.
+  const activeView = view === "humanized" && !isJson ? "split" : view;
+
   const classes = classNames("vuiDiffViewer", { "vuiDiffViewer-isLoaded": isLoaded });
 
   return (
@@ -200,13 +252,19 @@ export const VuiDiffViewer = ({
                   <VuiFlexContainer alignItems="center" spacing="xs">
                     <VuiFlexItem grow={false}>
                       <VuiTabs size="s" tabStyle="enclosed">
-                        <VuiTab isActive={view === "split"} onClick={() => setView("split")}>
+                        <VuiTab isActive={activeView === "split"} onClick={() => setView("split")}>
                           Split
                         </VuiTab>
 
-                        <VuiTab isActive={view === "inline"} onClick={() => setView("inline")}>
+                        <VuiTab isActive={activeView === "inline"} onClick={() => setView("inline")}>
                           Inline
                         </VuiTab>
+
+                        {isJson && (
+                          <VuiTab isActive={activeView === "humanized"} onClick={() => setView("humanized")}>
+                            Nodes
+                          </VuiTab>
+                        )}
                       </VuiTabs>
                     </VuiFlexItem>
 
@@ -237,13 +295,15 @@ export const VuiDiffViewer = ({
                 </VuiFlexItem>
               </VuiFlexContainer>
 
-              {!hasChanges ? (
+              {(activeView === "humanized" ? jsonChanges.length === 0 : !hasChanges) ? (
                 <div className="vuiDiffViewer__empty">
                   <VuiText size="s">
                     <p>No changes.</p>
                   </VuiText>
                 </div>
-              ) : view === "split" ? (
+              ) : activeView === "humanized" ? (
+                <HumanizedView changes={jsonChanges} />
+              ) : activeView === "split" ? (
                 <SplitView rows={sideBySideRows} highlightWords={isWordHighlightEnabled} />
               ) : (
                 <InlineView rows={inlineRows} highlightWords={isWordHighlightEnabled} />

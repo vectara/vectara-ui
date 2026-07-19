@@ -41,7 +41,7 @@ const original = `{
     },
     "document_conversion": {
       "type": "document_conversion",
-      "description_template": "Convert uploaded artifacts such as PDF and HTML into readable\nMarkdown/text so Io can inspect attached files before analyzing them.",
+      "description_template": "Convert uploaded artifacts such as PDF and HTML into readable\\nMarkdown/text so Io can inspect attached files before analyzing them.",
       "enabled": true,
       "metadata": {},
       "enrichment_only": false,
@@ -60,6 +60,16 @@ const original = `{
     "apply_update_lambda_tool": {
       "type": "client",
       "tool_id": "tol_12324",
+      "argument_override": {}
+    },
+    "apply_update_agent": {
+      "type": "client",
+      "tool_id": "tol_12320",
+      "argument_override": {}
+    },
+    "apply_update_corpus": {
+      "type": "client",
+      "tool_id": "tol_12322",
       "argument_override": {}
     },
     "apply_update_pipeline": {
@@ -96,7 +106,7 @@ const original = `{
           "name": "io-assistant-main",
           "description": "Inline instruction for agent io-assistant",
           "template_type": "velocity",
-          "template": "You are io, the Vectara assistant."
+          "template": "You are io, the Vectara assistant.",
           "metadata": {},
           "enabled": true,
           "type": "inline"
@@ -137,7 +147,7 @@ const edited = `{
   "tool_configurations": {
     "read_url": {
       "type": "web_get",
-      "description_template": "Fetch a PUBLIC URL over HTTP GET so you can read it — use this to pull an\nexternal API's OpenAPI spec or docs page when the user wants a tool for a\nthird-party (non-MCP) API. Pass the full URL in \`url\`. GET-only and sends\nNO credentials, so it only works for publicly readable URLs; never put\nsecrets in the URL. Large pages are truncated — if a spec is too big to\nread in one fetch, ask the user for the specific endpoint's section or a\ntrimmed spec. This is for READING external documents; it is NOT how you\ncall the developer's Vectara tenant (use call_vectara_api for that).",
+      "description_template": "Fetch a PUBLIC URL over HTTP GET so you can read it — use this to pull an\\nexternal API's OpenAPI spec or docs page when the user wants a tool for a\\nthird-party (non-MCP) API. Pass the full URL in \`url\`. GET-only and sends\\nNO credentials, so it only works for publicly readable URLs; never put\\nsecrets in the URL. Large pages are truncated — if a spec is too big to\\nread in one fetch, ask the user for the specific endpoint's section or a\\ntrimmed spec. This is for READING external documents; it is NOT how you\\ncall the developer's Vectara tenant (use call_vectara_api for that).",
       "enabled": true,
       "metadata": {},
       "output_transform": "{url, status_code, content, truncated, error} | with_entries(select(.value != null))",
@@ -171,7 +181,7 @@ const edited = `{
     },
     "document_conversion": {
       "type": "document_conversion",
-      "description_template": "Convert uploaded artifacts such as PDF, DOCX, PPTX, and HTML into readable\nMarkdown/text so Io can inspect attached files before analyzing them.",
+      "description_template": "Convert uploaded artifacts such as PDF, DOCX, PPTX, and HTML into readable\\nMarkdown/text so Io can inspect attached files before analyzing them.",
       "enabled": true,
       "metadata": {},
       "enrichment_only": false,
@@ -180,11 +190,6 @@ const edited = `{
     "apply_create_agent": {
       "type": "client",
       "tool_id": "tol_12166",
-      "argument_override": {}
-    },
-    "apply_update_agent": {
-      "type": "client",
-      "tool_id": "tol_12320",
       "argument_override": {}
     },
     "apply_create_corpus": {
@@ -226,7 +231,7 @@ const edited = `{
           "name": "io-assistant-main",
           "description": "Inline instruction for agent io-assistant",
           "template_type": "velocity",
-          "template": "You are io, the Vectara assistant."
+          "template": "You are io, the Vectara assistant.",
           "metadata": {},
           "enabled": true,
           "type": "inline"

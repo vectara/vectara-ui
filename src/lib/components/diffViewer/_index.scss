@@ -130,3 +130,45 @@ $diffViewerMargin: $sizeM;
     border-right: 1px solid var(--vui-color-border-light);
   }
 }
+
+// Humanized view: one section per changed JSON node.
+.vuiDiffViewer__humanized {
+  padding: $sizeM $sizeL $sizeL;
+}
+
+.vuiHumanizedChange {
+  & + & {
+    margin-top: $sizeL;
+  }
+}
+
+.vuiHumanizedChange__header {
+  margin-bottom: $sizeXs;
+}
+
+.vuiHumanizedChange__path {
+  color: var(--vui-color-text);
+  word-break: break-word;
+}
+
+.vuiHumanizedValue {
+  padding: $sizeXs $sizeM;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: $sizeXxs;
+
+  & + & {
+    margin-top: $sizeXxs;
+  }
+}
+
+.vuiHumanizedValue--added {
+  background-color: var(--vui-color-success-background);
+  color: var(--vui-color-success-shade);
+}
+
+.vuiHumanizedValue--removed {
+  background-color: var(--vui-color-danger-background);
+  color: var(--vui-color-danger-shade);
+  text-decoration: line-through;
+}

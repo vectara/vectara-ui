@@ -36,4 +36,15 @@ export type SideBySideDiffRow = {
   right: SideBySideCell;
 };
 
-export type DiffView = "split" | "inline";
+export type DiffView = "split" | "inline" | "humanized";
+
+export type JsonChangeType = "added" | "removed" | "changed";
+
+// A single changed node in the humanized view of a JSON comparison. The path uses dot
+// notation, e.g. "steps.main.instructions".
+export type JsonChange = {
+  path: string;
+  type: JsonChangeType;
+  oldDisplay?: string;
+  newDisplay?: string;
+};
