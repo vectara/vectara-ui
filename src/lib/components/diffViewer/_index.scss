@@ -1,15 +1,3 @@
-@keyframes diffViewerIn {
-  0% {
-    transform: translateY(12px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 $diffViewerMargin: $sizeM;
 
 .vuiDiffViewer {
@@ -24,8 +12,18 @@ $diffViewerMargin: $sizeM;
   background-color: var(--vui-color-empty-shade);
   border-radius: $sizeXxs;
   box-shadow: rgba(57, 57, 75, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  animation: diffViewerIn $transitionSpeed cubic-bezier(0, 1, 1, 1);
   overflow: hidden;
+  // Transition in and out. The JS keeps this mounted until the transition completes.
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform $transitionSpeed cubic-bezier(0, 1, 1, 1), opacity $transitionSpeed;
+  pointer-events: none;
+}
+
+.vuiDiffViewer-isLoaded {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
 }
 
 .vuiDiffViewer__header {
@@ -105,6 +103,22 @@ $diffViewerMargin: $sizeM;
 .vuiDiffLine--removed .vuiDiffLine__content,
 .vuiDiffLine--removed .vuiDiffLine__marker {
   color: var(--vui-color-danger-shade);
+}
+
+// Intra-line word highlighting: emphasize the runs that actually changed.
+.vuiDiffLine__word {
+  padding: 1px 0;
+  border-radius: $sizeXxs;
+  background-color: transparent;
+  color: inherit;
+}
+
+.vuiDiffLine--added .vuiDiffLine__word {
+  background-color: rgba(var(--vui-color-success-shade-rgb), 0.24);
+}
+
+.vuiDiffLine--removed .vuiDiffLine__word {
+  background-color: rgba(var(--vui-color-danger-shade-rgb), 0.24);
 }
 
 // Side-by-side view: two independently colored cells per row.
