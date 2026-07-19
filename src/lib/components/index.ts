@@ -30,6 +30,7 @@ import { VuiChat } from "./chat/Chat";
 import { VuiChip } from "./chip/Chip";
 import { VuiCode } from "./code/Code";
 import { CodeLanguage } from "./code/types";
+import { DiffView } from "./diffViewer/types";
 import {
   VuiComposer,
   ComposerFileError,
@@ -42,6 +43,7 @@ import { VuiContextProvider } from "./context/Context";
 import { VuiCopyButton } from "./copyButton/CopyButton";
 import { VuiDatePicker } from "./datePicker/DatePicker";
 import { VuiDateRangePicker } from "./datePicker/DateRangePicker";
+import { VuiDiffViewer } from "./diffViewer/DiffViewer";
 import { DragBarClamp, VuiDragBar } from "./dragBar/DragBar";
 import { VuiDrawer } from "./drawer/Drawer";
 import { DURATION_BAR_COLOR, VuiDurationBar } from "./durationBar/DurationBar";
@@ -163,6 +165,7 @@ export type {
   CodeEditorColorConfig,
   CodeEditorError,
   CodeLanguage,
+  DiffView,
   ComposerFileError,
   ComposerShortcutApi,
   ComposerShortcutHandler,
@@ -263,6 +266,7 @@ export {
   VuiCopyButton,
   VuiDatePicker,
   VuiDateRangePicker,
+  VuiDiffViewer,
   VuiDragBar,
   VuiDrawer,
   VuiDurationBar,

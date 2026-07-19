@@ -45,6 +45,11 @@ export const VuiCode = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const codeRef = useRef(null);
 
+  // Uncouple fullscreen state from visibility so it can transition out before unmounting.
+  const returnFocusElRef = useRef<HTMLElement | null>(null);
+  const [isFullscreenLoaded, setIsFullscreenLoaded] = useState(false);
+  const [isFullscreenVisible, setIsFullscreenVisible] = useState(false);
+
   useEffect(() => {
     if (codeRef.current) {
       // Skip highlighting for very large code blocks to avoid performance issues.
@@ -54,6 +59,27 @@ export const VuiCode = ({
       Prism.highlightElement(codeRef.current);
     }
   }, [children, language, isFullscreen]);
+
+  useEffect(() => {
+    if (isFullscreen) {
+      returnFocusElRef.current = document.activeElement as HTMLElement;
+      setIsFullscreenVisible(true);
+      requestAnimationFrame(() => {
+        setIsFullscreenLoaded(true);
+      });
+    } else {
+      returnFocusElRef.current?.focus();
+      returnFocusElRef.current = null;
+      setIsFullscreenLoaded(false);
+
+      // Wait for the transition to complete before unmounting.
+      // This duration should match the CSS transition speed.
+      const timeoutId = window.setTimeout(() => {
+        setIsFullscreenVisible(false);
+      }, 200);
+      return () => window.clearTimeout(timeoutId);
+    }
+  }, [isFullscreen]);
 
   const containerClasses = classNames("vuiCodeContainer", {
     "vuiCodeContainer--fullHeight": fullHeight
@@ -124,14 +150,22 @@ export const VuiCode = ({
       )}
 
       <VuiPortal>
-        {isFullscreen && (
-          <VuiScreenBlock>
+        {(isFullscreen || isFullscreenVisible || isFullscreenLoaded) && (
+          <VuiScreenBlock isHidden={!isFullscreen}>
             <FocusOn
+              enabled={isFullscreen}
+              autoFocus={isFullscreen}
+              returnFocus={false}
               onEscapeKey={() => {
                 setIsFullscreen(false);
               }}
             >
-              <div className="vuiCodeFullscreen" {...getOverlayProps("fullscreenCodeTitle")}>
+              <div
+                className={classNames("vuiCodeFullscreen", {
+                  "vuiCodeFullscreen-isLoaded": isFullscreenLoaded
+                })}
+                {...getOverlayProps("fullscreenCodeTitle")}
+              >
                 <VuiFlexContainer
                   alignItems="center"
                   justifyContent="spaceBetween"

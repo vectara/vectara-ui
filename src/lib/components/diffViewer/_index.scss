@@ -1,0 +1,132 @@
+$diffViewerMargin: $sizeM;
+
+.vuiDiffViewer {
+  position: fixed;
+  top: $diffViewerMargin;
+  left: $diffViewerMargin;
+  right: $diffViewerMargin;
+  bottom: $diffViewerMargin;
+  z-index: $fullscreenZIndex;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--vui-color-empty-shade);
+  border-radius: $sizeXxs;
+  box-shadow: rgba(57, 57, 75, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  overflow: hidden;
+  // Transition in and out. The JS keeps this mounted until the transition completes.
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform $transitionSpeed cubic-bezier(0, 1, 1, 1), opacity $transitionSpeed;
+  pointer-events: none;
+}
+
+.vuiDiffViewer-isLoaded {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.vuiDiffViewer__header {
+  flex-shrink: 0;
+  padding: $sizeXs $sizeXs $sizeXs $sizeL;
+  border-bottom: 1px solid var(--vui-color-border-light);
+}
+
+.vuiDiffViewer__empty {
+  padding: $sizeL;
+}
+
+.vuiDiffViewer__body {
+  flex-grow: 1;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  font-family: var(--vui-font-family-monospace);
+  font-size: $fontSizeSmall;
+  line-height: 1.6;
+}
+
+// A single line: gutter number(s), change marker, and content. Gutters and the
+// marker are fixed-width so they align across every row; the content fills the rest.
+.vuiDiffLine {
+  display: flex;
+  align-items: stretch;
+  min-height: 1.6em;
+}
+
+.vuiDiffLine--added {
+  background-color: var(--vui-color-success-background);
+}
+
+.vuiDiffLine--removed {
+  background-color: var(--vui-color-danger-background);
+}
+
+.vuiDiffLine--empty {
+  background-color: var(--vui-color-light-shade);
+}
+
+.vuiDiffLine__gutter {
+  flex-shrink: 0;
+  width: 44px;
+  padding: 0 $sizeXs;
+  text-align: right;
+  color: var(--vui-color-subdued-shade);
+  background-color: var(--vui-color-light-shade);
+  border-right: 1px solid var(--vui-color-border-light);
+  user-select: none;
+  // Keep the gutter aligned when content wraps.
+  white-space: nowrap;
+}
+
+.vuiDiffLine__marker {
+  flex-shrink: 0;
+  width: $sizeL;
+  padding-left: $sizeXs;
+  color: var(--vui-color-subdued-shade);
+  user-select: none;
+}
+
+.vuiDiffLine__content {
+  flex-grow: 1;
+  padding: 0 $sizeM 0 $sizeXs;
+  color: var(--vui-color-dark-shade);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.vuiDiffLine--added .vuiDiffLine__content,
+.vuiDiffLine--added .vuiDiffLine__marker {
+  color: var(--vui-color-success-shade);
+}
+
+.vuiDiffLine--removed .vuiDiffLine__content,
+.vuiDiffLine--removed .vuiDiffLine__marker {
+  color: var(--vui-color-danger-shade);
+}
+
+// Intra-line word highlighting: emphasize the runs that actually changed.
+.vuiDiffLine__word {
+  padding: 1px 0;
+  border-radius: $sizeXxs;
+  background-color: transparent;
+  color: inherit;
+}
+
+.vuiDiffLine--added .vuiDiffLine__word {
+  background-color: rgba(var(--vui-color-success-shade-rgb), 0.24);
+}
+
+.vuiDiffLine--removed .vuiDiffLine__word {
+  background-color: rgba(var(--vui-color-danger-shade-rgb), 0.24);
+}
+
+// Side-by-side view: two independently colored cells per row.
+.vuiDiffSplitRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .vuiDiffLine:first-child {
+    border-right: 1px solid var(--vui-color-border-light);
+  }
+}
