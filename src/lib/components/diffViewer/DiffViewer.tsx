@@ -11,10 +11,10 @@ import { VuiScreenBlock } from "../screenBlock/ScreenBlock";
 import { VuiTabs } from "../tabs/Tabs";
 import { VuiTab } from "../tabs/Tab";
 import { VuiText } from "../typography/Text";
-import { VuiToggle } from "../toggle/Toggle";
 import { getOverlayProps } from "../../utils/getOverlayProps";
 import { computeDiff } from "./computeDiff";
 import { DiffCellType, DiffSegment, DiffView, InlineDiffRow, SideBySideCell } from "./types";
+import { OptionsMenu } from "./OptionsMenu";
 
 type Props = {
   original: string;
@@ -36,7 +36,15 @@ const typeToMarker: Record<DiffCellType, string> = {
 
 // Renders a line's content, emphasizing the runs that changed when word highlighting
 // is enabled and segments are available.
-const DiffContent = ({ content, segments, highlightWords }: { content: string; segments?: DiffSegment[]; highlightWords: boolean }) => {
+const DiffContent = ({
+  content,
+  segments,
+  highlightWords
+}: {
+  content: string;
+  segments?: DiffSegment[];
+  highlightWords: boolean;
+}) => {
   if (!highlightWords || !segments) {
     return <span className="vuiDiffLine__content">{content}</span>;
   }
@@ -172,12 +180,7 @@ export const VuiDiffViewer = ({
     <VuiPortal>
       {(isOpen || isContentVisible || isLoaded) && (
         <VuiScreenBlock type="modal" isHidden={!isOpen}>
-          <FocusOn
-            enabled={isOpen}
-            autoFocus={isOpen}
-            returnFocus={false}
-            onEscapeKey={() => onClose?.()}
-          >
+          <FocusOn enabled={isOpen} autoFocus={isOpen} returnFocus={false} onEscapeKey={() => onClose?.()}>
             <div className={classes} {...getOverlayProps("diffViewerTitle")} {...rest}>
               <VuiFlexContainer
                 alignItems="center"
@@ -194,24 +197,24 @@ export const VuiDiffViewer = ({
                 </VuiFlexItem>
 
                 <VuiFlexItem grow={false} shrink={false}>
-                  <VuiFlexContainer alignItems="center" spacing="m">
-                    <VuiFlexItem grow={false}>
-                      <VuiToggle
-                        label="Highlight words"
-                        checked={isWordHighlightEnabled}
-                        onChange={(event) => setIsWordHighlightEnabled(event.target.checked)}
-                      />
-                    </VuiFlexItem>
-
+                  <VuiFlexContainer alignItems="center" spacing="xs">
                     <VuiFlexItem grow={false}>
                       <VuiTabs size="s" tabStyle="enclosed">
                         <VuiTab isActive={view === "split"} onClick={() => setView("split")}>
                           Split
                         </VuiTab>
+
                         <VuiTab isActive={view === "inline"} onClick={() => setView("inline")}>
                           Inline
                         </VuiTab>
                       </VuiTabs>
+                    </VuiFlexItem>
+
+                    <VuiFlexItem grow={false}>
+                      <OptionsMenu
+                        isWordHighlightEnabled={isWordHighlightEnabled}
+                        setIsWordHighlightEnabled={setIsWordHighlightEnabled}
+                      />
                     </VuiFlexItem>
 
                     {onClose && (
