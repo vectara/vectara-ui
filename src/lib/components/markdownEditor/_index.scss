@@ -1,0 +1,77 @@
+$markdownEditorPreviewMinHeight: 160px;
+$markdownEditorMaxHeight: 480px;
+
+.vuiMarkdownEditor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-medium-shade);
+  border-radius: $sizeXxs;
+
+  &:focus-within {
+    outline: var(--vui-color-primary-shade) auto $sizeXxxs;
+    outline-offset: $sizeXxxs;
+  }
+
+  [hidden] {
+    display: none;
+  }
+}
+
+.vuiMarkdownEditor-isInvalid {
+  border-color: var(--vui-color-danger-shade);
+}
+
+.vuiMarkdownEditor-isDisabled {
+  background-color: var(--vui-color-light-shade);
+}
+
+.vuiMarkdownEditor__toolbar {
+  flex-shrink: 0;
+  padding: $sizeXxs $sizeXxs $sizeXxs $sizeXs;
+  border-bottom: 1px solid var(--vui-color-border-light);
+}
+
+.vuiMarkdownEditor__textArea {
+  display: block;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  max-height: $markdownEditorMaxHeight;
+  font-family: var(--vui-font-family-monospace);
+  font-size: $fontSizeSmall;
+  line-height: 1.6;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.vuiMarkdownEditor__preview {
+  min-height: $markdownEditorPreviewMinHeight;
+  max-height: $markdownEditorMaxHeight;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: $sizeS;
+}
+
+.vuiMarkdownEditor__preview-isEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vuiMarkdownPreviewModal__wordCount {
+  margin-left: $sizeXs;
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightNormal;
+  color: var(--vui-color-subdued-shade);
+}
+
+.vuiMarkdownPreviewModal__body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: $sizeS;
+}
