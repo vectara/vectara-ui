@@ -18,6 +18,11 @@ import { VuiMarkdownPreviewModal } from "./MarkdownPreviewModal";
 const MODE = ["source", "preview"] as const;
 type Mode = (typeof MODE)[number];
 
+const PANEL_ROW_HEIGHT = 19.2; // $fontSizeSmall (12px) * $markdownEditorLineHeight (1.6).
+const PANEL_PADDING = 12; // $sizeS.
+
+const getPanelHeight = (rows: number) => rows * PANEL_ROW_HEIGHT + PANEL_PADDING * 2;
+
 type ControlProps = {
   value: string;
   onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -135,40 +140,45 @@ const MarkdownEditorControl = ({
         </VuiFlexContainer>
 
         {/* Both panels stay mounted so switching modes never disturbs the textarea's value or undo history. */}
-        <div id={getPanelId("source")} role="tabpanel" aria-labelledby={getTabId("source")} hidden={mode !== "source"}>
-          <VuiTextArea
-            className="vuiMarkdownEditor__textArea"
-            id={id}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            disabled={isDisabled}
-            required={required}
-            aria-describedby={ariaDescribedBy}
-            rows={rows}
-            resizable
-            fullWidth
-          />
-        </div>
+        <div className="vuiMarkdownEditor__panels" style={{ height: getPanelHeight(rows) }}>
+          <div
+            id={getPanelId("source")}
+            role="tabpanel"
+            aria-labelledby={getTabId("source")}
+            hidden={mode !== "source"}
+          >
+            <VuiTextArea
+              className="vuiMarkdownEditor__textArea"
+              id={id}
+              value={value}
+              onChange={onChange}
+              placeholder={placeholder}
+              disabled={isDisabled}
+              required={required}
+              aria-describedby={ariaDescribedBy}
+              fullWidth
+            />
+          </div>
 
-        <div
-          id={getPanelId("preview")}
-          role="tabpanel"
-          aria-labelledby={getTabId("preview")}
-          hidden={mode !== "preview"}
-          // Focuses tab panel so keyboard users can scroll through preview window.
-          tabIndex={0}
-          className={previewClasses}
-        >
-          {isEmpty ? (
-            <VuiText size="s" align="center">
-              <p>
-                <VuiTextColor color="subdued">Nothing to preview yet.</VuiTextColor>
-              </p>
-            </VuiText>
-          ) : (
-            <VuiMarkdown size="s">{value}</VuiMarkdown>
-          )}
+          <div
+            id={getPanelId("preview")}
+            role="tabpanel"
+            aria-labelledby={getTabId("preview")}
+            hidden={mode !== "preview"}
+            // Focuses tab panel so keyboard users can scroll through preview window.
+            tabIndex={0}
+            className={previewClasses}
+          >
+            {isEmpty ? (
+              <VuiText size="s" align="center">
+                <p>
+                  <VuiTextColor color="subdued">Nothing to preview yet.</VuiTextColor>
+                </p>
+              </VuiText>
+            ) : (
+              <VuiMarkdown size="s">{value}</VuiMarkdown>
+            )}
+          </div>
         </div>
       </div>
 

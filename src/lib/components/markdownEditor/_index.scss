@@ -1,5 +1,8 @@
-$markdownEditorPreviewMinHeight: 160px;
-$markdownEditorMaxHeight: 480px;
+$markdownEditorPanelPadding: $sizeS;
+$markdownEditorLineHeight: 1.6;
+$markdownEditorRowHeight: $fontSizeSmall * $markdownEditorLineHeight;
+$markdownEditorMinRows: 2;
+$markdownEditorMaxRows: 24;
 
 .vuiMarkdownEditor {
   display: flex;
@@ -12,10 +15,6 @@ $markdownEditorMaxHeight: 480px;
   &:focus-within {
     outline: var(--vui-color-primary-shade) auto $sizeXxxs;
     outline-offset: $sizeXxxs;
-  }
-
-  [hidden] {
-    display: none;
   }
 }
 
@@ -33,15 +32,37 @@ $markdownEditorMaxHeight: 480px;
   border-bottom: 1px solid var(--vui-color-border-light);
 }
 
+// Owns the height for both tabs, so switching modes never resizes the editor. The height
+// itself is set inline from the rows prop; these bounds cap that value and the resize handle
+// alike, and past them the panels scroll rather than grow.
+.vuiMarkdownEditor__panels {
+  min-height: calc(#{$markdownEditorRowHeight} * #{$markdownEditorMinRows} + #{$markdownEditorPanelPadding * 2});
+  max-height: calc(#{$markdownEditorRowHeight} * #{$markdownEditorMaxRows} + #{$markdownEditorPanelPadding * 2});
+  resize: vertical;
+  // Required for resize to take effect, and clips each panel to the height set here.
+  overflow: hidden;
+
+  > [hidden] {
+    display: none;
+  }
+
+  > * {
+    height: 100%;
+  }
+}
+
 .vuiMarkdownEditor__textArea {
   display: block;
+  height: 100%;
+  // The panel already enforces the height, so the textarea's own floor must not fight it.
+  min-height: 0;
   border: none;
   border-radius: 0;
   background-color: transparent;
-  max-height: $markdownEditorMaxHeight;
+  padding: $markdownEditorPanelPadding;
   font-family: var(--vui-font-family-monospace);
   font-size: $fontSizeSmall;
-  line-height: 1.6;
+  line-height: $markdownEditorLineHeight;
 
   &:focus-visible {
     outline: none;
@@ -49,12 +70,10 @@ $markdownEditorMaxHeight: 480px;
 }
 
 .vuiMarkdownEditor__preview {
-  min-height: $markdownEditorPreviewMinHeight;
-  max-height: $markdownEditorMaxHeight;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
-  padding: $sizeS;
+  padding: $markdownEditorPanelPadding;
 }
 
 .vuiMarkdownEditor__preview-isEmpty {
