@@ -108,12 +108,15 @@ const MarkdownEditorControl = ({
           spacing="xs"
         >
           <VuiFlexItem grow={false}>
-            <div ref={tabListRef} role="tablist" aria-label="Editor mode" onKeyDown={onTabListKeyDown}>
-              <VuiTabs size="s" tabStyle="enclosed">
-                {createTab("source", "Source")}
-                {createTab("preview", "Preview")}
-              </VuiTabs>
-            </div>
+            <VuiTabs
+              size="s"
+              tabStyle="enclosed"
+              tabListProps={{ role: "tablist", "aria-label": "Editor mode", onKeyDown: onTabListKeyDown }}
+              tabListRef={tabListRef}
+            >
+              {createTab("source", "Source")}
+              {createTab("preview", "Preview")}
+            </VuiTabs>
           </VuiFlexItem>
 
           <VuiFlexItem grow={false}>
