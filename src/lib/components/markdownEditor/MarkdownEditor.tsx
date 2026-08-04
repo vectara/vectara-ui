@@ -105,7 +105,7 @@ const MarkdownEditorControl = ({
           className="vuiMarkdownEditor__toolbar"
           alignItems="center"
           justifyContent="spaceBetween"
-          spacing="xs"
+          spacing="s"
         >
           <VuiFlexItem grow={false}>
             <VuiTabs

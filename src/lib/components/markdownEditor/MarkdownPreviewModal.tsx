@@ -15,6 +15,7 @@ type Props = {
 
 export const VuiMarkdownPreviewModal = ({ title, value, isOpen, onClose, ...rest }: Props) => {
   const wordCount = countWords(value);
+  const isEmpty = value.trim().length === 0;
 
   const heading = (
     <>
@@ -26,21 +27,21 @@ export const VuiMarkdownPreviewModal = ({ title, value, isOpen, onClose, ...rest
   return (
     <VuiModal
       className="vuiMarkdownPreviewModal"
-      size="l"
+      size={isEmpty ? "s" : "l"}
       title={heading}
       isOpen={isOpen}
       onClose={onClose}
       {...rest}
     >
       <div className="vuiMarkdownPreviewModal__body">
-        {value.trim() ? (
-          <VuiMarkdown size="m">{value}</VuiMarkdown>
-        ) : (
+        {isEmpty ? (
           <VuiText size="m">
             <p>
               <VuiTextColor color="subdued">Nothing to preview yet.</VuiTextColor>
             </p>
           </VuiText>
+        ) : (
+          <VuiMarkdown size="m">{value}</VuiMarkdown>
         )}
       </div>
     </VuiModal>
