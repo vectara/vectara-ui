@@ -1,0 +1,12 @@
+.vuiMarkdownPreviewModal__wordCount {
+  margin-left: $sizeXs;
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightNormal;
+  color: var(--vui-color-subdued-shade);
+}
+
+.vuiMarkdownPreviewModal__body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: $sizeS;
+}

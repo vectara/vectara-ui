@@ -42,7 +42,7 @@ import { lineChart } from "./pages/lineChart";
 import { link } from "./pages/link";
 import { list } from "./pages/list";
 import { loadingBar } from "./pages/loadingBar";
-import { markdownEditor } from "./pages/markdownEditor";
+import { markdown } from "./pages/markdown";
 import { menu } from "./pages/menu";
 import { modal } from "./pages/modal";
 import { notifications } from "./pages/notifications";
@@ -164,7 +164,7 @@ export const categories: Category[] = [
       select,
       toggle,
       textArea,
-      markdownEditor,
+      markdown,
       codeEditor,
       checkbox,
       radioButton,

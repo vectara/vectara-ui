@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { VuiMarkdownEditor } from "../../../lib";
+import { VuiMarkdown } from "../../../lib";
 
-const initialValue = `# Support agent
+const value = `# Support agent
 
 You are a **support agent** for Vectara. Answer questions about the platform using only
 the corpora you have been given access to.
@@ -27,16 +26,4 @@ Escalate by calling \`create_ticket\` with a short summary:
 See the [docs](https://docs.vectara.com) for the full policy.
 `;
 
-export const MarkdownEditor = () => {
-  const [value, setValue] = useState(initialValue);
-
-  return (
-    <VuiMarkdownEditor
-      label="Instructions"
-      hint="Markdown is supported. Switch to Preview to see it rendered."
-      value={value}
-      onChange={(event) => setValue(event.target.value)}
-      placeholder="Describe how the agent should behave"
-    />
-  );
-};
+export const Markdown = () => <VuiMarkdown>{value}</VuiMarkdown>;
