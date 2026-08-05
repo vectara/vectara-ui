@@ -7,6 +7,13 @@ type Props = {
   href?: string;
   onClick?: () => void;
   isActive?: boolean;
+  // Passed through so consumers can implement the WAI-ARIA tab pattern, which needs
+  // roles, a roving tabindex, and a tab-to-panel association.
+  id?: string;
+  role?: string;
+  tabIndex?: number;
+  "aria-selected"?: boolean;
+  "aria-controls"?: string;
 };
 
 export const VuiTab = ({ children, className, href, onClick, isActive = false, ...rest }: Props) => {

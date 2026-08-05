@@ -88,6 +88,8 @@ import { VuiLink, VuiLinkInternal } from "./link/Link";
 import { LinkProps } from "./link/types";
 import { VuiList } from "./list/List";
 import { LOADING_BAR_COLOR, VuiLoadingBar } from "./loadingBar/LoadingBar";
+import { VuiMarkdown } from "./markdown/Markdown";
+import { VuiMarkdownPreviewModal } from "./markdownPreviewModal/MarkdownPreviewModal";
 import { VuiMenu } from "./menu/Menu";
 import { VuiMenuItem, MenuItem } from "./menu/MenuItem";
 import { VuiMenuList } from "./menuList/VuiMenuList";
@@ -294,6 +296,8 @@ export {
   VuiLinkInternal,
   VuiList,
   VuiLoadingBar,
+  VuiMarkdown,
+  VuiMarkdownPreviewModal,
   VuiMenu,
   VuiMenuItem,
   VuiMenuList,

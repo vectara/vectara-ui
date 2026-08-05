@@ -1,0 +1,61 @@
+@import "../../../lib/sassUtils/index";
+
+$markdownEditingExampleBodyHeight: 260px;
+
+.markdownEditingExample {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--vui-color-empty-shade);
+  border: 1px solid var(--vui-color-medium-shade);
+  border-radius: $sizeXxs;
+
+  &:focus-within {
+    outline: var(--vui-color-primary-shade) auto $sizeXxxs;
+    outline-offset: $sizeXxxs;
+  }
+}
+
+.markdownEditingExample__header {
+  flex-shrink: 0;
+  padding: $sizeXs $sizeXxs $sizeXs $sizeXs;
+  border-bottom: 1px solid var(--vui-color-border-light);
+}
+
+// A fixed body height keeps both tabs the same size, so switching never resizes the box.
+.markdownEditingExample__body {
+  height: $markdownEditingExampleBodyHeight;
+  overflow: hidden;
+
+  > [hidden] {
+    display: none;
+  }
+
+  > * {
+    height: 100%;
+  }
+}
+
+.markdownEditingExample__textArea {
+  display: block;
+  height: 100%;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  padding: $sizeS;
+  font-family: var(--vui-font-family-monospace);
+  font-size: $fontSizeSmall;
+  line-height: 1.6;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.markdownEditingExample__preview {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: $sizeS;
+}
