@@ -1,5 +1,5 @@
 import Editor from "@monaco-editor/react";
-import * as monacoTypes from "monaco-editor/esm/vs/editor/editor.api";
+import type * as monacoTypes from "monaco-editor/esm/vs/editor/editor.api";
 import { useEffect, useId, useRef } from "react";
 import { VuiText } from "../../typography/Text";
 import { VuiTextColor } from "../../typography/TextColor";
@@ -173,7 +173,7 @@ export const VuiCodeEditor = ({
           onChange={onChange}
           onValidate={(markers: Array<monacoTypes.editor.IMarkerData>) => {
             const errors = markers.reduce((acc: Array<CodeEditorError>, marker: monacoTypes.editor.IMarkerData) => {
-              if (marker.severity === monacoTypes.MarkerSeverity.Error) {
+              if (monacoRef.current && marker.severity === monacoRef.current.MarkerSeverity.Error) {
                 acc.push({
                   startLine: marker.startLineNumber,
                   endLine: marker.endLineNumber,
