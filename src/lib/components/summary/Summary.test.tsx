@@ -108,28 +108,28 @@ With some **bold** and _emphasized_ test. Here is a [link](https://www.vectara.c
                   <thead>
                     <tr>
                       <th>
-                         Syntax      
+                        Syntax
                       </th>
                       <th>
-                         Description 
+                        Description
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>
-                         Header      
+                        Header
                       </td>
                       <td>
-                         Title       
+                        Title
                       </td>
                     </tr>
                     <tr>
                       <td>
-                         Paragraph   
+                        Paragraph
                       </td>
                       <td>
-                         Text        
+                        Text
                       </td>
                     </tr>
                   </tbody>
@@ -180,7 +180,7 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
             >
               <div>
                 <h1
-                  id="summarycitation-reference1--heres-a-heading-1"
+                  id="-heres-a-heading-1"
                 >
                   <button
                     class="vuiSummaryCitation"
@@ -191,7 +191,7 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
                    Here's a heading 1
                 </h1>
                 <h2
-                  id="summarycitation-reference1--heres-a-heading-2"
+                  id="-heres-a-heading-2"
                 >
                   <button
                     class="vuiSummaryCitation"
@@ -202,7 +202,7 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
                    Here's a heading 2
                 </h2>
                 <h3
-                  id="summarycitation-reference1--heres-a-heading-3"
+                  id="-heres-a-heading-3"
                 >
                   <button
                     class="vuiSummaryCitation"
@@ -213,7 +213,7 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
                    Here's a heading 3
                 </h3>
                 <h4
-                  id="summarycitation-reference1--heres-a-heading-4"
+                  id="-heres-a-heading-4"
                 >
                   <button
                     class="vuiSummaryCitation"
@@ -379,20 +379,20 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
                   <thead>
                     <tr>
                       <th>
-                         Syntax      
+                        Syntax
                       </th>
                       <th>
-                         Description 
+                        Description
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>
-                         Header      
+                        Header
                       </td>
                       <td>
-                         Title 
+                        Title 
                         <button
                           class="vuiSummaryCitation"
                           type="button"
@@ -405,15 +405,14 @@ With some **bold** [2][3] and _emphasized_ [2][3] test. Here is a [link](https:/
                         >
                           3
                         </button>
-                               
                       </td>
                     </tr>
                     <tr>
                       <td>
-                         Paragraph   
+                        Paragraph
                       </td>
                       <td>
-                         Text        
+                        Text
                       </td>
                     </tr>
                   </tbody>
