@@ -33,7 +33,8 @@ $color: (
     "track": var(--vui-color-warning-background)
   ),
   empty: (
-    "color": var(--vui-color-empty-shade)
+    "color": var(--vui-color-empty-shade),
+    "track": rgba(var(--vui-color-empty-shade-rgb), 0.3)
   ),
   dark: (
     "color": var(--vui-color-darker-shade)
