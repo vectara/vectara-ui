@@ -23,6 +23,7 @@ import { VuiSparkline } from "./chart/Sparkline";
 import { VuiTreeMap } from "./chart/TreeMap";
 import { ScatterSeries, VuiScatterChart } from "./chart/ScatterChart";
 import { ComposedSeries, VuiComposedChart } from "./chart/ComposedChart";
+import { ValueAxis, ValueAxisScale, ValueExtent } from "./chart/valueAxis";
 import { CHART_PALETTE } from "./chart/palette";
 import { CALLOUT_COLOR, CalloutColor } from "./callout/types";
 import { ChatTurn, ChatStyle, ChatLanguage } from "./chat/types";
@@ -157,6 +158,9 @@ export type {
   LineChartSeries,
   LineChartVariant,
   ScatterSeries,
+  ValueAxis,
+  ValueAxisScale,
+  ValueExtent,
   ButtonColor,
   CalloutColor,
   ChatLanguage,

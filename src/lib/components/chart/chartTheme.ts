@@ -15,3 +15,7 @@ export const chartTooltipProps = {
 };
 
 export const chartLegendProps = { wrapperStyle: { fontSize: 12, color: "var(--vui-color-label)" } };
+
+// Room for a value-axis label centered on the top tick, which the 5px default
+// margin would clip.
+export const chartValueAxisMargin = { top: 10, right: 5, bottom: 5, left: 5 };

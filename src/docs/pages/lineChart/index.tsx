@@ -3,6 +3,7 @@ import { Curved } from "./Curved";
 import { Area } from "./Area";
 import { StackedArea } from "./StackedArea";
 import { FormattedValues } from "./FormattedValues";
+import { NiceTicks } from "./NiceTicks";
 import { Synced } from "./Synced";
 
 const BasicSource = require("!!raw-loader!./Basic");
@@ -10,6 +11,7 @@ const CurvedSource = require("!!raw-loader!./Curved");
 const AreaSource = require("!!raw-loader!./Area");
 const StackedAreaSource = require("!!raw-loader!./StackedArea");
 const FormattedValuesSource = require("!!raw-loader!./FormattedValues");
+const NiceTicksSource = require("!!raw-loader!./NiceTicks");
 const SyncedSource = require("!!raw-loader!./Synced");
 
 export const lineChart = {
@@ -40,6 +42,11 @@ export const lineChart = {
       name: "Formatted values",
       component: <FormattedValues />,
       source: FormattedValuesSource.default.toString()
+    },
+    {
+      name: "Nice ticks",
+      component: <NiceTicks />,
+      source: NiceTicksSource.default.toString()
     },
     {
       name: "Synced",
