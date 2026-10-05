@@ -10,7 +10,9 @@ const data = [
 ];
 
 // formatValue formats both the value-axis ticks and the tooltip readout, so raw
-// millisecond values render as human-readable durations.
+// millisecond values render as human-readable durations. The ticks themselves
+// are still chosen in milliseconds; see "Nice ticks" for choosing them in the
+// unit the labels show.
 const formatMs = (ms: number) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)}s` : `${ms}ms`);
 
 export const FormattedValues = () => {

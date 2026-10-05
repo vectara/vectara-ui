@@ -12,7 +12,14 @@ import {
 } from "recharts";
 import { PatchColor } from "../patch/VuiPatch";
 import { getChartColor, getChartColorByIndex } from "./palette";
-import { chartAxisLineStyle, chartLegendProps, chartTickStyle, chartTooltipProps } from "./chartTheme";
+import {
+  chartAxisLineStyle,
+  chartLegendProps,
+  chartTickStyle,
+  chartTooltipProps,
+  chartValueAxisMargin
+} from "./chartTheme";
+import { ValueAxis, maxIntervalsForHeight, valueAxisProps, valueExtent } from "./valueAxis";
 
 export type LineChartSeries = {
   // Key into each datum that holds this series' value.
@@ -48,8 +55,13 @@ type Props = {
   // Align the shared cursor by x-axis "value" rather than by data "index". Use
   // "value" when synced charts have differing point counts. Defaults to "index".
   syncMethod?: "index" | "value";
-  // Formats value-axis tick labels and tooltip values, e.g. milliseconds to "1.2s".
+  // Formats tooltip values and, unless valueAxis labels them, value-axis ticks,
+  // e.g. milliseconds to "1.2s".
   formatValue?: (value: number) => string;
+  // Chooses the value-axis ticks from the extent of the plotted values, for
+  // callers that want ticks round in the unit they label (whole minutes for
+  // millisecond data, say) with space above the peak. Tooltips keep formatValue.
+  valueAxis?: ValueAxis;
   "data-testid"?: string;
 };
 
@@ -67,16 +79,28 @@ export const VuiLineChart = ({
   syncId,
   syncMethod,
   formatValue,
+  valueAxis,
   ...rest
 }: Props) => {
   const isArea = variant === "area" || variant === "stacked-area";
   const isStacked = variant === "stacked-area";
+  const scale = valueAxis?.(
+    valueExtent(
+      data,
+      series.map((s) => s.dataKey),
+      isStacked
+    ),
+    { maxIntervals: maxIntervalsForHeight(height, showLegend) }
+  );
+  const yAxisProps = scale
+    ? { ...valueAxisProps(scale, formatValue), width: "auto" as const }
+    : { tickFormatter: formatValue };
 
   const axes = (
     <>
       {showGrid && <CartesianGrid stroke="var(--vui-color-border-light)" vertical={false} />}
       <XAxis dataKey={categoryKey} tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} />
-      <YAxis tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} tickFormatter={formatValue} />
+      <YAxis tick={chartTickStyle} axisLine={chartAxisLineStyle} tickLine={false} {...yAxisProps} />
       {showTooltip && (
         <Tooltip
           cursor={{ stroke: "var(--vui-color-border-medium)" }}
@@ -107,7 +131,12 @@ export const VuiLineChart = ({
     <div className="vuiLineChart" {...rest}>
       <ResponsiveContainer width="100%" height={height}>
         {isArea ? (
-          <RechartsAreaChart data={data} syncId={syncId} syncMethod={syncMethod}>
+          <RechartsAreaChart
+            data={data}
+            syncId={syncId}
+            syncMethod={syncMethod}
+            {...(scale && { margin: chartValueAxisMargin })}
+          >
             {axes}
             {series.map((s, index) => {
               const props = markProps(s, index);
@@ -124,7 +153,12 @@ export const VuiLineChart = ({
             })}
           </RechartsAreaChart>
         ) : (
-          <RechartsLineChart data={data} syncId={syncId} syncMethod={syncMethod}>
+          <RechartsLineChart
+            data={data}
+            syncId={syncId}
+            syncMethod={syncMethod}
+            {...(scale && { margin: chartValueAxisMargin })}
+          >
             {axes}
             {series.map((s, index) => (
               <Line {...markProps(s, index)} />
