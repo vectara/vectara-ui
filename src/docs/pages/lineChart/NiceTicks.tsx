@@ -12,17 +12,20 @@ const data = [
 const formatMs = (ms: number) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)}s` : `${ms}ms`);
 
 // Left to itself, the axis picks ticks that are round in the data's unit
-// (milliseconds), which read as odd fractions once labeled in seconds. A
-// valueAxis chooses the ticks in the unit the labels show and leaves one step
-// of space above the peak. The tooltip still reads the exact value.
+// (milliseconds), which can result in odd-looking tick labels. For example,
+// by default these values will render as 550ms, 1.1s, 1.6s, and 2.2s.
 const STEPS_MS = [100, 200, 500, 1000, 2000, 5000];
 
 const secondsAxis: ValueAxis = ({ max }, { maxIntervals }) => {
-  const step =
+  // Determine the appropriate step size for the axis based on the maximum value and allowed intervals.
+  const stepSize =
     STEPS_MS.find((candidate) => Math.floor(max / candidate) + 1 <= maxIntervals) ?? STEPS_MS[STEPS_MS.length - 1];
-  const intervals = Math.floor(max / step) + 1;
+  // Calculate the number of intervals based on the chosen step size.
+  const intervals = Math.floor(max / stepSize) + 1;
   return {
-    ticks: Array.from({ length: intervals + 1 }, (_, index) => index * step),
+    // Generate the tick values for the axis based on the number of intervals and step size.
+    ticks: Array.from({ length: intervals + 1 }, (_, index) => index * stepSize),
+    // Convert ms to seconds for display, ensuring that the tick labels are in whole seconds, or near to it.
     formatTick: (ms) => `${ms / 1000}s`
   };
 };
