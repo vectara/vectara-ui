@@ -92,3 +92,20 @@ $color: (
     }
   }
 }
+
+// Background and text colors are applied inline.
+.vuiBadge--custom {
+  border: 1px solid transparent;
+  transition: all $transitionSpeed;
+
+  &.vuiBadge--clickable:hover {
+    border-color: currentColor;
+    text-decoration: none;
+  }
+
+  // Match icons to the contrasting text color.
+  .vuiBadge__icon,
+  .vuiBadge__icon .vuiIcon__inner {
+    color: inherit !important;
+  }
+}

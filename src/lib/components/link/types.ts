@@ -4,6 +4,7 @@ export type LinkProps = {
   children: ReactNode;
   href?: string;
   className?: string;
+  style?: React.CSSProperties;
   target?: "_blank";
   onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
   onMouseOver?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
