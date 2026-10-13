@@ -1,0 +1,64 @@
+.vuiProgressCircle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.vuiProgressCircle--s {
+  width: 20px;
+  height: 20px;
+}
+
+.vuiProgressCircle--m {
+  width: 48px;
+  height: 48px;
+}
+
+.vuiProgressCircle__svg {
+  width: 100%;
+  height: 100%;
+  // Start the value arc at 12 o'clock.
+  transform: rotate(-90deg);
+}
+
+.vuiProgressCircle__track,
+.vuiProgressCircle__value {
+  fill: none;
+  stroke-width: 4;
+}
+
+.vuiProgressCircle__track {
+  stroke: var(--vui-color-light-shade);
+}
+
+.vuiProgressCircle__value {
+  stroke-linecap: round;
+  transition: stroke-dashoffset $transitionSpeed;
+}
+
+.vuiProgressCircle__label {
+  position: absolute;
+  font-size: $fontSizeXsmall;
+  font-weight: $fontWeightBold;
+  color: var(--vui-color-text);
+}
+
+// Color
+$color: (
+  accent: var(--vui-color-accent-shade),
+  primary: var(--vui-color-primary-shade),
+  success: var(--vui-color-success-shade),
+  warning: var(--vui-color-warning-shade),
+  danger: var(--vui-color-danger-shade),
+  neutral: var(--vui-color-dark-shade)
+);
+
+@each $colorName, $colorValue in $color {
+  .vuiProgressCircle--#{$colorName} {
+    .vuiProgressCircle__value {
+      stroke: $colorValue;
+    }
+  }
+}

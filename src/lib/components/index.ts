@@ -108,6 +108,7 @@ import { PATCH_COLOR, PatchColor, VuiPatch } from "./patch/VuiPatch";
 import { VuiPopover, AnchorSide } from "./popover/Popover";
 import { VuiPortal } from "./portal/Portal";
 import { PROGRESS_BAR_COLOR, VuiProgressBar } from "./progressBar/ProgressBar";
+import { PROGRESS_CIRCLE_COLOR, PROGRESS_CIRCLE_SIZE, VuiProgressCircle } from "./progressCircle/ProgressCircle";
 import { VuiPrompt } from "./prompt/Prompt";
 import { VuiScreenBlock } from "./screenBlock/ScreenBlock";
 import { VuiSearchInput } from "./searchInput/SearchInput";
@@ -225,6 +226,8 @@ export {
   LOADING_BAR_COLOR,
   PATCH_COLOR,
   PROGRESS_BAR_COLOR,
+  PROGRESS_CIRCLE_COLOR,
+  PROGRESS_CIRCLE_SIZE,
   SPACER_SIZE,
   SPINNER_COLOR,
   SKELETON_COLOR,
@@ -319,6 +322,7 @@ export {
   VuiPopover,
   VuiPortal,
   VuiProgressBar,
+  VuiProgressCircle,
   VuiPrompt,
   VuiRadioButton,
   VuiScreenBlock,
