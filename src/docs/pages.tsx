@@ -54,6 +54,7 @@ import { patch } from "./pages/patch";
 import { pieChart } from "./pages/pieChart";
 import { popover } from "./pages/popover";
 import { progressBar } from "./pages/progressBar";
+import { progressCircle } from "./pages/progressCircle";
 import { prompt } from "./pages/prompt";
 import { radioButton } from "./pages/radioButton";
 import { searchInput } from "./pages/searchInput";
@@ -145,6 +146,7 @@ export const categories: Category[] = [
       inProgress,
       loadingBar,
       progressBar,
+      progressCircle,
       spinner,
       skeleton,
       stat,
