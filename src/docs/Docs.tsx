@@ -16,9 +16,11 @@ import {
   VuiTextColor,
   buildSideNavItems,
   LinkProps,
-  VuiTextInput
+  VuiTextInput,
+  ChartPaletteName
 } from "../lib";
 import { HeaderLogo } from "./components/HeaderLogo";
+import { ChartPaletteContext } from "./components/ChartPaletteSelect";
 import { categories } from "./pages";
 import { Home } from "./Home";
 import { Page } from "./Page";
@@ -39,6 +41,7 @@ export const Docs = () => {
 const DocsContent = () => {
   const location = useLocation();
   const [searchValue, setSearchValue] = useState("");
+  const [chartPalette, setChartPalette] = useState<ChartPaletteName>("accessible");
 
   // Filter the sidenav down to pages whose name matches the search value.
   const filteredCategories = useMemo(() => {
@@ -98,56 +101,58 @@ const DocsContent = () => {
   };
 
   return (
-    <VuiContextProvider linkProvider={linkProvider} pathProvider={pathProvider}>
-      <VuiAppHeader
-        left={
-          <VuiFlexContainer spacing="m" alignItems="center">
-            <VuiFlexItem grow={false} shrink={false}>
-              <HeaderLogo />
-            </VuiFlexItem>
-
-            <VuiFlexItem grow={false} shrink={false}>
-              <VuiTitle size="xs">
-                <h1>Vectara UI Library</h1>
-              </VuiTitle>
-            </VuiFlexItem>
-
-            {VUI_VERSION && (
+    <ChartPaletteContext.Provider value={{ chartPalette, setChartPalette }}>
+      <VuiContextProvider linkProvider={linkProvider} pathProvider={pathProvider} chartPalette={chartPalette}>
+        <VuiAppHeader
+          left={
+            <VuiFlexContainer spacing="m" alignItems="center">
               <VuiFlexItem grow={false} shrink={false}>
-                <VuiBadge color="neutral">{`v${VUI_VERSION}`}</VuiBadge>
+                <HeaderLogo />
               </VuiFlexItem>
-            )}
 
-            <VuiFlexItem grow={false} shrink={false}>
-              <VuiButtonSecondary size="s" color="neutral" href="/">
-                Home
-              </VuiButtonSecondary>
-            </VuiFlexItem>
-          </VuiFlexContainer>
-        }
-        right={
-          <VuiIconButton
-            href="https://github.com/vectara/vectara-ui"
-            target="_blank"
-            color="neutral"
-            size="m"
-            aria-label="Vectara UI GitHub repository"
-            icon={
-              <VuiIcon>
-                <BiLogoGithub />
-              </VuiIcon>
-            }
-          />
-        }
-      />
+              <VuiFlexItem grow={false} shrink={false}>
+                <VuiTitle size="xs">
+                  <h1>Vectara UI Library</h1>
+                </VuiTitle>
+              </VuiFlexItem>
 
-      <VuiAppLayout navContent={navContent}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {routes}
-          <Route path="*" element={<Navigate replace to="/" />} />
-        </Routes>
-      </VuiAppLayout>
-    </VuiContextProvider>
+              {VUI_VERSION && (
+                <VuiFlexItem grow={false} shrink={false}>
+                  <VuiBadge color="neutral">{`v${VUI_VERSION}`}</VuiBadge>
+                </VuiFlexItem>
+              )}
+
+              <VuiFlexItem grow={false} shrink={false}>
+                <VuiButtonSecondary size="s" color="neutral" href="/">
+                  Home
+                </VuiButtonSecondary>
+              </VuiFlexItem>
+            </VuiFlexContainer>
+          }
+          right={
+            <VuiIconButton
+              href="https://github.com/vectara/vectara-ui"
+              target="_blank"
+              color="neutral"
+              size="m"
+              aria-label="Vectara UI GitHub repository"
+              icon={
+                <VuiIcon>
+                  <BiLogoGithub />
+                </VuiIcon>
+              }
+            />
+          }
+        />
+
+        <VuiAppLayout navContent={navContent}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {routes}
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </Routes>
+        </VuiAppLayout>
+      </VuiContextProvider>
+    </ChartPaletteContext.Provider>
   );
 };

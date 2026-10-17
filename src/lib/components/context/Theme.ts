@@ -100,11 +100,11 @@ export type Theme = {
   colorRedText?: string;
 
   // Chart colors
-  // A categorical palette tuned for plotting data series, distinct from the
-  // categorical chip hues above. Each entry differs from its neighbors in both
-  // hue and luminance, so series stay distinguishable under color vision
-  // deficiency and in grayscale. Capped at 8 — the practical limit for
-  // reliably telling categories apart by color.
+  // An ordered palette for plotting data series, distinct from the categorical
+  // chip hues above. Defaults come from the chart palette selected on
+  // VuiContextProvider (see CHART_PALETTES); set these to override individual
+  // entries. Capped at 8 — the practical limit for reliably telling categories
+  // apart by color.
   colorChart1?: string;
   colorChart2?: string;
   colorChart3?: string;
@@ -198,18 +198,79 @@ const colorRedBackground = "#fee2e2";
 const colorRedText = "#b91c1c";
 
 // Chart colors
+// Each palette assigns the eight colorChart tokens, with a light and dark
+// variant. VuiContextProvider applies the selected palette beneath the theme, so
+// a theme can still override individual chart colors.
+export type ChartPaletteName = "accessible" | "aesthetic";
+
+type ChartColors = Pick<
+  Theme,
+  | "colorChart1"
+  | "colorChart2"
+  | "colorChart3"
+  | "colorChart4"
+  | "colorChart5"
+  | "colorChart6"
+  | "colorChart7"
+  | "colorChart8"
+>;
+
 // Grounded in the Okabe-Ito colorblind-safe palette, ordered for maximum
 // contrast between adjacent series and anchored to the brand's blue and purple.
 // The light gold and pure black of the original palette are darkened and
 // softened so they read on a light background.
-const colorChart1 = "#0072b2"; // Blue, neighbors the brand primary.
-const colorChart2 = "#e69f00"; // Orange.
-const colorChart3 = "#009e73"; // Teal-green.
-const colorChart4 = "#cc79a7"; // Mauve, echoes the brand accent.
-const colorChart5 = "#56b4e9"; // Sky.
-const colorChart6 = "#d55e00"; // Vermillion.
-const colorChart7 = "#9a8200"; // Deep gold.
-const colorChart8 = "#3f4551"; // Dark slate.
+const accessibleChartColors: ChartColors = {
+  colorChart1: "#0072b2", // Blue, neighbors the brand primary.
+  colorChart2: "#e69f00", // Orange.
+  colorChart3: "#009e73", // Teal-green.
+  colorChart4: "#cc79a7", // Mauve, echoes the brand accent.
+  colorChart5: "#56b4e9", // Sky.
+  colorChart6: "#d55e00", // Vermillion.
+  colorChart7: "#9a8200", // Deep gold.
+  colorChart8: "#3f4551" // Dark slate.
+};
+
+// Lighten the dark anchors so series stay legible on a dark background; the
+// mid-toned hues fall through to their light-theme values.
+const accessibleChartColorsDark: ChartColors = {
+  ...accessibleChartColors,
+  colorChart1: "#4aa3e0", // Blue.
+  colorChart7: "#d4b400", // Gold.
+  colorChart8: "#aab3c2" // Light slate.
+};
+
+// A vibrant palette that leads with the brand violet and pairs it with bright cool
+// and warm hues of similar chroma (defined in OKLCH), so no series shouts over
+// the others. Adjacent entries alternate cool and warm hues to stay distinct,
+// but neighbors are closer in lightness than the accessible palette, so prefer
+// that one where color-blind or grayscale legibility matters.
+const aestheticChartColors: ChartColors = {
+  colorChart1: "#844ef6", // Violet, echoes the brand accent.
+  colorChart2: "#23b6f1", // Sky.
+  colorChart3: "#fe7871", // Coral.
+  colorChart4: "#2bb9a7", // Teal.
+  colorChart5: "#f7ac4b", // Apricot.
+  colorChart6: "#d555bf", // Orchid.
+  colorChart7: "#76bb79", // Sage.
+  colorChart8: "#63728e" // Slate.
+};
+
+// The same hues raised in lightness so they glow against a dark background.
+const aestheticChartColorsDark: ChartColors = {
+  colorChart1: "#9d7dff", // Violet.
+  colorChart2: "#50c5fc", // Sky.
+  colorChart3: "#fb8d85", // Coral.
+  colorChart4: "#47cdba", // Teal.
+  colorChart5: "#ffbc64", // Apricot.
+  colorChart6: "#e674d0", // Orchid.
+  colorChart7: "#89cf8b", // Sage.
+  colorChart8: "#97a5bf" // Slate.
+};
+
+export const CHART_PALETTES: Record<ChartPaletteName, { light: ChartColors; dark: ChartColors }> = {
+  accessible: { light: accessibleChartColors, dark: accessibleChartColorsDark },
+  aesthetic: { light: aestheticChartColors, dark: aestheticChartColorsDark }
+};
 
 export const LIGHT_THEME: Theme = {
   // Font
@@ -306,17 +367,7 @@ export const LIGHT_THEME: Theme = {
   colorFuchsiaBackground,
   colorFuchsiaText,
   colorRedBackground,
-  colorRedText,
-
-  // Chart colors
-  colorChart1,
-  colorChart2,
-  colorChart3,
-  colorChart4,
-  colorChart5,
-  colorChart6,
-  colorChart7,
-  colorChart8
+  colorRedText
 };
 
 export const DARK_THEME: Theme = {
@@ -343,14 +394,7 @@ export const DARK_THEME: Theme = {
   colorLabel: colorLightShade,
 
   // Border color
-  colorBorderLight: "#323338",
-
-  // Chart colors
-  // Lighten the dark anchors so series stay legible on a dark background; the
-  // mid-toned hues fall through to their light-theme values.
-  colorChart1: "#4aa3e0", // Blue.
-  colorChart7: "#d4b400", // Gold.
-  colorChart8: "#aab3c2" // Light slate.
+  colorBorderLight: "#323338"
 };
 
 export const toStyle = (theme: Theme) => {

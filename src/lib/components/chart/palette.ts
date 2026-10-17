@@ -5,9 +5,8 @@ import { PatchColor } from "../patch/VuiPatch";
 export const CHART_COLOR_COUNT = 8;
 
 // The ordered chart palette as CSS variable references, so series colors stay
-// reactive to the active theme. These are tuned for series discrimination
-// (hue + luminance contrast, colorblind-safe), distinct from the categorical
-// chip hues. See the chart color tokens in Theme.ts.
+// reactive to the active theme and to the chartPalette selected on
+// VuiContextProvider. See CHART_PALETTES in Theme.ts.
 export const CHART_PALETTE = Array.from({ length: CHART_COLOR_COUNT }, (_, index) => `var(--vui-chart-${index + 1})`);
 
 // When the series count exceeds the palette, each wrap shifts lightness rather

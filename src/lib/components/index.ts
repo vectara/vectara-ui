@@ -149,12 +149,13 @@ import { VuiTooltip } from "./tooltip/Tooltip";
 import { VuiInfoTooltip } from "./tooltip/InfoTooltip";
 import { VuiTopicButton } from "./topicButton/TopicButton";
 import { copyToClipboard } from "../utils/copyToClipboard";
-import { toRgb, toRgba } from "./context/Theme";
+import { CHART_PALETTES, ChartPaletteName, toRgb, toRgba } from "./context/Theme";
 
 export type {
   AnchorSide,
   AppContentPadding,
   BarChartSeries,
+  ChartPaletteName,
   ComposedSeries,
   LineChartSeries,
   LineChartVariant,
@@ -218,6 +219,7 @@ export {
   BUTTON_COLOR,
   BUTTON_SIZE,
   CHART_PALETTE,
+  CHART_PALETTES,
   CALLOUT_COLOR,
   DURATION_BAR_COLOR,
   ICON_COLOR,

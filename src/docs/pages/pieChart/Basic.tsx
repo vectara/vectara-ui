@@ -1,4 +1,5 @@
 import { VuiPieChart } from "../../../lib";
+import { ChartPaletteSelect } from "../../components/ChartPaletteSelect";
 
 const data = [
   { source: "Documentation", count: 3200 },
@@ -9,5 +10,11 @@ const data = [
 ];
 
 export const Basic = () => {
-  return <VuiPieChart data={data} categoryKey="source" valueKey="count" />;
+  return (
+    <>
+      <ChartPaletteSelect />
+
+      <VuiPieChart data={data} categoryKey="source" valueKey="count" />
+    </>
+  );
 };

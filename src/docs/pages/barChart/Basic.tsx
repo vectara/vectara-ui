@@ -1,4 +1,5 @@
 import { VuiBarChart } from "../../../lib";
+import { ChartPaletteSelect } from "../../components/ChartPaletteSelect";
 
 const data = [
   { quarter: "Q1", queries: 4200, documents: 1800 },
@@ -9,13 +10,17 @@ const data = [
 
 export const Basic = () => {
   return (
-    <VuiBarChart
-      data={data}
-      categoryKey="quarter"
-      series={[
-        { dataKey: "queries", name: "Queries" },
-        { dataKey: "documents", name: "Documents" }
-      ]}
-    />
+    <>
+      <ChartPaletteSelect />
+
+      <VuiBarChart
+        data={data}
+        categoryKey="quarter"
+        series={[
+          { dataKey: "queries", name: "Queries" },
+          { dataKey: "documents", name: "Documents" }
+        ]}
+      />
+    </>
   );
 };

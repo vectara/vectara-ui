@@ -1,4 +1,5 @@
 import { VuiScatterChart } from "../../../lib";
+import { ChartPaletteSelect } from "../../components/ChartPaletteSelect";
 
 // Each point pairs a model's response latency (x, ms) with its relevance score (y).
 const modelA = [
@@ -21,11 +22,15 @@ const modelB = [
 
 export const Basic = () => {
   return (
-    <VuiScatterChart
-      series={[
-        { name: "Model A", data: modelA },
-        { name: "Model B", data: modelB }
-      ]}
-    />
+    <>
+      <ChartPaletteSelect />
+
+      <VuiScatterChart
+        series={[
+          { name: "Model A", data: modelA },
+          { name: "Model B", data: modelB }
+        ]}
+      />
+    </>
   );
 };

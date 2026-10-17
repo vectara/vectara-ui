@@ -1,4 +1,5 @@
 import { VuiTreeMap } from "../../../lib";
+import { ChartPaletteSelect } from "../../components/ChartPaletteSelect";
 
 const data = [
   { name: "Documentation", value: 4200 },
@@ -10,5 +11,11 @@ const data = [
 ];
 
 export const Basic = () => {
-  return <VuiTreeMap data={data} categoryKey="name" valueKey="value" />;
+  return (
+    <>
+      <ChartPaletteSelect />
+
+      <VuiTreeMap data={data} categoryKey="name" valueKey="value" />
+    </>
+  );
 };

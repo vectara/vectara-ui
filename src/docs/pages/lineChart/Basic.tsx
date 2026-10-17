@@ -1,4 +1,5 @@
 import { VuiLineChart } from "../../../lib";
+import { ChartPaletteSelect } from "../../components/ChartPaletteSelect";
 
 const data = [
   { month: "Jan", queries: 4200, documents: 1800 },
@@ -11,13 +12,17 @@ const data = [
 
 export const Basic = () => {
   return (
-    <VuiLineChart
-      data={data}
-      categoryKey="month"
-      series={[
-        { dataKey: "queries", name: "Queries" },
-        { dataKey: "documents", name: "Documents" }
-      ]}
-    />
+    <>
+      <ChartPaletteSelect />
+
+      <VuiLineChart
+        data={data}
+        categoryKey="month"
+        series={[
+          { dataKey: "queries", name: "Queries" },
+          { dataKey: "documents", name: "Documents" }
+        ]}
+      />
+    </>
   );
 };
