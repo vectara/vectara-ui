@@ -1,6 +1,6 @@
 import { createContext, useContext, ReactNode, useMemo, useEffect } from "react";
 import { LinkProps } from "../link/types";
-import { LIGHT_THEME, DARK_THEME, Theme, toStyle } from "./Theme";
+import { LIGHT_THEME, DARK_THEME, Theme, toStyle, ChartPaletteName, CHART_PALETTES } from "./Theme";
 
 type LinkProvider = (linkConfig: LinkProps) => JSX.Element;
 type PathProvider = () => string;
@@ -21,6 +21,10 @@ type Props = {
   pathProvider?: PathProvider;
   drawerTitle?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   theme?: Theme;
+  // Selects the chart series colors for every chart within the provider.
+  // "accessible" optimizes for color-blind and grayscale legibility; "aesthetic"
+  // trades some of that for a vibrant, brand-led look.
+  chartPalette?: ChartPaletteName;
   isThemeIsolated?: boolean;
   portalContainer?: HTMLElement;
 };
@@ -31,6 +35,7 @@ export const VuiContextProvider = ({
   pathProvider,
   drawerTitle = "h2",
   theme = LIGHT_THEME,
+  chartPalette = "accessible",
   portalContainer = document.body,
   isThemeIsolated
 }: Props) => {
@@ -56,9 +61,10 @@ export const VuiContextProvider = ({
   const DrawerTitle = drawerTitle as keyof JSX.IntrinsicElements;
 
   const cssVariables = useMemo(() => {
-    // Map the JS properties (camelCase) to CSS variables (kebab-case)
-    return toStyle(theme);
-  }, [theme]);
+    // Map the JS properties (camelCase) to CSS variables (kebab-case). The theme
+    // takes precedence so it can override individual palette colors.
+    return toStyle({ ...CHART_PALETTES[chartPalette].light, ...theme });
+  }, [theme, chartPalette]);
 
   useEffect(() => {
     if (isThemeIsolated) return;
@@ -72,10 +78,10 @@ export const VuiContextProvider = ({
 
   const getThemeStyle = (theme: "dark" | "light") => {
     if (theme === "dark") {
-      return toStyle(DARK_THEME);
+      return toStyle({ ...CHART_PALETTES[chartPalette].dark, ...DARK_THEME });
     }
 
-    return toStyle(LIGHT_THEME);
+    return toStyle({ ...CHART_PALETTES[chartPalette].light, ...LIGHT_THEME });
   };
 
   const themedChildren = isThemeIsolated ? <div style={cssVariables}>{children}</div> : children;

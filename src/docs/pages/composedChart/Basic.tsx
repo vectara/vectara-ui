@@ -1,4 +1,5 @@
 import { VuiComposedChart } from "../../../lib";
+import { ChartPaletteSelect } from "../../components/ChartPaletteSelect";
 
 // Query volume (bars, left axis) overlaid with p95 latency (line, right axis) — two metrics on
 // different scales sharing one chart.
@@ -13,13 +14,17 @@ const data = [
 
 export const Basic = () => {
   return (
-    <VuiComposedChart
-      data={data}
-      categoryKey="month"
-      series={[
-        { dataKey: "queries", name: "Queries", type: "bar", axis: "left" },
-        { dataKey: "latency", name: "p95 latency (ms)", type: "line", axis: "right", curved: true }
-      ]}
-    />
+    <>
+      <ChartPaletteSelect />
+
+      <VuiComposedChart
+        data={data}
+        categoryKey="month"
+        series={[
+          { dataKey: "queries", name: "Queries", type: "bar", axis: "left" },
+          { dataKey: "latency", name: "p95 latency (ms)", type: "line", axis: "right", curved: true }
+        ]}
+      />
+    </>
   );
 };
