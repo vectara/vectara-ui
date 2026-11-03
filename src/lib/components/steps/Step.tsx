@@ -17,7 +17,7 @@ export type StepProps = {
   title: React.ReactNode;
   status?: StepStatus;
   subTitle?: React.ReactNode;
-  onClick?: () => void;
+  onClick: () => void;
   className?: string;
   ["data-testid"]?: string;
   size?: StepSize;
@@ -48,15 +48,6 @@ export const VuiStep = ({
     "vuiStep__subTitle--current": status === "current"
   });
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!onClick) return;
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onClick();
-    }
-  };
-
   const stepContent = (
     <>
       <div className="vuiSteps__circleWrapper">
@@ -79,7 +70,6 @@ export const VuiStep = ({
   return (
     <button
       className={stepContainerClasses}
-      onKeyDown={handleKeyDown}
       onClick={onClick}
       type="button"
       aria-current={status === "current" ? "step" : undefined}

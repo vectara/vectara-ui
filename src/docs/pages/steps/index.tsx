@@ -2,11 +2,13 @@ import { InteractiveSteps } from "./InteractiveSteps";
 import { StepStatuses } from "./StepStatuses";
 import { StepSizes } from "./StepSizes";
 import { CustomSteps } from "./CustomSteps";
+import { CollapsingSteps } from "./CollapsingSteps";
 
 const InteractiveStepsSource = require("!!raw-loader!./InteractiveSteps");
 const StepStatusesSource = require("!!raw-loader!./StepStatuses");
 const StepSizesSource = require("!!raw-loader!./StepSizes");
 const CustomStepsSource = require("!!raw-loader!./CustomSteps");
+const CollapsingStepsSource = require("!!raw-loader!./CollapsingSteps");
 
 export const steps = {
   name: "Steps",
@@ -31,6 +33,11 @@ export const steps = {
       name: "Custom icons & values",
       component: <CustomSteps />,
       source: CustomStepsSource.default.toString()
+    },
+    {
+      name: "Collapsing into a step navigator",
+      component: <CollapsingSteps />,
+      source: CollapsingStepsSource.default.toString()
     }
   ]
 };
