@@ -7,7 +7,6 @@ $stepSizeM: 36px;
 
 .vuiSteps {
   width: 100%;
-  position: relative;
   padding: 0 16px;
 
   --step-size: #{$stepSizeS};
@@ -25,10 +24,29 @@ $stepSizeM: 36px;
   }
 }
 
+.vuiSteps__layout {
+  position: relative;
+  // Take width from the parent rather than the steps' min-content, so steps that don't fit
+  // overflow (and collapse) instead of stretching ancestors.
+  contain: inline-size;
+  // Prevent the hidden steps from causing horizontal scroll while collapsed.
+  overflow-x: clip;
+}
+
 .vuiSteps__container {
   display: flex;
   align-items: flex-start;
   width: 100%;
+}
+
+// Kept in the layout while collapsed so it can be measured to detect when the steps fit again.
+// Visibility also removes the steps from the tab order and accessibility tree.
+.vuiSteps__container--measureOnly {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .vuiSteps__stepContainer {
@@ -37,7 +55,8 @@ $stepSizeM: 36px;
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 0;
+  // Overflow instead of breaking inside a word, so squashed steps can be detected.
+  min-width: min-content;
 
   &:not(.vuiSteps__stepContainer--last) {
     margin-right: 16px;
@@ -77,10 +96,27 @@ $stepSizeM: 36px;
 .vuiStep {
   background: none;
   border: none;
-  cursor: default;
+  cursor: pointer;
   padding: $sizeXs;
   border-radius: $sizeXxs;
-  transition: all 0.2s ease;
+
+  &:hover .vuiStep__number {
+    box-shadow: $shadowSmallEnd;
+    transform: translateY(-2px);
+  }
+
+  &:hover .vuiStep__number--current {
+    box-shadow: 0 0 0 2px var(--vui-color-primary-shade), $shadowSmallEnd;
+  }
+
+  &:hover .vuiStep__number--incomplete {
+    border-color: var(--vui-color-empty-shade);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--vui-color-primary-shade);
+    outline-offset: 2px;
+  }
 
   .vuiSpinner {
     width: var(--step-size);
@@ -95,7 +131,9 @@ $stepSizeM: 36px;
   border-radius: 50%;
   font-weight: $fontWeightBold;
   font-size: $fontSizeSmall;
-  transition: all 0.2s ease;
+  // Avoid transitioning visibility, which would keep the hidden steps visible after collapsing.
+  transition-property: background-color, border-color, box-shadow, color, width, height, margin, transform;
+  transition-duration: 0.1s;
   position: relative;
   color: var(--vui-color-empty-shade);
 
@@ -153,6 +191,9 @@ $stepSizeM: 36px;
 }
 
 .vuiStep__titleText {
+  // Override VuiText so titles only wrap between words.
+  overflow-wrap: normal;
+  word-break: normal;
   font-weight: $fontWeightStrong;
   line-height: 1.3;
   color: var(--vui-color-subdued-shade);
@@ -175,4 +216,10 @@ $stepSizeM: 36px;
   .vuiStep--disabled & {
     color: var(--vui-color-medium-shade);
   }
+}
+
+.vuiSteps__navigatorNumber {
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightBold;
+  line-height: 1;
 }

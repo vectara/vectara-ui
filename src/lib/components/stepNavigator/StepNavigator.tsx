@@ -25,7 +25,7 @@ type Props = {
 
 type TriggerProps = {
   icon: ReactNode;
-  title: string;
+  title: ReactNode;
   stepLabel: string;
   showStepCount: boolean;
   isSelected?: boolean;

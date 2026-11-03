@@ -1,21 +1,23 @@
-import { VuiSteps, Steps } from "../../../lib";
+import { useState } from "react";
+import { VuiSteps, Steps, StepStatus } from "../../../lib";
 import { Subsection } from "../../components/Subsection";
 
+const stepTitles = ["First step", "Second step", "Third step which will wrap to the next line"];
+
 export const StepSizes = () => {
-  const basicSteps: Steps = [
-    {
-      title: "Completed step",
-      status: "complete"
-    },
-    {
-      title: "Selected step",
-      status: "current"
-    },
-    {
-      title: "Incomplete step which will wrap to the next line",
-      status: "incomplete"
-    }
-  ];
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const getStepStatus = (stepIndex: number): StepStatus => {
+    if (currentStep > stepIndex) return "complete";
+    if (currentStep === stepIndex) return "current";
+    return "incomplete";
+  };
+
+  const basicSteps: Steps = stepTitles.map((title, index) => ({
+    title,
+    status: getStepStatus(index),
+    onClick: () => setCurrentStep(index)
+  }));
 
   const sizes = [
     {

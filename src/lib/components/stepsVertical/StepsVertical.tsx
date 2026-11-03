@@ -6,7 +6,7 @@ import { VuiMenuListButton } from "../menuList/VuiMenuListButton";
 export type { StepVerticalStatus } from "./types";
 export type StepVertical = {
   id: string;
-  title: string;
+  title: React.ReactNode;
   isActive?: boolean;
   hasErrors?: boolean;
   isComplete?: boolean;
