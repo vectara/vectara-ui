@@ -3,7 +3,7 @@ import { Children, HTMLAttributes, ReactElement, ReactNode, Ref, isValidElement,
 import { TabSize } from "./types";
 import { TabProps, VuiTab } from "./Tab";
 import { TabNavigatorRoute, VuiTabsNavigator } from "./TabsNavigator";
-import { useCollapseOnOverflow } from "./useCollapseOnOverflow";
+import { useCollapseOnOverflow } from "../../utils/useCollapseOnOverflow";
 
 type TabStyle = "enclosed" | "open";
 
@@ -61,6 +61,7 @@ export const VuiTabs = ({
   const navigatorRoutes = getNavigatorRoutes(children);
   const isCollapsed = useCollapseOnOverflow(
     rootRef,
+    "vuiTabs",
     collapse === "auto" && !vertical && navigatorRoutes !== null,
     `${navigatorRoutes?.length}-${size}-${tabStyle}`
   );

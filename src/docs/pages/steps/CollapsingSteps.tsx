@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { VuiSteps, Steps, StepStatus } from "../../../lib";
+import { VuiButtonSecondary, VuiFlexContainer, VuiFlexItem, VuiSteps, Steps, StepStatus } from "../../../lib";
+import { Subsection } from "../../components/Subsection";
 
 const stepTitles = [
   "Choose a plan",
@@ -30,5 +31,25 @@ export const CollapsingSteps = () => {
   }));
 
   // Narrow the window to see the steps collapse into a step navigator when they no longer fit.
-  return <VuiSteps steps={steps} />;
+  return (
+    <>
+      <Subsection title="Many steps">
+        <VuiSteps steps={steps} />
+      </Subsection>
+
+      <Subsection title="Sharing a flex row with a neighbor">
+        <VuiFlexContainer fullWidth justifyContent="spaceBetween" alignItems="center" spacing="s">
+          <VuiFlexItem grow={false}>
+            <VuiSteps steps={steps.slice(0, 4)} />
+          </VuiFlexItem>
+
+          <VuiFlexItem grow={false} shrink={false}>
+            <VuiButtonSecondary color="neutral" size="s">
+              Save and exit
+            </VuiButtonSecondary>
+          </VuiFlexItem>
+        </VuiFlexContainer>
+      </Subsection>
+    </>
+  );
 };

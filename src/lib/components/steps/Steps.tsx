@@ -1,5 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import { flushSync } from "react-dom";
+import { useRef } from "react";
 import classNames from "classnames";
 import { BiCheck, BiError, BiSolidHand } from "react-icons/bi";
 import { VuiIcon } from "../icon/Icon";
@@ -7,6 +6,7 @@ import { VuiStep, StepProps } from "./Step";
 import { StepSize, StepStatus } from "./types";
 import { ICON_COLOR } from "../icon/types";
 import { VuiStepNavigator } from "../stepNavigator/StepNavigator";
+import { useCollapseOnOverflow } from "../../utils/useCollapseOnOverflow";
 
 export type { StepSize, StepStatus };
 
@@ -47,36 +47,17 @@ export const VuiSteps = ({
   "data-testid": dataTestId,
   ...rest
 }: Props) => {
-  const stepsRef = useRef<HTMLDivElement>(null);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  // The horizontal steps stay rendered (hidden) while collapsed, so they can be
-  // measured to tell when they fit again without the measurement depending on
-  // which layout is showing.
-  useLayoutEffect(() => {
-    const stepsElement = stepsRef.current;
-    if (collapse === "never" || !stepsElement) {
-      setIsCollapsed(false);
-      return;
-    }
-
-    // Allow a pixel of tolerance for subpixel rounding.
-    const measure = () => setIsCollapsed(stepsElement.scrollWidth > stepsElement.clientWidth + 1);
-
-    // Step widths change with their content as well as the container's width. Render
-    // synchronously so the layouts swap before the next paint instead of a frame later.
-    // Swapping doesn't resize the observed elements, so this can't cause a resize loop.
-    const resizeObserver = new ResizeObserver(() => flushSync(measure));
-    resizeObserver.observe(stepsElement);
-    Array.from(stepsElement.children).forEach((child) => resizeObserver.observe(child));
-    document.fonts?.ready.then(measure);
-    measure();
-
-    return () => resizeObserver.disconnect();
-  }, [collapse, steps]);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const isCollapsed = useCollapseOnOverflow(
+    rootRef,
+    "vuiSteps",
+    collapse === "auto",
+    steps.map(({ title, subTitle }) => `${title}|${subTitle}`).join() + size
+  );
 
   const classes = classNames("vuiSteps", className, {
-    [`vuiSteps--${size}`]: size
+    [`vuiSteps--${size}`]: size,
+    "vuiSteps--collapsed": isCollapsed
   });
 
   const totalSteps = steps.length;
@@ -93,66 +74,58 @@ export const VuiSteps = ({
   }));
 
   return (
-    <div className={classes} data-testid={dataTestId} {...rest}>
-      <div className="vuiSteps__layout">
-        <div
-          ref={stepsRef}
-          className={classNames("vuiSteps__container", { "vuiSteps__container--measureOnly": isCollapsed })}
-        >
-          {steps.map((step, index) => {
-            const isFirstStep = index === 0;
-            const isLastStep = index === totalSteps - 1;
-            const stepContainerClasses = classNames("vuiSteps__stepContainer", {
-              "vuiSteps__stepContainer--first": isFirstStep,
-              "vuiSteps__stepContainer--last": isLastStep
-            });
+    <div className={classes} data-testid={dataTestId} ref={rootRef} {...rest}>
+      <div className="vuiSteps__container">
+        {steps.map((step, index) => {
+          const isFirstStep = index === 0;
+          const isLastStep = index === totalSteps - 1;
+          const stepContainerClasses = classNames("vuiSteps__stepContainer", {
+            "vuiSteps__stepContainer--first": isFirstStep,
+            "vuiSteps__stepContainer--last": isLastStep
+          });
 
-            const icon = getStatusIcon(step);
+          const icon = getStatusIcon(step);
 
-            return (
-              <div key={index} className={stepContainerClasses}>
-                {!isLastStep && (
-                  <div
-                    className={classNames("vuiSteps__connector", {
-                      "vuiSteps__connector--complete": index < currentStepIndex
-                    })}
-                  />
-                )}
-
-                <VuiStep
-                  title={step.title}
-                  status={step.status}
-                  onClick={step.onClick}
-                  data-testid={step["data-testid"] ?? `${dataTestId}-step-${index}`}
-                  stepNode={
-                    icon ? (
-                      <VuiIcon
-                        color={statusToColor[step.status ?? "incomplete"]}
-                        size={size === "xs" ? undefined : size}
-                      >
-                        {icon}
-                      </VuiIcon>
-                    ) : size === "xs" ? null : (
-                      <span className="vuiStep__numberText">{index + 1}</span>
-                    )
-                  }
-                  size={size}
-                  subTitle={step.subTitle}
+          return (
+            <div key={index} className={stepContainerClasses}>
+              {!isLastStep && (
+                <div
+                  className={classNames("vuiSteps__connector", {
+                    "vuiSteps__connector--complete": index < currentStepIndex
+                  })}
                 />
-              </div>
-            );
-          })}
-        </div>
+              )}
 
-        {isCollapsed && (
-          <VuiStepNavigator
-            steps={navigatorSteps}
-            activeStep={Math.max(0, currentStepIndex)}
-            onStepChange={(index) => steps[index].onClick()}
-            data-testid={dataTestId ? `${dataTestId}-navigator` : undefined}
-          />
-        )}
+              <VuiStep
+                title={step.title}
+                status={step.status}
+                onClick={step.onClick}
+                data-testid={step["data-testid"] ?? `${dataTestId}-step-${index}`}
+                stepNode={
+                  icon ? (
+                    <VuiIcon color={statusToColor[step.status ?? "incomplete"]} size={size === "xs" ? undefined : size}>
+                      {icon}
+                    </VuiIcon>
+                  ) : size === "xs" ? null : (
+                    <span className="vuiStep__numberText">{index + 1}</span>
+                  )
+                }
+                size={size}
+                subTitle={step.subTitle}
+              />
+            </div>
+          );
+        })}
       </div>
+
+      {isCollapsed && (
+        <VuiStepNavigator
+          steps={navigatorSteps}
+          activeStep={Math.max(0, currentStepIndex)}
+          onStepChange={(index) => steps[index].onClick()}
+          data-testid={dataTestId ? `${dataTestId}-navigator` : undefined}
+        />
+      )}
     </div>
   );
 };

@@ -23,29 +23,38 @@ $stepSizeM: 36px;
   }
 }
 
-.vuiSteps__layout {
-  position: relative;
-  // Take width from the parent rather than the steps' min-content, so steps that don't fit
-  // overflow (and collapse) instead of stretching ancestors.
-  contain: inline-size;
-  // Prevent the hidden steps from causing horizontal scroll while collapsed.
-  overflow-x: clip;
-}
-
 .vuiSteps__container {
   display: flex;
   align-items: flex-start;
   width: 100%;
 }
 
-// Kept in the layout while collapsed so it can be measured to detect when the steps fit again.
+// Stay in the DOM while collapsed so they can be measured to detect when they fit again.
 // Visibility also removes the steps from the tab order and accessibility tree.
-.vuiSteps__container--measureOnly {
+.vuiSteps--collapsed:not(.vuiSteps--measureFit) .vuiSteps__container,
+.vuiSteps--measureEmpty .vuiSteps__container {
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 0;
+  overflow: hidden;
   visibility: hidden;
-  pointer-events: none;
+}
+
+// Take the navigator out of the layout while measuring, without unfocusing it.
+.vuiSteps--measureEmpty,
+.vuiSteps--measureFit {
+  .vuiStepNavigator {
+    position: absolute;
+    width: 0;
+    overflow: hidden;
+  }
+}
+
+// Reserves space so the steps collapse before they touch their neighbors.
+.vuiSteps--measureFit .vuiSteps__container::after {
+  content: "";
+  flex: 0 0 $sizeL;
+  // Scroll overflow ignores boxes with zero area.
+  align-self: stretch;
 }
 
 .vuiSteps__stepContainer {
