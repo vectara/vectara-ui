@@ -1,6 +1,13 @@
 .vuiTabs--open {
   display: flex;
-  border-bottom: 1px solid var(--vui-color-border-light);
+  // A border would clip the active tab's underline because it's outside the scrolling area.
+  box-shadow: inset 0 -1px 0 var(--vui-color-border-light);
+
+  // Reserves the line's space on the children because consumers override the root's padding.
+  .vuiTabs__tabs,
+  .vuiTabs__navigator {
+    padding-bottom: 1px;
+  }
 
   &.vuiTabs--s {
     .vuiTab {
