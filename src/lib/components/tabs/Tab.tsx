@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useVuiContext } from "../context/Context";
 
-type Props = {
+export type TabProps = {
   children: React.ReactNode;
   className?: string;
   href?: string;
@@ -16,7 +16,7 @@ type Props = {
   "aria-controls"?: string;
 };
 
-export const VuiTab = ({ children, className, href, onClick, isActive = false, ...rest }: Props) => {
+export const VuiTab = ({ children, className, href, onClick, isActive = false, ...rest }: TabProps) => {
   const { createLink } = useVuiContext();
 
   const classes = classNames(className, "vuiTab", {

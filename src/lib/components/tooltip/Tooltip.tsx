@@ -4,6 +4,7 @@ import { useVuiContext } from "../context/Context";
 import { VuiPortal } from "../portal/Portal";
 import { VuiText } from "../typography/Text";
 import { VuiTextColor } from "../typography/TextColor";
+import { NativeResizeObserver } from "../../utils/nativeResizeObserver";
 
 export type Props = {
   children: React.ReactNode;
@@ -98,10 +99,8 @@ const debounce = (callback: (...args: any[]) => void, delay: number) => {
   };
 };
 
-const _ = (window as any).ResizeObserver;
-(window as any).ResizeObserver = class ResizeObserver extends _ {
-  constructor(callback: (...args: any[]) => void) {
-    callback = debounce(callback, 20);
-    super(callback);
+(window as any).ResizeObserver = class ResizeObserver extends NativeResizeObserver {
+  constructor(callback: ResizeObserverCallback) {
+    super(debounce(callback as (...args: any[]) => void, 20));
   }
 };

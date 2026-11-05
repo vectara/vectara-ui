@@ -71,6 +71,33 @@
   align-items: center;
 }
 
+// Stay in the DOM while collapsed so they can be measured to detect when they fit again.
+// Visibility also removes the tabs from the tab order and accessibility tree.
+.vuiTabs--collapsed:not(.vuiTabs--measureFit),
+.vuiTabs--measureEmpty {
+  .vuiTabs__tabs {
+    position: absolute;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+// Take the navigator out of the layout while measuring, without unfocusing it.
+.vuiTabs--measureEmpty,
+.vuiTabs--measureFit {
+  .vuiTabs__navigator {
+    position: absolute;
+    width: 0;
+    overflow: hidden;
+  }
+}
+
+// Reserves space so the tabs collapse before they touch their neighbors.
+.vuiTabs--measureFit .vuiTabs__tabs {
+  padding-right: $sizeL;
+}
+
 .vuiTabs__appendedContent {
   flex-basis: auto;
   flex-grow: 0;

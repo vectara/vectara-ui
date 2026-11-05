@@ -40,3 +40,9 @@
     }
   }
 }
+
+// The navigator has its own background.
+.vuiTabs--enclosed.vuiTabs--collapsed:not(.vuiTabs--measureFit) {
+  background-color: transparent;
+  padding: 0;
+}

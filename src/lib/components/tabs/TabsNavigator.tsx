@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ButtonHTMLAttributes, forwardRef, useState } from "react";
 import { VuiPopover, Props as PopoverProps } from "../popover/Popover";
 import { VuiTab } from "./Tab";
 import { TabRoute } from "./types";
@@ -18,6 +18,16 @@ type Props = {
   "data-testid"?: string;
 };
 
+// Consumes `isSelected` from VuiPopover, which clones this as its trigger, to keep it off the DOM.
+const TabsNavigatorButton = forwardRef<
+  HTMLButtonElement,
+  ButtonHTMLAttributes<HTMLButtonElement> & { isSelected?: boolean }
+>(({ isSelected, children, ...rest }, ref) => (
+  <button className="vuiTabsNavigatorButton" type="button" ref={ref} {...rest}>
+    {children}
+  </button>
+));
+
 export const VuiTabsNavigator = ({ routes, popover, ...rest }: Props) => {
   const { getPath } = useVuiContext();
 
@@ -35,7 +45,7 @@ export const VuiTabsNavigator = ({ routes, popover, ...rest }: Props) => {
       isOpen={isOpen}
       setIsOpen={() => setIsOpen(!isOpen)}
       button={
-        <button className="vuiTabsNavigatorButton" {...rest}>
+        <TabsNavigatorButton {...rest}>
           <div className="vuiTabsNavigatorButton__inner">
             <VuiIcon size="xs">
               <BiDotsVertical />
@@ -43,7 +53,7 @@ export const VuiTabsNavigator = ({ routes, popover, ...rest }: Props) => {
 
             <div>{activeRoute?.title ?? "No selection"}</div>
           </div>
-        </button>
+        </TabsNavigatorButton>
       }
       padding="none"
     >
