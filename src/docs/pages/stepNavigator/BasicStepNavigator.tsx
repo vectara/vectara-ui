@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BiLink, BiLock, BiMessageRounded, BiPencil, BiShow, BiSolidMagicWand } from "react-icons/bi";
-import { VuiStepNavigator, StepNavigatorSteps } from "../../../lib";
+import { VuiSpacer, VuiStepNavigator, VuiToggle, StepNavigatorSteps } from "../../../lib";
 
 const steps: StepNavigatorSteps = [
   { id: "branding", title: "Branding", icon: <BiPencil />, isComplete: true },
@@ -13,6 +13,20 @@ const steps: StepNavigatorSteps = [
 
 export const BasicStepNavigator = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const [isMediumSize, setIsMediumSize] = useState(false);
 
-  return <VuiStepNavigator steps={steps} activeStep={activeStep} onStepChange={(index) => setActiveStep(index)} />;
+  return (
+    <>
+      <VuiToggle label="Medium size" checked={isMediumSize} onChange={() => setIsMediumSize(!isMediumSize)} />
+
+      <VuiSpacer size="m" />
+
+      <VuiStepNavigator
+        steps={steps}
+        activeStep={activeStep}
+        size={isMediumSize ? "m" : "l"}
+        onStepChange={(index) => setActiveStep(index)}
+      />
+    </>
+  );
 };

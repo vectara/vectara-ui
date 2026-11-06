@@ -1,8 +1,5 @@
 @import "../../sassUtils/index";
 
-$stepNavigatorBarHeight: 44px;
-$stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
-
 .vuiStepNavigator {
   display: flex;
   align-items: stretch;
@@ -10,30 +7,12 @@ $stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
   width: 100%;
 }
 
-// Square previous / next chevron buttons.
+// Square previous / next chevron buttons. Height comes from the button's size.
 .vuiStepNavigator__sideButton {
   flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: $stepNavigatorBarHeight;
-  padding: 0;
-  background-color: var(--vui-color-empty-shade);
-  border: 1px solid var(--vui-color-border-medium);
-  border-radius: $stepNavigatorRadius;
-  color: var(--vui-color-darker-shade);
-  cursor: pointer;
-  transition: box-shadow $transitionSpeed;
-
-  &:not(:disabled):hover {
-    box-shadow: $shadowSmallEnd;
-  }
-
-  &:disabled {
-    color: var(--vui-color-subdued-shade);
-    opacity: 0.45;
-    cursor: not-allowed;
-  }
+  aspect-ratio: 1;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .vuiStepNavigator__center {
@@ -41,48 +20,28 @@ $stepNavigatorRadius: $sizeXs; // 8px buttons & pill & rows.
   min-width: 0;
 }
 
-// Center pill: current-step display and dropdown trigger.
-.vuiStepNavigator__trigger {
+// Keeps the caret and step count visible when the title truncates.
+.vuiStepNavigator__triggerLabel {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   gap: $sizeXs;
-  width: 100%;
-  min-height: $stepNavigatorBarHeight;
-  padding: $sizeS $sizeM;
-  background-color: var(--vui-color-empty-shade);
-  border: 1px solid var(--vui-color-medium-shade);
-  border-radius: $stepNavigatorRadius;
-  cursor: pointer;
-  transition: border-color $transitionSpeed, box-shadow $transitionSpeed, background-color $transitionSpeed;
-
-  &:hover {
-    box-shadow: $shadowSmallEnd;
-  }
-
-  &--open {
-    background-color: var(--vui-color-primary-lighter-shade);
-    border-color: var(--vui-color-primary-shade);
-    box-shadow: 0 0 0 3px rgba(var(--vui-color-primary-shade-rgb), 0.14);
-  }
 }
 
 .vuiStepNavigator__triggerTitle {
-  font-size: $fontSizeLarge - 3px; // 15px
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: $fontWeightBold;
-  color: var(--vui-color-darker-shade);
-  white-space: nowrap;
 }
 
 .vuiStepNavigator__triggerCount {
-  font-size: $fontSizeStandard;
+  flex: 0 0 auto;
   font-weight: $fontWeightNormal;
   color: var(--vui-color-subdued-shade);
-  white-space: nowrap;
 }
 
 .vuiStepNavigator__caret {
+  flex: 0 0 auto;
   display: flex;
   transition: transform $transitionSpeed;
 

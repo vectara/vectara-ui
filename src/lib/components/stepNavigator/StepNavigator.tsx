@@ -1,6 +1,7 @@
-import { ReactNode, forwardRef, useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 import { BiChevronDown, BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { VuiButtonSecondary } from "../button/ButtonSecondary";
 import { VuiIcon } from "../icon/Icon";
 import { VuiPopover } from "../popover/Popover";
 import { StepVertical, VuiStepsVertical } from "../stepsVertical/StepsVertical";
@@ -15,6 +16,7 @@ type Props = {
   steps: StepNavigatorSteps;
   activeStep: number;
   showStepCount?: boolean;
+  size?: "m" | "l";
   onStepChange?: (index: number, step: StepNavigatorStep) => void;
   onNext?: (index: number, step: StepNavigatorStep) => void;
   onPrevious?: (index: number, step: StepNavigatorStep) => void;
@@ -23,56 +25,11 @@ type Props = {
   "data-testid"?: string;
 };
 
-type TriggerProps = {
-  icon: ReactNode;
-  title: ReactNode;
-  stepLabel: string;
-  showStepCount: boolean;
-  isSelected?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  "data-testid"?: string;
-};
-
-// Center pill that displays the current step and toggles the dropdown. Receives
-// `isSelected` and `onClick` from VuiPopover, which clones it as its trigger.
-const StepNavigatorTrigger = forwardRef<HTMLButtonElement, TriggerProps>(
-  ({ icon, title, stepLabel, showStepCount, isSelected, onClick, "data-testid": dataTestId }, ref) => (
-    <button
-      type="button"
-      ref={ref}
-      onClick={onClick}
-      aria-haspopup="listbox"
-      aria-expanded={Boolean(isSelected)}
-      data-testid={dataTestId}
-      className={classNames("vuiStepNavigator__trigger", {
-        "vuiStepNavigator__trigger--open": isSelected
-      })}
-    >
-      <VuiIcon size="s" color="primary">
-        {icon}
-      </VuiIcon>
-
-      <span className="vuiStepNavigator__triggerTitle">{title}</span>
-
-      {showStepCount && <span className="vuiStepNavigator__triggerCount"> · {stepLabel}</span>}
-
-      <span
-        className={classNames("vuiStepNavigator__caret", {
-          "vuiStepNavigator__caret--open": isSelected
-        })}
-      >
-        <VuiIcon size="s" color="subdued">
-          <BiChevronDown />
-        </VuiIcon>
-      </span>
-    </button>
-  )
-);
-
 export const VuiStepNavigator = ({
   steps,
   activeStep,
   showStepCount = true,
+  size = "l",
   onStepChange,
   onNext,
   onPrevious,
@@ -130,18 +87,21 @@ export const VuiStepNavigator = ({
 
   return (
     <div className={classNames("vuiStepNavigator", className)} data-testid={dataTestId}>
-      <button
-        type="button"
+      <VuiButtonSecondary
         className="vuiStepNavigator__sideButton"
+        color="neutral"
+        solid
+        size={size}
+        icon={
+          <VuiIcon>
+            <BiChevronLeft />
+          </VuiIcon>
+        }
         onClick={goPrevious}
-        disabled={prevDisabled}
+        isDisabled={prevDisabled}
         aria-label="Previous step"
         data-testid={dataTestId ? `${dataTestId}-previous` : undefined}
-      >
-        <VuiIcon size="m">
-          <BiChevronLeft />
-        </VuiIcon>
-      </button>
+      />
 
       <div className="vuiStepNavigator__center">
         <VuiPopover
@@ -152,31 +112,54 @@ export const VuiStepNavigator = ({
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           button={
-            <StepNavigatorTrigger
-              icon={current.icon}
-              title={current.title}
-              stepLabel={stepLabel}
-              showStepCount={showStepCount}
+            <VuiButtonSecondary
+              color="neutral"
+              solid
+              size={size}
+              fullWidth
+              truncate
+              icon={<VuiIcon color="primary">{current.icon}</VuiIcon>}
+              aria-haspopup="listbox"
+              aria-expanded={isOpen}
               data-testid={dataTestId ? `${dataTestId}-trigger` : undefined}
-            />
+            >
+              <span className="vuiStepNavigator__triggerLabel">
+                <span className="vuiStepNavigator__triggerTitle">{current.title}</span>
+
+                {showStepCount && <span className="vuiStepNavigator__triggerCount"> · {stepLabel}</span>}
+
+                <span
+                  className={classNames("vuiStepNavigator__caret", {
+                    "vuiStepNavigator__caret--open": isOpen
+                  })}
+                >
+                  <VuiIcon size={size === "l" ? "m" : "s"} color="subdued">
+                    <BiChevronDown />
+                  </VuiIcon>
+                </span>
+              </span>
+            </VuiButtonSecondary>
           }
         >
           {menu}
         </VuiPopover>
       </div>
 
-      <button
-        type="button"
+      <VuiButtonSecondary
         className="vuiStepNavigator__sideButton"
+        color="neutral"
+        solid
+        size={size}
+        icon={
+          <VuiIcon>
+            <BiChevronRight />
+          </VuiIcon>
+        }
         onClick={goNext}
-        disabled={nextDisabled}
+        isDisabled={nextDisabled}
         aria-label="Next step"
         data-testid={dataTestId ? `${dataTestId}-next` : undefined}
-      >
-        <VuiIcon size="m">
-          <BiChevronRight />
-        </VuiIcon>
-      </button>
+      />
     </div>
   );
 };
