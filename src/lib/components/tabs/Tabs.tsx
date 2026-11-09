@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { Children, HTMLAttributes, ReactElement, ReactNode, Ref, isValidElement, useRef } from "react";
 import { TabSize } from "./types";
 import { TabProps, VuiTab } from "./Tab";
+import { VuiTabGroup } from "./TabGroup";
 import { TabNavigatorRoute, VuiTabsNavigator } from "./TabsNavigator";
 import { useCollapseOnOverflow } from "../../utils/useCollapseOnOverflow";
 
@@ -28,12 +29,21 @@ const findTabs = (node: ReactNode): ReactElement<TabProps>[] =>
     return child.type === VuiTab ? [child as ReactElement<TabProps>] : findTabs(child.props.children);
   });
 
+const isTabGroup = (node: ReactNode): node is ReactElement<{ children?: ReactNode }> =>
+  isValidElement(node) && node.type === VuiTabGroup;
+
+const hasTabGroups = (children: ReactNode) => Children.toArray(children).some(isTabGroup);
+
+// Replaces each group with its children.
+const ungroup = (children: ReactNode) =>
+  Children.toArray(children).flatMap((child) => (isTabGroup(child) ? Children.toArray(child.props.children) : [child]));
+
 // Returns null if any child hides its tab from us, because the navigator would silently omit it.
 const getNavigatorRoutes = (children: ReactNode): TabNavigatorRoute[] | null => {
-  const tabGroups = Children.toArray(children).filter(isValidElement).map(findTabs);
-  if (!tabGroups.length || tabGroups.some((tabs) => !tabs.length)) return null;
+  const tabsPerChild = ungroup(children).filter(isValidElement).map(findTabs);
+  if (!tabsPerChild.length || tabsPerChild.some((tabs) => !tabs.length)) return null;
 
-  return tabGroups.flat().map(({ props }) => {
+  return tabsPerChild.flat().map(({ props }) => {
     const testId = (props as { "data-testid"?: string })["data-testid"];
     return {
       href: props.href,
@@ -69,6 +79,7 @@ export const VuiTabs = ({
   const classes = classNames(className, "vuiTabs", `vuiTabs--${size}`, `vuiTabs--${tabStyle}`, {
     "vuiTabs--fullWidth": fullWidth,
     "vuiTabs--vertical": vertical,
+    "vuiTabs--grouped": hasTabGroups(children),
     "vuiTabs--collapsed": isCollapsed
   });
   return (

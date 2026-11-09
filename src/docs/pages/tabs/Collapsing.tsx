@@ -7,31 +7,35 @@ import {
   VuiFlexItem,
   VuiIcon,
   VuiTab,
+  VuiTabGroup,
   VuiTabs
 } from "../../../lib";
 
-const primaryTabs = ["Configure", "Data", "Query"];
-const secondaryTabs = ["Query histories", "Analytics"];
+const tabGroups = [
+  ["Configure", "Data", "Query"],
+  ["Query histories", "Analytics"]
+];
 
-// Narrow the window to see each group of tabs collapse into a tabs navigator before it
-// touches its neighbors.
+// Narrow the window to see the groups of tabs collapse into a single tabs navigator before
+// they touch their neighbors.
 export const Collapsing = () => {
   const [tab, setTab] = useState("Data");
 
-  const renderTabs = (titles: string[]) => (
-    <VuiTabs tabStyle="enclosed">
-      {titles.map((title) => (
-        <VuiTab key={title} isActive={tab === title} onClick={() => setTab(title)}>
-          {title}
-        </VuiTab>
-      ))}
-    </VuiTabs>
-  );
-
   return (
     <VuiFlexContainer fullWidth justifyContent="spaceBetween" alignItems="center" spacing="s">
-      <VuiFlexItem grow={false}>{renderTabs(primaryTabs)}</VuiFlexItem>
-      <VuiFlexItem grow={false}>{renderTabs(secondaryTabs)}</VuiFlexItem>
+      <VuiFlexItem grow={false}>
+        <VuiTabs tabStyle="enclosed">
+          {tabGroups.map((titles, index) => (
+            <VuiTabGroup key={index}>
+              {titles.map((title) => (
+                <VuiTab key={title} isActive={tab === title} onClick={() => setTab(title)}>
+                  {title}
+                </VuiTab>
+              ))}
+            </VuiTabGroup>
+          ))}
+        </VuiTabs>
+      </VuiFlexItem>
 
       <VuiFlexItem grow={false}>
         <VuiFlexContainer alignItems="center" spacing="xs">
