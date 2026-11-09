@@ -1,5 +1,11 @@
-import React, { cloneElement, useEffect, useRef, useState } from "react";
+import React, { cloneElement, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import classNames from "classnames";
+import { BiX } from "react-icons/bi";
+import { NativeResizeObserver } from "../../utils/nativeResizeObserver";
+import { useMediaQuery } from "../../utils/useMediaQuery";
+import { VuiIconButton } from "../button/IconButton";
+import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 import { VuiItemsInput, VuiNumberInput, VuiTextInput } from "../form";
@@ -33,77 +39,103 @@ export type Props = {
 };
 
 type Position = {
-  top?: string;
-  bottom?: string;
-  left?: string;
-  right?: string;
+  top: string;
+  left: string;
+};
+
+type Size = {
+  width: number;
+  height: number;
+};
+
+type Placement = {
+  // The side of the button the popover is placed against.
+  side: "below" | "above" | "right" | "left";
+  // How the popover lines up with the button along that side: "start" aligns their
+  // left or top edges, and "end" aligns their right or bottom edges.
+  alignment: "start" | "center" | "end";
+};
+
+const ANCHOR_SIDE_TO_PLACEMENT: Record<AnchorSide, Placement> = {
+  left: { side: "below", alignment: "start" },
+  right: { side: "below", alignment: "end" },
+  center: { side: "below", alignment: "center" },
+  upLeft: { side: "above", alignment: "start" },
+  upRight: { side: "above", alignment: "end" },
+  rightDown: { side: "right", alignment: "start" },
+  rightUp: { side: "right", alignment: "end" },
+  leftDown: { side: "left", alignment: "start" },
+  leftUp: { side: "left", alignment: "end" }
+};
+
+// Phone-sized screens are too narrow to anchor a popover to its button,
+// so it fills the screen like a modal instead.
+const FULL_SCREEN_MEDIA_QUERY = "(max-width: 480px)";
+
+// Minimum gap between the popover and the edges of the viewport. The popover's
+// max-width in CSS accounts for this gap on both sides.
+const VIEWPORT_MARGIN = 8;
+
+// Returns how far a popover of the given size extends beyond the viewport along one axis.
+const getOverflow = (start: number, size: number, viewportSize: number) =>
+  Math.max(VIEWPORT_MARGIN - start, start + size + VIEWPORT_MARGIN - viewportSize, 0);
+
+// Shifts the popover along one axis to keep it inside the viewport. A popover
+// that's larger than the viewport stays pinned to the top or left edge.
+const clampToViewport = (start: number, size: number, viewportSize: number) =>
+  Math.max(VIEWPORT_MARGIN, Math.min(start, viewportSize - VIEWPORT_MARGIN - size));
+
+// Flips the popover to the opposite side of the button if it fits better there.
+const flipToFit = (preferredStart: number, flippedStart: number, size: number, viewportSize: number) => {
+  const isFlippedBetter =
+    getOverflow(flippedStart, size, viewportSize) < getOverflow(preferredStart, size, viewportSize);
+  return clampToViewport(isFlippedBetter ? flippedStart : preferredStart, size, viewportSize);
 };
 
 const calculatePopoverPosition = (
   button: HTMLElement | null,
+  popoverSize: Size,
   anchorOptions: { anchorSide: AnchorSide; offsetX: number; offsetY: number }
 ): Position | undefined => {
   if (!button) return undefined;
 
   const { anchorSide, offsetX = 0, offsetY = 0 } = anchorOptions;
-  const { left, right, width, height, top, bottom } = button.getBoundingClientRect();
+  const { side, alignment } = ANCHOR_SIDE_TO_PLACEMENT[anchorSide];
+  const buttonRect = button.getBoundingClientRect();
+  const { clientWidth: viewportWidth, clientHeight: viewportHeight } = document.documentElement;
 
-  if (anchorSide === "rightUp") {
-    // Anchor popover to the right side of the button, extending upwards.
-    const adjustedTop = top + height + document.documentElement.scrollTop;
-    const adjustedLeft = left + width + offsetX;
-    return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
+  let top: number;
+  let left: number;
+
+  if (side === "below" || side === "above") {
+    const below = buttonRect.bottom + offsetY;
+    const above = buttonRect.top - offsetY - popoverSize.height;
+    top =
+      side === "below"
+        ? flipToFit(below, above, popoverSize.height, viewportHeight)
+        : flipToFit(above, below, popoverSize.height, viewportHeight);
+
+    const alignedLeft = {
+      start: buttonRect.left,
+      center: buttonRect.left + (buttonRect.width - popoverSize.width) / 2,
+      end: buttonRect.right - popoverSize.width
+    }[alignment];
+    left = clampToViewport(alignedLeft, popoverSize.width, viewportWidth);
+  } else {
+    const rightOfButton = buttonRect.right + offsetX;
+    const leftOfButton = buttonRect.left - offsetX - popoverSize.width;
+    left =
+      side === "right"
+        ? flipToFit(rightOfButton, leftOfButton, popoverSize.width, viewportWidth)
+        : flipToFit(leftOfButton, rightOfButton, popoverSize.width, viewportWidth);
+
+    // Extend downwards from the top of the button, or upwards from the bottom of it.
+    const alignedTop = alignment === "start" ? buttonRect.top - offsetY : buttonRect.bottom - popoverSize.height;
+    top = clampToViewport(alignedTop, popoverSize.height, viewportHeight);
   }
 
-  if (anchorSide === "rightDown") {
-    // Anchor popover to the right side of the button, extending downwards.
-    const adjustedTop = top - offsetY + document.documentElement.scrollTop;
-    const adjustedLeft = left + width + offsetX;
-    return { top: `${adjustedTop}px`, left: `${adjustedLeft}px` };
-  }
-
-  if (anchorSide === "leftUp") {
-    // Anchor popover to the left side of the button, extending upwards.
-    const adjustedTop = top + height + document.documentElement.scrollTop;
-    const adjustedRight = document.documentElement.clientWidth - left + offsetX;
-    return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
-  }
-
-  if (anchorSide === "leftDown") {
-    // Anchor popover to the left side of the button, extending downwards.
-    const adjustedTop = top - offsetY + document.documentElement.scrollTop;
-    const adjustedRight = document.documentElement.clientWidth - left + offsetX;
-    return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
-  }
-
-  if (anchorSide === "upLeft") {
-    // Anchor popover above the button, aligned to the left edge.
-    const adjustedBottom = document.documentElement.clientHeight - top + offsetY;
-    return { bottom: `${adjustedBottom}px`, left: `${left}px` };
-  }
-
-  if (anchorSide === "upRight") {
-    // Anchor popover above the button, aligned to the right edge.
-    const adjustedBottom = document.documentElement.clientHeight - top + offsetY;
-    const adjustedRight = document.documentElement.clientWidth - right;
-    return { bottom: `${adjustedBottom}px`, right: `${adjustedRight}px` };
-  }
-
-  const adjustedTop = bottom + offsetY + document.documentElement.scrollTop;
-
-  if (anchorSide === "center") {
-    // Anchor below the button, horizontally centered on it. Pairs with a
-    // translateX(-50%) in CSS to offset by half the popover's own width.
-    return { top: `${adjustedTop}px`, left: `${left + width / 2}px` };
-  }
-
-  if (anchorSide === "left") {
-    return { top: `${adjustedTop}px`, left: `${left}px` };
-  }
-
-  // Position against the right side of the element.
-  const adjustedRight = document.documentElement.clientWidth - right;
-  return { top: `${adjustedTop}px`, right: `${adjustedRight}px` };
+  // The popover is positioned relative to the document, not the viewport.
+  return { top: `${top + window.scrollY}px`, left: `${left + window.scrollX}px` };
 };
 
 export const VuiPopover = ({
@@ -124,7 +156,10 @@ export const VuiPopover = ({
 }: Props) => {
   const returnFocusElRef = useRef<HTMLElement | null>(null);
   const buttonRef = useRef<HTMLElement | null>(null);
+  const [popover, setPopover] = useState<HTMLDivElement | null>(null);
+  const [popoverSize, setPopoverSize] = useState<Size>({ width: 0, height: 0 });
   const [, setPositionMarker] = useState<number>(0);
+  const isFullScreen = useMediaQuery(FULL_SCREEN_MEDIA_QUERY);
   const [showTransition, setShowTransition] = useState(false);
   // Uncouple open state from visibile state so that when the popover is closed,
   // we can set the button to be unselected immediately while the popover content
@@ -197,6 +232,25 @@ export const VuiPopover = ({
     };
   }, []);
 
+  // Track the popover's size so it can be kept inside the viewport. Measuring
+  // before paint prevents it from flickering in a position that's offscreen.
+  useLayoutEffect(() => {
+    if (!popover) return;
+
+    const measure = () => {
+      // Offset dimensions ignore the transform applied by the transition.
+      const { offsetWidth: width, offsetHeight: height } = popover;
+      setPopoverSize((prev) => (prev.width === width && prev.height === height ? prev : { width, height }));
+    };
+
+    // The content can resize without the popover re-rendering.
+    const resizeObserver = new NativeResizeObserver(() => flushSync(measure));
+    resizeObserver.observe(popover);
+    measure();
+
+    return () => resizeObserver.disconnect();
+  }, [popover]);
+
   useEffect(() => {
     if (isOpen) {
       returnFocusElRef.current = document.activeElement as HTMLElement;
@@ -229,7 +283,7 @@ export const VuiPopover = ({
   // Always keep menu position up to date. If we tried to cache this inside
   // a useEffect based on isOpen then there'd be a flicker if the width
   // of the button changes.
-  const position = calculatePopoverPosition(buttonRef.current, {
+  const position = calculatePopoverPosition(buttonRef.current, popoverSize, {
     anchorSide,
     offsetX: anchorOffsetX,
     offsetY: anchorOffsetY
@@ -237,12 +291,14 @@ export const VuiPopover = ({
 
   const classes = classNames("vuiPopover", className, {
     "vuiPopover-isLoaded": showTransition,
-    "vuiPopover--center": anchorSide === "center",
+    "vuiPopover--fullScreen": isFullScreen,
     "vuiPopover--rightUp": anchorSide === "rightUp",
     "vuiPopover--leftUp": anchorSide === "leftUp",
     "vuiPopover--upLeft": anchorSide === "upLeft",
     "vuiPopover--upRight": anchorSide === "upRight"
   });
+
+  const title = header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header;
 
   const contentClasses = classNames("vuiPopoverContent", {
     "vuiPopoverContent--padding": padding === true,
@@ -266,13 +322,30 @@ export const VuiPopover = ({
             // Enable focus on contents when it's open,
             // but enable manual focus return to work when it's closed.
             autoFocus={isOpen}
-            // Enable scrolling of the page.
-            scrollLock={false}
+            // Enable scrolling of the page, unless the popover covers it.
+            scrollLock={isFullScreen}
             // Enable scrolling of the page.
             preventScrollOnFocus={false}
           >
-            <div className={classes} style={position} {...rest}>
-              {header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header}
+            <div ref={setPopover} className={classes} style={isFullScreen ? undefined : position} {...rest}>
+              {isFullScreen ? (
+                // There's nowhere outside of a full-screen popover to click, so provide a way to close it.
+                <div className="vuiPopoverFullScreenHeader">
+                  <div className="vuiPopoverFullScreenHeader__title">{title}</div>
+                  <VuiIconButton
+                    aria-label="Close"
+                    onClick={onCloseDelayed}
+                    color="neutral"
+                    icon={
+                      <VuiIcon size="m" color="neutral">
+                        <BiX />
+                      </VuiIcon>
+                    }
+                  />
+                </div>
+              ) : (
+                title
+              )}
               {children && <div className={contentClasses}>{children}</div>}
             </div>
           </FocusOn>

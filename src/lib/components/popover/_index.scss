@@ -22,24 +22,58 @@
   overflow: visible;
 }
 
+// Size the popover to its content instead of to the space between its position
+// and the edge of the page, so that it can be measured and kept inside the
+// viewport. The 16px matches the viewport margin on both sides. Zero
+// specificity enables consumers to override these with their own classes.
+:where(.vuiPopover) {
+  width: max-content;
+  max-width: calc(100vw - 16px);
+}
+
 .vuiPopover--rightUp,
-.vuiPopover--leftUp {
-  transform: translateY(-100%) !important;
-}
-
-// Centered below the button: shift left by half the popover's width while
-// preserving the vertical enter transition.
-.vuiPopover--center {
-  transform: translate(-50%, -$sizeXs);
-}
-
-.vuiPopover--center.vuiPopover-isLoaded {
-  transform: translate(-50%, 0);
-}
-
+.vuiPopover--leftUp,
 .vuiPopover--upLeft,
 .vuiPopover--upRight {
   transform: translateY(0);
+}
+
+// On phone-sized screens the popover fills the screen like a modal.
+.vuiPopover--fullScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  max-width: none;
+  border: none;
+  border-radius: 0;
+
+  .vuiPopoverContent {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.vuiPopoverFullScreenHeader {
+  display: flex;
+  align-items: center;
+  padding-right: $sizeXs;
+  border-bottom: 1px solid var(--vui-color-border-medium);
+
+  .vuiPopoverTitle {
+    border-bottom: none;
+  }
+}
+
+.vuiPopoverFullScreenHeader__title {
+  flex: 1;
+  min-width: 0;
 }
 
 .vuiOptionsListItem__selected--unselected {
