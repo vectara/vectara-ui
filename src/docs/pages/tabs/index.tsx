@@ -3,6 +3,7 @@ import { Medium } from "./Medium";
 import { FullWidth } from "./FullWidth";
 import { Links } from "./Links";
 import { Enclosed } from "./Enclosed";
+import { Groups } from "./Groups";
 import { TabsNavigator } from "./TabsNavigator";
 import { Collapsing } from "./Collapsing";
 
@@ -11,7 +12,8 @@ const MediumSource = require("!!raw-loader!./Medium");
 const FullWidthSource = require("!!raw-loader!./FullWidth");
 const LinksSource = require("!!raw-loader!./Links");
 const EnclosedSource = require("!!raw-loader!./Enclosed");
-const TabsNavigatorSource = require("!!raw-loader!./TabsNavigator");
+const GroupsSource = require("!!raw-loader!./Groups");
+const TabsNavigatorSource =require("!!raw-loader!./TabsNavigator");
 const CollapsingSource = require("!!raw-loader!./Collapsing");
 
 export const tabs = {
@@ -47,6 +49,11 @@ export const tabs = {
       name: "Enclosed",
       component: <Enclosed />,
       source: EnclosedSource.default.toString()
+    },
+    {
+      name: "Groups",
+      component: <Groups />,
+      source: GroupsSource.default.toString()
     },
     {
       name: "Collapsing into a tabs navigator",

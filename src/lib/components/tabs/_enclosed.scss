@@ -41,6 +41,18 @@
   }
 }
 
+// Each group is enclosed instead of the tabs as a whole.
+.vuiTabs--enclosed.vuiTabs--grouped {
+  background-color: transparent;
+  padding: 0;
+
+  .vuiTabGroup {
+    background-color: var(--vui-color-light-shade);
+    border-radius: $sizeXxs;
+    padding: $sizeXxxs $sizeXs;
+  }
+}
+
 // The navigator has its own background.
 .vuiTabs--enclosed.vuiTabs--collapsed:not(.vuiTabs--measureFit) {
   background-color: transparent;

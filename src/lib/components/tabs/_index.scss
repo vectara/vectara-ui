@@ -39,8 +39,23 @@
   }
 }
 
+.vuiTabGroup {
+  display: flex;
+  align-items: center;
+}
+
+.vuiTabs--grouped .vuiTabs__tabs {
+  gap: $sizeS;
+}
+
+.vuiTabs--vertical .vuiTabGroup {
+  flex-direction: column;
+  align-items: stretch;
+}
+
 .vuiTabs--fullWidth {
-  .vuiTabs__tabs {
+  .vuiTabs__tabs,
+  .vuiTabGroup {
     flex-grow: 1;
   }
 

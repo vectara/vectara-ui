@@ -135,6 +135,7 @@ import { VuiTable } from "./table/Table";
 import { VuiSpans } from "./spans/Spans";
 import { SpansRow } from "./spans/types";
 import { VuiTab } from "./tabs/Tab";
+import { VuiTabGroup } from "./tabs/TabGroup";
 import { VuiTabbedRoutes } from "./tabs/TabbedRoutes";
 import { VuiTabs } from "./tabs/Tabs";
 import { TabNavigatorRoute, VuiTabsNavigator } from "./tabs/TabsNavigator";
@@ -354,6 +355,7 @@ export {
   VuiSuperRadioGroup,
   VuiTable,
   VuiTab,
+  VuiTabGroup,
   VuiTabbedRoutes,
   VuiTabs,
   VuiTabsNavigator,
