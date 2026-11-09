@@ -1,7 +1,11 @@
 import React, { cloneElement, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import classNames from "classnames";
+import { BiX } from "react-icons/bi";
 import { NativeResizeObserver } from "../../utils/nativeResizeObserver";
+import { useMediaQuery } from "../../utils/useMediaQuery";
+import { VuiIconButton } from "../button/IconButton";
+import { VuiIcon } from "../icon/Icon";
 import { VuiPortal } from "../portal/Portal";
 import { FocusOn } from "react-focus-on";
 import { VuiItemsInput, VuiNumberInput, VuiTextInput } from "../form";
@@ -63,6 +67,10 @@ const ANCHOR_SIDE_TO_PLACEMENT: Record<AnchorSide, Placement> = {
   leftDown: { side: "left", alignment: "start" },
   leftUp: { side: "left", alignment: "end" }
 };
+
+// Phone-sized screens are too narrow to anchor a popover to its button,
+// so it fills the screen like a modal instead.
+const FULL_SCREEN_MEDIA_QUERY = "(max-width: 480px)";
 
 // Minimum gap between the popover and the edges of the viewport. The popover's
 // max-width in CSS accounts for this gap on both sides.
@@ -151,6 +159,7 @@ export const VuiPopover = ({
   const [popover, setPopover] = useState<HTMLDivElement | null>(null);
   const [popoverSize, setPopoverSize] = useState<Size>({ width: 0, height: 0 });
   const [, setPositionMarker] = useState<number>(0);
+  const isFullScreen = useMediaQuery(FULL_SCREEN_MEDIA_QUERY);
   const [showTransition, setShowTransition] = useState(false);
   // Uncouple open state from visibile state so that when the popover is closed,
   // we can set the button to be unselected immediately while the popover content
@@ -282,11 +291,14 @@ export const VuiPopover = ({
 
   const classes = classNames("vuiPopover", className, {
     "vuiPopover-isLoaded": showTransition,
+    "vuiPopover--fullScreen": isFullScreen,
     "vuiPopover--rightUp": anchorSide === "rightUp",
     "vuiPopover--leftUp": anchorSide === "leftUp",
     "vuiPopover--upLeft": anchorSide === "upLeft",
     "vuiPopover--upRight": anchorSide === "upRight"
   });
+
+  const title = header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header;
 
   const contentClasses = classNames("vuiPopoverContent", {
     "vuiPopoverContent--padding": padding === true,
@@ -310,13 +322,30 @@ export const VuiPopover = ({
             // Enable focus on contents when it's open,
             // but enable manual focus return to work when it's closed.
             autoFocus={isOpen}
-            // Enable scrolling of the page.
-            scrollLock={false}
+            // Enable scrolling of the page, unless the popover covers it.
+            scrollLock={isFullScreen}
             // Enable scrolling of the page.
             preventScrollOnFocus={false}
           >
-            <div ref={setPopover} className={classes} style={position} {...rest}>
-              {header && typeof header === "string" ? <div className="vuiPopoverTitle">{header}</div> : header}
+            <div ref={setPopover} className={classes} style={isFullScreen ? undefined : position} {...rest}>
+              {isFullScreen ? (
+                // There's nowhere outside of a full-screen popover to click, so provide a way to close it.
+                <div className="vuiPopoverFullScreenHeader">
+                  <div className="vuiPopoverFullScreenHeader__title">{title}</div>
+                  <VuiIconButton
+                    aria-label="Close"
+                    onClick={onCloseDelayed}
+                    color="neutral"
+                    icon={
+                      <VuiIcon size="m" color="neutral">
+                        <BiX />
+                      </VuiIcon>
+                    }
+                  />
+                </div>
+              ) : (
+                title
+              )}
               {children && <div className={contentClasses}>{children}</div>}
             </div>
           </FocusOn>
