@@ -67,12 +67,23 @@ $size: (
 }
 
 .vuiModalContent {
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 
 .vuiModalContent__inner {
   padding: 0 $sizeM $sizeL;
+}
+
+// Stays pinned to the bottom while the content scrolls.
+.vuiModalFooter {
+  flex-shrink: 0;
+  padding: $sizeS $sizeM;
+  background-color: var(--vui-color-light-shade);
+  border-top: 1px solid var(--vui-color-border-light);
+  border-radius: 0 0 $sizeXxs $sizeXxs;
 }
 
 // Color

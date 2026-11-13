@@ -49,8 +49,12 @@ $drawerWidth: 680px;
   padding: $sizeS $sizeL $sizeL;
 }
 
+// Stays pinned to the bottom while the content scrolls.
 .vuiDrawerFooter {
+  flex-shrink: 0;
   padding: $sizeS $sizeL;
+  background-color: var(--vui-color-light-shade);
+  border-top: 1px solid var(--vui-color-border-light);
 }
 
 // Color

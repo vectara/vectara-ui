@@ -24,6 +24,7 @@ type Props = {
   color?: (typeof COLOR)[number];
   key?: string;
   size?: "s" | "m" | "l";
+  footer?: ReactNode;
 };
 
 export const VuiModal = ({
@@ -37,6 +38,7 @@ export const VuiModal = ({
   key,
   canClickOutsideToClose = true,
   size = "s",
+  footer,
   ...rest
 }: Props) => {
   const { DrawerTitle } = useVuiContext();
@@ -148,6 +150,8 @@ export const VuiModal = ({
                 <div className="vuiModalContent">
                   <div className="vuiModalContent__inner">{children}</div>
                 </div>
+
+                {footer && <div className="vuiModalFooter">{footer}</div>}
               </div>
             </div>
           </FocusOn>

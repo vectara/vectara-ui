@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   VuiButtonPrimary,
   VuiButtonSecondary,
+  VuiFlexContainer,
   VuiModal,
   VuiSearchSelect,
   VuiSelect,
@@ -59,6 +60,17 @@ export const PrimaryModal = () => {
         icon={<BiInfoCircle />}
         title="FYI"
         size={size}
+        footer={
+          <VuiFlexContainer justifyContent="end" spacing="s">
+            <VuiButtonSecondary color="neutral" onClick={() => setIsOpen(false)}>
+              Cancel
+            </VuiButtonSecondary>
+
+            <VuiButtonPrimary color="primary" onClick={() => setIsOpen(false)}>
+              Got it
+            </VuiButtonPrimary>
+          </VuiFlexContainer>
+        }
       >
         <VuiText>
           <p>I just thought you should know that your modal is showing.</p>
