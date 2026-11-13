@@ -1,4 +1,4 @@
-import { useState, cloneElement } from "react";
+import { useRef, useState, cloneElement } from "react";
 import { Tooltip, TooltipRefProps } from "react-tooltip";
 import { useVuiContext } from "../context/Context";
 import { VuiPortal } from "../portal/Portal";
@@ -47,9 +47,22 @@ const needsTabIndex = (element: React.ReactNode): boolean => {
 export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal, ...rest }: Props) => {
   const { getThemeStyle } = useVuiContext();
   const [tooltipId] = useState(generateTooltipId());
+  const tooltipRef = useRef<TooltipRefProps>(null);
+  const child = children as React.ReactElement;
 
-  const target = cloneElement(children as React.ReactElement, {
+  // Only open on keyboard focus. Otherwise clicking the trigger after closing
+  // the tooltip with the mouse would reopen it, and closing it with Escape
+  // would prevent keyboard users from reopening it by refocusing.
+  const onFocus = (event: React.FocusEvent<HTMLElement>) => {
+    child.props?.onFocus?.(event);
+    if (event.currentTarget.matches(":focus-visible")) {
+      tooltipRef.current?.open();
+    }
+  };
+
+  const target = cloneElement(child, {
     "data-tooltip-id": tooltipId,
+    onFocus,
     // Make non-focusable elements keyboard accessible.
     ...(needsTabIndex(children) && { tabIndex: 0 }),
     ...rest
@@ -70,7 +83,19 @@ export const VuiTooltip = ({ children, darkTheme, position, tip, usePortal, ...r
       tip
     );
   const tooltip = (
-    <Tooltip id={tooltipId} offset={10} className="vuiTooltip" style={style} opacity={1} place={position}>
+    <Tooltip
+      ref={tooltipRef}
+      id={tooltipId}
+      offset={10}
+      className="vuiTooltip"
+      style={style}
+      opacity={1}
+      place={position}
+      // Focus is handled by onFocus so that only keyboard focus opens the tooltip.
+      openEvents={{ mouseover: true, focus: false }}
+      // Escape dismisses the tooltip without moving focus (WCAG 1.4.13).
+      globalCloseEvents={{ escape: true }}
+    >
       {content}
     </Tooltip>
   );
